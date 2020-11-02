@@ -1,6 +1,8 @@
 # Arkime
 > Arkime is a large scale, open source, indexed packet capture and search system.
 
+![banner](Arkime_Logo_FullGradientBlack@2x.png)
+
 This is the web site for https://arkime.com
 
 ## Contribute
