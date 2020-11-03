@@ -11,4 +11,4 @@ Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for information abou
 
 ## Maintainers
 
-The best way to reach us is on Slack.  Please request an invitation to join the Moloch FPC Slack workspace [here](https://slackinvite.molo.ch).
+The best way to reach us is on Slack.  Please request an invitation to join the Moloch FPC Slack workspace [here](https://slackinvite.arkime.com).
