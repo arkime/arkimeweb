@@ -1,0 +1,735 @@
+---
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- download js to display some downloads -->
+  <script src="downloads.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="container-fluid full-width-page">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- home -->
+    <div id="home"
+      class="purp-background p-nav-lg angle-background angle-background-long">
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <h1 class="display-1 text-center">
+            <img class="arkime-brand"
+              src="assets/Arkime_Logo_FullGradientBlack@2x.png"
+            />
+          </h1>
+          <h1 class="display-3 text-center">
+            Full Packet Capture
+          </h1>
+          <p class="lead lead-lg text-thin text-center">
+            Large scale, open source, indexed packet capture and search.
+          </p>
+        </div>
+      </div>
+      <div class="row mb-5 mt-3">
+        <div class="col text-center">
+          <a href="#download"
+            class="btn btn-purp btn-lg mr-2 btn-fw mb-2">
+            Download
+          </a>
+          <a href="https://github.com/arkime/arkime"
+            class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2">
+            GitHub
+          </a>
+          <a href="https://slackinvite.arkime.com/"
+            class="btn btn-outline-secondary btn-lg btn-fw mb-2">
+            Slack Us
+          </a>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col">
+          <h1 class="display-5 text-center">
+            <img src="assets/simple_logo.png" height="40px" style="margin-top:-4px;" />&nbsp;
+            <a href="on" class="no-decoration purp-text">
+              Join us!</a>
+            &nbsp;<img src="assets/simple_logo.png" height="40px" style="margin-top:-4px;" />
+          </h1>
+        </div>
+      </div> -->
+      <div class="jumbotron jumbotron-white mb-5 mt-5 ml-5 mr-5">
+        <p class="lead text-center text-muted">
+          Augment your current security infrastructure to store and
+          index network traffic in standard PCAP format.
+          <br>
+          Arkime is not meant to replace Intrusion Detection Systems (IDS),
+          instead it provides more visibility.
+        </p>
+        <div class="row mt-5">
+          <div class="col-lg-3 col-md-6">
+            <span class="fa fa-lock fa-3x">
+            </span>
+            <h5 class="purp-text mt-1">
+              Security
+            </h5>
+            <p>
+              Access to Arkime is protected by using HTTPS with digest passwords or
+              by using an authentication providing web server proxy. All PCAPs are
+              stored on the installed Arkime sensors and are only available through the Arkime
+              web interface or API. Arkime supports encrypting PCAP files at rest.
+            </p>
+            <p>
+              Want to report a security issue or just learn more? There's
+              <a href="security"
+                class="no-decoration">
+                more info here</a>.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="fa fa-expand fa-3x">
+            </span>
+            <h5 class="purp-text mt-1">
+              Scalability
+            </h5>
+            <p>
+              Arkime is designed to be deployed across multiple clustered
+              systems providing the ability to scale to handle multiple
+              gigabits per second of traffic. PCAP retention is based on
+              available sensor disk space while metadata retention is
+              based on the scale of the Elasticsearch cluster.
+              Both can be increased at anytime.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="fa fa-hand-pointer-o fa-3x cursor-pointer">
+            </span>
+            <h5 class="purp-text mt-1">
+              Interface
+            </h5>
+            <p>
+              A web application is provided for PCAP browsing,
+              searching, analysis, and PCAP carving for exporting. Arkime
+              stores and exports all packets in standard PCAP format
+              allowing you to use your favorite PCAP ingesting tools
+              during your analysis workflow.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="fa fa-cloud-download fa-3x">
+            </span>
+            <h5 class="purp-text mt-1">
+              APIs
+            </h5>
+            <p>
+              APIs are exposed that allow PCAP data and JSON-formatted
+              session data to be downloaded directly.
+            </p>
+            <p>
+              <a href="api"
+                class="no-decoration mt-2">
+                View the API documentation
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5">&nbsp;</div>
+    </div> <!-- /home -->
+
+    <!-- demo -->
+    <a id="demo"
+      class="anchor anchor-offset-more">
+    </a>
+    <div class="demo">
+      <h1 class="display-4 text-center d-none d-sm-none d-md-block">
+        Arkime Demo
+      </h1>
+      <h1 class="display-4 text-center d-block d-md-none demo-small-screen">
+        Arkime<br>Demo
+      </h1>
+      <p class="text-center">
+        <a class="btn btn-purp btn-lg"
+          href="https://demo.arkime.com/?date=-1">
+          Check it out!
+        </a>
+      </p>
+      <p class="lead text-center mb-0">
+        Username and password are both <code>arkime</code>
+      </p>
+      <p class="lead text-muted text-center">
+        <strong class="purp-text">Warning:</strong>
+        Anyone can see anything you upload
+      </p>
+      <p class="mt-3 text-center">
+        Also, check out our
+        <a href="https://www.youtube.com/playlist?list=PLXXo-3b5ZQ1jk2wk9IyoxoGygZq5cT6Hq"
+          rel="nofollow"
+          class="no-decoration">
+          recorded talks and feature demos</a>.
+      </p>
+    </div> <!-- /demo -->
+
+    <hr>
+
+    <!-- screenshots -->
+    <a id="screenshots"
+      class="anchor">
+    </a>
+    <div class="mt-5">
+      <!-- sessions -->
+      <div class="container-fluid mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-purp-text">
+              Sessions Page
+            </h1>
+            <p class="lead mb-3">
+              The Sessions page displays a list of indexed sessions for the selected time period and search expression.
+              It includes a timeline graph and map of the session results.
+            </p>
+            <img src="assets/sessions.png"
+              alt="Sessions screenshot"
+              class="screenshot-img"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="purp-text fa fa-search fa-fw fa-lg">
+              </span>&nbsp;
+              Search
+            </h5>
+            <p>
+              The search bar allows for powerful search queries to narrow down the data.
+              Click the owl for available fields.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-plus fa-fw fa-lg">
+              </span>&nbsp;
+              Session detail
+            </h5>
+            <p>
+              Get more information about any session and view the session's
+              packet data by clicking the "+" button.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-hand-o-up fa-fw fa-lg">
+              </span>&nbsp;
+              Value actions
+            </h5>
+            <p>
+              Hover and click any value to view a dropdown menu of actions, like
+              applying that value as search criteria.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-cloud-download fa-fw fa-lg">
+              </span>&nbsp;
+              Export PCAP
+            </h5>
+            <p>
+              You can export search results as PCAP or CSV by clicking the "Actions"
+              (<span class="fa fa-caret-down"></span>) drop down menu on the top right.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-arrows-h fa-fw fa-lg">
+              </span>&nbsp;
+              Timeline search
+            </h5>
+            <p>
+              Click and drag an area in the timeline to filter sessions by time.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-globe fa-fw fa-lg">
+              </span>&nbsp;
+              Country search
+            </h5>
+            <p class="mb-0">
+              Click a country on the map to apply it as search criteria.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /sessions -->
+      <!-- spiview -->
+      <hr>
+      <div class="container-fluid mt-5 mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-purp-text">
+              SPI View Page
+            </h1>
+            <p class="lead mb-3">
+              The SPI (Session Profile Information) View page allows you you to view unique values with session counts for each of the captured fields.
+            </p>
+            <img src="assets/spiview.png"
+              class="screenshot-img"
+              alt="SPI View screenshot"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="purp-text fa fa-plus fa-lg">
+              </span>&nbsp;
+              Toggle categories
+            </h5>
+            <p>
+              Click on any section to open or close any field category.
+            </p>
+            <h5 class="mt-4">
+              <span class="purp-text fa fa-search fa-lg">
+              </span>&nbsp;
+              Search for fields
+            </h5>
+            <p>
+              Search for fields within a category by using the input box within a category.
+            </p>
+            <h5 class="mt-4">
+              <span class="purp-text fa fa-hand-o-up fa-lg">
+              </span>&nbsp;
+              Toggle fields
+            </h5>
+            <p>
+              Click on a field in the top section of a category to toggle the field's visibility.
+              You can also click the load/unload all buttons to load/unload all the fields
+              in that category.
+            </p>
+            <h5 class="mt-4">
+              <span class="purp-text fa fa-ban fa-lg">
+              </span>&nbsp;
+              Cancel Load
+            </h5>
+            <p class="mb-0">
+              Click the cancel button on the top right of the page if the
+              page is taking a long time load data or you made a mistake when
+              you issued a query.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /spiview -->
+      <!-- spigraph -->
+      <hr>
+      <div class="container-fluid mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-purp-text">
+              SPI Graph Page
+            </h1>
+            <p class="lead mb-3">
+              The SPI (Session Profile Information) Graph page shows a temporal view for the top unique values of any field.
+            </p>
+            <img src="assets/spigraph.png"
+              alt="SPI Graph screenshot"
+              class="screenshot-img"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="purp-text fa fa-plus fa-lg">
+              </span>&nbsp;
+              Total
+            </h5>
+            <p>
+              The first timeline graph and map shows an aggregation of all the results below.
+              Click on the "x" button on this map to hide all maps.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-search fa-lg">
+              </span>&nbsp;
+              Search for fields
+            </h5>
+            <p>
+              Make a selection from the SPI Graph drop down on the top left
+              to view the unique values for different fields.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-list-ol fa-lg">
+              </span>&nbsp;
+              More fields
+            </h5>
+            <p>
+              Change the number of Max Elements to display more results.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-sort fa-lg">
+              </span>&nbsp;
+              Sorting
+            </h5>
+            <p class="mb-0">
+              Change the sort by dropdown to change how the results are sorted.
+              By default, the results are sorted starting with the highest unique
+              field value.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /spigraph -->
+      <!-- connections -->
+      <hr>
+      <div class="container-fluid mb-4">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-purp-text">
+              Connections Page
+            </h1>
+            <p class="lead mb-3">
+              The Connections page shows a network graph of your search results.
+            </p>
+            <img src="assets/connections.png"
+              alt="Connections screenshot"
+              class="screenshot-img"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="purp-text fa fa-lock fa-lg">
+              </span>&nbsp;
+              Lock
+            </h5>
+            <p>
+              Click and drag a node to lock it into place in the graph.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-hand-o-up fa-lg">
+              </span>&nbsp;
+              Node Info
+            </h5>
+            <p>
+              Hover over a node or a link to view more information (or hide it).
+            </p>
+            <h5>
+              <span class="purp-text fa fa-text-width fa-lg">
+              </span>&nbsp;
+              Node/Link Weight
+            </h5>
+            <p>
+              Change the Node/Link Weight dropdown to change how the node and link
+              sizes are calculated.
+            </p>
+            <h5>
+              <span class="purp-text fa fa-search fa-lg">
+              </span>&nbsp;
+              Change Source/Destination Nodes
+            </h5>
+            <p class="mb-0">
+              Make a selection from the Src and Dst drop downs to visualize your data based
+              upon different captured field relationships.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /connections -->
+    </div> <!-- /screenshots -->
+
+    <!-- downloads -->
+    <a id="download"
+      class="anchor">
+    </a>
+    <div class="purp-background pt-5 angle-background">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4 text-center mb-4 mt-4">
+            Download Arkime
+          </h1>
+          <div class="row mb-4 mt-4">
+            <div class="col text-center">
+              <a class="btn btn-outline-danger btn-lg mr-3 btn-fw mb-2"
+                href="https://s3.amazonaws.com/files.arkime.com/NOTICE.txt">
+                NOTICE
+              </a>
+              <a class="btn btn-outline-primary btn-lg mr-3 btn-fw mb-2"
+                href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+                CHANGELOG
+              </a>
+              <a class="btn btn-outline-info btn-lg mr-3 btn-fw mb-2"
+                href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
+                Instructions
+              </a>
+              <a class="btn btn-outline-success btn-lg mr-3 btn-fw mb-2"
+                href="https://github.com/arkime/arkime/issues/new">
+                Open an Issue
+              </a>
+            </div>
+          </div>
+          <!--
+          <div class="row mb-2 mr-1 ml-1">
+            <div class="col">
+              <div class="jumbotron jumbotron-white pb-2 pt-4">
+                <h3 class="purp-text pb-3 text-center">
+                  <span class="fa fa-exclamation-triangle">
+                  </span>&nbsp;
+                  Before upgrading
+                  &nbsp;<span class="fa fa-exclamation-triangle">
+                  </span>
+                </h3>
+                <div class="row pb-2">
+                  <div class="col-lg-3 col-md-6">
+                    <p>
+                      <strong>To Arkime 1.5</strong>
+                      <br>
+                      Upgrade to Arkime 1.0 or 1.1 and finish any reindexing.
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <p>
+                      <strong>To Arkime 1.0 or 1.1</strong>
+                      <br>
+                      Read the
+                      <a class="no-decoration"
+                        href="faq#how_do_i_upgrade_to_arkime_1">
+                        How do I upgrade to Arkime 1.0
+                      </a>
+                      answer in the FAQ.
+                      <br>
+                      <em>
+                        Upgrading to 1.0 takes some time, work, and requires ES 5.x.
+                      </em>
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <p>
+                      <strong>From ES 5 to ES 6</strong>
+                      <br>
+                      Read the
+                      <a class="no-decoration"
+                        href="faq#how-do-i-upgrade-to-es-6-x">
+                        How do I upgrade to ES 6
+                      </a>
+                      answer in the FAQ.
+                    </p>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <p>
+                      <strong>From ES 2 to ES 5</strong>
+                      <br>
+                      Read the
+                      <a class="no-decoration"
+                        href="faq#how_do_i_upgrade_to_es_5x">
+                        How do I upgrade to ES 5
+                      </a>
+                      answer in the FAQ.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+          <div class="downloads mr-5 ml-5">
+            <h4 class="loading-downloads text-sm-center">
+              <span class="fa fa-spinner fa-spin"></span>&nbsp;
+              Loading Arkime downloads...
+            </h4>
+            <div class="main-downloads"></div>
+            <div class="row downloads-error mt-4" style="display:none;">
+              <div class="col-12 text-center">
+                <h5 class="purp-text">
+                  <span class="fa fa-frown-o fa-lg">
+                  </span>&nbsp;
+                  Sorry, we couldn't retrieve Arkime downloads.
+                  &nbsp;<span class="fa fa-frown-o fa-lg">
+                  </span>
+                  <br>
+                  Please try again later.
+                </h5>
+                <p>
+                  Meanwhile, view Arkime on
+                  <a href="https://github.com/arkime/arkime"
+                    class="no-decoration">
+                    GitHub
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div class="row text-center mt-4">
+              <div class="col">
+                <a href="downloads"
+                  class="btn btn-lg btn-purp">
+                  More Downloads
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /downloads -->
+
+    <!-- help -->
+    <a id="help"
+      class="anchor">
+    </a>
+    <div class="pt-5 mr-5 ml-5 pb-5">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4 text-center mb-4">
+            Help!
+          </h1>
+        </div>
+      </div>
+      <div class="jumbotron row">
+        <div class="col-md-4 col-sm-12">
+          <span class="fa fa-question-circle fa-2x">
+          </span>
+          <h5 class="purp-text mt-1">
+            FAQ
+          </h5>
+          <p>
+            Read our
+            <a href="faq"
+              class="no-decoration">
+              FAQ
+            </a>
+            first!
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <span class="fa fa-slack fa-2x">
+          </span>
+          <h5 class="purp-text mt-1">
+            Slack
+          </h5>
+          <p>
+            Join our
+            <a class="no-decoration"
+              href="https://slackinvite.arkime.com/">
+              Slack
+            </a>
+            workspace to discuss Arkime and ask questions.
+          </p>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <span class="fa fa-github fa-2x">
+          </span>
+          <h5 class="purp-text mt-1">
+            Issues
+          </h5>
+          <p>
+            Find a bug? Want a new feature?
+            Open an
+            <a class="no-decoration no-wrap"
+              href="https://github.com/arkime/arkime/issues/new">
+              issue on GitHub</a>.
+          </p>
+        </div>
+      </div>
+    </div> <!-- /help -->
+
+    <!-- contribute -->
+    <div class="row text-center mb-5">
+      <div class="col">
+        <p class="mb-0">
+          Want to add to our FAQ?
+          Found an issue in this site?
+        </p>
+        <p>
+          <span class="fa fa-github-alt fa-lg">
+          </span>&nbsp;
+          This site's code is open source.
+          <a href="https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md"
+            class="no-decoration"
+            rel="nofollow">
+            Please contribute!
+          </a>
+          &nbsp;<span class="fa fa-github-alt fa-lg">
+          </span>
+        </p>
+      </div>
+    </div> <!-- /contribute -->
+
+  </div> <!-- /container -->
+
+  <!-- footer -->
+  {%- include footer.html -%}
+
+  <script>
+    // page loaded
+    $(function () {
+      $('#homeLink').addClass('active');
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      function setupDownloadBtns (versions, sortedVersions) {
+        let version = versions[sortedVersions[0]]; // get the latest version
+
+        let html = `<div class="row text-center">
+                     <div class="col">
+                       <h2>${version.title}</h2>
+                       <p class="lead">Latest Release ${version.modified}</p>
+                     </div>
+                    </div>`;
+
+        let downloads = version.downloads;
+
+        html += '<div class="row text-center"><div class="col">';
+
+        for (let i = 0, len = downloads.length; i < len; ++i) {
+          let download = downloads[i];
+          html += `<a href="${download.url}" class="btn btn-primary btn-lg mr-3 mb-2">
+                     ${download.title}
+                   </a>`;
+        }
+
+        html += '</div></div>';
+
+        $('.main-downloads').append(html);
+      }
+
+      function setupError() {
+        $('.downloads-error').show();
+        $('.loading-downloads').hide();
+      }
+
+      $.ajax({
+        url: 'https://s3.amazonaws.com/files.arkime.com',
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'xml',
+        success: function (xml) {
+          let downloads = parseXML(xml);
+          setupDownloadBtns(downloads.downloads, downloads.sortedVersions);
+          $('.loading-downloads').hide();
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          setupError();
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

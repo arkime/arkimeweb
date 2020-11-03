@@ -1,7 +1,7 @@
 # Arkime
 > Arkime is a large scale, open source, indexed packet capture and search system.
 
-![banner](Arkime_Logo_FullGradientBlack@2x.png)
+![banner](assets/Arkime_Logo_FullGradientBlack@2x.png)
 
 This is the web site for https://arkime.com
 
@@ -11,4 +11,4 @@ Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for information abou
 
 ## Maintainers
 
-The best way to reach us is on Slack.  Please request an invitation to join the Moloch FPC Slack workspace [here](https://slackinvite.arkime.com).
+The best way to reach us is on Slack.  Please request an invitation to join the Arkime FPC Slack workspace [here](https://slackinvite.arkime.com).

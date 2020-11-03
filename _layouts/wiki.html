@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body id="viewport" class="wiki-body full-height-body">
+
+    {%- include navbar.html -%}
+
+    <main class="page-content" aria-label="Content">
+      <div class="container-fluid full-width-page pt-3">
+        {{ content }}
+      </div>
+    </main>
+
+    <div>
+      {%- include footer.html -%}
+    </div>
+
+  </body>
+
+</html>

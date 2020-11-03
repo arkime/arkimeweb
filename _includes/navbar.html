@@ -1,0 +1,252 @@
+<!-- jQuery first, then Bootstrap JS. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+<nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
+  <button class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsingNavbar"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse"
+    id="collapsingNavbar">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item d-none d-sm-none d-md-block">
+        <a class="nav-link"
+          href="index#home">
+          <img src="assets/Arkime_Logo_Mark_White@3x.png" />
+        </a>
+      </li>
+      <li class="nav-item dropdown ml-4 d-none d-sm-none d-md-block">
+        <a class="nav-link dropdown-toggle cursor-pointer main-home-link"
+          data-toggle="dropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          <strong>Arkime</strong>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item home-link"
+            onclick="setActive('home')"
+            href="index#home">
+            Home
+          </a>
+          <a class="dropdown-item demo-link"
+            onclick="setActive('demo')"
+            href="index#demo">
+            Demo
+          </a>
+          <a class="dropdown-item screenshots-link"
+            onclick="setActive('screenshots')"
+            href="index#screenshots">
+            Screenshots
+          </a>
+          <!--
+          <a class="dropdown-item download-link"
+            onclick="setActive('download')"
+            href="index#download">
+            Downloads
+          </a> -->
+          <a class="dropdown-item help-link"
+            onclick="setActive('help')"
+            href="index#help">
+            Help
+          </a>
+        </div>
+      </li>
+      <span class="d-sm-block d-md-none">
+        <li class="nav-item home-link">
+          <a class="nav-link"
+            href="index#home">
+            <strong>Arkime</strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link home-link"
+            onclick="setActive('home')"
+            href="index#home">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link demo-link"
+            onclick="setActive('demo')"
+            href="index#demo">
+            Demo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link screenshots-link"
+            onclick="setActive('screenshots')"
+            href="index#screenshots">
+            Screenshots
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link download-link"
+            onclick="setActive('download')"
+            href="index#download">
+            Downloads Section
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link help-link"
+            onclick="setActive('help')"
+            href="index#help">
+            Help
+          </a>
+        </li>
+      </span>
+      <li class="nav-item">
+        <a class="nav-link downloads-link"
+          href="downloads">
+          Downloads
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link estimators-link"
+          href="estimators">
+          Estimators
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link on-link"
+          href="on">
+          ArkimeON 2019
+        </a>
+      </li> -->
+      <li class="nav-item dropdown d-none d-sm-none d-md-block">
+        <a class="nav-link dropdown-toggle cursor-pointer wiki-link"
+          data-toggle="dropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Learn
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item faq-link"
+            href="faq">
+            FAQ
+          </a>
+          <a class="dropdown-item settings-link"
+            href="settings">
+            Settings
+          </a>
+          <a class="dropdown-item api-link"
+            href="api">
+            API
+          </a>
+          <a class="dropdown-item learn-link"
+            href="learn">
+            Docs
+          </a>
+        </div>
+      </li>
+      <span class="d-sm-block d-md-none">
+        <li class="nav-item">
+          <a class="nav-link faq-link"
+            href="faq">
+            FAQ
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link settings-link"
+            href="settings">
+            Settings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link api-link"
+            href="api">
+            API
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link learn-link"
+            href="learn">
+            Docs
+          </a>
+        </li>
+      </span>
+      <span class="d-sm-block d-md-none">
+        <li class="nav-item">
+          <a class="nav-link"
+            href="https://slackinvite.arkime.com/">
+            Slack Us
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+            href="https://github.com/arkime/arkime">
+            Arkime GitHub
+          </a>
+        </li>
+      </span>
+    </ul>
+    <form class="form-inline d-none d-sm-none d-md-block">
+      <a href="https://slackinvite.arkime.com/"
+        class="btn btn-sm btn-outline-secondary ml-1"
+        title="Join the conversation on Slack"
+        data-toggle="tooltip"
+        data-placement="left">
+        <span class="fa fa-slack fa-2x"></span>
+        <span class="hide">Slack Channel</span>
+      </a>
+      <a href="https://github.com/arkime/arkime"
+        title="View Arkime on GitHub"
+        data-toggle="tooltip" data-placement="left"
+        class="btn btn-sm btn-outline-info ml-1">
+        <span class="fa fa-github fa-2x"></span>
+        <span class="hide">Arkime GitHub</span>
+      </a>
+    </form>
+  </div>
+</nav>
+
+<script>
+  const homeSubPaths = {
+    home: true, demo: true, screenshots: true,
+    download: true, help: true
+  };
+
+  const wikiSubPaths = {
+    learn: true, faq: true, settins: true, api: true, wisesources: true
+  }
+
+  // on home section navlink click, set active class and remove others
+  function setActive (page) {
+    for (let sp in homeSubPaths) {
+      $(`.${sp}-link`).removeClass('active');
+    }
+
+    $(`.${page}-link`).addClass('active');
+  }
+
+  // content loaded
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // set the active nav item
+    let path = window.location.pathname.split('/')[1];
+    let parentPath;
+
+    if (!path || path === 'index') {
+      parentPath = 'main-home';
+      let hash = window.location.hash;
+
+      if (hash) {
+        path = hash.split('#')[1];
+      }
+    } else if (wikiSubPaths[path]) {
+      parentPath = 'wiki';
+    }
+
+    $(`.${path}-link`).addClass('active');
+    $(`.${parentPath}-link`).addClass('active');
+  });
+</script>

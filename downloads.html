@@ -1,0 +1,327 @@
+---
+title: Downloads
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Download Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Arkime downloads" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com/downloads" />
+  <meta property="og:description" content="Arkime downloads" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="Arkime downloads" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com/downloads" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- parseXML function -->
+  <script src="downloads.js"></script>
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <!-- container -->
+  <div class="container-fluid downloads-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- info btns -->
+    <div class="row mb-4 mt-4">
+      <div class="col text-center">
+        <a class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2"
+          href="https://s3.amazonaws.com/files.arkime.com/NOTICE.txt">
+          NOTICE
+        </a>
+        <a class="btn btn-outline-primary btn-lg mr-2 btn-fw mb-2"
+          href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+          CHANGELOG
+        </a>
+        <a class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2"
+          href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
+          Instructions
+        </a>
+        <a class="btn btn-outline-success btn-lg mr-2 btn-fw mb-2"
+          href="https://github.com/arkime/arkime/issues/new">
+          Open an Issue
+        </a>
+      </div>
+    </div> <!-- /info btns -->
+
+    <!-- upgrade warnings -->
+    <div class="row mb-2">
+      <div class="col">
+        <div class="jumbotron pb-2 pt-4">
+          <h3 class="purp-text pb-3 text-center">
+            <span class="fa fa-exclamation-triangle">
+            </span>&nbsp;
+            Before upgrading
+            &nbsp;<span class="fa fa-exclamation-triangle">
+            </span>
+          </h3>
+          <div class="row pb-2">
+            <div class="col-lg-3 col-md-6">
+              <p>
+                <strong>To Arkime 2.0</strong>
+                <br>
+                Read the
+                <a class="no-decoration"
+                  href="faq#how_do_i_upgrade_to_arkime_2">
+                  How do I upgrade to Arkime 2.0
+                </a>
+                answer in the FAQ.
+                <br>
+                <em>
+                  Upgrading to 2.0 takes some time, work, and requires ES 6.
+                </em>
+              </p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <p>
+                <strong>To Arkime 1.5</strong>
+                <br>
+                Upgrade to Arkime 1.0 or 1.1 and finish any reindexing.
+              </p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <p>
+                <strong>From ES 6 to ES 7</strong>
+                <br>
+                Read the
+                <a class="no-decoration"
+                  href="faq#how-do-i-upgrade-to-es-7-x">
+                  How do I upgrade to ES 7
+                </a>
+                answer in the FAQ.
+              </p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <p>
+                <strong>Installing the MaxMind DB</strong>
+                <br>
+                Read the
+                <a class="no-decoration"
+                  href="faq#maxmind">
+                  How to install MaxMind DB
+                </a>
+                answer in the FAQ.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /upgrade warnings -->
+
+    <!-- download btns -->
+    <div class="downloads mb-5 mr-5 ml-5 pl-3 pr-3">
+      <!-- main downloads -->
+      <h2 class="loading-downloads text-center mb-5 pb-5 mt-5">
+        <span class="fa fa-spinner fa-spin"></span>&nbsp;
+        Loading Arkime downloads...
+      </h2>
+      <div class="main-downloads">
+      </div>
+      <div class="row show-more-downloads text-center mt-3 mb-4"
+        style="display:none;">
+        <div class="col-md-12">
+          <a href="#"
+            onclick="toggleMoreDownloads(event)"
+            class="cursor-pointer no-decoration show-more-downloads-btn">
+            <span class="fa fa-chevron-down"></span>&nbsp;
+            show more downloads
+          </a>
+        </div>
+      </div>
+      <div class="more-downloads"
+        style="display:none;">
+        <div class="row show-more-downloads text-center mt-3">
+          <div class="col-md-12">
+            <a href="#"
+              onclick="toggleMoreDownloads(event)"
+              class="cursor-pointer no-decoration show-more-downloads-btn">
+              <span class="fa fa-chevron-up"></span>&nbsp;
+              hide more downloads
+            </a>
+          </div>
+        </div>
+      </div> <!-- /main downloads -->
+      <!-- download error -->
+      <div class="row downloads-error mt-5 mb-5 pb-5"
+        style="display:none;">
+        <div class="col-12 text-center">
+          <h4 class="purp-text">
+            <span class="fa fa-frown-o fa-lg">
+            </span>&nbsp;
+            Sorry, we couldn't retrieve Arkime downloads.
+            &nbsp;<span class="fa fa-frown-o fa-lg">
+            </span>
+            <br>
+            Please try again later.
+          </h4>
+          <p>
+            Meanwhile, view Arkime on
+            <a href="https://github.com/arkime/arkime"
+              class="no-decoration">
+              GitHub
+            </a>
+          </p>
+        </div>
+      </div> <!-- /download error -->
+      <!-- latest commit btns -->
+      <div class="mt-5 commit-downloads-container"
+        style="display:none;">
+        <h3 class="text-center">
+          <span class="purp-text">
+            Feeling adventurous?
+          </span>
+          Try our latest commit!
+        </h3>
+        <hr>
+        <div class="commit-downloads">
+        </div>
+      </div> <!-- /latest commit btns -->
+    </div> <!-- /download btns -->
+
+  </div> <!-- /container -->
+
+  <!-- footer -->
+  {%- include footer.html -%}
+
+  <script>
+    let showMoreDownloads = false;
+
+    function toggleMoreDownloads (event) {
+      event.preventDefault();
+
+      showMoreDownloads = !showMoreDownloads;
+      let btn = $('.show-more-downloads-btn');
+      let moreDownloadsDiv = $('.more-downloads');
+
+      moreDownloadsDiv.toggle();
+
+      if (showMoreDownloads) {
+        btn.html('<span class="fa fa-chevron-up"></span>&nbsp;hide more downloads');
+      } else {
+        btn.html('<span class="fa fa-chevron-down"></span>&nbsp;show more downloads');
+      }
+
+      return false;
+    }
+
+    $(function () { // page loaded
+      function buildDownloadVersionRow (version, btnType, osList) {
+        let html = `<div class="row text-center mt-3">
+                     <div class="col-lg-2 mb-3">
+                       <div><strong>${version.title}</strong></div>
+                       <div class="time"><small>${version.modified}</small></div>
+                     </div>`;
+
+        let downloads = version.downloads;
+
+        let i, d;
+        for (i = 0, len = osList.length; i < len; ++i) {
+          for (d = 0; d < downloads.length; d++) {
+            if (downloads[d].title === osList[i]) {
+              let download = downloads[d];
+              html += `<div class="col-lg-1 mb-1">
+                         <a href="${download.url}" class="btn ${btnType}">
+                           ${download.title}
+                         </a>
+                       </div>`;
+              break;
+            }
+          }
+
+          if (d === downloads.length) {
+            html += '<div class="col-lg-1 mb-1"></div>';
+          }
+        }
+
+        html += '</div>';
+
+        return html;
+      }
+
+      function setupPage (versions, nightlies, commities, sortedVersions) {
+        let mainDownloadsHtml = '', moreDownloadsHtml = '';
+
+        const osList = [ 'Centos 6', 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+        const osCommitList = [ 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+
+        let commitDownloadsHtml = buildDownloadVersionRow(commities, 'btn-outline-danger', osCommitList);
+
+        for (let v = 0, vlen = sortedVersions.length; v < vlen; ++v) {
+          if (versions.hasOwnProperty(sortedVersions[v])) {
+            let version = versions[sortedVersions[v]];
+            let btnType = v === 0 ? 'btn-primary' : 'btn-outline-primary';
+            let html = buildDownloadVersionRow(version, btnType, osList);
+
+            if (v < 3)  { mainDownloadsHtml += html; }
+            else        { moreDownloadsHtml += html; }
+          }
+        }
+
+        $('.show-more-downloads').show();
+        $('.commit-downloads-container').show();
+        $('.main-downloads').append(mainDownloadsHtml);
+        $('.more-downloads').prepend(moreDownloadsHtml);
+        $('.commit-downloads').append(commitDownloadsHtml);
+      }
+
+      function setupError() {
+        $('.downloads-error').show();
+        $('.loading-downloads').hide();
+        $('.commit-downloads-container').hide();
+        $('.show-more-downloads-btn').hide();
+        $('.show-more-downloads').hide();
+      }
+
+      $.ajax({
+        url: 'https://s3.amazonaws.com/files.arkime.com',
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'xml',
+        success: function (xml) {
+          let downloads = parseXML(xml);
+          setupPage(downloads.downloads, downloads.nightlies, downloads.commities, downloads.sortedVersions);
+          $('.loading-downloads').hide();
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          setupError();
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

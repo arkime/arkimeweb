@@ -1,0 +1,3252 @@
+---
+title: FAQ
+---
+
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime FAQ</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Frequently asked Arkime questions" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com/faq" />
+  <meta property="og:description" content="Frequently asked Arkime questions" />
+  <meta property="og:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="Frequently asked Arkime questions" />
+  <meta name="twitter:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com/faq" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport"
+  class="full-height-body">
+
+  <!-- navbar -->
+  {%- include navbar.html -%}
+
+  <!-- toc nav -->
+  <div class="left-nav d-none d-sm-block">
+    <div class="nav nav-pills nav-pills-nested pb-3">
+      <a href="#general"
+        class="nav-link"
+        title="General">
+        General
+      </a>
+      <a class="nav-link nested"
+        href="#why-should-i-use-arkime"
+        title="Why should I use Arkime?">
+        Why should I use Arkime?
+      </a>
+      <a class="nav-link nested"
+        href="#upgrading-arkime"
+        title="Upgrading Arkime">
+        Upgrading Arkime
+      </a>
+      <a class="nav-link nested"
+        href="#what-oses-are-supported"
+        title="What OSes are supported?">
+        What OSes are supported?
+      </a>
+      <a class="nav-link nested"
+        href="#arkime-is-not-working"
+        title="Arkime is not working">
+        Arkime is not working
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-reset-arkime"
+        title="How do I reset Arkime?">
+        How do I reset Arkime?
+      </a>
+      <a class="nav-link nested"
+        href="#self-signed-ssl-tls-certificates"
+        title="Self-Signed SSL/TLS Certificates">
+        Self-Signed SSL/TLS Certificates
+      </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_1"
+        title="How do I upgrade to Arkime 1.0">
+        How do I upgrade to Arkime 1.0
+      </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_2"
+        title="How do I upgrade to Arkime 2.0">
+        How do I upgrade to Arkime 2.0
+      </a>
+      <a href="#elasticsearch"
+        class="nav-link"
+        title="Elasticsearch">
+        Elasticsearch
+      </a>
+      <a class="nav-link nested"
+        href="#how-many-elasticsearch-nodes-or-machines-do-i-need"
+        title="How many Elasticsearch nodes or machines do I need?">
+        How many Elasticsearch nodes or machines do I need?
+      </a>
+      <a class="nav-link nested"
+        href="#data-never-gets-deleted"
+        title="Data never gets deleted">
+        Data never gets deleted
+      </a>
+      <a class="nav-link nested"
+        href="#error-dropping-request-_bulk"
+        title="ERROR - Dropping request /_bulk">
+        ERROR - Dropping request /_bulk
+      </a>
+      <a class="nav-link nested"
+        href="#when-do-i-add-additional-nodes-why-are-queries-slow"
+        title="When do I add additional nodes? Why are queries slow?">
+        When do I add additional nodes? Why are queries slow?
+      </a>
+      <a class="nav-link nested"
+        href="#removing-nodes"
+        title="Removing nodes">
+        Removing nodes
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-enable-elasticsearch-replication"
+        title="How do I enable Elasticsearch replication?">
+        How do I enable Elasticsearch replication?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-upgrade-elasticsearch"
+        title="How do I upgrade Elasticsearch?">
+        How do I upgrade Elasticsearch?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-upgrade-to-es-7-x"
+        title="How do I upgrade to ES 7.x?">
+        How do I upgrade to ES 7.x?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-upgrade-to-es-6-x"
+        title="How do I upgrade to ES 6.x?">
+        How do I upgrade to ES 6.x?
+      </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_es_5x"
+        title="How do I upgrade to ES 5.x?">
+        How do I upgrade to ES 5.x?
+      </a>
+      <a class="nav-link nested"
+        href="#version-conflict"
+        title="version conflict, current version [N] is higher or equal to the one provided [M]">
+        version conflict, current version [N] is higher or equal to the one provided [M]
+      </a>
+      <a class="nav-link nested"
+        href="#recommended-elasticsearch-settings"
+        title="Recommended Elasticsearch Settings">
+        Recommended Elasticsearch Settings
+      </a>
+      <a class="nav-link nested"
+        href="#ilm"
+        title="Using ILM with Molcoh">
+        Using ILM with Arkime
+      </a>
+      <a href="#capture"
+        class="nav-link"
+        title="Capture">
+        Capture
+      </a>
+      <a class="nav-link nested"
+        href="#what-kind-of-capture-machines-should-we-buy"
+        title="What kind of capture machines should we buy?">
+        What kind of capture machines should we buy?
+      </a>
+      <a class="nav-link nested"
+        href="#what-kind-of-network-packet-broker-should-we-buy"
+        title="What kind of Network Packet Broker should we buy?">
+        What kind of Network Packet Broker should we buy?
+      </a>
+      <a class="nav-link nested"
+        href="#what-kind-of-packet-capture-speeds-can-arkime-capture-handle"
+        title="What kind of packet capture speeds can arkime-capture handle?">
+        What kind of packet capture speeds can arkime-capture handle?
+      </a>
+      <a class="nav-link nested"
+        href="#arkime_requires_full_packet_captures_error"
+        title="Arkime requires full packet captures error">
+        Arkime requires full packet captures error
+      </a>
+      <a class="nav-link nested"
+        href="#why-am-i-dropping-packets"
+        title="Why am I dropping packets?">
+        Why am I dropping packets?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-import-existing-pcaps"
+        title="How do I import existing PCAPs?">
+        How do I import existing PCAPs?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-monitor-multiple-interfaces"
+        title="How do I monitor multiple interfaces?">
+        How do I monitor multiple interfaces?
+      </a>
+      <a class="nav-link nested"
+        href="#arkime-capture-crashes"
+        title="Arkime capture crashes">
+        Arkime capture crashes
+      </a>
+      <a class="nav-link nested"
+        href="#error-pcap-open-failed"
+        title="ERROR - pcap open failed">
+        ERROR - pcap open failed
+      </a>
+      <a class="nav-link nested"
+        href="#how-to-reduce-amount-of-traffic-pcap"
+        title="How to reduce amount of traffic/PCAP?">
+        How to reduce amount of traffic/PCAP?
+      </a>
+      <a class="nav-link nested"
+        href="#life-of-a-packet"
+        title="Life of a packet">
+        Life of a packet
+      </a>
+      <a class="nav-link nested"
+        href="#pcap-deletion"
+        title="PCAP Deletion">
+        PCAP Deletion
+      </a>
+      <a class="nav-link nested"
+        href="#dontsavebpfs-doesn-t-work"
+        title="dontSaveBPFs doesn’t work">
+        dontSaveBPFs doesn’t work
+      </a>
+      <a class="nav-link nested"
+        href="#zero-byte-pcap-files"
+        title="Zero or missing bytes PCAP files">
+        Zero or missing bytes PCAP files
+      </a>
+      <a class="nav-link nested"
+        href="#can-i-virtualize-arkime-with-kvm-using-openvswitch"
+        title="Can I virtualize Arkime with KVM using OpenVswitch?">
+        Can I virtualize Arkime with KVM using OpenVswitch?
+      </a>
+      <a class="nav-link nested"
+        href="#maxmind"
+        title="Installing MaxMind Geo free database files">
+        Installing MaxMind Geo free database files
+      </a>
+      <a class="nav-link nested"
+        href="#loglines"
+        title="What do these log lines mean">
+        What do these log lines mean?
+      </a>
+      <a href="#viewer"
+        class="nav-link"
+        title="Viewer">
+        Viewer
+      </a>
+      <a class="nav-link nested"
+        href="#where-do-i-learn-more-about-the-expressions-available"
+        title="Where do I learn more about the expressions available?">
+        Where do I learn more about the expressions available?
+      </a>
+      <a class="nav-link nested"
+        href="#exported-pcap-files-are-corrupt-sometimes-session-detail-fails"
+        title="Exported PCAP files are corrupt, sometimes session detail fails">
+        Exported PCAP files are corrupt, sometimes session detail fails
+      </a>
+      <a class="nav-link nested"
+        href="#map-counts-are-wrong"
+        title="Map counts are wrong">
+        Map counts are wrong
+      </a>
+      <a class="nav-link nested"
+        href="#what-browsers-are-supported"
+        title="What browsers are supported?">
+        What browsers are supported?
+      </a>
+      <a class="nav-link nested"
+        href="#error-getaddrinfo-eaddrinfo"
+        title="Error: getaddrinfo EADDRINFO">
+        Error: getaddrinfo EADDRINFO
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-proxy-arkime-using-apache"
+        title="How do I proxy Arkime using Apache">
+        How do I proxy Arkime using Apache
+      </a>
+      <a class="nav-link nested"
+        href="#i-still-get-prompted-for-password-after-setting-up-apache-auth"
+        title="I still get prompted for password after setting up Apache auth">
+        I still get prompted for password after setting up Apache auth
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-search-multiple-arkime-clusters"
+        title="How do I search multiple Arkime clusters">
+        How do I search multiple Arkime clusters?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies"
+        title="How do I use self-signed SSL/TLS Certificates with MultiES?">
+        How do I use self-signed SSL/TLS Certificates with MultiES?
+      </a>
+      <a class="nav-link nested"
+        href="#how-do-i-reset-my-password"
+        title="How do I reset my password?">
+        How do I reset my password?
+      </a>
+      <a class="nav-link nested"
+        href="#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data"
+        title="Error: Couldn’t connect to remote viewer, only displaying SPI data">
+        Error: Couldn’t connect to remote viewer, only displaying SPI data
+      </a>
+      <a class="nav-link nested"
+        href="#compiled-against-a-different-node-js-version-error"
+        title="Compiled against a different Node.js version error">
+        Compiled against a different Node.js version error
+      </a>
+      <a href="#parliament"
+        class="nav-link"
+        title="Parliament">
+        Parliament
+      </a>
+      <a class="nav-link nested"
+        href="#sample-apache-config"
+        title="Sample Apache Config">
+        Sample Apache Config
+      </a>
+      <a href="#wise"
+        class="nav-link"
+        title="WISE">
+        WISE
+      </a>
+      <a class="nav-link nested"
+        href="#wise-is-not-working"
+        title="WISE is not working">
+        WISE is not working
+      </a>
+      <a href="#arkimeweb"
+        class="nav-link"
+        title="Molo.ch">
+        Molo.ch
+      </a>
+      <a class="nav-link nested"
+        href="#how-can-i-contribute"
+        title="How can I contribute">
+        How can I contribute
+      </a>
+    </div>
+  </div> <!-- /toc nav -->
+
+  <!-- toc expand/collapse -->
+  <div class="collapse-btn d-none d-sm-block"
+    onclick="toggleToc()">
+    <span class="fa fa-angle-double-left">
+    </span>
+  </div> <!-- /toc expand/collapse -->
+
+  <!-- faq container -->
+  <div class="full-height-container">
+
+    <!-- faq content -->
+    <div class="pl-3 pr-3">
+
+      <!-- general -->
+      <h1 id="general"
+        class="border-bottom">
+        General
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="why-should-i-use-arkime">
+        Why should I use Arkime?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        If you want a standalone open source full packet capture (FPC)
+        system with meta data parsing and searching, then Arkime may be
+        your answer! Arkime allows you complete control of deployment
+        and architecture. There are
+        <a href="otherfpc">
+          other FPC systems
+        </a>
+        available.
+      </p>
+
+      <h3 id="upgrading-arkime">
+        Upgrading Arkime
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Upgrading Arkime requires you install versions in order, as
+        described in the chart below. If the version you are currently
+        on isn’t listed please upgrade to the next higher version in the
+        chart, you can then install the major releases in order to catch up.
+        New installs can start from the latest version.
+      </p>
+      <table class="table table-sm table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Arkime Version
+            </th>
+            <th>
+              Min upgrade from
+            </th>
+            <th>
+              ES Versions
+            </th>
+            <th>
+              Special Instructions
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              2.2+
+            </td>
+            <td>
+              1.7.0 (1.8.0 recomended)
+            </td>
+            <td>
+              6.8.2+ (6.8.6+ recommended), 7.1+ (7.8.0+ recommended, 7.7.0 broken)
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_2"> Arkime 2.0 instructions </a>
+            </td>
+            <td>
+              Must already be on 6.8.x or 7.1+ before upgrading to 2.2
+            </td>
+          </tr>
+          <tr>
+            <td>
+              2.0, 2.1
+            </td>
+            <td>
+              1.7.0 (1.8.0 recomended)
+            </td>
+            <td>
+             6.7, 6.8, 7.1+
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_2"> Arkime 2.0 instructions </a>
+            </td>
+            <td>
+              Must already be on ES 6.7 or 6.8 (ES <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> recommended) before upgrading to 2.0
+            </td>
+          </tr>
+          <tr>
+            <td>
+              1.8
+            </td>
+            <td>
+              1.0.0 (1.1.x recommended)
+            </td>
+            <td>
+              5.x or 6.x
+            </td>
+            <td>
+              <a href="#how-do-i-upgrade-to-es-6-x">
+                ES 6 instructions
+              </a>
+            </td>
+            <td>
+              Must have finished the 1.x reindexing, stop captures for best results
+            </td>
+          </tr>
+          <tr>
+            <td>
+              1.1.1
+            </td>
+            <td>
+            0.20.2 (0.50.1 recommended)
+            </td>
+            <td>
+              5.x or 6.x (new only)
+            </td>
+            <td>
+              <a href="how_do_i_upgrade_to_arkime_1">
+                Instructions
+              </a>
+            </td>
+            <td>
+              Must be on ES 5 already
+            </td>
+          </tr>
+          <tr>
+            <td>
+              0.20.2
+            </td>
+            <td>
+              0.18.1 (0.20.2 recomended)
+            </td>
+            <td>
+              2.4, 5.x
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_es_5x">
+                ES 5 instructions
+              </a>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="what-oses-are-supported">
+        What OSes are supported?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        We have RPMs/DEBs available on the
+        <a href="downloads">
+          downloads page
+        </a>
+        Our deployment is on Centos 7 with the elrepo 4.x kernel installed for packet performance increases and better afpacket support.
+        A large amount of development is done on Mac OS X 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
+        Arkime is NOT supported on 32 bit machines.
+      </p>
+      <p>
+        The following OSes should work out of the box for compiling yourself:
+      </p>
+      <ul>
+        <li>
+          CentOS/RHEL 7
+        </li>
+        <li>
+          Amazon Linux 2
+        </li>
+        <li>
+          Ubuntu 16.04, 18.04
+        </li>
+        <li>
+          FreeBSD 9
+        </li>
+        <li>
+          FreeBSD 10.0 (wiseService doesn’t work, but the wise plugin
+          does), 10.3 is known NOT to compile currently.
+        </li>
+      </ul>
+
+      <h3 id="arkime-is-not-working">
+        Arkime is not working
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Here is the common check list:
+      </p>
+      <ol>
+        <li>
+          Check that Elasticsearch is running and green using
+          <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+          on the machine running Elasticsearch.
+        </li>
+        <li>
+          Check that the db has been initialized with
+          <code>/data/arkime/db/db.pl http://ESHOST:9200 info</code>
+        </li>
+        <li>
+          Check that viewer is reachable by visiting
+          <code>http://arkime-viewer.hostname:8005</code>
+          from your browser
+          <ol type="a">
+            <li>
+              If it doesn’t render, looks strange or warns of an old browser, use a newer
+              <a href="#what-browsers-are-supported">
+                supported browser
+              </a>
+            </li>
+          </ol>
+        </li>
+        <li>
+          Check for errors in <code>/data/arkime/logs/viewer.log</code> and that viewer is running with <code>pgrep -lf viewer</code>
+        </li>
+        <li>
+          Check for errors in <code>/data/arkime/logs/capture.log</code> and that capture is running with <code>pgrep -lf capture</code>
+        </li>
+        <li>
+          Check that the stats page shows the capture nodes you are expecting, visit
+          <code>http://arkime-viewer.hostname:8005/stats?statsTab=1</code> in your browser.
+          <ol type="a">
+            <li>
+              Make sure the nodes are showing packets being received
+            </li>
+            <li>
+              Make sure the timestamp for nodes is recent (within 5 seconds)
+            </li>
+          </ol>
+        </li>
+        <li>
+          Disable any <code>bpf=</code> in <code>/data/arkime/etc/config.ini</code>, if that fixes the issue read
+          <a href="#dontsavebpfs-doesn-t-work">BPF FAQ answer</a>
+        </li>
+        <li>
+          If the browser has "Oh no, Arkime is empty! There is no
+          data to search." but the stats tab shows packets are being captured:
+          <ol type="a">
+            <li>
+              Live capture Arkime only writes records when a session has ended, it will take
+               several minutes for session to show up after a fresh start, see
+               <code>/data/arkime/etc/config.ini</code> to shorten the timeouts
+            </li>
+            <li>
+              Elasticsearch will only refresh the indices once a minute with the default Arkime config,
+              force a refresh with <code>curl http://ESHOST:9200/_refresh</code>
+            </li>
+            <li>
+              Verify your time frame for search covers the data (try switching to ALL)
+            </li>
+            <li>
+              Check that you don’t have a view set
+            </li>
+            <li>
+              Check that your user doesn’t have a forced expression set, might need to ask your Arkime admin
+            </li>
+          </ol>
+        </li>
+        <li>
+          Restart <code>arkime-capture</code> after adding a
+          <code>--debug</code> option may print out useful information what is
+          wrong if you are having packet capture issues. You can add multiple
+          <code>--debug</code> options to get even more information.
+          Capture will print out the config settings it is using, verify they
+          are what you expect.
+        </li>
+        <li>
+          Restart viewer after adding a
+          <code>--debug</code> option may print out useful information what is
+          wrong if you are having issues viewing packets that were captured
+          <ol type="a">
+            <li>
+              Make sure the plugins and parsers directories are correctly set
+              in <code>/data/arkime/etc/config.ini</code> and readable by the
+              viewer process
+            </li>
+          </ol>
+        </li>
+      </ol>
+
+      <h3 id="how-do-i-reset-arkime">
+        How do I reset Arkime?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <ol>
+        <li>
+          Leave Elasticsearch running
+        </li>
+        <li>
+          Shutdown all running viewer or capture processes so no new data is
+          recorded.
+        </li>
+        <li>
+          To delete all the SPI data stored in Elasticsearch, use the
+          <code>db.pl</code> script with either the <code>init</code> or
+          <code>wipe</code> commands. The only difference between the two
+          commands is that <code>wipe</code> leaves the
+          added users so they don’t need to be re-added.
+          <pre><code>/data/arkime/db/db.pl ESHOST:ESPORT wipe</code></pre>
+        </li>
+        <li>
+          Delete the PCAP files. The PCAP files are stored on the file system in
+          raw format. You need to do this on <strong>all</strong> of the capture
+          machines.
+          <pre><code>/bin/rm -f /data/arkime/raw/*</code></pre>
+        </li>
+      </ol>
+
+      <h3 id="self-signed-ssl-tls-certificates">
+        Self-Signed SSL/TLS Certificates
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        It is possible to get self signed certificates to work in the following
+        scenarios:
+      </p>
+      <ul>
+        <li>
+          User to Arkime Viewer
+        </li>
+        <li>
+          Viewer to Elasticsearch
+        </li>
+        <li>
+          Capture to Elasticsearch
+        </li>
+        <li>
+          MultiES to Elasticsearch
+        </li>
+        <li>
+          Viewer to MultiES
+        </li>
+      </ul>
+      <p>
+        Usually the easiest way is to add the self signed cert to the OS's list
+        of valid certificates or chains.  Googling is the best way to figure out
+        how to do this.  Viewer also supports a <code>caTrustFile</code> option.
+      </p>
+      <p>
+        The core Arkime team does not support or recommend self signed certs.
+        Use the money you are saving on a commercial product and go buy real
+        certs. Wildcard certs are now cheap and you can even go with free
+        Lets Encrypt certs.  There may be folks on the Arkime slack workspace
+        willing to help out.
+      </p>
+      <p>
+        Both capture and viewer can run with <code>--insecure</code> to turn off
+        cert checking.  You will need to add this option to the startup command for
+        both capture, viewer.  For example <code>/etc/systemd/system/arkimecapture.conf</code>.
+      </p>
+
+      <h3 id="how_do_i_upgrade_to_arkime_1">
+        How do I upgrade to Arkime 1.0
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Arkime 1.0 has some large changes and updates that will require all
+        session data to be reindexed. The reindexing is done in the background
+        AFTER upgrading so there is little downtime. Large changes in 1.0 include:
+      </p>
+      <ul>
+        <li>
+          All the field names have been renamed, and analyzed fields have been
+          removed
+        </li>
+        <li>
+          Country codes are being changed from 3 character to 2 character
+        </li>
+        <li>
+          Tags will NOT be migrated if added before 0.14.1
+        </li>
+        <li>
+          The data for http.hasheader and email.hasheader will NOT migrate
+        </li>
+        <li>
+          IPv6 is fully supported and uses the Elasticsearch <code>ip</code> type
+        </li>
+      </ul>
+      <p>
+        If you have any special parsers, tagger, plugins or wise source you may
+        have to change configurations.
+      </p>
+      <ul>
+        <li>
+          All db fields will need -term removed, capture won’t start and will
+          warn you
+        </li>
+      </ul>
+      <p>To upgrade:</p>
+      <ul>
+        <li>
+          First make sure you are using ES 5.5.x (5.6 recommended) and Arkime
+          0.20.2 or 0.50.x before continuing. Upgrade to those version first!
+        </li>
+        <li>
+          Download 1.1.1 from the
+          <a href="downloads">
+            downloads page
+          </a>
+        </li>
+        <li>
+          Shutdown all capture, viewer and wise processes
+        </li>
+        <li>
+          Install Arkime 1.1.1
+        </li>
+        <li>
+          Run <code>/data/arkime/bin/arkime_update_geo.sh</code> on all capture
+          nodes which will download the new mmdb style maxmind files
+        </li>
+        <li>
+          Run <code>db.pl http://ESHOST:9200 upgrade</code> once
+        </li>
+        <li>
+          Start wise, then capture, then viewers.
+          Especially watch the capture.log file for any warnings/errors.
+        </li>
+        <li>
+          Verify that NEW data is being collected and showing up in viewer,
+          all old data will NOT show up yet.
+        </li>
+      </ul>
+      <p>
+        Once 1.1.1 is working, its time to reindex the old session data:
+      </p>
+      <ul>
+        <li>
+          Disable any db.pl expire or optimize jobs, or curator
+        </li>
+        <li>
+          Start screen or tmux since this will take several days
+        </li>
+        <li>
+          In the <code>/data/arkime/viewer</code> directory, run
+          <code>/data/arkime/viewer/reindex2.js --slices X</code>
+          <ul>
+            <li>
+              The number of slices should be between 2 and the number of shards
+              each index has, the higher the faster but more Elasticsearch CPU
+              that will be used. We recommend 1/2 the number of shards.
+            </li>
+            <li>
+              You can optionally add a --index option if there are indices you
+              need to reindex first, otherwise it will work from newest to oldest
+            </li>
+            <li>
+              You can optionally add a --deleteOnDone, which will delete indices
+              as they are converted, but you may want to try a reindex first on 1
+              index to make sure it is working.
+            </li>
+          </ul>
+        </li>
+        <li>
+          As reindex runs old data will show up in viewer
+        </li>
+        <li>
+          Delete ALL old indices with
+          <pre><code>curl -XDELETE 'http://localhost:9200/sessions-*'</code></pre>
+        </li>
+        <li>
+          Once the reindex finishes run the db.pl expire/optimize or curator job
+          manually, this will take a while
+        </li>
+        <li>
+          Now can reenable any db.pl expire or optimize jobs, or curator.
+          <strong>
+            Do NOT reenable crons until you let them run and finish manually.
+          </strong>
+        </li>
+      </ul>
+
+      <h3 id="how_do_i_upgrade_to_arkime_2">
+        How do I upgrade to Arkime 2.0
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        Upgrading to Arkime 2.0 is a multistep process that requires an outage.
+        An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
+        Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 6.7 or 6.8.
+        This is very important when upgrading to ES 7.x later.
+      </p>
+      <ul>
+        <li>You must be using Arkime 1.7 or 1.8 (Arkime 1.8.0 recommended) BEFORE trying to upgrade to Arkime 2.0</li>
+        <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Arkime 2.0</li>
+        <li>Install Arkime &gt;= 2.0 without restarting captures/viewers</li>
+        <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre20 </code> to backup all administrative indices.
+        <li>Shutdown captures</li>
+        <li> run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
+        <li>Restart captures</li>
+        <li>Verify everything is working</li>
+      </ul>
+      <p>
+      After verifying 2.0 is working fine while still using Elasticsearch 6, you can upgrade to Elasticsearch 7 using these <a href="#how-do-i-upgrade-to-es-7-x">instructions</a>.
+        </p>
+      <!-- /general -->
+
+      <!-- elasticsearch -->
+      <br>
+      <h1 id="elasticsearch"
+        class="border-bottom">
+        Elasticsearch
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+      <h3 id="how-many-elasticsearch-nodes-or-machines-do-i-need">
+        How many Elasticsearch nodes or machines do I need?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>The answer, of course, is "it depends". Factors include:</p>
+      <ul>
+        <li>
+          How much memory each box has
+        </li>
+        <li>
+          How many days you want to store meta data (SPI data) for
+        </li>
+        <li>
+          How fast the disks are
+        </li>
+        <li>
+          What percentage of the traffic is HTTP/DNS
+        </li>
+        <li>
+          The average transfer rate of all the interfaces
+        </li>
+        <li>
+          If the sessions are long lived or short lived
+        </li>
+        <li>
+          How fast response times should be for operators
+        </li>
+        <li>
+          How many operators are querying at the same time
+        </li>
+      </ul>
+      <p>
+        Some important things to remember when designing your cluster:
+      </p>
+      <ul>
+        <li>
+          SPI data is usually kept longer then PCAP data. For example, you may
+          store PCAP for a week but SPI data for a month.
+        </li>
+        <li>
+          Have at least 3% of disk space available in memory. For example, if the
+          cluster has 7TB of data then 7*0.03 or 210GB of memory is the minimum
+          recommended. Note: the more days store the memory ratio can actually
+          decrease, to 2% or 1%.
+        </li>
+        <li>
+          Assign half the memory to Elasticsearch (but no more then 31G per node,
+          read
+          <a href="https://www.elastic.co/blog/a-heap-of-trouble"
+            rel="nofollow">
+            https://www.elastic.co/blog/a-heap-of-trouble</a>)
+          and half the memory to disk cache.
+        </li>
+        <li>
+          Use version 6 of Elasticsearch or later.
+        </li>
+        <li>
+          A quick disk requirement estimate is 5% of the PCAP storage, if storing for the same amount of time.
+        </li>
+        <li>
+          If you have large machines, they you can run multiple nodes per MACHINE.
+        </li>
+      </ul>
+      <p>
+        We have some <a href="estimators"> estimators </a> that may help.
+      </p>
+      <p>
+        The good news is that it is easy to add new nodes in the future, so feel free to start with less nodes.
+        As a temporary fix to capacity problems, you can reduce the number of days of meta data that are stored.
+        You can use the Arkime ES Indices tab to delete the oldest <code>sessions2</code> index.
+      </p>
+
+      <h3 id="data-never-gets-deleted">
+        Data never gets deleted
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        The SPI data in Elasticsearch and the PCAP data are not deleted at the same time.
+        The PCAP data is deleted as the disk fills up on the capture machines,
+        <a href="#pcap-deletion">more info</a>.  PCAP deletion happens automatically
+        and nothing needs to be done.
+        The SPI data is deleted when the <code>./db.pl expire</code>
+        command is run, usually from cron during off peak. There is a sample in
+        the daily.sh script. The SPI data deletion does NOT happen automatically
+        and a cron job MUST be set up.
+      </p>
+      <p>
+        So deleting a PCAP file will NOT delete the SPI data, and deleting the
+        SPI data will not delete the PCAP data from disk.
+      </p>
+      <p>
+        The UI does have commands to delete and scrub individual sessions, but
+        the user must have the <code>Remove Data</code>
+        ability on the users tab. Usually this feature is used for things you don’t want
+        operators to see, such as bad images.
+      </p>
+
+
+      <h3 id="error-dropping-request-_bulk">
+        ERROR - Dropping request /_bulk
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        This error almost always means that your Elasticsearch cluster can not
+        keep up with the amount of sessions that the capture nodes are trying to
+        send it. You may only see the error message on your busiest capture nodes
+        since capture tries to buffer the requests.
+      </p>
+      <p>
+        Some things to check:
+      </p>
+      <ul>
+        <li>
+          Since Arkime 1.7.0 the ES Nodes tab of the Stats section now has the
+          ability to turn on Write Task completed and rejected columns. Look for
+          nodes having issues. Make sure those nodes don’t have disk issues.
+        </li>
+        <li>
+          Make sure each Elasticsearch node has 30G of memory (no more) and 30G
+          of disk cache (at least) available to it. So for example if you are on
+          a 64G machine only run 1 Elasticsearch node on the machine.
+        </li>
+        <li>
+          Make sure swap is turned off or swappiness is 0 on Elasticsearch machines.
+        </li>
+        <li>
+          If you are running multiple Elasticsearch nodes make sure the disks can
+          support the iops load
+        </li>
+        <li>
+          Make sure you are running the latest Elasticsearch that the version of
+          Arkime supports, for example 5.6.7 if using Elasticesarch 5
+        </li>
+        <li>
+          If using replication on the sessions index, turn off replication of the
+          current day and only replicate past days. This can be done by using
+          <code>--replicas 1</code>
+          with your daily
+          <code>./db.pl expire</code>
+          run after turning off replicate in the sessions template using
+          <code>./db.pl upgrade</code>
+          without the
+          <code>--replicas</code>
+          option
+        </li>
+        <li>
+          Make sure there is at most 1 shard of each sessions per node, if there
+          are more run
+          <code>./db.pl upgrade</code>
+          again
+        </li>
+        <li>
+          You can increase the size of the write task Q in Elasticsearch, see
+          <a href="#recommended-elasticsearch-settings">
+            Recommended Elasticsearch Settings</a>.
+        </li>
+      </ul>
+      <p>
+        If these don’t help, you need to add more nodes or reduce the number of
+        sessions being monitored. You can reduce the number of sessions with
+        <a href="settings#packet-drop-ips">
+          packet-drop-ips</a>
+        or bpf filters or
+        <a href="rulesformat">
+          rules files</a>
+        for example.
+      </p>
+
+      <h3 id="when-do-i-add-additional-nodes-why-are-queries-slow">
+        When do I add additional nodes? Why are queries slow?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        If queries are too slow the easiest fix is to add additional
+        Elasticsearch nodes. Elasticsearch doesn’t do well if Java hits an
+        OutOfMemory condition. If you ever have one, you should immediately
+        delete the oldest
+        <code>sessions2-*</code>
+        index, update the
+        <code>daily.sh</code>
+        script to delete more often, and restart the Elasticsearch cluster.
+        Then you should order more machines. :)
+      </p>
+
+      <h3 id="removing-nodes">
+        Removing nodes
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <ul>
+        <li>
+          Go into the Arkime stats page and the ES Shards subtab
+        </li>
+        <li>
+          Click on the nodes you want to remove and exclude them
+        </li>
+        <li>
+          Wait for the shards to be moved off
+        </li>
+        <li>
+          If no shards move, you may need to config Elasticsearch to allow 2
+          shards per node, although a large number may be required if removing
+          many nodes.
+          <pre><code>curl -XPUT 'localhost:9200/sessions*/_settings' -d '{
+  "index.routing.allocation.total_shards_per_node": 2
+}'</code></pre>
+        </li>
+        <li>
+          If there are many shards that need to be redistributed, the defaults
+          might take days, which is good for the cluster, but it might make you
+          crazy. Increase the speed from default 3 streams at 20mb (60mb/sec) to
+          something higher like 6 streams at 50mb (300mb/sec). Obviously, adjust
+          for the speed of the new nodes' disks and network.
+          <pre><code>curl -XPUT localhost:9200/_cluster/settings -d '{"transient":{
+  "indices.recovery.concurrent_streams":6,
+  "indices.recovery.max_bytes_per_sec":"50mb"}
+}'</code></pre>
+        </li>
+      </ul>
+
+      <h3 id="how-do-i-enable-elasticsearch-replication">
+        How to enable Elasticsearch replication
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Turning on replication will consume twice the disk space on the nodes
+        and increase the network bandwidth between nodes, so make sure you
+        actually <strong>need</strong> replication.
+      </p>
+      <p>
+        To change future days
+        <pre><code>db/db.pl &lt;ESHOST:ESPORT&gt; upgrade --replicas 1</code></pre>
+      </p>
+      <p>
+        To change past days, but not the current day
+        <pre><code>db/db.pl &lt;ESHOST:ESPORT&gt; expire &lt;type&gt; &lt;num&gt; --replicas 1</code></pre>
+      </p>
+      <p>
+        We recommend the second solution since it allows current traffic to be
+        written to ES once, and during off peak the previous days traffic will
+        be replicated.
+      </p>
+
+      <h3 id="how-do-i-upgrade-elasticsearch">
+        How do I upgrade Elasticsearch?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        In general if upgrading between minor or build versions of Elasticsearch you can do a rolling upgrade with no issues.
+        Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for best results.
+        Make sure you select the matching version of that document for your version of ES from the pull down on the right hand side.
+      </p>
+      <p>
+        Upgrading between Major versions of Elasticsearch usually require an upgrade of Arkime.  So please see the instructions in this FAQ for
+        <ul>
+          <li><a href="#how-do-i-upgrade-to-es-7-x">ES 7</a></li>
+          <li><a href="#how-do-i-upgrade-to-es-6-x">ES 6</a></li>
+          <li><a href="#how_do_i_upgrade_to_es_5x">ES 5</a></li>
+        </ul>
+      </p>
+
+      <h3 id="how-do-i-upgrade-to-es-7-x">
+        How do I upgrade to ES 7.x
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        <strong>
+          <ul>
+            <li>ES 7.x is supported by Arkime 2.x only if there are no ES 5.x created indices remaining.  We recommend you upgrade to ES 7.8.x or later.</li>
+            <li>Upgrading to ES 7 MAY REQUIRE downtime.</li>
+          </ul>
+        </strong>
+      </p>
+      <ol type="I">
+        <li>
+          If you are NOT using Arkime DB version 63 (or later) you
+          must follow these <a href="/faq#how_do_i_upgrade_to_arkime_2">instructions</a> while still using ES 6.x and upgrade to Arkime 2.0. To find what DB version
+          you are using, either run
+          <code>db.pl http://ESHOST:9200 info</code>
+          or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
+        </li>
+        <li>
+          Make sure your Elasticsearch config files are ready for ES 7.  We do not provide sample Elasticsearch configs, but here are some things to look out for:
+          <ul>
+            <li>You MUST add a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/discovery-settings.html#initial_master_nodes">cluster.initial_master_nodes</a> and there may be other required discovery changes.</li>
+            <li>If you have more then 1000 shards per node you must set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/misc-cluster.html">cluster.max_shards_per_node</a></li>
+            <li>If you previously set <code>indices.breaker.total.limit</code> you should unset it.</li>
+            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html">ES 7.0 breaking changes</a></li>
+          </ul>
+        </li>
+        <li>
+         Now you need to upgrade from ES 6 to ES 7. There are two options:
+        <ol>
+          <li>
+            Upgrading to ES 7 if using ES <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> (or later) can be done with a rolling upgrade.  Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for best results.  You do NOT need to stop capture/viewer, but after the rolling upgrade is finish you may want to restart capture everywhere.
+          </li>
+          <li>
+            If not using ES 6.8.6, or if you would prefer to do a full restart follow the instructions below
+            <ul>
+              <li>
+                Make sure you delete any old indices that db.pl complained about when you installed Arkime 2.0
+              </li>
+              <li>
+                Shutdown everything: elasticsearch, capture, and viewer
+              </li>
+              <li>
+                Upgrade ES to 7.x (7.8.0 or later recommended)
+              </li>
+              <li>
+                Start ES cluster
+              </li>
+              <li>
+                Wait for cluster to go GREEN, this will take
+                <strong>LONGER</strong>
+                then usual as ES upgrades things from 6.x to 7.x format.
+                <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+              </li>
+              <li>
+                Start viewers and captures
+              </li>
+            </ul>
+          </li>
+        </ol>
+        </li>
+      </ol>
+
+      <h3 id="how-do-i-upgrade-to-es-6-x">
+        How do I upgrade to ES 6.x
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        <strong>
+          ES 6.x is supported by Arkime 1.x for NEW clusters and &gt;= 1.5 for
+          UPGRADING clusters.
+        </strong>
+      </p>
+      <p>
+        <strong>NOTE</strong> - If upgrading, you must FIRST upgrade to Arkime
+        1.0 or 1.1 (1.1.1 recommended) before upgrading to &gt; 1.5. Also all
+        reindex operations needs to be finished.
+      </p>
+      <p>
+        We do NOT provide ES 6 startup scripts or configuration, so if upgrading
+        please make sure you get startup scripts working on test machines before
+        shutting down your current cluster.
+      </p>
+      <p>
+        <strong>
+          Upgrading to ES 6 will REQUIRE two downtimes
+        </strong>
+      </p>
+      <p>
+        First outage: If you are NOT using Arkime DB version 51 (or later) you
+        must follow these steps while still using ES 5.x. To find what DB version
+        you are using, either run
+        <code>db.pl http://ESHOST:9200 info</code>
+        or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
+      </p>
+      <ul>
+        <li>
+          Install Arkime &gt;= 1.5
+        </li>
+        <li>
+          Shutdown capture
+        </li>
+        <li>
+          run
+          <code> ./db.pl http://ESHOST:9200 upgrade </code>
+        </li>
+        <li>
+          Restart capture
+        </li>
+        <li>
+          Verify everything is working
+        </li>
+        <li>
+          Make sure you delete the old indices that db.pl complained about
+        </li>
+      </ul>
+      <p>
+        Second outage: Upgrade to ES 6
+      </p>
+      <ul>
+        <li>
+          Make sure you delete the old indices that db.pl complained about
+        </li>
+        <li>
+          Shutdown everything
+        </li>
+        <li>
+          Upgrade ES to 6.x
+        </li>
+        <li>
+          <strong>WARNING</strong> - path.data will have to be updated to access
+          your old data. If you had path.data: /data/foo you will probably need
+          to change to <code>/data/foo/&lt;clustername&gt;</code>
+        </li>
+        <li>
+          Start ES cluster
+        </li>
+        <li>
+          Wait for cluster to go GREEN, this will take
+          <strong>LONGER</strong>
+          then usual as ES upgrades things from 5.x to 6.x format.
+          <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+          </code>
+        </li>
+        <li>
+          Start viewers and captures
+        </li>
+      </ul>
+
+      <h3 id="how_do_i_upgrade_to_es_5x">
+        How do I upgrade to ES 5.x
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        <strong>
+          ES 5.x is supported by Arkime 0.17.1 for NEW clusters and 0.18.1 for
+          UPGRADING clusters.
+        </strong>
+      </p>
+      <p>
+        ES 5.0.x, 5.1.x and 5.3.0 are NOT supported because of ES bugs/issues.
+        We currently use 5.6.7.
+      </p>
+      <p>
+        <strong>WARNING</strong> - If you have <code>sessions-*</code> indices
+        created with ES 1.x, you can NOT upgrade. Those indices will need to be
+        deleted.
+      </p>
+      <p>
+        We do NOT provide ES 5 startup scripts, so if upgrading please make sure
+        you get startup scripts working on test machines before shutting down
+        your current cluster.
+      </p>
+      <p>
+        <strong>
+          Upgrading to ES 5 may REQUIRE 2 downtime periods of about 5-15 minutes
+          each.
+        </strong>
+      </p>
+      <p>
+        First outage: If you are NOT using Arkime DB version 34 (or later) you
+        must follow these steps while still using ES 2.4. To find what DB version
+        you are using, either run <code>db.pl http://ESHOST:9200 info</code>
+        or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
+      </p>
+      <ul>
+        <li>
+          Upgrade to ES 2.4.x
+        </li>
+        <li>
+          Check for GREEN ES cluster
+          <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+        </li>
+        <li>
+          Install Arkime 0.18.1 to 0.20.2
+        </li>
+        <li>
+          Shut down all capture nodes
+        </li>
+        <li>
+          Run
+          <code> ./db.pl http://ESHOST:9200 upgrade </code>
+        </li>
+        <li>
+          <strong>
+            Start up captures and make sure everything works
+          </strong>
+        </li>
+        <li>
+          You can remain on ES 2.4.x until you want to try ES 5
+        </li>
+      </ul>
+      <p>
+        Second outage: Upgrade to ES 5
+      </p>
+      <ul>
+        <li>
+          You MUST be on ES 2.4.x and Arkime DB version 34 (or later) before
+          using ES 5 (see above)
+        </li>
+        <li>
+          Shutdown EVERYTHING (Elasticsearch, viewer, capture)
+        </li>
+        <li>
+          Upgrade ES to 5.6.x
+        </li>
+        <li>
+          Start ES cluster
+        </li>
+        <li>
+          Wait for cluster to go GREEN, this will take <strong>LONGER</strong>
+          then usual as ES upgrades things from 2.x to 5.x format.
+          <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+        </li>
+        <li>
+          Start viewers and captures
+        </li>
+      </ul>
+
+      <h3 id="version-conflict">
+        version conflict, current version [N] is higher or equal to the one provided [M]
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        This error usually happens when the capture process is trying to update the
+        stats data and falls behind.  If it happens regularly it may indicate
+        the elasticsearch process is having a hard time keeping up with indexing.
+      </p>
+
+      <h3 id="recommended-elasticsearch-settings">
+        Recommended Elasticsearch Settings
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Here are some of our recommended Elasticsearch settings. Many of these
+        can be updated on the fly, but it is still best to put them in your
+        <code>elasticsearch.yml</code> file. We strongly recommend using the same
+        <code>elasticsearch.yml</code> file on all hosts, things that need to be
+        different per host can be set with variables.
+      </p>
+
+      <div class="ml-5 mr-5">
+        <h4 id="disk-watermark">
+          Disk Watermark
+        </h4>
+        <p>
+          You will probably want to change the watermark settings so you can use
+          more of your disk space. You have the option to use ALL percentages or
+          ALL values, but you can’t mix them. The most common sign of a problem
+          with these settings is an error that has
+          <code>FORBIDDEN/12/index read-only / allow delete</code> in it. You can
+          use
+          <code> ./db.pl http://ESHOST:9200 unflood-stage _all </code>
+          to clear the error, once you adjust the settings and/or delete some
+          data.
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/disk-allocator.html"
+            rel="nofollow">
+            Elasticsearch Docs
+          </a>
+          <pre><code>cluster.routing.allocation.disk.watermark.low: 97%
+cluster.routing.allocation.disk.watermark.high: 98%
+cluster.routing.allocation.disk.watermark.flood_stage: 99%</code></pre>
+        </p>
+        <p>
+          or if you want more control use values instead of percentages:
+          <pre><code>cluster.routing.allocation.disk.watermark.low: 300gb
+cluster.routing.allocation.disk.watermark.high: 200gb
+cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
+        </p>
+
+        <h4 id="shard-limit">
+          Shard Limit
+        </h4>
+        <p>
+          If you have a lot of shards that you want to be able to search against
+          at once
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html"
+            rel="nofollow">
+            Elasticsearch Docs
+          </a>
+        </p>
+        <pre><code>action.search.shard_count.limit: 100000</code></pre>
+
+        <h4 id="write-queue-limit">
+          Write Queue Limit
+        </h4>
+        <p>
+          If you hit a lot of bulk failures this can help, but Elastic doesn’t
+          recommend raising too much. In older versions of Elasticsearch it is
+          named <code>thread_pool.bulk.queue_size</code> so check the docs for
+          your version.
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-threadpool.html"
+            rel="nofollow">
+            Elasticsearch Docs
+          </a>
+        </p>
+        <pre><code>thread_pool.write.queue_size: 2000</code></pre>
+
+        <h4 id="http-compression">
+          HTTP Compression
+        </h4>
+        <p>
+          On by default in most versions, allows for HTTP compression.
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html"
+            rel="nofollow">
+            Elasticsearch Docs
+          </a>
+        </p>
+        <pre><code>http.compression: true</code></pre>
+
+        <h4 id="recovery-time">
+          Recovery Time
+        </h4>
+        <p>
+          To speed up recovery times and startup times there are a few controls
+          to play with. Make sure you test them in your environment, and slowly
+          increase them, because they can break things badly.
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html"
+            rel="nofollow">
+            Elasticsearch Allocation Docs
+          </a>
+          and
+          <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/recovery.html"
+            rel="nofollow">
+            Elasticsearch Recovery Docs
+          </a>
+        </p>
+        <pre><code>cluster.routing.allocation.cluster_concurrent_rebalance: 10
+cluster.routing.allocation.node_concurrent_recoveries: 5
+cluster.routing.allocation.node_initial_primaries_recoveries: 5
+indices.recovery.max_bytes_per_sec: "400mb"</code></pre>
+
+        <h4 id="logging">
+          Logging
+        </h4>
+        <p>
+          By default elasticsearch has logging set to debug level in log4j2.properties.
+          For busy clusters change this to info level to lower CPU and disk usage.
+        </p>
+        <pre><code>
+logger.action.level = info</code></pre>
+      </div>
+
+      <h3 id="ilm">
+        Using ILM with Arkime
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Since Arkime 2.2 you can easily use ILM to handle moving indices from hot to warm, force merge, and delete actions.
+        We recommend only using ILM with newer versions (7.2+) of Elasticsearch, since older versions did have some issues.
+        Once ILM is enabled you no longer have to use the <code>db.pl expire</code> cron job, but should occasionally run <code>db.pl optimize-admin</code>.
+      </p>
+      <p>
+        ILM is only included in the free "basic" Elasticsearch license, so it is not part of the Elasticsearch OSS distribution, so you may need to upgrade.
+        Arkime does NOT currently support the auto rollover feature of ILM for performance reasons when searching.
+      </p>
+      <p>
+        There are four important steps to have ILM work correctly with Arkime.
+        <ol>
+          <li>Create the arkimesessions and arkimehistory ILM polices.  This can be done easily with kibana or we recommend <code>db.pl ilm</code> command.</li>
+          <li>Assign the arkimesessions and arkimehistory ILM polices to all the existing indices.  Kibana or <code>db.pl ilm</code> can perform this action.</li>
+          <li>Change the Arkime templates to use the ILM polices for NEW indices.  You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add the <code>--ilm</code> to the command</li>
+          <li>Replace the previous <code>db.pl expire</code> cron job with <code>db.pl optimize-admin</code></li>
+        </ol>
+      </p>
+      <p>
+        So for example to create new policies that keeps 30 weeks of history, 90 days of SPI data, with 1 replica, and optimizes all indices older than 25 hours you would run:
+        <code>./db.pl http://localhost:9200 ilm 25h 90d --history 30 --replicas 1</code>
+        You would then need to run upgrade with all the arguments you usually used plus --ilm:
+        <code>./db.pl http://localhost:9200 upgrade --replicas 1 --shards 5 --ilm</code>
+      </p>
+      <!-- /elasticsearch -->
+
+      <!-- capture -->
+      <br>
+      <h1 id="capture"
+        class="border-bottom">
+        Capture
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="what-kind-of-capture-machines-should-we-buy">
+        What kind of capture machines should we buy?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        The goal of Arkime is to use commodity hardware. If you start thinking
+        about using SSDs or expensive NICs, research if it would just be cheaper
+        to buy one more box. This gains more retention and can bring the cost of
+        each machine down.
+      </p>
+      <p>
+        Some things to remember when selecting a machine:
+      </p>
+      <ul>
+        <li>
+          An average of 1Gbps of network traffic requires 11TB of disk a day.
+          For example to store 7 days of 2.5Gbps average traffic you need
+          7*2.5*11 or 192.5TB of disk space.
+        </li>
+        <li>
+          The total bandwidth number must include both RX and TX bandwidth.
+          For example a 10G link can really produce up to 20G of traffic to
+          capture, 10G in each direction. Include both directions in your
+          calculations.
+        </li>
+        <li>
+          Don’t overload network links to capture. Monitoring a 10G link with an
+          average of 4Gbps RX AND 4Gbps TX should use two 10G
+          <code>arkime-capture</code> links, since 8Gbps is close to the max.
+        </li>
+        <li>
+          Arkime requires all packets from the same 5-tuple to be processed by
+          the same <code>arkime-capture</code> process.
+        </li>
+      </ul>
+      <p>
+        When selecting Arkime capture boxes, standard "Big Data" boxes might be
+        the best bet. ($10k-$25k each) Look for:
+      <ul>
+        <li>
+          CASE: There are many 4RU boxes out there. If space is an issue, there
+          are more expensive 2RU boxes that hold over 20 drives (examples
+          <a href="https://www.hpe.com/us/en/product-catalog/servers/proliant-servers/pip.hpe-apollo-4200-gen9-server.8261831.html"
+            rel="nofollow">
+            HPE Apollo 4200
+          </a>
+          ,
+          <a href="https://www.supermicro.com/products/system/2U/6028/SSG-6028R-E1CR24L.cfm"
+            rel="nofollow">
+            Supermicro 6028R-E1CR24L</a>
+          or
+          <a href="https://www.dell.com/en-us/work/shop/povw/poweredge-r740xd2"
+            rel="nofollow">
+            Dell R740XD2</a>)
+        </li>
+        <li>
+          MEMORY: 64GB to 96GB (or more if running other tools)
+        </li>
+        <li>
+          OS DISKS: We like RAID 1 small drives. SSDs are nice but not required.
+        </li>
+        <li>
+          CAPTURE DISKS: 20+ x 4TB or larger SATA drives. Don’t waste money on
+          enterprise/SAS/15k drives.
+        </li>
+        <li>
+          RAID: A hardware RAID card with at least 1G cache (2G is better). We
+          like RAID 5 with 1 hot spare or RAID 6 (with better cards)
+        </li>
+        <li>
+          NIC: We like newer Intel base NICs, but most should work fine (might
+          want to get one compatible with PFRING).
+        </li>
+        <li>
+          CPU: At least 2 x 6 cores. The higher the average Gbps, the more
+          speed/cores required.
+        </li>
+      </ul>
+      <p>
+        We are big fans of using Network Packet Brokers ($6k+). They allow
+        multiple taps/mirrors to be aggregated and load balanced across multiple
+        <code>arkime-capture</code> machines. Read more below.
+      </p>
+
+      <h3 id="what-kind-of-network-packet-broker-should-we-buy">
+        What kind of Network Packet Broker should we buy?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        We are big fans of using Network Packet Brokers. If there is one piece of
+        advice we can give medium or large Arkime deployments — use a NPB. See
+        <a href="/assets/ArkimeON2017NPB.pptx">
+          ArkimeON 2017 NPB Preso
+        </a>
+      </p>
+      <p>
+        Main Advantages:
+      </p>
+      <ul>
+        <li>
+          Easy horizontal scaling of Arkime
+        </li>
+        <li>
+          Load balancing of traffic
+        </li>
+        <li>
+          Filtering of traffic before they hit the Arkime boxes
+        </li>
+        <li>
+          Easier to add more Arkime capacity or other security tools
+        </li>
+        <li>
+          Don’t have to worry as much about new links being added by network team
+        </li>
+      </ul>
+      <p>
+        Features to look for
+      </p>
+      <ul>
+        <li>
+          Load balancing
+        </li>
+        <li>
+          Consistent symmetric hashing (this means each direction of the flow
+          goes out the same tool port)
+        </li>
+        <li>
+          MPLS/VLAN/VPN stripped (optional - some tools don’t like all the headers)
+        </li>
+        <li>
+          Tool link detection and fail over
+        </li>
+        <li>
+          Automation capability (can you use ansible/apis or are you stuck using a web ui)
+        </li>
+        <li>
+          Enough ports to support future tap and tool growth
+        </li>
+        <li>
+          If the features desired require an extra (expensive?) component and/or license
+        </li>
+      </ul>
+      <p>
+        Just like with Arkime with commodity hardware, you don’t necessarily have
+        to pay a lot of money for a good NPB. Some switch vendors have switches
+        that can operate in switch mode or npb mode, so you might already have
+        gear laying around you can use.
+      </p>
+      <p>
+        Sample vendors
+      </p>
+      <ul>
+        <li>
+          Arista -
+          <a href="https://www.arista.com/en/solutions/tap-aggregation"
+            rel="nofollow">
+            https://www.arista.com/en/solutions/tap-aggregation
+          </a>
+        </li>
+        <li>
+          Gigamon -
+          <a href="https://www.gigamon.com/"
+            rel="nofollow">
+            https://www.gigamon.com/
+          </a>
+        </li>
+        <li>
+          Ixia -
+          <a href="https://www.ixiacom.com/products/network-packet-brokers"
+            rel="nofollow">
+            https://www.ixiacom.com/products/network-packet-brokers
+          </a>
+        </li>
+      </ul>
+
+      <h3 id="what-kind-of-packet-capture-speeds-can-arkime-capture-handle">
+        What kind of packet capture speeds can <code>arkime-capture</code> handle?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        On basic commodity hardware, it is easy to get 3Gbps or more, depending
+        on the number of CPUs available to Arkime and what else the machine is
+        doing. Many times the limiting factor can be the speed of the disks and
+        RAID system. See
+        <a href="architecture">
+          Architecture</a>
+        and
+        <a href="multihost">
+          Multiple Host</a>
+        for more information. Arkime allows multiple threads to be used to
+        process the packets.
+      </p>
+      <p>
+        To test the local RAID device use:
+        <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
+        To test a NAS leave off the oflag=direct and make sure you test with at least 3x the amount of memory so cache isn't a factor use:
+        <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
+      </p>
+      <p>
+        This is the MAX disk performance. Run several times if desired and take
+        the average. If you don’t want to drop any packets, you shouldn’t average
+        more then ~80% of the MAX disk performance. If using RAID and don’t want
+        drop packets during a future rebuild, ~60% is a better value. Remember
+        that most network numbers will be in bits while the disk performance will
+        be in bytes, so you’ll need to adjust the values before comparing.
+      </p>
+
+      <h3 id="arkime_requires_full_packet_captures_error">
+        Arkime requires full packet captures error
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        When you get an error about the capture length not matching the packet
+        length, it is <strong>NOT</strong> an issue with Arkime. The issue is
+        with the network card settings.
+      </p>
+      <p>
+        By default modern network cards offload work that the CPUs would need to
+        do. They will defragment packets or reassemble tcp sessions and pass the
+        results to the host. However this is NOT what we want for packet captures,
+        we want what is actually on the network. So you will need to configure
+        the network card to turn off all the features that hide the real packets
+        from Arkime.
+      </p>
+      <p>
+        The sample config files
+        (<code>/data/arkime/bin/arkime_config_interfaces.sh</code>) turn off many
+        common features but there are still some possible problems:
+      </p>
+      <ol>
+        <li>
+          If using a VM for Arkime, you need to turn off the features on the
+          physical interface the vm interface is mapped to
+        </li>
+        <li>
+          If using a fancy card there may be other features that need to be
+          turned off.
+          <ol type="a">
+            <li>
+              You can find them usually with
+              <code>ethtool -k INTERFACE | grep on</code> — Anything that is
+              still on, turn off and see if that fixes the problem
+            </li>
+            <li>
+              For example
+              <code>
+                ethtool -K INTERFACE tx off sg off gro off gso off lro off tso off
+              </code>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>
+        There are two work arounds:
+      </p>
+      <ol>
+        <li>
+          If you are reading from a file you can set
+          <code>readTruncatedPackets=true</code> in the config file, this is
+          the only solution for saved .pcap files
+        </li>
+        <li>
+          You can increase the max packet length with <code>snapLen=65536</code>
+          in the config file, this is not recommended
+        </li>
+      </ol>
+
+      <h3 id="why-am-i-dropping-packets">
+        Why am I dropping packets?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        There are several different types of packet drops and reasons for
+        packet drops:
+      </p>
+
+      <div class="ml-5 mr-5">
+        <h4 id="arkime-version">
+          Arkime Version
+        </h4>
+        <p>
+          Please make sure you are using a recent version of Arkime. Constant
+          improvements are made and it is hard for us to support older versions.
+        </p>
+
+        <h4 id="kernel-and-tpacket_v3-support">
+          Kernel and TPACKET_V3 support
+        </h4>
+        <p>
+          The most common cause of packet drops with Arkime is leaving the reader
+          default of libpcap instead of switching to tpacketv3, pfring or one of
+          the other high performance packet readers. We strongly recommend
+          tpacketv3, but it does required a newer kernel of 3.2 or later. See
+          plugin
+          <a class="no-decoration"
+            href="settings#reader-tpacketv3-settings">
+            settings</a>
+          for more information.
+        </p>
+        <p>
+          For those stuck on Centos 6 use <code>elrepo</code> and install
+          <code>kernel-ml</code> on the machines that will RUN
+          <code>arkime-capture.</code> Install <code>kernel-ml-headers</code>
+          on the machines that will COMPILE Arkime. Download the packages from
+          <a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/"
+            rel="nofollow">
+            http://elrepo.org/linux/kernel/el6/x86_64/RPMS/</a>.
+          The rebuilt Arkime RPMs already have been compiled on a machine with
+          newer kernel.
+        </p>
+
+        <h4 id="network-card-config">
+          Network Card Config
+        </h4>
+        <p>
+          Make sure the network card is configured correctly by increasing the ring
+          buf to max size and turning off most of the card’s features. The features
+          are not useful anyway, since we want to capture what is on the network
+          instead of what the local OS sees. Example configuration:
+          <pre><code># Set ring buf size, see max with ethool -g eth0
+ethtool -G eth0 rx 4096 tx 4096
+# Turn off feature, see available features with ethtool -k eth0
+ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
+        </p>
+        <p>
+          If Arkime was installed from the deb/rpm and the Configure script was
+          used, this should already be done in
+          <code>/data/arkime/bin/arkime_config_interfaces.sh</code>
+        </p>
+
+        <h4 id="packetthreads-and-the-packet-q-is-overflowing-error">
+          packetThreads and the PacketQ is overflowing error
+        </h4>
+        <p>
+          The <a href="/settings#packetthreads">packetThreads</a> config option controls the number of threads processing
+          the packets, not the number of threads reading the packets off the network card.
+          You only need to change the value if you are getting the <code>Packet Q is overflowing</code> error.
+          The <a href="/settings#packetthreads">packetThreads</a> option is limited to 24 threads, but usually you only need a few.
+          Configuring too many packetThreads is actually worse for performance, please start with a lower number and slowly increase.
+          You can also change the size of the packet queue by increasing the <a href="/settings#maxpacketsinqueue">maxPacketsInQueue</a> setting.
+        </p>
+        <p>
+          To increase the number of threads the reader uses please see the
+          documentation for the reader you are using on the
+          <a class="no-decoration"
+            href="settings">
+            settings</a>
+          page.
+        </p>
+
+        <h4 id="disk">
+          Disk
+        </h4>
+        <p>
+          Make sure swap has been disabled, swappiness is 0, or at the very least, isn’t writing to
+          the disk being used for PCAP.
+        </p>
+        <p>
+          Make sure the RAID isn’t in the middle of a rebuild or something worse.
+          Most RAID cards will have a status of OPTIMAL when things are all good
+          and DEGRADED or SUBOPTIMAL when things are bad.
+        </p>
+        <p>
+          To test the RAID device use:
+          <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
+        </p>
+        <p>
+          If you are using <code>xfs</code> make sure you use mount options
+          <code>defaults,inode64,noatime</code>
+        </p>
+        <ul>
+          <li>
+            Don’t run capture and Elasticsearch on the same machine.
+          </li>
+          <li>
+            Make sure you actually have enough disk write thru capacity and disks.
+            For example, for a 1G link with RAID 5 you may need:
+            <ul>
+              <li>
+                At least 4 spindles if using a RAID 5 card with write cache enabled.
+              </li>
+              <li>
+                At least 8 spindles (or more) if using a RAID 5 card with write
+                cache disabled.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Make sure your RAID card can actually handle the write rate. Many
+            onboard RAID 5 controllers can not handle sustained 1G write rates.
+          </li>
+          <li>
+            Switch to RAID 0 from RAID 5 if you can live with the TOTAL data loss
+            on a single disk failure.
+          </li>
+        </ul>
+        <p>
+          If using EMC for disks:
+        </p>
+        <ul>
+          <li>
+            Make sure write cache is enabled for the LUNs.
+          </li>
+          <li>
+            If it is a CX with SATA drives, RAID-3 is optimized for large
+            sequential I/O.
+          </li>
+          <li>
+            Monitor EMC lun queue depth, may be too many hosts sharing it.
+          </li>
+        </ul>
+        <p>
+          To check your disk IO run <code>iostat -xm 5</code> and look at the
+          following:
+        </p>
+        <ul>
+          <li>
+            wMB/s will give you the current write rate, does it match up with what
+            you expect?
+          </li>
+          <li>
+            <code>avgqu-sz</code> should be near or less then 1, otherwise linux is
+            queueing instead of doing
+          </li>
+          <li>
+            await should be near or less then 10, otherwise the IO system is slow,
+            which will slow <code>arkime-capture</code> down.
+          </li>
+        </ul>
+        <p>
+          Other things to do/check:
+        </p>
+        <ul>
+          <li>
+            If using RAID 5 make sure you have write cache enabled on the RAID card.
+            <ul>
+              <li>
+                Adaptec Example: arcconf SETCACHE 1 LOGICALDRIVE 1 WBB<
+              </li>
+              <li>
+                HP Example: hpssacli ctrl slot=0 modify dwc=enable
+              </li>
+            </ul>
+          </li>
+          <li>
+            Maybe taskset to give <code>arkime-capture</code> its own CPU, although
+            with the new pcapWriteMethod thread or thread-direct setting, this
+            isn’t needed and may hurt.
+          </li>
+        </ul>
+
+        <h4 id="other">
+          Other
+        </h4>
+        <ul>
+          <li>
+            There are conflicting reports that disabling irqbalancer may help.
+          </li>
+          <li>
+            Check that the CPU you are giving <code>arkime-capture</code> isn’t
+            handling lots of interrupts (<code>cat /proc/interrupts</code>).
+          </li>
+          <li>
+            Make sure other processes aren’t using the same CPU as
+            <code>arkime-capture</code>.
+          </li>
+        </ul>
+
+        <h4 id="wise">
+          WISE
+        </h4>
+        <ul>
+          <li>
+            Cyclical packet drops may be caused by bad connectivity to the wise
+            server. Verify that the wiseService responds quickly
+            <pre><code>curl http://arkime-wise.hostname:8081/views</code></pre>
+            on the <code>arkime-capture</code> host that is dropping packets.
+          </li>
+        </ul>
+
+        <h4 id="high-performance-settings">
+          High Performance Settings
+        </h4>
+        <p>
+          See
+          <a class="no-decoration"
+            href="settings#high-performance-settings">
+            settings</a>
+        </p>
+      </div>
+
+      <h3 id="how-do-i-import-existing-pcaps">
+        How do I import existing PCAPs?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Think of the <code>arkime-capture</code> binary much like you would
+        <code>tcpdump</code>.  <code>arkime-capture</code> can listen to live
+        network interface(s), or read from historic packet capture files.
+        Currently Arkime works best with PCAP files, not pcapng.
+      </p>
+      <p>
+        <code>
+          ${arkime_dir}/bin/arkime-capture -c [config_file] -r [pcap_file]
+        </code>
+      </p>
+      <p>
+        For an entire directory, use <code>-R [pcap directory]</code>
+      </p>
+      <p>
+        See
+        <code>${arkime_dir}/bin/arkime-capture --help</code>
+        for more info
+      </p>
+      <p>
+        If Arkime is failing to load a PCAP file check the following things:
+      </p>
+      <ul>
+        <li>
+          Use PCAP formatted files and not pcapng
+        </li>
+        <li>
+          Make sure the PCAP files contain IP traffic, Arkime currently ignores
+          ARP and other traffic.
+        </li>
+        <li>
+          Try running capture with <code>--debug</code> which might warn of not
+          understanding the link type or GRE tunnel type. (Please open issues for
+          unknown link or GRE types)
+        </li>
+      </ul>
+
+      <h3 id="how-do-i-monitor-multiple-interfaces">
+        How do I monitor multiple interfaces?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+      The <strong>easy way</strong> is using the <a href="/settings#interface">interface</a> setting in your config.ini.
+      It supports a semicolon ';' separated list of interfaces to listen on for live traffic.
+      </p>
+      <p>
+      The <strong>hard way</strong>, you can also have multiple <code>arkime-capture</code> processes,.
+      </p>
+      <ul>
+        <li>
+          Arkime by default uses the unqualified hostname as the name of
+          the Arkime node, so you’ll need to come up with a naming scheme. Appending
+          a, b, c, …​ or the interface number to the hostname are possible methods.
+        </li>
+        <li>
+          Edit <code>/data/arkime/etc/config.ini</code>, and create a section for
+          each of the Arkime nodes. Assuming the defaults are correct in the
+          <code>[default]</code> section, the only thing thing that
+          <strong>MUST</strong> be set is the interface item. It is also common
+          to have each Arkime node talk to a different Elasticsearch node if
+          running a cluster of Elasticsearch nodes.
+          <pre><code>[arkime-m01a]
+interface=eth2
+[arkime-m01b]
+interface=eth5</code></pre>
+        </li>
+        <li>
+          If <code>hostname</code> + <code>domainname</code> on the machine
+          doesn’t return a FQDN, you’ll also need to set a viewUrl, or easier
+          use the <code>--host</code> option.
+        </li>
+        <li>
+          Create two start up scripts. You will now need to specify the Arkime
+          node name with the -n option and change the log files so they are
+          separate.
+          <pre><code>TDIR=/data/arkime
+cd ${TDIR}/bin
+/bin/rm -f ${TDIR}/capturea.log.old
+/bin/mv ${TDIR}/logs/capturea.log ${TDIR}/logs/capturea.log.old
+${TDIR}/bin/arkime-capture -n arkime-m01a -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/capturea.log 2&gt;&amp;1</code></pre>
+          and
+          <pre><code>TDIR=/data/arkime
+cd ${TDIR}/bin
+/bin/rm -f ${TDIR}/captureb.log.old
+/bin/mv ${TDIR}/logs/captureb.log ${TDIR}/logs/captureb.log.old
+${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/captureb.log 2&gt;&amp;1</code></pre>
+          * Add both scripts to <code>inittab</code> or <code>upstart</code>
+        </li>
+      </ul>
+      <p>
+        You only need to run <strong>one</strong> viewer on the machine. Unless
+        it is started with the <code>-n</code> option, it will still use the
+        hostname as the node name, so any special settings need to be set there
+        (although default is usually good enough).
+      </p>
+
+      <h3 id="arkime-capture-crashes">
+        Arkime capture crashes
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Please file an
+        <a href="https://github.com/arkime/arkime/issues/new"
+          rel="nofollow">
+          issue on github
+        </a>
+        with the stack trace.
+      </p>
+      <ul>
+        <li>
+          You’ll need to allow suid or user changing programs to save core dumps.
+          Use <code>sysctl</code> to change until the next reboot. Setting it to
+          0 will change it back to the default.
+          <pre><code>sysctl -w fs.suid_dumpable=2</code></pre>
+        </li>
+        <li>
+          The user that Arkime switches to must be able to write to the directory
+          that <code>arkime-capture</code> is running in.
+        </li>
+        <li>
+          Run <code>arkime-capture</code> and get it to crash.
+        </li>
+        <li>
+          Look for the most recent core file.
+        </li>
+        <li>
+          Run <code>gdb</code> (you may need to install the gdb package first)
+          <pre><code>gdb /data/arkime/bin/arkime-capture corefilename</code></pre>
+        </li>
+        <li>
+          Get the back trace using the <code>bt</code> command
+        </li>
+      </ul>
+      <p>
+        If it is easy to reproduce, sometimes it’s easier to just run
+        <code>gdb</code> as root:
+      </p>
+      <ul>
+        <li>
+          Run <code>gdb arkime-capture</code> as root.
+        </li>
+        <li>
+          Start Arkime in <code>gdb</code> with
+          <code>run ALL_THE_ARGS_USED_FOR_ARKIME-CAPTURE_GO_HERE</code>.
+        </li>
+        <li>
+          Wait for crash.
+        </li>
+        <li>
+          Get the backtrace using <code>bt</code> command.
+        </li>
+        <li>
+          Sometimes, you need to put a break point in <code>g_log</code>
+          <code>b g_log</code>
+        </li>
+      </ul>
+
+      <h3 id="error-pcap-open-failed">
+        ERROR - pcap open failed
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Usually <code>arkime-capture</code> is started as root so that it can
+        open the interfaces and then it immediately drops privileges to
+        <code>dropUser</code> and <code>dropGroup</code>, which are by default
+        <code>nobody:daemon</code>. This means that all parent directories need
+        to be either owned or at least executable by <code>nobody:daemon</code>
+        and that the pcapDir itself must be writeable.
+      </p>
+
+      <h3 id="how-to-reduce-amount-of-traffic-pcap">
+        How to reduce amount of traffic/pcap?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Listed in order from highest to lowest benefit to Arkime
+      </p>
+      <ol>
+        <li>
+          Setting the <code>bfp=</code> filter will stop Arkime from seeing the
+          traffic.
+        </li>
+        <li>
+          Adding CIDRs to the <code>packet-drop-ips</code> section will stop
+          Arkime from adding packets to the PacketQ
+        </li>
+        <li>
+          Using
+          <a href="rulesformat">
+            Rules</a>
+          it is possible to control if the packets are written to disk or the
+          SPI data is sent to Elasticsearch
+        </li>
+      </ol>
+
+      <h3 id="life-of-a-packet">
+        Life of a packet
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Arkime capture supports many options for controlling which packets are
+        captured, processed, and saved to disk.
+      </p>
+      <ul>
+        <li>
+          The first gatekeeper and most important is the bpf filter,
+          <code>bpf=</code> in the config file. This filter can be implemented in
+          the kernel, the network card, libpcap or network drivers. It is a
+          single filter and it controls what Arkime capture "sees" or doesn’t
+          "see". Any packet that is dropped because of the bpf filter is usually
+          not counted in ANY Arkime stats, but some implementation do expose
+          stats.
+        </li>
+        <li>
+          Arkime does a high level decode of the ethernet, IP, IP protocol
+          information and sees if it understands it. If it doesn’t supports it,
+          Arkime will discard the packet.
+        </li>
+        <li>
+          Arkime checks the <code>packet-drop-ips</code> config section to see if
+          the IPs involved are marked to be discarded. If there are only a few
+          IPs to drop then <code>bpf=</code> should be used, otherwise this is
+          much more efficient then a huge bpf.
+        </li>
+        <li>
+          For TCP packets, Arkime checks against previous matched against rules
+          that set a <code>_dropByDst</code> or <code>_dropBySrc</code> timeout,
+          if it matches they will be discarded.
+        </li>
+        <li>
+          Arkime picks a packet queue to send the packet to, if the packet queue
+          is too busy it will drop the packet. Potentially increase increase
+          <a href="/settings#packetthreads">packetThreads</a> or
+          <a href="/settings#maxpacketsinqueue">maxPacketsInQueue</a> if too
+          many packets are being dropped here.
+        </li>
+        <li>
+          A packet queue will start processing a packet and update all the stats
+          and basic information for the session the packet is associated with.
+        </li>
+        <li>
+          The sessionSetup rules for first packets in a session are executed,
+          which might set operations that control packet saving.
+        </li>
+        <li>
+          If this is the first packet of the session the packet queue will then
+          check all the <code>dontSaveBPFs</code>, and if one matches it will
+          save off the max number of packets to save for the session. This will
+          override the <a href="/settings#maxpackets">maxPackets</a> config setting.
+        </li>
+        <li>
+          If this is the first packet of the session AND no dontSaveBPFs matched,
+          the packet queue will then check all the
+          <a href="/settings#minpacketssavebpfs">minPacketsSaveBPFs</a>
+          and save off a min number of packets that must be received.
+        </li>
+        <li>
+          Finally Arkime goes to save the packet, if it has already saved the max
+          number of packets for the session (set by rules or
+          <a href="/settings#dontsavebpf">dontSaveBPFs</a>)
+          OR if there was another method (plugin) that said stop saving packets
+          for the session the packet won’t be saved.
+        </li>
+        <li>
+          If the number of packets for the session is greater then
+          <a href="/settings#maxpackets">maxPackets</a> the session will be saved, a new linked session
+          will be started for future packets. The beforeMiddleSave and
+          beforeBothSave rules will be executed before saving.
+        </li>
+        <li>
+          The packet queue sends the packet off to the various classifiers and
+          parsers to gather more meta data. The afterClassify rules will be
+          executed, and if any fields are set during this processing the fieldSet
+          rules will be executed. Rules may change if future packets are saved.
+        </li>
+        <li>
+          At some point in the future the session will hit one of the timeouts
+          and the session will be saved if there have been enough packets saved
+          to meet the min number of packets received setting per session.
+          (Defaults to 0) The beforeFinalSave and beforeBothSave rules will be
+          executed.
+        </li>
+      </ul>
+
+      <h3 id="pcap-deletion">
+        PCAP Deletion
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        PCAP deletion is actually handled by the viewer process, so make sure the
+        viewer process is running on all capture boxes. The viewer process checks
+        on startup and then every minute to see how much space is available, and
+        if it is below <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the
+        oldest file.
+      </p>
+      <p>
+        <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can also be a percentage,
+        newer versions of Arkime use <code>freeSpaceG=5%</code> for the default.
+        The viewer process will always leave at least 10 PCAP files on the disk,
+        so make sure there is room for at least <code>maxFileSizeG * 10</code>
+        capture files on disk, or by default 120G.
+      </p>
+      <p>
+        If still having pcap delete issues:
+      </p>
+      <ol>
+        <li>
+          Make sure <a href="/settings#freespaceg">freeSpaceG</a> is set correctly for the environment.
+        </li>
+        <li>
+          Make sure there is free space where viewer is writing its logs.
+        </li>
+        <li>
+          Make sure viewer can reach Elasticsearch
+        </li>
+        <li>
+          Make sure that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
+          actually delete files in the pcap directory and has read/execute
+          permissions in all parent directories.
+        </li>
+        <li>
+          Make sure the pcap directory is on a filesystem with at least
+          <code>maxFileSizeG * 10</code> space available.
+        </li>
+        <li>
+          Make sure the files you think should be deleted show up on the files
+          tab, if not use the <code>db.pl sync-files</code> command.
+        </li>
+        <li>
+          Make sure the files in the file tab don’t have <code>locked</code> set,
+          viewer won’t deleted locked files
+        </li>
+        <li>
+          Try restarting viewer
+        </li>
+        <li>
+          The viewer.log should be printing out that it is trying to delete files
+        </li>
+      </ol>
+
+      <h3 id="dontsavebpfs-doesn-t-work">
+        dontSaveBPFs doesn’t work
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        There are several common reasons dontSaveBPFs might not work for you.
+      </p>
+      <ol>
+        <li>Make sure you've spelled it dontSaveBPFs, case matters</li>
+        <li>Make sure you've placed dontSaveBPFs in the correct section, you can verify by adding a <code>--debug</code> to capture when starting and looking at the output</li>
+        <li> Turns out BPF filters are tricky. :)
+             When the network is using vlans, then at compile time, BPFs need to know that fact.
+             So instead of a nice simple <code>dontSaveBPFs=tcp port 443:10</code> use something like <code>dontSaveBPFs=tcp port 443 or (vlan and tcp port 443):10</code>.
+             Basically <code>FILTER or (vlan and FILTER)</code>. Information from <a href="http://www.christian-rossow.de/articles/tcpdump_filter_mixed_tagged_and_untagged_VLAN_traffic.php" rel="nofollow"> here</a>.
+        </li>
+        <li>Try testing your filter manually with tcpdump, you should only see the traffic you want to drop. So something like <code>tcpdump -i INTERFACE tcp port 443</code> for example.</li>
+      </ol>
+      <p>
+        If still having issues, you might just try out a <a href="rulesformat">Arkime Rules</a> file.
+        Arkime converts dontSaveBPFs into a rule for you behind the scenes.
+      </p>
+
+      <h3 id="zero-byte-pcap-files">
+        Zero or missing bytes PCAP files
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Arkime buffers writes to disk, which is great for high bandwidth
+        networks, but bad for low bandwidth networks. How much data is buffered
+        is controlled with <a href="/settings#pcapwritesize">pcapWriteSize</a>, which defaults to 262144
+        bytes. An important thing to remember is the buffer is per thread, so set
+        <a href="/settings#packetthreads">packetThreads</a> to 1 on low bandwidth networks.
+        A portion of the pcap that is buffered will be written after 10 seconds of no writes.
+        However it will still buffer the last pagesize bytes, usually 4096 bytes.
+      </p>
+      <p>
+        An error that looks like
+        <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code>
+        usually means that either the pcap is still being buffered and you need to wait for it to be written to disk or
+        that previously capture or the host crashed/restarted before the pcap could be written to disk.
+      </p>
+
+      <p>
+        You can also end up with many zero byte pcap files if the disk is full,
+        see
+        <a href="#pcap-deletion">
+          PCAP Deletion</a>.
+      </p>
+
+      <h3 id="can-i-virtualize-arkime-with-kvm-using-openvswitch">
+        Can I virtualize Arkime with KVM using OpenVswitch?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        In small environments with low amounts of traffic this is possible. With
+        Openvswitch you can create mirror port from a physical or virtual adapter
+        and send the data to another virtual NIC as the listening interface. In
+        KVM, one issue is that it isn’t possible to increase the buffer size past
+        256 on the adapter using the Virtio network adapter (mentioned in another
+        part of the FAQ). Without Arkime capture will continuously crash. To
+        solve this in KVM, use the E1000 adapter, and configure the buffer size
+        accordingly. Set up the SPAN port on Openvswitch to send traffic to it:
+        <a href="https://www.rivy.org/2013/03/configure-a-mirror-port-on-open-vswitch/"
+          rel="nofollow">
+          https://www.rivy.org/2013/03/configure-a-mirror-port-on-open-vswitch/</a>.
+      </p>
+
+      <h3 id="maxmind">
+        Installing MaxMind Geo free database files
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        MaxMind <a href="https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/">recently changed</a> how you download their free database files.
+        You now need to signup for an account and setup the geoipupdate program.
+        If using a version of Arkime before 2.2, you will need to edit your config.ini file and update the geolite paths.
+      </p>
+      <p>
+      Instructions:
+        <ol>
+          <li><a href="https://www.maxmind.com/en/geolite2/signup">Sign up for a MaxMind account</a> (no purchase required)</li>
+          <li>Wait for MaxMind email and set your password</li>
+          <li>Install the geoipupdate tool, pay attention to version installed, for many distributions you can just do a <code>yum install geoipupdate</code> or <code>apt-get install geoipupdate</code></li>
+          <li>Create a <a href="https://www.maxmind.com/en/accounts/current/license-key">license key</a></li>
+          <li>Select Yes when asked "Will this key be used for GeoIP Update?" and select the version you have</li>
+          <li>Use the MaxMind feature to generate a config file for you, usually you will replace </code>/etc/GeoIP.conf</code> with this file</li>
+          <li>Run <code>geoipupdate</code> as root and see if it works</li>
+          <li>If you are using Arkime before 2.2, update your /data/arkime/etc/config.ini file so that geoLite2Country is now <code>/usr/share/GeoIP/GeoLite2-Country.mmdb</code> and geoLite2ASN is now <code>/usr/share/GeoIP/GeoLite2-ASN.mmdb</code></li>
+          <li>Restart arkime capture</li>
+        </ol>
+      </p>
+
+      <h3 id="loglines">
+        What do these log lines mean?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+      Arkime logs alot of information for debugging purposes.
+      Much of this information is for bug reports, but can also be used to figure out what is going on.
+      You may need to use <code>--debug</code> to enable these msgs.
+      </p>
+      <p>
+      <h4 id="log-http-response">
+        HTTP Responses
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h4>
+      <pre><code>Jan 01 01:01:01 http.c:369 arkime_http_curlm_check_multi_info(): 8000/30 ASYNC 200 http://eshost:9200/_bulk 250342/5439 14ms 12345ms</code></pre>
+      <table class="table table-sm table-bordered">
+        <tbody>
+          <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
+          <tr><td>http.c:369</td><td>File Name:Line Number</td></tr>
+          <tr><td>arkime_http_curlm_check_multi_info</td><td>Function Name</td></tr>
+          <tr><td>8000/30</td><td>8000 queued requests to server<br>30 connections to server</td></tr>
+          <tr><td>ASYNC</td><td>Asynchronous request, SYNC for Syncrhonous request</td></tr>
+          <tr><td>200</td><td>HTTP status code</td></tr>
+          <tr><td>http://eshost:9200/_bulk</td><td>Requested URL</td></tr>
+          <tr><td>250032/5439</td><td>250342 bytes uploaded (CURLINFO_SIZE_UPLOAD)<br>5439 bytes downloaded (CURLINFO_SIZE_DOWNLOAD)</td></tr>
+          <tr><td>14ms</td><td>14ms to connect to server (CURLINFO_CONNECT_TIME)</td></tr>
+          <tr><td>12345ms</td><td>12345ms total request time (CURLINFO_TOTAL_TIME)</td></tr>
+        </tbody>
+      </table>
+      </p>
+
+      <p>
+      <h4 id="log-packets">
+        Periodic Packet Progress
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h4>
+      <pre><code>Jan 01 01:01:01 packet.c:1185 arkime_packet_log(): packets: 3911000000 current sessions: 41771/45251 oldest: 0 - recv: 4028852297 drop: 123 (0.00) queue: 1 disk: 2 packet: 3 close: 4 ns: 5 frags: 0/1988 pstats: 4132185901/1/2/3/4/5</code></pre>
+      <table class="table table-sm table-bordered">
+        <tbody>
+          <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
+          <tr><td>packet.c:1185</td><td>File Name:Line Number</td></tr>
+          <tr><td>arkime_packet_log</td><td>Function Name</td></tr>
+          <tr><td>packets: 3911000000</td><td>3911000000 packets are going to be processed by the packet queues.  These packets have made it past corrupt checks, packet-drop-ips checks, and are ones we most likely understand.</td></tr>
+          <tr><td>current session: 41771/45251</td><td>41771 monitored sessions of the current session type (usually tcp)<br>45251 monitored sessions total</td></tr>
+          <tr><td>oldest: 0</td><td>In the current session type queue, the oldest session should be idled out in 0 seconds</td></tr>
+          <tr><td>recv: 4028852297</td><td>4028852297 packets have been received by the interface since process start, as reported by the reader's stats api</td></tr>
+          <tr><td>drop: 123</td><td>123 packets have been dropped by the interface, as reported by the reader's stats api</td></tr>
+          <tr><td>(0.00)</td><td>0.00% packets have been dropped by the interface, as reported by the reader's stats api</td></tr>
+          <tr><td>queue: 1</td><td>1 bulk request is waiting to be sent to the ES servers, each bulk request may hold multiple sessions</td></tr>
+          <tr><td>disk: 2</td><td>2 disk buffers writes are outstanding, each buffer will hold multiple packets</td></tr>
+          <tr><td>packet: 3</td><td>3 packets are waiting to be processed in all the packet queues</td></tr>
+          <tr><td>close: 4</td><td>4 tcp sessions have been marked for closing (RST/FIN), waiting on last few packets</td></tr>
+          <tr><td>ns: 5</td><td>5 sessions are ready to be saved but there is a plugin that is doing async work, such as wise</td></tr>
+          <tr><td>frags: 0/1988</td><td>always 0<br>1988 current ip frags waiting to be matched</td></tr>
+          <tr><td>pstats: 4132185901/1/2/3/4/5</td>
+            <td>4132185901 packets successfully sent to a packet queue<br>
+              1 packet dropped because of packet-drop-ips config<br>
+              2 packets dropped because the packet queues were overloaded<br>
+              3 packets dropped because they were corrupt<br>
+              4 packets dropped because how to process was unknown to us<br>
+              5 packets dropped because of ipport rules
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </p>
+
+      <!-- /capture -->
+
+      <!-- viewer -->
+      <br>
+      <h1 id="viewer"
+        class="border-bottom">
+        Viewer
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="where-do-i-learn-more-about-the-expressions-available">
+        Where do I learn more about the expressions available
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Click on the owl and read the Search Bar section. The Fields
+        section is also useful for discovering fields you can use in a
+        search expression.
+      </p>
+
+      <h3 id="exported-pcap-files-are-corrupt-sometimes-session-detail-fails">
+        Exported pcap files are corrupt, sometimes session detail fails
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        The most common cause of this problem is that the timestamps between
+        the Arkime machines are different. Make sure ntp is running
+        everywhere, or that the time stamps are in sync.
+      </p>
+
+      <h3 id="map-counts-are-wrong">
+        Map counts are wrong
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <ul>
+        <li>
+          The source and destination IPs are each counted, so the map should
+          total twice the number of sessions.
+        </li>
+        <li>
+          Currently Elasticsearch only has accurate counts up to 2 billion
+          uniques.
+        </li>
+        <li>
+          Some countries aren’t shown, but can still be searched using their
+          ISO-3 (&lt; 1.0) or ISO-2 (&gt;= 1.0).
+        </li>
+      </ul>
+
+      <h3 id="what-browsers-are-supported">
+        What browsers are supported?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Recent versions of Chrome, Firefox, and Safari should all work fairly
+        equally. Below are the <strong>minimum</strong> versions required.
+        We aren’t kidding.
+      </p>
+      <ul>
+        <li>
+          Chrome 53+ (All development is done with Chrome Stable)
+        </li>
+        <li>
+          Firefox 54+
+        </li>
+        <li>
+          Opera 40+
+        </li>
+        <li>
+          Safari 10+
+        </li>
+        <li>
+          Edge 14+
+        </li>
+        <li>
+          IE is <strong>not</strong> supported
+        </li>
+      </ul>
+      <p>
+        Development and testing is done mostly with Chrome on a Mac, so it gets
+        the most attention.
+      </p>
+
+      <h3 id="error-getaddrinfo-eaddrinfo">
+        Error: getaddrinfo EADDRINFO
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        This seems to be caused when proxying requests from one viewer node to
+        another and the machines don’t use FQDNs for their hostnames and the
+        short hostnames are not resolvable by DNS. You can check if your
+        machine uses FQDNs by running the <code>hostname</code> command. There
+        are several options to resolve the error:
+      </p>
+      <ol>
+        <li>
+          Use the <code>--host</code> option on capture
+        </li>
+        <li>
+          Configure the OS to use FQDNs.
+        </li>
+        <li>
+          Make it so DNS can resolve the shortnames or add the shortnames to
+          the hosts file.
+        </li>
+        <li>
+          Edit <code>config.ini</code> and add a <code>viewUrl</code> for each
+          node. This part of the config file must be the same on all machines
+          (we recommend you just use the same config file everywhere). Example:
+          <pre><code>[node1_eth0]
+interface=eth0
+viewUrl=http://node1.fqdn
+[node1_eth1]
+interface=eth1
+viewUrl=http://node1.fqdn
+[node2]
+interface=eth1
+viewUrl=http://node2.fqdn</code></pre>
+        </li>
+      </ol>
+
+      <h3 id="how-do-i-proxy-arkime-using-apache">
+        How do I proxy Arkime using Apache
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Apache, and other web servers, can be used to provide authentication or
+        other services for Arkime when setup as a reverse proxy. When a reverse
+        proxy is used for authentication it must be inline, and authentication in
+        Arkime will not be used, however Arkime will still do the authorization.
+        Arkime will use a username that the reverse proxy passes to Arkime as a
+        HTTP header for settings and authorization. See the
+        <a href="architecture">
+          architecture</a>
+        page for diagrams. While operators will use the proxy to reach the Arkime
+        viewer, the viewer processes still need direct access to each other.
+      </p>
+      <ul>
+        <li>
+          Install Apache, turn on the auth method of your choice. This example
+          also uses HTTPS from Apache to Arkime, but if on localhost that isn’t
+          required. Configure it to set a special header for Arkime to check.
+          In this example <code>ARKIME_USER</code> is the header that is being
+          set from a variable, if your auth method already sets a header use
+          that.
+          <pre><code>AuthType your_auth_method
+Require valid-user
+RequestHeader set ARKIME_USER %{your_auth_method_concept_of_username_variable_probably_REMOTE_USER}e</code></pre>
+        </li>
+        <li>
+          Make sure mod_ssl is loaded, and set up a SSL proxy:
+          <pre><code>SSLProxyEngine On
+#ProxyRequests On # You probably don't want this line
+ProxyPass        /arkime/ https://localhost:8005/ retry=0
+ProxyPassReverse /arkime/ https://localhost:8005/</code></pre>
+        </li>
+        <li>
+          Restart Apache.
+        </li>
+        <li>
+          Using the Arkime UI (by going directly to a non proxy Arkime) make
+          sure the "Web Auth Header" is checked for the users.
+        </li>
+        <li>
+          Edit Arkime’s <code>config.ini</code>
+          <ul>
+            <li>
+              Create a new section for the Arkime proxy, you will use <code>-n sectionname</code> so viewer uses that section
+            </li>
+            <li>
+              Set <code>userNameHeader</code> to the <strong>lower case</strong> version of the header Apache is setting. NOTE - the
+              userNameHeader setting is only needed on viewers that apache talks to, don't set on all of them.
+            </li>
+            <li>
+              Set the <code>webBasePath</code> to the ProxyPath location used above.
+              All other sections should <strong>NOT</strong> have a <code>webBasePath</code>.
+            </li>
+            <li>
+              Add a <code>viewHost=localhost</code>, so externals can’t just set the <code>userNameHeader</code> and access Arkime with no auth:
+              <pre><code>[arkime-proxy]
+userNameHeader=arkime_user
+webBasePath = /arkime/
+viewPort = 8005
+viewHost = localhost</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Start the <code>arkime-proxy</code> viewer, so for this example you would need <code>-n arkime-proxy</code>
+        </li>
+        <li>
+          To prevent the users from going directly to Arkime in the future, scramble their passwords.
+          You might want to leave an admin user that doesn’t use the Apache auth.
+          Or you can temporarily add one with the <code>addUser.js</code> script.
+        </li>
+        <li>
+          If experiencing issues, try running viewer with --debug
+        </li>
+      </ul>
+
+      <h3 id="i-still-get-prompted-for-password-after-setting-up-apache-auth">
+        I still get prompted for password after setting up Apache auth
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <ol>
+        <li>
+          Make sure the user has the "Web Auth Header" checked
+        </li>
+        <li>
+          Make sure in the viewer config <code>userNameHeader</code>is the
+          <strong>lower case</strong> version of the header Apache is using.
+        </li>
+        <li>
+          Run <code>viewer.js</code> with a <code>--debug</code> and see if the
+          header is being sent.
+        </li>
+      </ol>
+
+      <h3 id="how-do-i-search-multiple-arkime-clusters">
+        How do I search multiple Arkime clusters
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        It is possible to search multiple Arkime clusters by setting up a
+        special multiple Arkime viewer and a special MultiES process. MultiES
+        is similiar to Elasticsearch tribe nodes, except it was created before
+        tribe nodes and can deal with multiple indexes having the same name.
+        Prior to Arkime 1.5, one big limitation currently is that all the
+        Arkime clusters have to use the same <code>rotateIndex</code> setting.
+        Since Arkime 1.5 if using different <code>rotateIndex</code> settings,
+        use the <code>queryAllIndices=true</code> setting in the
+        <code>arkimeviewer</code> section. Currently one big limitation is that
+        <code>all Arkime clusters must use the same PasswordSecret</code>.
+      </p>
+      <p>
+        To use MultiES, create another <code>config.ini</code> file or
+        section in a shared config file. Both <code>multies.js</code> and the
+        special "all" viewer can use the same node name.
+        <pre><code># viewer/multies node name (-n allnode)
+[allnode]
+# The host and port multies is running on, set with multiESHost:multiESPort usually just run on the same host
+elasticsearch=127.0.0.1:8200
+# This is a special multiple arkime cluster viewer
+multiES=true
+# Port the multies.js program is listening on, elasticsearch= must match
+multiESPort = 8200
+# Host the multies.js program is listening on, elasticsearch= must match
+multiESHost = localhost
+# Semicolon list of elasticsearch instances, one per arkime cluster.  The first one listed will be used for settings
+multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
+# Uncomment if using different rotateIndex settings
+#queryAllIndices=true</code></pre>
+      </p>
+      <p>
+        Now you need to start up both the <code>multies.js</code> program and
+        <code>viewer.js</code> with the same config file AND <code>-n allnode</code>.
+        All other viewer settings, including <code>webBasePath</code> can still be used.
+      </p>
+      <p>By default, the users table comes from the first cluster listed in
+        <code>multiESNodes</code>. This can be overridden by setting
+        <code>usersElasticsearch</code> and optionally <code>usersPrefix</code>
+        in the multi viewer config file.
+      </p>
+
+      <h3 id="how-do-i-use-self-signed-ssl-tls-certificates-with-multies">
+        How do I use self-signed SSL/TLS Certificates with MultiES?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Create a file, for example <em>CAcerts.pem</em>, containing one or more
+        trusted certificates in PEM format.
+      </p>
+      <p>
+        Then, you need start MutilES adding <strong>NODE_EXTRA_CA_CERTS</strong>
+        environment variable specifying the path to file you just created, for
+        example:
+        <pre><code>NODE_EXTRA_CA_CERTS=./CAcerts.pem /data/arkime/bin/node multies.js -c /data/arkime/etc/config.ini -n allnode</pre></code>
+      </p>
+
+      <h3 id="how-do-i-reset-my-password">
+        How do I reset my password?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        An admin can change anyone’s password on the Users tab by clicking the
+        Settings link in the Actions column next to the user.
+      </p>
+      <p>
+        A password can also be changed by using the <code>addUser</code>
+        script, which will replace the entire account if the same userid is
+        used. All preferences and views will be cleared, so creating a
+        secondary admin account may be a better option if you need to change
+        an admin users password. After creating a secondary admin account,
+        change the users password and then delete the secondary admin account.
+        <pre><code>node addUser -c &lt;configfilepath&gt; &lt;user id&gt; &lt;user friendly name&gt; &lt;password&gt; [--admin]</code></pre>
+      </p>
+
+      <h3 id="error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">
+        Error: Couldn’t connect to remote viewer, only displaying SPI data
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Viewers have the ability to proxy traffic for each other. The ability
+        relies on Arkime node names that are mapped to hostnames. Common
+        problems are when systems don’t use FQDNs or certs don’t match.
+      </p>
+
+      <div class="ml-5 mr-5">
+        <h4 id="how-do-viewers-find-each-other">
+          How do viewers find each other
+        </h4>
+        <p>
+          First the SPI records are created on the <code>arkime-capture</code>
+          side.
+        </p>
+        <ol>
+          <li>
+            Each <code>arkime-capture</code> gets a nodename, either by the
+            <code>-n</code> command line option or everything in front of the
+            first period of the hostname.
+          </li>
+          <li>
+            Each <code>arkime-capture</code> writes a stats record every few
+            seconds that has the mapping from the nodename to the FDQN.
+            It is possible to override the FDQN with the <code>--host</code> option to capture.
+          </li>
+          <li>
+            <
+          <li>
+            Each SPI record has a nodename in it.
+          </li>
+        </ol>
+        <p>
+          When pcap is retrieved from a viewer it uses the nodename associated with the SPI record to find which capture host to connect to.
+        </p>
+        <ol>
+          <li>
+            Each <code>arkime-viewer</code> process gets a nodename, either by
+            the <code>-n</code> command line option or everything in front of the
+            first period of the hostname.
+          </li>
+          <li>
+            If the SPI record nodename is the same as the <code>arkime-viewer</code>
+            nodename it can be processed locally, STOP HERE. This is the common
+            case with one arkime node.
+          </li>
+          <li>
+            If the <code>stats[nodename].hostname</code> is the same as the
+            <code>arkime-viewer</code>’s hostname (exact match) then it can be
+            processed locally, STOP HERE.
+            Remember this is written by capture above, either the FQDN or <code>--host</code>.
+            This is the common case with multiple capture processes per capture node.
+          </li>
+          <li>
+            If we make it here, the pcap data isn’t local and it must be proxied.
+          </li>
+          <li>
+            If there is a <code>viewUrl</code> set in the <code>[nodename]</code> section, use that.
+          </li>
+          <li>
+            If there is a viewUrl set in the <code>[default]</code> section, use that.
+          </li>
+          <li>
+            Use
+            <code>
+              stats[nodename].hostname:[nodename section - viewPort setting]
+            </code>
+          </li>
+          <li>
+            Use
+            <code>
+              stats[nodename].hostname:[default section - viewPort setting]
+            </code>
+          </li>
+          <li>
+            Use <code>stats[nodename].hostname:8005</code>
+          </li>
+        </ol>
+
+        <h4 id="possible-fixes">
+          Possible fixes
+        </h4>
+        <p>
+          First, look at <code>viewer.log</code> on both the viewer machine and
+          the remote machine and see if there are any obvious errors. The most
+          common problems are:
+        </p>
+        <ol>
+          <li>
+            Not using the same <code>config.ini</code> on all nodes can make
+            things a pain to debug and sometimes not even work. It is best to
+            use the same config with different sections for each node name
+            <code>[nodename]</code>
+          </li>
+          <li>
+            The remote machine doesn’t return a FQDN from the
+            <code>hostname</code> command AND the viewer machine can’t resolve
+            just the hostname. To fix this, do ONE of the following:
+            <ol type="a">
+              <li>
+                Use the <code>--host</code> option to arkime-capture and restart capture
+              </li>
+              <li>
+                Make it so the remote machines returns a FQDN
+                (<code>hostname "fullname"</code> as root and edit
+                <code>/etc/sysconfig/network</code>)
+              </li>
+              <li>
+                Set a <code>viewUrl</code> in each node section of the
+                <code>config.ini</code>. If you don’t have a node section for
+                each host, you’ll need to create one.
+              </li>
+              <li>
+                Edit <code>/etc/resolv.conf</code> and add
+                <code>search foo.example.com</code>, where
+                <code>foo.example.com</code> is the subdomain of the hosts.
+                Basically, you want it so "telnet shortname 8005" works on the
+                viewer machine to the remote machine.
+              </li>
+            </ol>
+          </li>
+          <li>
+            The remote machine’s FQDN doesn’t match the CN or SANs in the cert it
+            is presenting. The fixes are the same as #2 above.
+          </li>
+          <li>
+            The remote machine is using a self signed cert. To fix this, either
+            turn off HTTPS or see the certificate answer above.
+          </li>
+          <li>
+            The remote machine can’t open the PCAP. Make sure the
+            <code>dropUser</code> user can read the pcap files. Check the
+            directories in the path too.
+          </li>
+          <li>
+            Make sure all viewers are either using HTTPS or not using HTTPS, if
+            only some are using HTTPS then you need to set <code>viewUrl</code>
+            for each node.
+            <ol type="a">
+              <li>
+                When troubleshooting this issue, it is sometimes easier to
+                disable HTTPS everywhere
+              </li>
+            </ol>
+          </li>
+          <li>
+            If you want to change the hostname of a capture node:
+            <ol type="a">
+              <li>
+                Change your mind :)
+              </li>
+              <li>
+                Reuse the same node name as previously with a <code>-n</code> option
+              </li>
+              <li>
+                Use the <code>viewUrl</code> for that old nodename that points to the new host.
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <h3 id="compiled-against-a-different-node-js-version-error">
+        Compiled against a different Node.js version error
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Arkime uses Node.js for the viewer component, and requires many
+        packages to work fully. These packages must be compiled with and run
+        using the same version of Node.js. An error like <code>…​ was compiled
+        against a different Node.js version using NODE_MODULE_VERSION 48. This
+        version of Node.js requires NODE_MODULE_VERSION 57.</code> means that
+        the version of Node.js used to install the packages and run the
+        packages are different.
+      </p>
+      <p>
+        This shouldn’t happen when using the prebuilt Arkime releases. If it
+        does, then double check that <code>/data/arkime/bin/node</code> is
+        being used to run viewer.
+      </p>
+      <p>
+        If you built Arkime yourself, this usually happens if you have a
+        different version of node in your path. You will need to rebuild Arkime
+        and either:
+      </p>
+      <ul>
+        <li>
+          Remove the OS version of node
+        </li>
+        <li>
+          Make sure <code>/data/arkime/bin</code> is in your path before the OS
+          version of node
+        </li>
+        <li>
+          Use the <code>--install</code> option to easybutton which will add to
+          the path for you
+        </li>
+      </ul>
+      <!-- /viewer -->
+
+      <!-- parliament -->
+      <br>
+      <h1 id="parliament"
+        class="border-bottom">
+        Parliament
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="sample-apache-config">
+        Sample Apache Config
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Parliament is designed to run behind a reverse proxy such as Apache.
+        Basically, you just need to tell Apache to send all root requests and any
+        <code>/parliament</code> requests to the Parliament server.
+        <pre><code>ProxyPassMatch   ^/$ http://localhost:8008/parliament retry=0
+ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></pre>
+      </p>
+      <!-- /parliament -->
+
+      <!-- wise -->
+      <br>
+      <h1 id="wise"
+        class="border-bottom">
+        WISE
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="wise-is-not-working">
+        WISE is not working
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Here is the common check list:
+      </p>
+      <ol>
+        <li>
+          Check that WISE is running
+          <pre><code>curl http://localhost:8081/fields</code></pre>
+          You should see a list of fields that wise knows about.
+        </li>
+        <li>
+          Check in your config.ini file you've added
+          <ul>
+            <li> <code>wise.so</code> to the <code>plugins</code> line.</li>
+            <li> <code>wise.js</code> to the <code>viewerPlugins</code> line</li>
+            <li> <code>wiseURL</code> has been set, or the older <code>wiseHost</code> and <code>wisePort</code></li>
+          </ul>
+        </li>
+        <li>
+          Check that from the capture/viewer hosts you can reach the viewer hosts and there are no ACL issues.
+          <pre><code>curl http://WISEHOST:8081/fields</code></pre>
+        </li>
+        <li>
+          Restart <code>arkime-capture</code> after adding a
+          <code>--debug</code> option may print out useful information what is
+          wrong.  Look to make sure that wise is being called with the correct URL.
+          Verify that the plugins,wiseHost,wiseURL setting is what you actually think it is.
+        </li>
+      </ol>
+      <!-- /wise -->
+
+      <!-- arkime.com -->
+      <br>
+      <h1 id="arkimeweb"
+        class="border-bottom">
+        Molo.ch
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 id="how-can-i-contribute">
+        How can I contribute?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Want to add or edit this FAQ?
+        Found an issue in this site?
+        This site's code is open source.
+        <a href="https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md"
+          class="no-decoration"
+          rel="nofollow">
+          Please contribute!
+        </a>
+      </p>
+      <!-- /arkime.com -->
+
+    </div> <!-- /faq content -->
+
+    <!-- footer -->
+    {%- include footer.html -%}
+
+  </div> <!-- /faq container -->
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+---
+title: Estimators
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime FAQ</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Estimate Arkime capture and Elasticsearch machines" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com/estimators" />
+  <meta property="og:description" content="Estimate Arkime capture and Elasticsearch machines" />
+  <meta property="og:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="Estimate Arkime capture and Elasticsearch machines" />
+  <meta name="twitter:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com/estimators" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="container">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <div class="row estimators-content">
+      <div class="col-md-12">
+        <h4>
+          Arkime Estimators
+        </h4>
+        <p>
+          Use these estimators as a starting point for deciding on the
+          number of machines needed for capture and ES nodes.
+        </p>
+        <p>
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="gbpsInput" class="sr-only">
+              Average gigabits per second
+            </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  Average gigabits per second
+                </span>
+              </div>
+              <input type="number" id="gbpsInput" value=1 min=0 step=0.01
+                class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">
+              Capture Machines
+              <small class="pull-right">
+                <a href="faq#what-kind-of-capture-machines-should-we-buy"
+                  class="card-link">More info in FAQ</a>
+              </small>
+            </h5>
+
+            <p class="card-text text-muted">
+              Calculating the number of machines needed for capturing is relatively simple.
+              It is based on the average traffic rate, the number of days of retention, how much space is available on each machine, and the avg amount of traffic each machine can handle.
+              If more then one machine is required, we highly recommend getting a <a href="faq#what-kind-of-network-packet-broker-should-we-buy"
+                class="card-link">NPB</a> to load balance the traffic across the cluster.
+              We suggest RAID 5 or RAID 6 for capture disks.
+            </p>
+            <p class="card-text text-muted">
+              Arkime makes it possible to not save encrypted packets, other then the session negotiation.
+              If you plan on using this feature select the percentage of TLS/QUIC traffic on the network.
+              Most networks will see 10-40% of TLS traffic, resulting in huge disk space savings.
+            </p>
+
+            <hr>
+
+            <div class="form-inline mb-4">
+              <label class="sr-only" for="captureDaysInput">
+                PCAP Retention Days
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    PCAP RetentionDays
+                  </span>
+                </div>
+                <input type="number" id="captureDaysInput" value=14 min=1
+                  class="form-control">
+              </div>
+              <label for="captureDiskInput" class="sr-only">
+                Disk Size
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Disk Size
+                  </span>
+                </div>
+                <select id="captureDiskInput" class="form-control custom-select">
+                  <option value=1000>1 TB</option>
+                  <option value=2000>2 TB</option>
+                  <option value=3000>3 TB</option>
+                  <option value=4000 selected>4 TB</option>
+                  <option value=6000>6 TB</option>
+                  <option value=8000>8 TB</option>
+                  <option value=10000>10 TB</option>
+                  <option value=12000>12 TB</option>
+                  <option value=14000>14 TB</option>
+                  <option value=16000>16 TB</option>
+                </select>
+              </div>
+              <label for="captureNumDisksInput" class="sr-only">
+                Disks per machine
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Disks per machine
+                  </span>
+                </div>
+                <input type="number" id="captureNumDisksInput" value=20 min=1
+                  class="form-control">
+              </div>
+              <label for="captureTLSInput" class="sr-only">
+                TLS Percentage
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    TLS Percentage
+                  </span>
+                </div>
+                <select id="captureTLSInput" class="form-control custom-select">
+                  <option value=1.00 selected>0%</option>
+                  <option value=0.90>10%</option>
+                  <option value=0.80>20%</option>
+                  <option value=0.75>25%</option>
+                  <option value=0.75>30%</option>
+                  <option value=0.65>40%</option>
+                  <option value=0.55>50%</option>
+                </select>
+              </div>
+              <label for="maxGbps" class="sr-only">
+                Max per host
+              </label>
+              <div class="input-group input-group-sm mb-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Avg per machine
+                  </span>
+                </div>
+                <select id="maxGbps" class="form-control custom-select">
+                  <option value=1> 1 Gbps</option>
+                  <option value=2> 2 Gbps</option>
+                  <option value=3 selected>3 Gbps</option>
+                  <option value=4>4 Gbps</option>
+                  <option value=5>5 Gbps</option>
+                  <option value=6>6 Gbps</option>
+                  <option value=7>7 Gbps</option>
+                  <option value=8>8 Gbps</option>
+                  <option value=9>9 Gbps</option>
+                </select>
+              </div>
+            </div>
+            <table class="table table-sm">
+              <thead>
+              <tr>
+                <th>Space Required</th>
+                <th>All disks for data<br>RAID 0</th>
+                <th>One disk extra<br>RAID 5</th>
+                <th>Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="captureMachinesTB"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="captureMachines0"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="captureMachines1"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="captureMachines2"></label>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Elasticsearch Machines
+              <small class="pull-right">
+                <a href="faq#how-many-elasticsearch-nodes-or-machines-do-i-need"
+                  class="card-link">More info in FAQ</a>
+              </small>
+            </h5>
+
+            <p class="card-text text-muted">
+              Calculating the number of machines needed for Elasticsearch is a fine art.
+              It heavily depends on the type of traffic that Arkime will be seeing plus of course the traffic rate and number of days of retention.
+              Each node requires 64GB - 128GB of memory: 30GB for ES, and 34-96GB for OS disk cache.
+              For large machines plan on running multiple nodes per host.
+              You may want to read more recomendations from Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html">Reference</a>
+              and <a href="https://www.elastic.co/blog/a-heap-of-trouble">Blog</a>.
+            </p>
+            <p class="card-text text-muted">
+              Many scaling guides will recommend you do NOT use RAID 5, assuming you will use Elasticsearch replication.
+              However by default Arkime does NOT enable replication, so it is strongly recommended that you <strong>DO</strong> use RAID 5 or RAID 6.
+              If you decide to use Elasticsearch replication you will need more machines, but don't need RAID 5 in theory.
+            </p>
+            <p class="card-text text-muted">
+              The calculated host counts are just estimates.
+            </p>
+
+            <hr>
+
+            <div class="form-inline mb-4">
+              <label class="sr-only" for="esDaysInput">
+                ES Retention Days
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    ES Retention Days
+                  </span>
+                </div>
+                <input type="number" id="esDaysInput" value=30 min=1
+                  class="form-control">
+              </div>
+              <label for="esDiskInput" class="sr-only">
+                Disk Size
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Disk Size
+                  </span>
+                </div>
+                <select id="esDiskInput" class="form-control custom-select">
+                  <option value=200>200 GB</option>
+                  <option value=400>400 GB</option>
+                  <option value=800>800 GB</option>
+                  <option value=1000>1 TB</option>
+                  <option value=2000>2 TB</option>
+                  <option value=2000>3 TB</option>
+                  <option value=4000 selected>4 TB</option>
+                  <option value=6000>6 TB</option>
+                  <option value=8000>8 TB</option>
+                  <option value=10000>10 TB</option>
+                  <option value=12000>12 TB</option>
+                  <option value=14000>14 TB</option>
+                  <option value=16000>16 TB</option>
+                </select>
+              </div>
+
+              <label for="esNumDisksInput" class="sr-only">
+                Disks per machine
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Disks per machine
+                  </span>
+                </div>
+                <input type="number" id="esNumDisksInput" value=4 min=1
+                  class="form-control">
+              </div>
+
+              <label for="esNumNodesInput" class="sr-only">
+                ES Nodes per machine
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Nodes per machine
+                  </span>
+                </div>
+                <input type="number" id="esNumNodesInput" value=1 min=1
+                  class="form-control">
+              </div>
+
+              <label for="esReplication" class="sr-only">
+                ES Replication
+              </label>
+              <div class="input-group input-group-sm mb-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Replication
+                  </span>
+                </div>
+                <select id="esReplication" class="form-control custom-select">
+                  <option value=1>0 Replicas</option>
+                  <option value=2>1 Replica</option>
+                  <option value=3>2 Replicas</option>
+                </select>
+              </div>
+
+            </div>
+            <table class="table table-sm">
+              <thead>
+              <tr>
+                <th class="text-xs-center">&nbsp;</th>
+                <th class="text-xs-center">Total Space Required</th>
+                <th class="text-xs-center">All disks for data<br>RAID 0</th>
+                <th class="text-xs-center">One disk extra<br> RAID 5</th>
+                <th class="text-xs-center">Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="text-xs-center">
+                  Average traffic mix
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachinesTB"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines0"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines1"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines2"></label>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-xs-center">
+                  High DNS/HTTP traffic
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachinesTB-dns"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines0-dns"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines1-dns"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines2-dns"></label>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-xs-center">
+                  Pathological traffic mix
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachinesTB-worst"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines0-worst"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines1-worst"></label>
+                </td>
+                <td class="text-xs-center">
+                  <label class="label label-lg label-default"
+                    id="esMachines2-worst"></label>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- footer -->
+  {%- include footer.html -%}
+
+  <script>
+    $(function () { // page loaded
+      function sStr(str, size) {
+        if (size <= 1) {
+          return "1 " + str;
+        } else {
+          return Math.ceil(size) + " " + str + "s";
+        }
+      }
+
+      function setCaptureValue(id, raid, min, hosts) {
+        let value = Math.max(min, hosts);
+        $(id).text(sStr("host", value) + " / " + Math.ceil((Math.ceil(value) * +$("#captureDiskInput").val() * 0.90 * (+$("#captureNumDisksInput").val() - raid))/1000) + " TB");
+      }
+
+      // Asumptions
+      // * 0.90 of disk because of disk match (0.9313%) and reserved free space
+      // * 0.035 as an average for PCAP to ES
+      // * 0.05 as a max for PCAP to ES
+      function recalculate() {
+        let captureDay = +$("#captureTLSInput").val() * +$("#gbpsInput").val() * +$("#captureDaysInput").val() * 24 * 60 * 60/8;
+        let captureDiskInput = +$("#captureDiskInput").val() * 0.90;
+        let captureDisks = +$("#captureNumDisksInput").val();
+        let captureMin = +$("#gbpsInput").val()/+$("#maxGbps").val();
+
+        $("#captureMachinesTB").text(Math.ceil(captureDay/1000) + " TB");
+        setCaptureValue("#captureMachines0", 0, captureMin, captureDay/(captureDiskInput*captureDisks));
+        setCaptureValue("#captureMachines1", 1, captureMin, captureDay/(captureDiskInput*(captureDisks-1)));
+        setCaptureValue("#captureMachines2", 2, captureMin, captureDay/(captureDiskInput*(captureDisks-2)));
+
+        let esReplication = +$("#esReplication").val();
+        let esDay = esReplication * 0.035 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDays = esDay * +$("#esDaysInput").val();
+        let esDiskInput = +$("#esDiskInput").val() * 0.90;
+        let esDisks = +$("#esNumDisksInput").val();
+
+        let esDayDns = esReplication * 0.05 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDaysDns = esDayDns * +$("#esDaysInput").val();
+
+        let esDayWorst = esReplication * 0.08 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDaysWorst = esDayWorst * +$("#esDaysInput").val();
+
+        $("#esMachinesTB").text(Math.ceil(esDays/1000) + " TB");
+        $("#esMachines0").text(sStr("host", esDays/(esDiskInput*esDisks)));
+        $("#esMachines1").text(sStr("host", esDays/(esDiskInput*(esDisks-1))));
+        $("#esMachines2").text(sStr("host", esDays/(esDiskInput*(esDisks-2))));
+
+        $("#esMachinesTB-dns").text(Math.ceil(esDaysDns/1000) + " TB");
+        $("#esMachines0-dns").text(sStr("host", esDaysDns/(esDiskInput*esDisks)));
+        $("#esMachines1-dns").text(sStr("host", esDaysDns/(esDiskInput*(esDisks-1))));
+        $("#esMachines2-dns").text(sStr("host", esDaysDns/(esDiskInput*(esDisks-2))));
+
+        $("#esMachinesTB-worst").text(Math.ceil(esDaysWorst/1000) + " TB");
+        $("#esMachines0-worst").text(sStr("host", esDaysWorst/(esDiskInput*esDisks)));
+        $("#esMachines1-worst").text(sStr("host", esDaysWorst/(esDiskInput*(esDisks-1))));
+        $("#esMachines2-worst").text(sStr("host", esDaysWorst/(esDiskInput*(esDisks-2))));
+      }
+
+      $('#viewport input,select').change(recalculate);
+      recalculate();
+    });
+  </script>
+
+</body>
+</html>

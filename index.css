@@ -1,0 +1,437 @@
+/* main page styles ---------------- */
+.container-fluid.full-width-page {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+}
+
+.screenshot-img {
+  width: 100%;
+  box-shadow: 0px 8px 8px 0px rgba(112,112,112,1);
+}
+
+div.demo {
+  top: -190px;
+  position: relative;
+  margin-bottom: -100px;
+}
+div.demo > h1 {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+div.demo > h1.demo-small-screen {
+  margin-top: -20px;
+}
+
+.arkime-brand {
+  width: 40vw;
+  min-width: 400px;
+}
+
+/* estimators page styles ---------- */
+.estimators-content {
+  padding-top: 80px;
+  padding-bottom: 70px;
+}
+
+/* custom select styles */
+.input-group .custom-select {
+  border-radius: 0 .25rem .25rem 0;
+}
+.custom-select {
+  display: inline-block;
+  max-width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem 1.75rem .375rem .75rem;
+  line-height: 1.25;
+  color: #464a4c;
+  vertical-align: middle;
+  background: #fff;
+  -webkit-background-size: 8px 10px;
+  background-size: 8px 10px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* large labels */
+.label-lg {
+  font-size: 100%;
+  padding: .25rem .5rem;
+}
+
+/* small inputs for numbers */
+.input-group input {
+  max-width: 80px;
+}
+
+
+/* downloads page styles ----------- */
+.downloads-content {
+  padding-top: 80px;
+}
+
+/* button to toggle more downloads */
+.show-more-downloads {
+  font-size : 90%;
+  margin-top: 1rem;
+}
+
+/* version time display */
+.time {
+  margin-top: -6px;
+}
+
+
+/* on page styles ------------------ */
+.on-content > .angle-background {
+  padding-top: 120px;
+}
+
+/* flex styles */
+.d-flex {
+  display: flex !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.align-items-start {
+  align-items: flex-start !important;
+}
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+/* agenda styles */
+.agenda-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+.agenda-title .more-info {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+/* quote styles */
+.quote {
+  border-left: 5px solid;
+  padding-left: 8px;
+}
+.quote-danger {
+  border-left-color: #d9534f;
+}
+.quote-info {
+  border-left-color: #5bc0de;
+}
+.quote-warning {
+  border-left-color: #f0ad4e;
+}
+
+
+/* all page styles ----------------- */
+/* white jumbotrons for custom backgrounds */
+.jumbotron-white {
+  background-color: #FFFFFF;
+}
+
+/* custom button styles */
+.btn {
+  border-radius: 0 !important;
+}
+.btn-fw {
+  width: 160px;
+}
+.btn.btn-purp {
+  color: #FFFFFF;
+  border-color: #66B689;
+  background-color: #66B689;
+}
+.btn.btn-purp:hover {
+  border-color: #4d966d;
+  background-color: #4d966d;
+}
+
+/* padding for navbar */
+.p-nav {
+  padding-top: 80px;
+}
+.p-nav-lg {
+  padding-top: 120px;
+}
+
+/* misc */
+.no-float { float: none; }
+
+.no-wrap { white-space: nowrap; }
+
+.cursor-copy { cursor: copy; }
+.cursor-pointer { cursor: pointer; }
+
+.no-decoration { text-decoration: none !important; }
+
+.text-thin { font-weight: 200; }
+
+.lead-lg { font-size: 1.5rem; }
+.lead-xl { font-size: 2.5rem; }
+
+.hide {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* pretty angled backgrounds */
+.angle-background {
+  padding-bottom: 7rem;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+}
+.angle-background-long {
+  padding-bottom: 9rem !important;
+}
+.top-angle-background {
+  padding-top: 7rem;
+  clip-path: polygon(50% 10%, 100% 0, 100% 100%, 0 100%, 0 0);
+}
+.double-angle-background {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  clip-path: polygon(50% 10%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
+}
+
+/* purple background */
+.purp-background {
+  /* background-color: #f0fff6; */
+  background-color: #edf8ff;
+}
+
+/* purple text */
+.purp-text { color: #66B689 !important; }
+.dark-purp-text { color: #228c50 !important; }
+
+/* navbar owl image */
+.nav-link > img,
+.navbar-brand > img {
+  top: 4px;
+  left: 15px;
+  height: 50px;
+  position: absolute;
+}
+
+/* footer styles */
+footer.footer {
+  color: #aaa;
+  padding: 8px 16px;
+  border-top: 1px solid #E5E5E5;
+}
+
+body.wiki-body footer.footer {
+  background: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+body.wiki-body .footer-owl {
+  position: absolute;
+  bottom: 37px;
+}
+
+/* move the image up so the owl is sitting on the border */
+img.footer-owl {
+  margin-bottom: -2px;
+}
+
+/* code styles */
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  border-radius: 3px;
+  background-color: #f6f8fa;
+}
+
+/* dark dropdown menu */
+.dropdown-menu {
+  border-color: #242426;
+  background-color: #343a40;
+}
+.dropdown-menu a.dropdown-item {
+  color: #FFF;
+}
+.dropdown-menu a.dropdown-item:hover,
+.dropdown-menu a.dropdown-item:focus {
+  color: #FFF;
+  background-color: #323235;
+}
+.dropdown-menu li.active a,
+.dropdown-menu > li.active > a,
+.dropdown-menu div li.active a,
+.dropdown-menu > .active > div a,
+.dropdown-menu > .active > div:focus a {
+  color: #FFF !important;
+}
+
+/* anchor offset for navbar */
+a.anchor {
+  top: -60px;
+  display: block;
+  position: relative;
+  visibility: hidden;
+}
+a.anchor.anchor-offset-more {
+  top: -260px;
+}
+
+/* zebra stripey list groups */
+ul.list-group.list-group-striped > li.list-group-item:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+/* full height body with scrollable nav and content */
+body.full-height-body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.full-height-container {
+  right: 0;
+  bottom: 0;
+  left: 21rem;
+  overflow-y: auto;
+  position: absolute;
+  width: calc(100% - 21rem);
+  height: calc(100% - 56px);
+  transition: all 1s ease;
+}
+
+.full-height-and-width-container {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  position: absolute;
+  height: calc(100% - 56px);
+  transition: all 1s ease;
+}
+
+.left-nav {
+  left: 0;
+  bottom: 0;
+  width: 20rem;
+  overflow-y: auto;
+  position: absolute;
+  word-break: break-word;
+  height: calc(100% - 56px);
+  transition: width 1s ease;
+}
+
+.with-footer {
+  top: 50px !important;
+  bottom: 50px !important;
+  height: calc(100% - 85px) !important;
+}
+
+/* collapsed toc */
+.collapsed-toc .left-nav {
+  width: 0px;
+  height: 0px;
+}
+.collapsed-toc .collapse-btn {
+  left: 0;
+}
+.collapsed-toc .full-height-container {
+  left: 1rem;
+  width: calc(100% - 1rem);
+}
+.collapsed-toc .collapse-btn > .fa {
+  transform: rotate(180deg);
+}
+
+/* left nav collapse btn */
+.collapse-btn {
+  left: 20rem;
+  bottom: 0;
+  cursor: pointer;
+  width: 1rem;
+  position: absolute;
+  height: calc(100% - 56px);
+  background-color: #eee;
+  transition: left 1s ease;
+}
+.collapse-btn:hover {
+  background-color: #ddd;
+}
+.collapse-btn > .fa {
+  top: 50%;
+  left: 0.15rem;
+  position: absolute;
+  transition: all 1s ease;
+}
+
+@media (max-width: 575.98px) {
+  .full-height-container {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+    position: absolute;
+    height: calc(100% - 56px);
+  }
+}
+
+.left-nav div.nav-pills.nav-pills-nested a.nav-link {
+  width: 100%;
+  overflow: hidden;
+  word-break: break-word;
+  padding: 4px 8px !important;
+}
+.left-nav div.nav-pills.nav-pills-nested a.nav-link.nested {
+  line-height: 1.2;
+  font-size: 0.85rem;
+  padding: 4px 10px 4px 20px !important;
+}
+.left-nav div.nav-pills.nav-pills-nested a.nav-link.nested-more {
+  padding: 4px 10px 4px 30px !important;
+}
+.left-nav div.nav-pills.nav-pills-nested a.nav-link:not(.nested) {
+  font-weight: bold;
+}
+
+/* hide/show copy link for faq anchors */
+.full-height-container h1[id] > span.copy-link,
+.full-height-container h2[id] > span.copy-link,
+.full-height-container h3[id] > span.copy-link,
+.full-height-container td[id] > span.copy-link {
+  visibility: hidden;
+}
+.full-height-container h1[id]:hover > span.copy-link,
+.full-height-container h2[id]:hover > span.copy-link,
+.full-height-container h3[id]:hover > span.copy-link,
+.full-height-container td[id]:hover > span.copy-link {
+  visibility: visible;
+}
+
+/* wiki tocs */
+.wiki-toc {
+  padding-left: 10px;
+}
+
+.wiki-toc, .wiki-toc ul {
+  list-style: none;
+}
+
+.wiki-toc > li > ul > li {
+  margin-left: -15px;
+}
+
+.wiki-toc > li > a {
+  font-weight: bold;
+}
+
+.wiki-toc a:hover {
+  text-decoration: none;
+}
