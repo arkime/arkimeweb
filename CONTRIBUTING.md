@@ -75,6 +75,7 @@ Feature requests are tracked as [GitHub Issues](https://guides.github.com/featur
 **We welcome all collaboration!** If you can fix it or implement it, please do! :hammer:
 
 **To better help us review your pull request, please follow these guidelines:**
+* Please use a [fork](https://guides.github.com/activities/forking/) to submit a [pull request](https://help.github.com/articles/creating-a-pull-request/) for your contribution.
 * Provide a clear and descriptive title
 * Clearly describe the problem and solution
 * Include the relevant issue number(s) if applicable
