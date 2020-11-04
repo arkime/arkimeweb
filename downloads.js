@@ -46,7 +46,7 @@ function parseXML (xml) {
       } else {
         downloads[uniqueVers].downloads.push(download);
       }
-    } else if (key.startsWith('arkime-main')) {
+    } else if (key.startsWith('moloch-master')) {
       const keyArr = key.split(key[13]);
       const os = keyArr[1];
       let time = new Date(file.find('LastModified').text());
