@@ -144,9 +144,9 @@ permalink: "/awesomepage"
 All of the site's styles are included in the `index.css` file. If you add styles to this file, make them as specific as possible and include a comment to describe their intended purpose. For example do this:
 
 ```
-/* make the background purple for the super awesome content */
+/* make the background primary theme color for the super awesome content */
 body.faq-body div.super-awesome-style {
-  background-color: purple;
+  background-color: var(--primary-theme-text);
 }
 ```
 

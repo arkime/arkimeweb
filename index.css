@@ -1,3 +1,17 @@
+/* color definitions --------------- */
+:root {
+  --primary-theme-text-color: #66B689;
+  --primary-theme-dark-text-color: #228C50;
+  --primary-theme-background-color: #EDF8FF;
+  --primary-theme-color: #004C83;
+  --primary-theme-hover-color: #003E6B;
+  --secondary-theme-color: #303030;
+  --warning-theme-color: #F29A2E;
+  --danger-theme-color: #B50054;
+  /* TODO ? --success-theme-color: #fff; */
+  --info-theme-color: #66B689;
+}
+
 /* main page styles ---------------- */
 .container-fluid.full-width-page {
   padding-left: 0;
@@ -28,6 +42,9 @@ div.demo > h1.demo-small-screen {
 .arkime-brand {
   width: 40vw;
   min-width: 400px;
+}
+.arkime-brand-sm {
+  width: 30vw;
 }
 
 /* estimators page styles ---------- */
@@ -131,6 +148,26 @@ div.demo > h1.demo-small-screen {
 }
 
 
+/* arkimeet us page styles --------- */
+.arkimeetus-content .angle-background {
+  margin-bottom: -200px;
+  padding-bottom: 360px !important;
+}
+
+.arkimeetus-content .black-arkime {
+  top: -130px;
+  position: relative;
+  margin-bottom: -200px;
+}
+.arkimeetus-content .black-arkime > img {
+  height: 230px;
+}
+
+.arkimeetus-footer {
+  margin-top: 200px;
+}
+
+
 /* all page styles ----------------- */
 /* white jumbotrons for custom backgrounds */
 .jumbotron-white {
@@ -144,14 +181,71 @@ div.demo > h1.demo-small-screen {
 .btn-fw {
   width: 160px;
 }
-.btn.btn-purp {
-  color: #FFFFFF;
-  border-color: #66B689;
-  background-color: #66B689;
+
+.btn-primary {
+  color: #FFF;
+  border-color: var(--primary-theme-color);
+  background-color: var(--primary-theme-color);
 }
-.btn.btn-purp:hover {
-  border-color: #4d966d;
-  background-color: #4d966d;
+.btn-primary:hover {
+  color: #FFF;
+  border-color: var(--primary-theme-hover-color);
+  background-color: var(--primary-theme-hover-color);
+}
+
+.btn-outline-primary {
+  color: var(--primary-theme-color);
+  border-color: var(--primary-theme-color);
+}
+.btn-outline-primary:hover {
+  color: #FFF;
+  border-color: var(--primary-theme-color);
+  background-color: var(--primary-theme-color);
+}
+
+.btn-outline-secondary {
+  color: var(--secondary-theme-color);
+  border-color: var(--secondary-theme-color);
+}
+.btn-outline-secondary:hover {
+  color: #FFF;
+  border-color: var(--secondary-theme-color);
+  background-color: var(--secondary-theme-color);
+}
+
+.btn-outline-info {
+  color: var(--info-theme-color);
+  border-color: var(--info-theme-color);
+}
+.btn-outline-info:hover {
+  color: #FFF;
+  border-color: var(--info-theme-color);
+  background-color: var(--info-theme-color);
+}
+
+.btn-outline-danger {
+  color: var(--danger-theme-color);
+  border-color: var(--danger-theme-color);
+}
+.btn-outline-danger:hover {
+  color: #FFF;
+  border-color: var(--danger-theme-color);
+  background-color: var(--danger-theme-color);
+}
+
+.btn-outline-warning {
+  color: var(--warning-theme-color);
+  border-color: var(--warning-theme-color);
+}
+.btn-outline-warning:hover {
+  color: #FFF;
+  border-color: var(--warning-theme-color);
+  background-color: var(--warning-theme-color);
+}
+
+/* theme color dark navbar */
+.bg-dark {
+  background-color: var(--secondary-theme-color) !important;
 }
 
 /* padding for navbar */
@@ -173,6 +267,7 @@ div.demo > h1.demo-small-screen {
 .no-decoration { text-decoration: none !important; }
 
 .text-thin { font-weight: 200; }
+.text-thick { font-weight: 800; }
 
 .lead-lg { font-size: 1.5rem; }
 .lead-xl { font-size: 2.5rem; }
@@ -200,15 +295,14 @@ div.demo > h1.demo-small-screen {
   clip-path: polygon(50% 10%, 100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
 }
 
-/* purple background */
-.purp-background {
-  /* background-color: #f0fff6; */
-  background-color: #edf8ff;
+/* primary theme color background */
+.primary-theme-background {
+  background-color: var(--primary-theme-background-color);
 }
 
-/* purple text */
-.purp-text { color: #66B689 !important; }
-.dark-purp-text { color: #228c50 !important; }
+/* primary theme color text */
+.primary-theme-text { color: var(--primary-theme-text-color) !important; }
+.dark-primary-theme-text { color: var(--primary-theme-dark-text-color) !important; }
 
 /* navbar owl image */
 .nav-link > img,

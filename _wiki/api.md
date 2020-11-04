@@ -19,7 +19,7 @@ permalink: "/api"
 # Viewer API
 
 **_This API is not final and is subject to change._**
-{: .purp-text }
+{: .primary-theme-text }
 
 **Note:** Many of the API endpoints require a db field name, which is not the same as what you would use in a search expression.
 The easiest way to see database field names is to click the owl within Arkime -> click the fields label on left -> click display the database fields.
