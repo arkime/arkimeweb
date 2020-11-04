@@ -24,7 +24,7 @@ function parseXML (xml) {
       osTitle = osTitle.charAt(0).toUpperCase() + osTitle.slice(1);
 
       let download = {
-        url  : `https://s3.amazonaws.com/files.arkime.com/${key}`,
+        url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
         title: osTitle
       };
 
@@ -64,7 +64,7 @@ function parseXML (xml) {
       if (!osTitle) { continue; }
 
       let download = {
-        url  : `https://s3.amazonaws.com/files.arkime.com/${key}`,
+        url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
         title: osTitle
       };
 
