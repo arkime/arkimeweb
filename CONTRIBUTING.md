@@ -6,7 +6,7 @@
 
 ### Just have a question :question:
 
-* Talk to us directly in the [Arkime-FPC Slack](https://slackinvite.arkime.com/)
+* Talk to us directly in the [Arkime-FPC Slack](https://slackinvite.molo.ch/)
 
 ---
 

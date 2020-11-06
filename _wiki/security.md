@@ -9,7 +9,7 @@ permalink: "/security"
 # Reporting Security Issues
 
 The Arkime project takes security very seriously, but any complex software project is going to have some vulnerabilities.
-Please submit any security issues to [HackerOne](https://hackerone.com/verizonmedia) or arkime.security@verizonmedia.com, please use [github issues](https://github.com/arkime/arkime/issues) or slack for non security issues.
+Please submit any security issues to [HackerOne](https://hackerone.com/verizonmedia) or arkime.security@verizonmedia.com, please use [github issues](https://github.com/aol/moloch/issues) or slack for non security issues.
 
 
 ## Scope
@@ -21,7 +21,7 @@ Examples of security items in scope
 * Bypassing forced expressions (excluding when a sessionId is known)
 
 ## Out of Scope
-Examples of security items that are out of scope and maybe should be submitted to our [github issues](https://github.com/arkime/arkime/issues) page
+Examples of security items that are out of scope and maybe should be submitted to our [github issues](https://github.com/aol/moloch/issues) page
 
 * Crash on startup from bad config settings
 * Accessing a session using the Arkime sessionId
