@@ -166,6 +166,10 @@ div.demo > h1.demo-small-screen {
   margin-top: 200px;
 }
 
+.audio-container {
+  width: 300px;
+}
+
 
 /* all page styles ----------------- */
 /* white jumbotrons for custom backgrounds */

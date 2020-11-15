@@ -11,7 +11,7 @@ permalink: /architecture
 ---
 
 
-Here are some sample deployments of Arkime for different network architectures. Most folks will probably run a hybrid of the following since no one solution fits all. The ability to scale capturing can be done horizontally by adding more capture machines, vertically by adding more cpus/disk, or both. We usually recommend scaling horizontally unless physically space constrained, and using a network packet broker in front of multiple machines. However it is possible to use big machines, with lots of cpu/disk, and run arkime-capture with more threads. There is a [companion video](https://www.youtube.com/watch?v=jzX8lTGqLUs) for this page.
+Here are some sample deployments of Arkime for different network architectures. Most folks will probably run a hybrid of the following since no one solution fits all. The ability to scale capturing can be done horizontally by adding more capture machines, vertically by adding more cpus/disk, or both. We usually recommend scaling horizontally unless physically space constrained, and using a network packet broker in front of multiple machines. However it is possible to use big machines, with lots of cpu/disk, and run arkime-capture with more threads. There is a [companion video](https://youtu.be/ZFd7TYRurms) for this page.
 
 #### Legend/Info:
 {: .mb-0 }
