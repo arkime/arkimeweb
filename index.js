@@ -15,7 +15,7 @@ function copyLink (event, page) {
   input.remove();
 }
 
-function play() {
+function play () {
   const audio = document.getElementById('audio');
   audio.play();
 }
