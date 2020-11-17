@@ -239,9 +239,9 @@ title: Downloads
 
     $(function () { // page loaded
       function buildDownloadVersionRow (version, btnType, osList) {
-        let html = `<div class="row text-center mt-3">
-                     <div class="col-lg-2 mb-3">
-                       <div><strong>${version.title}</strong></div>
+        let html = `<div class="row d-flex flex-row justify-content-around">
+                     <div class="p-2">
+                       <div class="btn-fw"><strong>${version.title}</strong></div>
                        <div class="time"><small>${version.modified}</small></div>
                      </div>`;
 
@@ -252,8 +252,8 @@ title: Downloads
           for (d = 0; d < downloads.length; d++) {
             if (downloads[d].title === osList[i]) {
               let download = downloads[d];
-              html += `<div class="col-lg-1 mb-1">
-                         <a href="${download.url}" class="btn ${btnType}">
+              html += `<div class="p-2">
+                         <a href="${download.url}" class="btn btn-fw ${btnType}">
                            ${download.title}
                          </a>
                        </div>`;
@@ -262,7 +262,13 @@ title: Downloads
           }
 
           if (d === downloads.length) {
-            html += '<div class="col-lg-1 mb-1"></div>';
+            html += `<div class="p-2">
+                       <a href=""
+                         style="visibility:hidden"
+                         class="btn btn-fw btn-outline-primary">
+                         test
+                       </a>
+                     </div>`;
           }
         }
 
