@@ -38,8 +38,9 @@ function parseXML (xml) {
 
       // group by version
       if (!downloads.hasOwnProperty(uniqueVers)) {
+        let title = (uniqueVers.match(/^([0-1]|2\.[0-4])/) ? 'Moloch' : 'Arkime');
         downloads[uniqueVers] = {
-          title     : `Arkime ${uniqueVers}`,
+          title     : `${title} ${uniqueVers}`,
           downloads : [download],
           modified  : time
         };
