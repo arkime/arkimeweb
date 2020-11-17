@@ -94,6 +94,11 @@ title: Settings
         Reader snf Settings
       </a>
       <a class="nav-link nested nested-more"
+        href="#reader-poi-settings"
+        title="Reader PCAP-Over-Ip Settings">
+        Reader PCAP-Over-Ip Settings
+      </a>
+      <a class="nav-link nested nested-more"
         href="#writer-s3-settings"
         title="Writer S3 Settings">
         Writer S3 Settings
@@ -2621,6 +2626,29 @@ tpacketv3NumThreads=2</pre>
         </tbody>
       </table>
       <!-- /reader snf settings -->
+
+      <!-- reader poi settings -->
+      <h3 id="reader-poi-settings">
+        Reader PCAP-Over-Ip Settings
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h3>
+      <p>
+        Since Arkime 2.7.0, we can process PCAP-Over-Ip requests.
+        Two modes are support client and server.
+        Client mode will connect to a pcap-over-ip service, server will listen for pcap-over-ip connections.
+        <a href="https://netresec.com/?b=119B126">Read</a> more information about PCAP-Over-Ip.
+      </p>
+      <p>
+        Client mode is set by using <code>pcapReadMethod=pcap-over-ip-client</code>.
+        The <code>interface</code> setting must have a list of hosts and optional ports to connect to.
+      </p>
+      <p>
+        Server mode is set by using <code>pcapReadMethod=pcap-over-ip-server</code>.
+        The <code>interface</code> setting is ignored and should just be set to <code>dummy</code>.
+      </p>
+      <!-- /reader poi settings -->
 
       <!-- writer s3 settings -->
       <h3 id="writer-s3-settings">
