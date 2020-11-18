@@ -101,14 +101,14 @@ title: FAQ
         Self-Signed SSL/TLS Certificates
       </a>
       <a class="nav-link nested"
-        href="#how_do_i_upgrade_to_arkime_1"
-        title="How do I upgrade to Arkime 1.0">
-        How do I upgrade to Arkime 1.0
+        href="#how_do_i_upgrade_to_moloch_1"
+        title="How do I upgrade to Moloch 1.0">
+        How do I upgrade to Moloch 1.0
       </a>
       <a class="nav-link nested"
-        href="#how_do_i_upgrade_to_arkime_2"
-        title="How do I upgrade to Arkime 2.0">
-        How do I upgrade to Arkime 2.0
+        href="#how_do_i_upgrade_to_moloch_2"
+        title="How do I upgrade to Moloch 2.0">
+        How do I upgrade to Moloch 2.0
       </a>
       <a href="#elasticsearch"
         class="nav-link"
@@ -177,7 +177,7 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#ilm"
-        title="Using ILM with Molcoh">
+        title="Using ILM with Arkime">
         Using ILM with Arkime
       </a>
       <a href="#capture"
@@ -357,8 +357,8 @@ title: FAQ
       </a>
       <a href="#arkimeweb"
         class="nav-link"
-        title="Molo.ch">
-        Molo.ch
+        title="arkime.com">
+        arkime.com
       </a>
       <a class="nav-link nested"
         href="#how-can-i-contribute"
@@ -452,7 +452,10 @@ title: FAQ
         <thead>
           <tr>
             <th>
-              Arkime Version
+              Name
+            </th>
+            <th>
+              Version
             </th>
             <th>
               Min upgrade from
@@ -470,6 +473,9 @@ title: FAQ
         </thead>
         <tbody>
           <tr>
+            <th>
+              Moloch
+            </th>
             <td>
               2.2+
             </td>
@@ -480,13 +486,16 @@ title: FAQ
               6.8.2+ (6.8.6+ recommended), 7.1+ (7.8.0+ recommended, 7.7.0 broken)
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_arkime_2"> Arkime 2.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.0 instructions </a>
             </td>
             <td>
               Must already be on 6.8.x or 7.1+ before upgrading to 2.2
             </td>
           </tr>
           <tr>
+            <th>
+              Moloch
+            </th>
             <td>
               2.0, 2.1
             </td>
@@ -497,13 +506,16 @@ title: FAQ
              6.7, 6.8, 7.1+
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_arkime_2"> Arkime 2.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.0 instructions </a>
             </td>
             <td>
               Must already be on ES 6.7 or 6.8 (ES <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> recommended) before upgrading to 2.0
             </td>
           </tr>
           <tr>
+            <th>
+              Moloch
+            </th>
             <td>
               1.8
             </td>
@@ -523,6 +535,9 @@ title: FAQ
             </td>
           </tr>
           <tr>
+            <th>
+              Moloch
+            </th>
             <td>
               1.1.1
             </td>
@@ -533,7 +548,7 @@ title: FAQ
               5.x or 6.x (new only)
             </td>
             <td>
-              <a href="how_do_i_upgrade_to_arkime_1">
+              <a href="#how_do_i_upgrade_to_moloch_1">
                 Instructions
               </a>
             </td>
@@ -542,6 +557,9 @@ title: FAQ
             </td>
           </tr>
           <tr>
+            <th>
+              Moloch
+            </th>
             <td>
               0.20.2
             </td>
@@ -764,7 +782,7 @@ title: FAQ
         The core Arkime team does not support or recommend self signed certs.
         Use the money you are saving on a commercial product and go buy real
         certs. Wildcard certs are now cheap and you can even go with free
-        Lets Encrypt certs.  There may be folks on the Arkime slack workspace
+        Lets Encrypt certs. There may be folks on the Arkime slack workspace
         willing to help out.
       </p>
       <p>
@@ -773,14 +791,14 @@ title: FAQ
         both capture, viewer.  For example <code>/etc/systemd/system/arkimecapture.conf</code>.
       </p>
 
-      <h3 id="how_do_i_upgrade_to_arkime_1">
-        How do I upgrade to Arkime 1.0
+      <h3 id="how_do_i_upgrade_to_moloch_1">
+        How do I upgrade to Moloch 1.0
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        Arkime 1.0 has some large changes and updates that will require all
+        Moloch 1.0 has some large changes and updates that will require all
         session data to be reindexed. The reindexing is done in the background
         AFTER upgrading so there is little downtime. Large changes in 1.0 include:
       </p>
@@ -815,7 +833,7 @@ title: FAQ
       <p>To upgrade:</p>
       <ul>
         <li>
-          First make sure you are using ES 5.5.x (5.6 recommended) and Arkime
+          First make sure you are using ES 5.5.x (5.6 recommended) and Moloch
           0.20.2 or 0.50.x before continuing. Upgrade to those version first!
         </li>
         <li>
@@ -828,10 +846,10 @@ title: FAQ
           Shutdown all capture, viewer and wise processes
         </li>
         <li>
-          Install Arkime 1.1.1
+          Install Moloch 1.1.1
         </li>
         <li>
-          Run <code>/data/arkime/bin/arkime_update_geo.sh</code> on all capture
+          Run <code>/data/moloch/bin/moloch_update_geo.sh</code> on all capture
           nodes which will download the new mmdb style maxmind files
         </li>
         <li>
@@ -857,8 +875,8 @@ title: FAQ
           Start screen or tmux since this will take several days
         </li>
         <li>
-          In the <code>/data/arkime/viewer</code> directory, run
-          <code>/data/arkime/viewer/reindex2.js --slices X</code>
+          In the <code>/data/moloch/viewer</code> directory, run
+          <code>/data/moloch/viewer/reindex2.js --slices X</code>
           <ul>
             <li>
               The number of slices should be between 2 and the number of shards
@@ -895,26 +913,26 @@ title: FAQ
         </li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_arkime_2">
-        How do I upgrade to Arkime 2.0
+      <h3 id="how_do_i_upgrade_to_moloch_2">
+        How do I upgrade to Moloch 2.0
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
 
       <p>
-        Upgrading to Arkime 2.0 is a multistep process that requires an outage.
+        Upgrading to Moloch 2.0 is a multistep process that requires an outage.
         An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
         Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 6.7 or 6.8.
         This is very important when upgrading to ES 7.x later.
       </p>
       <ul>
-        <li>You must be using Arkime 1.7 or 1.8 (Arkime 1.8.0 recommended) BEFORE trying to upgrade to Arkime 2.0</li>
+        <li>You must be using Moloch 1.7 or 1.8 (Moloch 1.8.0 recommended) BEFORE trying to upgrade to Moloch 2.0</li>
         <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Arkime 2.0</li>
-        <li>Install Arkime &gt;= 2.0 without restarting captures/viewers</li>
+        <li>Install Moloch &gt;= 2.0 without restarting captures/viewers</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre20 </code> to backup all administrative indices.
         <li>Shutdown captures</li>
-        <li> run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
+        <li>run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
         <li>Restart captures</li>
         <li>Verify everything is working</li>
       </ul>
@@ -1051,7 +1069,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          Since Arkime 1.7.0 the ES Nodes tab of the Stats section now has the
+          Since Moloch 1.7.0 the ES Nodes tab of the Stats section now has the
           ability to turn on Write Task completed and rejected columns. Look for
           nodes having issues. Make sure those nodes don’t have disk issues.
         </li>
@@ -1069,7 +1087,7 @@ title: FAQ
         </li>
         <li>
           Make sure you are running the latest Elasticsearch that the version of
-          Arkime supports, for example 5.6.7 if using Elasticesarch 5
+          Moloch supports, for example 5.6.7 if using Elasticesarch 5
         </li>
         <li>
           If using replication on the sessions index, turn off replication of the
@@ -1198,7 +1216,7 @@ title: FAQ
         Make sure you select the matching version of that document for your version of ES from the pull down on the right hand side.
       </p>
       <p>
-        Upgrading between Major versions of Elasticsearch usually require an upgrade of Arkime.  So please see the instructions in this FAQ for
+        Upgrading between Major versions of Elasticsearch usually require an upgrade of Arkime. So please see the instructions in this FAQ for
         <ul>
           <li><a href="#how-do-i-upgrade-to-es-7-x">ES 7</a></li>
           <li><a href="#how-do-i-upgrade-to-es-6-x">ES 6</a></li>
@@ -1215,7 +1233,7 @@ title: FAQ
       <p>
         <strong>
           <ul>
-            <li>ES 7.x is supported by Arkime 2.x only if there are no ES 5.x created indices remaining.  We recommend you upgrade to ES 7.8.x or later.</li>
+            <li>ES 7.x is supported by Moloch 2.x only if there are no ES 5.x created indices remaining.  We recommend you upgrade to ES 7.8.x or later.</li>
             <li>Upgrading to ES 7 MAY REQUIRE downtime.</li>
           </ul>
         </strong>
@@ -1223,13 +1241,13 @@ title: FAQ
       <ol type="I">
         <li>
           If you are NOT using Arkime DB version 63 (or later) you
-          must follow these <a href="/faq#how_do_i_upgrade_to_arkime_2">instructions</a> while still using ES 6.x and upgrade to Arkime 2.0. To find what DB version
+          must follow these <a href="/faq#how_do_i_upgrade_to_moloch_2">instructions</a> while still using ES 6.x and upgrade to Arkime 2.0. To find what DB version
           you are using, either run
           <code>db.pl http://ESHOST:9200 info</code>
           or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
         </li>
         <li>
-          Make sure your Elasticsearch config files are ready for ES 7.  We do not provide sample Elasticsearch configs, but here are some things to look out for:
+          Make sure your Elasticsearch config files are ready for ES 7. We do not provide sample Elasticsearch configs, but here are some things to look out for:
           <ul>
             <li>You MUST add a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/discovery-settings.html#initial_master_nodes">cluster.initial_master_nodes</a> and there may be other required discovery changes.</li>
             <li>If you have more then 1000 shards per node you must set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/misc-cluster.html">cluster.max_shards_per_node</a></li>
@@ -1247,7 +1265,7 @@ title: FAQ
             If not using ES 6.8.6, or if you would prefer to do a full restart follow the instructions below
             <ul>
               <li>
-                Make sure you delete any old indices that db.pl complained about when you installed Arkime 2.0
+                Make sure you delete any old indices that db.pl complained about when you installed Moloch 2.0
               </li>
               <li>
                 Shutdown everything: elasticsearch, capture, and viewer
@@ -1281,12 +1299,12 @@ title: FAQ
       </h3>
       <p>
         <strong>
-          ES 6.x is supported by Arkime 1.x for NEW clusters and &gt;= 1.5 for
+          ES 6.x is supported by Moloch 1.x for NEW clusters and &gt;= 1.5 for
           UPGRADING clusters.
         </strong>
       </p>
       <p>
-        <strong>NOTE</strong> - If upgrading, you must FIRST upgrade to Arkime
+        <strong>NOTE</strong> - If upgrading, you must FIRST upgrade to Moloch
         1.0 or 1.1 (1.1.1 recommended) before upgrading to &gt; 1.5. Also all
         reindex operations needs to be finished.
       </p>
@@ -1301,15 +1319,15 @@ title: FAQ
         </strong>
       </p>
       <p>
-        First outage: If you are NOT using Arkime DB version 51 (or later) you
+        First outage: If you are NOT using Moloch DB version 51 (or later) you
         must follow these steps while still using ES 5.x. To find what DB version
         you are using, either run
         <code>db.pl http://ESHOST:9200 info</code>
-        or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
+        or mouse over the <span class="fa fa-info-circle"></span> in Moloch.
       </p>
       <ul>
         <li>
-          Install Arkime &gt;= 1.5
+          Install Moloch &gt;= 1.5
         </li>
         <li>
           Shutdown capture
@@ -1369,7 +1387,7 @@ title: FAQ
       </h3>
       <p>
         <strong>
-          ES 5.x is supported by Arkime 0.17.1 for NEW clusters and 0.18.1 for
+          ES 5.x is supported by Moloch 0.17.1 for NEW clusters and 0.18.1 for
           UPGRADING clusters.
         </strong>
       </p>
@@ -1394,10 +1412,10 @@ title: FAQ
         </strong>
       </p>
       <p>
-        First outage: If you are NOT using Arkime DB version 34 (or later) you
+        First outage: If you are NOT using Moloch DB version 34 (or later) you
         must follow these steps while still using ES 2.4. To find what DB version
         you are using, either run <code>db.pl http://ESHOST:9200 info</code>
-        or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
+        or mouse over the <span class="fa fa-info-circle"></span> in Moloch.
       </p>
       <ul>
         <li>
@@ -1408,7 +1426,7 @@ title: FAQ
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
         </li>
         <li>
-          Install Arkime 0.18.1 to 0.20.2
+          Install Moloch 0.18.1 to 0.20.2
         </li>
         <li>
           Shut down all capture nodes
@@ -1431,7 +1449,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          You MUST be on ES 2.4.x and Arkime DB version 34 (or later) before
+          You MUST be on ES 2.4.x and Moloch DB version 34 (or later) before
           using ES 5 (see above)
         </li>
         <li>
@@ -1588,7 +1606,7 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        Since Arkime 2.2 you can easily use ILM to handle moving indices from hot to warm, force merge, and delete actions.
+        Since Moloch 2.2 you can easily use ILM to handle moving indices from hot to warm, force merge, and delete actions.
         We recommend only using ILM with newer versions (7.2+) of Elasticsearch, since older versions did have some issues.
         Once ILM is enabled you no longer have to use the <code>db.pl expire</code> cron job, but should occasionally run <code>db.pl optimize-admin</code>.
       </p>
@@ -1719,7 +1737,7 @@ logger.action.level = info</code></pre>
         We are big fans of using Network Packet Brokers. If there is one piece of
         advice we can give medium or large Arkime deployments — use a NPB. See
         <a href="/assets/ArkimeON2017NPB.pptx">
-          ArkimeON 2017 NPB Preso
+          MolochON 2017 NPB Preso
         </a>
       </p>
       <p>
@@ -2576,8 +2594,8 @@ ${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           <li>Select Yes when asked "Will this key be used for GeoIP Update?" and select the version you have</li>
           <li>Use the MaxMind feature to generate a config file for you, usually you will replace </code>/etc/GeoIP.conf</code> with this file</li>
           <li>Run <code>geoipupdate</code> as root and see if it works</li>
-          <li>If you are using Arkime before 2.2, update your /data/arkime/etc/config.ini file so that geoLite2Country is now <code>/usr/share/GeoIP/GeoLite2-Country.mmdb</code> and geoLite2ASN is now <code>/usr/share/GeoIP/GeoLite2-ASN.mmdb</code></li>
-          <li>Restart arkime capture</li>
+          <li>If you are using Moloch before 2.2, update your /data/moloch/etc/config.ini file so that geoLite2Country is now <code>/usr/share/GeoIP/GeoLite2-Country.mmdb</code> and geoLite2ASN is now <code>/usr/share/GeoIP/GeoLite2-ASN.mmdb</code></li>
+          <li>Restart moloch-capture</li>
         </ol>
       </p>
 
@@ -2588,7 +2606,7 @@ ${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </span>
       </h3>
       <p>
-      Arkime logs alot of information for debugging purposes.
+      Arkime logs a lot of information for debugging purposes.
       Much of this information is for bug reports, but can also be used to figure out what is going on.
       You may need to use <code>--debug</code> to enable these msgs.
       </p>
@@ -2899,11 +2917,11 @@ viewHost = localhost</code></pre>
         special multiple Arkime viewer and a special MultiES process. MultiES
         is similiar to Elasticsearch tribe nodes, except it was created before
         tribe nodes and can deal with multiple indexes having the same name.
-        Prior to Arkime 1.5, one big limitation currently is that all the
-        Arkime clusters have to use the same <code>rotateIndex</code> setting.
-        Since Arkime 1.5 if using different <code>rotateIndex</code> settings,
+        Prior to Moloch 1.5, one big limitation currently is that all the
+        Moloch clusters have to use the same <code>rotateIndex</code> setting.
+        Since Moloch 1.5 if using different <code>rotateIndex</code> settings,
         use the <code>queryAllIndices=true</code> setting in the
-        <code>arkimeviewer</code> section. Currently one big limitation is that
+        <code>molochviewer</code> section. Currently one big limitation is that
         <code>all Arkime clusters must use the same PasswordSecret</code>.
       </p>
       <p>
@@ -3255,7 +3273,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
       <br>
       <h1 id="arkimeweb"
         class="border-bottom">
-        Molo.ch
+        arkime.com
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
