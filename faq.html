@@ -636,7 +636,7 @@ title: FAQ
         </li>
         <li>
           Check that the db has been initialized with
-          <code>/data/arkime/db/db.pl http://ESHOST:9200 info</code>
+          <code>/data/moloch/db/db.pl http://ESHOST:9200 info</code>
         </li>
         <li>
           Check that viewer is reachable by visiting
@@ -652,10 +652,10 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Check for errors in <code>/data/arkime/logs/viewer.log</code> and that viewer is running with <code>pgrep -lf viewer</code>
+          Check for errors in <code>/data/moloch/logs/viewer.log</code> and that viewer is running with <code>pgrep -lf viewer</code>
         </li>
         <li>
-          Check for errors in <code>/data/arkime/logs/capture.log</code> and that capture is running with <code>pgrep -lf capture</code>
+          Check for errors in <code>/data/moloch/logs/capture.log</code> and that capture is running with <code>pgrep -lf capture</code>
         </li>
         <li>
           Check that the stats page shows the capture nodes you are expecting, visit
@@ -670,7 +670,7 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Disable any <code>bpf=</code> in <code>/data/arkime/etc/config.ini</code>, if that fixes the issue read
+          Disable any <code>bpf=</code> in <code>/data/moloch/etc/config.ini</code>, if that fixes the issue read
           <a href="#dontsavebpfs-doesn-t-work">BPF FAQ answer</a>
         </li>
         <li>
@@ -680,7 +680,7 @@ title: FAQ
             <li>
               Live capture Arkime only writes records when a session has ended, it will take
                several minutes for session to show up after a fresh start, see
-               <code>/data/arkime/etc/config.ini</code> to shorten the timeouts
+               <code>/data/moloch/etc/config.ini</code> to shorten the timeouts
             </li>
             <li>
               Elasticsearch will only refresh the indices once a minute with the default Arkime config,
@@ -698,7 +698,7 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Restart <code>arkime-capture</code> after adding a
+          Restart <code>moloch-capture</code> after adding a
           <code>--debug</code> option may print out useful information what is
           wrong if you are having packet capture issues. You can add multiple
           <code>--debug</code> options to get even more information.
@@ -712,7 +712,7 @@ title: FAQ
           <ol type="a">
             <li>
               Make sure the plugins and parsers directories are correctly set
-              in <code>/data/arkime/etc/config.ini</code> and readable by the
+              in <code>/data/moloch/etc/config.ini</code> and readable by the
               viewer process
             </li>
           </ol>
@@ -740,13 +740,13 @@ title: FAQ
           <code>wipe</code> commands. The only difference between the two
           commands is that <code>wipe</code> leaves the
           added users so they don’t need to be re-added.
-          <pre><code>/data/arkime/db/db.pl ESHOST:ESPORT wipe</code></pre>
+          <pre><code>/data/moloch/db/db.pl ESHOST:ESPORT wipe</code></pre>
         </li>
         <li>
           Delete the PCAP files. The PCAP files are stored on the file system in
           raw format. You need to do this on <strong>all</strong> of the capture
           machines.
-          <pre><code>/bin/rm -f /data/arkime/raw/*</code></pre>
+          <pre><code>/bin/rm -f /data/moloch/raw/*</code></pre>
         </li>
       </ol>
 
@@ -1675,11 +1675,11 @@ logger.action.level = info</code></pre>
         <li>
           Don’t overload network links to capture. Monitoring a 10G link with an
           average of 4Gbps RX AND 4Gbps TX should use two 10G
-          <code>arkime-capture</code> links, since 8Gbps is close to the max.
+          <code>moloch-capture</code> links, since 8Gbps is close to the max.
         </li>
         <li>
           Arkime requires all packets from the same 5-tuple to be processed by
-          the same <code>arkime-capture</code> process.
+          the same <code>moloch-capture</code> process.
         </li>
       </ul>
       <p>
@@ -1728,7 +1728,7 @@ logger.action.level = info</code></pre>
       <p>
         We are big fans of using Network Packet Brokers ($6k+). They allow
         multiple taps/mirrors to be aggregated and load balanced across multiple
-        <code>arkime-capture</code> machines. Read more below.
+        <code>moloch-capture</code> machines. Read more below.
       </p>
 
       <h3 id="what-kind-of-network-packet-broker-should-we-buy">
@@ -1881,7 +1881,7 @@ logger.action.level = info</code></pre>
       </p>
       <p>
         The sample config files
-        (<code>/data/arkime/bin/arkime_config_interfaces.sh</code>) turn off many
+        (<code>/data/moloch/bin/arkime_config_interfaces.sh</code>) turn off many
         common features but there are still some possible problems:
       </p>
       <ol>
@@ -1960,7 +1960,7 @@ logger.action.level = info</code></pre>
         <p>
           For those stuck on Centos 6 use <code>elrepo</code> and install
           <code>kernel-ml</code> on the machines that will RUN
-          <code>arkime-capture.</code> Install <code>kernel-ml-headers</code>
+          <code>moloch-capture.</code> Install <code>kernel-ml-headers</code>
           on the machines that will COMPILE Arkime. Download the packages from
           <a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/"
             rel="nofollow">
@@ -1985,7 +1985,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         <p>
           If Arkime was installed from the deb/rpm and the Configure script was
           used, this should already be done in
-          <code>/data/arkime/bin/arkime_config_interfaces.sh</code>
+          <code>/data/moloch/bin/arkime_config_interfaces.sh</code>
         </p>
 
         <h4 id="packetthreads-and-the-packet-q-is-overflowing-error">
@@ -2084,7 +2084,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           </li>
           <li>
             await should be near or less then 10, otherwise the IO system is slow,
-            which will slow <code>arkime-capture</code> down.
+            which will slow <code>moloch-capture</code> down.
           </li>
         </ul>
         <p>
@@ -2103,7 +2103,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             </ul>
           </li>
           <li>
-            Maybe taskset to give <code>arkime-capture</code> its own CPU, although
+            Maybe taskset to give <code>moloch-capture</code> its own CPU, although
             with the new pcapWriteMethod thread or thread-direct setting, this
             isn’t needed and may hurt.
           </li>
@@ -2117,12 +2117,12 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             There are conflicting reports that disabling irqbalancer may help.
           </li>
           <li>
-            Check that the CPU you are giving <code>arkime-capture</code> isn’t
+            Check that the CPU you are giving <code>moloch-capture</code> isn’t
             handling lots of interrupts (<code>cat /proc/interrupts</code>).
           </li>
           <li>
             Make sure other processes aren’t using the same CPU as
-            <code>arkime-capture</code>.
+            <code>moloch-capture</code>.
           </li>
         </ul>
 
@@ -2134,7 +2134,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             Cyclical packet drops may be caused by bad connectivity to the wise
             server. Verify that the wiseService responds quickly
             <pre><code>curl http://arkime-wise.hostname:8081/views</code></pre>
-            on the <code>arkime-capture</code> host that is dropping packets.
+            on the <code>moloch-capture</code> host that is dropping packets.
           </li>
         </ul>
 
@@ -2156,14 +2156,14 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </span>
       </h3>
       <p>
-        Think of the <code>arkime-capture</code> binary much like you would
-        <code>tcpdump</code>.  <code>arkime-capture</code> can listen to live
+        Think of the <code>moloch-capture</code> binary much like you would
+        <code>tcpdump</code>.  <code>moloch-capture</code> can listen to live
         network interface(s), or read from historic packet capture files.
         Currently Arkime works best with PCAP files, not pcapng.
       </p>
       <p>
         <code>
-          ${arkime_dir}/bin/arkime-capture -c [config_file] -r [pcap_file]
+          ${arkime_dir}/bin/moloch-capture -c [config_file] -r [pcap_file]
         </code>
       </p>
       <p>
@@ -2171,7 +2171,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         See
-        <code>${arkime_dir}/bin/arkime-capture --help</code>
+        <code>${arkime_dir}/bin/moloch-capture --help</code>
         for more info
       </p>
       <p>
@@ -2203,7 +2203,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       It supports a semicolon ';' separated list of interfaces to listen on for live traffic.
       </p>
       <p>
-      The <strong>hard way</strong>, you can also have multiple <code>arkime-capture</code> processes,.
+      The <strong>hard way</strong>, you can also have multiple <code>moloch-capture</code> processes,.
       </p>
       <ul>
         <li>
@@ -2212,7 +2212,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           a, b, c, …​ or the interface number to the hostname are possible methods.
         </li>
         <li>
-          Edit <code>/data/arkime/etc/config.ini</code>, and create a section for
+          Edit <code>/data/moloch/etc/config.ini</code>, and create a section for
           each of the Arkime nodes. Assuming the defaults are correct in the
           <code>[default]</code> section, the only thing thing that
           <strong>MUST</strong> be set is the interface item. It is also common
@@ -2232,17 +2232,17 @@ interface=eth5</code></pre>
           Create two start up scripts. You will now need to specify the Arkime
           node name with the -n option and change the log files so they are
           separate.
-          <pre><code>TDIR=/data/arkime
+          <pre><code>TDIR=/data/moloch
 cd ${TDIR}/bin
 /bin/rm -f ${TDIR}/capturea.log.old
 /bin/mv ${TDIR}/logs/capturea.log ${TDIR}/logs/capturea.log.old
-${TDIR}/bin/arkime-capture -n arkime-m01a -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/capturea.log 2&gt;&amp;1</code></pre>
+${TDIR}/bin/moloch-capture -n arkime-m01a -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/capturea.log 2&gt;&amp;1</code></pre>
           and
-          <pre><code>TDIR=/data/arkime
+          <pre><code>TDIR=/data/moloch
 cd ${TDIR}/bin
 /bin/rm -f ${TDIR}/captureb.log.old
 /bin/mv ${TDIR}/logs/captureb.log ${TDIR}/logs/captureb.log.old
-${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/captureb.log 2&gt;&amp;1</code></pre>
+${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/captureb.log 2&gt;&amp;1</code></pre>
           * Add both scripts to <code>inittab</code> or <code>upstart</code>
         </li>
       </ul>
@@ -2277,17 +2277,17 @@ ${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </li>
         <li>
           The user that Arkime switches to must be able to write to the directory
-          that <code>arkime-capture</code> is running in.
+          that <code>moloch-capture</code> is running in.
         </li>
         <li>
-          Run <code>arkime-capture</code> and get it to crash.
+          Run <code>moloch-capture</code> and get it to crash.
         </li>
         <li>
           Look for the most recent core file.
         </li>
         <li>
           Run <code>gdb</code> (you may need to install the gdb package first)
-          <pre><code>gdb /data/arkime/bin/arkime-capture corefilename</code></pre>
+          <pre><code>gdb /data/moloch/bin/moloch-capture corefilename</code></pre>
         </li>
         <li>
           Get the back trace using the <code>bt</code> command
@@ -2299,7 +2299,7 @@ ${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       </p>
       <ul>
         <li>
-          Run <code>gdb arkime-capture</code> as root.
+          Run <code>gdb moloch-capture</code> as root.
         </li>
         <li>
           Start Arkime in <code>gdb</code> with
@@ -2324,7 +2324,7 @@ ${TDIR}/bin/arkime-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </span>
       </h3>
       <p>
-        Usually <code>arkime-capture</code> is started as root so that it can
+        Usually <code>moloch-capture</code> is started as root so that it can
         open the interfaces and then it immediately drops privileges to
         <code>dropUser</code> and <code>dropGroup</code>, which are by default
         <code>nobody:daemon</code>. This means that all parent directories need
@@ -2979,7 +2979,7 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
         Then, you need start MutilES adding <strong>NODE_EXTRA_CA_CERTS</strong>
         environment variable specifying the path to file you just created, for
         example:
-        <pre><code>NODE_EXTRA_CA_CERTS=./CAcerts.pem /data/arkime/bin/node multies.js -c /data/arkime/etc/config.ini -n allnode</pre></code>
+        <pre><code>NODE_EXTRA_CA_CERTS=./CAcerts.pem /data/moloch/bin/node multies.js -c /data/moloch/etc/config.ini -n allnode</pre></code>
       </p>
 
       <h3 id="how-do-i-reset-my-password">
@@ -3019,17 +3019,17 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
           How do viewers find each other
         </h4>
         <p>
-          First the SPI records are created on the <code>arkime-capture</code>
+          First the SPI records are created on the <code>moloch-capture</code>
           side.
         </p>
         <ol>
           <li>
-            Each <code>arkime-capture</code> gets a nodename, either by the
+            Each <code>moloch-capture</code> gets a nodename, either by the
             <code>-n</code> command line option or everything in front of the
             first period of the hostname.
           </li>
           <li>
-            Each <code>arkime-capture</code> writes a stats record every few
+            Each <code>moloch-capture</code> writes a stats record every few
             seconds that has the mapping from the nodename to the FDQN.
             It is possible to override the FDQN with the <code>--host</code> option to capture.
           </li>
@@ -3107,7 +3107,7 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
             just the hostname. To fix this, do ONE of the following:
             <ol type="a">
               <li>
-                Use the <code>--host</code> option to arkime-capture and restart capture
+                Use the <code>--host</code> option to <code>moloch-capture</code> and restart capture
               </li>
               <li>
                 Make it so the remote machines returns a FQDN
@@ -3186,7 +3186,7 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
       </p>
       <p>
         This shouldn’t happen when using the prebuilt Arkime releases. If it
-        does, then double check that <code>/data/arkime/bin/node</code> is
+        does, then double check that <code>/data/moloch/bin/node</code> is
         being used to run viewer.
       </p>
       <p>
@@ -3199,7 +3199,7 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
           Remove the OS version of node
         </li>
         <li>
-          Make sure <code>/data/arkime/bin</code> is in your path before the OS
+          Make sure <code>/data/moloch/bin</code> is in your path before the OS
           version of node
         </li>
         <li>
@@ -3272,7 +3272,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
           <pre><code>curl http://WISEHOST:8081/fields</code></pre>
         </li>
         <li>
-          Restart <code>arkime-capture</code> after adding a
+          Restart <code>moloch-capture</code> after adding a
           <code>--debug</code> option may print out useful information what is
           wrong.  Look to make sure that wise is being called with the correct URL.
           Verify that the plugins,wiseHost,wiseURL setting is what you actually think it is.
