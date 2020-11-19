@@ -119,9 +119,9 @@ title: Settings
         custom-views
       </a>
       <a class="nav-link nested"
-        href="#arkime-clusters"
-        title="arkime-clusters">
-        arkime-clusters
+        href="#moloch-clusters"
+        title="moloch-clusters">
+        moloch-clusters
       </a>
       <a class="nav-link nested"
         href="#multi-viewer-settings"
@@ -579,8 +579,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/data/arkime/etc/GeoLite2-ASN.mmdb<br>
-              (Pre 2.2) /data/arkime/etc/GeoLite2-ASN.mmdb
+              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/data/moloch/etc/GeoLite2-ASN.mmdb<br>
+              (Pre 2.2) /data/moloch/etc/GeoLite2-ASN.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -599,8 +599,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-Country.mmdb;/data/arkime/etc/GeoLite2-Country.mmdb<br>
-              (Pre 2.2)/data/arkime/etc/GeoLite2-Country.mmdb
+              /usr/share/GeoIP/GeoLite2-Country.mmdb;/data/moloch/etc/GeoLite2-Country.mmdb<br>
+              (Pre 2.2)/data/moloch/etc/GeoLite2-Country.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -681,7 +681,7 @@ title: Settings
               <ul class="mb-0">
                 <li>libmagic - normal libmagic</li>
                 <li>libmagicnotext - libmagic, but turns off text checks</li>
-                <li>arkimemagic - (removed in 1.5.0) subset of libmagic input files, and less accurate</li>
+                <li>molochmagic - (removed in 1.5.0) subset of libmagic input files, and less accurate</li>
                 <li>both - (since 1.5.0) try basic and then libmagic</li>
                 <li>basic - 50+ of most common headers</li>
                 <li>none - no libmagic or basic calls</li>
@@ -1035,7 +1035,7 @@ title: Settings
               </span>
             </td>
             <td>
-              /data/arkime/parsers ; ./parsers
+              /data/moloch/parsers ; ./parsers
             </td>
             <td>
               Semicolon separated list of directories to load parsers
@@ -2008,7 +2008,7 @@ title: Settings
             </td>
             <td>
               Regexp to control which filenames are processed when using the -R
-              option to arkime-capture.
+              option to moloch-capture.
             </td>
           </tr>
           <tr>
@@ -2251,7 +2251,7 @@ title: Settings
             </td>
             <td>
               If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
-              Example setting would be <code>/data/arkime/bin/arkime-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
+              Example setting would be <code>/data/moloch/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
               The following templated values will be filled in for you:
               <ul>
                 <li>NODE - The node name of the viewer that received the upload</li>
@@ -2327,7 +2327,7 @@ title: Settings
       </h3>
       <p>
         Tpacketv3 is the preferred reader for arkime and can be used on most
-        3.x or later kernels. Configure arkime-capture to use tpacketv3 as the reader
+        3.x or later kernels. Configure moloch-capture to use tpacketv3 as the reader
         method with <code>pcapReadMethod=tpacketv3</code> in your configuration
         file. This is also know as afpacket.
       </p>
@@ -2411,7 +2411,7 @@ tpacketv3NumThreads=2</pre>
           <code>rootPlugins=reader-daq.so</code>
         </li>
         <li>
-          tell arkime-capture to use daq as the reader method with
+          tell moloch-capture to use daq as the reader method with
           <code>pcapReadMethod=daq</code> in your configuration file
         </li>
         <li>
@@ -2479,7 +2479,7 @@ tpacketv3NumThreads=2</pre>
           host
         </li>
         <li>
-          install the pfring package on all hosts that will run arkime-capture
+          install the pfring package on all hosts that will run moloch-capture
           from
           <a class="no-decoration"
             href="http://packages.ntop.org/"
@@ -2491,7 +2491,7 @@ tpacketv3NumThreads=2</pre>
           <code>rootPlugins=reader-pfring.so</code>
         </li>
         <li>
-          Configure arkime-capture to use pfring as the reader method with
+          Configure moloch-capture to use pfring as the reader method with
           <code>pcapReadMethod=pfring</code> in your configuration file
         </li>
         <li>
@@ -2541,14 +2541,14 @@ tpacketv3NumThreads=2</pre>
       </h3>
       <ul>
         <li>
-          install the snf package on all hosts that will run arkime-capture
+          install the snf package on all hosts that will run moloch-capture
         </li>
         <li>
           load the snf plugin by changing configuration file so it has
           reader-snf.so as a rootPlugins <code>rootPlugins=reader-snf.so</code>
         </li>
         <li>
-          Configure arkime-capture to use snf as the reader method with
+          Configure moloch-capture to use snf as the reader method with
           <code>pcapReadMethod=snf</code> in your configuration file
         </li>
         <li>
@@ -3204,20 +3204,20 @@ sample.md5=db:sample.md5;kind:lotermfield;friendly:Sample MD5;count:true;help:MD
 sample.house=db:sample.house;kind:termfield;friendly:Sample House;count:true;help:House the sample lives in</code></pre>
       <!-- /custom-views -->
 
-      <!-- arkime-clusters -->
-      <h2 id="arkime-clusters">
-        arkime-clusters
+      <!-- moloch-clusters -->
+      <h2 id="moloch-clusters">
+        moloch-clusters
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
       </h2>
       <p>
-        The arkime-clusters section is used to describe the various
-        arkime-clusters that are available to forward traffic to either
+        The moloch-clusters section is used to describe the various
+        moloch-clusters that are available to forward traffic to either
         manually or through the CRON functionality. Each line represents a
         single cluster, with the name just being any unique string.
       </p>
-      <pre><code>[arkime-clusters]
+      <pre><code>[moloch-clusters]
 cluster1=url:https://arkime.example.com:8005;passwordSecret:password;name:Cluster
 cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Cluster</code></pre>
       <table class="table table-bordered table-sm table-striped">
@@ -3258,7 +3258,7 @@ cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Clus
           </tr>
         </tbody>
       </table>
-      <!-- /arkime-clusters -->
+      <!-- /moloch-clusters -->
 
       <!-- multi viewer settings -->
       <h2 id="multi-viewer-settings">
@@ -3294,9 +3294,9 @@ multiESNodes = escluster1.example.com:9200,prefix:PREFIX;escluster2.example.com:
         This is a sample for running manually (but you should setup startup
         scripts to run for real):
       </p>
-      <pre><code>cd /data/arkime/viewer
-/data/arkime/bin/node multies.js -n multi-viewer
-/data/arkime/bin/node viewer.js -n multi-viewer</code></pre>
+      <pre><code>cd /data/moloch/viewer
+/data/moloch/bin/node multies.js -n multi-viewer
+/data/moloch/bin/node viewer.js -n multi-viewer</code></pre>
       <table class="table table-bordered table-sm table-striped">
         <thead>
           <tr>
@@ -3963,7 +3963,7 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
       </h2>
       <p>This section allows you to specify ips or cidrs to drop
         from being processed. This is different from a bpf filter since the
-        packets will actually reach arkime-capture (and counted) but won't be
+        packets will actually reach moloch-capture (and counted) but won't be
         fully processed. However if you have many ranges/ips to drop it can be
         more efficient then bpfs. It is possible to also allow ranges inside of
         dropped ranges using the "allow" keyword. Order added doesn't matter,
@@ -4190,8 +4190,8 @@ kekid2=Randomkekpassword2
       <p>
         <strong>Note:</strong> there isn't a special Suricata UI inside Arkime,
         this is just adding new fields to Arkime sessions like wise or tagger
-        do. The Suricata enrichment is done by arkime-capture, so
-        arkime-capture must see the traffic.
+        do. The Suricata enrichment is done by moloch-capture, so
+        moloch-capture must see the traffic.
       </p>
       <p>
         Add <code>suricata.so</code> to the <code>plugins=</code> line in the
