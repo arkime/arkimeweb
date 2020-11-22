@@ -74,6 +74,11 @@ title: Settings
         Advanced Settings
       </a>
       <a class="nav-link nested nested-more"
+        href="#packet-deduplication-settings"
+        title="Packet Deduplication Settings">
+        Packet Deduplication Settings
+      </a>
+      <a class="nav-link nested nested-more"
         href="#reader-tpacketv3-settings"
         title="Reader tpacketv3 Settings">
         Reader tpacketv3 Settings
@@ -2318,6 +2323,78 @@ title: Settings
         </tbody>
       </table>
 
+      <!-- packet deduplication settings -->
+      <h3 id="packet-deduplication-settings">
+        Packet Deduplication Settings
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h3>
+      <p>
+      Arkime since version 2.7.1 has supported basic packet deduplication.
+      The deduplication is done early in the pipeline before a packet queue is assigned.
+      Currently only the iphdr + tcphdr or iphdr + udphdr is used to find duplicate packets, ignoring the TTL field.
+      The deduplication will only look back a configured number of seconds.
+      </p>
+      <p>
+      The packet deduplication is an expensive CPU task, so you should monitor the "Dup Drops/s" column in capture stats to see if worthwhile.
+      </p>
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+          <tr>
+            <th>
+              Setting
+            </th>
+            <th>
+              Default
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="enablePacketDedup">
+              enablePacketDedup
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              false
+            </td>
+            <td>
+              Enable packet deduplication
+            </td>
+          </tr>
+          <tr>
+            <td id="dedupSeconds">
+              dedupSeconds
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              2
+            </td>
+            <td>
+              The number of seconds to keep packet information for.
+            </td>
+          <tr><td id="dedupPackets">dedupPackets<span class="fa fa-link small copy-link cursor-copy" onclick="copyLink(this, 'settings')"></span></td>
+            <td>
+              1048575
+            </td>
+            <td>
+              The approximate number of packets to keep information on per second.
+              Set this number to the max number of packets per second you expect.
+            </td>
+          </tr>
+          </tr>
+        </tbody>
+      </table>
+      <!-- /packet deduplication settings -->
+
       <!-- reader tpacketv3 settings -->
       <h3 id="reader-tpacketv3-settings">
         Reader tpacketv3 Settings
@@ -2326,7 +2403,7 @@ title: Settings
         </span>
       </h3>
       <p>
-        Tpacketv3 is the preferred reader for arkime and can be used on most
+        Tpacketv3, also known as AFPacket v3, is the preferred reader for arkime and can be used on most
         3.x or later kernels. Configure moloch-capture to use tpacketv3 as the reader
         method with <code>pcapReadMethod=tpacketv3</code> in your configuration
         file. This is also know as afpacket.
