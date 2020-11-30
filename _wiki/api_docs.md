@@ -5,13 +5,6 @@ POST/GET - /api/buildQuery
 
 Builds an elasticsearch session query and returns the query and the elasticsearch indices to the client.
 
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>object</code>| query - The elasticsearch query |
-| <code>object</code>| indices - The elasticsearch indices that contain sessions in this query |
-
 
 **Parameters**:
 
@@ -29,6 +22,13 @@ Builds an elasticsearch session query and returns the query and the elasticsearc
 | fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| query | <code>object</code> | The elasticsearch query |
+| indices | <code>object</code> | The elasticsearch indices that contain sessions in this query |
 
 <a name="sessions"></a>
 
@@ -37,17 +37,6 @@ POST/GET - /api/sessions
 
 Builds an elasticsearch session query. Gets a list of sessions and returns them to the client.
 
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>object</code>| map - The data to populate the sessions map |
-| <code>object</code>| graph - The data to populate the sessions timeline graph |
-| <code>array</code>| data - The list of sessions with the requested fields |
-| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
-| <code>number</code>| recordsFiltered - The number of files returned in this result |
-| <code>object</code>| health - The elasticsearch cluster health status and info |
-
 
 **Parameters**:
 
@@ -65,6 +54,17 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| map | <code>object</code> | The data to populate the sessions map |
+| graph | <code>object</code> | The data to populate the sessions timeline graph |
+| data | <code>array</code> | The list of sessions with the requested fields |
+| recordsTotal | <code>number</code> | The total number of files Arkime knows about |
+| recordsFiltered | <code>number</code> | The number of files returned in this result |
+| health | <code>object</code> | The elasticsearch cluster health status and info |
 
 <a name="sessions/csv"></a>
 
@@ -73,12 +73,6 @@ POST/GET - /api/sessions/csv
 
 Builds an elasticsearch session query. Gets a list of sessions and returns them as CSV to the client.
 
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>string</code>| csv - The csv with the sessions requested |
-
 
 **Parameters**:
 
@@ -97,24 +91,18 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| csv | <code>string</code> | The csv with the sessions requested |
+
 <a name="spiview"></a>
 
 ## spiview
 POST/GET - /api/spiview
 
 Builds an elasticsearch session query. Gets a list of field values with counts and returns them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>object</code>| map - The data to populate the sessions map |
-| <code>object</code>| graph - The data to populate the sessions timeline graph |
-| <code>object</code>| spi - The list of spi fields with values and counts |
-| <code>object</code>| protocols - The list of protocols with counts |
-| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
-| <code>number</code>| recordsFiltered - The number of files returned in this result |
-| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
 **Parameters**:
@@ -131,23 +119,24 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| map | <code>object</code> | The data to populate the sessions map |
+| graph | <code>object</code> | The data to populate the sessions timeline graph |
+| spi | <code>object</code> | The list of spi fields with values and counts |
+| protocols | <code>object</code> | The list of protocols with counts |
+| recordsTotal | <code>number</code> | The total number of files Arkime knows about |
+| recordsFiltered | <code>number</code> | The number of files returned in this result |
+| health | <code>object</code> | The elasticsearch cluster health status and info |
+
 <a name="spigraph"></a>
 
 ## spigraph
 POST/GET - /api/spigraph
 
 Builds an elasticsearch session query. Gets a list of values for a field with counts and graph data and returns them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>object</code>| map - The data to populate the main/aggregate spigraph sessions map |
-| <code>object</code>| graph - The data to populate the main/aggregate spigraph sessions timeline graph |
-| <code>array</code>| items - The list of field values with their corresponding timeline graph and map data |
-| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
-| <code>number</code>| recordsFiltered - The number of files returned in this result |
-| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
 **Parameters**:
@@ -163,19 +152,23 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| map | <code>object</code> | The data to populate the main/aggregate spigraph sessions map |
+| graph | <code>object</code> | The data to populate the main/aggregate spigraph sessions timeline graph |
+| items | <code>array</code> | The list of field values with their corresponding timeline graph and map data |
+| recordsTotal | <code>number</code> | The total number of files Arkime knows about |
+| recordsFiltered | <code>number</code> | The number of files returned in this result |
+| health | <code>object</code> | The elasticsearch cluster health status and info |
+
 <a name="spigraphhierarchy"></a>
 
 ## spigraphhierarchy
 POST/GET - /api/spigraphhierarchy
 
 Builds an elasticsearch session query. Gets a list of values for each field with counts and returns them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>object</code>| hierarchicalResults - The nested data to populate the treemap or pie |
-| <code>array</code>| tableResults - The list data to populate the table |
 
 
 **Parameters**:
@@ -191,18 +184,19 @@ Builds an elasticsearch session query. Gets a list of values for each field with
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| hierarchicalResults | <code>object</code> | The nested data to populate the treemap or pie |
+| tableResults | <code>array</code> | The list data to populate the table |
+
 <a name="unique"></a>
 
 ## unique
 POST/GET - /api/unique
 
 Builds an elasticsearch session query. Gets a list of unique field values (with or without counts) and sends them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>string</code>| The list of unique fields (with counts if requested) |
 
 
 **Parameters**:
@@ -219,18 +213,18 @@ Builds an elasticsearch session query. Gets a list of unique field values (with 
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:     'first' - First Packet: the timestamp of the first packet received for the session.     'last' - Last Packet: The timestamp of the last packet received for the session.     'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.     'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.     'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> | The list of unique fields (with counts if requested) |
+
 <a name="multiunique"></a>
 
 ## multiunique
 POST/GET - /api/multiunique
 
 Builds an elasticsearch session query. Gets an intersection of unique field values (with or without counts) and sends them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>string</code>| The list of an intersection of unique fields (with counts if requested) |
 
 
 **Parameters**:
@@ -248,6 +242,12 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> | The list of an intersection of unique fields (with counts if requested) |
+
 <a name="_nodeName/session/_id/detail"></a>
 
 ## :nodeName/session/:id/detail
@@ -257,9 +257,9 @@ Gets SPI data for a session.
 
 **Returns**:
 
-| Type | Description |
-| --- | --- |
-| <code>html</code>| The html to display as session detail |
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>html</code> | The html to display as session detail |
 
 <a name="_nodeName/session/_id/packets"></a>
 
@@ -270,9 +270,9 @@ Gets packets for a session.
 
 **Returns**:
 
-| Type | Description |
-| --- | --- |
-| <code>html</code>| The html to display as session packets |
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>html</code> | The html to display as session packets |
 
 <a name="sessions/addTags"></a>
 
@@ -280,13 +280,6 @@ Gets packets for a session.
 POST - /api/sessions/addTags
 
 Add tag(s) to individual session(s) by id or by query.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>boolean</code>| success - Whether the add tags operation was successful |
-| <code>string</code>| text - The success/error message to (optionally) display to the user |
 
 
 **Parameters**:
@@ -309,19 +302,19 @@ Add tag(s) to individual session(s) by id or by query.
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code> | Whether the add tags operation was successful |
+| text | <code>string</code> | The success/error message to (optionally) display to the user |
+
 <a name="sessions/removeTags"></a>
 
 ## sessions/removeTags
 POST - /api/sessions/removeTags
 
 Removes tag(s) from individual session(s) by id or by query.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>boolean</code>| success - Whether the remove tags operation was successful |
-| <code>string</code>| text - The success/error message to (optionally) display to the user |
 
 
 **Parameters**:
@@ -344,20 +337,19 @@ Removes tag(s) from individual session(s) by id or by query.
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code> | Whether the remove tags operation was successful |
+| text | <code>string</code> | The success/error message to (optionally) display to the user |
+
 <a name="connections"></a>
 
 ## connections
 POST/GET - /api/connections
 
 Builds an elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>array</code>| links - The list of links |
-| <code>array</code>| links - The list of nodes |
-| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
 **Parameters**:
@@ -379,18 +371,20 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 | baselineDate | <code>number</code> | <code>0</code> | The baseline date range to compare connections against. Default is 0, disabled. Options include:      1x - 1 times query range.      2x - 2 times query range.      4x - 4 times query range.      6x - 6 times query range.      8x - 8 times query range.      10x - 10 times query range.      1 - 1 hour.      6 - 6 hours.      24 - 1 day.      48 - 2 days.      72 - 3 days.      168 - 1 week.      336 - 2 weeks.      720 - 1 month.      1440 - 2 months.      4380 - 6 months.      8760 - 1 year. |
 | baselineVis | <code>string</code> | <code>&quot;all&quot;</code> | Which connections to display when a baseline date range is applied. Default is all. Options include:      'all' - All Nodes: all nodes are visible.      'actual' - Actual Nodes: nodes present in the "current" timeframe query results are visible.      'actualold' - Baseline Nodes: nodes present in the "baseline" timeframe query results are visible.      'new' - New Nodes Only: nodes present in the "current" but NOT the "baseline" timeframe are visible.      'old' - Baseline Nodes Only: nodes present in the "baseline" but NOT the "current" timeframe are visible. |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| links | <code>array</code> | The list of links |
+| links | <code>array</code> | The list of nodes |
+| health | <code>object</code> | The elasticsearch cluster health status and info |
+
 <a name="connections/csv"></a>
 
 ## connections/csv
 POST/GET - /api/connections/csv
 
 Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>string</code>| The csv with the connections requested |
 
 
 **Parameters**:
@@ -409,18 +403,18 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> | The csv with the connections requested |
+
 <a name="fields"></a>
 
 ## fields
 GET - /api/fields
 
 Gets available database field objects pertaining to sessions.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>array</code> &#124; <code>map</code>| The map or list of database fields |
 
 
 **Parameters**:
@@ -429,20 +423,18 @@ Gets available database field objects pertaining to sessions.
 | --- | --- | --- | --- |
 | array | <code>boolean</code> | <code>false</code> | Whether to return an array of fields, otherwise returns a map |
 
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>array/map</code> | The map or list of database fields |
+
 <a name="files"></a>
 
 ## files
 GET - /api/files
 
 Gets a list of PCAP files that Arkime knows about.
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>Array</code>| data - The list of files |
-| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
-| <code>number</code>| recordsFiltered - The number of files returned in this result |
 
 
 **Parameters**:
@@ -451,6 +443,14 @@ Gets a list of PCAP files that Arkime knows about.
 | --- | --- | --- | --- |
 | length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 500, Max is 10,000 |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>Array</code> | The list of files |
+| recordsTotal | <code>number</code> | The total number of files Arkime knows about |
+| recordsFiltered | <code>number</code> | The number of files returned in this result |
 
 <a name="eshealth"></a>
 
@@ -461,26 +461,26 @@ Retrive Elasticsearch health and stats
 
 **Returns**:
 
-| Type | Description |
-| --- | --- |
-| <code>number</code>| active_primary_shards |
-| <code>number</code>| active_shards |
-| <code>number</code>| active_shards_percent_as_number |
-| <code>string</code>| cluster_name - The name of the arkime cluster |
-| <code>number</code>| delayed_unassigned_shards |
-| <code>number</code>| initializing_shards |
-| <code>number</code>| molochDbVersion - The arkime database version |
-| <code>number</code>| number_of_data_nodes |
-| <code>number</code>| number_of_in_flight_fetch |
-| <code>number</code>| number_of_nodes |
-| <code>number</code>| number_of_pending_tasks |
-| <code>number</code>| relocating_shards |
-| <code>string</code>| status |
-| <code>number</code>| task_max_waiting_in_queue_millis |
-| <code>boolean</code>| timed_out |
-| <code>number</code>| unassigned_shards |
-| <code>string</code>| version - the elasticsearch version number |
-| <code>number</code>| _timeStamp: timestamps in ms from unix epoc |
+| Name | Type | Description |
+| --- | --- | --- |
+| active_primary_shards | <code>number</code> |  |
+| active_shards | <code>number</code> |  |
+| active_shards_percent_as_number | <code>number</code> |  |
+| cluster_name | <code>string</code> | The name of the arkime cluster |
+| delayed_unassigned_shards | <code>number</code> |  |
+| initializing_shards | <code>number</code> |  |
+| molochDbVersion | <code>number</code> | The arkime database version |
+| number_of_data_nodes | <code>number</code> |  |
+| number_of_in_flight_fetch | <code>number</code> |  |
+| number_of_nodes | <code>number</code> |  |
+| number_of_pending_tasks | <code>number</code> |  |
+| relocating_shards | <code>number</code> |  |
+| status | <code>string</code> |  |
+| task_max_waiting_in_queue_millis | <code>number</code> |  |
+| timed_out | <code>boolean</code> |  |
+| unassigned_shards | <code>number</code> |  |
+| version | <code>string</code> | the elasticsearch version number |
+| _timeStamp | <code>number</code> | timestamps in ms from unix epoc |
 
 <a name="sessions/pcap"></a>
 
@@ -488,12 +488,6 @@ Retrive Elasticsearch health and stats
 GET - /api/sessions/pcap
 
 Retrieve the raw session data in pcap format
-
-**Returns**:
-
-| Type | Description |
-| --- | --- |
-| <code>pcap</code>| A PCAP file with the sessions requested |
 
 
 **Parameters**:
@@ -512,4 +506,10 @@ Retrieve the raw session data in pcap format
 | view | <code>string</code> |  | The view name to apply before the expression. |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:    'first' - First Packet: the timestamp of the first packet received for the session.    'last' - Last Packet: The timestamp of the last packet received for the session.    'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.    'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.    'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code> | A PCAP file with the sessions requested |
 
