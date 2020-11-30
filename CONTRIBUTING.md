@@ -81,6 +81,10 @@ Feature requests are tracked as [GitHub Issues](https://guides.github.com/featur
 * Include the relevant issue number(s) if applicable
 * Make sure the HTML and rendered page conform the style guide (below)
 
+#### API Documentation
+
+Want to fix, add, or update API documentation? That's awesome! Take a look [here](https://github.com/arkime/arkime/blob/master/CONTRIBUTING.md#api-documentation) to learn how we document our APIs and how to contribute.
+
 ---
 
 ### Style Guide
