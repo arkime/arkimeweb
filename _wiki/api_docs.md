@@ -5,10 +5,15 @@ POST/GET - /api/buildQuery
 
 Builds an elasticsearch session query and returns the query and the elasticsearch indices to the client.
 
-**Returns**: <code>object</code> - query - The elasticsearch query
-<code>object</code> - indices - The elasticsearch indices that contain sessions in this query
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>object</code>| query - The elasticsearch query |
+| <code>object</code>| indices - The elasticsearch indices that contain sessions in this query |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -32,14 +37,19 @@ POST/GET - /api/sessions
 
 Builds an elasticsearch session query. Gets a list of sessions and returns them to the client.
 
-**Returns**: <code>object</code> - map - The data to populate the sessions map
-<code>object</code> - graph - The data to populate the sessions timeline graph
-<code>array</code> - data - The list of sessions with the requested fields
-<code>number</code> - recordsTotal - The total number of files Arkime knows about
-<code>number</code> - recordsFiltered - The number of files returned in this result
-<code>object</code> - health - The elasticsearch cluster health status and info
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>object</code>| map - The data to populate the sessions map |
+| <code>object</code>| graph - The data to populate the sessions timeline graph |
+| <code>array</code>| data - The list of sessions with the requested fields |
+| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
+| <code>number</code>| recordsFiltered - The number of files returned in this result |
+| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -63,9 +73,14 @@ POST/GET - /api/sessions/csv
 
 Builds an elasticsearch session query. Gets a list of sessions and returns them as CSV to the client.
 
-**Returns**: <code>string</code> - csv - The csv with the sessions requested
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>string</code>| csv - The csv with the sessions requested |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -89,15 +104,20 @@ POST/GET - /api/spiview
 
 Builds an elasticsearch session query. Gets a list of field values with counts and returns them to the client.
 
-**Returns**: <code>object</code> - map - The data to populate the sessions map
-<code>object</code> - graph - The data to populate the sessions timeline graph
-<code>object</code> - spi - The list of spi fields with values and counts
-<code>object</code> - protocols - The list of protocols with counts
-<code>number</code> - recordsTotal - The total number of files Arkime knows about
-<code>number</code> - recordsFiltered - The number of files returned in this result
-<code>object</code> - health - The elasticsearch cluster health status and info
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>object</code>| map - The data to populate the sessions map |
+| <code>object</code>| graph - The data to populate the sessions timeline graph |
+| <code>object</code>| spi - The list of spi fields with values and counts |
+| <code>object</code>| protocols - The list of protocols with counts |
+| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
+| <code>number</code>| recordsFiltered - The number of files returned in this result |
+| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -118,14 +138,19 @@ POST/GET - /api/spigraph
 
 Builds an elasticsearch session query. Gets a list of values for a field with counts and graph data and returns them to the client.
 
-**Returns**: <code>object</code> - map - The data to populate the main/aggregate spigraph sessions map
-<code>object</code> - graph - The data to populate the main/aggregate spigraph sessions timeline graph
-<code>array</code> - items - The list of field values with their corresponding timeline graph and map data
-<code>number</code> - recordsTotal - The total number of files Arkime knows about
-<code>number</code> - recordsFiltered - The number of files returned in this result
-<code>object</code> - health - The elasticsearch cluster health status and info
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>object</code>| map - The data to populate the main/aggregate spigraph sessions map |
+| <code>object</code>| graph - The data to populate the main/aggregate spigraph sessions timeline graph |
+| <code>array</code>| items - The list of field values with their corresponding timeline graph and map data |
+| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
+| <code>number</code>| recordsFiltered - The number of files returned in this result |
+| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -145,10 +170,15 @@ POST/GET - /api/spigraphhierarchy
 
 Builds an elasticsearch session query. Gets a list of values for each field with counts and returns them to the client.
 
-**Returns**: <code>object</code> - hierarchicalResults - The nested data to populate the treemap or pie
-<code>array</code> - tableResults - The list data to populate the table
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>object</code>| hierarchicalResults - The nested data to populate the treemap or pie |
+| <code>array</code>| tableResults - The list data to populate the table |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -168,9 +198,14 @@ POST/GET - /api/unique
 
 Builds an elasticsearch session query. Gets a list of unique field values (with or without counts) and sends them to the client.
 
-**Returns**: <code>string</code> - The list of unique fields (with counts if requested)
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>string</code>| The list of unique fields (with counts if requested) |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -191,9 +226,14 @@ POST/GET - /api/multiunique
 
 Builds an elasticsearch session query. Gets an intersection of unique field values (with or without counts) and sends them to the client.
 
-**Returns**: <code>string</code> - The list of an intersection of unique fields (with counts if requested)
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>string</code>| The list of an intersection of unique fields (with counts if requested) |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -215,8 +255,11 @@ GET - /api/:nodeName/session/:id/detail
 
 Gets SPI data for a session.
 
-**Returns**: <code>html</code> - The html to display as session detail
+**Returns**:
 
+| Type | Description |
+| --- | --- |
+| <code>html</code>| The html to display as session detail |
 
 <a name="_nodeName/session/_id/packets"></a>
 
@@ -225,8 +268,11 @@ GET - /api/:nodeName/session/:id/packets
 
 Gets packets for a session.
 
-**Returns**: <code>html</code> - The html to display as session packets
+**Returns**:
 
+| Type | Description |
+| --- | --- |
+| <code>html</code>| The html to display as session packets |
 
 <a name="sessions/addTags"></a>
 
@@ -235,10 +281,15 @@ POST - /api/sessions/addTags
 
 Add tag(s) to individual session(s) by id or by query.
 
-**Returns**: <code>boolean</code> - success - Whether the add tags operation was successful
-<code>string</code> - text - The success/error message to (optionally) display to the user
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>boolean</code>| success - Whether the add tags operation was successful |
+| <code>string</code>| text - The success/error message to (optionally) display to the user |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -265,10 +316,15 @@ POST - /api/sessions/removeTags
 
 Removes tag(s) from individual session(s) by id or by query.
 
-**Returns**: <code>boolean</code> - success - Whether the remove tags operation was successful
-<code>string</code> - text - The success/error message to (optionally) display to the user
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>boolean</code>| success - Whether the remove tags operation was successful |
+| <code>string</code>| text - The success/error message to (optionally) display to the user |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -295,11 +351,16 @@ POST/GET - /api/connections
 
 Builds an elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
 
-**Returns**: <code>array</code> - links - The list of links
-<code>array</code> - links - The list of nodes
-<code>object</code> - health - The elasticsearch cluster health status and info
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>array</code>| links - The list of links |
+| <code>array</code>| links - The list of nodes |
+| <code>object</code>| health - The elasticsearch cluster health status and info |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -325,9 +386,14 @@ POST/GET - /api/connections/csv
 
 Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
 
-**Returns**: <code>string</code> - The csv with the connections requested
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>string</code>| The csv with the connections requested |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -350,9 +416,14 @@ GET - /api/fields
 
 Gets available database field objects pertaining to sessions.
 
-**Returns**: <code>array</code> &#124; <code>map</code> - The map or list of database fields
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>array</code> &#124; <code>map</code>| The map or list of database fields |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -365,16 +436,51 @@ GET - /api/files
 
 Gets a list of PCAP files that Arkime knows about.
 
-**Returns**: <code>Array</code> - data - The list of files
-<code>number</code> - recordsTotal - The total number of files Arkime knows about
-<code>number</code> - recordsFiltered - The number of files returned in this result
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>Array</code>| data - The list of files |
+| <code>number</code>| recordsTotal - The total number of files Arkime knows about |
+| <code>number</code>| recordsFiltered - The number of files returned in this result |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 500, Max is 10,000 |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+
+<a name="eshealth"></a>
+
+## eshealth
+GET - /api/eshealth
+
+Retrive Elasticsearch health and stats
+
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>number</code>| active_primary_shards |
+| <code>number</code>| active_shards |
+| <code>number</code>| active_shards_percent_as_number |
+| <code>string</code>| cluster_name - The name of the arkime cluster |
+| <code>number</code>| delayed_unassigned_shards |
+| <code>number</code>| initializing_shards |
+| <code>number</code>| molochDbVersion - The arkime database version |
+| <code>number</code>| number_of_data_nodes |
+| <code>number</code>| number_of_in_flight_fetch |
+| <code>number</code>| number_of_nodes |
+| <code>number</code>| number_of_pending_tasks |
+| <code>number</code>| relocating_shards |
+| <code>string</code>| status |
+| <code>number</code>| task_max_waiting_in_queue_millis |
+| <code>boolean</code>| timed_out |
+| <code>number</code>| unassigned_shards |
+| <code>string</code>| version - the elasticsearch version number |
+| <code>number</code>| _timeStamp: timestamps in ms from unix epoc |
 
 <a name="sessions/pcap"></a>
 
@@ -383,9 +489,14 @@ GET - /api/sessions/pcap
 
 Retrieve the raw session data in pcap format
 
-**Returns**: <code>pcap</code> - A PCAP file with the sessions requested
+**Returns**:
+
+| Type | Description |
+| --- | --- |
+| <code>pcap</code>| A PCAP file with the sessions requested |
 
 
+**Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
