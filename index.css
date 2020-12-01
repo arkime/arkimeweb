@@ -174,7 +174,7 @@ div.demo > h1.demo-small-screen {
 /* api page styles ----------------- */
 /* make sure columns are wide enough */
 .api-container table th {
-  min-width: 100px;
+  min-width: 120px;
 }
 
 /* make tables look bootstrappy */

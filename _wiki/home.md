@@ -25,7 +25,8 @@ permalink: "/learn"
 - [S3 PCAP Storage](s3)
 
 #### Viewer
-- [Viewer API](api)
+- [Viewer v3.x API](api)
+- [Viewer v0.x - v2.x API](apiv0-2)
 
 #### Elasticsearch
 - [Elasticsearch SSL](esssl)
