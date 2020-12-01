@@ -1,8 +1,8 @@
-<a name="buildQuery"></a>
+<a name="buildquery"></a>
 
-## buildQuery API
+## buildquery API
 
-POST/GET - /api/buildQuery
+POST/GET - /api/buildquery
 
 Builds an elasticsearch session query and returns the query and the elasticsearch indices to the client.
 
@@ -221,11 +221,11 @@ Gets packets for a session.
 | --- | --- | --- |
 |  | <code>html</code>| The html to display as session packets |
 
-<a name="sessions/addTags"></a>
+<a name="sessions/addtags"></a>
 
-## sessions/addTags API
+## sessions/addtags API
 
-POST - /api/sessions/addTags
+POST - /api/sessions/addtags
 
 Add tag(s) to individual session(s) by id or by query.
 
@@ -246,11 +246,11 @@ Add tag(s) to individual session(s) by id or by query.
 | success | <code>boolean</code>| Whether the add tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
 
-<a name="sessions/removeTags"></a>
+<a name="sessions/removetags"></a>
 
-## sessions/removeTags API
+## sessions/removetags API
 
-POST - /api/sessions/removeTags
+POST - /api/sessions/removetags
 
 Removes tag(s) from individual session(s) by id or by query.
 
