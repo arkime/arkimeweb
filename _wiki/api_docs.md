@@ -95,7 +95,7 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 
 | Name | Type | Description |
 | --- | --- | --- |
-| csv | <code>string</code> | The csv with the sessions requested |
+| csv | <code>csv</code> | The csv with the sessions requested |
 
 <a name="spiview"></a>
 
@@ -407,7 +407,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>string</code> | The csv with the connections requested |
+| csv | <code>csv</code> | The csv with the connections requested |
 
 <a name="fields"></a>
 
