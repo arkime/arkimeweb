@@ -171,6 +171,42 @@ div.demo > h1.demo-small-screen {
 }
 
 
+/* api page styles ----------------- */
+/* make sure columns are wide enough */
+.api-container table th {
+  min-width: 120px;
+}
+
+/* make tables look bootstrappy */
+.api-container table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+  background-color: transparent;
+}
+
+.api-container thead td,
+.api-container thead th,
+.api-container tbody td,
+.api-container tbody th {
+  border: 1px solid #dee2e6;
+}
+.api-container thead td,
+.api-container thead th {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.api-container td,
+.api-container th {
+  padding: .2rem;
+}
+
+/* table stripes */
+.api-container table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+
 /* all page styles ----------------- */
 /* white jumbotrons for custom backgrounds */
 .jumbotron-white {
