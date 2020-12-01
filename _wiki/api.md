@@ -1,7 +1,7 @@
 ---
 title: API
 layout: wiki
-permalink: "/api"
+permalink: "/apiv3"
 ---
 
 - TOC
@@ -21,7 +21,7 @@ permalink: "/api"
 **_This API is not final and is subject to change._**
 {: .primary-theme-text }
 
-This is the documentation for version 3.x. [Here is the the API for previous versions](/apiv0-2).
+This is the documentation for version 3.x. [Here is the the API for previous versions](/api).
 
 **Note:** Many of the API endpoints require a db field name, which is not the same as what you would use in a search expression.
 The easiest way to see database field names is to click the owl within Arkime -> click the fields label on left -> click display the database fields.
