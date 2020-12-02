@@ -476,6 +476,25 @@ title: FAQ
         <tbody>
           <tr>
             <th>
+              Arkime
+            </th>
+            <td>
+              2.7+
+            </td>
+            <td>
+              2.0.0
+            </td>
+            <td>
+              7.4+ (7.9.0+ recommended, 7.7.0 broken)
+            </td>
+            <td>
+              <a href="#how-do-i-upgrade-to-es-7-x">ES 7 instructions </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>
               Moloch
             </th>
             <td>
@@ -972,7 +991,7 @@ title: FAQ
           How fast the disks are
         </li>
         <li>
-          What percentage of the traffic is HTTP/DNS
+          What percentage of the traffic is HTTP/DNS, these session use more ES resources
         </li>
         <li>
           The average transfer rate of all the interfaces
@@ -996,27 +1015,24 @@ title: FAQ
           store PCAP for a week but SPI data for a month.
         </li>
         <li>
-          Have at least 3% of disk space available in memory. For example, if the
-          cluster has 7TB of data then 7*0.03 or 210GB of memory is the minimum
-          recommended. Note: the more days store the memory ratio can actually
-          decrease, to 2% or 1%.
+          Have at least 1% of disk space used by ES available in ES heap memory.
+          For example, if the cluster has 7TB of data then 7*0.01 or 70GB of ES heap memory is the minimum recommended.
         </li>
         <li>
-          Assign half the memory to Elasticsearch (but no more then 31G per node,
-          read
+          Assign half the memory to Elasticsearch (but no more then 30G per node, read
           <a href="https://www.elastic.co/blog/a-heap-of-trouble"
             rel="nofollow">
             https://www.elastic.co/blog/a-heap-of-trouble</a>)
           and half the memory to disk cache.
         </li>
         <li>
-          Use version 6 of Elasticsearch or later.
+          Use version 7 of Elasticsearch or later.
         </li>
         <li>
           A quick disk requirement estimate is 5% of the PCAP storage, if storing for the same amount of time.
         </li>
         <li>
-          If you have large machines, they you can run multiple nodes per MACHINE.
+          If you have large machines, they you can run multiple nodes per MACHINE, although this complicates deployments.
         </li>
       </ul>
       <p>
@@ -1036,13 +1052,11 @@ title: FAQ
       </h3>
       <p>
         The SPI data in Elasticsearch and the PCAP data are not deleted at the same time.
-        The PCAP data is deleted as the disk fills up on the capture machines,
-        <a href="#pcap-deletion">more info</a>.  PCAP deletion happens automatically
-        and nothing needs to be done.
-        The SPI data is deleted when the <code>./db.pl expire</code>
-        command is run, usually from cron during off peak. There is a sample in
-        the daily.sh script. The SPI data deletion does NOT happen automatically
-        and a cron job MUST be set up.
+        The PCAP data is deleted as the disk fills up on the capture machines, <a href="#pcap-deletion">more info</a>.
+        PCAP deletion happens automatically and nothing needs to be done.
+        The SPI data is either deleted by using <a href="#ilm">ILM</a> or when the <code>./db.pl expire</code> command is run, usually from cron during off peak.
+        There is a sample in the daily.sh script.
+        Unless you use <a href="#ilm">ILM</a>, the SPI data deletion does NOT happen automatically and a cron job MUST be set up.
       </p>
       <p>
         So deleting a PCAP file will NOT delete the SPI data, and deleting the
@@ -1050,9 +1064,9 @@ title: FAQ
       </p>
       <p>
         The UI does have commands to delete and scrub individual sessions, but
-        the user must have the <code>Remove Data</code>
-        ability on the users tab. Usually this feature is used for things you don’t want
-        operators to see, such as bad images.
+        the user must have the <code>Remove Data</code> ability on the users tab.
+        This feature is used for things you don’t want operators to see, such as bad images,
+        and not a general solution to freeing disk space.
       </p>
 
 
@@ -1087,11 +1101,11 @@ title: FAQ
         </li>
         <li>
           If you are running multiple Elasticsearch nodes make sure the disks can
-          support the iops load
+          support the iops load. It is usually best to have each ES use its own disk.
         </li>
         <li>
           Make sure you are running the latest Elasticsearch that the version of
-          Moloch supports, for example 5.6.7 if using Elasticesarch 5
+          Moloch supports, for example 7.9.3 if using Elasticsearch 7.
         </li>
         <li>
           If using replication on the sessions index, turn off replication of the
