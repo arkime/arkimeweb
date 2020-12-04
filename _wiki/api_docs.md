@@ -410,6 +410,9 @@ Retrieve the raw session data in pcap format
 
 The query params to build an Elasticsearch sessions query.
 
+For long expressions use POST for client requests to the server.
+When using POST the request body and request query are merged. Any duplicate parameters use the request body parameter.
+
 
 **Parameters**:
 
