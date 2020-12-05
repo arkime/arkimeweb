@@ -611,22 +611,23 @@ title: FAQ
         <a href="downloads">
           downloads page
         </a>
-        Our deployment is on Centos 7 with the elrepo 4.x kernel installed for packet performance increases and better afpacket support.
-        A large amount of development is done on Mac OS X 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
-        Arkime is NOT supported on 32 bit machines.
+        Our deployment is on RHEL 7, using both the pcap and afpacket reader depending on deployment.
+        We recommend using afpacket whenever possible.
+        A large amount of development is done on macOS 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
+        Arkime is no longer supported on 32 bit machines.
       </p>
       <p>
         The following OSes should work out of the box for compiling yourself:
       </p>
       <ul>
         <li>
-          CentOS/RHEL 7
+          CentOS/RHEL 7, 8
         </li>
         <li>
           Amazon Linux 2
         </li>
         <li>
-          Ubuntu 16.04, 18.04
+          Ubuntu 16.04, 18.04, 20.04
         </li>
         <li>
           FreeBSD 9
@@ -655,7 +656,7 @@ title: FAQ
         </li>
         <li>
           Check that the db has been initialized with
-          <code>/data/moloch/db/db.pl http://ESHOST:9200 info</code>
+          <code>/data/moloch/db/db.pl http://elasticsearch.hostname:9200 info</code>
         </li>
         <li>
           Check that viewer is reachable by visiting
@@ -697,13 +698,13 @@ title: FAQ
           data to search." but the stats tab shows packets are being captured:
           <ol type="a">
             <li>
-              Live capture Arkime only writes records when a session has ended, it will take
+              Live capture Arkime only writes records when a session has ended, it may take
                several minutes for session to show up after a fresh start, see
                <code>/data/moloch/etc/config.ini</code> to shorten the timeouts
             </li>
             <li>
               Elasticsearch will only refresh the indices once a minute with the default Arkime config,
-              force a refresh with <code>curl http://ESHOST:9200/_refresh</code>
+              force a refresh with <code>curl http://elasticsearch.hostname:9200/_refresh</code>
             </li>
             <li>
               Verify your time frame for search covers the data (try switching to ALL)
@@ -717,17 +718,18 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Restart <code>moloch-capture</code> after adding a
+          Restarting <code>moloch-capture</code> after adding a
           <code>--debug</code> option may print out useful information what is
-          wrong if you are having packet capture issues. You can add multiple
-          <code>--debug</code> options to get even more information.
+          wrong if you are having packet capture issues.
+          You can add multiple <code>--debug</code> options to get even more information.
           Capture will print out the config settings it is using, verify they
           are what you expect.
+          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code>.
         </li>
         <li>
-          Restart viewer after adding a
-          <code>--debug</code> option may print out useful information what is
-          wrong if you are having issues viewing packets that were captured
+          Restart viewer after adding a <code>--debug</code> option may print out useful information what is wrong
+          if you are having issues viewing packets that were captured.
+          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code>.
           <ol type="a">
             <li>
               Make sure the plugins and parsers directories are correctly set
