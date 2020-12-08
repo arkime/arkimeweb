@@ -2207,6 +2207,12 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           unknown link or GRE types)
         </li>
       </ul>
+      <h4>Enable Arkime UI to upload</h4>
+      <p>
+        It is also possible to enable UI in Arkime to upload pcap.
+        This is less efficient then just using <code>moloch-capture</code> directly, since it uploads the file and then rules <code>moloch-capture</code> for you.
+        Just uncomment the <code>uploadCommand</code> in the config.ini file.
+      </p>
 
       <h3 id="how-do-i-monitor-multiple-interfaces">
         How do I monitor multiple interfaces?
