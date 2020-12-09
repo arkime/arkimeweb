@@ -211,7 +211,8 @@ title: Downloads
           Try our latest commit!
         </h3>
         <hr>
-        <div class="commit-downloads">
+        <div class="acommit-downloads">
+        <div class="mcommit-downloads">
         </div>
       </div> <!-- /latest commit btns -->
     </div> <!-- /download btns -->
@@ -282,13 +283,14 @@ title: Downloads
         return html;
       }
 
-      function setupPage (versions, nightlies, commities, sortedVersions) {
+      function setupPage (versions, nightlies, acommities, mcommities, sortedVersions) {
         let mainDownloadsHtml = '', moreDownloadsHtml = '';
 
         const osList = [ 'Centos 6', 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
         const osCommitList = [ 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
 
-        let commitDownloadsHtml = buildDownloadVersionRow(commities, 'btn-outline-danger', osCommitList);
+        let acommitDownloadsHtml = buildDownloadVersionRow(acommities, 'btn-outline-danger', osCommitList);
+        let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, 'btn-outline-danger', osCommitList);
 
         for (let v = 0, vlen = sortedVersions.length; v < vlen; ++v) {
           if (versions.hasOwnProperty(sortedVersions[v])) {
@@ -305,7 +307,8 @@ title: Downloads
         $('.commit-downloads-container').show();
         $('.main-downloads').append(mainDownloadsHtml);
         $('.more-downloads').prepend(moreDownloadsHtml);
-        $('.commit-downloads').append(commitDownloadsHtml);
+        $('.acommit-downloads').append(acommitDownloadsHtml);
+        $('.mcommit-downloads').append(mcommitDownloadsHtml);
       }
 
       function setupError() {
@@ -323,7 +326,7 @@ title: Downloads
         dataType: 'xml',
         success: function (xml) {
           let downloads = parseXML(xml);
-          setupPage(downloads.downloads, downloads.nightlies, downloads.commities, downloads.sortedVersions);
+          setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions);
           $('.loading-downloads').hide();
         },
         error: function(xhr, textStatus, errorThrown) {
