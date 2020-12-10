@@ -1,3 +1,53 @@
+<a name="connections"></a>
+
+## connections API
+
+POST/GET - /api/connections
+
+Builds an elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
+| dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
+| baselineDate | <code>number</code> | <code>0</code> | The baseline date range to compare connections against. Default is 0, disabled. Options include:      1x - 1 times query range.      2x - 2 times query range.      4x - 4 times query range.      6x - 6 times query range.      8x - 8 times query range.      10x - 10 times query range.      1 - 1 hour.      6 - 6 hours.      24 - 1 day.      48 - 2 days.      72 - 3 days.      168 - 1 week.      336 - 2 weeks.      720 - 1 month.      1440 - 2 months.      4380 - 6 months.      8760 - 1 year. |
+| baselineVis | <code>string</code> | <code>&quot;all&quot;</code> | Which connections to display when a baseline date range is applied. Default is all. Options include:      'all' - All Nodes: all nodes are visible.      'actual' - Actual Nodes: nodes present in the "current" timeframe query results are visible.      'actualold' - Baseline Nodes: nodes present in the "baseline" timeframe query results are visible.      'new' - New Nodes Only: nodes present in the "current" but NOT the "baseline" timeframe are visible.      'old' - Baseline Nodes Only: nodes present in the "baseline" but NOT the "current" timeframe are visible. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| links | <code>array</code>| The list of links |
+| nodes | <code>array</code>| The list of nodes |
+| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
+
+<a name="connections/csv"></a>
+
+## connections/csv API
+
+POST/GET - /api/connections/csv
+
+Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
+| dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| csv | <code>csv</code>| The csv with the connections requested |
+
 <a name="buildquery"></a>
 
 ## buildquery API
@@ -271,55 +321,437 @@ Removes tag(s) from individual session(s) by id or by query.
 | success | <code>boolean</code>| Whether the remove tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
 
-<a name="connections"></a>
+<a name="stats"></a>
 
-## connections API
+## stats API
 
-POST/GET - /api/connections
+GET - /api/stats
 
-Builds an elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
-| dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
-| baselineDate | <code>number</code> | <code>0</code> | The baseline date range to compare connections against. Default is 0, disabled. Options include:      1x - 1 times query range.      2x - 2 times query range.      4x - 4 times query range.      6x - 6 times query range.      8x - 8 times query range.      10x - 10 times query range.      1 - 1 hour.      6 - 6 hours.      24 - 1 day.      48 - 2 days.      72 - 3 days.      168 - 1 week.      336 - 2 weeks.      720 - 1 month.      1440 - 2 months.      4380 - 6 months.      8760 - 1 year. |
-| baselineVis | <code>string</code> | <code>&quot;all&quot;</code> | Which connections to display when a baseline date range is applied. Default is all. Options include:      'all' - All Nodes: all nodes are visible.      'actual' - Actual Nodes: nodes present in the "current" timeframe query results are visible.      'actualold' - Baseline Nodes: nodes present in the "baseline" timeframe query results are visible.      'new' - New Nodes Only: nodes present in the "current" but NOT the "baseline" timeframe are visible.      'old' - Baseline Nodes Only: nodes present in the "baseline" but NOT the "current" timeframe are visible. |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| links | <code>array</code>| The list of links |
-| nodes | <code>array</code>| The list of nodes |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
-
-<a name="connections/csv"></a>
-
-## connections/csv API
-
-POST/GET - /api/connections/csv
-
-Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
+Fetches a list of stats for each node in the cluster.
 
 
 **Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
-| dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
+| filter | <code>string</code> |  | Search text to filter the list of nodes by. |
+| length | <code>number</code> | <code>500</code> | The number of nodes to return. Defaults to 500. |
+| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
+| sortField | <code>string</code> | <code>&quot;nodeName&quot;</code> | The field to sort the node list by. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+| hide | <code>string</code> |  | Which nodes to exclude from the results. Options include:      none - show all nodes.      old - hide out of date nodes (nodes whose current time is behind by at least 5 minutes).      nosession - hide nodes without sessions.      both - hide out of date nodes and nodes without sessions. |
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| csv | <code>csv</code>| The csv with the connections requested |
+| data | <code>array</code>| List of nodes with their corresponding stats. |
+| recordsTotal | <code>number</code>| The total number of nodes. |
+| recordsFiltered | <code>number</code>| The number of nodes returned in this result. |
+
+<a name="dstats"></a>
+
+## dstats API
+
+GET - /api/dstats
+
+Fetches a list of detailed stats for different fields pertaining to a node to populate a cubism graph.
+<a href="https://github.com/square/cubism">Cubism GitHub</a>
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| nodeName | <code>string</code> |  | The name of the node to get the detailed stats for. |
+| name | <code>string</code> |  | The name of the field to get the detailed stats for. |
+| start | <code>number</code> |  | The start time of data to return. Format is seconds since Unix EPOC. |
+| stop | <code>number</code> |  | The stop time of data to return. Format is seconds since Unix EPOC. |
+| step | <code>number</code> |  | The context step of the cubism graph in milliseconds. |
+| interval | <code>number</code> | <code>60</code> | The time interval to search for. |
+| size | <code>number</code> | <code>1440</code> | The size of the cubism graph. Defaults to 1440. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>array</code>| List of values to populate the cubism graph. |
+
+<a name="esstats"></a>
+
+## esstats API
+
+GET - /api/esstats
+
+Fetches a list of stats for each Elasticsearch cluster.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch clusters by. |
+| sortField | <code>string</code> | <code>&quot;nodeName&quot;</code> | The field to sort the Elasticsearch clusters list by. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| List of ES clusters with their corresponding stats. |
+| recordsTotal | <code>number</code>| The total number of ES clusters. |
+| recordsFiltered | <code>number</code>| The number of ES clusters returned in this result. |
+| health | [<code>ESHealth</code>](#ESHealth)| The Elasticsearch cluster health status and info. |
+
+<a name="esindices"></a>
+
+## esindices API
+
+GET - /api/esindices
+
+Fetches a list of Elasticsearch indices.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch indices by. |
+| sortField | <code>string</code> | <code>&quot;index&quot;</code> | The field to sort the Elasticsearch indices list by. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| List of ES indices with their corresponding stats. |
+| recordsTotal | <code>number</code>| The total number of ES indices. |
+| recordsFiltered | <code>number</code>| The number of ES indices returned in this result. |
+
+<a name="esindices/_index"></a>
+
+## esindices/:index API
+
+DELETE - /api/esindices/:index
+
+Deletes an Elasticsearch index (admin and remove access only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete index operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esindices/_index/optimize"></a>
+
+## esindices/:index/optimize API
+
+POST - /api/esindices/:index/optimize
+
+Optimizes an Elasticsearch index (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Always true, the optimizeIndex function might block. Check the logs for errors. |
+
+<a name="esindices/_index/close"></a>
+
+## esindices/:index/close API
+
+POST - /api/esindices/:index/close
+
+Closes an Elasticsearch index (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the close index operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esindices/_index/open"></a>
+
+## esindices/:index/open API
+
+POST - /api/esindices/:index/open
+
+Opens an Elasticsearch index (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Always true, the openIndex function might block. Check the logs for errors. |
+
+<a name="esindices/_index/shrink"></a>
+
+## esindices/:index/shrink API
+
+POST - /api/esindices/:index/shrink
+
+Shrinks an Elasticsearch index (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| target | <code>string</code> | The index name to shrink the index to. |
+| numShards | <code>number</code> | The number of shards to shrink the index to. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the close shrink operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="estasks"></a>
+
+## estasks API
+
+GET - /api/estasks
+
+Fetches Elasticsearch tasks.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| filter | <code>string</code> |  | Search text to filter the list of ES tasks by. |
+| cancellable | <code>string</code> | <code>false</code> | Whether to return only cancellable tasks. Default is "false". |
+| sortField | <code>string</code> | <code>&quot;action&quot;</code> | The field to sort the ES task list by. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+| size | <code>number</code> | <code>1000</code> | The number of ES tasks to return. Defaults to 1000. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| List of ES tasks with their corresponding stats. |
+| recordsTotal | <code>number</code>| The total number of ES tasks. |
+| recordsFiltered | <code>number</code>| The number of ES tasks returned in this result. |
+
+<a name="estasks/_id/cancel"></a>
+
+## estasks/:id/cancel API
+
+POST - /api/estasks/:id/cancel
+
+Cancels an Elasticsearch task (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the cancel task operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="estasks/_id/cancelByUser"></a>
+
+## estasks/:id/cancelByUser API
+
+POST - /api/estasks/:id/cancelByUser
+
+Cancels an Elasticsearch task by opaque id. Used to cancel running tasks
+that a user has created allowing a user to cancel their own tasks.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the cancel task operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="estasks/cancelAll"></a>
+
+## estasks/cancelAll API
+
+POST - /api/estasks/cancelAll
+
+Cancels all running Elasticsearch tasks (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the cancel all tasks operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esadmin"></a>
+
+## esadmin API
+
+GET - /api/esadmin
+
+Fetches all Elasticsearch settings that a user can change (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| settings | <code>array</code>| List of ES settings that a user can change |
+
+<a name="esadmin/set"></a>
+
+## esadmin/set API
+
+POST - /api/esadmin/set
+
+Sets Elasticsearch settings (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether saving the settings was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esadmin/reroute"></a>
+
+## esadmin/reroute API
+
+POST - /api/esadmin/reroute
+
+Try to restart any shard migrations that have failed or paused (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the reroute was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esadmin/flush"></a>
+
+## esadmin/flush API
+
+POST - /api/esadmin/flush
+
+Flush and refresh any data waiting in Elasticsearch to disk (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Always true |
+| text | <code>string</code>| The success message to (optionally) display to the user. |
+
+<a name="esadmin/unflood"></a>
+
+## esadmin/unflood API
+
+POST - /api/esadmin/unflood
+
+Try and clear any indices marked as flooded (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Always true |
+| text | <code>string</code>| The success message to (optionally) display to the user. |
+
+<a name="esadmin/clearcache"></a>
+
+## esadmin/clearcache API
+
+POST - /api/esadmin/clearcache
+
+Try and clear the cache for all indices (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether clearing the cache was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esshards"></a>
+
+## esshards API
+
+GET - /api/esshards
+
+Fetches all Elasticsearch shards
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch shards by. |
+| show | <code>string</code> | <code>&quot;all&quot;</code> | Which types of shard to show. Options include:      all - show all shards.      notstarted - show unstarted shards.      INITIALIZING - show initializing shards.      RELOCATING - show relocating shards.      UNASSIGNED - show unassigned shards. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| nodes | <code>array</code>| List of ES data nodes. |
+| indices | <code>array</code>| List of ES indices. |
+| nodeExcludes | <code>array</code>| List of node names that disallow the allocation of shards. |
+| ipExcludes | <code>array</code>| List of node ips that disallow the allocation of shards. |
+
+<a name="/esshards/_type/_value/exclude"></a>
+
+## /esshards/:type/:value/exclude API
+
+POST - /api/esshards/:type/:value/exclude
+
+Exclude Elasticsearch node by ip or name (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether exclude node operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/esshards/_type/_value/include"></a>
+
+## /esshards/:type/:value/include API
+
+POST - /api/esshards/:type/:value/include
+
+Include Elasticsearch node by ip or name (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether include node operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="esrecovery"></a>
+
+## esrecovery API
+
+GET - /api/esrecovery
+
+Returns information about ongoing and completed shard recoveries for indices.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| filter | <code>string</code> |  | Search text to filter the list of indices by. |
+| sortField | <code>string</code> | <code>&quot;index&quot;</code> | The field to sort the indices by. |
+| desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
+| show | <code>string</code> | <code>&quot;active&quot;</code> | Whether to show "all" or "active" recovering indices. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| List of indices with their corresponding stats. |
+| recordsTotal | <code>number</code>| The total number of indices. |
+| recordsFiltered | <code>number</code>| The number of indices returned in this result. |
 
 <a name="fields"></a>
 
