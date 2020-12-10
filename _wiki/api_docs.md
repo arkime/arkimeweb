@@ -551,11 +551,11 @@ Cancels an Elasticsearch task (admin only).
 | success | <code>boolean</code>| Whether the cancel task operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="estasks/_id/cancelByUser"></a>
+<a name="estasks/_id/cancelwith"></a>
 
-## estasks/:id/cancelByUser API
+## estasks/:id/cancelwith API
 
-POST - /api/estasks/:id/cancelByUser
+POST - /api/estasks/:id/cancelwith
 
 Cancels an Elasticsearch task by opaque id. Used to cancel running tasks
 that a user has created allowing a user to cancel their own tasks.
@@ -567,11 +567,11 @@ that a user has created allowing a user to cancel their own tasks.
 | success | <code>boolean</code>| Whether the cancel task operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="estasks/cancelAll"></a>
+<a name="estasks/cancelall"></a>
 
-## estasks/cancelAll API
+## estasks/cancelall API
 
-POST - /api/estasks/cancelAll
+POST - /api/estasks/cancelall
 
 Cancels all running Elasticsearch tasks (admin only).
 
