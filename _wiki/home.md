@@ -34,6 +34,7 @@ permalink: "/learn"
 #### WISE
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
+- [WISE v3.x API](wiseapi)
 
 ---
 
