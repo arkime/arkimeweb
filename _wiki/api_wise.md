@@ -11,7 +11,7 @@ Get from the config section a value or default
 | --- | --- | --- |
 | section | <code>string</code> | The section in the config file the key is in |
 | name | <code>string</code> | The key to get from the section |
-| [d] | <code>string</code> | the default value to return if key is not found in section |
+| [default] | <code>string</code> | the default value to return if key is not found in section |
 
 **Returns**:
 
@@ -105,6 +105,244 @@ Add for each source config definition for the UI to use.
 | --- | --- | --- |
 | sourceName | <code>string</code> | The source name |
 | configDef | <code>object</code> | An array of objects of the config ALW |
+
+<a name="/_ns_/nstest.html"></a>
+
+## /\_ns\_/nstest.html API
+
+GET - Health check URL
+
+<a name="/fields"></a>
+
+## /fields API
+
+GET - Used by capture to retrieve all the fields created by wise sources
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [ver] | <code>integer</code> | <code>0</code> | Version of the encoded binary to return |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| binary | <code>binary</code>|  |
+
+<a name="/views"></a>
+
+## /views API
+
+GET - Used by viewer to retrieve all the views being created by wise sources
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| All the views |
+
+<a name="/fieldValueActions"></a>
+
+## /fieldValueActions API
+
+GET - Used by viewer to retrieve all the field value actions created by wise sources
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code> \| <code>array</code>| All the actions |
+
+<a name="/get"></a>
+
+## /get API
+
+POST - Used by capture to lookup all the wise items
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| ver | <code>integer</code> | <code>0</code> | The format of the post data, version 0 and 2 supported |
+| hashes | <code>string</code> \| <code>array</code> |  | A comma separated list of md5 hashes of field arrays that the client knows about.                                If one of the hashes matches the current field array, then we don't send the field array. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>binary</code>| The encoded results |
+
+<a name="/sources"></a>
+
+## /sources API
+
+GET - Used by wise UI to retrieve all the sources
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>array</code>| All the sources |
+
+<a name="/source/_source/get"></a>
+
+## /source/:source/get API
+
+GET - Used by wise UI to retrieve the raw file being used by the section.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| :source | <code>string</code> | The source to get the raw data for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| All the views |
+
+<a name="/source/_source/get"></a>
+
+## /source/:source/get API
+
+PUT - Used by wise UI to save the raw file being used by the source.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| :source | <code>string</code> | The source to put the raw data for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| All the views |
+
+<a name="/config/defs"></a>
+
+## /config/defs API
+
+GET - Used by wise UI to retrieve all the configuration definitions for the various sources.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| object | <code>object</code>|  |
+
+<a name="/config/get"></a>
+
+## /config/get API
+
+GET - Used by wise UI to retrieve the current config.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| object | <code>object</code>|  |
+
+<a name="/config/save"></a>
+
+## /config/save API
+
+PUT - Used by wise UI to save the current config.
+      This is an authenticated API, requires the pin code, and requires wiseService to be started with --webconfig.
+
+<a name="/types"></a>
+
+## /types API
+
+GET - Used by the wise UI to all the types known.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>array</code>| all the types |
+
+<a name="/types/_source"></a>
+
+## /types/:source API
+
+GET - Used by the wise UI to retrieve all the types for a source, or if no source
+      all the types known.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| {:source} | <code>string</code> | the source to get the types for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>array</code>| all the types for the source |
+
+<a name="/_source/_type/_key"></a>
+
+## /:source/:type/:key API
+
+GET - Query a single source for a key
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| {:source} | <code>string</code> | The source to get the results for |
+| {:type} | <code>string</code> | The type of the key |
+| {:key} | <code>string</code> | The key to get the results for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code> \| <code>array</code>| The results for the query |
+
+<a name="/_type/_key"></a>
+
+## /:type/:key API
+
+GET - Query all sources for a key
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| {:type} | <code>string</code> | The type of the key |
+| {:key} | <code>string</code> | The key to get the results for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code> \| <code>array</code>| The results for the query |
+
+<a name="/stats"></a>
+
+## /stats API
+
+GET - Query for the stats
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| Object with array of stats per type and array of stats per source |
 
 <a name="WISESource"></a>
 
