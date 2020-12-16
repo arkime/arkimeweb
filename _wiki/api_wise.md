@@ -1,6 +1,134 @@
-<a name="api.getConfig"></a>
+<a name="SimpleSource"></a>
 
-## api.getConfig API
+## SimpleSource (class)
+
+The SimpleSource base class implements some common functions for
+sources that only have one type.
+
+Sources need to
+* call initSimple
+* implement initSource, simpleSourceLoad
+
+**Extends**: [<code>WISESource</code>](#WISESource)  
+
+* [SimpleSource](#SimpleSource) ⇐ [<code>WISESource</code>](#WISESource)
+    * [new SimpleSource(api, section, options)](#new_SimpleSource_new)
+    * [.initSimple()](#SimpleSource+initSimple) ⇒ <code>boolean</code>
+    * [.parseFieldDef(line)](#WISESource+parseFieldDef)
+    * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
+    * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
+    * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+
+<a name="new_SimpleSource_new"></a>
+
+### new SimpleSource(api, section, options) (constructor)
+
+SimpleSource
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| api | [<code>WISESourceAPI</code>](#WISESourceAPI) | the api when source created |
+| section | <code>string</code> | the section name |
+| options | <code>object</code> | see WISESource constructor |
+
+<a name="SimpleSource+initSimple"></a>
+
+### simpleSource.initSimple() (function)
+
+This function should be called by the constructor of the source when all
+config is verified and the source is ready to go online.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>boolean</code>| On true the source was initialized with no issue |
+
+<a name="WISESource+parseFieldDef"></a>
+
+### simpleSource.parseFieldDef(line) (function)
+
+Parse a field definition line and call the addField or addView as needed
+
+**Overrides**: [<code>parseFieldDef</code>](#WISESource+parseFieldDef)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| line | <code>string</code> | the line to parse |
+
+<a name="WISESource+parseCSV"></a>
+
+### simpleSource.parseCSV(body, setCb, endCB) (function)
+
+Util function to parse CSV formatted data
+
+**Overrides**: [<code>parseCSV</code>](#WISESource+parseCSV)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseTagger"></a>
+
+### simpleSource.parseTagger(body, setCb, endCB) (function)
+
+Util function to parse tagger formatted data
+
+**Overrides**: [<code>parseTagger</code>](#WISESource+parseTagger)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSON"></a>
+
+### simpleSource.parseJSON(body, setCb, endCB) (function)
+
+Util function to parse JSON formatted data
+
+**Overrides**: [<code>parseJSON</code>](#WISESource+parseJSON)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESourceAPI"></a>
+
+## WISESourceAPI (class)
+
+When sources are created they get an api object to interact with the wise service
+
+
+* [WISESourceAPI](#WISESourceAPI)
+    * [.getConfig(section, name, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
+    * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
+    * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
+    * [.addField(field)](#WISESourceAPI+addField)
+    * [.addView(name, input)](#WISESourceAPI+addView)
+    * [.addSource(section, src)](#WISESourceAPI+addSource)
+    * [.addSourceConfigDef(sourceName, configDef)](#WISESourceAPI+addSourceConfigDef)
+    * [.createRedisClient()](#WISESourceAPI+createRedisClient)
+
+<a name="WISESourceAPI+getConfig"></a>
+
+### wiseSourceAPI.getConfig(section, name, [default]) (function)
 
 Get from the config section a value or default
 
@@ -19,11 +147,11 @@ Get from the config section a value or default
 | --- | --- | --- |
 |  | <code>string</code>| The value found or the default value |
 
-<a name="api.getConfigSections"></a>
+<a name="WISESourceAPI+getConfigSections"></a>
 
-## api.getConfigSections API
+### wiseSourceAPI.getConfigSections() (function)
 
-Get a list of all the sections int he config file
+Get a list of all the sections in the config file
 
 **Returns**:
 
@@ -31,9 +159,9 @@ Get a list of all the sections int he config file
 | --- | --- | --- |
 |  | <code>string</code> \| <code>Array</code>| A list of all the sections in the config file |
 
-<a name="api.getConfigSection"></a>
+<a name="WISESourceAPI+getConfigSection"></a>
 
-## api.getConfigSection API
+### wiseSourceAPI.getConfigSection(section) (function)
 
 Get the full config for a section
 
@@ -50,9 +178,9 @@ Get the full config for a section
 | --- | --- | --- |
 |  | <code>object</code>| A list of all the sections in the config file |
 
-<a name="api.addField"></a>
+<a name="WISESourceAPI+addField"></a>
 
-## api.addField API
+### wiseSourceAPI.addField(field) (function)
 
 Add a field
 
@@ -61,11 +189,11 @@ Add a field
 
 | Param | Type | Description |
 | --- | --- | --- |
-| addField | <code>string</code> | An encoded field definition |
+| field | <code>string</code> | An encoded field definition |
 
-<a name="api.addView"></a>
+<a name="WISESourceAPI+addView"></a>
 
-## api.addView API
+### wiseSourceAPI.addView(name, input) (function)
 
 Add a view
 
@@ -77,9 +205,9 @@ Add a view
 | name | <code>string</code> | Name of the new view |
 | input | <code>string</code> | An encoded view definition |
 
-<a name="api.addSource"></a>
+<a name="WISESourceAPI+addSource"></a>
 
-## api.addSource API
+### wiseSourceAPI.addSource(section, src) (function)
 
 Activate a section of a source. Must be called if you want wise to query the source.
 A section is an instance of a source, some sources can have multiple sections.
@@ -92,9 +220,9 @@ A section is an instance of a source, some sources can have multiple sections.
 | section | <code>string</code> | The section name |
 | src | <code>wiseSource</code> | A wiseSource object |
 
-<a name="addSourceConfigDef"></a>
+<a name="WISESourceAPI+addSourceConfigDef"></a>
 
-## addSourceConfigDef API
+### wiseSourceAPI.addSourceConfigDef(sourceName, configDef) (function)
 
 Add for each source config definition for the UI to use.
 
@@ -105,6 +233,106 @@ Add for each source config definition for the UI to use.
 | --- | --- | --- |
 | sourceName | <code>string</code> | The source name |
 | configDef | <code>object</code> | An array of objects of the config ALW |
+
+<a name="WISESourceAPI+createRedisClient"></a>
+
+### wiseSourceAPI.createRedisClient() (function)
+
+Create a redis client from the info in a section
+
+**Params**: <code>string</code> redisType - what kind of redis  
+**Params**: <code>string</code> section - section to get info  
+<a name="WISESource"></a>
+
+## WISESource (class)
+
+All sources need to have the WISESource as their top base class.
+
+
+* [WISESource](#WISESource)
+    * [new WISESource(api, section, options)](#new_WISESource_new)
+    * [.parseFieldDef(line)](#WISESource+parseFieldDef)
+    * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
+    * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
+    * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+
+<a name="new_WISESource_new"></a>
+
+### new WISESource(api, section, options) (constructor)
+
+Should only be created by super(api, section, options) call
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| api | [<code>WISESourceAPI</code>](#WISESourceAPI) |  | the api when source created |
+| section | <code>string</code> |  | the section name |
+| options | <code>object</code> |  | All the options |
+| [options.dontCache] | <code>boolean</code> | <code>false</code> | do not cache this source, the source handles itself |
+| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as dont |
+| [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
+| [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
+| [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting |
+
+<a name="WISESource+parseFieldDef"></a>
+
+### wiseSource.parseFieldDef(line) (function)
+
+Parse a field definition line and call the addField or addView as needed
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| line | <code>string</code> | the line to parse |
+
+<a name="WISESource+parseCSV"></a>
+
+### wiseSource.parseCSV(body, setCb, endCB) (function)
+
+Util function to parse CSV formatted data
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseTagger"></a>
+
+### wiseSource.parseTagger(body, setCb, endCB) (function)
+
+Util function to parse tagger formatted data
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSON"></a>
+
+### wiseSource.parseJSON(body, setCb, endCB) (function)
+
+Util function to parse JSON formatted data
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw CSV data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
 
 <a name="/_ns_/nstest.html"></a>
 
@@ -343,24 +571,4 @@ GET - Query for the stats
 | Name | Type | Description |
 | --- | --- | --- |
 |  | <code>object</code>| Object with array of stats per type and array of stats per source |
-
-<a name="WISESource"></a>
-
-## WISESource API
-
-All wise sources need to inherit from this object
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| options | <code>object</code> |  | All the options |
-| options.api | <code>object</code> |  | The api reference, will be saved in this.api |
-| options.section | <code>string</code> |  | the name of the section, will be saved in this.section |
-| [options.dontCache] | <code>boolean</code> | <code>false</code> | do not cache this source, the source handles itself |
-| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as dont |
-| [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
-| [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
-| [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting |
 
