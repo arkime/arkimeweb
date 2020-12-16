@@ -559,6 +559,9 @@ body.full-height-body {
 
 .wiki-toc > li > ul > li {
   margin-left: -15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .wiki-toc > li > a {
