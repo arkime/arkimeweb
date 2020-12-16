@@ -29,7 +29,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 
 ## connections/csv API
 
-POST/GET - /api/connections/csv
+POST/GET - /api/connections/csv OR /api/connections.csv
 
 Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
 
@@ -100,7 +100,7 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 
 ## sessions/csv API
 
-POST/GET - /api/sessions/csv
+POST/GET - /api/sessions/csv OR /api/sessions.csv
 
 Builds an elasticsearch session query. Gets a list of sessions and returns them as CSV to the client.
 
@@ -243,11 +243,11 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | --- | --- | --- |
 |  | <code>string</code>| The list of an intersection of unique fields (with counts if requested) |
 
-<a name="_nodeName/session/_id/detail"></a>
+<a name="session/_nodeName/_id/detail"></a>
 
-## :nodeName/session/:id/detail API
+## session/:nodeName/:id/detail API
 
-GET - /api/:nodeName/session/:id/detail
+GET - /api/session/:nodeName/:id/detail
 
 Gets SPI data for a session.
 
@@ -257,11 +257,11 @@ Gets SPI data for a session.
 | --- | --- | --- |
 |  | <code>html</code>| The html to display as session detail |
 
-<a name="_nodeName/session/_id/packets"></a>
+<a name="session/_nodeName/_id/packets"></a>
 
-## :nodeName/session/:id/packets API
+## session/:nodeName/:id/packets API
 
-GET - /api/:nodeName/session/:id/packets
+GET - /api/session/:nodeName/:id/packets
 
 Gets packets for a session.
 
@@ -320,6 +320,206 @@ Removes tag(s) from individual session(s) by id or by query.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the remove tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="session/_nodeName/_id/body/_bodyType/_bodyNum/_bodyName"></a>
+
+## session/:nodeName/:id/body/:bodyType/:bodyNum/:bodyName API
+
+GET - /api/session/:nodeName/:id/body/:bodyType/:bodyNum/:bodyName
+
+Retrieves a file that was transferred in a session.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| file | <code>file</code>| The file in the session |
+
+<a name="session/_nodeName/_id/bodypng/_bodyType/_bodyNum/_bodyName"></a>
+
+## session/:nodeName/:id/bodypng/:bodyType/:bodyNum/:bodyName API
+
+GET - /api/session/:nodeName/:id/bodypng/:bodyType/:bodyNum/:bodyName
+
+Retrieves a bitmap image representation of the bytes in a file.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| image | <code>image/png</code>| The bitmap image. |
+
+<a name="sessions/pcap"></a>
+
+## sessions/pcap API
+
+GET - /api/sessions/pcap OR /api/sessions.pcap
+
+Retrieve the raw session data in pcap format.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| ids | <code>string</code> |  | The list of ids to return |
+| segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code>| A PCAP file with the sessions requested |
+
+<a name="sessions/pcapng"></a>
+
+## sessions/pcapng API
+
+GET - /api/sessions/pcapng OR /api/sessions.pcapng
+
+Retrieve the raw session data in pcapng format.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| ids | <code>string</code> |  | The list of ids to return |
+| segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code>| A PCAPNG file with the sessions requested |
+
+<a name="session/_nodeName/_id/pcap"></a>
+
+## session/:nodeName/:id/pcap API
+
+GET - /api/session/:nodeName/:id/pcap OR /api/session/:nodeName/:id.pcap
+
+Retrieve the raw session data in pcap format from a specific node.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code>| A PCAP file with the session requested |
+
+<a name="session/_nodeName/_id/pcapng"></a>
+
+## session/:nodeName/:id/pcapng API
+
+GET - /api/session/:nodeName/:id/pcapng OR /api/session/:nodeName/:id.pcapng
+
+Retrieve the raw session data in pcapng format from a specific node.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code>| A PCAPNG file with the session requested |
+
+<a name="session/entire/_nodeName/_id/pcap"></a>
+
+## session/entire/:nodeName/:id/pcap API
+
+GET - /api/session/entire/:nodeName/:id/pcap OR /api/session/entire/:nodeName/:id.pcap
+
+Retrieve the entire pcap for a session.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>pcap</code>| A PCAP file with the session requested |
+
+<a name="session/raw/_nodeName/_id/png"></a>
+
+## session/raw/:nodeName/:id/png API
+
+GET - /api/session/raw/:nodeName/:id/png OR /api/session/raw/:nodeName/:id.png
+
+Retrieve a bitmap image representation of packets in a session.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (desintation) packets bitmap image. Defaults to src. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| image | <code>image/png</code>| The bitmap image. |
+
+<a name="session/raw/_nodeName/_id"></a>
+
+## session/raw/:nodeName/:id API
+
+GET - /api/session/raw/:nodeName/:id
+
+Retrieve raw packets for a session.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (desintation) raw packets. Defaults to src. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code>| The source or destination packet text. |
+
+<a name="sessions/bodyhash/_hash"></a>
+
+## sessions/bodyhash/:hash API
+
+GET - /api/sessions/bodyhash/:hash
+
+Retrieve a file given a hash of that file.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| file | <code>file</code>| The file that matches the hash |
+
+<a name="session/_nodeName/_id/bodyhash/_hash"></a>
+
+## session/:nodeName/:id/bodyhash/:hash API
+
+GET - /api/session/:nodeName/:id/bodyhash/:hash
+
+Retrieve a file from a specific node given a hash of that file.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| file | <code>file</code>| The file that matches the hash |
 
 <a name="stats"></a>
 
@@ -812,29 +1012,6 @@ There is no auth necessary to retrieve eshealth
 | Name | Type | Description |
 | --- | --- | --- |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
-
-<a name="sessions/pcap"></a>
-
-## sessions/pcap API
-
-GET - /api/sessions/pcap
-
-Retrieve the raw session data in pcap format
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| ids | <code>string</code> |  | The list of ids to return |
-| segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>pcap</code>| A PCAP file with the sessions requested |
 
 <a name="SessionsQuery"></a>
 
