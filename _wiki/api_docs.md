@@ -1,6 +1,6 @@
-<a name="connections"></a>
+<a name="/connections"></a>
 
-## connections API
+## /connections API
 
 POST/GET - /api/connections
 
@@ -25,9 +25,9 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 | nodes | <code>array</code>| The list of nodes |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
-<a name="connections/csv"></a>
+<a name="/connections/csv"></a>
 
-## connections/csv API
+## /connections/csv API
 
 POST/GET - /api/connections/csv OR /api/connections.csv
 
@@ -48,9 +48,9 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the connections requested |
 
-<a name="buildquery"></a>
+<a name="/buildquery"></a>
 
-## buildquery API
+## /buildquery API
 
 POST/GET - /api/buildquery
 
@@ -70,9 +70,9 @@ Builds an elasticsearch session query and returns the query and the elasticsearc
 | query | <code>object</code>| The elasticsearch query |
 | indices | <code>object</code>| The elasticsearch indices that contain sessions in this query |
 
-<a name="sessions"></a>
+<a name="/sessions"></a>
 
-## sessions API
+## /sessions API
 
 POST/GET - /api/sessions
 
@@ -96,9 +96,9 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
-<a name="sessions/csv"></a>
+<a name="/sessions/csv"></a>
 
-## sessions/csv API
+## /sessions/csv API
 
 POST/GET - /api/sessions/csv OR /api/sessions.csv
 
@@ -117,9 +117,9 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the sessions requested |
 
-<a name="spiview"></a>
+<a name="/spiview"></a>
 
-## spiview API
+## /spiview API
 
 POST/GET - /api/spiview
 
@@ -145,9 +145,9 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
-<a name="spigraph"></a>
+<a name="/spigraph"></a>
 
-## spigraph API
+## /spigraph API
 
 POST/GET - /api/spigraph
 
@@ -172,9 +172,9 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
-<a name="spigraphhierarchy"></a>
+<a name="/spigraphhierarchy"></a>
 
-## spigraphhierarchy API
+## /spigraphhierarchy API
 
 POST/GET - /api/spigraphhierarchy
 
@@ -196,9 +196,9 @@ Builds an elasticsearch session query. Gets a list of values for each field with
 | hierarchicalResults | <code>object</code>| The nested data to populate the treemap or pie |
 | tableResults | <code>array</code>| The list data to populate the table |
 
-<a name="unique"></a>
+<a name="/unique"></a>
 
-## unique API
+## /unique API
 
 POST/GET - /api/unique
 
@@ -219,9 +219,9 @@ Builds an elasticsearch session query. Gets a list of unique field values (with 
 | --- | --- | --- |
 |  | <code>string</code>| The list of unique fields (with counts if requested) |
 
-<a name="multiunique"></a>
+<a name="/multiunique"></a>
 
-## multiunique API
+## /multiunique API
 
 POST/GET - /api/multiunique
 
@@ -243,9 +243,9 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | --- | --- | --- |
 |  | <code>string</code>| The list of an intersection of unique fields (with counts if requested) |
 
-<a name="session/_nodeName/_id/detail"></a>
+<a name="/session/_nodeName/_id/detail"></a>
 
-## session/:nodeName/:id/detail API
+## /session/:nodeName/:id/detail API
 
 GET - /api/session/:nodeName/:id/detail
 
@@ -257,9 +257,9 @@ Gets SPI data for a session.
 | --- | --- | --- |
 |  | <code>html</code>| The html to display as session detail |
 
-<a name="session/_nodeName/_id/packets"></a>
+<a name="/session/_nodeName/_id/packets"></a>
 
-## session/:nodeName/:id/packets API
+## /session/:nodeName/:id/packets API
 
 GET - /api/session/:nodeName/:id/packets
 
@@ -271,9 +271,9 @@ Gets packets for a session.
 | --- | --- | --- |
 |  | <code>html</code>| The html to display as session packets |
 
-<a name="sessions/addtags"></a>
+<a name="/sessions/addtags"></a>
 
-## sessions/addtags API
+## /sessions/addtags API
 
 POST - /api/sessions/addtags
 
@@ -296,9 +296,9 @@ Add tag(s) to individual session(s) by id or by query.
 | success | <code>boolean</code>| Whether the add tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
 
-<a name="sessions/removetags"></a>
+<a name="/sessions/removetags"></a>
 
-## sessions/removetags API
+## /sessions/removetags API
 
 POST - /api/sessions/removetags
 
@@ -321,9 +321,9 @@ Removes tag(s) from individual session(s) by id or by query.
 | success | <code>boolean</code>| Whether the remove tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
 
-<a name="session/_nodeName/_id/body/_bodyType/_bodyNum/_bodyName"></a>
+<a name="/session/_nodeName/_id/body/_bodyType/_bodyNum/_bodyName"></a>
 
-## session/:nodeName/:id/body/:bodyType/:bodyNum/:bodyName API
+## /session/:nodeName/:id/body/:bodyType/:bodyNum/:bodyName API
 
 GET - /api/session/:nodeName/:id/body/:bodyType/:bodyNum/:bodyName
 
@@ -335,9 +335,9 @@ Retrieves a file that was transferred in a session.
 | --- | --- | --- |
 | file | <code>file</code>| The file in the session |
 
-<a name="session/_nodeName/_id/bodypng/_bodyType/_bodyNum/_bodyName"></a>
+<a name="/session/_nodeName/_id/bodypng/_bodyType/_bodyNum/_bodyName"></a>
 
-## session/:nodeName/:id/bodypng/:bodyType/:bodyNum/:bodyName API
+## /session/:nodeName/:id/bodypng/:bodyType/:bodyNum/:bodyName API
 
 GET - /api/session/:nodeName/:id/bodypng/:bodyType/:bodyNum/:bodyName
 
@@ -349,9 +349,9 @@ Retrieves a bitmap image representation of the bytes in a file.
 | --- | --- | --- |
 | image | <code>image/png</code>| The bitmap image. |
 
-<a name="sessions/pcap"></a>
+<a name="/sessions/pcap"></a>
 
-## sessions/pcap API
+## /sessions/pcap API
 
 GET - /api/sessions/pcap OR /api/sessions.pcap
 
@@ -372,9 +372,9 @@ Retrieve the raw session data in pcap format.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAP file with the sessions requested |
 
-<a name="sessions/pcapng"></a>
+<a name="/sessions/pcapng"></a>
 
-## sessions/pcapng API
+## /sessions/pcapng API
 
 GET - /api/sessions/pcapng OR /api/sessions.pcapng
 
@@ -395,9 +395,9 @@ Retrieve the raw session data in pcapng format.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAPNG file with the sessions requested |
 
-<a name="session/_nodeName/_id/pcap"></a>
+<a name="/session/_nodeName/_id/pcap"></a>
 
-## session/:nodeName/:id/pcap API
+## /session/:nodeName/:id/pcap API
 
 GET - /api/session/:nodeName/:id/pcap OR /api/session/:nodeName/:id.pcap
 
@@ -409,9 +409,9 @@ Retrieve the raw session data in pcap format from a specific node.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAP file with the session requested |
 
-<a name="session/_nodeName/_id/pcapng"></a>
+<a name="/session/_nodeName/_id/pcapng"></a>
 
-## session/:nodeName/:id/pcapng API
+## /session/:nodeName/:id/pcapng API
 
 GET - /api/session/:nodeName/:id/pcapng OR /api/session/:nodeName/:id.pcapng
 
@@ -423,9 +423,9 @@ Retrieve the raw session data in pcapng format from a specific node.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAPNG file with the session requested |
 
-<a name="session/entire/_nodeName/_id/pcap"></a>
+<a name="/session/entire/_nodeName/_id/pcap"></a>
 
-## session/entire/:nodeName/:id/pcap API
+## /session/entire/:nodeName/:id/pcap API
 
 GET - /api/session/entire/:nodeName/:id/pcap OR /api/session/entire/:nodeName/:id.pcap
 
@@ -437,9 +437,9 @@ Retrieve the entire pcap for a session.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAP file with the session requested |
 
-<a name="session/raw/_nodeName/_id/png"></a>
+<a name="/session/raw/_nodeName/_id/png"></a>
 
-## session/raw/:nodeName/:id/png API
+## /session/raw/:nodeName/:id/png API
 
 GET - /api/session/raw/:nodeName/:id/png OR /api/session/raw/:nodeName/:id.png
 
@@ -458,9 +458,9 @@ Retrieve a bitmap image representation of packets in a session.
 | --- | --- | --- |
 | image | <code>image/png</code>| The bitmap image. |
 
-<a name="session/raw/_nodeName/_id"></a>
+<a name="/session/raw/_nodeName/_id"></a>
 
-## session/raw/:nodeName/:id API
+## /session/raw/:nodeName/:id API
 
 GET - /api/session/raw/:nodeName/:id
 
@@ -479,9 +479,9 @@ Retrieve raw packets for a session.
 | --- | --- | --- |
 |  | <code>string</code>| The source or destination packet text. |
 
-<a name="sessions/bodyhash/_hash"></a>
+<a name="/sessions/bodyhash/_hash"></a>
 
-## sessions/bodyhash/:hash API
+## /sessions/bodyhash/:hash API
 
 GET - /api/sessions/bodyhash/:hash
 
@@ -500,9 +500,9 @@ Retrieve a file given a hash of that file.
 | --- | --- | --- |
 | file | <code>file</code>| The file that matches the hash |
 
-<a name="session/_nodeName/_id/bodyhash/_hash"></a>
+<a name="/session/_nodeName/_id/bodyhash/_hash"></a>
 
-## session/:nodeName/:id/bodyhash/:hash API
+## /session/:nodeName/:id/bodyhash/:hash API
 
 GET - /api/session/:nodeName/:id/bodyhash/:hash
 
@@ -521,9 +521,9 @@ Retrieve a file from a specific node given a hash of that file.
 | --- | --- | --- |
 | file | <code>file</code>| The file that matches the hash |
 
-<a name="stats"></a>
+<a name="/stats"></a>
 
-## stats API
+## /stats API
 
 GET - /api/stats
 
@@ -549,9 +549,9 @@ Fetches a list of stats for each node in the cluster.
 | recordsTotal | <code>number</code>| The total number of nodes. |
 | recordsFiltered | <code>number</code>| The number of nodes returned in this result. |
 
-<a name="dstats"></a>
+<a name="/dstats"></a>
 
-## dstats API
+## /dstats API
 
 GET - /api/dstats
 
@@ -577,9 +577,9 @@ Fetches a list of detailed stats for different fields pertaining to a node to po
 | --- | --- | --- |
 |  | <code>array</code>| List of values to populate the cubism graph. |
 
-<a name="esstats"></a>
+<a name="/esstats"></a>
 
-## esstats API
+## /esstats API
 
 GET - /api/esstats
 
@@ -603,9 +603,9 @@ Fetches a list of stats for each Elasticsearch cluster.
 | recordsFiltered | <code>number</code>| The number of ES clusters returned in this result. |
 | health | [<code>ESHealth</code>](#ESHealth)| The Elasticsearch cluster health status and info. |
 
-<a name="esindices"></a>
+<a name="/esindices"></a>
 
-## esindices API
+## /esindices API
 
 GET - /api/esindices
 
@@ -628,9 +628,9 @@ Fetches a list of Elasticsearch indices.
 | recordsTotal | <code>number</code>| The total number of ES indices. |
 | recordsFiltered | <code>number</code>| The number of ES indices returned in this result. |
 
-<a name="esindices/_index"></a>
+<a name="/esindices/_index"></a>
 
-## esindices/:index API
+## /esindices/:index API
 
 DELETE - /api/esindices/:index
 
@@ -643,9 +643,9 @@ Deletes an Elasticsearch index (admin and remove access only).
 | success | <code>boolean</code>| Whether the delete index operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esindices/_index/optimize"></a>
+<a name="/esindices/_index/optimize"></a>
 
-## esindices/:index/optimize API
+## /esindices/:index/optimize API
 
 POST - /api/esindices/:index/optimize
 
@@ -657,9 +657,9 @@ Optimizes an Elasticsearch index (admin only).
 | --- | --- | --- |
 | success | <code>boolean</code>| Always true, the optimizeIndex function might block. Check the logs for errors. |
 
-<a name="esindices/_index/close"></a>
+<a name="/esindices/_index/close"></a>
 
-## esindices/:index/close API
+## /esindices/:index/close API
 
 POST - /api/esindices/:index/close
 
@@ -672,9 +672,9 @@ Closes an Elasticsearch index (admin only).
 | success | <code>boolean</code>| Whether the close index operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esindices/_index/open"></a>
+<a name="/esindices/_index/open"></a>
 
-## esindices/:index/open API
+## /esindices/:index/open API
 
 POST - /api/esindices/:index/open
 
@@ -686,9 +686,9 @@ Opens an Elasticsearch index (admin only).
 | --- | --- | --- |
 | success | <code>boolean</code>| Always true, the openIndex function might block. Check the logs for errors. |
 
-<a name="esindices/_index/shrink"></a>
+<a name="/esindices/_index/shrink"></a>
 
-## esindices/:index/shrink API
+## /esindices/:index/shrink API
 
 POST - /api/esindices/:index/shrink
 
@@ -709,9 +709,9 @@ Shrinks an Elasticsearch index (admin only).
 | success | <code>boolean</code>| Whether the close shrink operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="estasks"></a>
+<a name="/estasks"></a>
 
-## estasks API
+## /estasks API
 
 GET - /api/estasks
 
@@ -736,9 +736,9 @@ Fetches Elasticsearch tasks.
 | recordsTotal | <code>number</code>| The total number of ES tasks. |
 | recordsFiltered | <code>number</code>| The number of ES tasks returned in this result. |
 
-<a name="estasks/_id/cancel"></a>
+<a name="/estasks/_id/cancel"></a>
 
-## estasks/:id/cancel API
+## /estasks/:id/cancel API
 
 POST - /api/estasks/:id/cancel
 
@@ -751,9 +751,9 @@ Cancels an Elasticsearch task (admin only).
 | success | <code>boolean</code>| Whether the cancel task operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="estasks/_id/cancelwith"></a>
+<a name="/estasks/_id/cancelwith"></a>
 
-## estasks/:id/cancelwith API
+## /estasks/:id/cancelwith API
 
 POST - /api/estasks/:id/cancelwith
 
@@ -767,9 +767,9 @@ that a user has created allowing a user to cancel their own tasks.
 | success | <code>boolean</code>| Whether the cancel task operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="estasks/cancelall"></a>
+<a name="/estasks/cancelall"></a>
 
-## estasks/cancelall API
+## /estasks/cancelall API
 
 POST - /api/estasks/cancelall
 
@@ -782,9 +782,9 @@ Cancels all running Elasticsearch tasks (admin only).
 | success | <code>boolean</code>| Whether the cancel all tasks operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esadmin"></a>
+<a name="/esadmin"></a>
 
-## esadmin API
+## /esadmin API
 
 GET - /api/esadmin
 
@@ -796,9 +796,9 @@ Fetches all Elasticsearch settings that a user can change (es admin only - set i
 | --- | --- | --- |
 | settings | <code>array</code>| List of ES settings that a user can change |
 
-<a name="esadmin/set"></a>
+<a name="/esadmin/set"></a>
 
-## esadmin/set API
+## /esadmin/set API
 
 POST - /api/esadmin/set
 
@@ -811,9 +811,9 @@ Sets Elasticsearch settings (es admin only - set in config with <a href="setting
 | success | <code>boolean</code>| Whether saving the settings was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esadmin/reroute"></a>
+<a name="/esadmin/reroute"></a>
 
-## esadmin/reroute API
+## /esadmin/reroute API
 
 POST - /api/esadmin/reroute
 
@@ -826,9 +826,9 @@ Try to restart any shard migrations that have failed or paused (es admin only - 
 | success | <code>boolean</code>| Whether the reroute was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esadmin/flush"></a>
+<a name="/esadmin/flush"></a>
 
-## esadmin/flush API
+## /esadmin/flush API
 
 POST - /api/esadmin/flush
 
@@ -841,9 +841,9 @@ Flush and refresh any data waiting in Elasticsearch to disk (es admin only - set
 | success | <code>boolean</code>| Always true |
 | text | <code>string</code>| The success message to (optionally) display to the user. |
 
-<a name="esadmin/unflood"></a>
+<a name="/esadmin/unflood"></a>
 
-## esadmin/unflood API
+## /esadmin/unflood API
 
 POST - /api/esadmin/unflood
 
@@ -856,9 +856,9 @@ Try and clear any indices marked as flooded (es admin only - set in config with 
 | success | <code>boolean</code>| Always true |
 | text | <code>string</code>| The success message to (optionally) display to the user. |
 
-<a name="esadmin/clearcache"></a>
+<a name="/esadmin/clearcache"></a>
 
-## esadmin/clearcache API
+## /esadmin/clearcache API
 
 POST - /api/esadmin/clearcache
 
@@ -871,9 +871,9 @@ Try and clear the cache for all indices (es admin only - set in config with <a h
 | success | <code>boolean</code>| Whether clearing the cache was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esshards"></a>
+<a name="/esshards"></a>
 
-## esshards API
+## /esshards API
 
 GET - /api/esshards
 
@@ -927,9 +927,9 @@ Include Elasticsearch node by ip or name (admin only).
 | success | <code>boolean</code>| Whether include node operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="esrecovery"></a>
+<a name="/esrecovery"></a>
 
-## esrecovery API
+## /esrecovery API
 
 GET - /api/esrecovery
 
@@ -953,9 +953,9 @@ Returns information about ongoing and completed shard recoveries for indices.
 | recordsTotal | <code>number</code>| The total number of indices. |
 | recordsFiltered | <code>number</code>| The number of indices returned in this result. |
 
-<a name="fields"></a>
+<a name="/fields"></a>
 
-## fields API
+## /fields API
 
 GET - /api/fields
 
@@ -974,9 +974,9 @@ Gets available database field objects pertaining to sessions.
 | --- | --- | --- |
 |  | <code>array/map</code>| The map or list of database fields |
 
-<a name="files"></a>
+<a name="/files"></a>
 
-## files API
+## /files API
 
 GET - /api/files
 
@@ -998,9 +998,9 @@ Gets a list of PCAP files that Arkime knows about.
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
 
-<a name="eshealth"></a>
+<a name="/eshealth"></a>
 
-## eshealth API
+## /eshealth API
 
 GET - /api/eshealth
 
