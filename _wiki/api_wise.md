@@ -13,6 +13,7 @@ Sources need to
 
 * [SimpleSource](#SimpleSource) ⇐ [<code>WISESource</code>](#WISESource)
     * [new SimpleSource(api, section, options)](#new_SimpleSource_new)
+    * [.emptyResult](#WISESource+emptyResult)
     * [.initSimple()](#SimpleSource+initSimple) ⇒ <code>boolean</code>
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
     * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
@@ -34,6 +35,13 @@ SimpleSource
 | section | <code>string</code> | the section name |
 | options | <code>object</code> | see WISESource constructor |
 
+<a name="WISESource+emptyResult"></a>
+
+### simpleSource.emptyResult (member)
+
+A simple constant that should be used when needed to represent an empty result
+
+**Overrides**: [<code>emptyResult</code>](#WISESource+emptyResult)  
 <a name="SimpleSource+initSimple"></a>
 
 ### simpleSource.initSimple() (function)
@@ -113,18 +121,32 @@ Util function to parse JSON formatted data
 
 ## WISESourceAPI (class)
 
-When sources are created they get an api object to interact with the wise service
+When sources are created they get an api object to interact with the wise service.
 
 
 * [WISESourceAPI](#WISESourceAPI)
+    * [.debug](#WISESourceAPI+debug) : <code>integer</code>
+    * [.insecure](#WISESourceAPI+insecure) : <code>boolean</code>
     * [.getConfig(section, name, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
     * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
     * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
     * [.addField(field)](#WISESourceAPI+addField)
-    * [.addView(name, input)](#WISESourceAPI+addView)
+    * [.addView(name, view)](#WISESourceAPI+addView)
     * [.addSource(section, src)](#WISESourceAPI+addSource)
     * [.addSourceConfigDef(sourceName, configDef)](#WISESourceAPI+addSourceConfigDef)
     * [.createRedisClient()](#WISESourceAPI+createRedisClient)
+
+<a name="WISESourceAPI+debug"></a>
+
+### wiseSourceAPI.debug (member)
+
+Current debug level of wiseService
+
+<a name="WISESourceAPI+insecure"></a>
+
+### wiseSourceAPI.insecure (member)
+
+Is wiseService running in insecure mode
 
 <a name="WISESourceAPI+getConfig"></a>
 
@@ -193,7 +215,7 @@ Add a field
 
 <a name="WISESourceAPI+addView"></a>
 
-### wiseSourceAPI.addView(name, input) (function)
+### wiseSourceAPI.addView(name, view) (function)
 
 Add a view
 
@@ -203,7 +225,7 @@ Add a view
 | Param | Type | Description |
 | --- | --- | --- |
 | name | <code>string</code> | Name of the new view |
-| input | <code>string</code> | An encoded view definition |
+| view | <code>string</code> | An encoded view definition |
 
 <a name="WISESourceAPI+addSource"></a>
 
@@ -251,6 +273,7 @@ All sources need to have the WISESource as their top base class.
 
 * [WISESource](#WISESource)
     * [new WISESource(api, section, options)](#new_WISESource_new)
+    * [.emptyResult](#WISESource+emptyResult)
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
     * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
     * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
@@ -275,6 +298,12 @@ Should only be created by super(api, section, options) call
 | [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
 | [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
 | [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting |
+
+<a name="WISESource+emptyResult"></a>
+
+### wiseSource.emptyResult (member)
+
+A simple constant that should be used when needed to represent an empty result
 
 <a name="WISESource+parseFieldDef"></a>
 
