@@ -3,28 +3,40 @@
 ## SimpleSource (class)
 
 The SimpleSource base class implements some common functions for
-sources that only have one type.
+sources that only have one type. Sources that extend this
+class only need to worry about fetching the data, and
+only need to implement the constructor and simpleSourceLoad.
 
 Sources need to
-* call initSimple
-* implement initSource, simpleSourceLoad
+* implement initSource
+* call initSimple at the end of their constructor
+* implement simpleSourceLoad
 
 **Extends**: [<code>WISESource</code>](#WISESource)  
 
 * [SimpleSource](#SimpleSource) ⇐ [<code>WISESource</code>](#WISESource)
     * [new SimpleSource(api, section, options)](#new_SimpleSource_new)
+    * [.tagsResult](#WISESource+tagsResult)
+    * [.format](#WISESource+format)
+    * [.parse](#WISESource+parse)
+    * [.type](#WISESource+type)
     * [.emptyResult](#WISESource+emptyResult)
+    * [.dump()](#SimpleSource+dump)
     * [.initSimple()](#SimpleSource+initSimple) ⇒ <code>boolean</code>
+    * [.load()](#SimpleSource+load)
+    * *[.simpleSourceLoad(set, cb)](#SimpleSource+simpleSourceLoad)*
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
     * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
     * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
     * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+    * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
+    * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
 
 <a name="new_SimpleSource_new"></a>
 
 ### new SimpleSource(api, section, options) (constructor)
 
-SimpleSource
+Create a simple source. The options formatSetting, tagsSetting, typeSetting will all be set to true automatically.
 
 
 **Parameters**:
@@ -34,14 +46,50 @@ SimpleSource
 | api | [<code>WISESourceAPI</code>](#WISESourceAPI) | the api when source created |
 | section | <code>string</code> | the section name |
 | options | <code>object</code> | see WISESource constructor |
+| options.reload | <code>integer</code> | If greater to zero, call simpleSourceLoad every options.reload minutes |
 
+<a name="WISESource+tagsResult"></a>
+
+### simpleSource.tagsResult (member)
+
+The encoded tags result if options.tagsSetting was set to true
+
+**Overrides**: [<code>tagsResult</code>](#WISESource+tagsResult)  
+<a name="WISESource+format"></a>
+
+### simpleSource.format (member)
+
+The format of the source if options.formatSetting was set to true.
+
+**Overrides**: [<code>format</code>](#WISESource+format)  
+<a name="WISESource+parse"></a>
+
+### simpleSource.parse (member)
+
+{function} The parser function of the source if options.formatSetting was set to true.
+
+**Overrides**: [<code>parse</code>](#WISESource+parse)  
+<a name="WISESource+type"></a>
+
+### simpleSource.type (member)
+
+The wise item type of the source if options.typeSetting was set to true.
+
+**Overrides**: [<code>type</code>](#WISESource+type)  
 <a name="WISESource+emptyResult"></a>
 
 ### simpleSource.emptyResult (member)
 
-A simple constant that should be used when needed to represent an empty result
+A simple constant that should be used when needing to represent an empty result
 
 **Overrides**: [<code>emptyResult</code>](#WISESource+emptyResult)  
+<a name="SimpleSource+dump"></a>
+
+### simpleSource.dump() (function)
+
+Implemented for you
+
+**Overrides**: [<code>dump</code>](#WISESource+dump)  
 <a name="SimpleSource+initSimple"></a>
 
 ### simpleSource.initSimple() (function)
@@ -54,6 +102,27 @@ config is verified and the source is ready to go online.
 | Name | Type | Description |
 | --- | --- | --- |
 |  | <code>boolean</code>| On true the source was initialized with no issue |
+
+<a name="SimpleSource+load"></a>
+
+### simpleSource.load() (function)
+
+Can be called by the source to force a reload of the data if it for some reason knows.
+
+<a name="SimpleSource+simpleSourceLoad"></a>
+
+### *simpleSource.simpleSourceLoad(set, cb)* (function)
+
+Each simple source must implement this method.
+It will be called inside initSimple and periodically if reloading is enabled.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| set | <code>function</code> | (key, value) the source should call the set function for each value it wants to load |
+| cb | <code>function</code> | (err) |
 
 <a name="WISESource+parseFieldDef"></a>
 
@@ -116,6 +185,37 @@ Util function to parse JSON formatted data
 | body | <code>string</code> | the raw CSV data |
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+getSourceRaw"></a>
+
+### *simpleSource.getSourceRaw(cb)* (function)
+
+Get the raw source data for editing.
+Source should implement this method if they want to support editing the data for a source.
+
+**Overrides**: [<code>getSourceRaw</code>](#WISESource+getSourceRaw)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cb | <code>function</code> | (err, data) |
+
+<a name="WISESource+putSourceRaw"></a>
+
+### *simpleSource.putSourceRaw(data, cb)* (function)
+
+Put the raw source data after editing.
+Source should implement this method if they want to support editing the data for a source.
+
+**Overrides**: [<code>putSourceRaw</code>](#WISESource+putSourceRaw)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>string</code> | The full data for the source from UI |
+| cb | <code>function</code> | (err) |
 
 <a name="WISESourceAPI"></a>
 
@@ -240,7 +340,7 @@ A section is an instance of a source, some sources can have multiple sections.
 | Param | Type | Description |
 | --- | --- | --- |
 | section | <code>string</code> | The section name |
-| src | <code>wiseSource</code> | A wiseSource object |
+| src | [<code>WISESource</code>](#WISESource) | A WISESource object |
 
 <a name="WISESourceAPI+addSourceConfigDef"></a>
 
@@ -273,11 +373,25 @@ All sources need to have the WISESource as their top base class.
 
 * [WISESource](#WISESource)
     * [new WISESource(api, section, options)](#new_WISESource_new)
-    * [.emptyResult](#WISESource+emptyResult)
-    * [.parseFieldDef(line)](#WISESource+parseFieldDef)
-    * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
-    * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
-    * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+    * _instance_
+        * [.tagsResult](#WISESource+tagsResult)
+        * [.format](#WISESource+format)
+        * [.parse](#WISESource+parse)
+        * [.type](#WISESource+type)
+        * [.emptyResult](#WISESource+emptyResult)
+        * [.parseFieldDef(line)](#WISESource+parseFieldDef)
+        * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
+        * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
+        * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+        * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
+        * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
+        * *[.dump(res)](#WISESource+dump)*
+    * _static_
+        * [.encodeResult()](#WISESource.encodeResult) ⇒ <code>buffer</code>
+        * [.combineResults(results)](#WISESource.combineResults) ⇒ <code>Buffer</code>
+        * [.result2JSON(results)](#WISESource.result2JSON) ⇒ <code>string</code>
+        * [.request(url, file, cb)](#WISESource.request)
+        * *[.initSource(api)](#WISESource.initSource)*
 
 <a name="new_WISESource_new"></a>
 
@@ -299,11 +413,35 @@ Should only be created by super(api, section, options) call
 | [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
 | [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting |
 
+<a name="WISESource+tagsResult"></a>
+
+### wiseSource.tagsResult (member)
+
+The encoded tags result if options.tagsSetting was set to true
+
+<a name="WISESource+format"></a>
+
+### wiseSource.format (member)
+
+The format of the source if options.formatSetting was set to true.
+
+<a name="WISESource+parse"></a>
+
+### wiseSource.parse (member)
+
+{function} The parser function of the source if options.formatSetting was set to true.
+
+<a name="WISESource+type"></a>
+
+### wiseSource.type (member)
+
+The wise item type of the source if options.typeSetting was set to true.
+
 <a name="WISESource+emptyResult"></a>
 
 ### wiseSource.emptyResult (member)
 
-A simple constant that should be used when needed to represent an empty result
+A simple constant that should be used when needing to represent an empty result
 
 <a name="WISESource+parseFieldDef"></a>
 
@@ -363,6 +501,144 @@ Util function to parse JSON formatted data
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 
+<a name="WISESource+getSourceRaw"></a>
+
+### *wiseSource.getSourceRaw(cb)* (function)
+
+Get the raw source data for editing.
+Source should implement this method if they want to support editing the data for a source.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cb | <code>function</code> | (err, data) |
+
+<a name="WISESource+putSourceRaw"></a>
+
+### *wiseSource.putSourceRaw(data, cb)* (function)
+
+Put the raw source data after editing.
+Source should implement this method if they want to support editing the data for a source.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>string</code> | The full data for the source from UI |
+| cb | <code>function</code> | (err) |
+
+<a name="WISESource+dump"></a>
+
+### *wiseSource.dump(res)* (function)
+
+Dump the sources data to caller.
+Source should implement this method if they want to support displaying the current state.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| res | <code>object</code> | The express res object |
+
+<a name="WISESource.encodeResult"></a>
+
+### WISESource.encodeResult() (function)
+
+Convert field ids and string values into the encoded form used in WISE.
+
+This method tags a variable number of arguments, each in a pair of field id and string value.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>buffer</code>| the endcoded results |
+
+<a name="WISESource.combineResults"></a>
+
+### WISESource.combineResults(results) (function)
+
+Combine a array of encoded results into one encoded result
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| results | <code>object</code> \| <code>array</code> | Array of results |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>Buffer</code>| A single combined result |
+
+<a name="WISESource.result2JSON"></a>
+
+### WISESource.result2JSON(results) (function)
+
+Convert an encoded combined results binary buffer into JSON string
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| results | <code>Buffer</code> | The combined results from encode |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code>| The JSON string |
+
+<a name="WISESource.request"></a>
+
+### WISESource.request(url, file, cb) (function)
+
+Download a url and save to a file, if we already have the file and less than a minute old use that file.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | <code>string</code> | The URL to download |
+| file | <code>string</code> | The file to save the results to |
+| cb | <code>function</code> | (statusCode) The stats code result from the download |
+
+<a name="WISESource.initSource"></a>
+
+### *WISESource.initSource(api)* (function)
+
+Every source needs to implement this method, usually with
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| api | [<code>WISESourceAPI</code>](#WISESourceAPI) | The api back into the WISE Service |
+
+**Example**  
+```js
+exports.initSource = function (api) {
+  api.addSourceConfigDef('sourcename', {
+    singleton: false,
+    name: 'sourcename',
+    description: 'This is the best source ever',
+    fields: [
+      { name: 'type', required: true, help: 'The wise query type this source supports' },
+      { name: 'tags', required: false, help: 'Comma separated list of tags to set for matches', regex: '^[-a-z0-9,]+' }
+    ]
+  });
+  new TheSource(api);
+}
+```
 <a name="/_ns_/nstest.html"></a>
 
 ## /\_ns\_/nstest.html API
@@ -464,9 +740,9 @@ GET - Used by wise UI to retrieve the raw file being used by the section.
 | --- | --- | --- |
 |  | <code>object</code>| All the views |
 
-<a name="/source/_source/get"></a>
+<a name="/source/_source/put"></a>
 
-## /source/:source/get API
+## /source/:source/put API
 
 PUT - Used by wise UI to save the raw file being used by the source.
       This is an authenticated API and requires wiseService to be started with --webconfig.
