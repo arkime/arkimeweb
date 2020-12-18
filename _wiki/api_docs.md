@@ -48,6 +48,261 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the connections requested |
 
+<a name="/hunt"></a>
+
+## /hunt API
+
+POST - /api/hunt
+
+Creates a new hunt.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions. |
+| totalSessions | <code>number</code> | The number of sessions to search. |
+| name | <code>string</code> | The name of the hunt (not unique). |
+| size | <code>number</code> | The number of packets to search within each session. |
+| src | <code>boolean</code> | Whether to search the source packets. Must search src or dst or both. |
+| dst | <code>boolean</code> | Whether to search the destination packets. Must search src or dst or both. |
+| type | <code>string</code> | Whether to search raw or reassembled packets. |
+| search | <code>string</code> | The search text to search for within packets. |
+| searchType | <code>string</code> | What type of search the text is. Options include:      ascii - search for case insensitive ascii text.      asciicase - search for case sensitive ascii text.      hex - search for hex text.      regex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe regex</a>.      hexregex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe hex regex</a>. |
+| notifier | <code>string</code> | The otional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
+| users | <code>string</code> | The comma separated list of users to be added to the hunt so they can view the results. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the creation of the hunt was successful. |
+| hunt | [<code>Hunt</code>](#Hunt)| The newly created hunt object. |
+| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexitent. |
+
+<a name="/hunts"></a>
+
+## /hunts API
+
+GET - /api/hunts
+
+Retrieves a list of hunts.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| searchTerm | <code>string</code> |  | The search text to search hunt results for. |
+| length | <code>number</code> | <code>10000</code> | The number of items to return. Defaults to 10000. |
+| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+| sortField | <code>string</code> | <code>&quot;created&quot;</code> | The field to sort the hunt results by. Defaults to "created". |
+| desc | <code>string</code> | <code>false</code> | Whether to sort the results in descending order. Default is ascending. |
+| history | <code>string</code> | <code>false</code> | Whether to return only finished hunts. Default is to return queued, paused, and running hunts. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| runningJob | [<code>Hunt</code>](#Hunt)| If there is a hunt running, returns the currently running hunt object. |
+| data | [<code>Array.&lt;Hunt&gt;</code>](#Hunt)| The list of hunts (either finished or queued/paused/running). |
+| recordsTotal | <code>number</code>| The total number of hunts Arkime has. |
+| recordsFiltered | <code>number</code>| The number of hunts returned in this result. |
+
+<a name="/hunt/_id"></a>
+
+## /hunt/:id API
+
+DELETE - /api/hunt/:id
+
+Delete a hunt.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete hunt operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/hunt/_id/pause"></a>
+
+## /hunt/:id/pause API
+
+PUT - /api/hunt/:id/pause
+
+Pause a hunt.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the pause hunt operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/hunt/_id/play"></a>
+
+## /hunt/:id/play API
+
+PUT - /api/hunt/:id/play
+
+Play a hunt.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the play hunt operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/hunt/_id/users"></a>
+
+## /hunt/:id/users API
+
+POST - /api/hunt/:id/users
+
+Add user(s) to a hunt.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| users | <code>string</code> | Comma separated list of user ids to add to the hunt. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the add users operation was successful. |
+| users | <code>array</code>| The list of users that were added to the hunt. |
+| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexitent. |
+
+<a name="/hunt/_id/user/_user"></a>
+
+## /hunt/:id/user/:user API
+
+DELETE - /api/hunt/:id/user/:user
+
+Remove user(s) from a hunt.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the remove users operation was successful. |
+| users | <code>array</code>| The list of users who have access to the hunt. |
+| invalidUsers | <code>array</code>| The list of users that could not be removed from the hunt because they were invalid or nonexitent. |
+
+<a name="/notifiertypes"></a>
+
+## /notifiertypes API
+
+GET - /api/notifiertypes
+
+Retrieves notifier types (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| notifiers | <code>object</code>| The notifiers that Arkime knows about. |
+
+<a name="/notifiers"></a>
+
+## /notifiers API
+
+GET - /api/notifiers
+
+Retrieves notifiers that have been configured.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| notifiers | [<code>Array.&lt;Notifier&gt;</code>](#Notifier)| The notifiers that have been created. |
+
+<a name="/notifier"></a>
+
+## /notifier API
+
+POST - /api/notifier
+
+Creates a new notifier (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The name of the new notifier (must be unique). |
+| type | <code>type</code> | The type of notifier. |
+| fields | <code>array</code> | The fields to configure the notifier. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| name | <code>string</code>| If successful, the name of the new notifier. |
+
+<a name="/notifier/_name"></a>
+
+## /notifier/:name API
+
+PUT - /api/notifier/:name
+
+Updates an existing notifier (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The new name of the notifier (must be unique). |
+| type | <code>type</code> | The new type of notifier. |
+| fields | <code>array</code> | The new field values to configure the notifier. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| name | <code>string</code>| If successful, the name of the updated notifier. |
+
+<a name="/notifier/_name"></a>
+
+## /notifier/:name API
+
+DELETE - /api/notifier/:name
+
+Deletes an existing notifier (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| name | <code>string</code>| If successful, the name of the deleted notifier. |
+
+<a name="/notifier/_name/test"></a>
+
+## /notifier/:name/test API
+
+POST - /api/notifier/:name/test
+
+Tests an existing notifier (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the test notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/buildquery"></a>
 
 ## /buildquery API
@@ -1012,6 +1267,53 @@ There is no auth necessary to retrieve eshealth
 | Name | Type | Description |
 | --- | --- | --- |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
+
+<a name="Hunt"></a>
+
+## Hunt Type
+
+A packet search job that allows users to search within session packets for text.
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| userId | <code>string</code> | The ID of the user that created the hunt. |
+| status | <code>string</code> | The status of the hunt. Options include:      queued - The hunt is queued to search packets once the currently running hunt has finished.      running - The hunt is currently searching packets.      paused - The hunt is paused, either by a user or by error.      finished - The hunt has searched all requested sessions. |
+| name | <code>string</code> | The name of the hunt (not unique). |
+| size | <code>number</code> | The number of packets to search within each session. |
+| search | <code>string</code> | The search text to search for within packets. |
+| searchType | <code>string</code> | What type of search the text is. Options include:      ascii - search for case insensitive ascii text.      asciicase - search for case sensitive ascii text.      hex - search for hex text.      regex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe regex</a>.      hexregex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe hex regex</a>. |
+| src | <code>boolean</code> | Whether to search the source packets. Must search src or dst or both. |
+| dst | <code>boolean</code> | Whether to search the destination packets. Must search src or dst or both. |
+| type | <code>string</code> | Whether to search raw or reassembled packets. |
+| matchedSessions | <code>number</code> | How many sessions contain packets that match the search text. |
+| searchedSessions | <code>number</code> | How many sessions have had their packets searched. |
+| totalSessions | <code>number</code> | The number of sessions to search. |
+| lastPacketTime | <code>number</code> | The date of the first packet of the last searched session. Used to query for the next chunk of sessions to search. Format is seconds since Unix EPOC. |
+| created | <code>number</code> | The time that the hunt was created. Format is seconds since Unix EPOC. |
+| lastUpdated | <code>number</code> | The time that the hunt was last updated in the DB. Used to only update every 2 seconds. Format is seconds since Unix EPOC. |
+| started | <code>number</code> | The time that the hunt was started (put into running state). Format is seconds since Unix EPOC. |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions. |
+| errors | <code>array</code> | The list of errors that a hunt encountered. A hunt error includes:      value - The error text to display to the user.      time - The time the error was encountered.      node - The Arkime node that the hunt was searching sessions for when the error occurred. |
+| notifier | <code>string</code> | The otional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
+| unrunnable | <code>boolean</code> | Whether an error has rendered the hunt unrunnable. |
+| failedSessionIds | <code>array</code> | The list of sessions that have failed to be searched. Used to run the search against them again once the rest of the hunt is complete. |
+| users | <code>array</code> | The list of users to be added to the hunt so they can view the results. |
+
+<a name="Notifier"></a>
+
+## Notifier Type
+
+A service that can be sent a notification.
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The human readable name of the notifier. Must be unique. |
+| type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
+| fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
 
 <a name="SessionsQuery"></a>
 
