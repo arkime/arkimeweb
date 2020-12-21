@@ -577,3 +577,30 @@ body.full-height-body {
 .wiki-toc a:hover {
   text-decoration: none;
 }
+
+/* Add to calendar override styles */
+.add-to-calendar > .add-to-calendar-widget {
+  display: inline !important;
+  margin-left: 10px !important;
+}
+.add-to-calendar > .add-to-calendar-widget > .add-to-calendar-label {
+  padding: 0 .5rem !important;
+  font-size: .875rem !important;
+  line-height: 1.5 !important;
+  border-radius: 0 !important;
+  color: var(--danger-theme-color) !important;
+  border: 1px solid var(--danger-theme-color) !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+.add-to-calendar > .add-to-calendar-widget > .add-to-calendar-label:hover {
+  color: #FFF !important;
+  border-color: var(--danger-theme-color) !important;
+  background-color: var(--danger-theme-color) !important;
+}
+.add-to-calendar > .add-to-calendar-widget > .add-to-calendar-dropdown {
+  width: 200px !important;
+  padding: .5rem !important;
+}
