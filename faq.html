@@ -110,6 +110,11 @@ title: FAQ
         title="How do I upgrade to Moloch 2.0">
         How do I upgrade to Moloch 2.0
       </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_3"
+        title="How do I upgrade to Arkime 3.0">
+        How do I upgrade to Arkime 3.0
+      </a>
       <a href="#elasticsearch"
         class="nav-link"
         title="Elasticsearch">
@@ -953,7 +958,7 @@ title: FAQ
       </p>
       <ul>
         <li>You must be using Moloch 1.7 or 1.8 (Moloch 1.8.0 recommended) BEFORE trying to upgrade to Moloch 2.0</li>
-        <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Arkime 2.0</li>
+        <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Moloch 2.0</li>
         <li>Install Moloch &gt;= 2.0 without restarting captures/viewers</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre20 </code> to backup all administrative indices.
         <li>Shutdown captures</li>
@@ -961,9 +966,36 @@ title: FAQ
         <li>Restart captures</li>
         <li>Verify everything is working</li>
       </ul>
+
+      <h3 id="how_do_i_upgrade_to_arkime_3">
+        How do I upgrade to Arkime 3.0
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
       <p>
-      After verifying 2.0 is working fine while still using Elasticsearch 6, you can upgrade to Elasticsearch 7 using these <a href="#how-do-i-upgrade-to-es-7-x">instructions</a>.
-        </p>
+        <strong>3.0 has not been released yet, this are preliminary instructions!</strong>
+        Upgrading to Arkime 3.0 is a multistep process that requires an outage.
+        An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
+        Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
+        This is very important when upgrading to ES 8.x later.
+      </p>
+      <ul>
+        <li>You must be using Moloch 2.5 (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
+        <li>You must be using Elasticsearch 7.4+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.9.3</a> or later recommended) BEFORE trying to upgrade to Arkime 3.0</li>
+        <li>Install Arkime &gt;= 3.0 without restarting captures/viewers</li>
+        <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.
+        <li>Shutdown captures</li>
+        <li>run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
+        <li> If moving from Moloch install to Arkime (not Hybrid) install you'll need to:
+          <ul>
+            <li>Run <code>/opt/arkime/bin/moloch2arkime.sh</code></li>
+            <li>Verify <code>/opt/arkime/etc/config.ini</code>
+        <li>Restart capture</li>
+        <li>Verify everything is working</li>
+      </ul>
+      </p>
       <!-- /general -->
 
       <!-- elasticsearch -->
