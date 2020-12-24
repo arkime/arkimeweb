@@ -10,7 +10,7 @@ permalink: "/rulesformat"
 
 ---
 
-Rules files allow you to specify actions to perform when criteria are met with certain fields or state. The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting. There can be multiple files using a semicolon separated listed. Each file can have multiple rules.
+Rules files allow you to specify actions to perform when criteria are met with certain fields or state. The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting. There can be multiple files using a semicolon separated listed. Each file can have multiple rules. The files will automatically reloaded when they are changed, you do NOT need to restart capture.
 
 **Each rule must have a**
 {: .mb-0 }
