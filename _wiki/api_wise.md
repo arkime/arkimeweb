@@ -11,6 +11,7 @@ Sources need to
 * implement initSource
 * call initSimple at the end of their constructor
 * implement simpleSourceLoad
+* they can optionaly call this.load() if they want to force a reload of data
 
 **Extends**: [<code>WISESource</code>](#WISESource)  
 
@@ -24,13 +25,14 @@ Sources need to
     * [.dump()](#SimpleSource+dump)
     * [.initSimple()](#SimpleSource+initSimple) ⇒ <code>boolean</code>
     * [.load()](#SimpleSource+load)
-    * *[.simpleSourceLoad(set, cb)](#SimpleSource+simpleSourceLoad)*
+    * *[.simpleSourceLoad(cb)](#SimpleSource+simpleSourceLoad)*
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
     * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
     * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
     * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
     * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
     * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
+    * *[.getTypes()](#WISESource+getTypes) ⇒ <code>string</code> \| <code>array</code>*
 
 <a name="new_SimpleSource_new"></a>
 
@@ -111,9 +113,10 @@ Can be called by the source to force a reload of the data if it for some reason 
 
 <a name="SimpleSource+simpleSourceLoad"></a>
 
-### *simpleSource.simpleSourceLoad(set, cb)* (function)
+### *simpleSource.simpleSourceLoad(cb)* (function)
 
 Each simple source must implement this method.
+It should call the callback with either the error or the entire body of the text to parse.
 It will be called inside initSimple and periodically if reloading is enabled.
 
 
@@ -121,8 +124,7 @@ It will be called inside initSimple and periodically if reloading is enabled.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| set | <code>function</code> | (key, value) the source should call the set function for each value it wants to load |
-| cb | <code>function</code> | (err) |
+| cb | <code>function</code> | (err, body) |
 
 <a name="WISESource+parseFieldDef"></a>
 
@@ -216,6 +218,19 @@ Source should implement this method if they want to support editing the data for
 | --- | --- | --- |
 | data | <code>string</code> | The full data for the source from UI |
 | cb | <code>function</code> | (err) |
+
+<a name="WISESource+getTypes"></a>
+
+### *simpleSource.getTypes()* (function)
+
+Get the types this source supports.
+
+**Overrides**: [<code>getTypes</code>](#WISESource+getTypes)  
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>array</code>| the array of types this source supports, by default the type setting from config file if option.typeSetting was set |
 
 <a name="WISESourceAPI"></a>
 
@@ -386,6 +401,7 @@ All sources need to have the WISESource as their top base class.
         * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
         * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
         * *[.dump(res)](#WISESource+dump)*
+        * *[.getTypes()](#WISESource+getTypes) ⇒ <code>string</code> \| <code>array</code>*
     * _static_
         * [.encodeResult()](#WISESource.encodeResult) ⇒ <code>buffer</code>
         * [.combineResults(results)](#WISESource.combineResults) ⇒ <code>Buffer</code>
@@ -543,6 +559,18 @@ Source should implement this method if they want to support displaying the curre
 | Param | Type | Description |
 | --- | --- | --- |
 | res | <code>object</code> | The express res object |
+
+<a name="WISESource+getTypes"></a>
+
+### *wiseSource.getTypes()* (function)
+
+Get the types this source supports.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>array</code>| the array of types this source supports, by default the type setting from config file if option.typeSetting was set |
 
 <a name="WISESource.encodeResult"></a>
 
