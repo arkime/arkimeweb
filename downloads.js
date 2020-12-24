@@ -77,8 +77,10 @@ function parseXML (xml) {
       const os = keyArr[1];
       let time = new Date(file.find('LastModified').text());
       time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)} ${('0'+time.getHours()).slice(-2)}:${('0'+time.getMinutes()).slice(-2)}:${('0'+time.getSeconds()).slice(-2)}`;
+      console.log('ALW', os, keyArr);
 
       const osTitle = {
+        'arch.x86': 'Arch',
         centos6: 'Centos 6',
         centos7: 'Centos 7',
         centos8: 'Centos 8',
