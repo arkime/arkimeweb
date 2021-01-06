@@ -8,9 +8,8 @@ class only need to worry about fetching the data, and
 only need to implement the constructor and simpleSourceLoad.
 
 Sources need to
-* implement initSource
-* call initSimple at the end of their constructor
-* implement simpleSourceLoad
+* implement WISESource#initSource
+* implement SimpleSource#simpleSourceLoad
 * they can optionaly call this.load() if they want to force a reload of data
 
 **Extends**: [<code>WISESource</code>](#WISESource)  
@@ -23,7 +22,7 @@ Sources need to
     * [.type](#WISESource+type)
     * [.emptyResult](#WISESource+emptyResult)
     * [.dump()](#SimpleSource+dump)
-    * [.initSimple()](#SimpleSource+initSimple) ⇒ <code>boolean</code>
+    * [.itemCount()](#SimpleSource+itemCount)
     * [.load()](#SimpleSource+load)
     * *[.simpleSourceLoad(cb)](#SimpleSource+simpleSourceLoad)*
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
@@ -38,16 +37,16 @@ Sources need to
 
 ### new SimpleSource(api, section, options) (constructor)
 
-Create a simple source. The options formatSetting, tagsSetting, typeSetting will all be set to true automatically.
+Create a simple source. The options dontCache, formatSetting, tagsSetting, typeSetting will all be set to true automatically.
 
 
 **Parameters**:
 
 | Param | Type | Description |
 | --- | --- | --- |
-| api | [<code>WISESourceAPI</code>](#WISESourceAPI) | the api when source created |
+| api | [<code>WISESourceAPI</code>](#WISESourceAPI) | the api when source created passed to initSource |
 | section | <code>string</code> | the section name |
-| options | <code>object</code> | see WISESource constructor |
+| options | <code>object</code> | see WISESource constructor for common options |
 | options.reload | <code>integer</code> | If greater to zero, call simpleSourceLoad every options.reload minutes |
 
 <a name="WISESource+tagsResult"></a>
@@ -89,27 +88,22 @@ A simple constant that should be used when needing to represent an empty result
 
 ### simpleSource.dump() (function)
 
-Implemented for you
+Implemented for simple sources
 
 **Overrides**: [<code>dump</code>](#WISESource+dump)  
-<a name="SimpleSource+initSimple"></a>
+<a name="SimpleSource+itemCount"></a>
 
-### simpleSource.initSimple() (function)
+### simpleSource.itemCount() (function)
 
-This function should be called by the constructor of the source when all
-config is verified and the source is ready to go online.
+Implemented for simple sources
 
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>boolean</code>| On true the source was initialized with no issue |
-
+**Overrides**: [<code>itemCount</code>](#WISESource+itemCount)  
 <a name="SimpleSource+load"></a>
 
 ### simpleSource.load() (function)
 
-Can be called by the source to force a reload of the data if it for some reason knows.
+This loads the data for the simple source. SimpleSource will call on creation and on reloads.
+It can also be called by the source to force a reload of the data.
 
 <a name="SimpleSource+simpleSourceLoad"></a>
 
@@ -117,7 +111,8 @@ Can be called by the source to force a reload of the data if it for some reason 
 
 Each simple source must implement this method.
 It should call the callback with either the error or the entire body of the text to parse.
-It will be called inside initSimple and periodically if reloading is enabled.
+The SimpleSource class will take care of parsing the data.
+It will be called after the constructor and periodically if reloading is enabled.
 
 
 **Parameters**:
@@ -184,7 +179,7 @@ Util function to parse JSON formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw CSV data |
+| body | <code>string</code> | the raw JSON data |
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 
@@ -240,16 +235,22 @@ When sources are created they get an api object to interact with the wise servic
 
 
 * [WISESourceAPI](#WISESourceAPI)
-    * [.debug](#WISESourceAPI+debug) : <code>integer</code>
-    * [.insecure](#WISESourceAPI+insecure) : <code>boolean</code>
-    * [.getConfig(section, name, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
-    * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
-    * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
-    * [.addField(field)](#WISESourceAPI+addField)
-    * [.addView(name, view)](#WISESourceAPI+addView)
-    * [.addSource(section, src)](#WISESourceAPI+addSource)
-    * [.addSourceConfigDef(sourceName, configDef)](#WISESourceAPI+addSourceConfigDef)
-    * [.createRedisClient()](#WISESourceAPI+createRedisClient)
+    * _instance_
+        * [.debug](#WISESourceAPI+debug) : <code>integer</code>
+        * [.insecure](#WISESourceAPI+insecure) : <code>boolean</code>
+        * [.getConfig(section, name, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
+        * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
+        * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
+        * [.addField(field)](#WISESourceAPI+addField)
+        * [.addView(name, view)](#WISESourceAPI+addView)
+        * [.addSource(section, src)](#WISESourceAPI+addSource)
+        * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
+        * [.createRedisClient()](#WISESourceAPI+createRedisClient)
+        * [.addValueAction()](#WISESourceAPI+addValueAction)
+    * _inner_
+        * [~SourceConfigField](#WISESourceAPI..SourceConfigField) : <code>Object</code>
+        * [~SourceConfig](#WISESourceAPI..SourceConfig) : <code>Object</code>
+        * [~ValueAction](#WISESourceAPI..ValueAction) : <code>Object</code>
 
 <a name="WISESourceAPI+debug"></a>
 
@@ -359,7 +360,7 @@ A section is an instance of a source, some sources can have multiple sections.
 
 <a name="WISESourceAPI+addSourceConfigDef"></a>
 
-### wiseSourceAPI.addSourceConfigDef(sourceName, configDef) (function)
+### wiseSourceAPI.addSourceConfigDef(sourceName, config) (function)
 
 Add for each source config definition for the UI to use.
 
@@ -369,7 +370,7 @@ Add for each source config definition for the UI to use.
 | Param | Type | Description |
 | --- | --- | --- |
 | sourceName | <code>string</code> | The source name |
-| configDef | <code>object</code> | An array of objects of the config ALW |
+| config | [<code>SourceConfig</code>](#WISESourceAPI..SourceConfig) | The configuration of this source type |
 
 <a name="WISESourceAPI+createRedisClient"></a>
 
@@ -377,8 +378,71 @@ Add for each source config definition for the UI to use.
 
 Create a redis client from the info in a section
 
-**Params**: <code>string</code> redisType - what kind of redis  
-**Params**: <code>string</code> section - section to get info  
+**Params**: <code>string</code> url - The redis url to connect to.  
+**Params**: <code>string</code> section - The section this redis client is being created for  
+<a name="WISESourceAPI+addValueAction"></a>
+
+### wiseSourceAPI.addValueAction() (function)
+
+Add a value action set
+
+**Params**: <code>string</code> name - The globally unique name of this action, not shown to user  
+**Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
+<a name="WISESourceAPI..SourceConfigField"></a>
+
+### WISESourceAPI~SourceConfigField Type
+
+Define all configuration for a field for a source
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the field |
+| [required] | <code>boolean</code> | <code>false</code> | Must the config value be filled out |
+| [password] | <code>boolean</code> | <code>false</code> | Is it a password type field that should be hidden |
+| [multiline] | <code>string</code> |  | If set this should be split using the value and shown in the UI as a text area |
+| help | <code>string</code> |  | The help text to show the user about the field |
+| [ifField] | <code>string</code> |  | Only show the field if the 'ifValue' field is set and is equal to 'ifValue' |
+| [ifValue] | <code>string</code> |  | Only show the field if the 'ifValue' field is set and is equal to 'ifValue' |
+| [regex] | <code>string</code> |  | The value must match the regex to be considered valid |
+
+<a name="WISESourceAPI..SourceConfig"></a>
+
+### WISESourceAPI~SourceConfig Type
+
+Define all the configuration for a source.
+This is used by the UI to generate what to display to the admin.
+
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the source |
+| singleton | <code>boolean</code> |  | Can there multiple instances of this source |
+| description | <code>string</code> |  | Friendly text about the source |
+| types | <code>string</code> \| <code>Array</code> |  | List of WISE types the source supports |
+| [cacheable] | <code>boolean</code> | <code>true</code> | Can the source be cached by WISE |
+| fields | [<code>SourceConfigField</code>](#WISESourceAPI..SourceConfigField) \| <code>Array</code> |  | The fields for the source |
+
+<a name="WISESourceAPI..ValueAction"></a>
+
+### WISESourceAPI~ValueAction Type
+
+Define all configuration for a field for a source
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The name of the value action to show the user |
+| [url] | <code>string</code> | The url to send the user, supports special subsitutions, must set url or func |
+| [func] | <code>string</code> | A javascript function body to call, will be passed the name and value and must return the value, must set url or func |
+| [actionType] | <code>string</code> | If set to 'fetch' this will replace the menu option with the results of url or func |
+| [category] | <code>string</code> | Which category of fields should the value action be shown for, must set fields or category |
+| [fields] | <code>string</code> | Which fields to show the value action for, must set fields or category |
+| [regex] | <code>string</code> | When set replaces %REGEX% in the url with the match |
+
 <a name="WISESource"></a>
 
 ## WISESource (class)
@@ -398,6 +462,7 @@ All sources need to have the WISESource as their top base class.
         * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
         * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
         * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+        * [.itemCount()](#WISESource+itemCount) ⇒ <code>integer</code>
         * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
         * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
         * *[.dump(res)](#WISESource+dump)*
@@ -513,9 +578,21 @@ Util function to parse JSON formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw CSV data |
+| body | <code>string</code> | the raw JSON data |
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+itemCount"></a>
+
+### wiseSource.itemCount() (function)
+
+For sources that support it, get the number of items loaded into memory.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>integer</code>| the number of items loaded into memory |
 
 <a name="WISESource+getSourceRaw"></a>
 
@@ -704,9 +781,9 @@ GET - Used by viewer to retrieve all the views being created by wise sources
 | --- | --- | --- |
 |  | <code>object</code>| All the views |
 
-<a name="/fieldValueActions"></a>
+<a name="/valueActions"></a>
 
-## /fieldValueActions API
+## /valueActions API
 
 GET - Used by viewer to retrieve all the field value actions created by wise sources
 
