@@ -1208,6 +1208,412 @@ Returns information about ongoing and completed shard recoveries for indices.
 | recordsTotal | <code>number</code>| The total number of indices. |
 | recordsFiltered | <code>number</code>| The number of indices returned in this result. |
 
+<a name="/user"></a>
+
+## /user API
+
+GET - /api/user
+
+Retrieves the currently logged in user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| user | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user. |
+
+<a name="/user"></a>
+
+## /user API
+
+POST - /api/user
+
+Creates a new Arkime user (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the add user operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/_id"></a>
+
+## /user/:id API
+
+DELETE - /api/user/:id
+
+Deletes an Arkime user (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete user operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/_id"></a>
+
+## /user/:id API
+
+POST - /api/user/:id
+
+Updates an Arkime user (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update user operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/password"></a>
+
+## /user/password API
+
+POST - /api/user/password
+
+Update user password.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update password operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/css"></a>
+
+## /user/css API
+
+GET - /api/user/css OR /api/user.css
+
+Retrieves custom user css for the user's custom theme.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| css | <code>css</code>| The css file that includes user configured styles. |
+
+<a name="/users"></a>
+
+## /users API
+
+GET - /api/users
+
+Retrieves a list of Arkime users (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | [<code>Array.&lt;ArkimeUser&gt;</code>](#ArkimeUser)| The list of users configured to access this Arkime cluster. |
+| recordsTotal | <code>number</code>| The total number of users Arkime knows about. |
+| recordsFiltered | <code>number</code>| The number of users returned in this result. |
+
+<a name="/user/settings"></a>
+
+## /user/settings API
+
+GET - /api/user/settings
+
+Retrieves an Arkime user's settings.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| settings | [<code>ArkimeSettings</code>](#ArkimeSettings)| The user's configured settings |
+
+<a name="/user/settings"></a>
+
+## /user/settings API
+
+POST - /api/user/settings
+
+Updates an Arkime user's settings.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update user settings operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/views"></a>
+
+## /user/views API
+
+GET - /api/user/views
+
+Retrieves an Arkime user's views.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views a user has configured or has been shared. |
+
+<a name="/user/view"></a>
+
+## /user/view API
+
+POST - /api/user/view
+
+Creates an Arkime view for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| viewName | <code>string</code>| The name of the new view. |
+| view | [<code>ArkimeView</code>](#ArkimeView)| The new view data. |
+
+<a name="/user/view/_name"></a>
+
+## /user/view/:name API
+
+DELETE - /api/user/view/:name
+
+Deletes an Arkime view for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/view/_name/toggleshare"></a>
+
+## /user/view/:name/toggleshare API
+
+POST - /api/user/view/:name/toggleshare
+
+Toggles sharing an Arkime view for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the share view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/view/_key"></a>
+
+## /user/view/:key API
+
+PUT - /api/user/view/:key
+
+Updates an Arkime view for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/crons"></a>
+
+## /user/crons API
+
+GET - /api/user/crons
+
+Retrieves cron queries for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| queries | <code>object</code>| A list of cron query objects. |
+
+<a name="/user/cron"></a>
+
+## /user/cron API
+
+POST - /api/user/cron
+
+Create a new cron query for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create cron operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| key | <code>string</code>| The cron query id |
+
+<a name="/user/cron/_key"></a>
+
+## /user/cron/:key API
+
+DELETE - /api/user/cron/:key
+
+Delete a cron query for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete cron operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/cron/_key"></a>
+
+## /user/cron/:key API
+
+POST - /api/user/cron/:key
+
+Update a cron query for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update cron operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/columns"></a>
+
+## /user/columns API
+
+GET - /api/user/columns
+
+Retrieves user configured custom Sessions column configurations.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| columnConfigs | [<code>Array.&lt;ArkimeColumnConfig&gt;</code>](#ArkimeColumnConfig)| The custom Sessions column configurations. |
+
+<a name="/user/column"></a>
+
+## /user/column API
+
+POST - /api/user/column
+
+Creates a new user configured custom Sessions column configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create column configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| name | <code>string</code>| The name of the new custom Sessions column configuration. |
+
+<a name="/user/column/_name"></a>
+
+## /user/column/:name API
+
+PUT - /api/user/column/:name
+
+Updates a user configured custom Sessions column configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update column configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| colConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig)| The udpated custom Sessions column configuration. |
+
+<a name="/user/column/_name"></a>
+
+## /user/column/:name API
+
+DELETE - /api/user/column/:name
+
+Deletes a user configured custom Sessions column configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete Sessions column configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/spiview"></a>
+
+## /user/spiview API
+
+GET - /api/user/spiview
+
+Retrieves a user configured SPI View fields configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| spiviewFieldConfigs | <code>Array</code>| User configured SPI View field configuration. |
+
+<a name="/user/spiview"></a>
+
+## /user/spiview API
+
+POST - /api/user/spiview
+
+Create a user configured SPI View fields configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update SPI View fields configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| name | <code>string</code>| The name of the new SPI View fields configuration. |
+
+<a name="/user/spiview/_name"></a>
+
+## /user/spiview/:name API
+
+PUT - /api/user/spiview/:name
+
+Updates a user configured SPI View fields configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update SPI View fields configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| colConfig | <code>object</code>| The udpated SPI View fields configuration. |
+
+<a name="/user/spiview/_name"></a>
+
+## /user/spiview/:name API
+
+DELETE - /api/user/spiview/:name
+
+Deletes a user configured SPI View fields configuration.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete SPI View fields configuration operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/_userId/acknowledge"></a>
+
+## /user/:userId/acknowledge API
+
+PUT - /api/user/:userId/acknowledge
+
+Acknowledges a UI message for a user. Used to display help popups.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/fields"></a>
 
 ## /fields API
@@ -1252,6 +1658,20 @@ Gets a list of PCAP files that Arkime knows about.
 | data | <code>Array</code>| The list of files |
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
+
+<a name="/api/valueActions"></a>
+
+## /api/valueActions API
+
+GET - /api/valueActions
+
+Retrive the actions that can be preformed at meta data values
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| The actions that can be preformed on spi data values |
 
 <a name="/eshealth"></a>
 
@@ -1341,6 +1761,96 @@ When using POST the request body and request query are merged. Any duplicate par
 | fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+
+<a name="ArkimeUser"></a>
+
+## ArkimeUser Type
+
+The user object.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| userId | <code>string</code> |  | The ID of the user. |
+| userName | <code>string</code> |  | The name of the user (to be displayed in the UI). |
+| enabled | <code>boolean</code> | <code>true</code> | Whether the user is enabled (or disabled). Disabled users cannot access the UI or APIs. |
+| createEnabled | <code>boolean</code> | <code>false</code> | Can create new accounts and change the settings for other accounts and other administrative tasks. |
+| webEnabled | <code>boolean</code> | <code>true</code> | Can access the web interface. When off only APIs can be used. |
+| headerAuthEnabled | <code>boolean</code> | <code>false</code> | Can login using the web auth header. This setting doesn't disable the password so it should be scrambled. |
+| emailSearch | <code>boolean</code> | <code>false</code> | Can perform searches for fields relating to email. |
+| removeEnabled | <code>boolean</code> | <code>false</code> | Can delete tags or delete/scrub pcap data and other deletion operations. |
+| packetSearch | <code>boolean</code> | <code>true</code> | Can create a packet search job (hunt). |
+| hideStats | <code>boolean</code> | <code>false</code> | Hide the Stats page from this user. |
+| hideFiles | <code>boolean</code> | <code>false</code> | Hide the Files page from this user. |
+| hidePcap | <code>boolean</code> | <code>false</code> | Hide PCAP (and only show metadata/session detail) for this user when they open a Session. |
+| disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
+| expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
+| settings | [<code>ArkimeSettings</code>](#ArkimeSettings) |  | The Arkime app settings. |
+| views | <code>object</code> |  | A list of views that the user can apply to their search. |
+| notifiers | <code>object</code> |  | A list of notifiers taht the user can use. |
+| columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
+| spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
+| tableStates | <code>object</code> |  | A list of table states used to render Arkime tables as the user has configured them. |
+| welcomeMsgNum | <code>number</code> | <code>0</code> | The message number that a user is on. Gets incremented when a user dismisses a message. |
+| lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
+| timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
+
+<a name="ArkimeSettings"></a>
+
+## ArkimeSettings Type
+
+The settings object.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| timezone | <code>string</code> | <code>&quot;local&quot;</code> | The timezone applied to timestamps within the UI. |
+| detailFormat | <code>string</code> | <code>&quot;last&quot;</code> | The format to display the session packets. Options include: last used, natural, ascii, utf-8, hex. |
+| showTimestamps | <code>string</code> | <code>&quot;last&quot;</code> | Whether to display timestamps at the top of each packet. |
+| sortColumn | <code>string</code> | <code>&quot;firstPacket&quot;</code> | Which column to sort the sesssions table by default. Default is start time. |
+| sortDirection | <code>string</code> | <code>&quot;desc&quot;</code> | Whether to sort the sessions table ascending or descending. |
+| spiGraph | <code>string</code> | <code>&quot;node&quot;</code> | The default field to show spigraph data for. |
+| connSrcField | <code>string</code> | <code>&quot;srcIp&quot;</code> | The default connections graph source node field. |
+| connDstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The default connections graph destination node field. |
+| numPackets | <code>string</code> | <code>&quot;last&quot;</code> | The number of packets to show in the session packet area. |
+| theme | <code>string</code> | <code>&quot;default-theme&quot;</code> | The color theme to apply to the UI. Can be a name of a predefined field or a list of color codes if using a custom theme. |
+| manualQuery | <code>boolean</code> | <code>false</code> | Whether to load the sessions data by default or wait for a user to hit search manually. |
+| timelineDataFilters | <code>array</code> | <code>[&#x27;totPackets&#x27;,&#x27;totBytes&#x27;,&#x27;totDataBytes&#x27;</code> | The filters to display on the sessions timeline graph to change the graphs data. |
+| logo | <code>string</code> |  | The optionally configurable logo to show in the top navbar. |
+
+<a name="ArkimeView"></a>
+
+## ArkimeView Type
+
+A database view that can be applied to any search.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| expression | <code>string</code> | The search expression to filter sessions. |
+| sessionsColConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig) | The Sessions column configuration to apply to the Sessions table when applying the view. |
+| shared | <code>boolean</code> | Whether the view is shared with other users in the Arkime cluster. |
+| user | <code>string</code> | The user ID of the user who created the view. |
+
+<a name="ArkimeColumnConfig"></a>
+
+## ArkimeColumnConfig Type
+
+A database view that can be applied to any search.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
+| visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
 
 <a name="ESHealth"></a>
 
