@@ -617,9 +617,9 @@ title: FAQ
           downloads page
         </a>
         Our deployment is on RHEL 7, using both the pcap and afpacket reader depending on deployment.
-        We recommend using afpacket whenever possible.
+        We recommend using afpacket (tpacketv3) whenever possible.
         A large amount of development is done on macOS 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
-        Arkime is no longer supported on 32 bit machines.
+        Arkime is not supported on 32 bit machines.
       </p>
       <p>
         The following OSes should work out of the box for compiling yourself:
@@ -695,7 +695,7 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Disable any <code>bpf=</code> in <code>/data/moloch/etc/config.ini</code>, if that fixes the issue read
+          Disable any <a href="/settings#bpf"><code>bpf=</code></a> in <code>/data/moloch/etc/config.ini</code>, if that fixes the issue read
           <a href="#dontsavebpfs-doesn-t-work">BPF FAQ answer</a>
         </li>
         <li>
@@ -783,8 +783,7 @@ title: FAQ
         </span>
       </h3>
       <p>
-        It is possible to get self signed certificates to work in the following
-        scenarios:
+        It is possible to get self signed certificates to work in the following scenarios:
       </p>
       <ul>
         <li>
@@ -806,7 +805,7 @@ title: FAQ
       <p>
         Usually the easiest way is to add the self signed cert to the OS's list
         of valid certificates or chains.  Googling is the best way to figure out
-        how to do this.  Viewer also supports a <code>caTrustFile</code> option.
+        how to do this.  Viewer also supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option.
       </p>
       <p>
         The core Arkime team does not support or recommend self signed certs.
@@ -1961,11 +1960,11 @@ logger.action.level = info</code></pre>
       <ol>
         <li>
           If you are reading from a file you can set
-          <code>readTruncatedPackets=true</code> in the config file, this is
+          <a href="/settings#readtruncatedpackets"><code>readTruncatedPackets=true</code></a> in the config file, this is
           the only solution for saved .pcap files
         </li>
         <li>
-          You can increase the max packet length with <code>snapLen=65536</code>
+          You can increase the max packet length with <a href="/settings#snaplen"><code>snapLen=65536</code></a>
           in the config file, this is not recommended
         </li>
       </ol>
@@ -2243,7 +2242,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       <p>
         It is also possible to enable UI in Arkime to upload pcap.
         This is less efficient then just using <code>moloch-capture</code> directly, since it uploads the file and then rules <code>moloch-capture</code> for you.
-        Just uncomment the <code>uploadCommand</code> in the config.ini file.
+        Just uncomment the <a href="/settings#uploadcommand"><code>uploadCommand</code></a> in the config.ini file.
       </p>
 
       <h3 id="how-do-i-monitor-multiple-interfaces">
@@ -2380,7 +2379,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       <p>
         Usually <code>moloch-capture</code> is started as root so that it can
         open the interfaces and then it immediately drops privileges to
-        <code>dropUser</code> and <code>dropGroup</code>, which are by default
+        <a href="/settings#dropuser"><code>dropUser</code></a> and <a href="/settings#dropgroup"><code>dropGroup</code></a>, which are by default
         <code>nobody:daemon</code>. This means that all parent directories need
         to be either owned or at least executable by <code>nobody:daemon</code>
         and that the pcapDir itself must be writeable.
@@ -2397,11 +2396,11 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       </p>
       <ol>
         <li>
-          Setting the <code>bfp=</code> filter will stop Arkime from seeing the
+          Setting the <a href="/settings#bpf"><code>bpf=</code></a> filter will stop Arkime from seeing the
           traffic.
         </li>
         <li>
-          Adding CIDRs to the <code>packet-drop-ips</code> section will stop
+          Adding CIDRs to the <a href="/settings#packet-drop-ips"><code>packet-drop-ips</code></a> section will stop
           Arkime from adding packets to the PacketQ
         </li>
         <li>
@@ -2426,7 +2425,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       <ul>
         <li>
           The first gatekeeper and most important is the bpf filter,
-          <code>bpf=</code> in the config file. This filter can be implemented in
+          <a href="/settings#bpf"><code>bpf=</code></a> in the config file. This filter can be implemented in
           the kernel, the network card, libpcap or network drivers. It is a
           single filter and it controls what Arkime capture "sees" or doesn’t
           "see". Any packet that is dropped because of the bpf filter is usually
@@ -2439,9 +2438,9 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           Arkime will discard the packet.
         </li>
         <li>
-          Arkime checks the <code>packet-drop-ips</code> config section to see if
+          Arkime checks the <a href="/settings#packet-drop-ips"><code>packet-drop-ips</code></a> config section to see if
           the IPs involved are marked to be discarded. If there are only a few
-          IPs to drop then <code>bpf=</code> should be used, otherwise this is
+          IPs to drop then <a href="/settings#bpf"><code>bpf=</code></a> should be used, otherwise this is
           much more efficient then a huge bpf.
         </li>
         <li>
@@ -2452,8 +2451,8 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         <li>
           Arkime picks a packet queue to send the packet to, if the packet queue
           is too busy it will drop the packet. Potentially increase increase
-          <a href="/settings#packetthreads">packetThreads</a> or
-          <a href="/settings#maxpacketsinqueue">maxPacketsInQueue</a> if too
+          <a href="/settings#packetthreads"><code>packetThreads</code></a> or
+          <a href="/settings#maxpacketsinqueue"><code>maxPacketsInQueue</code></a> if too
           many packets are being dropped here.
         </li>
         <li>
@@ -2466,14 +2465,14 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </li>
         <li>
           If this is the first packet of the session the packet queue will then
-          check all the <code>dontSaveBPFs</code>, and if one matches it will
+          check all the <a href="/settings#dontsavebpfs"><code>dontSaveBPFs</code></a>, and if one matches it will
           save off the max number of packets to save for the session. This will
-          override the <a href="/settings#maxpackets">maxPackets</a> config setting.
+          override the <a href="/settings#maxpackets"><code>maxPackets</code></a> config setting.
         </li>
         <li>
           If this is the first packet of the session AND no dontSaveBPFs matched,
           the packet queue will then check all the
-          <a href="/settings#minpacketssavebpfs">minPacketsSaveBPFs</a>
+          <a href="/settings#minpacketssavebpfs"><code>minPacketsSaveBPFs</code></a>
           and save off a min number of packets that must be received.
         </li>
         <li>
@@ -2520,9 +2519,9 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       </p>
       <p>
         <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can also be a percentage,
-        newer versions of Arkime use <code>freeSpaceG=5%</code> for the default.
+        with <a href="/settings#freespaceg"><code>freeSpaceG=5%</code></a> for the default.
         The viewer process will always leave at least 10 PCAP files on the disk,
-        so make sure there is room for at least <code>maxFileSizeG * 10</code>
+        so make sure there is room for at least <a href="/settings#maxfilesizeg"><code>maxFileSizeG * 10</code></a>
         capture files on disk, or by default 120G.
       </p>
       <p>
@@ -2545,7 +2544,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </li>
         <li>
           Make sure the pcap directory is on a filesystem with at least
-          <code>maxFileSizeG * 10</code> space available.
+          <a href="/settings#maxfilesizeg"><code>maxFileSizeG * 10</code></a> space available.
         </li>
         <li>
           Make sure the files you think should be deleted show up on the files
@@ -2577,7 +2576,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         <li>Make sure you've placed dontSaveBPFs in the correct section, you can verify by adding a <code>--debug</code> to capture when starting and looking at the output</li>
         <li> Turns out BPF filters are tricky. :)
              When the network is using vlans, then at compile time, BPFs need to know that fact.
-             So instead of a nice simple <code>dontSaveBPFs=tcp port 443:10</code> use something like <code>dontSaveBPFs=tcp port 443 or (vlan and tcp port 443):10</code>.
+             So instead of a nice simple <a href="/settings#dontsavebpfs"><code>dontSaveBPFs=tcp port 443:10</code></a> use something like <code>dontSaveBPFs=tcp port 443 or (vlan and tcp port 443):10</code>.
              Basically <code>FILTER or (vlan and FILTER)</code>. Information from <a href="http://www.christian-rossow.de/articles/tcpdump_filter_mixed_tagged_and_untagged_VLAN_traffic.php" rel="nofollow"> here</a>.
         </li>
         <li>Try testing your filter manually with tcpdump, you should only see the traffic you want to drop. So something like <code>tcpdump -i INTERFACE tcp port 443</code> for example.</li>
@@ -2596,9 +2595,9 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       <p>
         Arkime buffers writes to disk, which is great for high bandwidth
         networks, but bad for low bandwidth networks. How much data is buffered
-        is controlled with <a href="/settings#pcapwritesize">pcapWriteSize</a>, which defaults to 262144
+        is controlled with <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a>, which defaults to 262144
         bytes. An important thing to remember is the buffer is per thread, so set
-        <a href="/settings#packetthreads">packetThreads</a> to 1 on low bandwidth networks.
+        <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 on low bandwidth networks.
         A portion of the pcap that is buffered will be written after 10 seconds of no writes.
         However it will still buffer the last pagesize bytes, usually 4096 bytes.
       </p>
@@ -2646,7 +2645,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       <p>
         MaxMind <a href="https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/">recently changed</a> how you download their free database files.
         You now need to signup for an account and setup the geoipupdate program.
-        If using a version of Arkime before 2.2, you will need to edit your config.ini file and update the geolite paths.
+        If using a version of Moloch before 2.2, you will need to edit your config.ini file and update the geolite paths.
       </p>
       <p>
       Instructions:
@@ -2921,15 +2920,15 @@ ProxyPassReverse /arkime/ https://localhost:8005/</code></pre>
               Create a new section for the Arkime proxy, you will use <code>-n sectionname</code> so viewer uses that section
             </li>
             <li>
-              Set <code>userNameHeader</code> to the <strong>lower case</strong> version of the header Apache is setting. NOTE - the
+              Set <a href="/settings#usernameheader"><code>userNameHeader</code></a> to the <strong>lower case</strong> version of the header Apache is setting. NOTE - the
               userNameHeader setting is only needed on viewers that apache talks to, don't set on all of them.
             </li>
             <li>
-              Set the <code>webBasePath</code> to the ProxyPath location used above.
+              Set the <a href="/settings#webbasepath"><code>webBasePath</code></a> to the ProxyPath location used above.
               All other sections should <strong>NOT</strong> have a <code>webBasePath</code>.
             </li>
             <li>
-              Add a <code>viewHost=localhost</code>, so externals can’t just set the <code>userNameHeader</code> and access Arkime with no auth:
+              Add a <a href="/settings#viewhost"><code>viewHost=localhost</code></a>, so externals can’t just set the <a href="/settings#usernameheader"><code>userNameHeader</code></a> and access Arkime with no auth:
               <pre><code>[arkime-proxy]
 userNameHeader=arkime_user
 webBasePath = /arkime/
@@ -2962,7 +2961,7 @@ viewHost = localhost</code></pre>
           Make sure the user has the "Web Auth Header" checked
         </li>
         <li>
-          Make sure in the viewer config <code>userNameHeader</code>is the
+          Make sure in the viewer config <a href="/settings#usernameheader"><code>userNameHeader</code></a> is the
           <strong>lower case</strong> version of the header Apache is using.
         </li>
         <li>
@@ -2984,11 +2983,11 @@ viewHost = localhost</code></pre>
         is similiar to Elasticsearch tribe nodes, except it was created before
         tribe nodes and can deal with multiple indexes having the same name.
         Prior to Moloch 1.5, one big limitation currently is that all the
-        Moloch clusters have to use the same <code>rotateIndex</code> setting.
+        Moloch clusters have to use the same <a href="/settings#rotateindex"><code>rotateIndex</code></a> setting.
         Since Moloch 1.5 if using different <code>rotateIndex</code> settings,
-        use the <code>queryAllIndices=true</code> setting in the
+        use the <a href="/settings#queryallindices"><code>queryAllIndices=true</code></a> setting in the
         <code>molochviewer</code> section. Currently one big limitation is that
-        <code>all Arkime clusters must use the same PasswordSecret</code>.
+        <strong>all Arkime clusters must use the same PasswordSecret</strong>.
       </p>
       <p>
         To use MultiES, create another <code>config.ini</code> file or
@@ -3012,11 +3011,11 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
       <p>
         Now you need to start up both the <code>multies.js</code> program and
         <code>viewer.js</code> with the same config file AND <code>-n allnode</code>.
-        All other viewer settings, including <code>webBasePath</code> can still be used.
+        All other viewer settings, including <a href="/settings#webbasepath"><code>webBasePath</code></a> can still be used.
       </p>
       <p>By default, the users table comes from the first cluster listed in
-        <code>multiESNodes</code>. This can be overridden by setting
-        <code>usersElasticsearch</code> and optionally <code>usersPrefix</code>
+        <a href="/settings#multiesnodes"><code>multiESNodes</code></a>. This can be overridden by setting
+        <a href="/settings#userselasticsearch"><code>usersElasticsearch</code></a> and optionally <a href="/settings#usersprefix"><code>usersPrefix</code></a>
         in the multi viewer config file.
       </p>
 
@@ -3192,9 +3191,9 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
             turn off HTTPS or see the certificate answer above.
           </li>
           <li>
-            The remote machine can’t open the PCAP. Make sure the
-            <code>dropUser</code> user can read the pcap files. Check the
-            directories in the path too.
+            The remote machine can’t open the PCAP.
+            Make sure the <a href="/settings#dropuser"><code>dropUser</code></a> user or <a href="/settings#dropgroup"><code>dropGroup</code></a> group can read the pcap files.
+            Check the directories in the path too.
           </li>
           <li>
             Make sure all viewers are either using HTTPS or not using HTTPS, if
@@ -3317,9 +3316,9 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
         <li>
           Check in your config.ini file you've added
           <ul>
-            <li> <code>wise.so</code> to the <code>plugins</code> line.</li>
-            <li> <code>wise.js</code> to the <code>viewerPlugins</code> line</li>
-            <li> <code>wiseURL</code> has been set, or the older <code>wiseHost</code> and <code>wisePort</code></li>
+            <li> <code>wise.so</code> to the <a href="/settings#plugins"><code>plugins=</code></a> line.</li>
+            <li> <code>wise.js</code> to the <a href="/settings#viewerplugins"><code>viewerPlugins=</code></a> line.</li>
+            <li> <a href="/wise#wiseso-settings"><code>wiseURL</code></a> has been set, or the older <code>wiseHost</code> and <code>wisePort</code></li>
           </ul>
         </li>
         <li>
