@@ -2511,11 +2511,12 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </span>
       </h3>
       <p>
-        PCAP deletion is actually handled by the viewer process, so make sure the
-        viewer process is running on all capture boxes. The viewer process checks
-        on startup and then every minute to see how much space is available, and
-        if it is below <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the
-        oldest file.
+        PCAP deletion is actually handled by the viewer process, so make sure the viewer process is running on all capture boxes.
+        The viewer process checks on startup and then every minute to see how much space is available, and if it is below 
+        <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the oldest file.
+        The viewer process will log every time a file is deleted, so you can figure out when a file is deleted if you need to.
+        If the viewer complains about not finding the PCAP data, make sure you check the viewer.log.
+
       </p>
       <p>
         <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can also be a percentage,
