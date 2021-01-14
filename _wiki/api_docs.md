@@ -48,6 +48,59 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the connections requested |
 
+<a name="/histories"></a>
+
+## /histories API
+
+GET - /api/histories
+
+Retrieves a list of histories.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| date | <code>number</code> | <code>1</code> | The number of hours of data to return (-1 means all data). Defaults to 1. |
+| startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOC. |
+| stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
+| searchTerm | <code>string</code> |  | The search text to filter the history list by. |
+| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 100, Max is 2,000,000 |
+| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
+| sortField | <code>string</code> | <code>&quot;timestamp&quot;</code> | The field to sort the results by. |
+| desc | <code>string</code> | <code>true</code> | Whether to sort the results descending or ascending. Default is descending. |
+| userId | <code>string</code> |  | The ID of a user to request history results for. Admin can retrieve all users. Normal users can only retrieve their own. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | [<code>Array.&lt;History&gt;</code>](#History)| The list of history results. |
+| recordsTotal | <code>number</code>| The total number of history results stored. |
+| recordsFiltered | <code>number</code>| The number of history items returned in this result. |
+
+<a name="/history/_id"></a>
+
+## /history/:id API
+
+DELETE - /api/history/:id
+
+Deletes a history entry (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>string</code> | The Elasticsearch index that the history item was stored in. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete history operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/hunt"></a>
 
 ## /hunt API
@@ -1687,6 +1740,33 @@ There is no auth necessary to retrieve eshealth
 | Name | Type | Description |
 | --- | --- | --- |
 | health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
+
+<a name="History"></a>
+
+## History Type
+
+The history object to describe user client requests.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| uiPage | <code>string</code> | The client application page that the user accessed to make the request. |
+| userId | <code>string</code> | The ID of the user that made the request. |
+| method | <code>string</code> | The HTTP method that the request used. |
+| api | <code>string</code> | The API endpoint of the request. |
+| expression | <code>string</code> | The sessions search expression used in the request. |
+| view | [<code>ArkimeView</code>](#ArkimeView) | The view applied to the request. |
+| timestamp | <code>number</code> | The time that the request was made. Format is seconds since Unix EPOC. |
+| range | <code>number</code> | The date range of the request. Range is described in hours, -1 means all. |
+| query | <code>string</code> | The query parameters of the request. |
+| queryTime | <code>number</code> | The time it took for the response to be returned after the request was issued. |
+| recordsTotal | <code>number</code> | The total number of items in the data set. |
+| recordsFiltered | <code>number</code> | The number of items returned from searching the dataset (before paging). |
+| recordsReturned | <code>number</code> | The number of items returned in the response (after paging). |
+| body | <code>object</code> | The request body. |
+| forcedExpression | <code>string</code> | The expression applied to the search as a result of a users forced expression. Only visible to admins, normal users cannot see their forced expressions. |
 
 <a name="Hunt"></a>
 
