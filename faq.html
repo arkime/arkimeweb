@@ -1666,11 +1666,14 @@ logger.action.level = info</code></pre>
         Arkime does NOT currently support the auto rollover feature of ILM for performance reasons when searching.
       </p>
       <p>
-        There are four important steps to have ILM work correctly with Arkime.
+        These instructions assume you are using db.pl or Arkime UI to setup ILM and will use a special <code>molochtype</code> attribute name.
+        You can also do this with Kibana to create the ILM config, and not use the <code>molochtype</code> attribute name, however then you will need to do everything on your own.
+        There are five important steps to have ILM work correctly with Arkime.
         <ol>
-          <li>Create the arkimesessions and arkimehistory ILM polices.  This can be done easily with kibana or we recommend <code>db.pl ilm</code> command.</li>
-          <li>Assign the arkimesessions and arkimehistory ILM polices to all the existing indices.  Kibana or <code>db.pl ilm</code> can perform this action.</li>
-          <li>Change the Arkime templates to use the ILM polices for NEW indices.  You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add the <code>--ilm</code> to the command</li>
+          <li>If you are using hot/warm design, or might in the future, for each elasticsearch node add to your elaticsearch.yml a line with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
+          <li>Create the molochsessions and molochhistory ILM polices.  This can be done easily with kibana or we recommend <code>db.pl ilm</code> command.</li>
+          <li>Assign the molochsessions and molochhistory ILM polices to all the existing indices.  Kibana or <code>db.pl ilm</code> can perform this action.</li>
+          <li>Change the moloch templates to use the ILM polices for NEW indices.  You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add the <code>--ilm</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
           <li>Replace the previous <code>db.pl expire</code> cron job with <code>db.pl optimize-admin</code></li>
         </ol>
       </p>
