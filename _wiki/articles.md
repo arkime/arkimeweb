@@ -39,6 +39,9 @@ permalink: /articles
 * [Moloch & Amazon VPC Traffic Mirrors](/assets/ArkimeON2019NubevaAWSMirroring.pdf) - Erik Freeland
   * [Presentation Recording](https://youtu.be/pm9OB2epec0)
 
+### SANS DFIR Summit
+* [Finding Badness: Using Moloch for DFIR](https://www.youtube.com/watch?v=0Sny6prUCas)
+
 ---
 
 ## 2018
