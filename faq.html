@@ -644,6 +644,7 @@ title: FAQ
       </ul>
 
       <span id="moloch-is-not-working"></span>
+      <span id="checklist"></span>
       <h3 id="arkime-is-not-working">
         Arkime is not working
         <span class="fa fa-link small copy-link cursor-copy"
@@ -817,7 +818,9 @@ title: FAQ
       <p>
         Both capture and viewer can run with <code>--insecure</code> to turn off
         cert checking.  You will need to add this option to the startup command for
-        both capture, viewer.  For example <code>/etc/systemd/system/arkimecapture.conf</code>.
+        both capture, viewer.
+        For example change in the <code>/etc/systemd/system/arkimecapture.conf</code> file, the <code>ExecStart</code>
+        line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
       </p>
 
       <h3 id="how_do_i_upgrade_to_moloch_1">
@@ -1088,8 +1091,9 @@ title: FAQ
         The PCAP data is deleted as the disk fills up on the capture machines, <a href="#pcap-deletion">more info</a>.
         PCAP deletion happens automatically and nothing needs to be done.
         The SPI data is either deleted by using <a href="#ilm">ILM</a> or when the <code>./db.pl expire</code> command is run, usually from cron during off peak.
-        There is a sample in the daily.sh script.
         Unless you use <a href="#ilm">ILM</a>, the SPI data deletion does NOT happen automatically and a cron job MUST be set up.
+        A sample cron setup might look like this to only keep 90 days and expire at midnight:
+        <pre> 0 0 * * * /data/moloch/db/db.pl http://localhost:9200 expire daily 90</pre>
       </p>
       <p>
         So deleting a PCAP file will NOT delete the SPI data, and deleting the
