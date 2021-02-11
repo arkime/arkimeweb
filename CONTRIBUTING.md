@@ -73,6 +73,7 @@ Feature requests are tracked as [GitHub Issues](https://guides.github.com/featur
 #### Pull Requests :muscle:
 
 **We welcome all collaboration!** If you can fix it or implement it, please do! :hammer:
+To implement something new, please create an issue first so we can discuss it together.
 
 **To better help us review your pull request, please follow these guidelines:**
 * Please use a [fork](https://guides.github.com/activities/forking/) to submit a [pull request](https://help.github.com/articles/creating-a-pull-request/) for your contribution.
@@ -80,6 +81,11 @@ Feature requests are tracked as [GitHub Issues](https://guides.github.com/featur
 * Clearly describe the problem and solution
 * Include the relevant issue number(s) if applicable
 * Make sure the HTML and rendered page conform the style guide (below)
+* When creating a Pull Request please follow [best practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices) for creating git commits.
+* When your code is ready to be submitted, submit a Pull Request to begin the code review process.
+
+We only seek to accept code that you are authorized to contribute to the project. We have added a pull request template on our projects so that your contributions are made with the following confirmation:
+>I confirm that this contribution is made under an Apache 2.0 license and that I have the authority necessary to make this contribution on behalf of its copyright owner.
 
 #### API Documentation
 
@@ -224,6 +230,11 @@ If a question has multiple sections, wrap the additonal sections in another div 
 > **Note:** the main section is an `h3` header, the subsections are `h4`.
 
 > **Note:** there is no need to add links in the table of contents to the subsections, just link to the main question.
+
+---
+
+### Code of Conduct
+We encourage inclusive and professional interactions on our project. We welcome everyone to open an issue, improve the documentation, report bug or submit a pull request. By participating in this project, you agree to abide by our [Code of Conduct](Code-of-Conduct.md). If you feel there is a conduct issue related to this project, please raise it per the Code of Conduct process and we will address it.
 
 ---
 
