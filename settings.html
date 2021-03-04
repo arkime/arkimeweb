@@ -4268,15 +4268,12 @@ kekid2=Randomkekpassword2
         </span>
       </h2>
       <p>
-        Arkime can enrich sessions with Suricata alerts. Suricata and
-        Arkime must be running on the same machine and looking at the same
-        traffic for the plugin to work. Sessions that have been enriched will
-        have several new fields, all starting with suricata, and will be
+        Arkime can enrich sessions with Suricata alerts.
+        Suricata and Arkime must see the same traffic and share the same eve.json/alert.json for the plugin to work.
+        Sessions that have been enriched will have several new fields, all starting with suricata, and will be
         displayed in a Suricata section of the standard Arkime session UI.
-        Arkime matches sessions based on the 5 tuple from the alert.json or
-        eve.json file, only using items with event_type of alert. A very simple
-        query to find all sessions that have Suricata data is
-        <code>suricata.signature == EXISTS!</code>.
+        Arkime matches sessions based on the 5 tuple from the alert.json or eve.json file, only using the items with event_type of alert.
+        A very simple query to find all sessions that have Suricata data is <code>suricata.signature == EXISTS!</code>.
       </p>
       <p>
         <strong>Note:</strong> there isn't a special Suricata UI inside Arkime,
