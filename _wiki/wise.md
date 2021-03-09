@@ -112,6 +112,13 @@ Requires that `wise.js` be added to the `viewerPlugins=` line globally, per clas
 
 ---
 
+## WISE UI
+There is a WISE User Interface to view/edit/delete your WISE Sources and to update your WISE configuration and cache. It also allows a user to query and view statistics about your configured WISE Sources.
+
+To build and run the WISE UI, check out our [README](https://github.com/arkime/arkime/tree/master/wiseService).
+
+---
+
 ## Common Source Settings
 All sources support some common settings such excluding IPs, Domains and Email addresses from lookups. It is also possible to exclude across all sources by placing the exclude config in the `wiseService` section.
 {: .mb-0}
