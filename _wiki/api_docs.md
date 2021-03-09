@@ -65,7 +65,7 @@ Retrieves a list of histories.
 | startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOC. |
 | stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
 | searchTerm | <code>string</code> |  | The search text to filter the history list by. |
-| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 100, Max is 2,000,000 |
+| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 1,000. |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
 | sortField | <code>string</code> | <code>&quot;timestamp&quot;</code> | The field to sort the results by. |
 | desc | <code>string</code> | <code>true</code> | Whether to sort the results descending or ascending. Default is descending. |
@@ -246,6 +246,146 @@ Remove user(s) from a hunt.
 | success | <code>boolean</code>| Whether the remove users operation was successful. |
 | users | <code>array</code>| The list of users who have access to the hunt. |
 | invalidUsers | <code>array</code>| The list of users that could not be removed from the hunt because they were invalid or nonexitent. |
+
+<a name="/fields"></a>
+
+## /fields API
+
+GET - /api/fields
+
+Gets available database field objects pertaining to sessions.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| array | <code>boolean</code> | <code>false</code> | Whether to return an array of fields, otherwise returns a map |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>array/map</code>| The map or list of database fields |
+
+<a name="/files"></a>
+
+## /files API
+
+GET - /api/files
+
+Gets a list of PCAP files that Arkime knows about.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 500, Max is 10,000 |
+| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>Array</code>| The list of files |
+| recordsTotal | <code>number</code>| The total number of files Arkime knows about |
+| recordsFiltered | <code>number</code>| The number of files returned in this result |
+
+<a name="/_nodeName/_fileNum/filesize"></a>
+
+## /:nodeName/:fileNum/filesize API
+
+GET - /api/:nodeName/:fileNum/filesize
+
+Retrieves the filesize of a PCAP file.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| filesize | <code>number</code>| The size of the file ( |
+
+<a name="/title"></a>
+
+## /title API
+
+GET - /api/title
+
+Retrieves the browser page title for the Arkime app.
+Configure it using <a href="https://arkime.com/settings#titletemplate">the titleTemplate setting</a>
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| title | <code>string</code>| The title of the app based on the configured setting. |
+
+<a name="/valueactions"></a>
+
+## /valueactions API
+
+GET - /api/valueactions
+
+Retrives the actions that can be preformed on meta data values.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| The list of actions that can be preformed on data values. |
+
+<a name="/reversedns"></a>
+
+## /reversedns API
+
+GET - /api/reversedns
+
+Retrives the domain names associated with an IP address.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ip | <code>string</code> | The IP to search domain names for. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| domains | <code>string</code>| A comma separated string list of all the matching domain names. |
+
+<a name="/upload"></a>
+
+## /upload API
+
+POST - /api/upload
+
+Uploads PCAP files.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tags | <code>string</code> | A comma separated list of tags to add to each session created. |
+
+<a name="/clusters"></a>
+
+## /clusters API
+
+GET - /api/clusters
+
+Retrieves a list of known configured Arkime clusters (if in
+<a href="https://arkime.com/settings#multi-viewer-settings">Mulit Viewer mode</a>).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| active | <code>Array</code>| The active Arkime clusters. |
+| inactive | <code>Array</code>| The inactive Arkime clusters. |
 
 <a name="/notifiertypes"></a>
 
@@ -829,6 +969,138 @@ Retrieve a file from a specific node given a hash of that file.
 | --- | --- | --- |
 | file | <code>file</code>| The file that matches the hash |
 
+<a name="/delete"></a>
+
+## /delete API
+
+GET - /api/delete
+
+Delete SPI and/or scrub PCAP data (remove persmission required).
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| removeSpi | <code>string</code> | <code>false</code> | Whether to remove the SPI data. |
+| removePcap | <code>string</code> | <code>true</code> | Whether to remove the PCAP data. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the operation was successful |
+| text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/shortcuts"></a>
+
+## /shortcuts API
+
+GET - /api/shortcuts
+
+Retrieves a list of shortcuts.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| map | <code>string</code> | <code>false</code> | Whether to return a list or a map. Default is list. |
+| sort | <code>string</code> | <code>&quot;name&quot;</code> | The field to sort the results by. |
+| desc | <code>string</code> | <code>true</code> | Whether to sort the results descending or ascending. Default is descending. |
+| searchTerm | <code>string</code> |  | The search text to filter the shortcut list by. |
+| length | <code>number</code> | <code>50</code> | The number of items to return. Defaults to 50. |
+| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
+| fieldType | <code>string</code> |  | Filter the results by type (number, ip, or string). |
+| fieldFormat | <code>string</code> | <code>false</code> | Sends a help field with the shortcut with the description + the values of the shortcut. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | [<code>Array.&lt;Shortcut&gt;</code>](#Shortcut)| The list of shortcut results. |
+| recordsTotal | <code>number</code>| The total number of shortcut results stored. |
+| recordsFiltered | <code>number</code>| The number of shortcut items returned in this result. |
+
+<a name="/shortcut"></a>
+
+## /shortcut API
+
+POST - /api/shortcut
+
+Creates a new shortcut.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The name of the new shortcut. |
+| type | <code>string</code> | The type of the shortcut (number, ip, or string). |
+| value | <code>string</code> | The shortcut value. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| shortcut | [<code>Shortcut</code>](#Shortcut)| The new shortcut object. |
+| success | <code>boolean</code>| Whether the create shortcut operation was successful. |
+
+<a name="/shortcut/_id"></a>
+
+## /shortcut/:id API
+
+PUT - /api/shortcut/:id
+
+Updates a shortcut.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The name of the shortcut. |
+| type | <code>string</code> | The type of the shortcut (number, ip, or string). |
+| value | <code>string</code> | The shortcut value. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| shortcut | [<code>Shortcut</code>](#Shortcut)| The updated shortcut object. |
+| success | <code>boolean</code>| Whether the upate shortcut operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/shortcut/_id"></a>
+
+## /shortcut/:id API
+
+DELETE - /api/shortcut/:id
+
+Deletes a shortcut.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete shortcut operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/eshealth"></a>
+
+## /eshealth API
+
+GET - /api/eshealth
+
+Retrive Elasticsearch health and stats
+There is no auth necessary to retrieve eshealth
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
+
 <a name="/stats"></a>
 
 ## /stats API
@@ -1261,6 +1533,23 @@ Returns information about ongoing and completed shard recoveries for indices.
 | recordsTotal | <code>number</code>| The total number of indices. |
 | recordsFiltered | <code>number</code>| The number of indices returned in this result. |
 
+<a name="/parliament"></a>
+
+## /parliament API
+
+GET - /api/parliament
+
+Returns information all the Arkime clusters configured in your Parliament.
+See the parliament definition <a href="https://github.com/arkime/arkime/tree/master/parliament#parliament-definition">here</a> (subject to change).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| List of fields that describe the cluster stats. |
+| recordsTotal | <code>number</code>| The total number of stats. |
+| recordsFiltered | <code>number</code>| The number of stats returned in this result. |
+
 <a name="/user"></a>
 
 ## /user API
@@ -1353,7 +1642,7 @@ Retrieves custom user css for the user's custom theme.
 
 ## /users API
 
-GET - /api/users
+POST - /api/users
 
 Retrieves a list of Arkime users (admin only).
 
@@ -1667,79 +1956,34 @@ Acknowledges a UI message for a user. Used to display help popups.
 | success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="/fields"></a>
+<a name="/user/state/_name"></a>
 
-## /fields API
+## /user/state/:name API
 
-GET - /api/fields
+GET - /api/user/state/:name
 
-Gets available database field objects pertaining to sessions.
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| array | <code>boolean</code> | <code>false</code> | Whether to return an array of fields, otherwise returns a map |
+Retrieves a user table state object. These are used to save the states of tables within the UI (sessions, files, stats, etc).
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>array/map</code>| The map or list of database fields |
+| tableState | <code>object</code>| The table state requested. |
 
-<a name="/files"></a>
+<a name="/user/state/_name"></a>
 
-## /files API
+## /user/state/:name API
 
-GET - /api/files
+POST - /api/user/state/:name
 
-Gets a list of PCAP files that Arkime knows about.
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 500, Max is 10,000 |
-| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+Updates or creates a user table state object. These are used to save the states of tables within the UI (sessions, files, stats, etc).
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| data | <code>Array</code>| The list of files |
-| recordsTotal | <code>number</code>| The total number of files Arkime knows about |
-| recordsFiltered | <code>number</code>| The number of files returned in this result |
-
-<a name="/api/valueActions"></a>
-
-## /api/valueActions API
-
-GET - /api/valueActions
-
-Retrive the actions that can be preformed at meta data values
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>object</code>| The actions that can be preformed on spi data values |
-
-<a name="/eshealth"></a>
-
-## /eshealth API
-
-GET - /api/eshealth
-
-Retrive Elasticsearch health and stats
-There is no auth necessary to retrieve eshealth
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
+| success | <code>boolean</code>| Whether the operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="History"></a>
 
@@ -1842,6 +2086,55 @@ When using POST the request body and request query are merged. Any duplicate par
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
+<a name="Shortcut"></a>
+
+## Shortcut Type
+
+The shortcut object to store lists of values that can be used in search queries.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| userId | <code>string</code> |  | The ID of the user that created the shortcut. |
+| name | <code>string</code> |  | The name of the shortcut. |
+| shared | <code>boolean</code> | <code>false</code> | Whether the shortcut is shared with the other users in the cluster. |
+| description | <code>string</code> |  | The description of the shortcut to display to users. |
+| number | <code>Array.&lt;number&gt;</code> |  | A list of number values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
+| ip | <code>Array.&lt;string&gt;</code> |  | A list of ip values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
+| string | <code>Array.&lt;string&gt;</code> |  | A list of string values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
+| locked | <code>boolean</code> | <code>false</code> | Whether the shortcut is locked and must be updated using the db.pl script (can't be updated in the web application user interface). |
+
+<a name="ESHealth"></a>
+
+## ESHealth Type
+
+The Elasticsearch cluster health status and information.
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| active_primary_shards | <code>number</code> | The number of active primary shards. |
+| active_shards | <code>number</code> | The total number of active primary and replica shards. |
+| active_shards_percent_as_number | <code>number</code> | The ratio of active shards in the cluster expressed as a percentage. |
+| cluster_name | <code>string</code> | The name of the arkime cluster |
+| delayed_unassigned_shards | <code>number</code> | The number of shards whose allocation has been delayed by the timeout settings. |
+| initializing_shards | <code>number</code> | The number of shards that are under initialization. |
+| molochDbVersion | <code>number</code> | The arkime database version |
+| number_of_data_nodes | <code>number</code> | The number of nodes that are dedicated data nodes. |
+| number_of_in_flight_fetch | <code>number</code> | The number of unfinished fetches. |
+| number_of_nodes | <code>number</code> | The number of nodes within the cluster. |
+| number_of_pending_tasks | <code>number</code> | The number of cluster-level changes that have not yet been executed. |
+| relocating_shards | <code>number</code> | The number of shards that are under relocation. |
+| status | <code>string</code> | Health status of the cluster, based on the state of its primary and replica shards. Statuses are:       "green" - All shards are assigned.       "yellow" - All primary shards are assigned, but one or more replica shards are unassigned. If a node in the cluster fails, some data could be unavailable until that node is repaired.       "red" - One or more primary shards are unassigned, so some data is unavailable. This can occur briefly during cluster startup as primary shards are assigned. |
+| task_max_waiting_in_queue_millis | <code>number</code> | The time expressed in milliseconds since the earliest initiated task is waiting for being performed. |
+| timed_out | <code>boolean</code> | If false the response returned within the period of time that is specified by the timeout parameter (30s by default). |
+| unassigned_shards | <code>number</code> | The number of shards that are not allocated. |
+| version | <code>string</code> | the elasticsearch version number |
+| _timeStamp | <code>number</code> | timestamps in ms from unix epoc |
+
 <a name="ArkimeUser"></a>
 
 ## ArkimeUser Type
@@ -1931,33 +2224,4 @@ A database view that can be applied to any search.
 | --- | --- | --- | --- |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
 | visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
-
-<a name="ESHealth"></a>
-
-## ESHealth Type
-
-The Elasticsearch cluster health status and information.
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| active_primary_shards | <code>number</code> | The number of active primary shards. |
-| active_shards | <code>number</code> | The total number of active primary and replica shards. |
-| active_shards_percent_as_number | <code>number</code> | The ratio of active shards in the cluster expressed as a percentage. |
-| cluster_name | <code>string</code> | The name of the arkime cluster |
-| delayed_unassigned_shards | <code>number</code> | The number of shards whose allocation has been delayed by the timeout settings. |
-| initializing_shards | <code>number</code> | The number of shards that are under initialization. |
-| molochDbVersion | <code>number</code> | The arkime database version |
-| number_of_data_nodes | <code>number</code> | The number of nodes that are dedicated data nodes. |
-| number_of_in_flight_fetch | <code>number</code> | The number of unfinished fetches. |
-| number_of_nodes | <code>number</code> | The number of nodes within the cluster. |
-| number_of_pending_tasks | <code>number</code> | The number of cluster-level changes that have not yet been executed. |
-| relocating_shards | <code>number</code> | The number of shards that are under relocation. |
-| status | <code>string</code> | Health status of the cluster, based on the state of its primary and replica shards. Statuses are:     "green" - All shards are assigned.     "yellow" - All primary shards are assigned, but one or more replica shards are unassigned. If a node in the cluster fails, some data could be unavailable until that node is repaired.     "red" - One or more primary shards are unassigned, so some data is unavailable. This can occur briefly during cluster startup as primary shards are assigned. |
-| task_max_waiting_in_queue_millis | <code>number</code> | The time expressed in milliseconds since the earliest initiated task is waiting for being performed. |
-| timed_out | <code>boolean</code> | If false the response returned within the period of time that is specified by the timeout parameter (30s by default). |
-| unassigned_shards | <code>number</code> | The number of shards that are not allocated. |
-| version | <code>string</code> | the elasticsearch version number |
-| _timeStamp | <code>number</code> | timestamps in ms from unix epoc |
 
