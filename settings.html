@@ -819,11 +819,11 @@ title: Settings
               1
             </td>
             <td>
-              Number of threads to use to process packets AFTER the reader has
-              received the packets. This also controls how many packet queues
-              there are, since each thread has its own queue. Basically how
-              much CPU to dedicate to parsing the packets. Increase this if you
-              get errors about dropping packets or the packetQ is over flowing.
+              Number of threads to use to process packets AFTER the reader has received the packets.
+              This also controls how many packet queues there are, since each thread has its own queue.
+              Basically how much CPU to dedicate to parsing the packets.
+              Increase this if you get errors about dropping packets or the packetQ is over flowing.
+              If using the simple writer, this also controls how many pcap files are open for writing.
             </td>
           </tr>
           <tr>
