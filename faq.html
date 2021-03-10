@@ -987,17 +987,17 @@ title: FAQ
         <li>You must be using Moloch 2.5 (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
         <li>You must be using Elasticsearch 7.4+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.9.3</a> or later recommended) BEFORE trying to upgrade to Arkime 3.0</li>
         <li>Install Arkime &gt;= 3.0 without restarting captures/viewers</li>
-        <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.
+        <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.</li>
         <li>Shutdown captures</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
         <li> If moving from Moloch install to Arkime (not Hybrid) install you'll need to:
           <ul>
             <li>Run <code>/opt/arkime/bin/moloch2arkime.sh</code></li>
             <li>Verify <code>/opt/arkime/etc/config.ini</code>
+          </ul>
         <li>Restart capture</li>
         <li>Verify everything is working</li>
       </ul>
-      </p>
       <!-- /general -->
 
       <!-- elasticsearch -->
@@ -2225,7 +2225,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         See
-        <code>${arkime_dir}/bin/moloch-capture --help</code> for more info. 
+        <code>${arkime_dir}/bin/moloch-capture --help</code> for more info.
         The <code>--monitor</code> to monitor non NFS directories, <code>--skip</code> to skip already loaded pcap files, and <code>-R</code> to process directories are common options.
       </p>
       <p>
@@ -2518,7 +2518,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
       </h3>
       <p>
         PCAP deletion is actually handled by the viewer process, so make sure the viewer process is running on all capture boxes.
-        The viewer process checks on startup and then every minute to see how much space is available, and if it is below 
+        The viewer process checks on startup and then every minute to see how much space is available, and if it is below
         <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the oldest file.
         The viewer process will log every time a file is deleted, so you can figure out when a file is deleted if you need to.
         If the viewer complains about not finding the PCAP data, make sure you check the viewer.log.
