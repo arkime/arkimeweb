@@ -10,6 +10,7 @@ permalink: "/learn"
 
 - [FAQ](faq)
 - [Settings](settings)
+- [WISE 3.x Configs](wise-configs)
 - [Security](security)
 - [Arkime Architecture Designs](architecture)
 - [Articles and Presentations About Arkime](articles)
