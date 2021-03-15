@@ -95,12 +95,11 @@ Want to fix, add, or update API documentation? That's awesome! Take a look [here
 
 Want to contribute a [WISE 3.x Config](https://arkime.com/wise-configs)? Just follow these steps:
 * Follow the [instructions above to fork the project](#pull-requests-muscle).
-* Add your configuration to the arimeweb/_posts directory.
+* Add your configuration to the arikmeweb/_posts/wiseconfigs directory.
   * The filename must be in this format: `yyyy-mm-dd-wise-title.md`
   * The file must be a `.md` (markdown) file.
   * The filename must start with the date (use the current date).
-  * The filename must include the keyword "wise".
-  * The file should include a title, description (optional), tags (optional):
+  * The file should begin with a title, description (optional), tags (optional) in this format:
     ```
     ---
     title: Test WISE Config
@@ -117,12 +116,11 @@ Want to contribute a [WISE 3.x Config](https://arkime.com/wise-configs)? Just fo
 
 Want to contribute an [Arkime Rule](https://arkime.com/rules)? Just follow these steps:
 * Follow the [instructions above to fork the project](#pull-requests-muscle).
-* Add your configuration to the arimeweb/_posts directory.
+* Add your configuration to the arikmeweb/_posts/rules directory.
   * The filename must be in this format: `yyyy-mm-dd-rule-title.md`
   * The file must be a `.md` (markdown) file.
   * The filename must start with the date (use the current date).
-  * The filename must include the keyword "rule".
-  * The file should include a title, description (optional), tags (optional):
+  * The file should begin with a title, description (optional), tags (optional) in this format:
     ```
     ---
     title: Test Rule

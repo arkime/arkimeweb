@@ -5,14 +5,14 @@ permalink: "/wise-configs"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-### WISE 3.x Configuration Files
+### WISE 3.x Configurations
 
-This is a list of example WISE 3.x configuration files to browse.
+This is a gallery WISE 3.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
 
 ---
 
 {% for file in site.posts %}
-  {% if file.path contains 'wise' %}
+  {% if file.path contains 'wiseconfigs' %}
   <h4>{{file.title}}</h4>
   {% if file.description %}
   <p class="lead mb-1">{{file.description}}</p>
