@@ -604,3 +604,11 @@ body.full-height-body {
   width: 200px !important;
   padding: .5rem !important;
 }
+
+/* right justified button for copying code from galleries */
+.btn.btn-copy-code {
+  right: 20px;
+  margin-top: 5px;
+  position: absolute;
+  cursor: copy !important;
+}

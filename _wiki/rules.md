@@ -21,7 +21,13 @@ This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](
   {% for tag in file.tags %}
   <span class="badge badge-secondary">{{tag}}</span>{% endfor %}
   {% endif %}
+  <button class="btn btn-primary btn-copy-code"
+    onclick="copyCode('{{file.title}}')">
+    Copy
+  </button>
+  <div id="{{file.title}}">
   {{file.content}}
+  </div>
   ---
   {% endif %}
 {% endfor %}
