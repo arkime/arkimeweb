@@ -1,21 +1,19 @@
 ---
-title: Drop Localhost
-description: 'Sample rule that will drop all localhost packets after the first 20. If you want to add several rules, then the synatax is as follows. Make sure to have only one "rules:" per file.'
-tags: localhost multiplerules drop
+title: Example Truncate PCAP localhost
+description: 'Example rules that will drop all localhost packets after the first 20. Two rules are needed so we drop traffic both from and to localhost.'
+tags: maxPacketsToSave fieldSet
 ---
 
 ```
----
-version: 1
-rules:
-  - name: "Drop localhost"
+  - name: "Drop from localhost"
     when: "fieldSet"
     fields:
       ip.src:
       - 127.0.0.1
     ops:
       _maxPacketsToSave: 10
-  - name: "Drop localhost"
+
+  - name: "Drop to localhost"
     when: "fieldSet"
     fields:
       ip.dst:

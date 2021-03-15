@@ -1,13 +1,10 @@
 ---
 title: Drop Syn Scan
-description: 'Sample rule to drop all syn scans. It requires packets.src = 1, packets.dst = 0, and tcpflags.syn = 1.'
+description: 'Rule to drop all syn scans from saving the session to Elasticsearch. It requires packets.src = 1, packets.dst = 0, and tcpflags.syn = 1.'
 tags: syn scan drop
 ---
 
 ```
----
-version: 1
-rules:
   - name: "Drop syn scan"
     when: "beforeFinalSave"
     fields:
