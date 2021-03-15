@@ -91,6 +91,50 @@ We only seek to accept code that you are authorized to contribute to the project
 
 Want to fix, add, or update API documentation? That's awesome! Take a look [here](https://github.com/arkime/arkime/blob/master/CONTRIBUTING.md#api-documentation) to learn how we document our APIs and how to contribute.
 
+#### WISE Configs
+
+Want to contribute a [WISE 3.x Config](https://arkime.com/wise-configs)? Just follow these steps:
+* Follow the [instructions above to fork the project](#pull-requests-muscle).
+* Add your configuration to the arimeweb/_posts directory.
+  * The filename must be in this format: `yyyy-mm-dd-wise-title.md`
+  * The file must be a `.md` (markdown) file.
+  * The filename must start with the date (use the current date).
+  * The filename must include the keyword "wise".
+  * The file should include a title, description (optional), tags (optional):
+    ```
+    ---
+    title: Test WISE Config
+    description: 'Amazing description of your awesome WISE config.'
+    tags: amazing awesome
+    ---
+    ```
+  * Underneath the title section, add your config, surrounded with \`\`\` (this tells markdown that it's code).
+  * Make sure to indent the configuration code so it is readable.
+* [Run the project](#where-do-i-start-traffic_light) and navigate to `http://localhost:4000/wise-configs` to make sure it shows up and displays properly. It should be the last item in the list if you used the current date in your filename.
+* [Submit your PR](#pull-requests-muscle).
+
+#### Arikme Rules
+
+Want to contribute an [Arkime Rule](https://arkime.com/rules)? Just follow these steps:
+* Follow the [instructions above to fork the project](#pull-requests-muscle).
+* Add your configuration to the arimeweb/_posts directory.
+  * The filename must be in this format: `yyyy-mm-dd-rule-title.md`
+  * The file must be a `.md` (markdown) file.
+  * The filename must start with the date (use the current date).
+  * The filename must include the keyword "rule".
+  * The file should include a title, description (optional), tags (optional):
+    ```
+    ---
+    title: Test Rule
+    description: 'Amazing description of your awesome Rule.'
+    tags: amazing awesome
+    ---
+    ```
+  * Underneath the title section, add your config, surrounded with \`\`\` (this tells markdown that it's code).
+  * Make sure to indent the configuration code so it is readable.
+* [Run the project](#where-do-i-start-traffic_light) and navigate to `http://localhost:4000/rules` to make sure it shows up and displays properly. It should be the last item in the list if you used the current date in your filename.
+* [Submit your PR](#pull-requests-muscle).
+
 ---
 
 ### Style Guide

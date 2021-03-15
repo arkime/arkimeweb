@@ -1,18 +1,18 @@
 ---
-title: WISE 3.x Configs
+title: Arkime Rules
 layout: wiki
-permalink: "/wise-configs"
+permalink: "/Rules"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-### WISE 3.x Configuration Files
+### Arkime Rule Files
 
-This is a list of example WISE 3.x configuration files to browse.
+This is a list of example Arkime Rules files to browse.
 
 ---
 
 {% for file in site.posts %}
-  {% if file.path contains 'wise' %}
+  {% if file.path contains 'rule' %}
   <h4>{{file.title}}</h4>
   {% if file.description %}
   <p class="lead mb-1">{{file.description}}</p>
@@ -26,8 +26,8 @@ This is a list of example WISE 3.x configuration files to browse.
   {% endif %}
 {% endfor %}
 
-#### Want to contribute a WISE 3.x Config?
+#### Want to contribute an Arkime Rule File?
 
-Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs) file for more information.
+Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#arkime-rules) file for more information.
 
 </div>

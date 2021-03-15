@@ -10,7 +10,6 @@ permalink: "/learn"
 
 - [FAQ](faq)
 - [Settings](settings)
-- [WISE 3.x Configs](wise-configs)
 - [Security](security)
 - [Arkime Architecture Designs](architecture)
 - [Articles and Presentations About Arkime](articles)
@@ -21,6 +20,7 @@ permalink: "/learn"
 
 #### Capture
 - [Rules Format](rulesformat)
+- [Rules Examples](rules)
 - [Tagger Format](taggerformat)
 - [Tagger Plugin](tagger)
 - [S3 PCAP Storage](s3)
@@ -36,6 +36,7 @@ permalink: "/learn"
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
 - [WISE v3.x API](wiseapi)
+- [WISE 3.x Config Examples](wise-configs)
 
 ---
 
