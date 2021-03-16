@@ -1,7 +1,7 @@
 ---
 title: Arkime Rules
 layout: wiki
-permalink: "/Rules"
+permalink: "/rules"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
