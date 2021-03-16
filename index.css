@@ -604,3 +604,24 @@ body.full-height-body {
   width: 200px !important;
   padding: .5rem !important;
 }
+
+/* right justified button for copying code from galleries */
+.btn.btn-copy-code {
+  right: 20px;
+  margin-top: 30px;
+  position: absolute;
+  cursor: copy !important;
+}
+
+/* gallery item visibility and transitions */
+.gallery-item {
+  opacity: 1;
+  max-height: 9999px;
+  visibility: visible;
+  transition: all 0.5s linear;
+}
+.gallery-item.gallery-item-hidden {
+  opacity: 0;
+  max-height: 0px;
+  visibility: hidden;
+}

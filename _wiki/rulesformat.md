@@ -12,6 +12,8 @@ permalink: "/rulesformat"
 
 Rules files allow you to specify actions to perform when criteria are met with certain fields or state. The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting. There can be multiple files using a semicolon separated listed. Each file can have multiple rules. The files will automatically reloaded when they are changed, you do NOT need to restart capture.
 
+Check out the [rules gallery](rules) for inspiration, or add your rule file to help out others!
+
 **Each rule must have a**
 {: .mb-0 }
 
@@ -137,7 +139,7 @@ The operations are a map of the fields to set in the session. There are some spe
 ```
 
 The `_dropByDst` and `_dropBySrc` are very powerful if you want to drop traffic where the src/dst ips could be ever shifting, such as a host on AWS.
-The packets are also dropped very early in the arkime packet flow, so it can help with cpu.
+The packets are also dropped very early in the Arkime packet flow, so it can help with cpu.
 Here is an example that will start dropping any traffic to a ip that was used to talk to ad.beacon.something.example.com.
 Of course if other hosts use that same server from host header sharing that traffic will be dropped too, so be careful.
 {: .mb-0 }

@@ -20,6 +20,7 @@ permalink: "/learn"
 
 #### Capture
 - [Rules Format](rulesformat)
+- [Rules Gallery](rules)
 - [Tagger Format](taggerformat)
 - [Tagger Plugin](tagger)
 - [S3 PCAP Storage](s3)
@@ -35,6 +36,7 @@ permalink: "/learn"
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
 - [WISE v3.x API](wiseapi)
+- [WISE 3.x Configuration Gallery](wise-configs)
 
 ---
 

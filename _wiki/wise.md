@@ -119,6 +119,11 @@ To build and run the WISE UI, check out our [README](https://github.com/arkime/a
 
 ---
 
+## WISE 3.x Configuration Gallery
+View the [WISE Config Gallery](wise-configs) to browse for ideas or contribute your own!
+
+---
+
 ## Common Source Settings
 All sources support some common settings such excluding IPs, Domains and Email addresses from lookups. It is also possible to exclude across all sources by placing the exclude config in the `wiseService` section.
 {: .mb-0}
