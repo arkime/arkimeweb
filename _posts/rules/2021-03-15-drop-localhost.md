@@ -1,6 +1,6 @@
 ---
 title: Example Truncate PCAP localhost
-description: 'Drop all localhost packets after the first 20. Two rules are needed so we drop traffic both to and from localhost.'
+description: 'These example rules drop all localhost packets after the first 20. Two rules are needed so we drop traffic both to and from localhost.'
 tags: maxPacketsToSave fieldSet localhost
 ---
 
