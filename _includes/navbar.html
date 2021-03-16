@@ -16,6 +16,7 @@
   <div class="collapse navbar-collapse"
     id="collapsingNavbar">
     <ul class="nav navbar-nav mr-auto">
+      <!-- full size nav -->
       <li class="nav-item d-none d-sm-none d-md-block">
         <a class="nav-link"
           href="index#home">
@@ -46,12 +47,6 @@
             href="index#screenshots">
             Screenshots
           </a>
-          <!--
-          <a class="dropdown-item download-link"
-            onclick="setActive('download')"
-            href="index#download">
-            Downloads
-          </a> -->
           <a class="dropdown-item help-link"
             onclick="setActive('help')"
             href="index#help">
@@ -59,67 +54,18 @@
           </a>
         </div>
       </li>
-      <span class="d-sm-block d-md-none">
-        <li class="nav-item home-link">
-          <a class="nav-link"
-            href="index#home">
-            <strong>Arkime</strong>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link home-link"
-            onclick="setActive('home')"
-            href="index#home">
-            Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link demo-link"
-            onclick="setActive('demo')"
-            href="index#demo">
-            Demo
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link screenshots-link"
-            onclick="setActive('screenshots')"
-            href="index#screenshots">
-            Screenshots
-          </a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link download-link"
-            onclick="setActive('download')"
-            href="index#download">
-            Downloads Section
-          </a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link help-link"
-            onclick="setActive('help')"
-            href="index#help">
-            Help
-          </a>
-        </li>
-      </span>
-      <li class="nav-item">
+      <li class="nav-item d-none d-sm-none d-md-block">
         <a class="nav-link downloads-link"
           href="downloads">
           Downloads
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-none d-sm-none d-md-block">
         <a class="nav-link estimators-link"
           href="estimators">
           Estimators
         </a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link on-link"
-          href="on">
-          ArkimeON 2019
-        </a>
-      </li> -->
       <li class="nav-item dropdown d-none d-sm-none d-md-block">
         <a class="nav-link dropdown-toggle cursor-pointer wiki-link"
           data-toggle="dropdown"
@@ -147,46 +93,94 @@
           </a>
         </div>
       </li>
-      <span class="d-sm-block d-md-none">
+      <li class="nav-item dropdown d-none d-sm-none d-md-block">
+        <a class="nav-link dropdown-toggle cursor-pointer galleries-link"
+          data-toggle="dropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Galleries
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item wise-configs-link"
+            href="wise-configs">
+            WISE 3.x Configs
+          </a>
+          <a class="dropdown-item rules-link"
+            href="rules">
+            Arkime Rules
+          </a>
+        </div>
+      </li> <!-- /full size nav -->
+      <!-- collapsed nav -->
+      <div class="d-sm-block d-md-none pt-2 pb-2">
         <li class="nav-item">
-          <a class="nav-link faq-link"
+          <a class="nav-link home-link pt-1 pb-1"
+            href="index#home">
+            <strong>Arkime Home</strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link downloads-link pt-1 pb-1"
+            href="downloads">
+            Downloads
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link estimators-link pt-1 pb-1"
+            href="estimators">
+            Estimators
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link faq-link pt-1 pb-1"
             href="faq">
             FAQ
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link settings-link"
+          <a class="nav-link settings-link pt-1 pb-1"
             href="settings">
             Settings
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link api-link"
+          <a class="nav-link api-link pt-1 pb-1"
             href="api">
             API
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link learn-link"
+          <a class="nav-link learn-link pt-1 pb-1"
             href="learn">
             Docs
           </a>
         </li>
-      </span>
-      <span class="d-sm-block d-md-none">
         <li class="nav-item">
-          <a class="nav-link"
+          <a class="nav-link wise-config-link pt-1 pb-1"
+            href="wise-configs">
+            WISE 3.x Configs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rules-link pt-1 pb-1"
+            href="rules">
+            Arkime Rules
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pt-1 pb-1"
             href="https://slackinvite.arkime.com/">
             Slack Us
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"
+          <a class="nav-link pt-1 pb-1"
             href="https://github.com/arkime/arkime">
             Arkime GitHub
           </a>
         </li>
-      </span>
+      </div> <!-- collapsed nav -->
     </ul>
     <form class="form-inline d-none d-sm-none d-md-block">
       <a href="https://slackinvite.arkime.com/"
