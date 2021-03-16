@@ -1,6 +1,6 @@
 ---
 title: Google Cloud IPs4
-description: 'Download the GCloud IP CIDRs from amazon and add cloud.region and cloud.service fields to session that match.'
+description: 'Download the GCloud IP CIDRs from Amazon and add cloud.region and cloud.service fields to the sessions that match.'
 tags: google cloud gcloud ip
 ---
 
