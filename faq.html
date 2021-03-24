@@ -506,7 +506,7 @@ title: FAQ
               2.2+
             </td>
             <td>
-              1.7.0 (1.8.0 recomended)
+              1.7.0 (1.8.0 recommended)
             </td>
             <td>
               6.8.2+ (6.8.6+ recommended), 7.1+ (7.8.0+ recommended, 7.7.0 broken)
@@ -526,7 +526,7 @@ title: FAQ
               2.0, 2.1
             </td>
             <td>
-              1.7.0 (1.8.0 recomended)
+              1.7.0 (1.8.0 recommended)
             </td>
             <td>
              6.7, 6.8, 7.1+
@@ -590,7 +590,7 @@ title: FAQ
               0.20.2
             </td>
             <td>
-              0.18.1 (0.20.2 recomended)
+              0.18.1 (0.20.2 recommended)
             </td>
             <td>
               2.4, 5.x
@@ -2275,7 +2275,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         <li>
           Edit <code>/data/moloch/etc/config.ini</code>, and create a section for
           each of the Arkime nodes. Assuming the defaults are correct in the
-          <code>[default]</code> section, the only thing thing that
+          <code>[default]</code> section, the only thing that
           <strong>MUST</strong> be set is the interface item. It is also common
           to have each Arkime node talk to a different Elasticsearch node if
           running a cluster of Elasticsearch nodes.
@@ -2458,7 +2458,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </li>
         <li>
           Arkime picks a packet queue to send the packet to, if the packet queue
-          is too busy it will drop the packet. Potentially increase increase
+          is too busy it will drop the packet. Potentially increase
           <a href="/settings#packetthreads"><code>packetThreads</code></a> or
           <a href="/settings#maxpacketsinqueue"><code>maxPacketsInQueue</code></a> if too
           many packets are being dropped here.
@@ -2695,7 +2695,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           <tr><td>http.c:369</td><td>File Name:Line Number</td></tr>
           <tr><td>arkime_http_curlm_check_multi_info</td><td>Function Name</td></tr>
           <tr><td>8000/30</td><td>8000 queued requests to server<br>30 connections to server</td></tr>
-          <tr><td>ASYNC</td><td>Asynchronous request, SYNC for Syncrhonous request</td></tr>
+          <tr><td>ASYNC</td><td>Asynchronous request, SYNC for Synchronous request</td></tr>
           <tr><td>200</td><td>HTTP status code</td></tr>
           <tr><td>http://eshost:9200/_bulk</td><td>Requested URL</td></tr>
           <tr><td>250032/5439</td><td>250342 bytes uploaded (CURLINFO_SIZE_UPLOAD)<br>5439 bytes downloaded (CURLINFO_SIZE_DOWNLOAD)</td></tr>
@@ -2988,7 +2988,7 @@ viewHost = localhost</code></pre>
       <p>
         It is possible to search multiple Arkime clusters by setting up a
         special multiple Arkime viewer and a special MultiES process. MultiES
-        is similiar to Elasticsearch tribe nodes, except it was created before
+        is similar to Elasticsearch tribe nodes, except it was created before
         tribe nodes and can deal with multiple indexes having the same name.
         Prior to Moloch 1.5, one big limitation currently is that all the
         Moloch clusters have to use the same <a href="/settings#rotateindex"><code>rotateIndex</code></a> setting.
@@ -3222,7 +3222,7 @@ multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
                 Reuse the same node name as previously with a <code>-n</code> option
               </li>
               <li>
-                Use the <code>viewUrl</code> for that old nodename that points to the new host.
+                Use the <code>viewUrl</code> for that old node name that points to the new host.
               </li>
             </ol>
           </li>
@@ -3335,7 +3335,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
           Restart <code>moloch-capture</code> after adding a
           <code>--debug</code> option may print out useful information what is
           wrong.  Look to make sure that wise is being called with the correct URL.
-          Verify that the plugins,wiseHost,wiseURL setting is what you actually think it is.
+          Verify that the plugins, wiseHost and wiseURL setting is what you actually think it is.
         </li>
       </ol>
       <!-- /wise -->
