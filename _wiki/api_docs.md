@@ -23,7 +23,6 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 | --- | --- | --- |
 | links | <code>array</code>| The list of links |
 | nodes | <code>array</code>| The list of nodes |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
 <a name="/connections/csv"></a>
 
@@ -54,7 +53,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 
 GET - /api/histories
 
-Retrieves a list of histories.
+Retrieves a list of histories, or user client requests to the APIs.
 
 
 **Parameters**:
@@ -542,7 +541,6 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | data | <code>array</code>| The list of sessions with the requested fields |
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
 <a name="/sessions/csv"></a>
 
@@ -591,7 +589,6 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 | protocols | <code>object</code>| The list of protocols with counts |
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
 <a name="/spigraph"></a>
 
@@ -618,7 +615,6 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 | items | <code>array</code>| The list of field values with their corresponding timeline graph and map data |
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
-| health | [<code>ESHealth</code>](#ESHealth)| The elasticsearch cluster health status and info |
 
 <a name="/spigraphhierarchy"></a>
 
@@ -1181,7 +1177,6 @@ Fetches a list of stats for each Elasticsearch cluster.
 | data | <code>array</code>| List of ES clusters with their corresponding stats. |
 | recordsTotal | <code>number</code>| The total number of ES clusters. |
 | recordsFiltered | <code>number</code>| The number of ES clusters returned in this result. |
-| health | [<code>ESHealth</code>](#ESHealth)| The Elasticsearch cluster health status and info. |
 
 <a name="/esindices"></a>
 
@@ -2082,7 +2077,7 @@ When using POST the request body and request query are merged. Any duplicate par
 | stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
 | view | <code>string</code> |  | The view name to apply before the expression. |
 | order | <code>string</code> |  | Comma separated list of db field names to sort on. Data is sorted in order of the list supplied. Optionally can be followed by :asc or :desc for ascending or descending sorting. |
-| fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel |
+| fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel, http.xffGEO |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
