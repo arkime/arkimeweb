@@ -89,7 +89,7 @@ We only seek to accept code that you are authorized to contribute to the project
 
 #### API Documentation
 
-Want to fix, add, or update API documentation? That's awesome! Take a look [here](https://github.com/arkime/arkime/blob/master/CONTRIBUTING.md#api-documentation) to learn how we document our APIs and how to contribute.
+Want to fix, add, or update API documentation? That's awesome! Take a look [here](https://github.com/arkime/arkime/blob/main/CONTRIBUTING.md#api-documentation) to learn how we document our APIs and how to contribute.
 
 #### WISE Configs
 

@@ -1535,7 +1535,7 @@ Returns information about ongoing and completed shard recoveries for indices.
 GET - /api/parliament
 
 Returns information all the Arkime clusters configured in your Parliament.
-See the parliament definition <a href="https://github.com/arkime/arkime/tree/master/parliament#parliament-definition">here</a> (subject to change).
+See the parliament definition <a href="https://github.com/arkime/arkime/tree/main/parliament#parliament-definition">here</a> (subject to change).
 
 **Returns**:
 
@@ -2219,4 +2219,3 @@ A database view that can be applied to any search.
 | --- | --- | --- | --- |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
 | visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
-
