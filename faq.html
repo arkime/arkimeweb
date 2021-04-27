@@ -2925,7 +2925,7 @@ ProxyPassReverse /arkime/ https://localhost:8005/</code></pre>
           Edit Arkime’s <code>config.ini</code>
           <ul>
             <li>
-              Create a new section for the Arkime proxy, you will use <code>-n sectionname</code> so viewer uses that section
+              Create a new arkime-proxy section (you can use any name) for the Arkime proxy.
             </li>
             <li>
               Set <a href="/settings#usernameheader"><code>userNameHeader</code></a> to the <strong>lower case</strong> version of the header Apache is setting. NOTE - the
@@ -2946,7 +2946,7 @@ viewHost = localhost</code></pre>
           </ul>
         </li>
         <li>
-          Start the <code>arkime-proxy</code> viewer, so for this example you would need <code>-n arkime-proxy</code>
+          Start the <code>arkime-proxy</code> viewer, so for this example you would need to add <code>-n arkime-proxy</code> to your systemd file (/etc/system/systemd/molochviewer.service by default) so viewer uses that section
         </li>
         <li>
           To prevent the users from going directly to Arkime in the future, scramble their passwords.
@@ -2954,7 +2954,7 @@ viewHost = localhost</code></pre>
           Or you can temporarily add one with the <code>addUser.js</code> script.
         </li>
         <li>
-          If experiencing issues, try running viewer with --debug
+          If experiencing issues, try running viewer with --debug, add by editing the systemd file and restarting viewer
         </li>
       </ul>
 
