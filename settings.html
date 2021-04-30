@@ -1485,6 +1485,23 @@ title: Settings
             </td>
           </tr>
           <tr>
+            <td id="arkimeweburl">
+              arkimeWebURL
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              http[s]://hostName:[viewPort]/[webBasePath]
+            </td>
+            <td>
+              The website URL for Arkime. Used to create links to the Arkime web
+              UI. Must end with a / or bad things will happen. You can include
+              the "http(s)://" or exclude it. If excluded, http/https will be
+              set by determining whether a keyFile and certFile exist.
+            </td>
+          </tr>
+          <tr>
             <td id="yara">
               yara
               <span class="fa fa-link small copy-link cursor-copy"

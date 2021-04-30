@@ -437,7 +437,7 @@ Creates a new notifier (admin only).
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the create notifier operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| name | <code>string</code>| If successful, the name of the new notifier. |
+| notifier | [<code>Notifier</code>](#Notifier)| If successful, the notifier with name sanitized and created/user fields added. |
 
 <a name="/notifier/_name"></a>
 
@@ -462,7 +462,7 @@ Updates an existing notifier (admin only).
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the update notifier operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| name | <code>string</code>| If successful, the name of the updated notifier. |
+| notifier | [<code>Notifier</code>](#Notifier)| If successful, the updated notifier with name sanitized and updated field added/updated. |
 
 <a name="/notifier/_name"></a>
 
@@ -2053,6 +2053,9 @@ A service that can be sent a notification.
 | name | <code>string</code> | The human readable name of the notifier. Must be unique. |
 | type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
 | fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
+| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOC. |
+| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOC. |
+| user | <code>string</code> | The ID of the user that created the notifier. |
 
 <a name="SessionsQuery"></a>
 
@@ -2219,3 +2222,4 @@ A database view that can be applied to any search.
 | --- | --- | --- | --- |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
 | visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
+
