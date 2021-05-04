@@ -1495,6 +1495,7 @@ title: Settings
               http[s]://hostName:[viewPort]/[webBasePath]
             </td>
             <td>
+              (since 3.0)
               The website URL for Arkime. Used to create links to the Arkime web
               UI. Must end with a / or bad things will happen. You can include
               the "http(s)://" or exclude it. If excluded, http/https will be
@@ -1542,6 +1543,44 @@ title: Settings
             </td>
             <td>
               (Since 1.5.0) Set the Yara Fast Mode flag.
+            </td>
+          </tr>
+          <tr>
+            <td id="elasticsearchAPIKey">
+              elasticsearchAPIKey
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              (Since 3.0) Use an Elastisearch API key for access without
+              requiring basic authentication. Once you have created an API Key,
+              you must base64 encode the id and api_key joined by a colon.
+              <code>echo -n "id:api_key" | base64</code> is one way to generate
+              the base64 key. Notice the -n, you have to make sure you don't
+              encode an extra newline.
+            </td>
+          </tr>
+          <tr>
+            <td id="usersElasticsearchAPIKey">
+              usersElasticsearchAPIKey
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              (Since 3.0) Use an Elastisearch API key for users DB access without
+              requiring basic authentication. See
+              <a href="#elasticsearchAPIKey">elasticsearchAPIKey setting</a> for information
+              on creating and encoding an Elasticsearch API Key.
+              See <a href="#userselasticsearch">usersElasticsearch setting</a>
+              for information about the Users DB.
             </td>
           </tr>
         </tbody>
@@ -3396,7 +3435,7 @@ viewHost = localhost
 multiES = true
 multiESPort = 8200
 multiESHost = localhost
-multiESNodes = escluster1.example.com:9200,prefix:PREFIX;escluster2.example.com:9200</code></pre>
+multiESNodes = escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;escluster2.example.com:9200,name:escluster2</code></pre>
       <p class="mb-0">
         Which you would then use by starting both the multiviewer and multies.
         This is a sample for running manually (but you should setup startup
@@ -3473,8 +3512,30 @@ multiESNodes = escluster1.example.com:9200,prefix:PREFIX;escluster2.example.com:
               EMPTY
             </td>
             <td>
-              Semicolon separated list of Elasticsearch nodes that MultiES should connect to. The first node listed will be considered the primary node and is used for users/views/queries. An optional "prefix:" element can follow each host
-              if that cluster was setup with an Elasticsearch prefix.
+              Semicolon separated list of Elasticsearch nodes that MultiES should connect to.
+              The first node listed will be considered the primary node and is used for users/views/queries.
+              <br>
+              Example: <code>escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;escluster2.example.com:9200,name:escluster2</code>
+              <br>
+              Components (comma separated):
+              <ul>
+                <li>
+                  (required) the first part is the node <code>host:port</code>
+                </li>
+                <li>
+                  (required since 2.7.0) <code>name:</code> element to name the Elasticsearch node.
+                </li>
+                <li>
+                   (optional) <code>prefix:</code> element can follow each host
+                   if that cluster was setup with an Elasticsearch prefix.
+                </li>
+                <li>
+                  (optional since 3.0) <code>elasticsearchAPIKey:</code> element
+                  to set an Elasticsearch API Key per node.
+                  <a href="#elasticsearchAPIKey">See elasticsearchAPIKey settings</a>
+                  for more information on how to configure ES API Keys.
+                </li>
+              </ul>
             </td>
           </tr>
         </tbody>
