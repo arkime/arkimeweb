@@ -499,6 +499,70 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
 
 Starting with Arkime 1.5, a section named `[right-click]` with NO colon or unique name, allows the right clicks to live in the wise.ini file, but require a wiseService restart to reload.
 
+Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file.
+
+### valueactionsfile
+Since 3.0 this source monitors configured files for valueactionsfile (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactionsfile:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactionsfile files if they change.
+
+Create a `[valueactionsfile:UNIQUENAME]` section to configure
+{: .mb-0}
+
+Setting | Default | Description
+--------|---------|------------
+file|REQUIRED|The file to load
+{: .table .table-striped .table-sm .mb-4 }
+
+So for example you might have
+{: .mb-0}
+
+```
+[valueactionsfile:virustotal]
+file=/data/arkime/etc/valueactions-virustotal.ini
+```
+
+and then /data/arkime/etc/valueactionsfile-virustotal.ini could contain
+{: .mb-0}
+
+```
+VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
+VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
+VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
+```
+
+Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file.
+
+### valueactionsredis
+Since 3.0 this source monitors configured files for valueactionsredis (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactionsredis:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactionsredis files if they change.
+
+Create a `[valueactionsredis:UNIQUENAME]` section to configure
+{: .mb-0}
+
+Setting | Default | Description
+--------|---------|------------
+redisURL|REQUIRED|URI for Redis connection info
+key|REQUIRED|the document key to fetch the value actions from
+{: .table .table-striped .table-sm .mb-4 }
+
+So for example you might have
+{: .mb-0}
+
+```
+[valueactionsredis:virustotal]
+redisURL=redis://[:password@]host:port/db-number
+key=virustotal
+```
+
+and then /data/arkime/etc/valueactionsredis-virustotal.ini could contain
+{: .mb-0}
+
+```
+VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
+VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
+VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
+```
+
+Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file.
+
 ---
 
 ## What does WISE know?
