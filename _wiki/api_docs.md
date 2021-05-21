@@ -122,7 +122,7 @@ Creates a new hunt.
 | type | <code>string</code> | Whether to search raw or reassembled packets. |
 | search | <code>string</code> | The search text to search for within packets. |
 | searchType | <code>string</code> | What type of search the text is. Options include:      ascii - search for case insensitive ascii text.      asciicase - search for case sensitive ascii text.      hex - search for hex text.      regex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe regex</a>.      hexregex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe hex regex</a>. |
-| notifier | <code>string</code> | The otional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
+| notifier | <code>string</code> | The optional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
 | users | <code>string</code> | The comma separated list of users to be added to the hunt so they can view the results. |
 
 **Returns**:
@@ -177,6 +177,21 @@ Delete a hunt.
 | success | <code>boolean</code>| Whether the delete hunt operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/hunt/_id/cancel"></a>
+
+## /hunt/:id/cancel API
+
+PUT - /api/hunt/:id/cancel
+
+Cancel a hunt. Finishes the hunt and puts it into the hunt history.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the cancel hunt operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/hunt/_id/pause"></a>
 
 ## /hunt/:id/pause API
@@ -205,6 +220,21 @@ Play a hunt.
 | Name | Type | Description |
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the play hunt operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/hunt/_id/removefromsessions"></a>
+
+## /hunt/:id/removefromsessions API
+
+PUT - /api/hunt/:id/removefromsessions
+
+Remove the hunt ID and name from matched sessions.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/hunt/_id/users"></a>
@@ -2039,6 +2069,7 @@ A packet search job that allows users to search within session packets for text.
 | unrunnable | <code>boolean</code> | Whether an error has rendered the hunt unrunnable. |
 | failedSessionIds | <code>array</code> | The list of sessions that have failed to be searched. Used to run the search against them again once the rest of the hunt is complete. |
 | users | <code>array</code> | The list of users to be added to the hunt so they can view the results. |
+| removed | <code>boolean</code> | Whether the hunt name and ID fields have been removed from the matched sessions. |
 
 <a name="Notifier"></a>
 
