@@ -1790,13 +1790,13 @@ Updates an Arkime view for a user.
 
 GET - /api/user/crons
 
-Retrieves cron queries for a user.
+Retrieves periodic queries for a user.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| queries | <code>object</code>| A list of cron query objects. |
+| queries | [<code>Array.&lt;ArkimeQuery&gt;</code>](#ArkimeQuery)| A list of query objects. |
 
 <a name="/user/cron"></a>
 
@@ -1804,15 +1804,16 @@ Retrieves cron queries for a user.
 
 POST - /api/user/cron
 
-Create a new cron query for a user.
+Create a new periodic query for a user.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the create cron operation was successful. |
+| success | <code>boolean</code>| Whether the create operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| key | <code>string</code>| The cron query id |
+| key | <code>string</code>| The query id |
+| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The new query |
 
 <a name="/user/cron/_key"></a>
 
@@ -1820,13 +1821,13 @@ Create a new cron query for a user.
 
 DELETE - /api/user/cron/:key
 
-Delete a cron query for a user.
+Delete a periodic query for a user.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete cron operation was successful. |
+| success | <code>boolean</code>| Whether the delete operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/user/cron/_key"></a>
@@ -1835,14 +1836,15 @@ Delete a cron query for a user.
 
 POST - /api/user/cron/:key
 
-Update a cron query for a user.
+Update a periodic query for a user.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the update cron operation was successful. |
+| success | <code>boolean</code>| Whether the update operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The updated query object |
 
 <a name="/user/columns"></a>
 
@@ -2253,4 +2255,33 @@ A database view that can be applied to any search.
 | --- | --- | --- | --- |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
 | visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
+
+<a name="ArkimeQuery"></a>
+
+## ArkimeQuery Type
+
+A query to be run periodically that can perform actions on sessions that match the queries. The query runs against sessions delayed by 90 seconds to make sure all updates have been completed for that session.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the query |
+| enabled | <code>boolean</code> |  | Whether the query is enabled. If enabled, the query will run every 90 seconds. |
+| lpValue | <code>number</code> |  | The last packet timestamp that was searched. Used to query for the next group of sessions to search. Format is seconds since Unix EPOC. |
+| lastRun | <code>number</code> |  | The time that the query was last run. Format is seconds since Unix EPOC. |
+| count | <code>number</code> |  | The count of total sessions that have matched this query. |
+| lastCount | <code>number</code> |  | The count of sessions that have matched this query during its last run. |
+| query | <code>string</code> |  | The search expression to apply when searching for sessions. |
+| action | <code>string</code> | <code>&quot;tag&quot;</code> | The action to perform when sessions have matched. "tag" or "forward:clusterName". |
+| creator | <code>string</code> |  | The id of the user that created this query. |
+| tags | <code>string</code> |  | A comma separated list of tags to add to each session that matches this query. |
+| notifier | <code>string</code> |  | The name of the notifier to alert when there are matches for this query. |
+| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 mintues. Format is seconds since Unix EPOC. |
+| lastNotifiedCount | <code>number</code> |  | The count of sessions that matched since the last notification was sent. |
+| description | <code>string</code> |  | The description of this query. |
+| created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOC. |
+| lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOC. |
+| lastToggledBy | <code>string</code> |  | The user who last enabled or disabled this query. |
 
