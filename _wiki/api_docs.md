@@ -1812,7 +1812,6 @@ Create a new periodic query for a user.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the create operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| key | <code>string</code>| The query id |
 | query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The new query |
 
 <a name="/user/cron/_key"></a>
