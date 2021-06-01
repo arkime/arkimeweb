@@ -209,6 +209,18 @@ title: Downloads
         <div class="mcommit-downloads">
         </div>
       </div> <!-- /latest commit btns -->
+      <!-- ECS commit btns -->
+      <div class="mt-5 commit-downloads-container"
+        style="display:none;">
+        <h3 class="text-center">
+          <span class="primary-theme-text">
+            Protoype ECS builds, do NOT use in production
+          </span>
+        </h3>
+        <hr>
+        <div class="ecommit-downloads">
+        </div>
+      </div> <!-- /ECS commit btns -->
     </div> <!-- /download btns -->
 
   </div> <!-- /container -->
@@ -277,7 +289,7 @@ title: Downloads
         return html;
       }
 
-      function setupPage (versions, nightlies, acommities, mcommities, sortedVersions) {
+      function setupPage (versions, nightlies, acommities, mcommities, ecommities, sortedVersions) {
         let mainDownloadsHtml = '', moreDownloadsHtml = '';
 
         const osList = [ 'Centos 6', 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
@@ -285,6 +297,7 @@ title: Downloads
 
         let acommitDownloadsHtml = buildDownloadVersionRow(acommities, 'btn-outline-danger', osCommitList);
         let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, 'btn-outline-danger', osCommitList);
+        let ecommitDownloadsHtml = buildDownloadVersionRow(ecommities, 'btn-outline-danger', osCommitList);
 
         for (let v = 0, vlen = sortedVersions.length; v < vlen; ++v) {
           if (versions.hasOwnProperty(sortedVersions[v])) {
@@ -303,6 +316,7 @@ title: Downloads
         $('.more-downloads').prepend(moreDownloadsHtml);
         $('.acommit-downloads').append(acommitDownloadsHtml);
         $('.mcommit-downloads').append(mcommitDownloadsHtml);
+        $('.ecommit-downloads').append(ecommitDownloadsHtml);
       }
 
       function setupError() {
@@ -320,7 +334,7 @@ title: Downloads
         dataType: 'xml',
         success: function (xml) {
           let downloads = parseXML(xml);
-          setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions);
+          setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.ecommities, downloads.sortedVersions);
           $('.loading-downloads').hide();
         },
         error: function(xhr, textStatus, errorThrown) {
