@@ -18,6 +18,8 @@ permalink: /articles
 
 * [Elastic Community Conference: Network Full Packet Capture with Arkime and Elasticsearch](https://www.youtube.com/watch?v=8MyzPR_CCa0)
 * [Webinar - Exploring Indexed Packet Capture with Arkime and Suricata](https://www.youtube.com/watch?v=sQuams8vC3Q)
+* [Network Traffic Analysis with Malcolm](https://www.youtube.com/watch?v=4tkho3OSzdo)
+* [Malcolm Exercises: Cyberville PCAP](https://www.youtube.com/watch?v=6LvyvuAbNWI)
 
 ---
 
