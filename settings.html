@@ -371,6 +371,8 @@ title: Settings
             </td>
             <td>
               Set on 1 viewer node per cluster, this viewer node will perform all the cron queries for the cluster.
+              <br>
+              (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local elasticsearch.
             </td>
           </tr>
           <tr>
@@ -2346,6 +2348,9 @@ title: Settings
               It is possible for multiple Arkime clusters to share the same users table, so that the same accounts and settings work across all clusters.
               So the elasticsearch setting would point to a unique elasticsearch cluster per Arkime cluster, while the usersElasticsearch setting would point to a single shared Elasticsearch cluster.
               Same format as the <a href="#elasticsearch">elasticsearch</a> option.
+              <br>
+              (Since 3.0) This setting applys to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
+              <strong>Note:</strong> <a href="#cronqueries">cronQueries</a> also has to be set in order for shortcuts to be saved to the sersElasticsearch and synced to each cluster.
             </td>
           </tr>
           <tr>
