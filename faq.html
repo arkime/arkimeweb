@@ -1553,9 +1553,10 @@ title: FAQ
         </span>
       </h3>
       <p>
-        This error usually happens when the capture process is trying to update the
-        stats data and falls behind.  If it happens regularly it may indicate
-        the elasticsearch process is having a hard time keeping up with indexing.
+        This error usually happens when the capture process is trying to update the stats data and falls behind.
+        Arkime will continue to function while this error happens with the stats or dstats index, however it does usually mean your elasticsearch cluster is overloaded.
+        You should look at increasing your elasticsearch capacity by adding more nodes, cpu and/or more memory.
+        If increasing elasticsearch capacity isn't an option, then <a href="#how-to-reduce-amount-of-traffic-pcap">reduce the traffic</a> that Arkime processes.
       </p>
 
       <h3 id="recommended-elasticsearch-settings">
