@@ -212,8 +212,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#why-am-i-dropping-packets"
-        title="Why am I dropping packets?">
-        Why am I dropping packets?
+        title="Why am I dropping packets? (and Disk Q issues)">
+        Why am I dropping packets? (and Disk Q issues)
       </a>
       <a class="nav-link nested"
         href="#how-do-i-import-existing-pcaps"
@@ -1998,14 +1998,13 @@ logger.action.level = info</code></pre>
       </ol>
 
       <h3 id="why-am-i-dropping-packets">
-        Why am I dropping packets?
+        Why am I dropping packets? (and Disk Q issues)
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        There are several different types of packet drops and reasons for
-        packet drops:
+        There are several different types of packet drops and reasons for packet drops:
       </p>
 
       <div class="ml-5 mr-5">
@@ -2014,8 +2013,8 @@ logger.action.level = info</code></pre>
           Arkime Version
         </h4>
         <p>
-          Please make sure you are using a recent version of Arkime. Constant
-          improvements are made and it is hard for us to support older versions.
+          Please make sure you are using a recent version of Arkime.
+          Constant improvements are made and it is hard for us to support older versions.
         </p>
 
         <h4 id="kernel-and-tpacket_v3-support">
@@ -2024,24 +2023,12 @@ logger.action.level = info</code></pre>
         <p>
           The most common cause of packet drops with Arkime is leaving the reader
           default of libpcap instead of switching to tpacketv3, pfring or one of
-          the other high performance packet readers. We strongly recommend
-          tpacketv3, but it does required a newer kernel of 3.2 or later. See
-          plugin
+          the other <a href="settings#high-performance-settings">high performance</a> packet readers.
+          We strongly recommend tpacketv3.  See plugin
           <a class="no-decoration"
             href="settings#reader-tpacketv3-settings">
             settings</a>
           for more information.
-        </p>
-        <p>
-          For those stuck on Centos 6 use <code>elrepo</code> and install
-          <code>kernel-ml</code> on the machines that will RUN
-          <code>moloch-capture.</code> Install <code>kernel-ml-headers</code>
-          on the machines that will COMPILE Arkime. Download the packages from
-          <a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/"
-            rel="nofollow">
-            http://elrepo.org/linux/kernel/el6/x86_64/RPMS/</a>.
-          The rebuilt Arkime RPMs already have been compiled on a machine with
-          newer kernel.
         </p>
 
         <h4 id="network-card-config">
@@ -2084,28 +2071,29 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </p>
 
         <h4 id="disk">
-          Disk
+          Disk and Disk Q issues
         </h4>
         <p>
-          Make sure swap has been disabled, swappiness is 0, or at the very least, isn’t writing to
-          the disk being used for PCAP.
-        </p>
-        <p>
-          Make sure the RAID isn’t in the middle of a rebuild or something worse.
-          Most RAID cards will have a status of OPTIMAL when things are all good
-          and DEGRADED or SUBOPTIMAL when things are bad.
-        </p>
-        <p>
-          To test the RAID device use:
-          <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
-        </p>
-        <p>
-          If you are using <code>xfs</code> make sure you use mount options
-          <code>defaults,inode64,noatime</code>
+          In general errors about the Disk Q being exceeded are NOT a problem with Arkime, but usually an issue with either the hardware or the packet rate exceeding what the hardware can save to disk.
+          You will usually need to either fix/upgrade the hardware or reduce the amount of traffic being saved to disk.
         </p>
         <ul>
           <li>
-            Don’t run capture and Elasticsearch on the same machine.
+            Make sure swap has been disabled, swappiness is 0, or at the very least, isn’t writing to the disk being used for PCAP.
+          </li>
+          <li>
+            Make sure the RAID isn’t in the middle of a rebuild or something worse.
+            Most RAID cards will have a status of OPTIMAL when things are all good and DEGRADED or SUBOPTIMAL when things are bad.
+          </li>
+          <li>
+            To test the RAID device use:
+            <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
+            This is the MAX disk performance. Run several times if desired and take
+            the average. If you don’t want to drop any packets, you shouldn’t average
+            more then ~80% of the MAX disk performance. If using RAID and don’t want
+            drop packets during a future rebuild, ~60% is a better value. Remember
+            that most network numbers will be in bits while the disk performance will
+            be in bytes, so you’ll need to adjust the values before comparing.
           </li>
           <li>
             Make sure you actually have enough disk write thru capacity and disks.
@@ -2127,6 +2115,12 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           <li>
             Switch to RAID 0 from RAID 5 if you can live with the TOTAL data loss
             on a single disk failure.
+          </li>
+          <li>
+            If you are using <code>xfs</code> make sure you use mount options <code>defaults,inode64,noatime</code>
+          </li>
+          <li>
+            Don’t run capture and Elasticsearch on the same machine.
           </li>
         </ul>
         <p>
@@ -2168,19 +2162,20 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         <ul>
           <li>
             If using RAID 5 make sure you have write cache enabled on the RAID card.
+            Sometimes this is called WriteBack.
+            Make sure the BBU is still good or you have write cache enabled even when the BBU isn't working or missing.
+          </li>
             <ul>
               <li>
-                Adaptec Example: arcconf SETCACHE 1 LOGICALDRIVE 1 WBB<
+                Adaptec Example: <code>arcconf SETCACHE 1 LOGICALDRIVE 1 WBB</code>
               </li>
               <li>
-                HP Example: hpssacli ctrl slot=0 modify dwc=enable
+                HP Example: <code>hpssacli ctrl slot=0 modify dwc=enable</code>
+              </li>
+              <li>
+                MegaCLI: <code>MegaCli64 -LDSetProp -ForcedWB -Immediate -Lall -aAll ; MegaCli64 -LDSetProp Cached -L0 -a0 -NoLog</code>
               </li>
             </ul>
-          </li>
-          <li>
-            Maybe taskset to give <code>moloch-capture</code> its own CPU, although
-            with the new pcapWriteMethod thread or thread-direct setting, this
-            isn’t needed and may hurt.
           </li>
         </ul>
 
