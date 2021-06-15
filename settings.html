@@ -155,8 +155,8 @@ title: Settings
       </a>
       <a class="nav-link nested"
         href="#right-click"
-        title="right-click">
-        right-click
+        title="valueactions">
+        value actions
       </a>
       <a class="nav-link nested"
         href="#packet-drop-ips"
@@ -3694,7 +3694,7 @@ x-priority=type:integer</code></pre>
 
       <!-- right-click -->
       <h2 id="right-click">
-        right-click
+        Value Actions (previously right-click)
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
@@ -3707,12 +3707,12 @@ x-priority=type:integer</code></pre>
       <p class="mb-0">
         Configuration File Sample:
       </p>
-      <pre><code>[right-click]
+      <pre><code>[valueactions]
 VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
 VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
 VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url</code></pre>
       <p class="mb-0">
-        Each line in the right-click section contains possible actions:
+        Each line in the valueactions section contains possible actions:
       </p>
       <table class="table table-bordered table-sm table-striped">
         <thead>
@@ -3749,6 +3749,7 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
               Needs a url. Supported actionTypes:
               <ul class="mb-0">
                 <li>fetch: Information will be fetched and displayed in the rightclick menu for 5 seconds</li>
+                <li>empty: Nothing is done on value action click</li>
               </ul>
             </td>
           </tr>

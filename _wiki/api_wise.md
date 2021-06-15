@@ -10,7 +10,7 @@ only need to implement the constructor and simpleSourceLoad.
 Sources need to
 * implement WISESource#initSource
 * implement SimpleSource#simpleSourceLoad
-* they can optionaly call this.load() if they want to force a reload of data
+* they can optionally call this.load() if they want to force a reload of data
 
 **Extends**: [<code>WISESource</code>](#WISESource)  
 
@@ -31,7 +31,6 @@ Sources need to
     * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
     * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
     * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
-    * *[.getTypes()](#WISESource+getTypes) ⇒ <code>string</code> \| <code>array</code>*
 
 <a name="new_SimpleSource_new"></a>
 
@@ -214,19 +213,6 @@ Source should implement this method if they want to support editing the data for
 | data | <code>string</code> | The full data for the source from UI |
 | cb | <code>function</code> | (err) |
 
-<a name="WISESource+getTypes"></a>
-
-### *simpleSource.getTypes()* (function)
-
-Get the types this source supports.
-
-**Overrides**: [<code>getTypes</code>](#WISESource+getTypes)  
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>string</code> \| <code>array</code>| the array of types this source supports, by default the type setting from config file if option.typeSetting was set |
-
 <a name="WISESourceAPI"></a>
 
 ## WISESourceAPI (class)
@@ -238,14 +224,15 @@ When sources are created they get an api object to interact with the wise servic
     * _instance_
         * [.debug](#WISESourceAPI+debug) : <code>integer</code>
         * [.insecure](#WISESourceAPI+insecure) : <code>boolean</code>
-        * [.getConfig(section, name, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
+        * [.getConfig(section, sectionKey, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
         * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
         * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
         * [.addField(field)](#WISESourceAPI+addField)
-        * [.addView(name, view)](#WISESourceAPI+addView)
-        * [.addSource(section, src)](#WISESourceAPI+addSource)
+        * [.addView(viewName, view)](#WISESourceAPI+addView)
+        * [.addSource(section, src, types)](#WISESourceAPI+addSource)
         * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
         * [.createRedisClient()](#WISESourceAPI+createRedisClient)
+        * [.createMemcachedClient()](#WISESourceAPI+createMemcachedClient)
         * [.addValueAction()](#WISESourceAPI+addValueAction)
     * _inner_
         * [~SourceConfigField](#WISESourceAPI..SourceConfigField) : <code>Object</code>
@@ -266,7 +253,7 @@ Is wiseService running in insecure mode
 
 <a name="WISESourceAPI+getConfig"></a>
 
-### wiseSourceAPI.getConfig(section, name, [default]) (function)
+### wiseSourceAPI.getConfig(section, sectionKey, [default]) (function)
 
 Get from the config section a value or default
 
@@ -276,7 +263,7 @@ Get from the config section a value or default
 | Param | Type | Description |
 | --- | --- | --- |
 | section | <code>string</code> | The section in the config file the key is in |
-| name | <code>string</code> | The key to get from the section |
+| sectionKey | <code>string</code> | The key to get from the section |
 | [default] | <code>string</code> | the default value to return if key is not found in section |
 
 **Returns**:
@@ -331,7 +318,7 @@ Add a field
 
 <a name="WISESourceAPI+addView"></a>
 
-### wiseSourceAPI.addView(name, view) (function)
+### wiseSourceAPI.addView(viewName, view) (function)
 
 Add a view
 
@@ -340,12 +327,12 @@ Add a view
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>string</code> | Name of the new view |
+| viewName | <code>string</code> | Name of the new view |
 | view | <code>string</code> | An encoded view definition |
 
 <a name="WISESourceAPI+addSource"></a>
 
-### wiseSourceAPI.addSource(section, src) (function)
+### wiseSourceAPI.addSource(section, src, types) (function)
 
 Activate a section of a source. Must be called if you want wise to query the source.
 A section is an instance of a source, some sources can have multiple sections.
@@ -357,6 +344,7 @@ A section is an instance of a source, some sources can have multiple sections.
 | --- | --- | --- |
 | section | <code>string</code> | The section name |
 | src | [<code>WISESource</code>](#WISESource) | A WISESource object |
+| types | <code>string</code> \| <code>Array</code> | An array of the types that this source supports |
 
 <a name="WISESourceAPI+addSourceConfigDef"></a>
 
@@ -376,17 +364,25 @@ Add for each source config definition for the UI to use.
 
 ### wiseSourceAPI.createRedisClient() (function)
 
-Create a redis client from the info in a section
+Create a redis client from the provided url
 
 **Params**: <code>string</code> url - The redis url to connect to.  
 **Params**: <code>string</code> section - The section this redis client is being created for  
+<a name="WISESourceAPI+createMemcachedClient"></a>
+
+### wiseSourceAPI.createMemcachedClient() (function)
+
+Create a memcached client from the provided url
+
+**Params**: <code>string</code> url - The memcached url to connect to.  
+**Params**: <code>string</code> section - The section this memcached client is being created for  
 <a name="WISESourceAPI+addValueAction"></a>
 
 ### wiseSourceAPI.addValueAction() (function)
 
 Add a value action set
 
-**Params**: <code>string</code> name - The globally unique name of this action, not shown to user  
+**Params**: <code>string</code> actionName - The globally unique name of this action, not shown to user  
 **Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
 <a name="WISESourceAPI..SourceConfigField"></a>
 
@@ -435,13 +431,16 @@ Define all configuration for a field for a source
 
 | Name | Type | Description |
 | --- | --- | --- |
+| key | <code>string</code> | The key must be unique and is also used as the right click menu name if the name field is missing |
 | name | <code>string</code> | The name of the value action to show the user |
 | [url] | <code>string</code> | The url to send the user, supports special subsitutions, must set url or func |
 | [func] | <code>string</code> | A javascript function body to call, will be passed the name and value and must return the value, must set url or func |
 | [actionType] | <code>string</code> | If set to 'fetch' this will replace the menu option with the results of url or func |
-| [category] | <code>string</code> | Which category of fields should the value action be shown for, must set fields or category |
+| [category] | <code>string</code> | Which category of fields should the value action be shown for, must set fields or category. <a href="settings#right-click">View available categories</a> |
 | [fields] | <code>string</code> | Which fields to show the value action for, must set fields or category |
 | [regex] | <code>string</code> | When set replaces %REGEX% in the url with the match |
+| [users] | <code>string</code> | A comma separated list of user names that can see the right click item. If not set then all users can see the right click item. |
+| [notUsers] | <code>string</code> | (Since 3.0) A comma separated list of user names that can NOT see the right click item. This setting is applied before the users setting above. |
 
 <a name="WISESource"></a>
 
@@ -466,7 +465,6 @@ All sources need to have the WISESource as their top base class.
         * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
         * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
         * *[.dump(res)](#WISESource+dump)*
-        * *[.getTypes()](#WISESource+getTypes) ⇒ <code>string</code> \| <code>array</code>*
     * _static_
         * [.encodeResult()](#WISESource.encodeResult) ⇒ <code>buffer</code>
         * [.combineResults(results)](#WISESource.combineResults) ⇒ <code>Buffer</code>
@@ -492,7 +490,8 @@ Should only be created by super(api, section, options) call
 | [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as dont |
 | [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
 | [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
-| [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting |
+| [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting with default the provided value if not false |
+| [options.fullQuery] | <code>boolean</code> | <code>false</code> | for MD5/SHA, query will be query.value and query.contentType |
 
 <a name="WISESource+tagsResult"></a>
 
@@ -637,18 +636,6 @@ Source should implement this method if they want to support displaying the curre
 | --- | --- | --- |
 | res | <code>object</code> | The express res object |
 
-<a name="WISESource+getTypes"></a>
-
-### *wiseSource.getTypes()* (function)
-
-Get the types this source supports.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>string</code> \| <code>array</code>| the array of types this source supports, by default the type setting from config file if option.typeSetting was set |
-
 <a name="WISESource.encodeResult"></a>
 
 ### WISESource.encodeResult() (function)
@@ -720,7 +707,8 @@ Download a url and save to a file, if we already have the file and less than a m
 
 ### *WISESource.initSource(api)* (function)
 
-Every source needs to implement this method, usually with
+Every source needs to implement this method. If a singleton it will just create the source object direction.
+If not it should loop thru all keys that start with sourcekind:
 
 
 **Parameters**:
