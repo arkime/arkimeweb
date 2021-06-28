@@ -764,6 +764,11 @@ title: FAQ
             </li>
           </ol>
         </li>
+        <li>
+          Check the output of <pre><code>grep moloch_packet_log /data/moloch/logs/capture.log | tail</pre></code>
+          Verify the packets number is greater than 0, if not, then no packets were processed.
+          Verify the first pstats number is greater than 0, if not, Arkime didn't know how to decode any packets.
+        </li>
       </ol>
 
       <span id="how-do-i-reset-moloch"></span>
@@ -2047,7 +2052,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         <p>
           If Arkime was installed from the deb/rpm and the Configure script was
           used, this should already be done in
-          <code>/data/moloch/bin/arkime_config_interfaces.sh</code>
+          <code>/data/moloch/bin/moloch_config_interfaces.sh</code>
         </p>
 
         <h4 id="packetthreads-and-the-packet-q-is-overflowing-error">
@@ -2233,7 +2238,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         <code>
-          ${arkime_dir}/bin/moloch-capture -c [config_file] -r [pcap_file]
+          ${moloch_dir}/bin/moloch-capture -c [config_file] -r [pcap_file]
         </code>
       </p>
       <p>
@@ -2241,7 +2246,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         See
-        <code>${arkime_dir}/bin/moloch-capture --help</code> for more info.
+        <code>${moloch_dir}/bin/moloch-capture --help</code> for more info.
         The <code>--monitor</code> to monitor non NFS directories, <code>--skip</code> to skip already loaded pcap files, and <code>-R</code> to process directories are common options.
       </p>
       <p>
@@ -2704,12 +2709,12 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           onclick="copyLink(this, 'faq')">
         </span>
       </h4>
-      <pre><code>Jan 01 01:01:01 http.c:369 arkime_http_curlm_check_multi_info(): 8000/30 ASYNC 200 http://eshost:9200/_bulk 250342/5439 14ms 12345ms</code></pre>
+      <pre><code>Jan 01 01:01:01 http.c:369 moloch_http_curlm_check_multi_info(): 8000/30 ASYNC 200 http://eshost:9200/_bulk 250342/5439 14ms 12345ms</code></pre>
       <table class="table table-sm table-bordered">
         <tbody>
           <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
           <tr><td>http.c:369</td><td>File Name:Line Number</td></tr>
-          <tr><td>arkime_http_curlm_check_multi_info</td><td>Function Name</td></tr>
+          <tr><td>moloch_http_curlm_check_multi_info</td><td>Function Name</td></tr>
           <tr><td>8000/30</td><td>8000 queued requests to server<br>30 connections to server</td></tr>
           <tr><td>ASYNC</td><td>Asynchronous request, SYNC for Synchronous request</td></tr>
           <tr><td>200</td><td>HTTP status code</td></tr>
@@ -2728,12 +2733,12 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           onclick="copyLink(this, 'faq')">
         </span>
       </h4>
-      <pre><code>Jan 01 01:01:01 packet.c:1185 arkime_packet_log(): packets: 3911000000 current sessions: 41771/45251 oldest: 0 - recv: 4028852297 drop: 123 (0.00) queue: 1 disk: 2 packet: 3 close: 4 ns: 5 frags: 0/1988 pstats: 4132185901/1/2/3/4/5</code></pre>
+      <pre><code>Jan 01 01:01:01 packet.c:1185 moloch_packet_log(): packets: 3911000000 current sessions: 41771/45251 oldest: 0 - recv: 4028852297 drop: 123 (0.00) queue: 1 disk: 2 packet: 3 close: 4 ns: 5 frags: 0/1988 pstats: 4132185901/1/2/3/4/5</code></pre>
       <table class="table table-sm table-bordered">
         <tbody>
           <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
           <tr><td>packet.c:1185</td><td>File Name:Line Number</td></tr>
-          <tr><td>arkime_packet_log</td><td>Function Name</td></tr>
+          <tr><td>moloch_packet_log</td><td>Function Name</td></tr>
           <tr><td>packets: 3911000000</td><td>3911000000 packets are going to be processed by the packet queues.  These packets have made it past corrupt checks, packet-drop-ips checks, and are ones we most likely understand.</td></tr>
           <tr><td>current session: 41771/45251</td><td>41771 monitored sessions of the current session type (usually tcp)<br>45251 monitored sessions total</td></tr>
           <tr><td>oldest: 0</td><td>In the current session type queue, the oldest session should be idled out in 0 seconds</td></tr>
