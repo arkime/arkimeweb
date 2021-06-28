@@ -792,7 +792,7 @@ title: FAQ
           <code>wipe</code> commands. The only difference between the two
           commands is that <code>wipe</code> leaves the
           added users so they don’t need to be re-added.
-          <pre><code>/data/moloch/db/db.pl ESHOST:ESPORT wipe</code></pre>
+          <pre><code>/data/moloch/db/db.pl http://ESHOST:9200 wipe</code></pre>
         </li>
         <li>
           Delete the PCAP files. The PCAP files are stored on the file system in
@@ -1272,11 +1272,11 @@ title: FAQ
       </p>
       <p>
         To change future days
-        <pre><code>db/db.pl &lt;ESHOST:ESPORT&gt; upgrade --replicas 1</code></pre>
+        <pre><code>db/db.pl &lt;http://ESHOST:9200&gt; upgrade --replicas 1</code></pre>
       </p>
       <p>
         To change past days, but not the current day
-        <pre><code>db/db.pl &lt;ESHOST:ESPORT&gt; expire &lt;type&gt; &lt;num&gt; --replicas 1</code></pre>
+        <pre><code>db/db.pl &lt;http://ESHOST:9200&gt; expire &lt;type&gt; &lt;num&gt; --replicas 1</code></pre>
       </p>
       <p>
         We recommend the second solution since it allows current traffic to be
