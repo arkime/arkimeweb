@@ -1018,6 +1018,7 @@ title: FAQ
         <li>wise - for json data keyColumn has been renamed keyPath</li>
         <li>wise - now lower case lotermfield and upper case uptermfield fields</li>
         <li>You may need to set usersPrefix setting if your users index lives on a Arkime cluster that hasn't been upgraded to use arkime_ yet</li>
+        <li>ilm - you will need to run the db.pl ilm command again</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
@@ -1026,12 +1027,9 @@ title: FAQ
         <li>Install Arkime &gt;= 3.0 without restarting captures/viewers</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.</li>
         <li>Shutdown captures</li>
-        <li>run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
-        <li> If moving from Moloch install to Arkime (not Hybrid) install you'll need to:
-          <ul>
-            <li>Run <code>/opt/arkime/bin/moloch2arkime.sh</code></li>
-            <li>Verify <code>/opt/arkime/etc/config.ini</code>
-          </ul>
+        <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
+        <li>Verify your config.ini has the new /opt/arkime path if moving</li>
+        <li>If using ilm, run the db.pl ilm command again</li>
         <li>Restart capture and viewers</li>
         <li>Verify everything is working</li>
       </ul>
