@@ -1011,21 +1011,20 @@ title: FAQ
       <h4>Breaking Changes</h4>
       <ul>
         <li>Elasticsearch before 7.10 is not supported
-        <li>If not using an Elasticsearch prefix, the prefix arkime_ will now be used after upgrading to 3.0</li>
-        <li>multies - The multiESNodes requires a name: and prefix: attribute per entry</li>
-        <li>wise - custom sources will need to be modified</li>
+        <li>If not using an index prefix (the prefix= setting), the prefix arkime_ will now be used on all new indices after upgrading to 3.0</li>
+        <li>multies - The multiESNodes requires a name: and prefix: attribute per entry. Use prefix:arkime_ if not setting a prefix.</li>
+        <li>wise - custom sources will need to be modified for new class design</li>
         <li>wise - redis urls have a new standard format</li>
         <li>wise - for json data keyColumn has been renamed keyPath</li>
-        <li>wise - now lower case lotermfield and upper case uptermfield fields</li>
-        <li>You may need to set usersPrefix setting if your users index lives on a Arkime cluster that hasn't been upgraded to use arkime_ yet</li>
-        <li>ilm - you will need to run the db.pl ilm command again</li>
+        <li>You may need to set the usersPrefix setting if your users index lives on a Arkime cluster that hasn't been upgraded to use arkime_ yet</li>
+        <li>ilm - you will need to run the db.pl ilm command again after upgrading</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
         <li>You must be using Moloch 2.4 (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
         <li>You must be using Elasticsearch 7.10+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.10.2</a> or later recommended) BEFORE trying to upgrade to Arkime 3.0</li>
-        <li>Install Arkime &gt;= 3.0 without restarting captures/viewers</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.</li>
+        <li>Install Arkime &gt;= 3.0 without restarting captures/viewers</li>
         <li>Shutdown captures</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
         <li>Verify your config.ini has the new /opt/arkime path if moving</li>
