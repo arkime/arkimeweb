@@ -4,9 +4,9 @@ function parseXML (xml) {
   let files = $(xml).find('ListBucketResult').find('Contents');
   let downloads = {};
   let nightlies = { title:'Nightly', downloads:[] };
-  let acommities = { title:'Arkime Last Commit', downloads:[] };
-  let mcommities = { title:'Arkime/Moloch Hybrid Last Commit', downloads:[] };
-  let ecommities = { title:'Arkime ECS Last Commit', downloads:[] };
+  let acommities = { title:'Arkime Latest Commit', downloads:[] };
+  let mcommities = { title:'Arkime/Moloch Hybrid Latest Commit', downloads:[] };
+  let ecommities = { title:'Arkime ECS Latest Commit', downloads:[] };
 
   for (let i = 0, len = files.length; i < len; ++i) {
     let file = $(files[i]);
