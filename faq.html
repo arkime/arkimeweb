@@ -1002,18 +1002,18 @@ title: FAQ
       </h3>
 
       <p>
-        <strong>3.0 has not been released yet, this are preliminary instructions for the ECS build!</strong>
         Upgrading to Arkime 3.0 is a multistep process that requires an outage.
         An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
-        Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
+        Do not restart the capture processes until the db.pl upgrade has finished!
+        All of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
         This is very important when upgrading to ES 8.x later.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
-        <li>Elasticsearch before 7.10 is not supported
-        <li>If not using an index prefix (the prefix= setting), the prefix arkime_ will now be used on all new indices after upgrading to 3.0</li>
+        <li>Elasticsearch before 7.10 is not supported</li>
+        <li>All indices will now start with arkime_ after upgrading if a prefix was not previously used</li>
         <li>multies - The multiESNodes requires a name: and prefix: attribute per entry. Use prefix:arkime_ if not setting a prefix.</li>
-        <li>wise - custom sources will need to be modified for new class design</li>
+        <li>wise - custom sources will need to be modified to use the new javascript class design</li>
         <li>wise - redis urls have a new standard format</li>
         <li>wise - for json data keyColumn has been renamed keyPath</li>
         <li>You may need to set the usersPrefix setting if your users index lives on a Arkime cluster that hasn't been upgraded to use arkime_ yet</li>
