@@ -148,21 +148,24 @@ div.demo > h1.demo-small-screen {
 
 
 /* arkimeet us page styles --------- */
-.arkimeetus-content .angle-background {
+.arkimeetus-content .angle-background,
+.v3-content .angle-background {
   margin-bottom: -200px;
   padding-bottom: 360px !important;
 }
 
-.arkimeetus-content .black-arkime {
+.arkimeetus-content .black-arkime,
+.v3-content .black-arkime {
   top: -130px;
   position: relative;
   margin-bottom: -200px;
 }
-.arkimeetus-content .black-arkime > img {
+.arkimeetus-content .black-arkime > img,
+.v3-content .black-arkime > img {
   height: 230px;
 }
 
-.arkimeetus-footer {
+.arkimeetus-footer, .v3-footer {
   margin-top: 200px;
 }
 
@@ -421,6 +424,11 @@ a.anchor.anchor-offset-more {
 /* zebra stripey list groups */
 ul.list-group.list-group-striped > li.list-group-item:nth-of-type(even) {
   background-color: #f8f9fa;
+}
+
+/* condensed list groups */
+ul.list-group.list-group-sm > li.list-group-item {
+  padding: 0.4rem 0.8rem;
 }
 
 /* full height body with scrollable nav and content */

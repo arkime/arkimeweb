@@ -1,0 +1,177 @@
+---
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body id="viewport">
+
+  <div class="v3-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- container -->
+    <div class="container">
+
+      <div class="primary-theme-background pl-4 pr-4 p-nav-lg angle-background angle-background-long">
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h1 class="display-3 text-center">
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="mr-4" />
+              Arkime 3.0
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="ml-4" />
+            </h1>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Name Change, WISE UI, MultiViewer Mode, API Organization and
+              Documentation, Bug Fixes and More
+            </p>
+            <p class="lead text-justify mt-4">
+              We are excited to share that Arkime 3.0 is now
+              <a href="downloads">available</a>!
+              This release includes an entirely new name (<a href="arkimeetus">yay Arkime!</a>),
+              a whole new UI to configure WISE, basic Elastic Common Schema
+              support, new MultiViewer mode, an Arkime viewer API rewrite with
+              standardization and <a href="apiv3">documentation<a>,
+              bug fixes, and much, much more. View a list of all the changes
+              <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+                here</a>.
+            </p>
+            <p class="lead text-justify text-center">
+              <a href="faq#how_do_i_upgrade_to_arkime_3">
+                Learn how to upgrade to 3.0 now!
+              </a>
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Breaking Changes
+            </p>
+            <p class="lead text-justify">
+              <ul class="list-group list-group-sm">
+                <li class="list-group-item">Elasticsearch before 7.10 is not supported
+                <li class="list-group-item">If not using an index prefix (the prefix= setting), the prefix arkime_ will now be used on all new indices after upgrading to 3.0</li>
+                <li class="list-group-item">multies - The multiESNodes requires a name: and prefix: attribute per entry. Use prefix:arkime_ if not setting a prefix.</li>
+                <li class="list-group-item">wise - custom sources will need to be modified for new class design</li>
+                <li class="list-group-item">wise - redis urls have a new standard format</li>
+                <li class="list-group-item">wise - for json data keyColumn has been renamed keyPath</li>
+                <li class="list-group-item">You may need to set the usersPrefix setting if your users index lives on a Arkime cluster that hasn't been upgraded to use arkime_ yet</li>
+                <li class="list-group-item">ilm - you will need to run the db.pl ilm command again after upgrading</li>
+              </ul>
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Name Change
+            </p>
+            <p class="lead text-justify">
+              Moloch has experienced significant growth and change and we
+              thought this was a great time to change our name to Arkime.
+              Learn more about our new name <a href="arkimeetus">here</a>.
+              Our goals were to make the project approachable and to foster an
+              inclusive and encouraging community. Throughout the application,
+              the Moloch text has been changed to Arkime. We’ve also updated
+              our logos and themes!
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              WISE UI
+            </p>
+            <p class="lead text-justify">
+              We have implemented an entirely new user interface for WISE
+              configuration, WISE source creation and updates, and WISE statistics.
+              This is a powerful new tool to help users get started with WISE
+              or improve their WISE service without having to spend time on the
+              configuration or source files. Learn more about this new UI and
+              how to set it up <a href="wise#wise-ui">here</a>.
+              If you’re just hearing about WISE for the first time, learn more
+              <a href="wise">here</a>. We have also documented the WISE APIs
+              <a href="wiseapi">here</a>.
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Viewer API Documentation and Standardization
+            </p>
+            <p class="lead text-justify">
+              We have taken the time to organize, standardize, and document our
+              Arkime Viewer API endpoints. All exposed endpoints are documented
+              <a href="apiv3">here</a> as well as many of the Arkime types that
+              the APIs use or return. Each API endpoint now starts with
+              <code>/api</code> while still supporting the old URL. We have
+              organized the endpoint functions by grouping them into
+              corresponding files and separating them from the Viewer
+              application file.
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              MultiViewer Mode
+            </p>
+            <p class="lead text-justify">
+              You can now run Arkime Viewer in MultiViewer mode. In this mode,
+              you can see a list of Arkime clusters and select which clusters
+              to search against. Learn more about how to configure this setting
+              <a href="settings#multi-viewer-settings">here</a>.
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              MORE!
+            </p>
+            <p class="lead text-center">
+              View a list of all the changes
+              <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+                here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center black-arkime">
+        <img src="assets/Arkime_Logo_Mark_Black@2x.png" />
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- footer -->
+    <div class="v3-footer">
+      {%- include footer.html -%}
+    </div>
+
+  </div>
+</body>
