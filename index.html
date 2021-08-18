@@ -748,24 +748,29 @@ title: Home
       $('[data-toggle="tooltip"]').tooltip();
 
       function setupDownloadBtns (versions, sortedVersions) {
-        let version = versions[sortedVersions[0]]; // get the latest version
+        const version = versions[sortedVersions[0]]; // get the latest version
+        const osList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+        const downloads = version.downloads;
 
         let html = `<div class="row text-center">
                      <div class="col">
                        <h2>${version.title}</h2>
                        <p class="lead">Latest Release ${version.modified}</p>
                      </div>
-                    </div>`;
+                    </div>
+                    <div class="row text-center"><div class="col">`;
 
-        let downloads = version.downloads;
-
-        html += '<div class="row text-center"><div class="col">';
-
-        for (let i = 0, len = downloads.length; i < len; ++i) {
-          let download = downloads[i];
-          html += `<a href="${download.url}" class="btn btn-primary btn-lg btn-fw ml-1 mr-1 mb-2">
-                     ${download.title}
-                   </a>`;
+        let i, d;
+        for (i = 0, len = osList.length; i < len; ++i) {
+          for (d = 0; d < downloads.length; d++) {
+            if (downloads[d].title === osList[i]) {
+              let download = downloads[d];
+              html += `<a href="${download.url}" class="btn btn-primary btn-lg btn-fw ml-1 mr-1 mb-2">
+                         ${download.title}
+                       </a>`;
+              break;
+            }
+          }
         }
 
         html += '</div></div>';
@@ -785,7 +790,6 @@ title: Home
         dataType: 'xml',
         success: function (xml) {
           let downloads = parseXML(xml);
-          console.log('ALW', downloads);
           setupDownloadBtns(downloads.downloads, downloads.sortedVersions);
           $('.loading-downloads').hide();
         },
