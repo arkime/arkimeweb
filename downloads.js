@@ -37,16 +37,34 @@ function parseXML (xml) {
 
       uniqueVers = uniqueVers[0];
 
+      const arkimeOrMoloch = key.match(/(arkime|moloch)/g);
+
+      // The downloads key has arkime/moloch in the name so we have both entries
+      // We uppercase MOLOCH so it sorts before arkime, because we reverse sort and need it to be after
+      let downloadKey;
+      if (arkimeOrMoloch[0] === 'arkime') {
+        downloadKey = `${uniqueVers}-arkime`;
+      } else  {
+        downloadKey = `${uniqueVers}-MOLOCH`;
+      }
+
       // group by version
-      if (!downloads.hasOwnProperty(uniqueVers)) {
-        let title = (uniqueVers.match(/^([0-1]|2\.[0-4])/) ? 'Moloch' : 'Arkime/Moloch Hybrid');
-        downloads[uniqueVers] = {
+      if (!downloads.hasOwnProperty(downloadKey)) {
+        // 2.4 & below is Moloch
+        // 2.7 and above but named moloch is Hybrid
+        // named arkime is Arkime
+        let title;
+        if (arkimeOrMoloch[0] === 'arkime')
+          title = 'Arkime';
+        else
+          title = (uniqueVers.match(/^([0-1]|2\.[0-4])/) ? 'Moloch' : 'Arkime/Moloch Hybrid');
+        downloads[downloadKey] = {
           title     : `${title} ${uniqueVers}`,
           downloads : [download],
           modified  : time
         };
       } else {
-        downloads[uniqueVers].downloads.push(download);
+        downloads[downloadKey].downloads.push(download);
       }
     } else if (key.startsWith('moloch-master')) {
       const keyArr = key.split(key[13]);
