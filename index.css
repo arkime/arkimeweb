@@ -633,3 +633,9 @@ body.full-height-body {
   max-height: 0px;
   visibility: hidden;
 }
+
+/* to offset the scroll position of hash links because of the navbar */
+.hash-link-offset {
+  margin-top: -56px;
+  padding-top: 56px;
+}
