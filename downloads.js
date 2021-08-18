@@ -6,7 +6,6 @@ function parseXML (xml) {
   let nightlies = { title:'Nightly', downloads:[] };
   let acommities = { title:'Arkime Latest Commit', downloads:[] };
   let mcommities = { title:'Arkime/Moloch Hybrid Latest Commit', downloads:[] };
-  let ecommities = { title:'Arkime ECS Latest Commit', downloads:[] };
 
   for (let i = 0, len = files.length; i < len; ++i) {
     let file = $(files[i]);
@@ -98,31 +97,6 @@ function parseXML (xml) {
 
       acommities.modified = time;
       acommities.downloads.push(download);
-    } else if (key.startsWith('arkime-ecs')) {
-      const keyArr = key.split(key[10]);
-      const os = keyArr[1];
-      let time = new Date(file.find('LastModified').text());
-      time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)} ${('0'+time.getHours()).slice(-2)}:${('0'+time.getMinutes()).slice(-2)}:${('0'+time.getSeconds()).slice(-2)}`;
-
-      const osTitle = {
-        'arch.x86': 'Arch',
-        centos6: 'Centos 6',
-        centos7: 'Centos 7',
-        centos8: 'Centos 8',
-        ubuntu16: 'Ubuntu 16.04',
-        ubuntu18: 'Ubuntu 18.04',
-        ubuntu20: 'Ubuntu 20.04'
-      }[os];
-
-      if (!osTitle) { continue; }
-
-      let download = {
-        url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
-        title: osTitle
-      };
-
-      ecommities.modified = time;
-      ecommities.downloads.push(download);
     }
   }
 
@@ -131,7 +105,6 @@ function parseXML (xml) {
     nightlies: nightlies,
     acommities: acommities,
     mcommities: mcommities,
-    ecommities: ecommities,
-    sortedVersions: Object.keys(downloads).reverse()
+    sortedVersions: Object.keys(downloads).sort().reverse()
   };
 }

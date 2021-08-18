@@ -785,6 +785,7 @@ title: Home
         dataType: 'xml',
         success: function (xml) {
           let downloads = parseXML(xml);
+          console.log('ALW', downloads);
           setupDownloadBtns(downloads.downloads, downloads.sortedVersions);
           $('.loading-downloads').hide();
         },

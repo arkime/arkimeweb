@@ -282,7 +282,7 @@ title: Downloads
         return html;
       }
 
-      function setupPage (versions, nightlies, acommities, mcommities, ecommities, sortedVersions) {
+      function setupPage (versions, nightlies, acommities, mcommities, sortedVersions) {
         let mainDownloadsHtml = '', moreDownloadsHtml = '';
 
         const osList = [ 'Centos 6', 'Centos 7', 'Centos 8', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
@@ -290,7 +290,6 @@ title: Downloads
 
         let acommitDownloadsHtml = buildDownloadVersionRow(acommities, 'btn-outline-danger', osCommitList);
         let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, 'btn-outline-danger', osCommitList);
-        let ecommitDownloadsHtml = buildDownloadVersionRow(ecommities, 'btn-outline-danger', osCommitList);
 
         for (let v = 0, vlen = sortedVersions.length; v < vlen; ++v) {
           if (versions.hasOwnProperty(sortedVersions[v])) {
@@ -309,7 +308,6 @@ title: Downloads
         $('.more-downloads').prepend(moreDownloadsHtml);
         $('.acommit-downloads').append(acommitDownloadsHtml);
         $('.mcommit-downloads').append(mcommitDownloadsHtml);
-        $('.ecommit-downloads').append(ecommitDownloadsHtml);
       }
 
       function setupError() {
@@ -327,7 +325,7 @@ title: Downloads
         dataType: 'xml',
         success: function (xml) {
           let downloads = parseXML(xml);
-          setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.ecommities, downloads.sortedVersions);
+          setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions);
           $('.loading-downloads').hide();
         },
         error: function(xhr, textStatus, errorThrown) {
