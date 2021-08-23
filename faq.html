@@ -750,12 +750,12 @@ title: FAQ
           You can add multiple <code>--debug</code> options to get even more information.
           Capture will print out the config settings it is using, verify they
           are what you expect.
-          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code>.
+          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code> and run <code>systemctl daemon-reload</code>.
         </li>
         <li>
           Restart viewer after adding a <code>--debug</code> option may print out useful information what is wrong
           if you are having issues viewing packets that were captured.
-          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code>.
+          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code> and run <code>systemctl daemon-reload</code>.
           <ol type="a">
             <li>
               Make sure the plugins and parsers directories are correctly set
