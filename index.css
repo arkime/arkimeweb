@@ -376,7 +376,9 @@ body.wiki-body .footer-owl {
 
 /* move the image up so the owl is sitting on the border */
 img.footer-owl {
+  position: relative;
   margin-bottom: -2px;
+  left: calc(50% - 11px);
 }
 
 /* code styles */
