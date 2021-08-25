@@ -11,6 +11,7 @@ permalink: "/questions"
 We use Slack for helping folks with questions about Arkime, and save Github issues for bug reports and feature requests.
 You may find that we close questions on github with just a link to this document, sorry about that, but it keeps us better organized.
 Please join the Arkime Slack [here](https://slackinvite.arkime.com) or if you already have joined you can find the web interface [here](https://arkime.slack.com), although we recommend using one of the desktop clients.
+The [FAQ](https://arkime.com/faq) is a great place to start if you have a question, especially the [Arkime is not working](https://arkime.com/faq#arkime-is-not-working) answer.
 
 
 # Reporting Security Issues
