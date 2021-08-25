@@ -679,6 +679,7 @@ title: FAQ
           Check that Elasticsearch is running and green using
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
           on the machine running Elasticsearch.
+          An Unauthorized response probably means you need user:pass in all ES urls, or you are using the wrong one.
         </li>
         <li>
           Check that the db has been initialized with
