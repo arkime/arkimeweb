@@ -1572,6 +1572,8 @@ title: FAQ
         Arkime will continue to function while this error happens with the stats or dstats index, however it does usually mean your elasticsearch cluster is overloaded.
         You should look at increasing your elasticsearch capacity by adding more nodes, cpu and/or more memory.
         If increasing elasticsearch capacity isn't an option, then <a href="#how-to-reduce-amount-of-traffic-pcap">reduce the traffic</a> that Arkime processes.
+        <br>
+        If the N vs M version numbers are very different from each other, that usually means you are running two nodes with the same node name at the same time, that is not supported.
       </p>
 
       <h3 id="recommended-elasticsearch-settings">
