@@ -2995,6 +2995,21 @@ tpacketv3NumThreads=2</pre>
               Use HTTP instead of HTTPS to connect to S3 host.
             </td>
           </tr>
+          <tr>
+            <td id="s3usetokenformetadata">
+              s3UseTokenForMetadata
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              TRUE
+            </td>
+            <td>
+              If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
+              token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1
+            </td>
+          </tr>
         </tbody>
       </table>
       <!-- /writer s3 settings -->
