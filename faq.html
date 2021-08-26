@@ -1634,6 +1634,7 @@ cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
           Write Queue Limit
         </h4>
         <p>
+          No longer need to set since ES 7.9.
           If you hit a lot of bulk failures this can help, but Elastic doesn’t
           recommend raising too much. In older versions of Elasticsearch it is
           named <code>thread_pool.bulk.queue_size</code> so check the docs for
@@ -1643,7 +1644,7 @@ cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
             Elasticsearch Docs
           </a>
         </p>
-        <pre><code>thread_pool.write.queue_size: 2000</code></pre>
+        <pre><code>thread_pool.write.queue_size: 10000</code></pre>
 
         <h4 id="http-compression">
           HTTP Compression
