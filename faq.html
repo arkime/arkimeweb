@@ -810,42 +810,24 @@ title: FAQ
         </span>
       </h3>
       <p>
-        It is possible to get self signed certificates to work in the following scenarios:
-      </p>
-      <ul>
-        <li>
-          User to Arkime Viewer
-        </li>
-        <li>
-          Viewer to Elasticsearch
-        </li>
-        <li>
-          Capture to Elasticsearch
-        </li>
-        <li>
-          MultiES to Elasticsearch
-        </li>
-        <li>
-          Viewer to MultiES
-        </li>
-      </ul>
-      <p>
-        Usually the easiest way is to add the self signed cert to the OS's list
-        of valid certificates or chains.  Googling is the best way to figure out
-        how to do this.  Viewer also supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option.
+        The core Arkime team does not support or recommend self signed certificates,
+        although it is possible to get them working.
+        We suggest using the money you are saving on a commercial full capture product and go buy real certs.
+        Wildcard certs are now cheap and you can even go with free Lets Encrypt certs.
+        There may be folks on the Arkime slack workspace willing to help out,
+        but don't feel bad if the core developers just link to this answer.
       </p>
       <p>
-        The core Arkime team does not support or recommend self signed certs.
-        Use the money you are saving on a commercial product and go buy real
-        certs. Wildcard certs are now cheap and you can even go with free
-        Lets Encrypt certs. There may be folks on the Arkime slack workspace
-        willing to help out.
+        Usually the easiest solution is to add the self signed certificate to the OS's list of valid certificates or chains.
+        Googling is the best way to figure out how to do this, it is different for almost every OS release and version.
+        Viewer supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option that was contributed to the project.
       </p>
       <p>
-        Capture, viewer, db.pl can run with <code>--insecure</code> to turn off cert checking.
+        Capture, viewer, db.pl can run with <code>--insecure</code> to turn off certificate checking.
         You will need to add this option to the startup command for both capture and viewer.
-        For example change in the <code>/etc/systemd/system/arkimecapture.conf</code> file, the <code>ExecStart</code>
-        line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
+        For example, in the <code>/etc/systemd/system/arkimecapture.conf</code> file, the <code>ExecStart</code>
+        line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code> should be changed.
+        You would need to do the same thing for any viewer systemd files.
       </p>
 
       <h3 id="how_do_i_upgrade_to_moloch_1">
