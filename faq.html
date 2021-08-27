@@ -1004,15 +1004,15 @@ title: FAQ
       </ul>
       <h4>Instructions</h4>
       <ul>
-        <li>You must be using Moloch 2.4 (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
+        <li>You must be using Moloch 2.4+ (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
         <li>You must be using Elasticsearch 7.10+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.10.2</a> or later recommended) BEFORE trying to upgrade to Arkime 3.0</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.</li>
         <li>Install Arkime or Arkime/Moloch Hybrid &gt;= 3.0 without restarting captures/viewers (The Hybrid distribution uses /data/moloch and old binary names still.)</li>
-        <li>Shutdown captures</li>
+        <li>Shutdown captures, multies and viewers</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
-        <li>Verify your config.ini has the new /opt/arkime path if moving from the Moloch to Arkime distribution</li>
-        <li>If using ilm, run the db.pl ilm command again with all the same options</li>
-        <li>Restart capture and viewers</li>
+        <li>Verify your config.ini and systemd files have the new /opt/arkime path if moving from the Moloch to Arkime distribution</li>
+        <li>If using ilm, run the db.pl ilm command again with all the same options used previously</li>
+        <li>Restart capture, multies and viewers</li>
         <li>Verify everything is working</li>
       </ul>
       <!-- /general -->
