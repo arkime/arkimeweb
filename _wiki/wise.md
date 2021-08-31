@@ -470,7 +470,7 @@ esHost|REQUIRED|The elasticsearch connection string, usually host:port
 {: .table .table-striped .table-sm .mb-4 }
 
 ### right-click
-This source monitors configured files for right-click actions to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `right-click:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the right click files if they change.
+(Since 3.0 please use the value-actions version) This source monitors configured files for right-click actions to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `right-click:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the right click files if they change.
 
 Create a `[right-click:UNIQUENAME]` section to configure
 {: .mb-0}
@@ -497,9 +497,9 @@ VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus T
 VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
 ```
 
-Starting with Arkime 1.5, a section named `[right-click]` with NO colon or unique name, allows the right clicks to live in the wise.ini file, but require a wiseService restart to reload.
+Starting with Arkime 1.5, a section named `[right-click]` with NO colon or unique name, allows the right clicks to live in the wise.ini file, but require a wiseService restart to reload. This should no longer be used with Arkime 3.0 or later.
 
-Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file.
+Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file if you want to use the WISE Config UI. It is recommended you switch to the value-actions source below.
 
 ### valueactions
 Since 3.0 this source monitors configured files, redis urls, or elasticsearch urls for valueactions (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactions:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactions files if they change.
