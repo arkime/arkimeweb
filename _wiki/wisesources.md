@@ -10,7 +10,7 @@ permalink: "/wisesources"
 
 Adding a new source to WISE is a fairly easy task.  The framework handles most caching and configuration needs leaving the developer to focus on retrieving the data and converting it to a format that Arkime understands.  The best way to learn is to look at other sources.
 
-All sources need to be named `source.something.js` and must contain a class that inherits from WISESource.
+All sources need to be named `source.something.js` and must contain a class that extends WISESource.
 
 ---
 
@@ -30,7 +30,7 @@ In both cases the results will need to be converted from whatever form they are 
 
 ### Memory data
 
-For memory data, sources should use the `HashTable` package to store the data which is loaded into memory.  An interval should be setup to occasionally reload the data.  The `cacheTimeout` variable should be set to -1 so the wiseService doesn't actually cache the data as it is already loaded into memory.
+For memory data, sources should use javsscript `Map` to store the data which is loaded into memory.  An interval should be setup to occasionally reload the data.  The `cacheTimeout` variable should be set to -1 so the wiseService doesn't actually cache the data as it is already loaded into memory inside your source.
 
 ### API Data
 
@@ -42,83 +42,122 @@ API data sources only need to have routines to fetch the data from the API when 
 
 ### Template
 ```
-    var wiseSource     = require('./wiseSource.js')
-      , util           = require('util')
-      , HashTable      = require('hashtable')
-      ;
+    const fs = require('fs');
+    const WISESource = require('./wiseSource.js');
 
-    //////////////////////////////////////////////////////////////////////////////////
-    function SourceName (api, section) {
-      SourceName.super_.call(this, api, section);
+    class SourceName extends WISESource {
+      // ----------------------------------------------------------------------------
+      constructor (api, section) {
+        super(api, section, { dontCache: true });
+        this.key = api.getConfig('sourcename', 'key');
+        this.host = api.getConfig('sourcename', 'host');
 
-      // Get variables needed
-      this.key          = api.getConfig(section, "key");
+        if (this.key === undefined) {
+          console.log(this.section, '- No export key defined');
+          return;
+        }
 
-      // Check if variables needed are set, if not return
-      if (this.key === undefined) {
-        return console.log(this.section, "- No export key defined");
+        if (this.host === undefined) {
+          console.log(this.section, '- No server host defined');
+          return;
+        }
+
+        this.ips = new Map();
+        this.domains = new Map();
+        this.emails = new Map();
+        this.md5s = new Map();
+
+        this.idField = this.api.addField('field:sourcename.id;db:sourcename.id;kind:integer;friendly:Id;help:SourceName Reference ID;shortcut:0;count:true');
+        this.typeField = this.api.addField('field:sourcename.type;db:sourcename.type;kind:lotermfield;friendly:Type;help:Indicator Type;shortcut:1;count:true');
+
+        this.api.addView('sourcename',
+          'if (session.sourcename)\n' +
+          '  div.sessionDetailMeta.bold SourceName\n' +
+          '  dl.sessionDetailMeta\n' +
+          "    +arrayList(session.sourcename, 'id', 'Id', 'sourcename.id')\n" +
+          "    +arrayList(session.sourcename, 'type', 'Type', 'sourcename.type')\n"
+        );
+
+        this.api.addValueAction('sourcenameid', { name: 'SourceName', url: `https://${this.host}/network/%TEXT%`, fields: 'sourcename.id' });
+
+        setImmediate(this.loadFile.bind(this));
+        setInterval(this.loadFile.bind(this), 24 * 60 * 60 * 1000); // Reload file every 24 hours
+
+        this.api.addSource('sourcename', this, ['domain', 'email', 'ip', 'md5']);
       }
 
-      // Setup any other things
-      this.host = "www.example.com";
+      parseFile () {
+          // Code that does stuff here
+      }
 
-      // Create fields that will be set in Arkime
-      this.typeField = this.api.addField("field:thesource.type;db:thesource.type-term;kind:lotermfield;friendly:Type;help:Indicator Type;count:true");
+      // ----------------------------------------------------------------------------
+      loadFile () {
+        console.log(this.section, '- Downloading files');
+        WISESource.request('https://' + this.host + '/export/moloch/?export_key=' + this.key, '/tmp/stuff.json', (statusCode) => {
+          if (statusCode === 200 || !this.loaded) {
+            this.loaded = true;
+            this.parseFile();
+          }
+        });
+      };
 
-      // Create view that will be used in Arkime
-      this.api.addView("thesource",
-        "if (session.thesource)\n" +
-        "  div.sessionDetailMeta.bold thesource\n" +
-        "  dl.sessionDetailMeta\n" +
-        "    +arrayList(session.thesource, 'type-term', 'Type', 'thesource.type')\n";
+      // ----------------------------------------------------------------------------
+      getDomain (domain, cb) {
+        const domains = this.domains;
+        cb(null, domains.get(domain) || domains.get(domain.substring(domain.indexOf('.') + 1)));
+      };
 
-      // Optionally create any special right click actions
-      this.api.addRightClick("thesourcetype", {name:"TheSource", url:"https://" + this.host + "/search.php?search=%TEXT%", field:"thesource.type"});
+      // ----------------------------------------------------------------------------
+      getIp (ip, cb) {
+        cb(null, this.ips.get(ip));
+      };
 
-      // Memory data sources will have this section to load their data
-      // this.cacheTimeout = -1;
-      // setImmediate(this.load.bind(this));
-      // setInterval(this.load.bind(this), X*60*60*1000); // Reload every X hours
-      // this.data = new HashTable();
+      // ----------------------------------------------------------------------------
+      getMd5 (md5, cb) {
+        cb(null, this.md5s.get(md5));
+      };
 
-      // Add the source as available
-      this.api.addSource("thesource", this);
+      // ----------------------------------------------------------------------------
+      getEmail (email, cb) {
+        cb(null, this.emails.get(email));
+      };
+
+      // ----------------------------------------------------------------------------
+      itemCount () {
+        return this.ips.size + this.domains.size + this.md5s.size + this.emails.size;
+      };
+
+      // ----------------------------------------------------------------------------
+      dump (res) {
+        ['ips', 'domains', 'emails', 'md5s'].forEach((ckey) => {
+          res.write(`${ckey}:\n`);
+          this[ckey].forEach((value, key) => {
+            const str = `{"key": "${key}", "ops":\n` +
+              WISESource.result2JSON(value) + '},\n';
+            res.write(str);
+          });
+        });
+        res.end();
+      };
     }
-    util.inherits(SourceName, wiseSource);
-    //////////////////////////////////////////////////////////////////////////////////
-    // Used for memory data sources
-    SourceName.prototype.load = function() {
-      var self = this;
 
-      this.data.clear();
+    // ----------------------------------------------------------------------------
+    exports.initSource = function (api) {
+      api.addSourceConfigDef('sourcename', {
+        singleton: true,
+        name: 'sourcename',
+        description: 'SourceName source',
+        link: 'https://arkime.com/wise#sourcename',
+        types: ['ip', 'domain', 'md5', 'email'],
+        cacheable: false,
+        displayable: true,
+        fields: [
+          { name: 'key', password: true, required: true, help: 'The API key' },
+          { name: 'host', required: true, help: 'Server hostname location' }
+        ]
+      });
 
-      Code to get all the data
-
-      For each row that needs to be added to memory
-        var encoded = wiseSource.encode(self.typeField, row.type
-                                        self.someOtherField, row.someOtherField);
-        self.data.put(row.key, {num: 2, buffer: encoded});
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    // Implement if domain lookups are supported
-    SourceName.prototype.getDomain = function(domain, cb) {
-    };
-    //////////////////////////////////////////////////////////////////////////////////
-    // Implement if ip lookups are supported
-    SourceName.prototype.getIp = function(ip, cb) {
-    };
-    //////////////////////////////////////////////////////////////////////////////////
-    // Implement if md5 lookups are supported
-    SourceName.prototype.getMd5 = function(md5, cb) {
-    };
-    //////////////////////////////////////////////////////////////////////////////////
-    // Implement if email lookups are supported
-    SourceName.prototype.getEmail = function(email, cb) {
-    };
-    //////////////////////////////////////////////////////////////////////////////////
-    // Function called by WISE when file loaded
-    exports.initSource = function(api) {
-      var source = new SourceName(api, "thesource");
+      return new SourceName(api, 'sourcename');
     };
 ```
 
