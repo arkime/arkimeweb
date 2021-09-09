@@ -2572,8 +2572,7 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           <a href="/settings#maxfilesizeg"><code>maxFileSizeG * 10</code></a> space available.
         </li>
         <li>
-          Make sure the files you think should be deleted show up on the files
-          tab, if not use the <code>db.pl sync-files</code> command.
+          If there is a mismatch between the files in the directory and the files on the Files tab run the <code>db.pl http://localhost:9200 sync-files</code> command
         </li>
         <li>
           Make sure the files in the file tab don’t have <code>locked</code> set,
