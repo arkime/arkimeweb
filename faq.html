@@ -2563,8 +2563,9 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
         </li>
         <li>
           Make sure that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
-          actually delete files in the pcap directory and has read/execute
-          permissions in all parent directories.
+          actually delete files in the pcap DIRECTORY and has read/execute permissions in all parent directories.
+          So for example you need to check the /opt and the /opt/arkime and the /opt/arkime/raw directory permissions.
+          The pcap FILES will have read/write permissions which is normal.
         </li>
         <li>
           Make sure the pcap directory is on a filesystem with at least
@@ -2582,7 +2583,10 @@ ${TDIR}/bin/moloch-capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}
           Try restarting viewer
         </li>
         <li>
-          The viewer.log should be printing out that it is trying to delete files
+          The viewer.log should be printing out that it is trying to delete files, you can look for the string "Deleting" in the viewer.log
+        </li>
+        <li>
+          Restart viewer by turning on debugging, either add <code>--debug</code> to the start line or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini file.
         </li>
       </ol>
 
