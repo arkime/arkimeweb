@@ -31,6 +31,7 @@ permalink: "/learn"
 
 #### Elasticsearch
 - [Elasticsearch SSL](esssl)
+- [ES Security Proxy](esproxy)
 
 #### WISE
 - [All about WISE](wise)
