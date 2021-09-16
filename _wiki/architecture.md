@@ -66,12 +66,17 @@ A single host deployment should usually only be used for demos and extremely low
 
 # Remote Device capture
 
-In some cases, it’s not practical or possible to physical co-locate a arkime capture server near a device we want to instrument. If the device is reachable via ssh, we can use ssh to login to the remote device, initiate a capture and stream the raw pcap data back to a arkime server. This streaming pcap data is written into a UNIX pipe.  One starts a arkime capture process using the pipe as the capture interface, resulting in real-time capture instrumentation of a remote device.
+In some cases, it’s not practical or possible to physical co-locate a capture server near a device we want to instrument. If the device is reachable via ssh, we can use ssh to login to the remote device, initiate a capture and stream the raw pcap data back to a arkime server. This streaming pcap data is written into a UNIX pipe.  One starts a arkime capture process using the pipe as the capture interface, resulting in real-time capture instrumentation of a remote device.
 
 ##### Diagram with Steps to implement:
 {: .mb-0 }
 
 ![RemoteCaptureArch](/assets/RemoteCaptureArch.gif)
+
+Steps:
+1. Create named pipe on the local capture machine, you can name whatever you want: <br><code>mkfifo /tmp/10.1.2.3-ens3</code>
+1. Start capture on on the local capture machine: <br><code>/opt/arime/bin/capture --copy -r /tmp/10.1.2.3-ens3</code>
+1. Use ssh to copy the data from remote to localhost machine, exclude capturing the traffic we are sending over ssh: <br><code>ssh user@10.1.2.3 tcpdump -i ens3 -w - not host 192.168.10.5 > /tmp/10.1.2.3-ens3</code>
 
 
 </div>
