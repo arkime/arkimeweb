@@ -1558,7 +1558,7 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.0) Use an Elastisearch API key for access without
+              (Since 3.0.0) Use an Elasticsearch API key for access without
               requiring basic authentication. Once you have created an API Key,
               you must base64 encode the id and api_key joined by a colon.
               <code>echo -n "id:api_key" | base64</code> is one way to generate
@@ -1577,10 +1577,45 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.0) Use an Elastisearch API key for users DB access without
+              (Since 3.0.0) Use an Elasticsearch API key for users DB access without
               requiring basic authentication. See
               <a href="#elasticsearchAPIKey">elasticsearchAPIKey setting</a> for information
               on creating and encoding an Elasticsearch API Key.
+              See <a href="#userselasticsearch">usersElasticsearch setting</a>
+              for information about the Users DB.
+            </td>
+          </tr>
+          <tr>
+            <td id="elasticsearchBasicAuth">
+              elasticsearchBasicAuth
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              (Since 3.0.1) Use basic auth with Elasticsearch.
+              The value can either be the plain text "user:pass" or the base64 encoded version.
+              One way to generate base64 <code>echo -n "username:password" | base64</code> version.
+              Notice the -n, you have to make sure you don't encode an extra newline.
+            </td>
+          </tr>
+          <tr>
+            <td id="usersElasticsearchBasicAuth">
+              usersElasticsearchBasicAuth
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              (Since 3.0.1) Use basic auth with Elasticsearch for Users DB.
+              See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth setting</a> for information
+              on creating and encoding an Elasticsearch Basic Auth.
               See <a href="#userselasticsearch">usersElasticsearch setting</a>
               for information about the Users DB.
             </td>
@@ -3564,10 +3599,16 @@ multiESNodes = escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elastic
                    if that cluster was setup with an Elasticsearch prefix.
                 </li>
                 <li>
-                  (optional since 3.0) <code>elasticsearchAPIKey:</code> element
+                  (optional since 3.0.1) <code>elasticsearchAPIKey:</code> element
                   to set an Elasticsearch API Key per node.
                   <a href="#elasticsearchAPIKey">See elasticsearchAPIKey settings</a>
                   for more information on how to configure ES API Keys.
+                </li>
+                <li>
+                  (optional since 3.0.1) <code>elasticsearchBasicAuth:</code> element
+                  to set an Elasticsearch Basic Auth per node.
+                  <a href="#elasticsearchBasicAuth">See elasticsearchBasicAuth settings</a>
+                  for more information on how to encode Basic Auth settings, you MUST use the base64 version with multies.
                 </li>
               </ul>
             </td>
