@@ -228,12 +228,12 @@
   }
 
   function toggleTheme () {
-    if (!document.body.className) {
-      document.body.className = 'dark-theme';
+    if (!document.body.classList.contains('dark-theme')) {
+      document.body.classList.add('dark-theme');
       $('.switch-label').text('dark mode');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.body.className = '';
+      document.body.classList.remove('dark-theme');
       $('.switch-label').text('light mode');
       localStorage.setItem('theme', 'light');
     }
@@ -273,12 +273,10 @@
         darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       }
 
-      document.body.className = darkMode ? 'dark-theme' : '';
       if (darkMode) {
-        document.body.className = 'dark-theme';
+        document.body.classList.add('dark-theme');
         $('.switch-label').text('dark mode');
       } else {
-        document.body.className = '';
         $('.switch-label').text('light mode');
       }
     }
