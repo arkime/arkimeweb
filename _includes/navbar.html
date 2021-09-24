@@ -183,7 +183,7 @@
       </div> <!-- collapsed nav -->
     </ul>
     <form class="form-inline d-none d-sm-none d-md-block">
-      <div class="switch-container">
+      <div class="switch-container" style="display:none;">
         <div class="switch">
           <div class="switch-btn"></div>
         </div>
@@ -261,24 +261,27 @@
     $(`.${path}-link`).addClass('active');
     $(`.${parentPath}-link`).addClass('active');
 
-    $('.switch-container').click(toggleTheme);
+    const themeSwitch = $('.switch-container');
 
-    if (window.matchMedia) {
-      let darkMode;
+    let darkMode;
 
-      if (localStorage.getItem('theme')) {
-        const savedTheme = localStorage.getItem('theme');
-        darkMode = savedTheme === 'dark';
-      } else {
+    if (localStorage.getItem('theme')) {
+      const savedTheme = localStorage.getItem('theme');
+      darkMode = savedTheme === 'dark';
+    } else {
+      if (window.matchMedia) {
         darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       }
-
-      if (darkMode) {
-        document.body.classList.add('dark-theme');
-        $('.switch-label').text('dark mode');
-      } else {
-        $('.switch-label').text('light mode');
-      }
     }
+
+    if (darkMode) {
+      document.body.classList.add('dark-theme');
+      $('.switch-label').text('dark mode');
+    } else {
+      $('.switch-label').text('light mode');
+    }
+
+    themeSwitch[0].style.display = 'inline-block';
+    themeSwitch.click(toggleTheme);
   });
 </script>
