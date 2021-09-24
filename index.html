@@ -59,9 +59,7 @@ title: Home
       <div class="row mb-4">
         <div class="col-md-12">
           <h1 class="display-1 text-center">
-            <img class="arkime-brand"
-              src="assets/Arkime_Logo_FullGradientBlack@2x.png"
-            />
+            <img class="arkime-brand" />
           </h1>
           <h1 class="display-3 text-center">
             Full Packet Capture
@@ -278,9 +276,10 @@ title: Home
               The Sessions page displays a list of indexed sessions for the selected time period and search expression.
               It includes a timeline graph and map of the session results.
             </p>
-            <img src="assets/sessions.png"
+            <img
               alt="Sessions screenshot"
-              class="screenshot-img"
+              class="screenshot-img sessions"
+              width="50px"
             />
           </div>
           <div class="col-lg-4 col-md-5 small mt-3">
@@ -350,8 +349,8 @@ title: Home
             <p class="lead mb-3">
               The SPI (Session Profile Information) View page allows you to view unique values with session counts for each of the captured fields.
             </p>
-            <img src="assets/spiview.png"
-              class="screenshot-img"
+            <img
+              class="screenshot-img spiview"
               alt="SPI View screenshot"
             />
           </div>
@@ -383,6 +382,16 @@ title: Home
               in that category.
             </p>
             <h5 class="mt-4">
+              <span class="primary-theme-text fa fa-caret-down fa-lg">
+              </span>&nbsp;
+              Field actions
+            </h5>
+            <p>
+              Click the <span class="fa fa-caret-down"></span> button on any field to view
+              actions that can be performed on that field. Like exporting unique values
+              and opening the SPI Graph page.
+            </p>
+            <h5 class="mt-4">
               <span class="primary-theme-text fa fa-ban fa-lg">
               </span>&nbsp;
               Cancel Load
@@ -406,9 +415,9 @@ title: Home
             <p class="lead mb-3">
               The SPI (Session Profile Information) Graph page shows a temporal view for the top unique values of any field.
             </p>
-            <img src="assets/spigraph.png"
+            <img
               alt="SPI Graph screenshot"
-              class="screenshot-img"
+              class="screenshot-img spigraph"
             />
           </div>
           <div class="col-lg-4 col-md-5 small mt-3">
@@ -462,9 +471,9 @@ title: Home
             <p class="lead mb-3">
               The Connections page shows a network graph of your search results.
             </p>
-            <img src="assets/connections.png"
+            <img
               alt="Connections screenshot"
-              class="screenshot-img"
+              class="screenshot-img connections"
             />
           </div>
           <div class="col-lg-4 col-md-5 small mt-3">
@@ -498,9 +507,17 @@ title: Home
               </span>&nbsp;
               Change Source/Destination Nodes
             </h5>
-            <p class="mb-0">
+            <p>
               Make a selection from the Src and Dst drop downs to visualize your data based
               upon different captured field relationships.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-download fa-lg">
+              </span>&nbsp;
+              Save png
+            </h5>
+            <p class="mb-0">
+              Save the graph as a png!
             </p>
           </div>
         </div>

@@ -51,171 +51,171 @@ title: Downloads
 <body id="viewport">
 
   <!-- container -->
-  <div class="container-fluid downloads-content">
+  <div class="downloads-content">
     <!-- navbar -->
     {%- include navbar.html -%}
+    <div class="container-fluid">
+      <!-- info btns -->
+      <div class="row mb-4 mt-4">
+        <div class="col text-center">
+          <a class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2"
+            href="https://s3.amazonaws.com/files.molo.ch/NOTICE.txt">
+            NOTICE
+          </a>
+          <a class="btn btn-outline-primary btn-lg mr-2 btn-fw mb-2"
+            href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+            CHANGELOG
+          </a>
+          <a class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2"
+            href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
+            Instructions
+          </a>
+          <a class="btn btn-outline-warning btn-lg mr-2 btn-fw mb-2"
+            href="https://github.com/arkime/arkime/issues/new">
+            Open an Issue
+          </a>
+        </div>
+      </div> <!-- /info btns -->
 
-    <!-- info btns -->
-    <div class="row mb-4 mt-4">
-      <div class="col text-center">
-        <a class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2"
-          href="https://s3.amazonaws.com/files.molo.ch/NOTICE.txt">
-          NOTICE
-        </a>
-        <a class="btn btn-outline-primary btn-lg mr-2 btn-fw mb-2"
-          href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
-          CHANGELOG
-        </a>
-        <a class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2"
-          href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
-          Instructions
-        </a>
-        <a class="btn btn-outline-warning btn-lg mr-2 btn-fw mb-2"
-          href="https://github.com/arkime/arkime/issues/new">
-          Open an Issue
-        </a>
-      </div>
-    </div> <!-- /info btns -->
-
-    <!-- upgrade warnings -->
-    <div class="row mb-2">
-      <div class="col">
-        <div class="jumbotron pb-2 pt-4">
-          <h3 class="primary-theme-text pb-3 text-center">
-            <span class="fa fa-exclamation-triangle">
-            </span>&nbsp;
-            Before upgrading
-            &nbsp;<span class="fa fa-exclamation-triangle">
-            </span>
-          </h3>
-          <div class="row pb-2">
-            <div class="col-lg-3 col-md-6">
-              <p>
-                <strong>Arkime 2.7 requires ES 7.4+</strong>
-                <br>
-                Read the
-                <a class="no-decoration"
-                  href="faq#how-do-i-upgrade-to-es-7-x">
-                  How do I upgrade to ES 7
-                </a>
-                answer in the FAQ.
-              </p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <p>
-                <strong>From Moloch 2 To Arkime 3</strong>
-                <br>
-                Read the
-                <a class="no-decoration"
-                  href="faq#how_do_i_upgrade_to_arkime_3">
-                  How do I upgrade to Arkime 3.0
-                </a>
-                answer in the FAQ.
-                <br>
-                <em>
-                  Upgrading to 3.0 takes some time, work, and requires ES 7.10.
-                </em>
-              </p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <p>
-                The <strong>Hybrid</strong> downloads still use the old Moloch binary names but have the Arkime branding.
-                The <strong>Arkime</strong> downloads use new binary names and disk layout (/opt/arkime).
-              </p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <p>
-                <strong>Installing the MaxMind DB</strong>
-                <br>
-                Read the
-                <a class="no-decoration"
-                  href="faq#maxmind">
-                  How to install MaxMind DB
-                </a>
-                answer in the FAQ.
-              </p>
+      <!-- upgrade warnings -->
+      <div class="row mb-2">
+        <div class="col">
+          <div class="jumbotron pb-2 pt-4">
+            <h3 class="primary-theme-text pb-3 text-center">
+              <span class="fa fa-exclamation-triangle">
+              </span>&nbsp;
+              Before upgrading
+              &nbsp;<span class="fa fa-exclamation-triangle">
+              </span>
+            </h3>
+            <div class="row pb-2">
+              <div class="col-lg-3 col-md-6">
+                <p>
+                  <strong>Arkime 2.7 requires ES 7.4+</strong>
+                  <br>
+                  Read the
+                  <a class="no-decoration"
+                    href="faq#how-do-i-upgrade-to-es-7-x">
+                    How do I upgrade to ES 7
+                  </a>
+                  answer in the FAQ.
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <p>
+                  <strong>From Moloch 2 To Arkime 3</strong>
+                  <br>
+                  Read the
+                  <a class="no-decoration"
+                    href="faq#how_do_i_upgrade_to_arkime_3">
+                    How do I upgrade to Arkime 3.0
+                  </a>
+                  answer in the FAQ.
+                  <br>
+                  <em>
+                    Upgrading to 3.0 takes some time, work, and requires ES 7.10.
+                  </em>
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <p>
+                  The <strong>Hybrid</strong> downloads still use the old Moloch binary names but have the Arkime branding.
+                  The <strong>Arkime</strong> downloads use new binary names and disk layout (/opt/arkime).
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <p>
+                  <strong>Installing the MaxMind DB</strong>
+                  <br>
+                  Read the
+                  <a class="no-decoration"
+                    href="faq#maxmind">
+                    How to install MaxMind DB
+                  </a>
+                  answer in the FAQ.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div> <!-- /upgrade warnings -->
+      </div> <!-- /upgrade warnings -->
 
-    <!-- download btns -->
-    <div class="downloads mb-5 mr-5 ml-5 pl-3 pr-3">
-      <!-- main downloads -->
-      <h2 class="loading-downloads text-center mb-5 pb-5 mt-5">
-        <span class="fa fa-spinner fa-spin"></span>&nbsp;
-        Loading Arkime downloads...
-      </h2>
-      <div class="main-downloads">
-      </div>
-      <div class="row show-more-downloads text-center mt-3 mb-4"
-        style="display:none;">
-        <div class="col-md-12">
-          <a href="#"
-            onclick="toggleMoreDownloads(event)"
-            class="cursor-pointer no-decoration show-more-downloads-btn">
-            <span class="fa fa-chevron-down"></span>&nbsp;
-            show more downloads
-          </a>
+      <!-- download btns -->
+      <div class="downloads mb-5 mr-5 ml-5 pl-3 pr-3">
+        <!-- main downloads -->
+        <h2 class="loading-downloads text-center mb-5 pb-5 mt-5">
+          <span class="fa fa-spinner fa-spin"></span>&nbsp;
+          Loading Arkime downloads...
+        </h2>
+        <div class="main-downloads">
         </div>
-      </div>
-      <div class="more-downloads"
-        style="display:none;">
-        <div class="row show-more-downloads text-center mt-3">
+        <div class="row show-more-downloads text-center mt-3 mb-4"
+          style="display:none;">
           <div class="col-md-12">
             <a href="#"
               onclick="toggleMoreDownloads(event)"
               class="cursor-pointer no-decoration show-more-downloads-btn">
-              <span class="fa fa-chevron-up"></span>&nbsp;
-              hide more downloads
+              <span class="fa fa-chevron-down"></span>&nbsp;
+              show more downloads
             </a>
           </div>
         </div>
-      </div> <!-- /main downloads -->
-      <!-- download error -->
-      <div class="row downloads-error mt-5 mb-5 pb-5"
-        style="display:none;">
-        <div class="col-12 text-center">
-          <h4 class="primary-theme-text">
-            <span class="fa fa-frown-o fa-lg">
-            </span>&nbsp;
-            Sorry, we couldn't retrieve Arkime downloads.
-            &nbsp;<span class="fa fa-frown-o fa-lg">
+        <div class="more-downloads"
+          style="display:none;">
+          <div class="row show-more-downloads text-center mt-3">
+            <div class="col-md-12">
+              <a href="#"
+                onclick="toggleMoreDownloads(event)"
+                class="cursor-pointer no-decoration show-more-downloads-btn">
+                <span class="fa fa-chevron-up"></span>&nbsp;
+                hide more downloads
+              </a>
+            </div>
+          </div>
+        </div> <!-- /main downloads -->
+        <!-- download error -->
+        <div class="row downloads-error mt-5 mb-5 pb-5"
+          style="display:none;">
+          <div class="col-12 text-center">
+            <h4 class="primary-theme-text">
+              <span class="fa fa-frown-o fa-lg">
+              </span>&nbsp;
+              Sorry, we couldn't retrieve Arkime downloads.
+              &nbsp;<span class="fa fa-frown-o fa-lg">
+              </span>
+              <br>
+              Please try again later.
+            </h4>
+            <p>
+              Meanwhile, view Arkime on
+              <a href="https://github.com/arkime/arkime"
+                class="no-decoration">
+                GitHub
+              </a>
+            </p>
+          </div>
+        </div> <!-- /download error -->
+        <!-- latest commit btns -->
+        <div class="mt-5 commit-downloads-container"
+          style="display:none;">
+          <h3 class="text-center">
+            <span class="primary-theme-text">
+              Feeling adventurous?
             </span>
-            <br>
-            Please try again later.
-          </h4>
-          <p>
-            Meanwhile, view Arkime on
-            <a href="https://github.com/arkime/arkime"
-              class="no-decoration">
-              GitHub
-            </a>
+            Try our latest commit!
+          </h3>
+          <p class="text-center">
+            Please read the
+            <a class="no-decoration"
+              href="faq#how_do_i_upgrade_to_arkime_3">instructions</a>.
           </p>
-        </div>
-      </div> <!-- /download error -->
-      <!-- latest commit btns -->
-      <div class="mt-5 commit-downloads-container"
-        style="display:none;">
-        <h3 class="text-center">
-          <span class="primary-theme-text">
-            Feeling adventurous?
-          </span>
-          Try our latest commit!
-        </h3>
-        <p class="text-center">
-          Please read the
-          <a class="no-decoration"
-            href="faq#how_do_i_upgrade_to_arkime_3">instructions</a>.
-        </p>
-        <hr>
-        <div class="acommit-downloads">
-        <div class="mcommit-downloads">
-        </div>
-      </div> <!-- /latest commit btns -->
-    </div> <!-- /download btns -->
-
+          <hr>
+          <div class="acommit-downloads">
+          <div class="mcommit-downloads">
+          </div>
+        </div> <!-- /latest commit btns -->
+      </div> <!-- /download btns -->
+    </div>
   </div> <!-- /container -->
 
   <!-- footer -->

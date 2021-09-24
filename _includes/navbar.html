@@ -183,6 +183,12 @@
       </div> <!-- collapsed nav -->
     </ul>
     <form class="form-inline d-none d-sm-none d-md-block">
+      <div class="switch-container" style="display:none;">
+        <div class="switch">
+          <div class="switch-btn"></div>
+        </div>
+        <span class="switch-label"></span>
+      </div>
       <a href="https://slackinvite.arkime.com/"
         class="btn btn-sm btn-outline-danger ml-1"
         title="Join the conversation on Slack"
@@ -221,6 +227,18 @@
     $(`.${page}-link`).addClass('active');
   }
 
+  function toggleTheme () {
+    if (!document.body.classList.contains('dark-theme')) {
+      document.body.classList.add('dark-theme');
+      $('.switch-label').text('dark mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-theme');
+      $('.switch-label').text('light mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
   // content loaded
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
@@ -242,5 +260,28 @@
 
     $(`.${path}-link`).addClass('active');
     $(`.${parentPath}-link`).addClass('active');
+
+    const themeSwitch = $('.switch-container');
+
+    let darkMode;
+
+    if (localStorage.getItem('theme')) {
+      const savedTheme = localStorage.getItem('theme');
+      darkMode = savedTheme === 'dark';
+    } else {
+      if (window.matchMedia) {
+        darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+    }
+
+    if (darkMode) {
+      document.body.classList.add('dark-theme');
+      $('.switch-label').text('dark mode');
+    } else {
+      $('.switch-label').text('light mode');
+    }
+
+    themeSwitch[0].style.display = 'inline-block';
+    themeSwitch.click(toggleTheme);
   });
 </script>
