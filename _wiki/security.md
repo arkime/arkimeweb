@@ -9,7 +9,7 @@ permalink: "/security"
 # Reporting Security Issues
 
 The Arkime project takes security very seriously, but any complex software project is going to have some vulnerabilities.
-Please submit any security issues to [HackerOne](https://hackerone.com/verizonmedia) or arkime.security@verizonmedia.com, please use [github issues](https://github.com/arkime/arkime/issues) or slack for non security issues.
+Please submit any security issues to [HackerOne](https://hackerone.com/yahoo) or arkime.security@yahooinc.com, please use [github issues](https://github.com/arkime/arkime/issues) or slack for non security issues.
 
 
 ## Scope

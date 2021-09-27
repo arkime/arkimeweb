@@ -24,7 +24,7 @@ Please join the Arkime Slack [here](https://slackinvite.arkime.com). If you alre
 # Reporting Security Issues
 
 The Arkime project takes security very seriously, but any complex software project is going to have some vulnerabilities.
-Please submit any security issues to [HackerOne](https://hackerone.com/verizonmedia) or [arkime.security@verizonmedia.com](mailto: arkime.security@verizonmedia.com), please use [GitHub Issues](https://github.com/arkime/arkime/issues) or Slack for non security issues.
+Please submit any security issues to [HackerOne](https://hackerone.com/yahoo) or [arkime.security@yahooinc.com](mailto: arkime.security@yahooinc.com), please use [GitHub Issues](https://github.com/arkime/arkime/issues) or Slack for non security issues.
 {: .lead }
 
 </div>
