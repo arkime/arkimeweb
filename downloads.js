@@ -6,6 +6,15 @@ function parseXML (xml) {
   let nightlies = { title:'Nightly', downloads:[] };
   let acommities = { title:'Arkime Latest Commit', downloads:[] };
   let mcommities = { title:'Arkime/Moloch Hybrid Latest Commit', downloads:[] };
+  const oses = {
+    'arch.x86': 'Arch',
+    centos6: 'Centos 6',
+    centos7: 'Centos 7',
+    centos8: 'Centos 8',
+    ubuntu16: 'Ubuntu 16.04',
+    ubuntu18: 'Ubuntu 18.04',
+    ubuntu20: 'Ubuntu 20.04'
+  };
 
   for (let i = 0, len = files.length; i < len; ++i) {
     let file = $(files[i]);
@@ -72,14 +81,7 @@ function parseXML (xml) {
       let time = new Date(file.find('LastModified').text());
       time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)} ${('0'+time.getHours()).slice(-2)}:${('0'+time.getMinutes()).slice(-2)}:${('0'+time.getSeconds()).slice(-2)}`;
 
-      const osTitle = {
-        centos6: 'Centos 6',
-        centos7: 'Centos 7',
-        centos8: 'Centos 8',
-        ubuntu16: 'Ubuntu 16.04',
-        ubuntu18: 'Ubuntu 18.04',
-        ubuntu20: 'Ubuntu 20.04'
-      }[os];
+      const osTitle = oses[os];
 
       if (!osTitle) { continue; }
 
@@ -96,15 +98,7 @@ function parseXML (xml) {
       let time = new Date(file.find('LastModified').text());
       time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)} ${('0'+time.getHours()).slice(-2)}:${('0'+time.getMinutes()).slice(-2)}:${('0'+time.getSeconds()).slice(-2)}`;
 
-      const osTitle = {
-        'arch.x86': 'Arch',
-        centos6: 'Centos 6',
-        centos7: 'Centos 7',
-        centos8: 'Centos 8',
-        ubuntu16: 'Ubuntu 16.04',
-        ubuntu18: 'Ubuntu 18.04',
-        ubuntu20: 'Ubuntu 20.04'
-      }[os];
+      const osTitle = oses[os];
 
       if (!osTitle) { continue; }
 
