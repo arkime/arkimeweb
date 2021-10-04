@@ -120,3 +120,97 @@ function parseXML (xml) {
     sortedVersions: Object.keys(downloads).sort().reverse()
   };
 }
+
+function buildDownloadVersionRow (version, btnType, osList) {
+  let html = `<div class="row d-flex flex-row justify-content-around">
+               <div class="p-2">
+                 <div class="btn-fw"><strong>${version.title}</strong></div>
+                 <div class="time"><small>${version.modified}</small></div>
+               </div>`;
+
+  let downloads = version.downloads;
+
+  let i, d, len;
+  for (i = 0, len = osList.length; i < len; ++i) {
+    for (d = 0; d < downloads.length; d++) {
+      if (downloads[d].title === osList[i]) {
+        let download = downloads[d];
+        html += `<div class="p-2">
+                   <a href="${download.url}" class="btn btn-fw ${btnType}">
+                     ${download.title}
+                   </a>
+                 </div>`;
+        break;
+      }
+    }
+
+    if (d === downloads.length) {
+      html += `<div class="p-2">
+                 <a href=""
+                   style="visibility:hidden"
+                   class="btn btn-fw btn-outline-primary">
+                   test
+                 </a>
+               </div>`;
+    }
+  }
+
+  html += '</div>';
+
+  return html;
+}
+
+function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
+  let downloadsHtml = ''
+
+  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+  if (osLists.main) {
+    osList = osLists.main
+  }
+  if (osLists.commit) {
+    osCommitList = osLists.commit
+  }
+
+  let acommitDownloadsHtml = buildDownloadVersionRow(acommities, 'btn-outline-danger', osCommitList);
+  let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, 'btn-outline-danger', osCommitList);
+
+  if (!length) { length = sortedVersions.length }
+  for (let v = 0; v < length; ++v) {
+    if (versions.hasOwnProperty(sortedVersions[v])) {
+      let version = versions[sortedVersions[v]];
+      let btnType = v === 0 ? 'btn-primary' : 'btn-outline-primary';
+      let html = buildDownloadVersionRow(version, btnType, osList);
+
+      downloadsHtml += html;
+    }
+  }
+
+  $('.commit-downloads-container').show();
+  $('.main-downloads').append(downloadsHtml);
+  $('.acommit-downloads').append(acommitDownloadsHtml);
+  $('.mcommit-downloads').append(mcommitDownloadsHtml);
+}
+
+function setupError () {
+  $('.downloads-error').show();
+  $('.loading-downloads').hide();
+  $('.commit-downloads-container').hide();
+}
+
+function getDownloadsAndSetup (osLists, length) {
+  $.ajax({
+    url: 'https://s3.amazonaws.com/files.molo.ch',
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'xml',
+    success: function (xml) {
+      let downloads = parseXML(xml);
+      setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions, osLists, length);
+      $('.loading-downloads').hide();
+    },
+    error: function(xhr, textStatus, errorThrown) {
+      setupError();
+    }
+  });
+}

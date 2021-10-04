@@ -5,6 +5,7 @@
   --primary-theme-background-color: #EDF8FF;
   --primary-theme-color: #004C83;
   --primary-theme-hover-color: #003E6B;
+  --info-theme-hover-color: #50916c;
   --secondary-theme-color: #303030;
   --warning-theme-color: #F29A2E;
   --danger-theme-color: #B50054;
@@ -254,6 +255,17 @@ div.demo > h1.demo-small-screen {
   color: #FFF;
   border-color: var(--primary-theme-hover-color);
   background-color: var(--primary-theme-hover-color);
+}
+
+.btn-info {
+  color: #FFF;
+  border-color: var(--info-theme-color);
+  background-color: var(--info-theme-color);
+}
+.btn-info:hover {
+  color: #FFF;
+  border-color: var(--info-theme-hover-color);
+  background-color: var(--info-theme-hover-color);
 }
 
 .btn-outline-primary {
