@@ -769,7 +769,7 @@ title: Settings
               1500000
             </td>
             <td>
-              An aproximiate maximum number of active sessions Arkime/libnids
+              An aproximiate maximum number of active sessions Arkime
               will try and monitor
             </td>
           </tr>
@@ -4675,6 +4675,9 @@ packetThreads=5
 dbBulkSize=4000000
 compressES=true
 dbEsHealthCheck=false
+
+# Approximate max streams that will be monitored
+maxStreams=2000000
 
 # Set to number of packets a second, if still overflowing try 400k
 maxPacketsInQueue = 300000
