@@ -1,0 +1,402 @@
+---
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- download js to display some downloads -->
+  <script src="downloads.js"></script>
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="container-fluid full-width-page">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- info -->
+    <div class="primary-theme-background p-nav-lg mb-5">
+      <div class="row pb-5">
+        <div class="col-md-6 offset-md-3">
+          <h1 class="display-3 text-center">
+            Arkime Parliament
+          </h1>
+          <p class="lead lead-lg text-thin text-center">
+            Parliament contains a grouped list of your Arkime clusters with
+            links, ES health, and issues for each.
+            You can use Parliament as a landing page for all of your Arkime
+            clusters and as a status page to monitor the health of your clusters.
+          </p>
+          <p class="lead lead-lg text-center">
+            <a href="https://github.com/arkime/arkime/tree/main/parliament#arkime-parliament">
+              Learn more here
+            </a>
+          </p>
+          <p class="lead text-thin text-center">
+            Did you know that a Parliament is a group of owls?
+          </p>
+        </div>
+      </div>
+    </div> <!-- /info -->
+
+    <hr>
+
+    <!-- screenshots -->
+    <div class="mt-5">
+      <!-- dashboard -->
+      <div class="container-fluid mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament Dashboad
+            </h1>
+            <p class="lead mb-3">
+              The Parliament Dashboad displays a grouped list of your configured
+              Arkime Clusters. Here you can navigate to any cluster and view
+              stats and health.
+            </p>
+            <img
+              alt="Parliament Dashboard screenshot"
+              class="screenshot-img parliament-dashboard"
+              width="50px"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-search fa-fw fa-lg">
+              </span>&nbsp;
+              Search
+            </h5>
+            <p>
+              Search for clusters in your Parliament by their name.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-check fa-fw fa-lg">
+              </span>&nbsp;
+              Acknowledge Issues
+            </h5>
+            <p>
+              Acknowledge issues in your clusters by clicking the check box.
+              You can acknowledge them one at a time or all in each cluster.
+              Acknowledged issues will not show up on the dashboard, but will
+              remain on the issues page.
+              <br>
+              <strong>Note:</strong> only logged in users can acknowledge issues.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-eye-slash fa-fw fa-lg">
+              </span>&nbsp;
+              Ignore Issues
+            </h5>
+            <p>
+              Ignore issues in your cluster for a certain amount of time by
+              clicking the eye dropdown. Ignored issues will not send alerts
+              until the ignore time has expired and the issue still persists.
+              You can unignore them on the Issues page.
+              <br>
+              <strong>Note:</strong> only logged in users can ignore issues.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-hand-o-up fa-fw fa-lg">
+              </span>&nbsp;
+              Navigate to a Cluster
+            </h5>
+            <p>
+              You can click the cluster's name to navigate to the Arkime
+              sessions page of that cluster. You can also navigate to the
+              Arkime main stats page by clicking the bar graph icon and the
+              ES Nodes stats page by clicing on the ES status indicator.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /dashboard -->
+      <!-- edit -->
+      <hr>
+      <div class="container-fluid mt-5 mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Configure Parliament
+            </h1>
+            <p class="lead mb-3">
+              When logged in, you can create, update, and delete Parliament
+              groups and clusters.
+            </p>
+            <img
+              alt="Configure Parliament screenshot"
+              class="screenshot-img parliament-edit"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-toggle-on fa-fw fa-lg">
+              </span>&nbsp;
+              Toggle Edit
+            </h5>
+            <p>
+              To edit your Parliament, click the toggle button at the top right.
+            </p>
+            <h5 class="mt-4">
+              <span class="primary-theme-text fa fa-plus fa-fw fa-lg">
+              </span>&nbsp;
+              New Groups and Clusters
+            </h5>
+            <p>
+              Create new groups to organize your clusters.
+              Add clusters to groups at any time.
+            </p>
+            <h5 class="mt-4">
+              <span class="primary-theme-text fa fa-trash-o fa-fw fa-lg">
+              </span>&nbsp;
+              Delete Groups and Clusters
+            </h5>
+            <p>
+              Delete groups and clusters as you remove Arkime clusters.
+            </p>
+            <h5 class="mt-4">
+              <span class="primary-theme-text fa fa-pencil fa-fw fa-lg">
+              </span>&nbsp;
+              Edit Groups and Clusters
+            </h5>
+            <p>
+              Edit groups and clusters as your Parliament changes.
+            </p>
+            <h5 class="mt-4">
+              <span class="primary-theme-text fa fa-th fa-fw fa-lg">
+              </span>&nbsp;
+              Reorder
+            </h5>
+            <p class="mb-0">
+              Drag and drop groups and clusters where you want them.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /edit -->
+      <!-- issues -->
+      <hr>
+      <div class="container-fluid mb-5">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament Issues
+            </h1>
+            <p class="lead mb-3">
+              You can view and interact with all of the issues that the clusters
+              in your Parliament are experiencing.
+            </p>
+            <img
+              alt="Parliament Issues screenshot"
+              class="screenshot-img parliament-issues"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-fw fa-search fa-lg">
+              </span>&nbsp;
+              Search Issues
+            </h5>
+            <p>
+              Search for issues within your Parliament by name cluster name,
+              node name, and issue type.
+            </p>
+              <h5>
+                <span class="primary-theme-text fa fa-fw fa-sort fa-lg">
+                </span>&nbsp;
+                Sort Issues
+              </h5>
+              <p>
+                Sort the issues by field to display the issues relevant to you.
+              </p>
+            <h5>
+              <span class="primary-theme-text fa fa-check fa-fw fa-lg">
+              </span>&nbsp;
+              Acknowledge Issues
+            </h5>
+            <p>
+              Acknowledge issues in your clusters by clicking the check box.
+              Acknowledged issues will remain on the issues page (grayed out)
+              but will not be visible on the Parliament dashboad. Acknowledged
+              issues will be removed after 15 minutes (or your configured
+              setting) or can be removed at any time via the trashcan button.
+              <br>
+              <strong>Note:</strong> only logged in users can acknowledge issues.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-eye-slash fa-fw fa-lg">
+              </span>&nbsp;
+              Ignore Issues
+            </h5>
+            <p>
+              Ignore issues in your cluster for a certain amount of time by
+              clicking the eye dropdown. Ignored issues will remain on the
+              issues page (grayed out) but will not be visible on the parliament
+              dashboad. Ignored issues will not send alerts until the ignore
+              time has expired and the issue still persists. You can unignore
+              issues here as well to begin receiving alerts again.
+              <br>
+              <strong>Note:</strong> only logged in users can ignore issues.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /issues -->
+      <!-- settings -->
+      <hr>
+      <div class="container-fluid mb-4">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament Settings
+            </h1>
+            <p class="lead mb-3">
+              When logged in, you can configure the alert thresholds, password,
+              and notifiers (services that send alerts).
+            </p>
+            <img
+              alt="Parliament Settings screenshot"
+              class="screenshot-img parliament-settings"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-gear fa-fw fa-lg">
+              </span>&nbsp;
+              General Settings
+            </h5>
+            <p>
+              <ul>
+                <li>
+                  The capture nodes must check in this often setting controls
+                  how behind a node's cluster's timestamp can be from the
+                  current time. If the timestamp exceeds this time setting, an
+                  Out Of Date issue is added to the cluster. The default for
+                  this setting is 30 seconds.
+                </li>
+                <li>
+                  The Elasticsearch query timeout setting controls the maximum
+                  Elasticsearch status query duration. If the query exceeds this
+                  time setting, an ES Down issue is added to the cluster. The
+                  default for this setting is 5 seconds.
+                </li>
+                <li>
+                  The Low Packets Threshold setting controls the minimum number
+                  of packets that the capture nodes must receive. If a capture
+                  node is not receiving enough packets, a Low Packets issue is
+                  added to the cluster. You can set this value to -1 to ignore
+                  this issue altogether. This setting also includes a time range
+                  for how long this problem must persist before adding an issue
+                  to the cluster. The default for this setting is 0 packets for
+                  10 seconds.
+                </li>
+                <li>
+                  The remove all issues after setting controls when an issue is
+                  removed if it has not occurred again. The issue is removed
+                  from the cluster after this time expires as long as the issue
+                  has not occurred again. The default for this setting is 60
+                  minutes.
+                </li>
+                <li>
+                  The remove acknowledged issues after setting controls when an
+                  acknowledged issue is removed. The issue is removed from the
+                  cluster after this time expires (so you don't have to remove
+                  issues manually with the trashcan button on the issues page).
+                  The default for this setting is 15 minutes.
+                </li>
+              </ul>
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-lock fa-fw fa-lg">
+              </span>&nbsp;
+              Password
+            </h5>
+            <p>
+              You can configure a new password, or update your current password.
+              <strong>Note:</strong> Parliament is readonly if there is no password set.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-bell fa-fw fa-lg">
+              </span>&nbsp;
+              Notifiers
+            </h5>
+            <p>
+              Configure services to send alerts here. Currently, you can
+              configure Slack, Email, and Twilio (SMS) alerts.
+              <br>
+              <strong>Note:</strong> If you configure a Parliament hostname and
+              enable Parliament dashboard links, every alert will contain a
+              link to the Parliament Dashbaord
+            </p>
+          </div>
+        </div>
+      </div> <!-- /settings -->
+    </div> <!-- /screenshots -->
+
+    <!-- contribute -->
+    <hr>
+    <div class="row text-center mb-5 mt-5">
+      <div class="col">
+        <p class="mb-0">
+          Want to contribute to Parliament?
+          Found an issue?
+        </p>
+        <p>
+          <span class="fa fa-github-alt fa-lg">
+          </span>&nbsp;
+          Parliament is open source.
+          <a href="https://github.com/arkime/arkime/blob/main/CONTRIBUTING.md"
+            class="no-decoration"
+            rel="nofollow">
+            Please contribute!
+          </a>
+          &nbsp;<span class="fa fa-github-alt fa-lg">
+          </span>
+        </p>
+      </div>
+    </div> <!-- /contribute -->
+
+  </div> <!-- /container -->
+
+  <!-- footer -->
+  {%- include footer.html -%}
+
+</body>
+
+</html>
