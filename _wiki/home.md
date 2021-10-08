@@ -29,6 +29,9 @@ permalink: "/learn"
 - [Viewer v3.x API](apiv3)
 - [Viewer v0.x - v2.x API](api)
 
+#### Parliament
+- [What is Parliament?](parliament)
+
 #### Elasticsearch
 - [Elasticsearch SSL](esssl)
 - [ES Security Proxy](esproxy)

@@ -228,6 +228,21 @@ div.demo > h1.demo-small-screen {
 }
 
 
+/* parliament page styles ---------- */
+.screenshot-img.parliament-dashboard {
+  content: url('assets/parliament.png');
+}
+.screenshot-img.parliament-edit {
+  content: url('assets/parliament-edit.png');
+}
+.screenshot-img.parliament-issues {
+  content: url('assets/parliament-issues.png');
+}
+.screenshot-img.parliament-settings {
+  content: url('assets/parliament-settings.png');
+}
+
+
 /* all page styles ----------------- */
 .arkime-logo {
   content: url('assets/Arkime_Logo_Mark_Black@2x.png');
@@ -802,6 +817,19 @@ body.wiki-body.dark-theme footer.footer {
 }
 .dark-theme .screenshot-img.spiview {
   content: url('assets/spiview-dark.png');
+}
+
+.dark-theme .screenshot-img.parliament-dashboard {
+  content: url('assets/parliament-dark.png');
+}
+.dark-theme .screenshot-img.parliament-edit {
+  content: url('assets/parliament-edit-dark.png');
+}
+.dark-theme .screenshot-img.parliament-issues {
+  content: url('assets/parliament-issues-dark.png');
+}
+.dark-theme .screenshot-img.parliament-settings {
+  content: url('assets/parliament-settings-dark.png');
 }
 
 .dark-theme .collapse-btn {
