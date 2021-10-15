@@ -1596,7 +1596,7 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.0.1) Use basic auth with Elasticsearch.
+              (Since 3.1.0) Use basic auth with Elasticsearch.
               The value can either be the plain text "user:pass" or the base64 encoded version.
               One way to generate base64 <code>echo -n "username:password" | base64</code> version.
               Notice the -n, you have to make sure you don't encode an extra newline.
@@ -1613,7 +1613,7 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.0.1) Use basic auth with Elasticsearch for Users DB.
+              (Since 3.1.0) Use basic auth with Elasticsearch for Users DB.
               See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth setting</a> for information
               on creating and encoding an Elasticsearch Basic Auth.
               See <a href="#userselasticsearch">usersElasticsearch setting</a>
@@ -3504,7 +3504,7 @@ viewPort = 8009
 multiES = true
 multiESPort = 8200
 multiESHost = localhost
-multiESNodes = escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;escluster2.example.com:9200,name:escluster2</code></pre>
+multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;http://escluster2.example.com:9200,name:escluster2</code></pre>
       <p class="mb-0">
         Which you would then use by starting both the multiviewer and multies.
         This is a sample for running manually (but you should setup startup
@@ -3584,12 +3584,13 @@ multiESNodes = escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elastic
               Semicolon separated list of Elasticsearch nodes that MultiES should connect to.
               The first node listed will be considered the primary node and is used for users/views/queries.
               <br>
-              Example: <code>escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;escluster2.example.com:9200,name:escluster2</code>
+              Example: <code>http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;http://escluster2.example.com:9200,name:escluster2</code>
               <br>
               Components (comma separated):
               <ul>
                 <li>
-                  (required) the first part is the node <code>host:port</code>
+                  (required) the first part is the node <code>http[s]://[user:password@]host:port</code>.
+                  If using 3.1 or later it is suggested to use elasticsearchBasicAuth or elasticsearchAPIKey is the user/pass isn't logged.
                 </li>
                 <li>
                   (required since 2.7.0) <code>name:</code> element to name the Elasticsearch node.
@@ -3599,13 +3600,13 @@ multiESNodes = escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elastic
                    if that cluster was setup with an Elasticsearch prefix.
                 </li>
                 <li>
-                  (optional since 3.0.1) <code>elasticsearchAPIKey:</code> element
+                  (optional since 3.1.0) <code>elasticsearchAPIKey:</code> element
                   to set an Elasticsearch API Key per node.
                   <a href="#elasticsearchAPIKey">See elasticsearchAPIKey settings</a>
                   for more information on how to configure ES API Keys.
                 </li>
                 <li>
-                  (optional since 3.0.1) <code>elasticsearchBasicAuth:</code> element
+                  (optional since 3.1.0) <code>elasticsearchBasicAuth:</code> element
                   to set an Elasticsearch Basic Auth per node.
                   <a href="#elasticsearchBasicAuth">See elasticsearchBasicAuth settings</a>
                   for more information on how to encode Basic Auth settings, you MUST use the base64 version with multies.
