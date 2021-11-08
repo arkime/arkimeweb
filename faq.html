@@ -97,8 +97,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#self-signed-ssl-tls-certificates"
-        title="Self-Signed SSL/TLS Certificates">
-        Self-Signed SSL/TLS Certificates
+        title="Self-Signed or Private CA TLS Certificates">
+        Self-Signed or Private CA SSL/TLS Certificates
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_moloch_1"
@@ -322,8 +322,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies"
-        title="How do I use self-signed SSL/TLS Certificates with MultiES?">
-        How do I use self-signed SSL/TLS Certificates with MultiES?
+        title="How do I use self-signed or Private CA TLS Certificates with MultiES?">
+        How do I use self-signed or Private CA TLS Certificates with MultiES?
       </a>
       <a class="nav-link nested"
         href="#how-do-i-reset-my-password"
@@ -804,7 +804,7 @@ title: FAQ
       </ol>
 
       <h3 id="self-signed-ssl-tls-certificates">
-        Self-Signed SSL/TLS Certificates
+        Self-Signed or Private CA TLS Certificates
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -816,12 +816,14 @@ title: FAQ
         Wildcard certs are now cheap and you can even go with free Lets Encrypt certs.
         There may be folks on the Arkime slack workspace willing to help out,
         but don't feel bad if the core developers just link to this answer.
+        Private CA certificates will have the same issues and solutions as self signed certificates.
       </p>
       <p>
         Potentially the easiest solution is to add the self signed certificate to the OS's list of valid certificates or chains.
         Googling is the best way to figure out how to do this, it is different for almost every OS release and version.
         You may need to add to several places since node (viewer), curl (capture), perl (db.pl) sometimes use different locations for their list of trusted certificates.
         Viewer supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option that was contributed to the project.
+        Multies currently doesn't support the option fully, see <a href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies">here</a>.
       </p>
       <p>
         Capture, viewer, db.pl can run with <code>--insecure</code> to turn off certificate checking.
