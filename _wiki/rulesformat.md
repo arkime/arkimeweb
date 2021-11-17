@@ -107,6 +107,26 @@ The following example would require that the protocols field is set to tls and t
     ops:
       "protocols": "tlsrulestest"
 ```
+### String Fields Modifier
+While we don't support wildcards in strings fields, we do support 3 different modifiers that allow you to perform some of the same actions.
+Rules support endsWith, startsWith, or contains modifiers which are placed after the field name separated by a comma.
+So for example you could do the following to get aol.com, google.com, and any sub hostnames of those two domains.
+```
+  - name: "Set tlsrulestest on certain hosts and any subdomains"
+    when: "fieldSet"
+    fields:
+      protocols:
+        - tls
+      host.http:
+        - aol.com
+        - google.com
+      host.http,endsWith:
+        - .aol.com
+        - .google.com
+    ops:
+      "protocols": "tlsrulestest"
+```
+
 
 ---
 
