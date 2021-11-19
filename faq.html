@@ -1963,8 +1963,9 @@ logger.action.level = info</code></pre>
       </p>
       <ol>
         <li>
-          If using a VM for Arkime, you need to turn off the features on the
-          physical interface the vm interface is mapped to
+          If using containers or VMs for Arkime, you may need to turn off the features on the
+          physical interface the VM interface is mapped to from the host OS, instead of
+          inside the container/VM.
         </li>
         <li>
           If using a fancy card there may be other features that need to be
@@ -1973,7 +1974,8 @@ logger.action.level = info</code></pre>
             <li>
               You can find them usually with
               <code>ethtool -k INTERFACE | grep on</code> — Anything that is
-              still on, turn off and see if that fixes the problem
+              still on, turn off and see if that fixes the problem.
+              Items that says <code>[fixed]</code> can NOT be disabled with ethtool.
             </li>
             <li>
               For example
