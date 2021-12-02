@@ -3596,8 +3596,9 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
                   (required since 2.7.0) <code>name:</code> element to name the Elasticsearch node.
                 </li>
                 <li>
-                   (optional) <code>prefix:</code> element can follow each host
+                   (required) <code>prefix:</code> element can follow each host
                    if that cluster was setup with an Elasticsearch prefix.
+                   For 3.x or later it should be prefix:arkime if you didn't set a prefix.
                 </li>
                 <li>
                   (optional since 3.1.0) <code>elasticsearchAPIKey:</code> element
