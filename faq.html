@@ -2230,14 +2230,13 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </span>
       </h3>
       <p>
-        Think of the <code>capture</code> binary much like you would
-        <code>tcpdump</code>.  <code>capture</code> can listen to live
-        network interface(s), or read from historic packet capture files.
-        Currently Arkime works best with PCAP files, not pcapng.
+        Think of the <code>capture</code> binary much like you would <code>tcpdump</code>.
+        The <code>capture</code> binary can listen to live network interface(s), or read from historic packet capture files.
+        Currently Arkime works best with PCAP files, not PCAPng.
       </p>
       <p>
         <code>
-          ${moloch_dir}/bin/capture -c [config_file] -r [pcap_file]
+          ${install_dir}/bin/capture -c [config_file] -r [pcap_file]
         </code>
       </p>
       <p>
@@ -2245,7 +2244,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         See
-        <code>${moloch_dir}/bin/capture --help</code> for more info.
+        <code>${install_dir}/bin/capture --help</code> for more info.
         The <code>--monitor</code> to monitor non NFS directories, <code>--skip</code> to skip already loaded pcap files, and <code>-R</code> to process directories are common options.
       </p>
       <p>
@@ -2253,7 +2252,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <ul>
         <li>
-          Use PCAP formatted files and not pcapng
+          Use PCAP formatted files and not PCAPng
         </li>
         <li>
           Make sure the PCAP files contain IP traffic, Arkime currently ignores
