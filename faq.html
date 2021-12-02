@@ -1205,14 +1205,10 @@ title: FAQ
         </span>
       </h3>
       <p>
-        If queries are too slow the easiest fix is to add additional
-        Elasticsearch nodes. Elasticsearch doesn’t do well if Java hits an
-        OutOfMemory condition. If you ever have one, you should immediately
-        delete the oldest
-        <code>sessions2-*</code>
-        index, update the
-        <code>daily.sh</code>
-        script to delete more often, and restart the Elasticsearch cluster.
+        If queries are too slow the easiest fix is to add additional Elasticsearch nodes.
+        Elasticsearch doesn’t do well if Java hits an OutOfMemory condition.
+        If you ever have one, you should immediately delete the oldest <code>*sessions*</code> index,
+        update the daily expire cron to delete more often, and restart the Elasticsearch cluster.
         Then you should order more machines. :)
       </p>
 
