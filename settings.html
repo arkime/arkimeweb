@@ -2289,6 +2289,48 @@ title: Settings
             </td>
           </tr>
           <tr>
+            <td id="simpleKEKId">
+              simpleKEKId
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              Which kek to use, see <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
+            </td>
+          </tr>
+          <tr>
+            <td id="simpleGzipBlockSize">
+              simpleGzipBlockSize
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              6
+            </td>
+            <td>
+              (since 3.2.2) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block. The large the value the better the compression, but the slower the read. Recommend using values between 30000 and 120000.
+            </td>
+          </tr>
+          <tr>
+            <td id="simpleGzipLevel">
+              simpleGzipLevel
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              6
+            </td>
+            <td>
+              (since 3.2.2) When GZIP is enabled using simpleGzipBlockSize, this is the gzip compression level.
+            </td>
+          </tr>
+          <tr>
             <td id="simplemaxq">
               simpleMaxQ
               <span class="fa fa-link small copy-link cursor-copy"
@@ -2304,6 +2346,20 @@ title: Settings
               The packets will still be processed, so all meta data is still extracted.
               Sessions that have packets not written to disk will be tagged with pcap-disk-overload.
               Increasing this value will use more memory when there is disk congestion.
+            </td>
+          </tr>
+          <tr>
+            <td id="simpleShortHeader">
+              simpleShortHeader
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              FALSE
+            </td>
+            <td>
+              (since 3.2.2) When TRUE use a non standard pcap file format that uses small packet headers. Should only be set when monitoring an interface since it requires that the timestamp is in real time. Saves 10 bytes per packet.
             </td>
           </tr>
           <tr>
