@@ -1143,7 +1143,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          Since Moloch 1.7.0 the ES Nodes tab of the Stats section now has the
+          The ES Nodes tab of the Stats section has the
           ability to turn on Write Task completed and rejected columns. Look for
           nodes having issues. Make sure those nodes don’t have disk issues.
         </li>
@@ -1151,6 +1151,12 @@ title: FAQ
           Make sure each Elasticsearch node has 30G of memory (no more) and 30G
           of disk cache (at least) available to it. So for example if you are on
           a 64G machine only run 1 Elasticsearch node on the machine.
+        </li>
+        <li>
+          Elasticsearch does NOT do well if there is one node that is sick.
+          Check all the nodes hardware, disks, raid, etc.
+          Make sure on the ES Nodes tab there isn't a sigle node with a high
+          OS Load and low Write/s which might indicate an issue.
         </li>
         <li>
           Make sure swap is turned off or swappiness is 0 on Elasticsearch machines.
@@ -1161,7 +1167,7 @@ title: FAQ
         </li>
         <li>
           Make sure you are running the latest Elasticsearch that the version of
-          Moloch supports, for example 7.9.3 if using Elasticsearch 7.
+          Arkime supports, for example 7.10.2+ if using Elasticsearch 7.
         </li>
         <li>
           If using replication on the sessions index, turn off replication of the
@@ -1180,11 +1186,6 @@ title: FAQ
           are more run
           <code>./db.pl upgrade</code>
           again
-        </li>
-        <li>
-          You can increase the size of the write task Q in Elasticsearch, see
-          <a href="#recommended-elasticsearch-settings">
-            Recommended Elasticsearch Settings</a>.
         </li>
       </ul>
       <p>
