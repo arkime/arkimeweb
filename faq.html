@@ -3064,14 +3064,15 @@ viewHost = localhost</code></pre>
         </span>
       </h3>
       <p>
-        It is possible to search multiple Arkime clusters by setting up a special multiple Arkime viewer and a special MultiES process.
+        It is possible to search multiple Arkime clusters by setting up a special Arkime MultiViewer and a special MultiES process.
         The MultiES process is similar to Elasticsearch tribe nodes, except it was created before tribe nodes and can deal with multiple indexes having the same name.
+        The MultiViewer talks to MultiES instead of a real ES instance.
         Currently one big limitation is that <strong>all Arkime clusters must use the same <a href="/settings#serversecret">serverSecret</a></strong>.
       </p>
       <p>
         To use MultiES, create another <code>config.ini</code> file or section in a shared config file.
         Both <code>multies.js</code> and the special "all" viewer can use the same node name.
-        See <href="/settings#multi-viewer-settings">Multi Viewer Settings</a> for more information.
+        See <a href="/settings#multi-viewer-settings">Multi Viewer Settings</a> for more information.
         <pre><code># viewer/multies node name (-n allnode)
 [allnode]
 # The host and port multies is running on, set with multiESHost:multiESPort usually just run on the same host
