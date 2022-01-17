@@ -3064,21 +3064,14 @@ viewHost = localhost</code></pre>
         </span>
       </h3>
       <p>
-        It is possible to search multiple Arkime clusters by setting up a
-        special multiple Arkime viewer and a special MultiES process. MultiES
-        is similar to Elasticsearch tribe nodes, except it was created before
-        tribe nodes and can deal with multiple indexes having the same name.
-        Prior to Moloch 1.5, one big limitation currently is that all the
-        Moloch clusters have to use the same <a href="/settings#rotateindex"><code>rotateIndex</code></a> setting.
-        Since Moloch 1.5 if using different <code>rotateIndex</code> settings,
-        use the <a href="/settings#queryallindices"><code>queryAllIndices=true</code></a> setting in the
-        <code>molochviewer</code> section. Currently one big limitation is that
-        <strong>all Arkime clusters must use the same PasswordSecret</strong>.
+        It is possible to search multiple Arkime clusters by setting up a special multiple Arkime viewer and a special MultiES process.
+        The MultiES process is similar to Elasticsearch tribe nodes, except it was created before tribe nodes and can deal with multiple indexes having the same name.
+        Currently one big limitation is that <strong>all Arkime clusters must use the same <a href="/settings#serversecret">serverSecret</a></strong>.
       </p>
       <p>
-        To use MultiES, create another <code>config.ini</code> file or
-        section in a shared config file. Both <code>multies.js</code> and the
-        special "all" viewer can use the same node name.
+        To use MultiES, create another <code>config.ini</code> file or section in a shared config file.
+        Both <code>multies.js</code> and the special "all" viewer can use the same node name.
+        See <href="/settings#multi-viewer-settings">Multi Viewer Settings</a> for more information.
         <pre><code># viewer/multies node name (-n allnode)
 [allnode]
 # The host and port multies is running on, set with multiESHost:multiESPort usually just run on the same host
@@ -3090,19 +3083,20 @@ multiESPort = 8200
 # Host the multies.js program is listening on, elasticsearch= must match
 multiESHost = localhost
 # Semicolon list of elasticsearch instances, one per arkime cluster.  The first one listed will be used for settings
-multiESNodes = es-cluster1.example.com:9200;es-cluster2.example.com:9200
-# Uncomment if using different rotateIndex settings
-#queryAllIndices=true</code></pre>
+# You MUST have a name set
+multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;http://escluster2.example.com:9200,name:escluster2
+# Uncomment if not using different rotateIndex settings
+#queryAllIndices=false</code></pre>
       </p>
       <p>
         Now you need to start up both the <code>multies.js</code> program and
         <code>viewer.js</code> with the same config file AND <code>-n allnode</code>.
         All other viewer settings, including <a href="/settings#webbasepath"><code>webBasePath</code></a> can still be used.
       </p>
-      <p>By default, the users table comes from the first cluster listed in
-        <a href="/settings#multiesnodes"><code>multiESNodes</code></a>. This can be overridden by setting
-        <a href="/settings#userselasticsearch"><code>usersElasticsearch</code></a> and optionally <a href="/settings#usersprefix"><code>usersPrefix</code></a>
-        in the multi viewer config file.
+      <p>
+        By default, the users table comes from the first cluster listed in <a href="/settings#multiesnodes"><code>multiESNodes</code></a>.
+        This can be overridden by setting <a href="/settings#userselasticsearch"><code>usersElasticsearch</code></a> and
+        optionally <a href="/settings#usersprefix"><code>usersPrefix</code></a> in the multi viewer config file.
       </p>
 
       <h3 id="how-do-i-use-self-signed-ssl-tls-certificates-with-multies">
