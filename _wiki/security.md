@@ -42,6 +42,9 @@ Security Issues that are known and are either not fixable or a known limitation 
 {:class="table table-bordered"}
 | Vulnerability | Date | First | Last |
 | ------------- |-------------| ----- | ----- |
+| Possible NSH parser infinite recursion | 2022/01/07 | 3.1.0 | 3.2.1 |
+| Possible tagger plugin buffer overflow write when enabled | 2021/11/16 | 0.0.0 | 3.1.1 |
+| Possible reader-pcapoverip buffer overflow write when enabled | 2021/04/05 | 2.7.0 | 2.7.1 |
 | API doesn't enforce permissions correctly for some end points | 2019/11/19 | 1.0.0 | 2.0.1 |
 | rXSS for many UI endpoints on errors | 2019/11/19 | 0.0.0  | 2.0.1 |
 | sXSS | 2019/11/19 | 1.5.0 | 2.0.1 |
