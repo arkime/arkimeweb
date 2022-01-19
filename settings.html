@@ -2313,7 +2313,9 @@ title: Settings
               6
             </td>
             <td>
-              (since 3.3.0) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block. The large the value the better the compression, but the slower the read. Recommend using values between 30000 and 120000.
+              (since 3.3.0) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block.
+              The larger the value the better the compression, but the slower the read.
+              Recommend using values between 30000 and 120000.
             </td>
           </tr>
           <tr>
@@ -2327,7 +2329,7 @@ title: Settings
               6
             </td>
             <td>
-              (since 3.3.0) When GZIP is enabled using simpleGzipBlockSize, this is the gzip compression level.
+              (since 3.3.0) When GZip is enabled using simpleGzipBlockSize, this is the gzip compression level.
             </td>
           </tr>
           <tr>
@@ -2359,7 +2361,9 @@ title: Settings
               FALSE
             </td>
             <td>
-              (since 3.3.0) When TRUE use a non standard pcap file format that uses small packet headers. Should only be set when monitoring an interface since it requires that the timestamp is in real time. Saves 10 bytes per packet.
+              (since 3.3.0) When TRUE use a non standard pcap file format that uses small packet headers.
+              Should only be set when monitoring an interface since it requires that the timestamp is in real time.
+              Saves 10 bytes per packet.
             </td>
           </tr>
           <tr>
