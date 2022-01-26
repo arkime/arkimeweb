@@ -1437,7 +1437,8 @@ title: Settings
               EMPTY
             </td>
             <td>
-              The ip used to listen. See the <code>host</code> section of
+              The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
+              See the <code>host</code> section of
               <a class="no-decoration"
                 href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
                 rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
@@ -1454,7 +1455,9 @@ title: Settings
               8005
             </td>
             <td>
-              Port for viewer to listen on
+              This is both the port that the viewer process listens on AND the port we try to connect to other viewer proceses on when proxing.
+              We recommend all viewers use the same port so it can be set in the [default] section.
+              If viewers can't listen on the same ports then set the one in [default] to the common one, and the one in [NODE] to the special port.
             </td>
           </tr>
           <tr>
@@ -1468,7 +1471,9 @@ title: Settings
               http[s]://hostname:[viewport]
             </td>
             <td>
-              The URL used to access this viewer instance
+              This shouldn't be needed anymore, but it allows you to over load both the host and port for talking to a remote node.
+              See <a href="/faq#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">How do viewers find each other</a>.
+              It is much better to use FQDNs on capture nodes, or start capture with the --host option.
             </td>
           </tr>
           <tr>
