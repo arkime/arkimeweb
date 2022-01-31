@@ -496,7 +496,6 @@ title: FAQ
               <a href="#how_do_i_upgrade_to_arkime_3"> Arkime 3.0 instructions </a>
             </td>
             <td>
-              3.0 hasn't been released yet
             </td>
           </tr>
           <tr>
@@ -988,7 +987,7 @@ title: FAQ
 
       <p>
         Upgrading to Arkime 3.0 is a multistep process that requires an outage.
-        An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
+        An outage is required because all the captures <strong>MUST</strong> be <strong>stopped</strong> before upgrading the database so there are no schema issues or corruption.
         Do not restart the capture processes until the db.pl upgrade has finished!
         All of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
         This is very important when upgrading to ES 8.x later.
@@ -997,7 +996,7 @@ title: FAQ
       <ul>
         <li>Elasticsearch before 7.10 is not supported</li>
         <li>All indices will now start with arkime_ after upgrading if a prefix was not previously used</li>
-        <li>multies - The multiESNodes requires a name: and prefix: attribute per entry. Use prefix:arkime_ if not setting a prefix.</li>
+        <li>multies - The multiESNodes requires a name: attribute per entry. Versions 3.0.0 - 3.3.0 require a prefix: setting also, starting with 3.3.1 it defaults to prefix:arkime_</li>
         <li>wise - custom sources will need to be modified to use the new javascript class design</li>
         <li>wise - redis urls have a new standard format</li>
         <li>wise - for json data keyColumn has been renamed keyPath</li>
