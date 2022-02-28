@@ -2991,6 +2991,10 @@ viewUrl=http://node2.fqdn</code></pre>
       </p>
       <ul>
         <li>
+          If you are using SElinux in enforcing mode you may need to make changes for things to work, or disable SElinux.
+          It has been reported that <pre><code>setsebool -P httpd_can_network_connect 1</code></pre> is required.
+        </li>
+        <li>
           Install Apache, turn on the auth method of your choice. This example
           also uses HTTPS from Apache to Arkime, but if on localhost that isn’t
           required. Configure it to set a special header for Arkime to check.
