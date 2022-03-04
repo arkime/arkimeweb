@@ -345,6 +345,11 @@ title: FAQ
         title="Compiled against a different Node.js version error">
         Compiled against a different Node.js version error
       </a>
+      <a class="nav-link nested"
+        href="#change-viewer-port"
+        title="How do I change the port viewer listens on?">
+        How do I change the port viewer listens on?
+      </a>
       <a href="#parliament"
         class="nav-link"
         title="Parliament">
@@ -3360,6 +3365,66 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           the path for you
         </li>
       </ul>
+
+      <h3 id="change-viewer-port">
+        How do I change the port viewer listens on?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        By default viewer listens on port 8005.
+        Changing this can be tricky, especially for a port less than 1024, like 443.
+        You should definitely read the <a href="#how-do-viewers-find-each-other">How do viewers find each other</a> section.
+      </p>
+      <table class="table table-sm table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Scenario
+            </th>
+            <th>
+              Solutions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Change all nodes to port&nbsp;&gt;&nbsp;1024
+            </td>
+            <td>
+              Set <a href="settings#viewportsetting">viewPort</a> in [default] section on ALL nodes
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Change single node port&nbsp;&lt;&nbsp;1024, remaining nodes (if any) unchanged</li>
+            </td>
+            <td>
+              Usually unless a program runs as root it can NOT listen to ports less than 1024.
+              Since viewer by default drops privileges before listening, even if you start as root, it isn't root anymore when trying to listen on the port.
+              Possible solutions are:
+              <ul>
+                <li>Use a reverse proxy like <a href="#how-do-i-proxy-moloch-using-apache">Apache</a>/Nginx. This is a great option for a central node that needs to be behind SSO, and all other nodes are blocked from users directly using</li>
+                <li>Use iptables to forward from new port to 8005. Something like <code><pre>iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8005</pre></code></li>
+                <li>Fool around with the systemd CAP_NET_BIND_SERVICE setting</li>
+                <li>Comment out the <a href="settings#dropuser">dropUser</a> setting and change the <a href="settings#viewportsetting">viewPort</a> setting in a [$nodename] section.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              All nodes, port&nbsp;&lt;&nbsp;1024
+            </td>
+            <td>
+              Just don't. :)
+              If you must, most of the solutions above will work, but don't do the reverse proxy solution since viewer nodes need to talk to each other WITHOUT external authentication.
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <!-- /viewer -->
 
       <!-- parliament -->
