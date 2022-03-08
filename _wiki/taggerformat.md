@@ -48,7 +48,7 @@ It is also possible to create NEW fields inside the tagger file. These new field
 {: .mb-0 }
 
 ```
-#field:whatever.str;kind:lotermfield;count:true;friendly:A String;db:whatever.str-term;help:Help for String;shortcut:0
+#field:whatever.str;kind:lotermfield;count:true;friendly:A String;db:whatever.str;help:Help for String;shortcut:0
 #field:whatever.int;kind:integer;count:true;friendly:A Integer;db:whatever.dbint;help:Help for integer;shortcut:1
 #field:tags;shortcut:2
 10.0.0.1;0=string;1=1;2=atag
@@ -70,13 +70,13 @@ When the tagger format is used with the WISE plugin it is also possible to speci
 {: .mb-0 }
 
 ```
-#field:whatever.str;kind:lotermfield;count:true;friendly:A String;db:whatever.str-term;help:Help for String;shortcut:0
+#field:whatever.str;kind:lotermfield;count:true;friendly:A String;db:whatever.str;help:Help for String;shortcut:0
 #field:whatever.int;kind:integer;count:true;friendly:A Integer;db:whatever.dbint;help:Help for integer;shortcut:1
 #field:tags;shortcut:2
 #view:if (session.whatever)
 #view:  div.sessionDetailMeta.bold Whatever
 #view:  dl.sessionDetailMeta
-#view:    +arrayList(session.whatever, 'str-term', 'Str', 'whatever.str')
+#view:    +arrayList(session.whatever, 'str', 'Str', 'whatever.str')
 #view:    +arrayList(session.whatever, 'dbint', 'Ints', 'whatever.int')
 10.0.0.1;0=string;1=1;2=atag
 10.0.0.2;tags=canstillusefullname
@@ -96,7 +96,7 @@ field | REQUIRED | The field expression
 kind | REQUIRED | ip, lotermfield, termfield, uptermfield, lotextfield, textfield, uptextfield (**Note:** see the Valid values for "kind" (data type) table for kind descriptions)
 count | false | Track number of items with a .cnt field auto created
 friendly | fieldname | A SHORT description, used to describe fields in field labels
-db | REQUIRED | The DB field name, prior to Arkime 1.x MUST end with -term for term fields which is what you want for most strings. With Arkime 1.x -term shouldn't be used.
+db | REQUIRED | The DB field name, prior to Arkime 1.x MUST end with -term for term fields which is what you want for most strings. With Arkime 1.x and later -term MUST NOT be used.
 group | Before first dot in field or general | Field category
 help | fieldname | Help to describe more information about the field
 shortcut | NONE | Used when loading file
