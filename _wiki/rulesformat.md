@@ -10,7 +10,11 @@ permalink: "/rulesformat"
 
 ---
 
-Rules files allow you to specify actions to perform when criteria are met with certain fields or state. The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting. There can be multiple files using a semicolon separated listed. Each file can have multiple rules. The files will automatically reloaded when they are changed, you do NOT need to restart capture.
+Rules files allow you to specify actions to perform when criteria are met with certain fields or state.
+The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting.
+There can be multiple files using a semicolon separated listed.
+Each file can have multiple rules.
+The files will automatically reloaded when they are changed, you do NOT need to restart capture.
 
 Check out the [rules gallery](rules) for inspiration, or add your rule file to help out others!
 
@@ -75,7 +79,7 @@ rules:
 
 * sessionSetup     - Check just during the first few packets of a session.
 * afterClassify    - Check after the session has run thru the classifiers
-* fieldSet         - Check when ever a field has been set
+* fieldSet         - Check when ever a field has been set, the most common value for when
 * beforeMiddleSave - Check before doing a mid save
 * beforeFinalSave  - Check before doing a final save
 * beforeBothSave   - Check before either a mid or final save
@@ -89,9 +93,11 @@ rules:
 ---
 
 ## Fields
-A map of field expressions and values for each field, one value from each field expression must be set. Currently not all field expressions are supported, but will be added over time.
+A map of field expressions and values for each field, one value from each field expression must be set.
+Currently not all field expressions are supported, but will be added over time.
 
-The following example would require that the protocols field is set to tls and that host.http was set to one of the 3 values. If those two fields are set, then it will add tlsrulestest to the protocols field.
+The following example would require that the protocols field is set to tls and that host.http was set to one of the 3 values.
+If those two fields are set, then it will add tlsrulestest to the protocols field.
 {: .mb-0 }
 
 ```
@@ -127,6 +133,23 @@ So for example you could do the following to get aol.com, google.com, and any su
       "protocols": "tlsrulestest"
 ```
 
+### Numeric ranges
+Since Akrime 3.4.1 you can also specify numeric ranges for integer fields.
+Use the format of MIN-MAX.
+For example this rule requires the src port to be < 1024 and dst port be > 1024
+```
+  - name: "low src high dst"
+    when: "fieldSet"
+    fields:
+      protocols:
+        - tls
+      port.src
+        - 1-1023
+      port.dst
+        - 1024-65535
+    ops:
+      "protocols": "lowsrcport"
+```
 
 ---
 
