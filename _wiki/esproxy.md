@@ -83,8 +83,8 @@ Esproxy to ES will use the elasticsearch url in the <code>[default]</code> secti
 
 #### [tee] section
 
-The ES Proxy also allows you to send a copy of all elasticsearch items to another cluster.
-This is extremely useful when you are trying to bring up a new cluster and want to write to 2 clusters but still read from the old cluster.
+Since 3.4.0 the ES Proxy allows you to send a copy of all elasticsearch items to another cluster.
+This is extremely useful when you are trying to bring up a new cluster and want to write to 2 ES clusters but still read from the old ES cluster.
 The tee section supports the following settings:
 <a href="settings#elasticsearch">elasticsearch</a>
 <a href="settings#elasticsearchAPIKey">elasticsearchAPIKey</a>
