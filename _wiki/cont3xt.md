@@ -22,9 +22,13 @@ permalink: "/cont3xt"
 
 ----
 
-Cont3xt provides context, and is part of the Arkime 4.0 release.
+Cont3xt allows you to gather instant "cont3xt" related to indicators that you provide from a number of default enrichment integrations that include PassiveTotal, VirusTotal, Censys, Shodan, and more.
+You can build pivot links to public/private resources.
+Simplify your analytic life!
 
-WORDS GO HERE.
+Cont3xt was first available in the Arkime 4.0 release.
+
+MORE WORDS GO HERE.
 
 ---
 
