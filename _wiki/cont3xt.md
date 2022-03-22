@@ -57,22 +57,22 @@ port | 3218 | The port that the cont3xt service listens on
 cont3xtHost | empty | What hostname to bind to
 hstsHeader | false | Set the hsts header on requests to cont3xt
 webBasePath | / | The base url for Cont3xt web requests. Must end with a / or bad things will happen.
-dbUrl |
-certFile |
-keyFile |
-userNameHeader |
-elasticsearch |
-elasticsearchAPIKey |
-elasticsearchBasicAuth |
-elasticsearchTimeout |
-esClientKey |
-esClientCert |
-esClientKeyPass |
-usersUrl |
-usersElasticsearch |
-usersPrefix |
-usersElasticsearchAPIKey |
-usersElasticsearchBasicAuth |
+dbUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt data.
+certFile | empty | Public certificate to use for https, if not set then http will be used. keyFile must also be set.
+keyFile | empty | Private certificate to use for https, if not set then http will be used. certFile must also be set.
+userNameHeader | anonymous | Header to use for determining the username to check in the database for instead of using http digest. Set to <strong>digest</strong> to use http digest authentication.
+elasticsearch | http://localhost:9200 | The elasticsearch URL to use, dbUrl overrides this setting
+elasticsearchAPIKey | empty | See <a href="settings#elasticsearchAPIKey">settings page</a>
+elasticsearchBasicAuth | empty | See <a href="settings#elasticsearchBasicAuth">settings page</a>
+elasticsearchTimeout | 300 | See <a href="settings#elasticsearchtimeout">settings page</a>
+esClientKey | empty | See <a href="settings#esclientkey">settings page</a>
+esClientCert | empty | See <a href="settings#esclientcert">settings page</a>
+esClientKeyPass | empty | See <a href="settings#esclientkeypass">settings page</a>
+usersUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt users database. Can be the same that all Arkime tools use.
+usersElasticsearch | empty | See <a href="settings#userselasticsearch">settings page</a>
+usersPrefix | empty | See <a href="settings#usersprefix">settings page</a>
+usersElasticsearchAPIKey | empty | See <a href="settings#usersElasticsearchAPIKey">settings page</a>
+usersElasticsearchBasicAuth | empty | See <a href="settings#usersElasticsearchBasicAuth">settings page</a>
 userAgent | cont3xt | The http user-agent header to use when talking to remote services
 {: .table .table-striped .table-sm .mb-4 }
 
