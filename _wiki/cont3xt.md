@@ -38,6 +38,9 @@ MORE WORDS GO HERE.
 
 You'll need to run cont3xt.js from the cont3xt directory.
 
+If not using anonymous mode, every user will need either the cont3xtUser or cont3xtAdmin role assigned to them.
+The cont3xtAdmin role will all the user to edit any link group.
+
 ### Settings
 
 By default settings live in a config.ini file.
@@ -132,7 +135,7 @@ It is possible to setup cont3xt in the Arkime universe.
 
 <pre>
 [cont3xt]
-# Where all the links are stored
+# Where all the cont3xt data is stored
 elasticsearch=https://ESHOST1:9200,https://ESHOST2:9200
 
 # Where the user database is. This might be the same as above
@@ -141,7 +144,7 @@ usersElasticsearch=https://USERESHOST1:9200,https://USERESHOST2:9200
 # If using SSO uncomment below with the http header with the username in it
 #userNameHeader=moloch_user
 
-# default cache timeou
+# default cache timeout
 cacheTimeout=1d
 
 # Configure local disk cache
@@ -168,13 +171,16 @@ You will need to use the addUser script with the cont3xt.ini configurat file to 
 
 <pre>
 [cont3xt]
+# Where all the cont3xt data is stored
 dbUrl=lmdb:///opt/arkime/cont3xt-db
+
+# Where the user database is. This should be different than above
 usersUrl=lmdb:///opt/arkime/cont3xt-users
 
 # If using SSO uncomment below with the http header with the username in it
 #userNameHeader=moloch_user
 
-# default cache timeou
+# default cache timeout
 cacheTimeout=1d
 
 # Configure local disk cache
