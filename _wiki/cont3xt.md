@@ -57,10 +57,22 @@ port | 3218 | The port that the cont3xt service listens on
 cont3xtHost | empty | What hostname to bind to
 hstsHeader | false | Set the hsts header on requests to cont3xt
 webBasePath | / | The base url for Cont3xt web requests. Must end with a / or bad things will happen.
-dbUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt data.
 certFile | empty | Public certificate to use for https, if not set then http will be used. keyFile must also be set.
 keyFile | empty | Private certificate to use for https, if not set then http will be used. certFile must also be set.
 userNameHeader | anonymous | Header to use for determining the username to check in the database for instead of using http digest. Set to <strong>digest</strong> to use http digest authentication.
+userAgent | cont3xt | The http user-agent header to use when talking to remote services
+geoLite2ASN | | <a href="settings#geolite2asn">settings page</a>
+geoLite2Country | | <a href="settings#geolite2country">settings page</a>
+{: .table .table-striped .table-sm .mb-4 }
+
+#### DB Settings
+These also live in the `[cont3xt]` section.
+
+{: .mb-0}
+
+Setting | Default | Description
+--------|---------|------------
+dbUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt data.
 elasticsearch | http://localhost:9200 | The elasticsearch URL to use, dbUrl overrides this setting
 elasticsearchAPIKey | empty | See <a href="settings#elasticsearchAPIKey">settings page</a>
 elasticsearchBasicAuth | empty | See <a href="settings#elasticsearchBasicAuth">settings page</a>
@@ -73,7 +85,7 @@ usersElasticsearch | empty | See <a href="settings#userselasticsearch">settings 
 usersPrefix | empty | See <a href="settings#usersprefix">settings page</a>
 usersElasticsearchAPIKey | empty | See <a href="settings#usersElasticsearchAPIKey">settings page</a>
 usersElasticsearchBasicAuth | empty | See <a href="settings#usersElasticsearchBasicAuth">settings page</a>
-userAgent | cont3xt | The http user-agent header to use when talking to remote services
+passwordSecret | password | See <a href="settings#passwordsecret">settings page</a>
 {: .table .table-striped .table-sm .mb-4 }
 
 #### Caching
@@ -95,7 +107,7 @@ cacheTimeout|24 hours| In seconds the MAX time to cache any item, used by redis/
 
 
 
-### Common per integration settings
+#### Common settings per integration
 
 Every integration can have its own settings with keys, passwords and other things.
 Usually keys and passwords should be set per user in the UI, which will override these.
@@ -109,6 +121,78 @@ disabled | false | If set to true users can NOT use this integration
 cacheTimeout | cont3xt.cacheTimeout | How long to cache results for this integration
 cachePolicy | cont3xt.cachePolicy | Can be `shared` or `user`, if set to user then the cache is per user
 {: .table .table-striped .table-sm .mb-4 }
+
+## Sample Configs
+
+Possible configurations for cont3xt
+
+
+### Using elasticsearch
+It is possible to setup cont3xt in the Arkime universe.
+
+<pre>
+[cont3xt]
+# Where all the links are stored
+elasticsearch=https://ESHOST1:9200,https://ESHOST2:9200
+
+# Where the user database is. This might be the same as above
+usersElasticsearch=https://USERESHOST1:9200,https://USERESHOST2:9200
+
+# If using SSO uncomment below with the http header with the username in it
+#userNameHeader=moloch_user
+
+# default cache timeou
+cacheTimeout=1d
+
+# Configure local disk cache
+[cache]
+type=lmdb
+lmdbDir=/opt/arkime/cont3xt-cache
+
+##### INTEGRATION SETTINGS
+
+[Threatstream]
+# For threatstream we don't share the cache, it is per user
+cachePolicy=user
+#host=threatstreamonprem.host
+
+[VirusTotal]
+# For VT lets increase the timeout
+cacheTimeout=1w
+</pre>
+
+### Using standalone
+
+It is possible to setup cont3xt in a standalone deployment without elasticsearch.
+You will need to use the addUser script with the cont3xt.ini configurat file to add users.
+
+<pre>
+[cont3xt]
+dbUrl=lmdb:///opt/arkime/cont3xt-db
+usersUrl=lmdb:///opt/arkime/cont3xt-users
+
+# If using SSO uncomment below with the http header with the username in it
+#userNameHeader=moloch_user
+
+# default cache timeou
+cacheTimeout=1d
+
+# Configure local disk cache
+[cache]
+type=lmdb
+lmdbDir=/opt/arkime/cont3xt-cache
+
+##### INTEGRATION SETTINGS
+
+[Threatstream]
+# For threatstream we don't share the cache, it is per user
+cachePolicy=user
+#host=threatstreamonprem.host
+
+[VirusTotal]
+# For VT lets increase the timeout
+cacheTimeout=1w
+</pre>
 
 ## Known Issues
 * This document need to be improved before 4.0 release
