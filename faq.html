@@ -115,6 +115,11 @@ title: FAQ
         title="How do I upgrade to Arkime 3.0">
         How do I upgrade to Arkime 3.0
       </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_4"
+        title="How do I upgrade to Arkime 4.0">
+        How do I upgrade to Arkime 4.0
+      </a>
       <a href="#elasticsearch"
         class="nav-link"
         title="Elasticsearch">
@@ -489,6 +494,25 @@ title: FAQ
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <th>
+              Arkime
+            </th>
+            <td>
+              4.0+
+            </td>
+            <td>
+              3.2.0+ (3.3.0 recommended)
+            </td>
+            <td>
+              7.10+
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.0 instructions </a>
+            </td>
+            <td>
+            </td>
+          </tr>
           <tr>
             <th>
               Arkime
@@ -1023,6 +1047,28 @@ title: FAQ
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
         <li>Verify your config.ini and systemd files have the new /opt/arkime path if moving from the Moloch to Arkime distribution</li>
         <li>If using ilm, run the db.pl ilm command again with all the same options used previously</li>
+        <li>Restart capture, multies and viewers</li>
+        <li>Verify everything is working</li>
+      </ul>
+
+      <h3 id="how_do_i_upgrade_to_arkime_4">
+        How do I upgrade to Arkime 4.0
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        Upgrading to Arkime 4.0 requires that you are already using Arkime 3.0 and have finished those steps.
+        Arkime 4.0 uses a new permission model with roles.
+      </p>
+      <h4>Breaking Changes</h4>
+      <ul>
+        <li>TBD</li>
+      </ul>
+      <h4>Instructions</h4>
+      <ul>
+        <li>TBD</li>
         <li>Restart capture, multies and viewers</li>
         <li>Verify everything is working</li>
       </ul>
