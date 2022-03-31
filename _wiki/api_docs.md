@@ -416,6 +416,42 @@ Retrieves a list of known configured Arkime clusters (if in
 | active | <code>Array</code>| The active Arkime clusters. |
 | inactive | <code>Array</code>| The inactive Arkime clusters. |
 
+<a name="/remoteclusters"></a>
+
+## /remoteclusters API
+
+GET - /api/remoteclusters
+
+Retrieves a list of known configured remote Arkime clusters.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| remoteclusters | <code>Object</code>| Key/value pairs of remote Arkime clusters, the key being the name of the cluster |
+
+<a name="/appinfo"></a>
+
+## /appinfo API
+
+GET - /api/appinfo
+
+Retrieves information that the app uses on every page:
+eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, fieldshistory
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| eshealth | [<code>ESHealth</code>](#ESHealth)| The Elasticsearch cluster health status and information. |
+| currentuser | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user |
+| views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views accessible to the logged in user |
+| remoteclusters | <code>Object</code>| A list of known remote Arkime clusters |
+| clusters | <code>Array</code>| A list of known configured Arkime clusters (if in Mulit Viewer mode) |
+| fields | <code>Array</code>| Available database field objects pertaining to sessions |
+| fieldsmap | <code>Array</code>| Available database field objects pertaining to sessions |
+| fieldshistory | <code>Object</code>| The user's field history for the search expression input |
+
 <a name="/notifiertypes"></a>
 
 ## /notifiertypes API
@@ -569,8 +605,8 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | map | <code>object</code>| The data to populate the sessions map |
 | graph | <code>object</code>| The data to populate the sessions timeline graph |
 | data | <code>array</code>| The list of sessions with the requested fields |
-| recordsTotal | <code>number</code>| The total number of files Arkime knows about |
-| recordsFiltered | <code>number</code>| The number of files returned in this result |
+| recordsTotal | <code>number</code>| The total number of sessions Arkime knows about |
+| recordsFiltered | <code>number</code>| The number of sessions matching query |
 
 <a name="/sessions/csv"></a>
 
@@ -617,8 +653,8 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 | graph | <code>object</code>| The data to populate the sessions timeline graph |
 | spi | <code>object</code>| The list of spi fields with values and counts |
 | protocols | <code>object</code>| The list of protocols with counts |
-| recordsTotal | <code>number</code>| The total number of files Arkime knows about |
-| recordsFiltered | <code>number</code>| The number of files returned in this result |
+| recordsTotal | <code>number</code>| The total number of sessions Arkime knows about |
+| recordsFiltered | <code>number</code>| The number of sessions matching query |
 
 <a name="/spigraph"></a>
 
@@ -643,8 +679,8 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 | map | <code>object</code>| The data to populate the main/aggregate spigraph sessions map |
 | graph | <code>object</code>| The data to populate the main/aggregate spigraph sessions timeline graph |
 | items | <code>array</code>| The list of field values with their corresponding timeline graph and map data |
-| recordsTotal | <code>number</code>| The total number of files Arkime knows about |
-| recordsFiltered | <code>number</code>| The number of files returned in this result |
+| recordsTotal | <code>number</code>| The total number of sessions Arkime knows about |
+| recordsFiltered | <code>number</code>| The number of sessions matching query |
 
 <a name="/spigraphhierarchy"></a>
 
@@ -1589,51 +1625,6 @@ Retrieves the currently logged in user.
 | --- | --- | --- |
 | user | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user. |
 
-<a name="/user"></a>
-
-## /user API
-
-POST - /api/user
-
-Creates a new Arkime user (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the add user operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/_id"></a>
-
-## /user/:id API
-
-DELETE - /api/user/:id
-
-Deletes an Arkime user (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete user operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/_id"></a>
-
-## /user/:id API
-
-POST - /api/user/:id
-
-Updates an Arkime user (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update user operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
 <a name="/user/password"></a>
 
 ## /user/password API
@@ -1662,22 +1653,6 @@ Retrieves custom user css for the user's custom theme.
 | Name | Type | Description |
 | --- | --- | --- |
 | css | <code>css</code>| The css file that includes user configured styles. |
-
-<a name="/users"></a>
-
-## /users API
-
-POST - /api/users
-
-Retrieves a list of Arkime users (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| data | [<code>Array.&lt;ArkimeUser&gt;</code>](#ArkimeUser)| The list of users configured to access this Arkime cluster. |
-| recordsTotal | <code>number</code>| The total number of users Arkime knows about. |
-| recordsFiltered | <code>number</code>| The number of users returned in this result. |
 
 <a name="/user/settings"></a>
 
@@ -2011,6 +1986,20 @@ Updates or creates a user table state object. These are used to save the states 
 | success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/user/config/_page"></a>
+
+## /user/config/:page API
+
+GET - /api/user/config/:page
+
+Fetches the configuration information for a UI page for a user.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| config The configuration data for the page |
+
 <a name="History"></a>
 
 ## History Type
@@ -2112,7 +2101,7 @@ When using POST the request body and request query are merged. Any duplicate par
 | stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
 | view | <code>string</code> |  | The view name to apply before the expression. |
 | order | <code>string</code> |  | Comma separated list of db field names to sort on. Data is sorted in order of the list supplied. Optionally can be followed by :asc or :desc for ascending or descending sorting. |
-| fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, srcDataBytes, dstDataBytes, firstPacket, lastPacket, srcIp, srcPort, dstIp, dstPort, totPackets, srcPackets, dstPackets, totBytes, srcBytes, dstBytes, node, http.uri, srcGEO, dstGEO, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel, http.xffGEO |
+| fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, client.bytes, server.bytes, firstPacket, lastPacket, source.ip, source.port, destination.ip, destination.port, network.packets, source.packets, destination.packets, network.bytes, source.bytes, destination.bytes, node, http.uri, source.geo.country_iso_code, destination.geo.country_iso_code, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel, http.xffGEO |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
@@ -2179,7 +2168,6 @@ The user object.
 | userId | <code>string</code> |  | The ID of the user. |
 | userName | <code>string</code> |  | The name of the user (to be displayed in the UI). |
 | enabled | <code>boolean</code> | <code>true</code> | Whether the user is enabled (or disabled). Disabled users cannot access the UI or APIs. |
-| createEnabled | <code>boolean</code> | <code>false</code> | Can create new accounts and change the settings for other accounts and other administrative tasks. |
 | webEnabled | <code>boolean</code> | <code>true</code> | Can access the web interface. When off only APIs can be used. |
 | headerAuthEnabled | <code>boolean</code> | <code>false</code> | Can login using the web auth header. This setting doesn't disable the password so it should be scrambled. |
 | emailSearch | <code>boolean</code> | <code>false</code> | Can perform searches for fields relating to email. |
@@ -2217,12 +2205,12 @@ The settings object.
 | sortColumn | <code>string</code> | <code>&quot;firstPacket&quot;</code> | Which column to sort the sesssions table by default. Default is start time. |
 | sortDirection | <code>string</code> | <code>&quot;desc&quot;</code> | Whether to sort the sessions table ascending or descending. |
 | spiGraph | <code>string</code> | <code>&quot;node&quot;</code> | The default field to show spigraph data for. |
-| connSrcField | <code>string</code> | <code>&quot;srcIp&quot;</code> | The default connections graph source node field. |
+| connSrcField | <code>string</code> | <code>&quot;source.ip&quot;</code> | The default connections graph source node field. |
 | connDstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The default connections graph destination node field. |
 | numPackets | <code>string</code> | <code>&quot;last&quot;</code> | The number of packets to show in the session packet area. |
 | theme | <code>string</code> | <code>&quot;default-theme&quot;</code> | The color theme to apply to the UI. Can be a name of a predefined field or a list of color codes if using a custom theme. |
 | manualQuery | <code>boolean</code> | <code>false</code> | Whether to load the sessions data by default or wait for a user to hit search manually. |
-| timelineDataFilters | <code>array</code> | <code>[&#x27;totPackets&#x27;,&#x27;totBytes&#x27;,&#x27;totDataBytes&#x27;</code> | The filters to display on the sessions timeline graph to change the graphs data. |
+| timelineDataFilters | <code>array</code> | <code>[&#x27;network.packets&#x27;,&#x27;network.bytes&#x27;,&#x27;totDataBytes&#x27;</code> | The filters to display on the sessions timeline graph to change the graphs data. |
 | logo | <code>string</code> |  | The optionally configurable logo to show in the top navbar. |
 
 <a name="ArkimeView"></a>
@@ -2253,7 +2241,7 @@ A database view that can be applied to any search.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
-| visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;srcPort&quot;,&quot;dst&quot;,&quot;dstPort&quot;,&quot;totPackets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
+| visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;source.port&quot;,&quot;dst&quot;,&quot;destination.port&quot;,&quot;network.packets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
 
 <a name="ArkimeQuery"></a>
 

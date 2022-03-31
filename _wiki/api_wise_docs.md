@@ -231,8 +231,6 @@ When sources are created they get an api object to interact with the wise servic
         * [.addView(viewName, view)](#WISESourceAPI+addView)
         * [.addSource(section, src, types)](#WISESourceAPI+addSource)
         * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
-        * [.createRedisClient()](#WISESourceAPI+createRedisClient)
-        * [.createMemcachedClient()](#WISESourceAPI+createMemcachedClient)
         * [.addValueAction()](#WISESourceAPI+addValueAction)
     * _inner_
         * [~SourceConfigField](#WISESourceAPI..SourceConfigField) : <code>Object</code>
@@ -360,22 +358,6 @@ Add for each source config definition for the UI to use.
 | sourceName | <code>string</code> | The source name |
 | config | [<code>SourceConfig</code>](#WISESourceAPI..SourceConfig) | The configuration of this source type |
 
-<a name="WISESourceAPI+createRedisClient"></a>
-
-### wiseSourceAPI.createRedisClient() (function)
-
-Create a redis client from the provided url
-
-**Params**: <code>string</code> url - The redis url to connect to.  
-**Params**: <code>string</code> section - The section this redis client is being created for  
-<a name="WISESourceAPI+createMemcachedClient"></a>
-
-### wiseSourceAPI.createMemcachedClient() (function)
-
-Create a memcached client from the provided url
-
-**Params**: <code>string</code> url - The memcached url to connect to.  
-**Params**: <code>string</code> section - The section this memcached client is being created for  
 <a name="WISESourceAPI+addValueAction"></a>
 
 ### wiseSourceAPI.addValueAction() (function)

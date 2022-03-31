@@ -1,5 +1,5 @@
 ---
-title: API
+title: Viewer API
 layout: wiki
 permalink: "/api"
 ---
