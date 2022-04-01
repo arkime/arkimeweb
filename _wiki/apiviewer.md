@@ -1,5 +1,5 @@
 ---
-title: Viewer API
+title: API
 layout: wiki
 permalink: "/apiv3"
 ---
@@ -28,6 +28,6 @@ The easiest way to see database field names is to click the owl within Arkime ->
 
 ---
 
-{% include_relative api_docs.md %}
+{% include_relative api_viewer_docs.md %}
 
 </div>

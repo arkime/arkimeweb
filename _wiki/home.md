@@ -17,6 +17,7 @@ permalink: "/learn"
 - [Other FPC Systems](otherfpc)
 - [Breaking TLS POC](break-tls-poc)
 - [Why Arkime?](arkimeetus)
+- [Common API](commonapi)
 
 #### Capture
 - [Rules Format](rulesformat)
@@ -34,6 +35,7 @@ permalink: "/learn"
 
 #### Cont3xt
 - [Everything Cont3xt](cont3xt)
+- [Cont3xt API](cont3xtapi)
 
 #### Elasticsearch
 - [Elasticsearch SSL](esssl)
@@ -42,7 +44,7 @@ permalink: "/learn"
 #### WISE
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
-- [WISE v3.x API](wiseapi)
+- [WISE API](wiseapi)
 - [WISE 3.x Configuration Gallery](wise-configs)
 
 ---

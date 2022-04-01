@@ -1,29 +1,4 @@
----
-title: Viewer API
-layout: wiki
-permalink: "/api"
----
-
-- TOC
-{:toc}
-{: .left-nav .d-none .d-sm-block .pt-3 .with-footer .wiki-toc }
-
-<div class="collapse-btn d-none d-sm-block"
-  onclick="toggleToc()">
-  <span class="fa fa-angle-double-left">
-  </span>
-</div>
-
-<div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3" markdown="1">
-
-# Viewer v0.x - v2.x API
-
-This is the documentation for version v0.x - v2.x. [Here is the the API for current versions](/apiv3).
-
-**Note:** Many of the API endpoints require a db field name, which is not the same as what you would use in a search expression.
-The easiest way to see database field names is to click the owl within Arkime -> click the fields label on left -> click display the database fields.
-
----
+<a name="/fields"></a>
 
 ## /fields
 
@@ -238,5 +213,3 @@ A POST request that can add tags to individual sessions by id or by query. The U
 ## /removeTags
 
 A POST request that can remove tags from individual sessions by id or by query. The URL query parameters can be the same as session.json to select the session to remove tags from. The POST body must contain a tags item which is a comma separated list of tags to remove and optionally ids which is a comma separated list of document ids.
-
-</div>
