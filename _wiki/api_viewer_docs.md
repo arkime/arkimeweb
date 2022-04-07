@@ -1611,35 +1611,6 @@ See the parliament definition <a href="https://github.com/arkime/arkime/tree/mai
 | recordsTotal | <code>number</code>| The total number of stats. |
 | recordsFiltered | <code>number</code>| The number of stats returned in this result. |
 
-<a name="/user"></a>
-
-## /user API
-
-GET - /api/user
-
-Retrieves the currently logged in user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| user | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user. |
-
-<a name="/user/password"></a>
-
-## /user/password API
-
-POST - /api/user/password
-
-Update user password.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update password operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
 <a name="/user/css"></a>
 
 ## /user/css API
@@ -2154,6 +2125,25 @@ The Elasticsearch cluster health status and information.
 | version | <code>string</code> | the elasticsearch version number |
 | _timeStamp | <code>number</code> | timestamps in ms from unix epoc |
 
+<a name="ArkimeRole"></a>
+
+## ArkimeRole Type
+
+An Arkime Role
+
+Roles are assigned to users to give them access to Arkime content<br>
+Default roles include:<br>
+arkimeAdmin - has administrative access to Arkime (can configure and update Arkime)<br>
+arkimeUser - has access to Arkime<br>
+cont3xtAdmin - has administrative access to Cont3xt (can configure and update Cont3xt)<br>
+cont3xtUser - has access to Cont3xt<br>
+parliamentAdmin - has administrative access to Parliament (can configure and update Parliament)<br>
+parliamentUser - has access to Parliament (can view and interact with Parliament Issues)<br>
+superAdmin - has access to all the applications and can configure anything<br>
+usersAdmin - has access to configure users<br>
+wiseAdmin - has administrative access to WISE (can configure and update WISE)<br>
+wiseUser - has access to WISE
+
 <a name="ArkimeUser"></a>
 
 ## ArkimeUser Type
@@ -2187,6 +2177,7 @@ The user object.
 | welcomeMsgNum | <code>number</code> | <code>0</code> | The message number that a user is on. Gets incremented when a user dismisses a message. |
 | lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
 | timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
+| roles | <code>array</code> |  | The list of Arkime roles assigned to this user. |
 
 <a name="ArkimeSettings"></a>
 
