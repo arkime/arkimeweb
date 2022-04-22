@@ -1486,8 +1486,10 @@ title: Settings
               /
             </td>
             <td>
-              The base url for Arkime web requests. Must end with a / or bad
-              things will happen.
+              The base url for Arkime web requests.
+              Must end with a / or bad things will happen.
+              This setting is meant to be used when using a reverse proxy talking to multiviewer or central viewers.
+              Do not set in the [default] section, only in a section that matches the node name of the multiviewer/central viewer.
             </td>
           </tr>
           <tr>
