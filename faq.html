@@ -856,7 +856,8 @@ title: FAQ
         Multies currently doesn't support the option fully, see <a href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies">here</a>.
       </p>
       <p>
-        Capture, viewer, db.pl can run with <code>--insecure</code> to turn off certificate checking.
+        Another option is to just turn off certificate checking.
+        Capture, viewer, arkime_add_user.sh, db.pl can run with <code>--insecure</code> to turn off certificate checking.
         You will need to add this option to the startup command for both capture and viewer.
         For example, in the <code>/etc/systemd/system/arkimecapture.conf</code> file, change the <code>ExecStart</code>
         line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
