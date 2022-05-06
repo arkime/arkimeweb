@@ -72,11 +72,11 @@ title: Home
             <p class="lead text-justify mt-4">
               We are excited to share that Arkime 4.0 is now
               <a href="downloads" class="no-decoration">available</a>!
-              This release includes an entirely new application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
+              This release includes an entirely new web application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
               a new permission model with roles,
-              speed up large queries by hiding the graph and map,
+              speedier queries by hiding or disabling the graph and map,
               new AND arrays with ][ syntax vs OR arrays with [],
-              combine multiple calls from UI into one call to speed up initial load time,
+              speedier initial load time by combining multiple calls from UI into one,
               shortcut wildcard support,
               bug fixes, and much, much more. View a list of all the changes
               <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
@@ -133,13 +133,15 @@ title: Home
             <hr>
             <p id="hide-graph-map"
               class="lead lead-lg text-justify text-center hash-link-offset">
-              Hide Graph/Map
+              Hide/Disable Graph/Map
             </p>
             <p class="lead text-justify">
-              Fetching the data to provide to the graph and map takes much longer than
+              Fetching the data to compute the graph and map takes much longer than
               a general Arkime query for sessions. By hiding both the graph and the map,
-              you can easily speed up session searchs. This is particularly useful
-              when issuing queries for long periods of time.
+              you can easily speed up session searches. This is particularly useful
+              when issuing queries for long periods of time. A user can manually hide the graph
+              and map and each cluster can be configured with a maximum number of days to
+              auto-disable the graph and map (which can be overridden per user request).
             </p>
             <hr>
             <p id="speedy"
@@ -150,6 +152,8 @@ title: Home
               Initially loading the Arkime web application requires a lot of data.
               To improve the speed of the initial load time many queries have been
               combined into one, <a href="apiv3#appinfo-api" class="no-decoration">here</a>.
+              Also, some resources are now lazy loaded by waiting for the user to request
+              their presence before loading (e.g. the graph and map libraries).
             </p>
             <hr>
             <p id="wildcard-shortcuts"
