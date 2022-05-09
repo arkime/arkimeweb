@@ -464,11 +464,12 @@ title: FAQ
         </span>
       </h3>
       <p>
-        Upgrading Arkime requires you install versions in order, as
+        Upgrading Arkime requires you install major versions in order, as
         described in the chart below. If the version you are currently
         on isn’t listed please upgrade to the next higher version in the
         chart, you can then install the major releases in order to catch up.
         New installs can start from the latest version.
+        Unless otherwise stated, you should just need to db.pl upgrade between versions.
       </p>
       <table class="table table-sm table-bordered">
         <thead>
@@ -502,7 +503,7 @@ title: FAQ
               4.0+
             </td>
             <td>
-              3.2.0+ (3.3.0 recommended)
+              3.3.0+ (3.4.0 recommended)
             </td>
             <td>
               7.10+
@@ -669,15 +670,18 @@ title: FAQ
         <a href="downloads">
           downloads page
         </a>
-        Our deployment is on RHEL 7, using both the pcap and afpacket reader depending on deployment.
+        Our deployment is on RHEL 7 and RHEL 8, using both the pcap and afpacket reader depending on deployment.
         We recommend using afpacket (tpacketv3) whenever possible.
         A large amount of development is done on macOS 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
-        Arkime is not supported on 32 bit machines.
+        Arkime is not supported on 32 bit machines anymore.
       </p>
       <p>
         The following OSes should work out of the box for compiling yourself:
       </p>
       <ul>
+        <li>
+          Arch
+        </li>
         <li>
           CentOS/RHEL 7, 8
         </li>
@@ -686,13 +690,6 @@ title: FAQ
         </li>
         <li>
           Ubuntu 16.04, 18.04, 20.04
-        </li>
-        <li>
-          FreeBSD 9
-        </li>
-        <li>
-          FreeBSD 10.0 (wiseService doesn’t work, but the wise plugin
-          does), 10.3 is known NOT to compile currently.
         </li>
       </ul>
 
@@ -712,7 +709,7 @@ title: FAQ
           Check that Elasticsearch is running and green using
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
           on the machine running Elasticsearch.
-          An Unauthorized response probably means you need user:pass in all ES urls, or you are using the wrong one.
+          An Unauthorized response probably means you need user:pass in all ES urls, or you are using the wrong URL.
         </li>
         <li>
           Check that the db has been initialized with
@@ -859,7 +856,8 @@ title: FAQ
         Multies currently doesn't support the option fully, see <a href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies">here</a>.
       </p>
       <p>
-        Capture, viewer, db.pl can run with <code>--insecure</code> to turn off certificate checking.
+        Another option is to just turn off certificate checking.
+        Capture, viewer, arkime_add_user.sh, db.pl can run with <code>--insecure</code> to turn off certificate checking.
         You will need to add this option to the startup command for both capture and viewer.
         For example, in the <code>/etc/systemd/system/arkimecapture.conf</code> file, change the <code>ExecStart</code>
         line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
@@ -1045,7 +1043,7 @@ title: FAQ
         <li>Install Arkime or Arkime/Moloch Hybrid &gt;= 3.0 without restarting captures/viewers (The Hybrid distribution uses /data/moloch and old binary names still.)</li>
         <li>Shutdown captures, multies and viewers</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
-        <li>Verify your config.ini and systemd files have the new /opt/arkime path if moving from the Moloch to Arkime distribution</li>
+        <li>Verify your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to Arkime distribution. If you continue to use the Hybrid distribution you do not need to change the paths.</li>
         <li>If using ilm, run the db.pl ilm command again with all the same options used previously</li>
         <li>Restart capture, multies and viewers</li>
         <li>Verify everything is working</li>
@@ -1059,7 +1057,8 @@ title: FAQ
       </h3>
 
       <p>
-        Upgrading to Arkime 4.0 requires that you are already using Arkime 3.0 and have finished those steps.
+        <strong> Arkime 4.0 has not been released yet, please don't use with production data</strong>
+        Upgrading to Arkime 4.0 requires that you are already using Arkime 3.3.0 or later.
         Arkime 4.0 uses a new permission model with roles.
       </p>
       <h4>Breaking Changes</h4>
@@ -1068,7 +1067,7 @@ title: FAQ
       </ul>
       <h4>Instructions</h4>
       <ul>
-        <li>TBD</li>
+        <li>Install new arkime rpm/db</li>
         <li>Restart capture, multies and viewers</li>
         <li>Verify everything is working</li>
       </ul>
@@ -1363,9 +1362,26 @@ title: FAQ
       </h3>
       <p>
         <strong>
-          ES 8.x is NOT supported yet, please don't install.
+          ES 8.x is NOT supported before 3.4.1, and we recommend you wait for Arkime 4.0 to be released.
         </strong>
       </p>
+      <ol type="I">
+        <li>
+          You must first upgrade to Arkime 3.4.1 or higher and run <code>db.pl http://ESHOST:9200 upgrade</code> while still using ES 7.
+        </li>
+        <li>
+          ES 8 can only do upgrades from ES 7.17 or later, so you will need to upgrade ES to 7.17 or later.
+        </li>
+        <li>
+          Make sure your Elasticsearch config files are ready for ES 8. We do not provide sample Elasticsearch configs, but here are some things to look out for:
+          <ul>
+            <li>ES 8 by default enables https and passwords, either disable or update your Arkime configs to use</li>
+            <li>There are several config variable changes, we suggest trying your elasticsearch.yml config file with a test cluster</li>
+            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.0/breaking-changes.html">ES 8.0 breaking changes</a></li>
+          </ul>
+        </li>
+        <li>Follow Elastic's <a href="https://www.elastic.co/guide/en/elastic-stack/8.0/upgrading-elasticsearch.html">rolling upgrade instructions.</a></li>
+      </ol>
 
       <h3 id="how-do-i-upgrade-to-es-7-x">
         How do I upgrade to ES 7.x

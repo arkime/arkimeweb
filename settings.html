@@ -370,7 +370,8 @@ title: Settings
               FALSE
             </td>
             <td>
-              Set on 1 viewer node per cluster, this viewer node will perform all the cron queries for the cluster.
+              Set on 1 viewer node per cluster, this viewer node will perform all the cron queries and hunts for the cluster.
+              If you do NOT set this on a cluster hunts and cron queries can be created but will never run.
               <br>
               (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local elasticsearch.
             </td>
@@ -703,11 +704,11 @@ title: Settings
               </span>
             </td>
             <td>
-              4
+              12 (since 4.0.0)<br>4 (before 4.0)
             </td>
             <td>
-              The max raw pcap file size in gigabytes. The disk should have
-              room for at least 10*maxFileSizeG files.
+              The max raw pcap file size in gigabytes.
+              The disk should have room for at least 10*maxFileSizeG files.
             </td>
           </tr>
           <tr>
@@ -1486,8 +1487,10 @@ title: Settings
               /
             </td>
             <td>
-              The base url for Arkime web requests. Must end with a / or bad
-              things will happen.
+              The base url for Arkime web requests.
+              Must end with a / or bad things will happen.
+              This setting is meant to be used when using a reverse proxy talking to multiviewer or central viewers.
+              Do not set in the [default] section, only in a section that matches the node name of the multiviewer/central viewer.
             </td>
           </tr>
           <tr>
@@ -2314,7 +2317,7 @@ title: Settings
               </span>
             </td>
             <td>
-              6
+              32000 (since 4.0.0)<br>0 (before 4.0.0)
             </td>
             <td>
               (since 3.3.0) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block.
