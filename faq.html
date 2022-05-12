@@ -2819,7 +2819,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           onclick="copyLink(this, 'faq')">
         </span>
       </h4>
-      <pre><code>Jan 01 01:01:01 packet.c:1185 moloch_packet_log(): packets: 3911000000 current sessions: 41771/45251 oldest: 0 - recv: 4028852297 drop: 123 (0.00) queue: 1 disk: 2 packet: 3 close: 4 ns: 5 frags: 0/1988 pstats: 4132185901/1/2/3/4/5</code></pre>
+      <pre><code>Jan 01 01:01:01 packet.c:1185 moloch_packet_log(): packets: 3911000000 current sessions: 41771/45251 oldest: 0 - recv: 4028852297 drop: 123 (0.00) queue: 1 disk: 2 packet: 3 close: 4 ns: 5 frags: 0/1988 pstats: 4132185901/1/2/3/4/5/6</code></pre>
       <table class="table table-sm table-bordered">
         <tbody>
           <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
@@ -2837,13 +2837,14 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           <tr><td>close: 4</td><td>4 tcp sessions have been marked for closing (RST/FIN), waiting on last few packets</td></tr>
           <tr><td>ns: 5</td><td>5 sessions are ready to be saved but there is a plugin that is doing async work, such as wise</td></tr>
           <tr><td>frags: 0/1988</td><td>always 0<br>1988 current ip frags waiting to be matched</td></tr>
-          <tr><td>pstats: 4132185901/1/2/3/4/5</td>
+          <tr><td>pstats: 4132185901/1/2/3/4/5/6</td>
             <td>4132185901 packets successfully sent to a packet queue<br>
               1 packet dropped because of packet-drop-ips config<br>
               2 packets dropped because the packet queues were overloaded<br>
               3 packets dropped because they were corrupt<br>
               4 packets dropped because how to process was unknown to us<br>
               5 packets dropped because of ipport rules
+              6 packets dropped because of packet deduping (2.7.1 enablePacketDedup)
             </td>
           </tr>
         </tbody>
