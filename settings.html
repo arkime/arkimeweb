@@ -587,8 +587,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/data/moloch/etc/GeoLite2-ASN.mmdb<br>
-              (Pre 2.2) /data/moloch/etc/GeoLite2-ASN.mmdb
+              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb<br>
+              (Pre 2.2) /opt/arkime/etc/GeoLite2-ASN.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -607,8 +607,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-Country.mmdb;/data/moloch/etc/GeoLite2-Country.mmdb<br>
-              (Pre 2.2)/data/moloch/etc/GeoLite2-Country.mmdb
+              /usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb<br>
+              (Pre 2.2)/opt/arkime/etc/GeoLite2-Country.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -1043,7 +1043,7 @@ title: Settings
               </span>
             </td>
             <td>
-              /data/moloch/parsers ; ./parsers
+              /opt/arkime/parsers ; ./parsers
             </td>
             <td>
               Semicolon separated list of directories to load parsers
@@ -2416,7 +2416,7 @@ title: Settings
             </td>
             <td>
               If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
-              Example setting would be <code>/data/moloch/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
+              Example setting would be <code>/opt/arkime/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
               The following templated values will be filled in for you:
               <ul>
                 <li>NODE - The node name of the viewer that received the upload</li>
@@ -3583,9 +3583,9 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
         This is a sample for running manually (but you should setup startup
         scripts to run for real):
       </p>
-      <pre><code>cd /data/moloch/viewer
-/data/moloch/bin/node multies.js -n multi-viewer
-/data/moloch/bin/node viewer.js -n multi-viewer</code></pre>
+      <pre><code>cd /opt/arkime/viewer
+/opt/arkime/bin/node multies.js -n multi-viewer
+/opt/arkime/bin/node viewer.js -n multi-viewer</code></pre>
       <table class="table table-bordered table-sm table-striped">
         <thead>
           <tr>
