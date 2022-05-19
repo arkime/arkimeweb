@@ -3560,18 +3560,15 @@ cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Clus
         </span>
       </h2>
       <p>
-        The multi viewer is useful when you have multiple Arkime clusters that
-        you want to search across. To use the multi viewer, an extra viewer
-        process and a multies process must be started. The viewer process works
-        like a normal viewer process, except instead of talking to a
-        elasticsearch server, it talks to a multies server that proxies the
-        queries to all the real elasticsearch servers. These two processes can
-        share the same config file and node name section. The viewer part uses
-        the SAME configuration values as above if you need to set anything.
+        The multi viewer is useful when you have multiple Arkime clusters that you want to search across.
+        To use the multi viewer, an extra viewer process and a multies process must be started.
+        The viewer process works like a normal viewer process, except instead of talking to a elasticsearch server, it talks to a multies server.
+        The multies server proxies the queries to all the real elasticsearch servers.
+        These two processes can share the same config file and node name section.
+        The viewer part uses the SAME configuration values as above if you need to set anything.
       </p>
       <p class="mb-0">
-        A sample configuration for multi viewer (the elasticsearch variable
-        points to the multies.js process):
+        A sample configuration for multi viewer (the elasticsearch variable points to the multies.js process):
       </p>
       <pre><code>[multi-viewer]
 elasticsearch=127.0.0.1:8200
