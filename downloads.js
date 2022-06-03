@@ -13,7 +13,8 @@ function parseXML (xml) {
     centos8: 'Centos 8',
     ubuntu16: 'Ubuntu 16.04',
     ubuntu18: 'Ubuntu 18.04',
-    ubuntu20: 'Ubuntu 20.04'
+    ubuntu20: 'Ubuntu 20.04',
+    ubuntu22: 'Ubuntu 22.04'
   };
 
   for (let i = 0, len = files.length; i < len; ++i) {
@@ -164,7 +165,7 @@ function setupPage (versions, nightlies, acommities, mcommities, sortedVersions,
   let downloadsHtml = ''
 
   let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
-  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   if (osLists.main) {
     osList = osLists.main
   }
