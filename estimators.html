@@ -22,15 +22,15 @@ title: Estimators
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="description" content="Estimate Arkime capture and Elasticsearch machines" />
+  <meta name="description" content="Estimate Arkime capture and Elasticsearch/OpenSearch machines" />
   <!-- facebook open graph tags -->
   <meta property="og:url" content="http://arkime.com/estimators" />
-  <meta property="og:description" content="Estimate Arkime capture and Elasticsearch machines" />
+  <meta property="og:description" content="Estimate Arkime capture and Elasticsearch/OpenSearch machines" />
   <meta property="og:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="Estimate Arkime capture and Elasticsearch machines" />
+  <meta name="twitter:description" value="Estimate Arkime capture and Elasticsearch/OpenSearch machines" />
   <meta name="twitter:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <meta name="twitter:url" value="http://arkime.com/estimators" />
 
@@ -59,7 +59,7 @@ title: Estimators
         </h4>
         <p>
           Use these estimators as a starting point for deciding on the
-          number of machines needed for capture and ES nodes.
+          number of machines needed for capture and Elasticsearch/OpenSearch nodes.
         </p>
         <p>
         <div class="form-inline">
@@ -254,7 +254,7 @@ title: Estimators
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
-              Elasticsearch Machines
+              Elasticsearch/OpenSearch Machines
               <small class="pull-right">
                 <a href="faq#how-many-elasticsearch-nodes-or-machines-do-i-need"
                   class="card-link">More info in FAQ</a>
@@ -262,17 +262,17 @@ title: Estimators
             </h5>
 
             <p class="card-text text-muted">
-              Calculating the number of machines needed for Elasticsearch is a fine art.
+              Calculating the number of machines needed for Elasticsearch/OpenSearch is a fine art.
               It heavily depends on the type of traffic that Arkime will be seeing plus of course the traffic rate and number of days of retention.
-              Each node requires 64GB - 128GB of memory: 30GB for ES, and 34-96GB for OS disk cache.
+              Each node requires 64GB - 128GB of memory: 30GB for Elasticsearch/OpenSearch, and 34-96GB for OS disk cache.
               For large machines plan on running multiple nodes per host.
               You may want to read more recomendations from Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html">Reference</a>
               and <a href="https://www.elastic.co/blog/a-heap-of-trouble">Blog</a>.
             </p>
             <p class="card-text text-muted">
-              Many scaling guides will recommend you do NOT use RAID 5, assuming you will use Elasticsearch replication.
+              Many scaling guides will recommend you do NOT use RAID 5, assuming you will use Elasticsearch/OpenSearch replication.
               However by default Arkime does NOT enable replication, so it is strongly recommended that you <strong>DO</strong> use RAID 5 or RAID 6.
-              If you decide to use Elasticsearch replication you will need more machines, but don't need RAID 5 in theory.
+              If you decide to use Elasticsearch/OpenSearch replication you will need more machines, but don't need RAID 5 in theory.
             </p>
             <p class="card-text text-muted">
               The calculated host counts are just estimates.
@@ -282,12 +282,12 @@ title: Estimators
 
             <div class="form-inline mb-4">
               <label class="sr-only" for="esDaysInput">
-                ES Retention Days
+                Retention Days
               </label>
               <div class="input-group input-group-sm mb-1 mr-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    ES Retention Days
+                    Retention Days
                   </span>
                 </div>
                 <input type="number" id="esDaysInput" value=30 min=1
@@ -336,7 +336,7 @@ title: Estimators
               </div>
 
               <label for="esNumNodesInput" class="sr-only">
-                ES Nodes per machine
+                Nodes per machine
               </label>
               <div class="input-group input-group-sm mb-1 mr-1">
                 <div class="input-group-prepend">
@@ -349,7 +349,7 @@ title: Estimators
               </div>
 
               <label for="esReplication" class="sr-only">
-                ES Replication
+                Replication
               </label>
               <div class="input-group input-group-sm mb-1">
                 <div class="input-group-prepend">
