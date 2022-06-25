@@ -103,6 +103,10 @@ title: Estimators
               If you plan on using this feature select the percentage of TLS/QUIC traffic on the network.
               Most networks will see 10-40% of TLS traffic, resulting in huge disk space savings.
             </p>
+            <p class="card-text text-muted">
+              Arkime can compression PCAP when saving the files to disk using standard gzip format.
+              Most networks will see a 20% savings of disk usage with compression turned on, however this will increase CPU usage.
+            </p>
 
             <hr>
 
@@ -113,7 +117,7 @@ title: Estimators
               <div class="input-group input-group-sm mb-1 mr-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    PCAP RetentionDays
+                    PCAP Days
                   </span>
                 </div>
                 <input type="number" id="captureDaysInput" value=14 min=1
@@ -161,7 +165,7 @@ title: Estimators
               <div class="input-group input-group-sm mb-1 mr-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    TLS Percentage
+                    TLS %
                   </span>
                 </div>
                 <select id="captureTLSInput" class="form-control custom-select">
@@ -169,9 +173,27 @@ title: Estimators
                   <option value=0.90>10%</option>
                   <option value=0.80>20%</option>
                   <option value=0.75>25%</option>
-                  <option value=0.75>30%</option>
-                  <option value=0.65>40%</option>
-                  <option value=0.55>50%</option>
+                  <option value=0.70>30%</option>
+                  <option value=0.60>40%</option>
+                  <option value=0.50>50%</option>
+                </select>
+              </div>
+              <label for="captureCompressionInput" class="sr-only">
+                Compression Percentage
+              </label>
+              <div class="input-group input-group-sm mb-1 mr-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    Compresssion %
+                  </span>
+                </div>
+                <select id="captureCompressionInput" class="form-control custom-select">
+                  <option value=1.00 selected>0%</option>
+                  <option value=0.90>10%</option>
+                  <option value=0.80>20%</option>
+                  <option value=0.75>25%</option>
+                  <option value=0.70>30%</option>
+                  <option value=0.60>40%</option>
                 </select>
               </div>
               <label for="maxGbps" class="sr-only">
@@ -180,14 +202,14 @@ title: Estimators
               <div class="input-group input-group-sm mb-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    Avg per machine
+                    Max per machine
                   </span>
                 </div>
                 <select id="maxGbps" class="form-control custom-select">
                   <option value=1> 1 Gbps</option>
                   <option value=2> 2 Gbps</option>
-                  <option value=3 selected>3 Gbps</option>
-                  <option value=4>4 Gbps</option>
+                  <option value=3 >3 Gbps</option>
+                  <option value=4 selected>4 Gbps</option>
                   <option value=5>5 Gbps</option>
                   <option value=6>6 Gbps</option>
                   <option value=7>7 Gbps</option>
@@ -447,10 +469,8 @@ title: Estimators
 
       // Asumptions
       // * 0.90 of disk because of disk match (0.9313%) and reserved free space
-      // * 0.035 as an average for PCAP to ES
-      // * 0.05 as a max for PCAP to ES
       function recalculate() {
-        let captureDay = +$("#captureTLSInput").val() * +$("#gbpsInput").val() * +$("#captureDaysInput").val() * 24 * 60 * 60/8;
+        let captureDay = +$("#captureCompressionInput").val() * +$("#captureTLSInput").val() * +$("#gbpsInput").val() * +$("#captureDaysInput").val() * 24 * 60 * 60/8;
         let captureDiskInput = +$("#captureDiskInput").val() * 0.90;
         let captureDisks = +$("#captureNumDisksInput").val();
         let captureMin = +$("#gbpsInput").val()/+$("#maxGbps").val();
@@ -461,15 +481,15 @@ title: Estimators
         setCaptureValue("#captureMachines2", 2, captureMin, captureDay/(captureDiskInput*(captureDisks-2)));
 
         let esReplication = +$("#esReplication").val();
-        let esDay = esReplication * 0.035 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDay = esReplication * 0.025 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
         let esDays = esDay * +$("#esDaysInput").val();
         let esDiskInput = +$("#esDiskInput").val() * 0.90;
         let esDisks = +$("#esNumDisksInput").val();
 
-        let esDayDns = esReplication * 0.05 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDayDns = esReplication * 0.035 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
         let esDaysDns = esDayDns * +$("#esDaysInput").val();
 
-        let esDayWorst = esReplication * 0.08 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
+        let esDayWorst = esReplication * 0.065 * +$("#gbpsInput").val() * 24 * 60 * 60/8;
         let esDaysWorst = esDayWorst * +$("#esDaysInput").val();
 
         $("#esMachinesTB").text(Math.ceil(esDays/1000) + " TB");
