@@ -1057,17 +1057,30 @@ title: FAQ
       </h3>
 
       <p>
-        <strong> Arkime 4.0 has not been released yet, please don't use with production data</strong>
+        <strong> Arkime 4.0 has not been released yet.</strong>
         Upgrading to Arkime 4.0 requires that you are already using Arkime 3.3.0 or later.
         Arkime 4.0 uses a new permission model with roles.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
-        <li>TBD</li>
+        <li>
+          Use roles for permission checking - userAdmin role required to edit users.
+          <br>
+          addUser.js - new --roles option, --admin creates superAdmin user
+        </li>
+        <li>In header auth mode, userAuthIps allows only localhost by default</li>
+        <li>Encrypted pcap files now use the .arkime extension</li>
+        <li>WISE multiES prefix now default to arkime_</li>
+        <li>new defaults for settings maxFileSizeG=12, compressES=true</li>
+        <li>pcap compression is turned on by default with simpleGzipBlockSize=32000, set to 0 to disable</li>
+        <li>right-click group name changed to value-actions in config file</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
         <li>Install new arkime rpm/db</li>
+        <li>Shutdown ALL captures, multies and viewers</li>
+        <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
+        <li>Verify your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to Arkime distribution. If you continue to use the Hybrid distribution you do not need to change the paths.</li>
         <li>Restart capture, multies and viewers</li>
         <li>Verify everything is working</li>
       </ul>
