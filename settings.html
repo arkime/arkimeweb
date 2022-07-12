@@ -159,6 +159,11 @@ title: Settings
         value actions
       </a>
       <a class="nav-link nested"
+        href="#field-actions"
+        title="fieldactions">
+        field actions
+      </a>
+      <a class="nav-link nested"
         href="#packet-drop-ips"
         title="packet-drop-ips">
         packet-drop-ips
@@ -587,8 +592,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/data/moloch/etc/GeoLite2-ASN.mmdb<br>
-              (Pre 2.2) /data/moloch/etc/GeoLite2-ASN.mmdb
+              /usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb<br>
+              (Pre 2.2) /opt/arkime/etc/GeoLite2-ASN.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -607,8 +612,8 @@ title: Settings
               </span>
             </td>
             <td>
-              /usr/share/GeoIP/GeoLite2-Country.mmdb;/data/moloch/etc/GeoLite2-Country.mmdb<br>
-              (Pre 2.2)/data/moloch/etc/GeoLite2-Country.mmdb
+              /usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb<br>
+              (Pre 2.2)/opt/arkime/etc/GeoLite2-Country.mmdb
             </td>
             <td>
               A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -1043,7 +1048,7 @@ title: Settings
               </span>
             </td>
             <td>
-              /data/moloch/parsers ; ./parsers
+              /opt/arkime/parsers ; ./parsers
             </td>
             <td>
               Semicolon separated list of directories to load parsers
@@ -2416,7 +2421,7 @@ title: Settings
             </td>
             <td>
               If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
-              Example setting would be <code>/data/moloch/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
+              Example setting would be <code>/opt/arkime/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
               The following templated values will be filled in for you:
               <ul>
                 <li>NODE - The node name of the viewer that received the upload</li>
@@ -3560,18 +3565,15 @@ cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Clus
         </span>
       </h2>
       <p>
-        The multi viewer is useful when you have multiple Arkime clusters that
-        you want to search across. To use the multi viewer, an extra viewer
-        process and a multies process must be started. The viewer process works
-        like a normal viewer process, except instead of talking to a
-        elasticsearch server, it talks to a multies server that proxies the
-        queries to all the real elasticsearch servers. These two processes can
-        share the same config file and node name section. The viewer part uses
-        the SAME configuration values as above if you need to set anything.
+        The multi viewer is useful when you have multiple Arkime clusters that you want to search across.
+        To use the multi viewer, an extra viewer process and a multies process must be started.
+        The viewer process works like a normal viewer process, except instead of talking to a elasticsearch server, it talks to a multies server.
+        The multies server proxies the queries to all the real elasticsearch servers.
+        These two processes can share the same config file and node name section.
+        The viewer part uses the SAME configuration values as above if you need to set anything.
       </p>
       <p class="mb-0">
-        A sample configuration for multi viewer (the elasticsearch variable
-        points to the multies.js process):
+        A sample configuration for multi viewer (the elasticsearch variable points to the multies.js process):
       </p>
       <pre><code>[multi-viewer]
 elasticsearch=127.0.0.1:8200
@@ -3586,9 +3588,9 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
         This is a sample for running manually (but you should setup startup
         scripts to run for real):
       </p>
-      <pre><code>cd /data/moloch/viewer
-/data/moloch/bin/node multies.js -n multi-viewer
-/data/moloch/bin/node viewer.js -n multi-viewer</code></pre>
+      <pre><code>cd /opt/arkime/viewer
+/opt/arkime/bin/node multies.js -n multi-viewer
+/opt/arkime/bin/node viewer.js -n multi-viewer</code></pre>
       <table class="table table-bordered table-sm table-striped">
         <thead>
           <tr>
@@ -3860,7 +3862,7 @@ x-priority=type:integer</code></pre>
       <p class="mb-0">
         Configuration File Sample:
       </p>
-      <pre><code>[valueactions]
+      <pre><code>[value-actions]
 VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
 VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
 VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url</code></pre>
@@ -4288,6 +4290,262 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
         </tbody>
       </table>
       <!-- /right-click -->
+
+      <!-- field actions -->
+      <h2 id="field-actions">
+        Field Actions
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h2>
+      <p>
+        It is possible to configure actions to add to any SPI data field label.
+        Field actions can be added based on either the field name or the category of the data.
+        They can be added either in the configuration file or by enabled WISE data sources.
+      </p>
+      <p class="mb-0">
+        Configuration File Sample:
+      </p>
+      <pre><code>[field-actions]
+TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;category:ip;users:testuser
+      </code></pre>
+      <p class="mb-0">
+        Each line in the fieldactions section contains possible actions:
+      </p>
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+          <tr>
+            <th>
+              Piece
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="field-actions-key">
+              [key]=
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The key must be unique and is also used as the field action menu
+              name if the name field is missing
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url">
+              url
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The url to open if selected. There are some basic URL
+              <a href="#field-actions-url-sub">substitutions defined below</a>.
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-name">
+              name
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The menu text to display (<a href="#field-actions-menu-sub">can include these substitutions</a>)
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-category">
+              category
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              If the field is in this category
+              display this menu item. All field action entries must have either
+              a category or fields variable defined.
+              <a href="#arkime-categories">see categories</a>
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-fields">
+              fields
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              A comma separated list of field names. If the field is in the list then display
+              this menu item. All field action entries must have either a
+              category or fields variable defined.
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-users">
+              users
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              A comma separated list of user names that can see the field action
+              item. If not set then all users can see the field action item.
+            </td>
+          </tr>
+          <tr>
+            <td id="right-click-notUsers">
+              notUsers
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              A comma separated list of user names that can NOT see the field action item.
+              This setting is applied before the users setting above.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="mb-0" id="field-actions-url-sub">
+        The possible URL Substitutions are:
+      </p>
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+          <tr>
+            <th>
+              URL Substitutions
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="field-actions-url-sub-expression">
+              %EXPRESSION%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The search expression, URI encoded
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url-sub-date">
+              %DATE%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The search date/time range, eg., <code>startTime=1567447943&stopTime=1569607943</code> (UNIX seconds) for a custom date range or <code>date=336</code> (hours) for times relative to now
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url-sub-isostart">
+              %ISOSTART%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The beginning of the search date/time range, ISO_8601 formatted
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url-sub-isostop">
+              %ISOSTOP%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The end of the search date/time range, ISO_8601 formatted
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url-sub-field">
+              %FIELD%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The field name as it would be referenced in a Arkime search expression
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-url-sub-dbfield">
+              %DBFIELD%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The field name as referenced in the underlying Elasticsearch database
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="mb-0" id="field-actions-menu-sub">
+        The possible Field Action Menu Name Substitutions are:
+      </p>
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+          <tr>
+            <th>
+              Name Substitutions
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="name-sub-fieldname">
+              %FIELDNAME%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The friendly (readable) field name
+            </td>
+          </tr>
+          <tr>
+            <td id="name-sub-field">
+              %FIELD%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The field name as it would be referenced in a Arkime search expression
+            </td>
+          </tr>
+          <tr>
+            <td id="name-sub-dbfield">
+              %DBFIELD%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The field name as referenced in the underlying Elasticsearch database
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- /field actions -->
 
       <!-- packet-drop-ips -->
       <h2 id="packet-drop-ips">

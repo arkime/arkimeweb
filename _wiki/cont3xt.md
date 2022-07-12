@@ -22,21 +22,11 @@ permalink: "/cont3xt"
 
 ----
 
-Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations. It enriches indicators using commercial and OSINT sources in a structured, consistent, and thorough process.
+Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations. It enriches indicators using popular commercial and OSINT sources in a structured, consistent, and thorough process. Some of the default enrichment integrations include PassiveTotal, VirusTotal, Censys, Shodan, and more. Simplify your analytic life!
+
+Additionally, you can build custom links to any public/private web resource where the web application supports query string deep linking. This makes it easy to pivot investigations to other sources.
 
 Cont3xt was first available in the Arkime 4.0 release.
-
-### Integrations
-
-The default enrichment sources include PassiveTotal, VirusTotal, Censys, Shodan, Threatstream, and more. These can be extended to include new sources with some configuration and a little bit of coding.
-
-### Link Groups
-
-Link groups allow you to build pivot links to public/private resources. These can be shared with different user roles within Cont3xt to allow analysts to pivot to other resources using the parameters from their indicator search.
-
-### Views
-
-Views allow you to save your Integration selections and switch between them seamlessly while you search.
 
 ---
 
@@ -51,10 +41,9 @@ The cont3xtAdmin role will allow the user to edit any link group.
 
 ### Settings
 
-By default settings live in a `config.ini` file.
+By default, settings live in a config.ini file.
 There are two types of settings that you may need to change: Settings with the cont3xt service itself and settings with the integrations.
 It is assumed that each user of Cont3xt will set up their own integration users/keys but it is possible to have global keys.
-
 
 #### General
 Create a `[cont3xt]` section
@@ -102,7 +91,6 @@ passwordSecret | password | See <a href="settings#passwordsecret">settings page<
 #### Caching
 Cont3xt can cache integration queries to speed up results and to lower the load on the integration services.
 
-
 Create a `[cache]` section
 {: .mb-0}
 
@@ -115,8 +103,6 @@ lmdbDir | empty | Path where to create the lmdb cache directory
 cacheSize|100000|Maximum number of results to cache in memory, used for all but lmdb
 cacheTimeout|24 hours| In seconds the MAX time to cache any item, used by redis/memcachd
 {: .table .table-striped .table-sm .mb-4 }
-
-
 
 #### Common settings per integration
 
@@ -136,7 +122,6 @@ cachePolicy | cont3xt.cachePolicy | Can be `shared` or `user`, if set to user th
 ## Sample Configs
 
 Possible configurations for cont3xt
-
 
 ### Using elasticsearch
 It is possible to setup cont3xt in the Arkime universe.
@@ -209,6 +194,6 @@ cacheTimeout=1w
 </pre>
 
 ## Known Issues
-There are no known issues at this time. [Please submit issues and feature requests on GitHub](https://github.com/arkime/arkime/issues/new/choose)
+* This document needs to be improved
 
 </div>
