@@ -47,6 +47,67 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the connections requested |
 
+<a name="/crons"></a>
+
+## /crons API
+
+GET - /api/crons
+
+Retrieves periodic queries a user can view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| queries | [<code>Array.&lt;ArkimeQuery&gt;</code>](#ArkimeQuery)| A list of query objects. |
+
+<a name="/cron"></a>
+
+## /cron API
+
+POST - /api/cron
+
+Create a new periodic query.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The new query |
+
+<a name="/user/_key"></a>
+
+## /user/:key API
+
+POST - /api/cron/:key
+
+Update a periodic query.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The updated query object |
+
+<a name="/cron/_key"></a>
+
+## /cron/:key API
+
+DELETE - /api/cron/:key
+
+Delete a periodic query.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/histories"></a>
 
 ## /histories API
@@ -237,6 +298,28 @@ Remove the hunt ID and name from matched sessions.
 | success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/hunt/_id"></a>
+
+## /hunt/:id API
+
+PUT - /api/hunt/:id
+
+Update a hunt - can only update description & roles
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hunt | [<code>Hunt</code>](#Hunt) | The new hunt data |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/hunt/_id/users"></a>
 
 ## /hunt/:id/users API
@@ -364,6 +447,20 @@ Retrives the actions that can be preformed on meta data values.
 | --- | --- | --- |
 |  | <code>object</code>| The list of actions that can be preformed on data values. |
 
+<a name="/fieldactions"></a>
+
+## /fieldactions API
+
+GET - /api/fieldactions
+
+Retrives the actions that can be preformed on fields.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| The list of actions that can be preformed on fields. |
+
 <a name="/reversedns"></a>
 
 ## /reversedns API
@@ -451,115 +548,6 @@ eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, field
 | fields | <code>Array</code>| Available database field objects pertaining to sessions |
 | fieldsmap | <code>Array</code>| Available database field objects pertaining to sessions |
 | fieldshistory | <code>Object</code>| The user's field history for the search expression input |
-
-<a name="/notifiertypes"></a>
-
-## /notifiertypes API
-
-GET - /api/notifiertypes
-
-Retrieves notifier types (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| notifiers | <code>object</code>| The notifiers that Arkime knows about. |
-
-<a name="/notifiers"></a>
-
-## /notifiers API
-
-GET - /api/notifiers
-
-Retrieves notifiers that have been configured.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| notifiers | [<code>Array.&lt;Notifier&gt;</code>](#Notifier)| The notifiers that have been created. |
-
-<a name="/notifier"></a>
-
-## /notifier API
-
-POST - /api/notifier
-
-Creates a new notifier (admin only).
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | The name of the new notifier (must be unique). |
-| type | <code>type</code> | The type of notifier. |
-| fields | <code>array</code> | The fields to configure the notifier. |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the create notifier operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| notifier | [<code>Notifier</code>](#Notifier)| If successful, the notifier with name sanitized and created/user fields added. |
-
-<a name="/notifier/_name"></a>
-
-## /notifier/:name API
-
-PUT - /api/notifier/:name
-
-Updates an existing notifier (admin only).
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | The new name of the notifier (must be unique). |
-| type | <code>type</code> | The new type of notifier. |
-| fields | <code>array</code> | The new field values to configure the notifier. |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update notifier operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| notifier | [<code>Notifier</code>](#Notifier)| If successful, the updated notifier with name sanitized and updated field added/updated. |
-
-<a name="/notifier/_name"></a>
-
-## /notifier/:name API
-
-DELETE - /api/notifier/:name
-
-Deletes an existing notifier (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete notifier operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| name | <code>string</code>| If successful, the name of the deleted notifier. |
-
-<a name="/notifier/_name/test"></a>
-
-## /notifier/:name/test API
-
-POST - /api/notifier/:name/test
-
-Tests an existing notifier (admin only).
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the test notifier operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/buildquery"></a>
 
@@ -1100,6 +1088,9 @@ Creates a new shortcut.
 | name | <code>string</code> | The name of the new shortcut. |
 | type | <code>string</code> | The type of the shortcut (number, ip, or string). |
 | value | <code>string</code> | The shortcut value. |
+| description | <code>string</code> | The optional description of this shortcut. |
+| users | <code>string</code> | A comma separated list of users that can view this shortcut. |
+| roles | <code>Array</code> | The roles that can view this shortcut. |
 
 **Returns**:
 
@@ -1124,6 +1115,9 @@ Updates a shortcut.
 | name | <code>string</code> | The name of the shortcut. |
 | type | <code>string</code> | The type of the shortcut (number, ip, or string). |
 | value | <code>string</code> | The shortcut value. |
+| description | <code>string</code> | The optional description of this shortcut. |
+| users | <code>string</code> | A comma separated list of users that can view this shortcut. |
+| roles | <code>Array</code> | The roles that can view this shortcut. |
 
 **Returns**:
 
@@ -1654,143 +1648,6 @@ Updates an Arkime user's settings.
 | success | <code>boolean</code>| Whether the update user settings operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="/user/views"></a>
-
-## /user/views API
-
-GET - /api/user/views
-
-Retrieves an Arkime user's views.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views a user has configured or has been shared. |
-
-<a name="/user/view"></a>
-
-## /user/view API
-
-POST - /api/user/view
-
-Creates an Arkime view for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the create view operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| viewName | <code>string</code>| The name of the new view. |
-| view | [<code>ArkimeView</code>](#ArkimeView)| The new view data. |
-
-<a name="/user/view/_name"></a>
-
-## /user/view/:name API
-
-DELETE - /api/user/view/:name
-
-Deletes an Arkime view for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete view operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/view/_name/toggleshare"></a>
-
-## /user/view/:name/toggleshare API
-
-POST - /api/user/view/:name/toggleshare
-
-Toggles sharing an Arkime view for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the share view operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/view/_key"></a>
-
-## /user/view/:key API
-
-PUT - /api/user/view/:key
-
-Updates an Arkime view for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update view operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/crons"></a>
-
-## /user/crons API
-
-GET - /api/user/crons
-
-Retrieves periodic queries for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| queries | [<code>Array.&lt;ArkimeQuery&gt;</code>](#ArkimeQuery)| A list of query objects. |
-
-<a name="/user/cron"></a>
-
-## /user/cron API
-
-POST - /api/user/cron
-
-Create a new periodic query for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the create operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The new query |
-
-<a name="/user/cron/_key"></a>
-
-## /user/cron/:key API
-
-DELETE - /api/user/cron/:key
-
-Delete a periodic query for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/cron/_key"></a>
-
-## /user/cron/:key API
-
-POST - /api/user/cron/:key
-
-Update a periodic query for a user.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The updated query object |
-
 <a name="/user/columns"></a>
 
 ## /user/columns API
@@ -1971,6 +1828,96 @@ Fetches the configuration information for a UI page for a user.
 | --- | --- | --- |
 |  | <code>object</code>| config The configuration data for the page |
 
+<a name="/views"></a>
+
+## /views API
+
+GET - /api/views
+
+Retrieves an Arkime views that a user can view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views a user has configured or has been shared. |
+
+<a name="/view"></a>
+
+## /view API
+
+POST - /api/view
+
+Creates an Arkime view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| viewName | <code>string</code>| The name of the new view. |
+| view | [<code>ArkimeView</code>](#ArkimeView)| The new view data. |
+
+<a name="/view/_id"></a>
+
+## /view/:id API
+
+DELETE - /api/view/:id
+
+Deletes an Arkime view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/view/_id"></a>
+
+## /view/:id API
+
+PUT - /api/view/:id
+
+Updates an Arkime view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update view operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="ArkimeQuery"></a>
+
+## ArkimeQuery Type
+
+A query to be run periodically that can perform actions on sessions that match the queries. The query runs against sessions delayed by 90 seconds to make sure all updates have been completed for that session.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the query |
+| enabled | <code>boolean</code> |  | Whether the query is enabled. If enabled, the query will run every 90 seconds. |
+| lpValue | <code>number</code> |  | The last packet timestamp that was searched. Used to query for the next group of sessions to search. Format is seconds since Unix EPOC. |
+| lastRun | <code>number</code> |  | The time that the query was last run. Format is seconds since Unix EPOC. |
+| count | <code>number</code> |  | The count of total sessions that have matched this query. |
+| lastCount | <code>number</code> |  | The count of sessions that have matched this query during its last run. |
+| query | <code>string</code> |  | The search expression to apply when searching for sessions. |
+| action | <code>string</code> | <code>&quot;tag&quot;</code> | The action to perform when sessions have matched. "tag" or "forward:clusterName". |
+| creator | <code>string</code> |  | The id of the user that created this query. |
+| tags | <code>string</code> |  | A comma separated list of tags to add to each session that matches this query. |
+| notifier | <code>string</code> |  | The name of the notifier to alert when there are matches for this query. |
+| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 mintues. Format is seconds since Unix EPOC. |
+| lastNotifiedCount | <code>number</code> |  | The count of sessions that matched since the last notification was sent. |
+| description | <code>string</code> |  | The description of this query. |
+| created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOC. |
+| lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOC. |
+| lastToggledBy | <code>string</code> |  | The user who last enabled or disabled this query. |
+
 <a name="History"></a>
 
 ## History Type
@@ -2032,23 +1979,6 @@ A packet search job that allows users to search within session packets for text.
 | users | <code>array</code> | The list of users to be added to the hunt so they can view the results. |
 | removed | <code>boolean</code> | Whether the hunt name and ID fields have been removed from the matched sessions. |
 
-<a name="Notifier"></a>
-
-## Notifier Type
-
-A service that can be sent a notification.
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| name | <code>string</code> | The human readable name of the notifier. Must be unique. |
-| type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
-| fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
-| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOC. |
-| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOC. |
-| user | <code>string</code> | The ID of the user that created the notifier. |
-
 <a name="SessionsQuery"></a>
 
 ## SessionsQuery Type
@@ -2089,11 +2019,12 @@ The shortcut object to store lists of values that can be used in search queries.
 | --- | --- | --- | --- |
 | userId | <code>string</code> |  | The ID of the user that created the shortcut. |
 | name | <code>string</code> |  | The name of the shortcut. |
-| shared | <code>boolean</code> | <code>false</code> | Whether the shortcut is shared with the other users in the cluster. |
 | description | <code>string</code> |  | The description of the shortcut to display to users. |
 | number | <code>Array.&lt;number&gt;</code> |  | A list of number values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
 | ip | <code>Array.&lt;string&gt;</code> |  | A list of ip values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
 | string | <code>Array.&lt;string&gt;</code> |  | A list of string values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
+| users | <code>Array.&lt;string&gt;</code> |  | A list of userIds that have access to this shortcut. |
+| roles | <code>Array.&lt;string&gt;</code> |  | A list of Arkime roles that have access to this shortcut. |
 | locked | <code>boolean</code> | <code>false</code> | Whether the shortcut is locked and must be updated using the db.pl script (can't be updated in the web application user interface). |
 
 <a name="ESHealth"></a>
@@ -2169,7 +2100,6 @@ The user object.
 | disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
 | expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
 | settings | [<code>ArkimeSettings</code>](#ArkimeSettings) |  | The Arkime app settings. |
-| views | <code>object</code> |  | A list of views that the user can apply to their search. |
 | notifiers | <code>object</code> |  | A list of notifiers taht the user can use. |
 | columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
 | spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
@@ -2204,6 +2134,20 @@ The settings object.
 | timelineDataFilters | <code>array</code> | <code>[&#x27;network.packets&#x27;,&#x27;network.bytes&#x27;,&#x27;totDataBytes&#x27;</code> | The filters to display on the sessions timeline graph to change the graphs data. |
 | logo | <code>string</code> |  | The optionally configurable logo to show in the top navbar. |
 
+<a name="ArkimeColumnConfig"></a>
+
+## ArkimeColumnConfig Type
+
+A sessions table view that can be applied.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
+| visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;source.port&quot;,&quot;dst&quot;,&quot;destination.port&quot;,&quot;network.packets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
+
 <a name="ArkimeView"></a>
 
 ## ArkimeView Type
@@ -2215,51 +2159,15 @@ A database view that can be applied to any search.
 
 | Param | Type | Description |
 | --- | --- | --- |
+| name | <code>string</code> | The name of the view. |
 | expression | <code>string</code> | The search expression to filter sessions. |
 | sessionsColConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig) | The Sessions column configuration to apply to the Sessions table when applying the view. |
-| shared | <code>boolean</code> | Whether the view is shared with other users in the Arkime cluster. |
 | user | <code>string</code> | The user ID of the user who created the view. |
 
-<a name="ArkimeColumnConfig"></a>
+**Properties**
 
-## ArkimeColumnConfig Type
-
-A database view that can be applied to any search.
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
-| visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;source.port&quot;,&quot;dst&quot;,&quot;destination.port&quot;,&quot;network.packets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
-
-<a name="ArkimeQuery"></a>
-
-## ArkimeQuery Type
-
-A query to be run periodically that can perform actions on sessions that match the queries. The query runs against sessions delayed by 90 seconds to make sure all updates have been completed for that session.
-
-
-**Parameters**:
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| name | <code>string</code> |  | The name of the query |
-| enabled | <code>boolean</code> |  | Whether the query is enabled. If enabled, the query will run every 90 seconds. |
-| lpValue | <code>number</code> |  | The last packet timestamp that was searched. Used to query for the next group of sessions to search. Format is seconds since Unix EPOC. |
-| lastRun | <code>number</code> |  | The time that the query was last run. Format is seconds since Unix EPOC. |
-| count | <code>number</code> |  | The count of total sessions that have matched this query. |
-| lastCount | <code>number</code> |  | The count of sessions that have matched this query during its last run. |
-| query | <code>string</code> |  | The search expression to apply when searching for sessions. |
-| action | <code>string</code> | <code>&quot;tag&quot;</code> | The action to perform when sessions have matched. "tag" or "forward:clusterName". |
-| creator | <code>string</code> |  | The id of the user that created this query. |
-| tags | <code>string</code> |  | A comma separated list of tags to add to each session that matches this query. |
-| notifier | <code>string</code> |  | The name of the notifier to alert when there are matches for this query. |
-| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 mintues. Format is seconds since Unix EPOC. |
-| lastNotifiedCount | <code>number</code> |  | The count of sessions that matched since the last notification was sent. |
-| description | <code>string</code> |  | The description of this query. |
-| created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOC. |
-| lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOC. |
-| lastToggledBy | <code>string</code> |  | The user who last enabled or disabled this query. |
+| Name | Type | Description |
+| --- | --- | --- |
+| users | <code>Arrray</code> | The list of userIds who have access to use this view. |
+| roles | <code>Array</code> | The list of roles who have access to use this view. |
 

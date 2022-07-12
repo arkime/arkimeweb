@@ -232,6 +232,7 @@ When sources are created they get an api object to interact with the wise servic
         * [.addSource(section, src, types)](#WISESourceAPI+addSource)
         * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
         * [.addValueAction()](#WISESourceAPI+addValueAction)
+        * [.addFieldAction()](#WISESourceAPI+addFieldAction)
     * _inner_
         * [~SourceConfigField](#WISESourceAPI..SourceConfigField) : <code>Object</code>
         * [~SourceConfig](#WISESourceAPI..SourceConfig) : <code>Object</code>
@@ -363,6 +364,14 @@ Add for each source config definition for the UI to use.
 ### wiseSourceAPI.addValueAction() (function)
 
 Add a value action set
+
+**Params**: <code>string</code> actionName - The globally unique name of this action, not shown to user  
+**Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
+<a name="WISESourceAPI+addFieldAction"></a>
+
+### wiseSourceAPI.addFieldAction() (function)
+
+Add a field action set
 
 **Params**: <code>string</code> actionName - The globally unique name of this action, not shown to user  
 **Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
@@ -762,6 +771,18 @@ GET - Used by viewer to retrieve all the field value actions created by wise sou
 | Name | Type | Description |
 | --- | --- | --- |
 |  | <code>object</code> \| <code>array</code>| All the actions |
+
+<a name="/fieldActions"></a>
+
+## /fieldActions API
+
+GET - Used by viewer to retrieve all the field actions created by wise sources
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code> \| <code>array</code>| All the field actions |
 
 <a name="/get"></a>
 

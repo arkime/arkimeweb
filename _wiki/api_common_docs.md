@@ -1,3 +1,111 @@
+<a name="/notifiertypes"></a>
+
+## /notifiertypes API
+
+GET - /api/notifiertypes
+
+Retrieves notifier types (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| notifiers | <code>object</code>| The notifiers that Arkime knows about. |
+
+<a name="/notifiers"></a>
+
+## /notifiers API
+
+GET - /api/notifiers
+
+Retrieves notifiers that have been configured.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| notifiers | [<code>Array.&lt;Notifier&gt;</code>](#Notifier)| The notifiers that have been created. |
+
+<a name="/notifier"></a>
+
+## /notifier API
+
+POST - /api/notifier
+
+Creates a new notifier (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The name of the new notifier. |
+| type | <code>type</code> | The type of notifier. |
+| fields | <code>array</code> | The fields to configure the notifier. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| notifier | [<code>Notifier</code>](#Notifier)| If successful, the notifier with name sanitized and created/user fields added. |
+
+<a name="/notifier/_id"></a>
+
+## /notifier/:id API
+
+PUT - /api/notifier/:id
+
+Updates an existing notifier (admin only).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | The new id of the notifier. |
+| type | <code>type</code> | The new type of notifier. |
+| fields | <code>array</code> | The new field values to configure the notifier. |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+| notifier | [<code>Notifier</code>](#Notifier)| If successful, the updated notifier with name sanitized and updated field added/updated. |
+
+<a name="/notifier/_id"></a>
+
+## /notifier/:id API
+
+DELETE - /api/notifier/:id
+
+Deletes an existing notifier (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/notifier/_id/test"></a>
+
+## /notifier/:id/test API
+
+POST - /api/notifier/:id/test
+
+Tests an existing notifier (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the test notifier operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/roles"></a>
 
 ## /roles API
@@ -103,6 +211,45 @@ Update user password.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the update password operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="Notifier."></a>
+
+## Notifier.(type, fields) (function)
+
+Checks that the notifier type is valid and the required fields are filled out
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | The type of notifier that is being checked |
+| fields | <code>Array</code> | The list of fields to be checked against the type of notifier                         to determine that all the required fields are filled out |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>string</code> \| <code>undefined</code>| String message to describe check error or undefined if all is good |
+
+<a name="Notifier"></a>
+
+## Notifier Type
+
+A service that can be sent a notification.
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | The human readable name of the notifier. Must be unique. |
+| type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
+| fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
+| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOC. |
+| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOC. |
+| user | <code>string</code> | The ID of the user that created the notifier. |
+| users | <code>Arrray</code> | The list of userIds who have access to use this notifier. |
+| roles | <code>Array</code> | The list of roles who have access to use this notifier. |
 
 <a name="ArkimeRole"></a>
 

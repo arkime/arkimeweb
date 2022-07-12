@@ -5,9 +5,9 @@ permalink: "/wise-configs"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-### WISE 3.x Configurations
+### WISE 3.x - 4.x Configurations
 
-This is a gallery WISE 3.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
+This is a gallery WISE 3.x - 4.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
 
 <input type="text"
   id="wiseSearch"

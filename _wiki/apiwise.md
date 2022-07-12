@@ -16,12 +16,12 @@ permalink: "/wiseapi"
 
 <div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3 api-container" markdown="1">
 
-# WISE v3.x API
+# WISE v3.x - v4.x API
 
 **_This API is not final and is subject to change._**
 {: .primary-theme-text }
 
-This is the documentation for version 3.x.
+This is the documentation for version 3.x & 4.x.
 
 ---
 
