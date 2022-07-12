@@ -1,5 +1,5 @@
 ---
-title: API
+title: Old Arkime APIs
 layout: wiki
 permalink: "/api"
 ---

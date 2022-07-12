@@ -1,5 +1,5 @@
 ---
-title: Viewer API
+title: Common APIs
 layout: wiki
 permalink: "/commonapi"
 ---

@@ -1,5 +1,5 @@
 ---
-title: API
+title: WISE APIs
 layout: wiki
 permalink: "/wiseapi"
 ---

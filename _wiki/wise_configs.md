@@ -1,5 +1,5 @@
 ---
-title: WISE 3.x Configs
+title: WISE Configs
 layout: wiki
 permalink: "/wise-configs"
 ---

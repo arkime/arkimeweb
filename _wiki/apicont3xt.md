@@ -1,5 +1,5 @@
 ---
-title: API
+title: Cont3xt APIs
 layout: wiki
 permalink: "/cont3xtapi"
 ---
