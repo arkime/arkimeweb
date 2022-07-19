@@ -1812,6 +1812,32 @@ title: Settings
             </td>
           </tr>
           <tr>
+            <td id="demoMode">
+              demoMode
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              false
+            </td>
+            <td>
+              Enables demo mode which disables most Settings, Users, Cron, and History UI/APIs.
+              This is what https://demo.arkime.com uses.
+              Demo mode applies to the entire application, and not just a single user.
+              We recommend running 1 viewer in demo mode and another in normal mode that only an admin can access to change settings and such.
+              You can still have multiple accounts in demo mode if desired.
+            </td>
+          </tr>
+          <tr><td id="enablepacketlen">enablePacketLen<span class="fa fa-link small copy-link cursor-copy" onclick="copyLink(this, 'settings')"></span></td>
+            <td>
+              FALSE (2.0 and later), TRUE (before 2.0)
+            </td>
+            <td>
+              (Since 2.0) Index all the packet lengths in elasticsearch
+            </td>
+          </tr>
+          <tr>
             <td id="filenameops">
               filenameOps
               <span class="fa fa-link small copy-link cursor-copy"
