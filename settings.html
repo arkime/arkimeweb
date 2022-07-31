@@ -4855,8 +4855,9 @@ kekid2=Randomkekpassword2
               60
             </td>
             <td>
-              (Since 1.5.1) The number of minutes to keep Suricata alerts in memory before expiring them based on the Suricata alert timestamp. For example if a Suricata alert has a timestamp of 1am, the default is to keep looking for matching
-              traffic until 2am (60 minutes).
+              (Since 1.5.1) The number of minutes to keep Suricata alerts in memory before expiring them based on the Suricata alert timestamp.
+              For example if a Suricata alert has a timestamp of 1am, the default is to keep looking for matching traffic until 2am (60 minutes).
+              If reading offline pcap you'll want to increase this number to cover how old the pcap is.
             </td>
           </tr>
         </tbody>
