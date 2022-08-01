@@ -2343,6 +2343,37 @@ title: Settings
             </td>
           </tr>
           <tr>
+            <td id="simpleCompression">
+              simpleCompression
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              gzip
+            </td>
+            <td>
+              (since 4.0.0) The type of compression to use on pcap files. Valid values are: none, gzip, zstd
+            </td>
+          </tr>
+          <tr>
+            <td id="simpleCompressionBlockSize">
+              simpleCompressionBlockSize
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              32000
+            </td>
+            <td>
+              (since 4.0.0)
+              The block size is how much uncompressed data to attempt to compress into a block.
+              The larger the value the better the compression, but the slower the read.
+              Recommend using values between 30000 and 120000.
+            </td>
+          </tr>
+          <tr>
             <td id="simpleGzipBlockSize">
               simpleGzipBlockSize
               <span class="fa fa-link small copy-link cursor-copy"
@@ -2350,10 +2381,10 @@ title: Settings
               </span>
             </td>
             <td>
-              32000 (since 4.0.0)<br>0 (before 4.0.0)
+              0
             </td>
             <td>
-              (since 3.3.0) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block.
+              (3.3.0 - 3.4.2) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block.
               The larger the value the better the compression, but the slower the read.
               Recommend using values between 30000 and 120000.
             </td>
