@@ -3752,6 +3752,36 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
               </ul>
             </td>
           </tr>
+          <tr>
+            <td id="multiescertfile">
+              certFile
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              Public certificate to use for https, if not set then http will be
+              used. keyFile must also be set.
+            </td>
+          </tr>
+          <tr>
+            <td id="multieskeyfile">
+              keyFile
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              EMPTY
+            </td>
+            <td>
+              Private certificate to use for https, if not set then http will
+              be used. certFile must also be set.
+            </td>
+          </tr>
         </tbody>
       </table>
       <!-- /multi viewer settings -->
