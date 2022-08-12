@@ -2700,6 +2700,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
         There are several common reasons dontSaveBPFs might not work for you.
       </p>
       <ol>
+        <li>Look at the saved pcap, not the packet count in the UI, Arkime will still count the number of packets, it just won't save them</li>
         <li>Make sure you've spelled it dontSaveBPFs, case matters</li>
         <li>Make sure you've placed dontSaveBPFs in the correct section, you can verify by adding a <code>--debug</code> to capture when starting and looking at the output</li>
         <li> Turns out BPF filters are tricky. :)
@@ -2711,7 +2712,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
       </ol>
       <p>
         If still having issues, you might just try out a <a href="rulesformat">Arkime Rules</a> file.
-        Arkime converts dontSaveBPFs into a rule for you behind the scenes.
+        Arkime converts dontSaveBPFs into a rule for you behind the scenes, so Arkime Rules are actually more powerful.
       </p>
 
       <h3 id="zero-byte-pcap-files">
