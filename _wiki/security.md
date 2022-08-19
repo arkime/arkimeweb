@@ -26,7 +26,7 @@ Examples of security items that are out of scope and maybe should be submitted t
 * all - Crash or security issue on startup from bad config settings or command line options
 * all - Admins configuring bad/dangerous URLs/items in notifiers, clusters, WISE sources, etc
 * all - Using md5 for security indicators
-* all - Auth brute force or http-digest weeknesses
+* all - Auth brute force, http-digest weeknesses, lack of rate limiting
 * all - Most issues around anonymous auth mode
 * viewer - Accessing a session using the sessionId
 * viewer - Viewing the results of another user's hunt
