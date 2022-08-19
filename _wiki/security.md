@@ -23,12 +23,14 @@ Examples of security items in scope
 ## Out of Scope
 Examples of security items that are out of scope and maybe should be submitted to our [github issues](https://github.com/arkime/arkime/issues) page
 
-* Crash on startup from bad config settings
-* Accessing a session using the Arkime sessionId
-* Viewing the results of another user's hunt
-* Admins configuring bad/dangerous URLs in notifiers or clusters in parliament
-* Using md5 for security indicators
-* Auth brute force or http-digest weeknesses
+* all - Crash on startup from bad config settings
+* all - Admins configuring bad/dangerous URLs/items in notifiers, clusters, WISE sources, etc
+* all - Using md5 for security indicators
+* all - Auth brute force or http-digest weeknesses
+* all - Most issues around anonymous auth mode
+* viewer - Accessing a session using the sessionId
+* viewer - Viewing the results of another user's hunt
+* wise - /dump end point
 
 # Known Security Issues
 Security Issues that are known and are either not fixable or a known limitation of Arkime.
