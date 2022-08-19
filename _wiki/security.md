@@ -23,7 +23,7 @@ Examples of security items in scope
 ## Out of Scope
 Examples of security items that are out of scope and maybe should be submitted to our [github issues](https://github.com/arkime/arkime/issues) page
 
-* all - Crash on startup from bad config settings
+* all - Crash or security issue on startup from bad config settings or command line options
 * all - Admins configuring bad/dangerous URLs/items in notifiers, clusters, WISE sources, etc
 * all - Using md5 for security indicators
 * all - Auth brute force or http-digest weeknesses
