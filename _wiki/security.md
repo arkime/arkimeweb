@@ -28,6 +28,7 @@ Examples of security items that are out of scope and maybe should be submitted t
 * all - Using md5 for security indicators
 * all - Auth brute force, http-digest weeknesses, lack of rate limiting
 * all - Most issues around anonymous auth mode
+* all - Most OSC52 issues
 * viewer - Accessing a session using the sessionId
 * viewer - Viewing the results of another user's hunt
 * wise - /dump end point
