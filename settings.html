@@ -378,7 +378,7 @@ title: Settings
               Set on 1 viewer node per cluster, this viewer node will perform all the cron queries and hunts for the cluster.
               If you do NOT set this on a cluster hunts and cron queries can be created but will never run.
               <br>
-              (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local elasticsearch.
+              (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local OpenSearch/Elasticsearch.
             </td>
           </tr>
           <tr>
@@ -476,11 +476,9 @@ title: Settings
               http://localhost:9200
             </td>
             <td>
-              A comma separated list of urls to use to connect to the
-              Elasticsearch cluster. If not using a VIP, a different
-              Elasticsearch node can be specified for each Arkime node. If
-              Elasticsearch requires a user/password those can be placed in the
-              url also, http://user:pass@hostname:port
+              A comma separated list of urls to use to connect to the OpenSearch/Elasticsearch cluster.
+              If not using a VIP, a different OpenSearch/Elasticsearch node can be specified for each Arkime node.
+              If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port
             </td>
           </tr>
           <tr>
@@ -494,8 +492,8 @@ title: Settings
               300
             </td>
             <td>
-              Approximate timeout for most requests to elasticsearch.
-              Elasticsearch will automatically cancel any request after this expires.
+              Approximate timeout for most requests to OpenSearch/Elasticsearch.
+              OpenSearch/Elasticsearch will automatically cancel any request after this expires.
             </td>
           </tr>
           <tr>
@@ -515,14 +513,14 @@ title: Settings
             <td id="esclientcert">esClientCert<span class="fa fa-link small copy-link cursor-copy" onclick="copyLink(this, 'settings')"></span></td>
             <td>EMPTY</td>
             <td>
-              (Since 2.0) The public key file to use for tls client authentication with elasticsearch.  Must also set esClientKey.
+              (Since 2.0) The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
             </td>
           </tr>
           <tr>
             <td id="esclientkey">esClientKey<span class="fa fa-link small copy-link cursor-copy" onclick="copyLink(this, 'settings')"></span></td>
             <td>EMPTY</td>
             <td>
-              (Since 2.0) The private key file to use for tls client authentication with elasticsearch.  Must also set esClientCert.
+              (Since 2.0) The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
             </td>
           </tr>
           <tr>
@@ -792,7 +790,7 @@ title: Settings
             <td>
               Semicolon ';' separated list of bpf filters which
               when matched for a session have their SPI data NOT saved to
-              Elasticsearch. PCAP data is still saved however. It is possible
+              OpenSearch/Elasticsearch. PCAP data is still saved however. It is possible
               to specify the number of min packets required for SPI to be saved
               by ending with a :num. A use case is a scanning host inside the
               network that you only want to capture if their is a conversation
@@ -863,7 +861,7 @@ title: Settings
             </td>
             <td>
               Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
-              Since elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
+              Since OpenSearch/Elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
               It is also used for secure server-to-server communication if serverSecret is not set a different value.
               Don't set if you do not want user authentication.
               Changing the value will make all previously stored passwords no longer work.
@@ -1143,7 +1141,7 @@ title: Settings
               daily
             </td>
             <td>
-              Specifies how often to create a new index in Elasticsearch. Use
+              Specifies how often to create a new index in OpenSearch/Elasticsearch. Use
               daily or a form of hourly for busy live instances, use weekly or
               monthly for research instances. When choosing a value, the goal
               is to have the avg shard be around 30G. Prior to 1.5.0 changing
@@ -1225,7 +1223,7 @@ title: Settings
             </td>
             <td>
               Specify the max number of indices we calculate spidata for, or set to -1 to disable any max.
-              Elasticsearch MAY blow up if we allow the spiData to search too many indices.
+              OpenSearch/Elasticsearch MAY blow up if we allow the spiData to search too many indices.
             </td>
           </tr>
           <tr>
@@ -1608,7 +1606,7 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.1.0) Use basic auth with Elasticsearch.
+              (Since 3.1.0) Use basic auth with OpenSearch/Elasticsearch.
               The value can either be the plain text "user:pass" or the base64 encoded version.
               One way to generate base64 <code>echo -n "username:password" | base64</code> version.
               Notice the -n, you have to make sure you don't encode an extra newline.
@@ -1626,9 +1624,9 @@ title: Settings
               EMPTY
             </td>
             <td>
-              (Since 3.1.0) Use basic auth with Elasticsearch for Users DB.
+              (Since 3.1.0) Use basic auth with OpenSearch/Elasticsearch for Users DB.
               See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth setting</a> for information
-              on creating and encoding an Elasticsearch Basic Auth.
+              on creating and encoding an OpenSearch/Elasticsearch Basic Auth.
               See <a href="#userselasticsearch">usersElasticsearch setting</a>
               for information about the Users DB.
               All Arkime versions also support http://user:pass@hostname:port in the usersElasticsearch setting.
@@ -1734,7 +1732,7 @@ title: Settings
               false
             </td>
             <td>
-              (Since 1.6) Use Elasticsearch auto generated ids
+              (Since 1.6) Use OpenSearch/Elasticsearch auto generated ids
             </td>
           </tr>
           <tr>
@@ -1773,7 +1771,7 @@ title: Settings
               20000
             </td>
             <td>
-              Size of indexing request to send to Elasticsearch. Increase if
+              Size of indexing request to send to OpenSearch/Elasticsearch. Increase if
               monitoring a high bandwidth network.
             </td>
           </tr>
@@ -1788,7 +1786,7 @@ title: Settings
               TRUE
             </td>
             <td>
-              Perform an Elasticsearch health check every 30 seconds and report on slowness or if not green.  For big clusters this should be disabled.
+              Perform an OpenSearch/Elasticsearch health check every 30 seconds and report on slowness or if not green.  For big clusters this should be disabled.
             </td>
           </tr>
           <tr>
@@ -1802,7 +1800,7 @@ title: Settings
               5
             </td>
             <td>
-              Number of seconds before we force a flush to Elasticsearch
+              Number of seconds before we force a flush to OpenSearch/Elasticsearch
             </td>
           </tr>
           <tr><td id="enablepacketlen">enablePacketLen<span class="fa fa-link small copy-link cursor-copy" onclick="copyLink(this, 'settings')"></span></td>
@@ -1810,7 +1808,7 @@ title: Settings
               FALSE (2.0 and later), TRUE (before 2.0)
             </td>
             <td>
-              (Since 2.0) Index all the packet lengths in elasticsearch
+              (Since 2.0) Index all the packet lengths in OpenSearch/elasticsearch
             </td>
           </tr>
           <tr>
@@ -1836,7 +1834,7 @@ title: Settings
               FALSE (2.0 and later), TRUE (before 2.0)
             </td>
             <td>
-              (Since 2.0) Index all the packet lengths in elasticsearch
+              (Since 2.0) Index all the packet lengths in OpenSearch/Elasticsearch
             </td>
           </tr>
           <tr>
@@ -2029,7 +2027,7 @@ title: Settings
               20
             </td>
             <td>
-              Max number of connections to Elasticsearch from capture process
+              Max number of connections to OpenSearch/Elasticsearch from capture process
             </td>
           </tr>
           <tr>
@@ -2043,7 +2041,7 @@ title: Settings
               500
             </td>
             <td>
-              Max number of Elasticsearch requests outstanding in queue
+              Max number of OpenSearch/Elasticsearch requests outstanding in queue
             </td>
           </tr>
           <tr>
@@ -2265,7 +2263,7 @@ title: Settings
             </td>
             <td>
               It is possible for multiple Arkime clusters to live inside the
-              same Elasticsearch cluster by giving each Arkime cluster a
+              same OpenSearch/Elasticsearch cluster by giving each Arkime cluster a
               different prefix value.
             </td>
           </tr>
@@ -2548,9 +2546,9 @@ title: Settings
               EMPTY
             </td>
             <td>
-              Set this option to which single elasticsearch cluster to use for the users index.
+              Set this option to which single OpenSearch/Elasticsearch cluster to use for the users index.
               It is possible for multiple Arkime clusters to share the same users table, so that the same accounts and settings work across all clusters.
-              So the elasticsearch setting would point to a unique elasticsearch cluster per Arkime cluster, while the usersElasticsearch setting would point to a single shared Elasticsearch cluster.
+              So the elasticsearch setting would point to a unique OpenSearch/Elasticsearch cluster per Arkime cluster, while the usersElasticsearch setting would point to a single shared OpenSearch/Elasticsearch cluster.
               Same format as the <a href="#elasticsearch">elasticsearch</a> option.
               <br>
               (Since 3.0) This setting applys to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
@@ -3266,7 +3264,7 @@ tpacketv3NumThreads=2</pre>
               false
             </td>
             <td>
-              Write to stdout Elasticsearch requests
+              Write to stdout OpenSearch/Elasticsearch requests
             </td>
           </tr>
           <tr>
@@ -3655,8 +3653,8 @@ cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Clus
       <p>
         The multi viewer is useful when you have multiple Arkime clusters that you want to search across.
         To use the multi viewer, an extra viewer process and a multies process must be started.
-        The viewer process works like a normal viewer process, except instead of talking to a elasticsearch server, it talks to a multies server.
-        The multies server proxies the queries to all the real elasticsearch servers.
+        The viewer process works like a normal viewer process, except instead of talking to a OpenSearch/Elasticsearch server, it talks to a multies server.
+        The multies server proxies the queries to all the real OpenSearch/Elasticsearch servers.
         These two processes can share the same config file and node name section.
         The viewer part uses the SAME configuration values as above if you need to set anything.
       </p>
@@ -3747,7 +3745,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
               EMPTY
             </td>
             <td>
-              Semicolon separated list of Elasticsearch nodes that MultiES should connect to.
+              Semicolon separated list of OpenSearch/Elasticsearch nodes that MultiES should connect to.
               The first node listed will be considered the primary node and is used for users/views/queries.
               <br>
               Example: <code>http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,elasticsearchAPIKey:testkey1;http://escluster2.example.com:9200,name:escluster2</code>
@@ -3759,11 +3757,11 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
                   If using 3.1 or later it is suggested to use elasticsearchBasicAuth or elasticsearchAPIKey is the user/pass isn't logged.
                 </li>
                 <li>
-                  (required since 2.7.0) <code>name:</code> element to name the Elasticsearch node.
+                  (required since 2.7.0) <code>name:</code> element to name the OpenSearch/Elasticsearch node.
                 </li>
                 <li>
                    (required) <code>prefix:</code> element can follow each host
-                   if that cluster was setup with an Elasticsearch prefix.
+                   if that cluster was setup with an OpenSearch/Elasticsearch prefix.
                    For 3.x or later it should be prefix:arkime if you didn't set a prefix.
                 </li>
                 <li>
@@ -3774,7 +3772,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
                 </li>
                 <li>
                   (optional since 3.1.0) <code>elasticsearchBasicAuth:</code> element
-                  to set an Elasticsearch Basic Auth per node.
+                  to set an OpenSearch/Elasticsearch Basic Auth per node.
                   <a href="#elasticsearchBasicAuth">See elasticsearchBasicAuth settings</a>
                   for more information on how to encode Basic Auth settings, you MUST use the base64 version with multies.
                 </li>
@@ -4264,7 +4262,7 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
               </span>
             </td>
             <td>
-              The field name as referenced in the underlying Elasticsearch database
+              The field name as referenced in the underlying OpenSearch/Elasticsearch database
             </td>
           </tr>
           <tr>
@@ -4608,7 +4606,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
               </span>
             </td>
             <td>
-              The field name as referenced in the underlying Elasticsearch database
+              The field name as referenced in the underlying OpenSearch/Elasticsearch database
             </td>
           </tr>
         </tbody>
@@ -4658,7 +4656,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
               </span>
             </td>
             <td>
-              The field name as referenced in the underlying Elasticsearch database
+              The field name as referenced in the underlying OpenSearch/Elasticsearch database
             </td>
           </tr>
         </tbody>
@@ -4706,7 +4704,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
         Each file on disk is encoded by a unique data encryption key (dek).
         The dek is encrypted using a key encryption key (kek) when stored.
         The encrypted dek, the id of the kek, and the initialization vector
-        (IV) are all stored per file in Elasticsearch. Which kek is used when
+        (IV) are all stored per file in OpenSearch/Elasticsearch. Which kek is used when
         creating files, is selected with the <code>simpleKEKId</code>
         variable. The simpleKEKId may be set either globally or per node.
       </p>
@@ -4763,7 +4761,7 @@ kekid2=Randomkekpassword2
           Normal pcap tools will no longer work
         </li>
         <li>
-          If the files index in elasticsearch gets corrupt, you can not
+          If the files index in OpenSearch/Elasticsearch gets corrupt, you can not
           reingest the files
         </li>
       </ul>

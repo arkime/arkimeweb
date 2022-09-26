@@ -122,13 +122,13 @@ title: FAQ
       </a>
       <a href="#elasticsearch"
         class="nav-link"
-        title="Elasticsearch">
-        Elasticsearch
+        title="OpenSearch/Elasticsearch">
+        OpenSearch/Elasticsearch
       </a>
       <a class="nav-link nested"
         href="#how-many-elasticsearch-nodes-or-machines-do-i-need"
-        title="How many Elasticsearch nodes or machines do I need?">
-        How many Elasticsearch nodes or machines do I need?
+        title="How many OpenSearch/Elasticsearch nodes or machines do I need?">
+        How many OpenSearch/Elasticsearch nodes or machines do I need?
       </a>
       <a class="nav-link nested"
         href="#data-never-gets-deleted"
@@ -152,33 +152,33 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#how-do-i-enable-elasticsearch-replication"
-        title="How do I enable Elasticsearch replication?">
-        How do I enable Elasticsearch replication?
+        title="How do I enable OpenSearch/Elasticsearch replication?">
+        How do I enable OpenSearch/Elasticsearch replication?
       </a>
       <a class="nav-link nested"
         href="#how-do-i-upgrade-elasticsearch"
-        title="How do I upgrade Elasticsearch?">
-        How do I upgrade Elasticsearch?
+        title="How do I upgrade OpenSearch/Elasticsearch?">
+        How do I upgrade OpenSearch/Elasticsearch?
       </a>
       <a class="nav-link nested"
         href="#how-do-i-upgrade-to-es-8-x"
-        title="How do I upgrade to ES 8.x?">
-        How do I upgrade to ES 8.x?
+        title="How do I upgrade to Elasticsearch 8.x?">
+        How do I upgrade to Elasticsearch 8.x?
       </a>
       <a class="nav-link nested"
         href="#how-do-i-upgrade-to-es-7-x"
-        title="How do I upgrade to ES 7.x?">
-        How do I upgrade to ES 7.x?
+        title="How do I upgrade to Elasticsearch 7.x?">
+        How do I upgrade to Elasticsearch 7.x?
       </a>
       <a class="nav-link nested"
         href="#how-do-i-upgrade-to-es-6-x"
-        title="How do I upgrade to ES 6.x?">
-        How do I upgrade to ES 6.x?
+        title="How do I upgrade to Elasticsearch 6.x?">
+        How do I upgrade to Elasticsearch 6.x?
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_es_5x"
-        title="How do I upgrade to ES 5.x?">
-        How do I upgrade to ES 5.x?
+        title="How do I upgrade to Elasticsearch 5.x?">
+        How do I upgrade to Elasticsearch 5.x?
       </a>
       <a class="nav-link nested"
         href="#version-conflict"
@@ -187,8 +187,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#recommended-elasticsearch-settings"
-        title="Recommended Elasticsearch Settings">
-        Recommended Elasticsearch Settings
+        title="Recommended OpenSearch/Elasticsearch Settings">
+        Recommended OpenSearch/Elasticsearch Settings
       </a>
       <a class="nav-link nested"
         href="#ilm"
@@ -481,10 +481,13 @@ title: FAQ
               Version
             </th>
             <th>
-              Min upgrade from
+              Min version<br>upgrade from
             </th>
             <th>
-              ES Versions
+              OpenSearch<br>Versions
+            </th>
+            <th>
+              Elasticsearch<br>Versions
             </th>
             <th>
               Special Instructions
@@ -506,6 +509,9 @@ title: FAQ
               3.3.0+ (3.4.0 recommended)
             </td>
             <td>
+              1.0.0+ (2.3 recommended)
+            </td>
+            <td>
               7.10+
             </td>
             <td>
@@ -523,6 +529,9 @@ title: FAQ
             </td>
             <td>
               2.4.0
+            </td>
+            <td>
+              1.0.0+ (2.3 recommended)
             </td>
             <td>
               7.10+, not 8.x
@@ -544,10 +553,13 @@ title: FAQ
               2.0.0
             </td>
             <td>
+              N/A
+            </td>
+            <td>
               7.4+ (7.9.0+ recommended, 7.7.0 broken)
             </td>
             <td>
-              <a href="#how-do-i-upgrade-to-es-7-x">ES 7 instructions </a>
+              <a href="#how-do-i-upgrade-to-es-7-x">Elasticsearch 7 instructions </a>
             </td>
             <td>
             </td>
@@ -561,6 +573,9 @@ title: FAQ
             </td>
             <td>
               1.7.0 (1.8.0 recommended)
+            </td>
+            <td>
+              N/A
             </td>
             <td>
               6.8.2+ (6.8.6+ recommended), 7.1+ (7.8.0+ recommended, 7.7.0 broken)
@@ -583,13 +598,16 @@ title: FAQ
               1.7.0 (1.8.0 recommended)
             </td>
             <td>
+              N/A
+            </td>
+            <td>
              6.7, 6.8, 7.1+
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.0 instructions </a>
             </td>
             <td>
-              Must already be on ES 6.7 or 6.8 (ES <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> recommended) before upgrading to 2.0
+              Must already be on Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> recommended) before upgrading to 2.0
             </td>
           </tr>
           <tr>
@@ -603,11 +621,14 @@ title: FAQ
               1.0.0 (1.1.x recommended)
             </td>
             <td>
+              N/A
+            </td>
+            <td>
               5.x or 6.x
             </td>
             <td>
               <a href="#how-do-i-upgrade-to-es-6-x">
-                ES 6 instructions
+                Elasticsearch 6 instructions
               </a>
             </td>
             <td>
@@ -625,6 +646,9 @@ title: FAQ
             0.20.2 (0.50.1 recommended)
             </td>
             <td>
+              N/A
+            </td>
+            <td>
               5.x or 6.x (new only)
             </td>
             <td>
@@ -633,7 +657,7 @@ title: FAQ
               </a>
             </td>
             <td>
-              Must be on ES 5 already
+              Must be on Elasticsearch 5 already
             </td>
           </tr>
           <tr>
@@ -647,11 +671,14 @@ title: FAQ
               0.18.1 (0.20.2 recommended)
             </td>
             <td>
+              N/A
+            </td>
+            <td>
               2.4, 5.x
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_es_5x">
-                ES 5 instructions
+                Elasticsearch 5 instructions
               </a>
             </td>
             <td></td>
@@ -672,8 +699,8 @@ title: FAQ
         </a>
         Our deployment is on RHEL 7 and RHEL 8, using both the pcap and afpacket reader depending on deployment.
         We recommend using afpacket (tpacketv3) whenever possible.
-        A large amount of development is done on macOS 10.15 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
-        Arkime is not supported on 32 bit machines anymore.
+        A large amount of development is done on macOS 12.5 using MacPorts or Homebrew, however, it has never been tested in a production setting. :)
+        Arkime is not supported on 32 bit machines anymore!
       </p>
       <p>
         The following OSes should work out of the box for compiling yourself:
@@ -683,13 +710,13 @@ title: FAQ
           Arch
         </li>
         <li>
-          CentOS/RHEL 7, 8
+          CentOS/RHEL 7, 8, 9
         </li>
         <li>
           Amazon Linux 2
         </li>
         <li>
-          Ubuntu 16.04, 18.04, 20.04
+          Ubuntu 18.04, 20.04, 22.04
         </li>
       </ul>
 
@@ -706,10 +733,10 @@ title: FAQ
       </p>
       <ol>
         <li>
-          Check that Elasticsearch is running and green using
+          Check that OpenSearch/Elasticsearch is running and green using
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
-          on the machine running Elasticsearch.
-          An Unauthorized response probably means you need user:pass in all ES urls, or you are using the wrong URL.
+          on the machine running OpenSearch/Elasticsearch.
+          An Unauthorized response probably means you need user:pass in all OpenSearch/Elasticsearch urls, or you are using the wrong URL.
         </li>
         <li>
           Check that the db has been initialized with
@@ -760,7 +787,7 @@ title: FAQ
                <code>/opt/arkime/etc/config.ini</code> to shorten the timeouts
             </li>
             <li>
-              Elasticsearch will only refresh the indices once a minute with the default Arkime config,
+              OpenSearch/Elasticsearch will only refresh the indices once a minute with the default Arkime config,
               force a refresh with <code>curl http://elasticsearch.hostname:9200/_refresh</code>
             </li>
             <li>
@@ -811,14 +838,14 @@ title: FAQ
       </h3>
       <ol>
         <li>
-          Leave Elasticsearch running
+          Leave OpenSearch/Elasticsearch running
         </li>
         <li>
           Shutdown all running viewer or capture processes so no new data is
           recorded.
         </li>
         <li>
-          To delete all the SPI data stored in Elasticsearch, use the
+          To delete all the SPI data stored in OpenSearch/Elasticsearch, use the
           <code>db.pl</code> script with either the <code>init</code> or
           <code>wipe</code> commands. The only difference between the two
           commands is that <code>wipe</code> leaves the
@@ -890,7 +917,7 @@ title: FAQ
           The data for http.hasheader and email.hasheader will NOT migrate
         </li>
         <li>
-          IPv6 is fully supported and uses the Elasticsearch <code>ip</code> type
+          IPv6 is fully supported and uses the OpenSearch/Elasticsearch <code>ip</code> type
         </li>
       </ul>
       <p>
@@ -906,7 +933,7 @@ title: FAQ
       <p>To upgrade:</p>
       <ul>
         <li>
-          First make sure you are using ES 5.5.x (5.6 recommended) and Moloch
+          First make sure you are using Elasticsearch 5.5.x (5.6 recommended) and Moloch
           0.20.2 or 0.50.x before continuing. Upgrade to those version first!
         </li>
         <li>
@@ -953,7 +980,7 @@ title: FAQ
           <ul>
             <li>
               The number of slices should be between 2 and the number of shards
-              each index has, the higher the faster but more Elasticsearch CPU
+              each index has, the higher the faster but more OpenSearch/Elasticsearch CPU
               that will be used. We recommend 1/2 the number of shards.
             </li>
             <li>
@@ -997,7 +1024,7 @@ title: FAQ
         Upgrading to Moloch 2.0 is a multistep process that requires an outage.
         An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
         Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 6.7 or 6.8.
-        This is very important when upgrading to ES 7.x later.
+        This is very important when upgrading to Elasticsearch 7.x later.
       </p>
       <ul>
         <li>You must be using Moloch 1.7 or 1.8 (Moloch 1.8.0 recommended) BEFORE trying to upgrade to Moloch 2.0</li>
@@ -1022,7 +1049,7 @@ title: FAQ
         An outage is required because all the captures <strong>MUST</strong> be <strong>stopped</strong> before upgrading the database so there are no schema issues or corruption.
         Do not restart the capture processes until the db.pl upgrade has finished!
         All of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
-        This is very important when upgrading to ES 8.x later.
+        This is very important when upgrading to Elasticsearch 8.x later.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
@@ -1090,13 +1117,13 @@ title: FAQ
       <br>
       <h1 id="elasticsearch"
         class="border-bottom">
-        Elasticsearch
+        OpenSearch/Elasticsearch
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
       <h3 id="how-many-elasticsearch-nodes-or-machines-do-i-need">
-        How many Elasticsearch nodes or machines do I need?
+        How many OpenSearch/Elasticsearch nodes or machines do I need?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -1113,7 +1140,7 @@ title: FAQ
           How fast the disks are
         </li>
         <li>
-          What percentage of the traffic is HTTP/DNS, these session use more ES resources
+          What percentage of the traffic is HTTP/DNS, these session use more OpenSearch/Elasticsearch resources
         </li>
         <li>
           The average transfer rate of all the interfaces
@@ -1137,18 +1164,18 @@ title: FAQ
           store PCAP for a week but SPI data for a month.
         </li>
         <li>
-          Have at least 1% of disk space used by ES available in ES heap memory.
-          For example, if the cluster has 7TB of data then 7*0.01 or 70GB of ES heap memory is the minimum recommended.
+          Have at least 1% of disk space used by OpenSearch/Elasticsearch available in OpenSearch/Elasticsearch heap memory.
+          For example, if the cluster has 7TB of data then 7*0.01 or 70GB of OpenSearch/Elasticsearch heap memory is the minimum recommended.
         </li>
         <li>
-          Assign half the memory to Elasticsearch (but no more then 30G per node, read
+          Assign half the memory to OpenSearch/Elasticsearch (but no more then 30G per node, read
           <a href="https://www.elastic.co/blog/a-heap-of-trouble"
             rel="nofollow">
             https://www.elastic.co/blog/a-heap-of-trouble</a>)
           and half the memory to disk cache.
         </li>
         <li>
-          Use version 7 of Elasticsearch or later.
+          Use at least version 7 of Elasticsearch or version 2.3 of Opensearch.
         </li>
         <li>
           A quick disk requirement estimate is 5% of the PCAP storage, if storing for the same amount of time.
@@ -1173,7 +1200,7 @@ title: FAQ
         </span>
       </h3>
       <p>
-        The SPI data in Elasticsearch and the PCAP data are not deleted at the same time.
+        The SPI data in OpenSearch/Elasticsearch and the PCAP data are not deleted at the same time.
         The PCAP data is deleted as the disk fills up on the capture machines, <a href="#pcap-deletion">more info</a>.
         PCAP deletion happens automatically and nothing needs to be done.
         The SPI data is either deleted by using <a href="#ilm">ILM</a> or when the <code>./db.pl expire</code> command is run, usually from cron during off peak.
@@ -1201,7 +1228,7 @@ title: FAQ
         </span>
       </h3>
       <p>
-        This error almost always means that your Elasticsearch cluster can not
+        This error almost always means that your OpenSearch/Elasticsearch cluster can not
         keep up with the amount of sessions that the capture nodes are trying to
         send it. You may only see the error message on your busiest capture nodes
         since capture tries to buffer the requests.
@@ -1211,7 +1238,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          If ES is running on the same machine as capture, that is almost certainly the issue.
+          If OpenSearch/Elasticsearch is running on the same machine as capture, that is almost certainly the issue.
           While that is fine for a Proof of Concept, you will continue to run into problems.
         </li>
         <li>
@@ -1220,26 +1247,26 @@ title: FAQ
           nodes having issues. Make sure those nodes don’t have disk issues.
         </li>
         <li>
-          Make sure each Elasticsearch node has 30G of memory (no more) and 30G
+          Make sure each OpenSearch/Elasticsearch node has 30G of memory (no more) and 30G
           of disk cache (at least) available to it. So for example if you are on
-          a 64G machine only run 1 Elasticsearch node on the machine.
+          a 64G machine only run 1 OpenSearch/Elasticsearch node on the machine.
         </li>
         <li>
-          Elasticsearch does NOT do well if there is one node that is sick.
+          OpenSearch/Elasticsearch does NOT do well if there is one node that is sick.
           Check all the nodes hardware, disks, raid, etc.
           Make sure on the ES Nodes tab there isn't a sigle node with a high
           OS Load and low Write/s which might indicate an issue.
         </li>
         <li>
-          Make sure swap is turned off or swappiness is 0 on Elasticsearch machines.
+          Make sure swap is turned off or swappiness is 0 on OpenSearch/Elasticsearch machines.
         </li>
         <li>
-          If you are running multiple Elasticsearch nodes make sure the disks can
-          support the iops load. It is usually best to have each ES use its own disk.
+          If you are running multiple OpenSearch/Elasticsearch nodes make sure the disks can
+          support the iops load. It is usually best to have each OpenSearch/Elasticsearch use its own disk.
         </li>
         <li>
           Make sure you are running the latest Elasticsearch that the version of
-          Arkime supports, for example 7.10.2+ if using Elasticsearch 7.
+          Arkime supports, for example 7.10.2+ if using Elasticsearch 7 or 2.3+ if using OpenSearch.
         </li>
         <li>
           If using replication on the sessions index, turn off replication of the
@@ -1278,10 +1305,10 @@ title: FAQ
         </span>
       </h3>
       <p>
-        If queries are too slow the easiest fix is to add additional Elasticsearch nodes.
-        Elasticsearch doesn’t do well if Java hits an OutOfMemory condition.
+        If queries are too slow the easiest fix is to add additional OpenSearch/Elasticsearch nodes.
+        OpenSearch/Elasticsearch doesn’t do well if Java hits an OutOfMemory condition.
         If you ever have one, you should immediately delete the oldest <code>*sessions*</code> index,
-        update the daily expire cron to delete more often, and restart the Elasticsearch cluster.
+        update the daily expire cron to delete more often, and restart the OpenSearch/Elasticsearch cluster.
         Then you should order more machines. :)
       </p>
 
@@ -1302,7 +1329,7 @@ title: FAQ
           Wait for the shards to be moved off
         </li>
         <li>
-          If no shards move, you may need to config Elasticsearch to allow 2
+          If no shards move, you may need to config OpenSearch/Elasticsearch to allow 2
           shards per node, although a large number may be required if removing
           many nodes.
           <pre><code>curl -XPUT 'localhost:9200/sessions*/_settings' -d '{
@@ -1323,7 +1350,7 @@ title: FAQ
       </ul>
 
       <h3 id="how-do-i-enable-elasticsearch-replication">
-        How to enable Elasticsearch replication
+        How to enable OpenSearch/Elasticsearch replication
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -1343,12 +1370,12 @@ title: FAQ
       </p>
       <p>
         We recommend the second solution since it allows current traffic to be
-        written to ES once, and during off peak the previous days traffic will
+        written to OpenSearch/Elasticsearch once, and during off peak the previous days traffic will
         be replicated.
       </p>
 
       <h3 id="how-do-i-upgrade-elasticsearch">
-        How do I upgrade Elasticsearch?
+        How do I upgrade OpenSearch/Elasticsearch?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -1356,48 +1383,49 @@ title: FAQ
       <p>
         In general if upgrading between minor or build versions of Elasticsearch you can do a rolling upgrade with no issues.
         Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for best results.
-        Make sure you select the matching version of that document for your version of ES from the pull down on the right hand side.
+        Make sure you select the matching version of that document for your version of Elasticsearch from the pull down on the right hand side.
       </p>
       <p>
         Upgrading between Major versions of Elasticsearch usually require an upgrade of Arkime. So please see the instructions in this FAQ for
         <ul>
-          <li><a href="#how-do-i-upgrade-to-es-7-x">ES 7</a></li>
-          <li><a href="#how-do-i-upgrade-to-es-6-x">ES 6</a></li>
-          <li><a href="#how_do_i_upgrade_to_es_5x">ES 5</a></li>
+          <li><a href="#how-do-i-upgrade-to-es-8-x">Elasticsearch 8</a></li>
+          <li><a href="#how-do-i-upgrade-to-es-7-x">Elasticsearch 7</a></li>
+          <li><a href="#how-do-i-upgrade-to-es-6-x">Elasticsearch 6</a></li>
+          <li><a href="#how_do_i_upgrade_to_es_5x">Elasticsearch 5</a></li>
         </ul>
       </p>
 
       <h3 id="how-do-i-upgrade-to-es-8-x">
-        How do I upgrade to ES 8.x
+        How do I upgrade to Elasticsearch 8.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
         <strong>
-          ES 8.x is NOT supported before 3.4.1, and we recommend you wait for Arkime 4.0 to be released.
+          Elasticsearch 8.x is NOT supported before 3.4.1, and we recommend you wait for Arkime 4.0 to be released.
         </strong>
       </p>
       <ol type="I">
         <li>
-          You must first upgrade to Arkime 3.4.1 or higher and run <code>db.pl http://ESHOST:9200 upgrade</code> while still using ES 7.
+          You must first upgrade to Arkime 3.4.1 or higher and run <code>db.pl http://ESHOST:9200 upgrade</code> while still using Elasticsearch 7.
         </li>
         <li>
-          ES 8 can only do upgrades from ES 7.17 or later, so you will need to upgrade ES to 7.17 or later.
+          Elasticsearch 8 can only do upgrades from Elasticsearch 7.17 or later, so you will need to upgrade Elasticsearch to 7.17 or later.
         </li>
         <li>
-          Make sure your Elasticsearch config files are ready for ES 8. We do not provide sample Elasticsearch configs, but here are some things to look out for:
+          Make sure your Elasticsearch config files are ready for Elasticsearch 8. We do not provide sample Elasticsearch configs, but here are some things to look out for:
           <ul>
-            <li>ES 8 by default enables https and passwords, either disable or update your Arkime configs to use</li>
+            <li>Elasticsearch 8 by default enables https and passwords, either disable or update your Arkime configs to use</li>
             <li>There are several config variable changes, we suggest trying your elasticsearch.yml config file with a test cluster</li>
-            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.0/breaking-changes.html">ES 8.0 breaking changes</a></li>
+            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.0/breaking-changes.html">Elasticsearch 8.0 breaking changes</a></li>
           </ul>
         </li>
         <li>Follow Elastic's <a href="https://www.elastic.co/guide/en/elastic-stack/8.0/upgrading-elasticsearch.html">rolling upgrade instructions.</a></li>
       </ol>
 
       <h3 id="how-do-i-upgrade-to-es-7-x">
-        How do I upgrade to ES 7.x
+        How do I upgrade to Elasticsearch 7.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -1405,36 +1433,36 @@ title: FAQ
       <p>
         <strong>
           <ul>
-            <li>ES 7.x is supported by Moloch 2.x only if there are no ES 5.x created indices remaining.  We recommend you upgrade to ES 7.8.x or later.</li>
-            <li>Upgrading to ES 7 MAY REQUIRE downtime.</li>
+            <li>Elasticsearch 7.x is supported by Moloch 2.x only if there are no Elasticsearch 5.x created indices remaining.  We recommend you upgrade to Elasticsearch 7.8.x or later.</li>
+            <li>Upgrading to Elasticsearch 7 MAY REQUIRE downtime.</li>
           </ul>
         </strong>
       </p>
       <ol type="I">
         <li>
           If you are NOT using Arkime DB version 63 (or later) you
-          must follow these <a href="/faq#how_do_i_upgrade_to_moloch_2">instructions</a> while still using ES 6.x and upgrade to Arkime 2.0. To find what DB version
+          must follow these <a href="/faq#how_do_i_upgrade_to_moloch_2">instructions</a> while still using Elasticsearch 6.x and upgrade to Arkime 2.0. To find what DB version
           you are using, either run
           <code>db.pl http://ESHOST:9200 info</code>
           or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
         </li>
         <li>
-          Make sure your Elasticsearch config files are ready for ES 7. We do not provide sample Elasticsearch configs, but here are some things to look out for:
+          Make sure your Elasticsearch config files are ready for Elasticsearch 7. We do not provide sample Elasticsearch configs, but here are some things to look out for:
           <ul>
             <li>You MUST add a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/discovery-settings.html#initial_master_nodes">cluster.initial_master_nodes</a> and there may be other required discovery changes.</li>
             <li>If you have more then 1000 shards per node you must set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/misc-cluster.html">cluster.max_shards_per_node</a></li>
             <li>If you previously set <code>indices.breaker.total.limit</code> you should unset it.</li>
-            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html">ES 7.0 breaking changes</a></li>
+            <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html">Elasticsearch 7.0 breaking changes</a></li>
           </ul>
         </li>
         <li>
-         Now you need to upgrade from ES 6 to ES 7. There are two options:
+         Now you need to upgrade from Elasticsearch 6 to Elasticsearch 7. There are two options:
         <ol>
           <li>
-            Upgrading to ES 7 if using ES <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> (or later) can be done with a rolling upgrade.  Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for best results.  You do NOT need to stop capture/viewer, but after the rolling upgrade is finish you may want to restart capture everywhere.
+            Upgrading to Elasticsearch 7 if using Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> (or later) can be done with a rolling upgrade.  Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for best results.  You do NOT need to stop capture/viewer, but after the rolling upgrade is finish you may want to restart capture everywhere.
           </li>
           <li>
-            If not using ES 6.8.6, or if you would prefer to do a full restart follow the instructions below
+            If not using Elasticsearch 6.8.6, or if you would prefer to do a full restart follow the instructions below
             <ul>
               <li>
                 Make sure you delete any old indices that db.pl complained about when you installed Moloch 2.0
@@ -1443,15 +1471,15 @@ title: FAQ
                 Shutdown everything: elasticsearch, capture, and viewer
               </li>
               <li>
-                Upgrade ES to 7.x (7.8.0 or later recommended)
+                Upgrade Elasticsearch to 7.x (7.8.0 or later recommended)
               </li>
               <li>
-                Start ES cluster
+                Start Elasticsearch cluster
               </li>
               <li>
                 Wait for cluster to go GREEN, this will take
                 <strong>LONGER</strong>
-                then usual as ES upgrades things from 6.x to 7.x format.
+                then usual as Elasticsearch upgrades things from 6.x to 7.x format.
                 <pre><code>curl http://localhost:9200/_cat/health</code></pre>
               </li>
               <li>
@@ -1464,14 +1492,14 @@ title: FAQ
       </ol>
 
       <h3 id="how-do-i-upgrade-to-es-6-x">
-        How do I upgrade to ES 6.x
+        How do I upgrade to Elasticsearch 6.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
         <strong>
-          ES 6.x is supported by Moloch 1.x for NEW clusters and &gt;= 1.5 for
+          Elasticsearch 6.x is supported by Moloch 1.x for NEW clusters and &gt;= 1.5 for
           UPGRADING clusters.
         </strong>
       </p>
@@ -1481,18 +1509,18 @@ title: FAQ
         reindex operations needs to be finished.
       </p>
       <p>
-        We do NOT provide ES 6 startup scripts or configuration, so if upgrading
+        We do NOT provide Elasticsearch 6 startup scripts or configuration, so if upgrading
         please make sure you get startup scripts working on test machines before
         shutting down your current cluster.
       </p>
       <p>
         <strong>
-          Upgrading to ES 6 will REQUIRE two downtimes
+          Upgrading to Elasticsearch 6 will REQUIRE two downtimes
         </strong>
       </p>
       <p>
         First outage: If you are NOT using Moloch DB version 51 (or later) you
-        must follow these steps while still using ES 5.x. To find what DB version
+        must follow these steps while still using Elasticsearch 5.x. To find what DB version
         you are using, either run
         <code>db.pl http://ESHOST:9200 info</code>
         or mouse over the <span class="fa fa-info-circle"></span> in Moloch.
@@ -1519,7 +1547,7 @@ title: FAQ
         </li>
       </ul>
       <p>
-        Second outage: Upgrade to ES 6
+        Second outage: Upgrade to Elasticsearch 6
       </p>
       <ul>
         <li>
@@ -1529,7 +1557,7 @@ title: FAQ
           Shutdown everything
         </li>
         <li>
-          Upgrade ES to 6.x
+          Upgrade Elasticsearch to 6.x
         </li>
         <li>
           <strong>WARNING</strong> - path.data will have to be updated to access
@@ -1537,12 +1565,12 @@ title: FAQ
           to change to <code>/data/foo/&lt;clustername&gt;</code>
         </li>
         <li>
-          Start ES cluster
+          Start Elasticsearch cluster
         </li>
         <li>
           Wait for cluster to go GREEN, this will take
           <strong>LONGER</strong>
-          then usual as ES upgrades things from 5.x to 6.x format.
+          then usual as Elasticsearch upgrades things from 5.x to 6.x format.
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
           </code>
         </li>
@@ -1552,49 +1580,49 @@ title: FAQ
       </ul>
 
       <h3 id="how_do_i_upgrade_to_es_5x">
-        How do I upgrade to ES 5.x
+        How do I upgrade to Elasticsearch 5.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
         <strong>
-          ES 5.x is supported by Moloch 0.17.1 for NEW clusters and 0.18.1 for
+          Elasticsearch 5.x is supported by Moloch 0.17.1 for NEW clusters and 0.18.1 for
           UPGRADING clusters.
         </strong>
       </p>
       <p>
-        ES 5.0.x, 5.1.x and 5.3.0 are NOT supported because of ES bugs/issues.
+        Elasticsearch 5.0.x, 5.1.x and 5.3.0 are NOT supported because of Elasticsearch bugs/issues.
         We currently use 5.6.7.
       </p>
       <p>
         <strong>WARNING</strong> - If you have <code>sessions-*</code> indices
-        created with ES 1.x, you can NOT upgrade. Those indices will need to be
+        created with Elasticsearch 1.x, you can NOT upgrade. Those indices will need to be
         deleted.
       </p>
       <p>
-        We do NOT provide ES 5 startup scripts, so if upgrading please make sure
+        We do NOT provide Elasticsearch 5 startup scripts, so if upgrading please make sure
         you get startup scripts working on test machines before shutting down
         your current cluster.
       </p>
       <p>
         <strong>
-          Upgrading to ES 5 may REQUIRE 2 downtime periods of about 5-15 minutes
+          Upgrading to Elasticsearch 5 may REQUIRE 2 downtime periods of about 5-15 minutes
           each.
         </strong>
       </p>
       <p>
         First outage: If you are NOT using Moloch DB version 34 (or later) you
-        must follow these steps while still using ES 2.4. To find what DB version
+        must follow these steps while still using Elasticsearch 2.4. To find what DB version
         you are using, either run <code>db.pl http://ESHOST:9200 info</code>
         or mouse over the <span class="fa fa-info-circle"></span> in Moloch.
       </p>
       <ul>
         <li>
-          Upgrade to ES 2.4.x
+          Upgrade to Elasticsearch 2.4.x
         </li>
         <li>
-          Check for GREEN ES cluster
+          Check for GREEN Elasticsearch cluster
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
         </li>
         <li>
@@ -1613,29 +1641,29 @@ title: FAQ
           </strong>
         </li>
         <li>
-          You can remain on ES 2.4.x until you want to try ES 5
+          You can remain on Elasticsearch 2.4.x until you want to try Elasticsearch 5
         </li>
       </ul>
       <p>
-        Second outage: Upgrade to ES 5
+        Second outage: Upgrade to Elasticsearch 5
       </p>
       <ul>
         <li>
-          You MUST be on ES 2.4.x and Moloch DB version 34 (or later) before
-          using ES 5 (see above)
+          You MUST be on Elasticsearch 2.4.x and Moloch DB version 34 (or later) before
+          using Elasticsearch 5 (see above)
         </li>
         <li>
           Shutdown EVERYTHING (Elasticsearch, viewer, capture)
         </li>
         <li>
-          Upgrade ES to 5.6.x
+          Upgrade Elasticsearch to 5.6.x
         </li>
         <li>
-          Start ES cluster
+          Start Elasticsearch cluster
         </li>
         <li>
           Wait for cluster to go GREEN, this will take <strong>LONGER</strong>
-          then usual as ES upgrades things from 2.x to 5.x format.
+          then usual as Elasticsearch upgrades things from 2.x to 5.x format.
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
         </li>
         <li>
@@ -1659,13 +1687,13 @@ title: FAQ
       </p>
 
       <h3 id="recommended-elasticsearch-settings">
-        Recommended Elasticsearch Settings
+        Recommended OpenSearch/Elasticsearch Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        Here are some of our recommended Elasticsearch settings. Many of these
+        Here are some of our recommended OpenSearch/Elasticsearch settings. Many of these
         can be updated on the fly, but it is still best to put them in your
         <code>elasticsearch.yml</code> file. We strongly recommend using the same
         <code>elasticsearch.yml</code> file on all hosts, things that need to be
@@ -1718,7 +1746,7 @@ cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
           Write Queue Limit
         </h4>
         <p>
-          No longer need to set since ES 7.9.
+          No longer need to set since Elasticsearch 7.9.
           If you hit a lot of bulk failures this can help, but Elastic doesn’t
           recommend raising too much. In older versions of Elasticsearch it is
           named <code>thread_pool.bulk.queue_size</code> so check the docs for
@@ -2222,7 +2250,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             If you are using <code>xfs</code> make sure you use mount options <code>defaults,inode64,noatime</code>
           </li>
           <li>
-            Don’t run capture and Elasticsearch on the same machine.
+            Don’t run capture and OpenSearch/Elasticsearch on the same machine.
           </li>
         </ul>
         <p>
@@ -2394,8 +2422,8 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           each of the Arkime nodes. Assuming the defaults are correct in the
           <code>[default]</code> section, the only thing that
           <strong>MUST</strong> be set is the interface item. It is also common
-          to have each Arkime node talk to a different Elasticsearch node if
-          running a cluster of Elasticsearch nodes.
+          to have each Arkime node talk to a different OpenSearch/Elasticsearch node if
+          running a cluster of OpenSearch/Elasticsearch nodes.
           <pre><code>[arkime-m01a]
 interface=eth2
 [arkime-m01b]
@@ -2533,7 +2561,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           <a href="rulesformat">
             Rules</a>
           it is possible to control if the packets are written to disk or the
-          SPI data is sent to Elasticsearch
+          SPI data is sent to OpenSearch/Elasticsearch
         </li>
       </ol>
 
@@ -2660,7 +2688,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           Make sure there is free space where viewer is writing its logs.
         </li>
         <li>
-          Make sure viewer can reach Elasticsearch
+          Make sure viewer can reach OpenSearch/Elasticsearch
         </li>
         <li>
           Make sure that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
@@ -2845,7 +2873,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           <tr><td>recv: 4028852297</td><td>4028852297 packets have been received by the interface since process start, as reported by the reader's stats api</td></tr>
           <tr><td>drop: 123</td><td>123 packets have been dropped by the interface, as reported by the reader's stats api</td></tr>
           <tr><td>(0.00)</td><td>0.00% packets have been dropped by the interface, as reported by the reader's stats api</td></tr>
-          <tr><td>queue: 1</td><td>1 bulk request is waiting to be sent to the ES servers, each bulk request may hold multiple sessions</td></tr>
+          <tr><td>queue: 1</td><td>1 bulk request is waiting to be sent to the OpenSearch/Elasticsearch servers, each bulk request may hold multiple sessions</td></tr>
           <tr><td>disk: 2</td><td>2 disk buffers writes are outstanding, each buffer will hold multiple packets</td></tr>
           <tr><td>packet: 3</td><td>3 packets are waiting to be processed in all the packet queues</td></tr>
           <tr><td>close: 4</td><td>4 tcp sessions have been marked for closing (RST/FIN), waiting on last few packets</td></tr>
@@ -2913,7 +2941,7 @@ ${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/c
           total twice the number of sessions.
         </li>
         <li>
-          Currently Elasticsearch only has accurate counts up to 2 billion
+          Currently OpenSearch/Elasticsearch only has accurate counts up to 2 billion
           uniques.
         </li>
         <li>
@@ -3168,7 +3196,7 @@ viewHost = localhost</code></pre>
       <p>
         It is possible to search multiple Arkime clusters by setting up a special Arkime MultiViewer and a special MultiES process.
         The MultiES process is similar to Elasticsearch tribe nodes, except it was created before tribe nodes and can deal with multiple indexes having the same name.
-        The MultiViewer talks to MultiES instead of a real ES instance.
+        The MultiViewer talks to MultiES instead of a real OpenSearch/Elasticsearch instance.
         Currently one big limitation is that <strong>all Arkime clusters must use the same <a href="/settings#serversecret">serverSecret</a></strong>.
       </p>
       <p>
