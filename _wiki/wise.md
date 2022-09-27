@@ -252,7 +252,7 @@ fields=field:user;shortcut:user
 
 ### Elasticsearch
 
-The Elasticsearch wise service can query elasticsearch for fields to set
+The Elasticsearch wise service can query OpenSearch or Elasticsearch for fields to set
 
 Create a `[elasticsearch:UNIQUENAME]` section to configure
 {: .mb-0}
@@ -368,7 +368,7 @@ The JSON File
  {"asset": "blah2", "theip": "10.0.0.2", "extra": "foo"}]
 ```
 
-**Note:** you use shortcut to match between fields in the JSON dictionary and the properties in ElasticSearch.
+**Note:** you use shortcut to match between fields in the JSON dictionary and the properties in OpenSearch/Elasticsearch.
 
 #### Subnets Example
 

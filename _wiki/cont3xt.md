@@ -136,15 +136,15 @@ These also live in the `[cont3xt]` section.
 
 Setting | Default | Description
 --------|---------|------------
-dbUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt data.
-elasticsearch | http://localhost:9200 | The elasticsearch URL to use, dbUrl overrides this setting
+dbUrl | empty | Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt data.
+elasticsearch | http://localhost:9200 | The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
 elasticsearchAPIKey | empty | See <a href="settings#elasticsearchAPIKey">settings page</a>
 elasticsearchBasicAuth | empty | See <a href="settings#elasticsearchBasicAuth">settings page</a>
 elasticsearchTimeout | 300 | See <a href="settings#elasticsearchtimeout">settings page</a>
 esClientKey | empty | See <a href="settings#esclientkey">settings page</a>
 esClientCert | empty | See <a href="settings#esclientcert">settings page</a>
 esClientKeyPass | empty | See <a href="settings#esclientkeypass">settings page</a>
-usersUrl | empty | Either lmdb:DIRECTORY or an elasticsearch URL for storing cont3xt users database. Can be the same that all Arkime tools use.
+usersUrl | empty | Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt users database. Can be the same that all Arkime tools use.
 usersElasticsearch | empty | See <a href="settings#userselasticsearch">settings page</a>
 usersPrefix | empty | See <a href="settings#usersprefix">settings page</a>
 usersElasticsearchAPIKey | empty | See <a href="settings#usersElasticsearchAPIKey">settings page</a>
@@ -187,7 +187,7 @@ cachePolicy | cont3xt.cachePolicy | Can be `shared` or `user`, if set to user th
 
 Possible configurations for cont3xt
 
-### Using elasticsearch
+### Using OpenSearch/Elasticsearch
 It is possible to setup cont3xt in the Arkime universe.
 
 <pre>
@@ -223,7 +223,7 @@ cacheTimeout=1w
 
 ### Using standalone
 
-It is possible to setup cont3xt in a standalone deployment without elasticsearch.
+It is possible to setup cont3xt in a standalone deployment without OpenSearch/Elasticsearch.
 You will need to use the addUser script with the cont3xt.ini configuration file to add users.
 
 <pre>

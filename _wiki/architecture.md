@@ -19,13 +19,13 @@ Here are some sample deployments of Arkime for different network architectures. 
 * A box represents a physical machine.
 * It is possible to run multiple capture processes per machine, or have a single capture process listen to multiple interfaces - ([FAQ Answer](faq#what-kind-of-packet-capture-speeds-can-arkime-capture-handle))
 * Recommend "Big Data" style boxes for capture - ([FAQ Answer](faq#what-kind-of-capture-machines-should-we-buy))
-* Run multiple Elasticsearch processes per machine since each ES node should be configured at most to 30G - ([FAQ Answer](faq#how-many-elasticsearch-nodes-or-machines-do-i-need))
+* Run multiple OpenSearch/Elasticsearch processes per machine since each ES node should be configured at most to 30G - ([FAQ Answer](faq#how-many-elasticsearch-nodes-or-machines-do-i-need))
 * Except for single host deployments, it is recommended/useful that all operator access flows through a single apache/viewer combination that can provide better authentication, logging, and a single choke point - ([FAQ Answer](faq#how-do-i-proxy-arkime-using-apache))
 
 #### Security
 {: .mb-0 }
 
-* All ES instances should have iptables for port 9200-920N and 9300-930N, where N is the number of ES instances per machine, and only allow the other Elasticsearch, capture and viewer machines to connect
+* All ES instances should have iptables for port 9200-920N and 9300-930N, where N is the number of ES instances per machine, and only allow the other OpenSearch/Elasticsearch, capture and viewer machines to connect
 * All viewer hosts, except the apache/viewer box, should have iptables for port 8005 and only allow other viewer machines to connect. The viewer must listen on OS interface if using multiple machines
 * The shared viewer instances can listen on localhost since only apache talks to it
 
@@ -33,7 +33,7 @@ Here are some sample deployments of Arkime for different network architectures. 
 
 ![Single Host](/assets/SingleHostArkime.gif)
 
-A single host deployment should usually only be used for demos and extremely low traffic networks. The read/write patterns of Arkime vs Elasticsearch will tax most systems using spinning disks and is not recommended.
+A single host deployment should usually only be used for demos and extremely low traffic networks. The read/write patterns of Arkime vs OpenSearch/Elasticsearch will tax most systems using spinning disks and is not recommended.
 
 # Multiple Hosts Monitoring Multiple Network Segments
 

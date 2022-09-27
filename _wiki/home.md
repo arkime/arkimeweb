@@ -35,9 +35,9 @@ permalink: "/learn"
 #### Cont3xt
 - [Everything Cont3xt](cont3xt)
 
-#### Elasticsearch
+#### OpenSearch/Elasticsearch
 - [Elasticsearch SSL](esssl)
-- [ES Security Proxy](esproxy)
+- [Security ES Proxy](esproxy)
 
 #### WISE
 - [All about WISE](wise)
