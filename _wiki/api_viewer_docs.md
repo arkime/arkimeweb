@@ -152,7 +152,7 @@ Deletes a history entry (admin only).
 
 | Param | Type | Description |
 | --- | --- | --- |
-| index | <code>string</code> | The Elasticsearch index that the history item was stored in. |
+| index | <code>string</code> | The OpenSearch/Elasticsearch index that the history item was stored in. |
 
 **Returns**:
 
@@ -540,7 +540,7 @@ eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, field
 
 | Name | Type | Description |
 | --- | --- | --- |
-| eshealth | [<code>ESHealth</code>](#ESHealth)| The Elasticsearch cluster health status and information. |
+| eshealth | [<code>ESHealth</code>](#ESHealth)| The OpenSearch/Elasticsearch cluster health status and information. |
 | currentuser | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user |
 | views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views accessible to the logged in user |
 | remoteclusters | <code>Object</code>| A list of known remote Arkime clusters |
@@ -1148,7 +1148,7 @@ Deletes a shortcut.
 
 GET - /api/eshealth
 
-Retrive Elasticsearch health and stats
+Retrive OpenSearch/Elasticsearch health and stats
 There is no auth necessary to retrieve eshealth
 
 **Returns**:
@@ -1219,15 +1219,15 @@ Fetches a list of detailed stats for different fields pertaining to a node to po
 
 GET - /api/esstats
 
-Fetches a list of stats for each Elasticsearch cluster.
+Fetches a list of stats for each OpenSearch/Elasticsearch cluster.
 
 
 **Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch clusters by. |
-| sortField | <code>string</code> | <code>&quot;nodeName&quot;</code> | The field to sort the Elasticsearch clusters list by. |
+| filter | <code>string</code> |  | Search text to filter the list of OpenSearch/Elasticsearch clusters by. |
+| sortField | <code>string</code> | <code>&quot;nodeName&quot;</code> | The field to sort the OpenSearch/Elasticsearch clusters list by. |
 | desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
 
 **Returns**:
@@ -1244,15 +1244,15 @@ Fetches a list of stats for each Elasticsearch cluster.
 
 GET - /api/esindices
 
-Fetches a list of Elasticsearch indices.
+Fetches a list of OpenSearch/Elasticsearch indices.
 
 
 **Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch indices by. |
-| sortField | <code>string</code> | <code>&quot;index&quot;</code> | The field to sort the Elasticsearch indices list by. |
+| filter | <code>string</code> |  | Search text to filter the list of OpenSearch/Elasticsearch indices by. |
+| sortField | <code>string</code> | <code>&quot;index&quot;</code> | The field to sort the OpenSearch/Elasticsearch indices list by. |
 | desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
 
 **Returns**:
@@ -1269,7 +1269,7 @@ Fetches a list of Elasticsearch indices.
 
 DELETE - /api/esindices/:index
 
-Deletes an Elasticsearch index (admin and remove access only).
+Deletes an OpenSearch/Elasticsearch index (admin and remove access only).
 
 **Returns**:
 
@@ -1284,7 +1284,7 @@ Deletes an Elasticsearch index (admin and remove access only).
 
 POST - /api/esindices/:index/optimize
 
-Optimizes an Elasticsearch index (admin only).
+Optimizes an OpenSearch/Elasticsearch index (admin only).
 
 **Returns**:
 
@@ -1298,7 +1298,7 @@ Optimizes an Elasticsearch index (admin only).
 
 POST - /api/esindices/:index/close
 
-Closes an Elasticsearch index (admin only).
+Closes an OpenSearch/Elasticsearch index (admin only).
 
 **Returns**:
 
@@ -1313,7 +1313,7 @@ Closes an Elasticsearch index (admin only).
 
 POST - /api/esindices/:index/open
 
-Opens an Elasticsearch index (admin only).
+Opens an OpenSearch/Elasticsearch index (admin only).
 
 **Returns**:
 
@@ -1327,7 +1327,7 @@ Opens an Elasticsearch index (admin only).
 
 POST - /api/esindices/:index/shrink
 
-Shrinks an Elasticsearch index (admin only).
+Shrinks an OpenSearch/Elasticsearch index (admin only).
 
 
 **Parameters**:
@@ -1350,7 +1350,7 @@ Shrinks an Elasticsearch index (admin only).
 
 GET - /api/estasks
 
-Fetches Elasticsearch tasks.
+Fetches OpenSearch/Elasticsearch tasks.
 
 
 **Parameters**:
@@ -1377,7 +1377,7 @@ Fetches Elasticsearch tasks.
 
 POST - /api/estasks/:id/cancel
 
-Cancels an Elasticsearch task (admin only).
+Cancels an OpenSearch/Elasticsearch task (admin only).
 
 **Returns**:
 
@@ -1392,7 +1392,7 @@ Cancels an Elasticsearch task (admin only).
 
 POST - /api/estasks/:id/cancelwith
 
-Cancels an Elasticsearch task by opaque id. Used to cancel running tasks
+Cancels an OpenSearch/Elasticsearch task by opaque id. Used to cancel running tasks
 that a user has created allowing a user to cancel their own tasks.
 
 **Returns**:
@@ -1408,7 +1408,7 @@ that a user has created allowing a user to cancel their own tasks.
 
 POST - /api/estasks/cancelall
 
-Cancels all running Elasticsearch tasks (admin only).
+Cancels all running OpenSearch/Elasticsearch tasks (admin only).
 
 **Returns**:
 
@@ -1423,7 +1423,7 @@ Cancels all running Elasticsearch tasks (admin only).
 
 GET - /api/esadmin
 
-Fetches all Elasticsearch settings that a user can change (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+Fetches all OpenSearch/Elasticsearch settings that a user can change (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
 
 **Returns**:
 
@@ -1437,7 +1437,7 @@ Fetches all Elasticsearch settings that a user can change (es admin only - set i
 
 POST - /api/esadmin/set
 
-Sets Elasticsearch settings (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+Sets OpenSearch/Elasticsearch settings (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
 
 **Returns**:
 
@@ -1467,7 +1467,7 @@ Try to restart any shard migrations that have failed or paused (es admin only - 
 
 POST - /api/esadmin/flush
 
-Flush and refresh any data waiting in Elasticsearch to disk (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+Flush and refresh any data waiting in OpenSearch/Elasticsearch to disk (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
 
 **Returns**:
 
@@ -1512,14 +1512,14 @@ Try and clear the cache for all indices (es admin only - set in config with <a h
 
 GET - /api/esshards
 
-Fetches all Elasticsearch shards
+Fetches all OpenSearch/Elasticsearch shards
 
 
 **Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| filter | <code>string</code> |  | Search text to filter the list of Elasticsearch shards by. |
+| filter | <code>string</code> |  | Search text to filter the list of OpenSearch/Elasticsearch shards by. |
 | show | <code>string</code> | <code>&quot;all&quot;</code> | Which types of shard to show. Options include:      all - show all shards.      notstarted - show unstarted shards.      INITIALIZING - show initializing shards.      RELOCATING - show relocating shards.      UNASSIGNED - show unassigned shards. |
 | desc | <code>string</code> | <code>false</code> | Whether to return the results in descending order. Defaults to "false". |
 
@@ -1538,7 +1538,7 @@ Fetches all Elasticsearch shards
 
 POST - /api/esshards/:type/:value/exclude
 
-Exclude Elasticsearch node by ip or name (admin only).
+Exclude OpenSearch/Elasticsearch node by ip or name (admin only).
 
 **Returns**:
 
@@ -1553,7 +1553,7 @@ Exclude Elasticsearch node by ip or name (admin only).
 
 POST - /api/esshards/:type/:value/include
 
-Include Elasticsearch node by ip or name (admin only).
+Include OpenSearch/Elasticsearch node by ip or name (admin only).
 
 **Returns**:
 
@@ -1983,7 +1983,7 @@ A packet search job that allows users to search within session packets for text.
 
 ## SessionsQuery Type
 
-The query params to build an Elasticsearch sessions query.
+The query params to build an OpenSearch/Elasticsearch sessions query.
 
 For long expressions use POST for client requests to the server.
 When using POST the request body and request query are merged. Any duplicate parameters use the request body parameter.
@@ -2031,7 +2031,7 @@ The shortcut object to store lists of values that can be used in search queries.
 
 ## ESHealth Type
 
-The Elasticsearch cluster health status and information.
+The OpenSearch/Elasticsearch cluster health status and information.
 
 **Properties**
 
@@ -2108,6 +2108,7 @@ The user object.
 | lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
 | timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
 | roles | <code>array</code> |  | The list of Arkime roles assigned to this user. |
+| roleAssigners | <code>array</code> |  | The list of userIds that can manage who has this (ROLE) |
 
 <a name="ArkimeSettings"></a>
 

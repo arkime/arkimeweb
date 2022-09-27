@@ -152,6 +152,28 @@ Retrieves a list of users (admin only).
 | recordsTotal | <code>number</code>| The total number of users. |
 | recordsFiltered | <code>number</code>| The number of users returned in this result. |
 
+<a name="/users/min"></a>
+
+## /users/min API
+
+POST - /api/users/min
+
+Retrieves a list of users (non-admin usable [with role status returned only for roleAssigners]).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| roleId | <code>string</code> | Optional roleId to match against |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+| data | [<code>Array.&lt;ArkimeUserInfo&gt;</code>](#ArkimeUserInfo)| The list of users configured. |
+
 <a name="/user"></a>
 
 ## /user API
@@ -189,6 +211,21 @@ Deletes a user (admin only).
 POST - /api/user/:id
 
 Updates a user (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update user operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="/user/_id/assignment"></a>
+
+## /user/:id/assignment API
+
+POST - /api/user/:id/assignment
+
+Updates whether a user has a certain role (admin & roleAssigners only).
 
 **Returns**:
 
@@ -304,4 +341,20 @@ The Arkime user object.
 | lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
 | timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
 | roles | <code>array</code> |  | The list of Arkime roles assigned to this user. |
+| roleAssigners | <code>array</code> |  | The list of userIds that can manage who has this (ROLE) |
+
+<a name="ArkimeUserInfo"></a>
+
+## ArkimeUserInfo Type
+
+The Arkime user-info object (information provided to roleAssigners or non-admin users).
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| userId | <code>string</code> | The ID of the user. |
+| userName | <code>string</code> | The name of the user (to be displayed in the UI). |
+| hasRole | <code>boolean</code> \| <code>undefined</code> | whether the user has the requested role            (only if a role was provided & the requester is a roleAssigner for it) |
 

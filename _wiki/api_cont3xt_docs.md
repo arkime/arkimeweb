@@ -1,3 +1,62 @@
+<a name="/audit"></a>
+
+## /audit API
+
+Creates a new history audit log
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| audit | <code>Audit</code> | The history entry to create |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>Promise</code>| The promise that either resolves or rejects in error |
+
+<a name="/audits"></a>
+
+## /audits API
+
+GET - /api/audits
+
+Returns list of audit logs (sorted by issuedAt) that the requesting user is allowed to view.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| searchTerm | <code>string</code> | an optional query parameter to filter on indicator, iType, and tags |
+| startMs | <code>string</code> | an optional query parameter to specify the start of results (milliseconds since Unix EPOC) |
+| stopMs | <code>string</code> | an optional query parameter to specify the end of results (milliseconds since Unix EPOC) |
+| seeAll | <code>string</code> | an optional query parameter to request viewing all history (only works for admin users) |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| audits | <code>Array.&lt;Audit&gt;</code>| A sorted array of audit logs that the logged |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+
+<a name="/audit/_id"></a>
+
+## /audit/:id API
+
+DELETE - /api/audit/:id
+
+Delete a log from history
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete history log operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display. |
+
 <a name="/settings"></a>
 
 ## /settings API
@@ -67,6 +126,8 @@ Fetches integration data
 | query | <code>string</code> | The string to query integrations |
 | doIntegrations | <code>Array.&lt;string&gt;</code> | A list of integration names to query |
 | skipCache | <code>boolean</code> | Ignore any cached data and query all integrations again |
+| tags | <code>Array.&lt;string&gt;</code> | Tags applied at the time of search |
+| viewId | <code>string</code> \| <code>undefined</code> | The ID of the view at the time of search (if any) |
 
 **Returns**:
 
@@ -336,6 +397,48 @@ The data type of the field data
 | --- | --- | --- | --- |
 | type | <code>string</code> | <code>&quot;\&quot;string\&quot;&quot;</code> | The type of data displayed in the field                                 string - obvious                                 url - a url that should be made clickable                                 table - there will be a fields element                                 array - the field var will point to an array, display 1 per line unless join set                                 date - a date value                                 ms - a ms time value                                 seconds - a second time value                                 json - just display raw json, call in JSON.stringify(blah, false, 2) |
 
+<a name="IntegrationTidbitContainer"></a>
+
+## IntegrationTidbitContainer Type
+
+An Integration tidbits object
+
+Information for creating and ordering tidbits
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| order | <code>number</code> \| <code>undefined</code> | a default order to apply to all contained tidbits |
+| fields | [<code>Array.&lt;IntegrationTidbit&gt;</code>](#IntegrationTidbit) | the objects that define individual tidbit displays |
+
+<a name="IntegrationTidbit"></a>
+
+## IntegrationTidbit Type
+
+An Integration tidbit object
+
+Information about how to display a field from an Integration's data to the primary indicator-tree display.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| label | <code>string</code> \| <code>undefined</code> | The name of the field. If given, tidbit is displayed as key-value pair at bottom |
+| type | [<code>IntegrationFieldType</code>](#IntegrationFieldType) | The type of data displayed in the field, default 'string' |
+| field | [<code>IntegrationFieldDef</code>](#IntegrationFieldDef) | path to data |
+| fieldRoot | [<code>IntegrationFieldDef</code>](#IntegrationFieldDef) \| <code>undefined</code> | path to element data from data root |
+| display | <code>string</code> | how to display value in UI, default 'badge' |
+| template | <code>string</code> \| <code>undefined</code> | pseudo template-string applied to value before postProcess |
+| postProcess | <code>Array.&lt;string&gt;</code> \| <code>string</code> \| <code>undefined</code> | named filter(s) to pass value into |
+| tooltip | <code>string</code> \| <code>undefined</code> | value used as tooltip |
+| tooltipTemplate | <code>string</code> \| <code>undefined</code> | pseudo template-string filled with value & data for use in tooltip |
+| order | <code>number</code> | number by which tidbits are sorted (ascending order), default 0 |
+| precedence | <code>number</code> \| <code>undefined</code> | the higher, the more preferred among those with the same purpose |
+| purpose | <code>string</code> \| <code>undefined</code> | when multiple valid tidbits have the same purpose,                                     only the one with the highest precedence will be kept |
+
 <a name="IntegrationField"></a>
 
 ## IntegrationField Type
@@ -388,6 +491,7 @@ Integrations are the configured data sources for Cont3xt.
 | icon | <code>string</code> | The relative url to the integrations icon |
 | order | <code>number</code> | The order in which this integration displays in the UI |
 | card | [<code>IntegrationCard</code>](#IntegrationCard) | Information on how to display the integration's data |
+| tidbits | [<code>IntegrationTidbitContainer</code>](#IntegrationTidbitContainer) | Information on how to pull specialized fields into indicator-tree UI |
 
 <a name="Itype"></a>
 
@@ -483,6 +587,9 @@ Links are used to navigate to external sources.
 | color | <code>string</code> | The color of the link |
 | itypes | <code>Array.&lt;string&gt;</code> | The type of cont3xt results that pertain to this link |
 | url | <code>string</code> | The url of the link. Links can include placeholder values that will be filled in with the data from the Cont3xt results |
+| infoField | <code>string</code> | An optional text field to display as an informative tooltip. |
+| externalDocUrl | <code>string</code> | An optional URL to link out to external documentation. |
+| externalDocName | <code>string</code> | An optional name to label the external documentation. |
 
 <a name="LinkGroup"></a>
 
