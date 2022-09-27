@@ -23,18 +23,20 @@ Examples of security items in scope
 ## Out of Scope
 Examples of security items that are out of scope and maybe should be submitted to our [github issues](https://github.com/arkime/arkime/issues) page
 
-* Crash on startup from bad config settings
-* Accessing a session using the Arkime sessionId
-* Viewing the results of another user's hunt
-* Admins configuring bad/dangerous URLs in notifiers or clusters in parliament
-* Using md5 for security indicators
-* Auth brute force or http-digest weeknesses
+* all - Crash or security issue on startup from bad config settings or command line options
+* all - Admins configuring bad/dangerous URLs/items in notifiers, clusters, WISE sources, etc
+* all - Auth brute force, http-digest weaknesses, lack of rate limiting, md5 usage
+* all - Most issues around anonymous auth mode
+* all - Most OSC52 issues
+* viewer - Accessing a session using the sessionId
+* viewer - Viewing the results of another user's hunt
+* wise - /dump end point
 
 # Known Security Issues
 Security Issues that are known and are either not fixable or a known limitation of Arkime.
 
 * IP TTL Expiry Attacks - An attacker can manipulate IP TTLs so that Arkime will see packets that the end host will not see.  The only "fix" is to add TTL normalization at the network border.  Future versions of Arkime may try and detect this attack.
-* Not all Tunnel protocols are supported by Arkime
+* Not all tunnel protocols are supported by Arkime
 
 
 # Past Security Issues

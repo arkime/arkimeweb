@@ -11,6 +11,7 @@ function parseXML (xml) {
     centos6: 'Centos 6',
     centos7: 'Centos 7',
     centos8: 'Centos 8',
+    el9: 'EL 9',
     ubuntu16: 'Ubuntu 16.04',
     ubuntu18: 'Ubuntu 18.04',
     ubuntu20: 'Ubuntu 20.04',
@@ -165,7 +166,7 @@ function setupPage (versions, nightlies, acommities, mcommities, sortedVersions,
   let downloadsHtml = ''
 
   let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
-  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
+  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   if (osLists.main) {
     osList = osLists.main
   }
