@@ -96,12 +96,14 @@ We currently support a bunch of different services for auto enrichments, and are
 
 ## Installation
 
-1. Configure OpenSearch/Elasticsearch, if only using for Cont3xt a small deployment is enough
+1. Configure OpenSearch/Elasticsearch, if only using for Cont3xt a small single node deployment is enough
 2. <a href="/downloads">Download</a> Arkime
 3. Install the RPM/DEB file
 4. Run `/opt/arkime/bin/Configure --cont3xt` to install/enable systemd file
-5. Edit /opt/arkime/etc/cont3xt.ini
-6. Run `systemctl start arkimecont3xt`
+5. If a NEW install, run `/opt/arkime/db/db.pl http://eshost:port init`
+6. Edit /opt/arkime/etc/cont3xt.ini and update elasticsearch setting
+7. If a NEW install, run `/opt/arkime/bin/arkime_add_user.sh admin admin PASSWORD --admin` to create an initial user
+8. Run `systemctl restart arkimecont3xt`
 
 ### cont3xt.js
 
