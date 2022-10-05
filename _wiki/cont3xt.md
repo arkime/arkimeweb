@@ -42,6 +42,8 @@ Share links with team mates that are tailored to specific views and link filters
 
 Export full reports, or subsets of response data.
 
+<img src="assets/cont3xt-purple.org.png" height="800px" />
+
 ## Auto Enrichments:
 
 We currently support a bunch of different services for auto enrichments, and are adding new ones all the time.
@@ -97,7 +99,7 @@ We currently support a bunch of different services for auto enrichments, and are
 ## Installation
 
 1. Configure OpenSearch/Elasticsearch, if only using for Cont3xt a small single node deployment is enough
-2. <a href="/downloads">Download</a> Arkime
+2. <a href="/downloads">Download</a> Arkime 4.0 or later
 3. Install the RPM/DEB file
 4. Run `/opt/arkime/bin/Configure --cont3xt` to install/enable systemd file
 5. If a NEW install, run `/opt/arkime/db/db.pl http://eshost:port init`
