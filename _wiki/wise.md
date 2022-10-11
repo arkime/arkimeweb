@@ -119,7 +119,7 @@ To build and run the WISE UI, check out our [README](https://github.com/arkime/a
 
 ---
 
-## WISE 3.x Configuration Gallery
+## WISE Configuration Gallery
 View the [WISE Config Gallery](wise-configs) to browse for ideas or contribute your own!
 
 ---

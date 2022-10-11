@@ -93,7 +93,7 @@ Want to fix, add, or update API documentation? That's awesome! Take a look [here
 
 #### WISE Configs
 
-Want to contribute a [WISE 3.x Config](https://arkime.com/wise-configs)? Just follow these steps:
+Want to contribute a [WISE Config](https://arkime.com/wise-configs)? Just follow these steps:
 * Follow the [instructions above to fork the project](#pull-requests-muscle).
 * Add your configuration to the arikmeweb/_posts/wiseconfigs directory.
   * The filename must be in this format: `yyyy-mm-dd-wise-title.md`

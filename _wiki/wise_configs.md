@@ -54,7 +54,7 @@ This is a gallery WISE 3.x - 4.x configurations to browse. Learn how to contribu
   </div>
 </div>
 
-#### Want to contribute a WISE 3.x Config?
+#### Want to contribute a WISE Configuration?
 
 Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs) file for more information.
 

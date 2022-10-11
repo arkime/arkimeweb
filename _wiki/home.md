@@ -45,7 +45,7 @@ permalink: "/learn"
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
 - [WISE API](wiseapi)
-- [WISE 3.x - 4.x Configuration Gallery](wise-configs)
+- [WISE Configuration Gallery](wise-configs)
 
 ---
 
