@@ -1084,12 +1084,12 @@ title: FAQ
       </h3>
 
       <p>
-        <strong> Arkime 4.0 has not been released yet.</strong>
         Upgrading to Arkime 4.0 requires that you are already using Arkime 3.3.0 or later.
         Arkime 4.0 uses a new permission model with roles.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
+        <li>systemd files auto installed, still need to enable manually</li>
         <li>
           Use roles for permission checking - userAdmin role required to edit users.
           <br>
@@ -1099,8 +1099,9 @@ title: FAQ
         <li>Encrypted pcap files now use the .arkime extension</li>
         <li>WISE multiES prefix now default to arkime_</li>
         <li>new defaults for settings maxFileSizeG=12, compressES=true</li>
-        <li>pcap compression is turned on by default with simpleGzipBlockSize=32000, set to 0 to disable</li>
+        <li>pcap compression is turned on by default with simpleCompression=gzip, set to "none" to disable or "zstd"</li>
         <li>right-click group name changed to value-actions in config file</li>
+        <li>the userId search in history for admin nolonger adds the surrounding wildcards automatically</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
