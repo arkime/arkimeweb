@@ -34,6 +34,7 @@ function parseXML (xml) {
 
       let osTitle = os.replace('-', ' ');
       osTitle = osTitle.charAt(0).toUpperCase() + osTitle.slice(1);
+      osTitle = osTitle.replace('El ', 'EL ');
 
       let download = {
         url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
@@ -165,7 +166,7 @@ function buildDownloadVersionRow (version, btnType, osList) {
 function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
   let downloadsHtml = ''
 
-  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'Ubuntu 18.04', 'Ubuntu 20.04' ];
+  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   if (osLists.main) {
     osList = osLists.main
