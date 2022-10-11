@@ -494,19 +494,19 @@ title: Estimators
         let esDaysWorst = esDayWorst * +$("#esDaysInput").val();
 
         $("#esMachinesTB").text(Math.ceil(esDays/1000) + " TB");
-        $("#esMachines0").text(sStr("host", esDays/(esDiskInput*esDisks)));
-        $("#esMachines1").text(sStr("host", esDays/(esDiskInput*(esDisks-1))));
-        $("#esMachines2").text(sStr("host", esDays/(esDiskInput*(esDisks-2))));
+        $("#esMachines0").text(sStr("host", Math.max(esReplication, esDays/(esDiskInput*esDisks))));
+        $("#esMachines1").text(sStr("host", Math.max(esReplication, esDays/(esDiskInput*(esDisks-1)))));
+        $("#esMachines2").text(sStr("host", Math.max(esReplication, esDays/(esDiskInput*(esDisks-2)))));
 
         $("#esMachinesTB-dns").text(Math.ceil(esDaysDns/1000) + " TB");
-        $("#esMachines0-dns").text(sStr("host", esDaysDns/(esDiskInput*esDisks)));
-        $("#esMachines1-dns").text(sStr("host", esDaysDns/(esDiskInput*(esDisks-1))));
-        $("#esMachines2-dns").text(sStr("host", esDaysDns/(esDiskInput*(esDisks-2))));
+        $("#esMachines0-dns").text(sStr("host", Math.max(esReplication, esDaysDns/(esDiskInput*esDisks))));
+        $("#esMachines1-dns").text(sStr("host", Math.max(esReplication, esDaysDns/(esDiskInput*(esDisks-1)))));
+        $("#esMachines2-dns").text(sStr("host", Math.max(esReplication, esDaysDns/(esDiskInput*(esDisks-2)))));
 
         $("#esMachinesTB-worst").text(Math.ceil(esDaysWorst/1000) + " TB");
-        $("#esMachines0-worst").text(sStr("host", esDaysWorst/(esDiskInput*esDisks)));
-        $("#esMachines1-worst").text(sStr("host", esDaysWorst/(esDiskInput*(esDisks-1))));
-        $("#esMachines2-worst").text(sStr("host", esDaysWorst/(esDiskInput*(esDisks-2))));
+        $("#esMachines0-worst").text(sStr("host", Math.max(esReplication, esDaysWorst/(esDiskInput*esDisks))));
+        $("#esMachines1-worst").text(sStr("host", Math.max(esReplication, esDaysWorst/(esDiskInput*(esDisks-1)))));
+        $("#esMachines2-worst").text(sStr("host", Math.max(esReplication, esDaysWorst/(esDiskInput*(esDisks-2)))));
       }
 
       $('#viewport input,select').change(recalculate);
