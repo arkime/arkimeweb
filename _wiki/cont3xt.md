@@ -101,7 +101,7 @@ We currently support a bunch of different services for auto enrichments, and are
 1. Configure OpenSearch/Elasticsearch, if only using for Cont3xt a small single node deployment is enough
 2. <a href="/downloads">Download</a> Arkime 4.0 or later
 3. Install the RPM/DEB file
-4. Run `/opt/arkime/bin/Configure --cont3xt` to install/enable systemd file
+4. Run `/opt/arkime/bin/Configure --cont3xt` to enable systemd file
 5. If a NEW install, run `/opt/arkime/db/db.pl http://eshost:port init`
 6. Edit /opt/arkime/etc/cont3xt.ini and update elasticsearch setting
 7. If a NEW install, run `/opt/arkime/bin/arkime_add_user.sh admin admin PASSWORD --admin` to create an initial user
@@ -109,7 +109,7 @@ We currently support a bunch of different services for auto enrichments, and are
 
 ### cont3xt.js
 
-You'll need to run cont3xt.js from the cont3xt directory.
+You'll need to run `cont3xt.js` from the `cont3xt` directory.
 
 If not using anonymous mode, every user will need either the cont3xtUser or cont3xtAdmin role assigned to them.
 The cont3xtAdmin role will allow the user to edit any link group.

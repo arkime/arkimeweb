@@ -17,6 +17,7 @@ permalink: "/learn"
 - [Other FPC Systems](otherfpc)
 - [Breaking TLS POC](break-tls-poc)
 - [Why Arkime?](arkimeetus)
+- [Common API](commonapi)
 
 #### Capture
 - [Rules Format](rulesformat)
@@ -26,7 +27,7 @@ permalink: "/learn"
 - [S3 PCAP Storage](s3)
 
 #### Viewer
-- [Viewer v3.x API](apiv3)
+- [Viewer v3.x - v4.x API](apiv3)
 - [Viewer v0.x - v2.x API](api)
 
 #### Parliament
@@ -34,6 +35,7 @@ permalink: "/learn"
 
 #### Cont3xt
 - [Everything Cont3xt](cont3xt)
+- [Cont3xt API](cont3xtapi)
 
 #### OpenSearch/Elasticsearch
 - [Elasticsearch SSL](esssl)
@@ -42,8 +44,8 @@ permalink: "/learn"
 #### WISE
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
-- [WISE v3.x API](wiseapi)
-- [WISE 3.x Configuration Gallery](wise-configs)
+- [WISE API](wiseapi)
+- [WISE 3.x - 4.x Configuration Gallery](wise-configs)
 
 ---
 

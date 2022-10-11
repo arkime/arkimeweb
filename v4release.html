@@ -1,0 +1,200 @@
+---
+title: Home
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body id="viewport">
+
+  <div class="v3-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- container -->
+    <div class="container">
+
+      <div class="primary-theme-background pl-4 pr-4 p-nav-lg angle-background angle-background-long">
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h1 class="display-3 text-center">
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="mr-4" />
+              Arkime 4.0
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="ml-4" />
+            </h1>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              <a href="#cont3xt" class="no-decoration">Cont3xt</a>,
+              <a href="#role-permissions" class="no-decoration">Role Permissions</a>,
+              <a href="#hide-graph-map" class="no-decoration">Hide Graph/Map</a>,
+              <a href="#speedy" class="no-decoration">Speed Up Initial Load</a>,
+              <a href="#wildcard-shortcuts" class="no-decoration">Wildcard Shortcuts</a>,
+              Bug Fixes and More
+            </p>
+            <p class="lead text-justify mt-4">
+              We are excited to share that Arkime 4.0 is now
+              <a href="downloads" class="no-decoration">available</a>!
+              This release includes an entirely new web application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
+              a new permission model with roles,
+              speedier queries by hiding or disabling the graph and map,
+              new AND arrays with ][ syntax vs OR arrays with [],
+              speedier initial load time by combining multiple calls from UI into one,
+              shortcut wildcard support,
+              bug fixes, and much, much more. View a list of all the changes
+              <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
+                class="no-decoration">here</a>.
+            </p>
+            <p class="lead text-justify text-center">
+              <a href="faq#how_do_i_upgrade_to_arkime_4" class="no-decoration">
+                Learn how to upgrade to 4.0 now!
+              </a>
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Breaking Changes
+            </p>
+            <p class="lead text-justify">
+              <ul class="list-group list-group-sm">
+                <li class="list-group-item">Must be on v3.3.0+ to upgrade to 4.x</li>
+                <li class="list-group-item">Elasticsearch before 7.10 is not supported</li>
+                <li class="list-group-item">Requires NodeJS 16.x</li>
+                <li class="list-group-item">
+                  Use roles for permission checking - userAdmin role required to edit users.
+                  <br>
+                  addUser.js - new --roles option, --admin creates superAdmin user
+                </li>
+                <li class="list-group-item">In header auth mode, userAuthIps allows only localhost by default</li>
+                <li class="list-group-item">Non-standard pcap files now use the .arkime extension</li>
+                <li class="list-group-item">WISE multiES prefix now default to arkime_</li>
+                <li class="list-group-item">WISE threatstream source require a manually created md5 index</li>
+                <li class="list-group-item">the version file lives in common directory now</li>
+                <li class="list-group-item">new defaults maxFileSizeG=12, compressES=true</li>
+                <li class="list-group-item">pcap compression is turned on by default with simpleGzipBlockSize=32000</li>
+                <li class="list-group-item">right-click changed to value-actions in config</li>
+              </ul>
+            </p>
+            <hr>
+            <p id="cont3xt"
+              class="lead lead-lg text-justify text-center hash-link-offset">
+              Cont3xt
+            </p>
+            <p class="lead text-justify">
+              Cont3xt intends to centralize and simplify a structured approach
+              to gathering contextual intelligence in support of technical investigations.
+              It enriches indicators using commercial and OSINT sources in a
+              structured, consistent, and thorough process.
+              <a href="cont3xt" class="no-decoration">Learn more here!</a>
+            </p>
+            <hr>
+            <p id="role-permissions"
+              class="lead lead-lg text-justify text-center hash-link-offset">
+              Role Permissions
+            </p>
+            <p class="lead text-justify">
+              Arkime has moved to a role permission model to check for user access to resources.
+              Each user can be assigned a list of roles. You can create/update/delete roles
+              from the Arkime or Cont3xt users page. View default Arkime roles
+              <a href="commonapi#arkimerole-type" class="no-decoration">here</a>.
+            </p>
+            <p class="lead text-justify">
+              Arkime Shortcuts, Notifiers, Periodic Queries, Views, and Hunts can now be shared
+              via Arkime roles or to specific users.
+            </p>
+            <hr>
+            <p id="hide-graph-map"
+              class="lead lead-lg text-justify text-center hash-link-offset">
+              Hide/Disable Graph/Map
+            </p>
+            <p class="lead text-justify">
+              Fetching the data to compute the graph and map takes much longer than
+              a general Arkime query for sessions. By hiding both the graph and the map,
+              you can easily speed up session searches. This is particularly useful
+              when issuing queries for long periods of time. A user can manually hide the graph
+              and map and each cluster can be configured with a maximum number of days to
+              auto-disable the graph and map (which can be overridden per user request).
+            </p>
+            <hr>
+            <p id="speedy"
+              class="lead lead-lg text-justify text-center hash-link-offset">
+              Speed Up Initial Load
+            </p>
+            <p class="lead text-justify">
+              Initially loading the Arkime web application requires a lot of data.
+              To improve the speed of the initial load time many queries have been
+              combined into one, <a href="apiv3#appinfo-api" class="no-decoration">here</a>.
+              Also, some resources are now lazy loaded by waiting for the user to request
+              their presence before loading (e.g. the graph and map libraries).
+            </p>
+            <hr>
+            <p id="wildcard-shortcuts"
+              class="lead lead-lg text-justify text-center hash-link-offset">
+              Wildcard Shortcuts
+            </p>
+            <p class="lead text-justify">
+              You can now issue queries for many shortcuts at a time by using a
+              wildcard like this: <code>ip.src == $TEST_*</code>.
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify text-center hash-link-offset">
+              MORE!
+            </p>
+            <p class="lead text-center">
+              View a list of all the changes
+              <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
+                class="no-decoration">here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center black-arkime">
+        <img class="arkime-logo" />
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- footer -->
+    <div class="v3-footer">
+      {%- include footer.html -%}
+    </div>
+
+  </div>
+</body>
