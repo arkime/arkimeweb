@@ -72,12 +72,13 @@ title: Home
             <p class="lead text-justify mt-4">
               We are excited to share that Arkime 4.0 is now
               <a href="downloads" class="no-decoration">available</a>!
-              This release includes an entirely new web application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
+              This release includes an entirely new web intelligence investigation application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
               a new permission model with roles,
               speedier queries by hiding or disabling the graph and map,
               new AND arrays with ][ syntax vs OR arrays with [],
               speedier initial load time by combining multiple calls from UI into one,
               shortcut wildcard support,
+              huge afpacket cpu improvements,
               bug fixes, and much, much more. View a list of all the changes
               <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
                 class="no-decoration">here</a>.
@@ -93,11 +94,10 @@ title: Home
             </p>
             <p class="lead text-justify">
               <ul class="list-group list-group-sm">
-                <li class="list-group-item">Must be on v3.3.0+ to upgrade to 4.x</li>
+                <li class="list-group-item">You must be on v3.3.0+ to upgrade to 4.x</li>
                 <li class="list-group-item">Elasticsearch before 7.10 is not supported</li>
-                <li class="list-group-item">Requires NodeJS 16.x</li>
                 <li class="list-group-item">
-                  Use roles for permission checking - userAdmin role required to edit users.
+                  Now uses roles for permission checking - userAdmin role required to edit users.
                   <br>
                   addUser.js - new --roles option, --admin creates superAdmin user
                 </li>
@@ -105,9 +105,8 @@ title: Home
                 <li class="list-group-item">Non-standard pcap files now use the .arkime extension</li>
                 <li class="list-group-item">WISE multiES prefix now default to arkime_</li>
                 <li class="list-group-item">WISE threatstream source require a manually created md5 index</li>
-                <li class="list-group-item">the version file lives in common directory now</li>
                 <li class="list-group-item">new defaults maxFileSizeG=12, compressES=true</li>
-                <li class="list-group-item">pcap compression is turned on by default with simpleCompression=none</li>
+                <li class="list-group-item">pcap compression is turned on by default, disable with simpleCompression=none</li>
                 <li class="list-group-item">right-click changed to value-actions in config</li>
               </ul>
             </p>
