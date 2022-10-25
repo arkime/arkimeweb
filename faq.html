@@ -2413,7 +2413,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       <p>
       The <strong>easy way</strong> is using the <a href="/settings#interface">interface</a> setting in your config.ini.
       It supports a semicolon ';' separated list of interfaces to listen on for live traffic.
-      If you want to set a tag or another field per interface, use the <a href="/settings#interfaceops">interfaceOps</a>.
+      If you want to set a tag or another field per interface, use the <a href="/settings#interfaceops">interfaceOps</a> setting.
       </p>
       <p>
       The <strong>hard way</strong>, you can also have multiple <code>capture</code> processes,.
@@ -2431,6 +2431,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           <strong>MUST</strong> be set is the interface item. It is also common
           to have each Arkime node talk to a different OpenSearch/Elasticsearch node if
           running a cluster of OpenSearch/Elasticsearch nodes.
+          The <code>arkime-m01</code> is an EXAMPLE node name.
           <pre><code>[arkime-m01a]
 interface=eth2
 [arkime-m01b]
@@ -2442,21 +2443,18 @@ interface=eth5</code></pre>
           use the <code>--host</code> option.
         </li>
         <li>
-          Create two start up scripts. You will now need to specify the Arkime
-          node name with the -n option and change the log files so they are
-          separate.
-          <pre><code>TDIR=/opt/arkime
-cd ${TDIR}/bin
-/bin/rm -f ${TDIR}/capturea.log.old
-/bin/mv ${TDIR}/logs/capturea.log ${TDIR}/logs/capturea.log.old
-${TDIR}/bin/capture -n arkime-m01a -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/capturea.log 2&gt;&amp;1</code></pre>
-          and
-          <pre><code>TDIR=/opt/arkime
-cd ${TDIR}/bin
-/bin/rm -f ${TDIR}/captureb.log.old
-/bin/mv ${TDIR}/logs/captureb.log ${TDIR}/logs/captureb.log.old
-${TDIR}/bin/capture -n arkime-m01b -c ${TDIR}/etc/config.ini &gt; ${TDIR}/logs/captureb.log 2&gt;&amp;1</code></pre>
-          * Add both scripts to <code>inittab</code> or <code>upstart</code>
+          You'll need two systemd scripts and modify them to use the two different node names.
+          Something like.
+          <pre><code>mv /etc/systemd/system/arkimecapture.service arkimecapture1.service
+cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2.service</code></pre>
+        </li>
+        <li>
+          Now you'll need to edit those two files and add the -n options to the ExecStart lines after the capture.
+          So something like <code>ExecStart=/bin/sh -c '/opt/arkime/bin/capture -n arkime-m01a -c /opt/arkime/etc/config.ini</code>
+          and <code>ExecStart=/bin/sh -c '/opt/arkime/bin/capture -n arkime-m01b -c /opt/arkime/etc/config.ini</code>
+        </li>
+        <li>
+          Now you can use systemd to start them. <code>systemctl daemon-reload; systemctl start arkimecapture1; systemctl start arkimecapture2</code>
         </li>
       </ul>
       <p>
