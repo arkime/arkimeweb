@@ -102,23 +102,23 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_moloch_1"
-        title="How do I upgrade to Moloch 1.0">
-        How do I upgrade to Moloch 1.0
+        title="How do I upgrade to Moloch 1.x">
+        How do I upgrade to Moloch 1.x
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_moloch_2"
-        title="How do I upgrade to Moloch 2.0">
-        How do I upgrade to Moloch 2.0
+        title="How do I upgrade to Moloch 2.x">
+        How do I upgrade to Moloch 2.x
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_arkime_3"
-        title="How do I upgrade to Arkime 3.0">
-        How do I upgrade to Arkime 3.0
+        title="How do I upgrade to Arkime 3.x">
+        How do I upgrade to Arkime 3.x
       </a>
       <a class="nav-link nested"
         href="#how_do_i_upgrade_to_arkime_4"
-        title="How do I upgrade to Arkime 4.0">
-        How do I upgrade to Arkime 4.0
+        title="How do I upgrade to Arkime 4.x">
+        How do I upgrade to Arkime 4.x
       </a>
       <a href="#elasticsearch"
         class="nav-link"
@@ -515,7 +515,7 @@ title: FAQ
               7.10+
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.x instructions </a>
             </td>
             <td>
             </td>
@@ -537,7 +537,7 @@ title: FAQ
               7.10+, not 8.x
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_arkime_3"> Arkime 3.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_arkime_3"> Arkime 3.x instructions </a>
             </td>
             <td>
             </td>
@@ -581,7 +581,7 @@ title: FAQ
               6.8.2+ (6.8.6+ recommended), 7.1+ (7.8.0+ recommended, 7.7.0 broken)
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.x instructions </a>
             </td>
             <td>
               Must already be on 6.8.x or 7.1+ before upgrading to 2.2
@@ -604,7 +604,7 @@ title: FAQ
              6.7, 6.8, 7.1+
             </td>
             <td>
-              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.0 instructions </a>
+              <a href="#how_do_i_upgrade_to_moloch_2"> Moloch 2.x instructions </a>
             </td>
             <td>
               Must already be on Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> recommended) before upgrading to 2.0
@@ -892,13 +892,13 @@ title: FAQ
       </p>
 
       <h3 id="how_do_i_upgrade_to_moloch_1">
-        How do I upgrade to Moloch 1.0
+        How do I upgrade to Moloch 1.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        Moloch 1.0 has some large changes and updates that will require all
+        Moloch 1.x has some large changes and updates that will require all
         session data to be reindexed. The reindexing is done in the background
         AFTER upgrading so there is little downtime. Large changes in 1.0 include:
       </p>
@@ -1014,38 +1014,38 @@ title: FAQ
       </ul>
 
       <h3 id="how_do_i_upgrade_to_moloch_2">
-        How do I upgrade to Moloch 2.0
+        How do I upgrade to Moloch 2.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
 
       <p>
-        Upgrading to Moloch 2.0 is a multistep process that requires an outage.
+        Upgrading to Moloch 2.x is a multistep process that requires an outage.
         An outage is required because all the captures must be stopped before upgrading the database so there are no schema issues or corruption.
         Most of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 6.7 or 6.8.
         This is very important when upgrading to Elasticsearch 7.x later.
       </p>
       <ul>
-        <li>You must be using Moloch 1.7 or 1.8 (Moloch 1.8.0 recommended) BEFORE trying to upgrade to Moloch 2.0</li>
-        <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Moloch 2.0</li>
+        <li>You must be using Moloch 1.7 or 1.8 (Moloch 1.8.0 recommended) BEFORE trying to upgrade to Moloch 2.x</li>
+        <li>You must be using Elasticsearch 6.7 or 6.8 (Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> or later recommended) BEFORE trying to upgrade to Moloch 2.x</li>
         <li>Install Moloch &gt;= 2.0 without restarting captures/viewers</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre20 </code> to backup all administrative indices.
         <li>Shutdown captures</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade</code></li>
-        <li>Restart captures</li>
+        <li>Restart all capture, multies and viewers (including both standalone viewers and those running with captures)</li>
         <li>Verify everything is working</li>
       </ul>
 
       <h3 id="how_do_i_upgrade_to_arkime_3">
-        How do I upgrade to Arkime 3.0
+        How do I upgrade to Arkime 3.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
 
       <p>
-        Upgrading to Arkime 3.0 is a multistep process that requires an outage.
+        Upgrading to Arkime 3.x is a multistep process that requires an outage.
         An outage is required because all the captures <strong>MUST</strong> be <strong>stopped</strong> before upgrading the database so there are no schema issues or corruption.
         Do not restart the capture processes until the db.pl upgrade has finished!
         All of the administrative indices will have new version numbers after this upgrade, so that elasticsearch knows they were created with 7.
@@ -1064,28 +1064,28 @@ title: FAQ
       </ul>
       <h4>Instructions</h4>
       <ul>
-        <li>You must be using Moloch 2.4+ (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.0</li>
-        <li>You must be using Elasticsearch 7.10+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.10.2</a> or later recommended) BEFORE trying to upgrade to Arkime 3.0</li>
+        <li>You must be using Moloch 2.4+ (Moloch 2.7.1 recommended) BEFORE trying to upgrade to Arkime 3.x</li>
+        <li>You must be using Elasticsearch 7.10+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.10.2</a> or later recommended) BEFORE trying to upgrade to Arkime 3.x</li>
         <li>Optional: run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to backup all administrative indices.</li>
         <li>Install Arkime or Arkime/Moloch Hybrid &gt;= 3.0 without restarting captures/viewers (The Hybrid distribution uses /data/moloch and old binary names still.)</li>
         <li>Shutdown captures, multies and viewers</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
         <li>Verify your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to Arkime distribution. If you continue to use the Hybrid distribution you do not need to change the paths.</li>
         <li>If using ilm, run the db.pl ilm command again with all the same options used previously</li>
-        <li>Restart capture, multies and viewers</li>
+        <li>Restart all capture, multies and viewers (including both standalone viewers and those running with captures)</li>
         <li>Verify everything is working</li>
       </ul>
 
       <h3 id="how_do_i_upgrade_to_arkime_4">
-        How do I upgrade to Arkime 4.0
+        How do I upgrade to Arkime 4.x
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
 
       <p>
-        Upgrading to Arkime 4.0 requires that you are already using Arkime 3.3.0 or later.
-        Arkime 4.0 uses a new permission model with roles.
+        Upgrading to Arkime 4.x requires that you are already using Arkime 3.3.0 or later.
+        Arkime 4.x uses a new permission model with roles.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
@@ -1109,7 +1109,7 @@ title: FAQ
         <li>Shutdown ALL captures, multies and viewers</li>
         <li>run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, don't forget to include any other options you usually use like --replicas or --ilm</li>
         <li>Verify your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to Arkime distribution. If you continue to use the Hybrid distribution you do not need to change the paths.</li>
-        <li>Restart capture, multies and viewers</li>
+        <li>Restart all capture, multies and viewers (including both standalone viewers and those running with captures)</li>
         <li>Verify everything is working</li>
       </ul>
       <!-- /general -->
@@ -1410,7 +1410,7 @@ title: FAQ
       </h3>
       <p>
         <strong>
-          Elasticsearch 8.x is NOT supported before 3.4.1, and we recommend you wait for Arkime 4.0 to be released.
+          Elasticsearch 8.x is NOT supported before 3.4.1, and we recommend you using Arkime 4.x.
         </strong>
       </p>
       <ol type="I">
@@ -1448,7 +1448,7 @@ title: FAQ
       <ol type="I">
         <li>
           If you are NOT using Arkime DB version 63 (or later) you
-          must follow these <a href="/faq#how_do_i_upgrade_to_moloch_2">instructions</a> while still using Elasticsearch 6.x and upgrade to Arkime 2.0. To find what DB version
+          must follow these <a href="/faq#how_do_i_upgrade_to_moloch_2">instructions</a> while still using Elasticsearch 6.x and upgrade to Moloch 2.x. To find what DB version
           you are using, either run
           <code>db.pl http://ESHOST:9200 info</code>
           or mouse over the <span class="fa fa-info-circle"></span> in Arkime.
@@ -1472,7 +1472,7 @@ title: FAQ
             If not using Elasticsearch 6.8.6, or if you would prefer to do a full restart follow the instructions below
             <ul>
               <li>
-                Make sure you delete any old indices that db.pl complained about when you installed Moloch 2.0
+                Make sure you delete any old indices that db.pl complained about when you installed Moloch 2.x
               </li>
               <li>
                 Shutdown everything: elasticsearch, capture, and viewer
