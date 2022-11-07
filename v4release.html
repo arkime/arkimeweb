@@ -67,25 +67,25 @@ title: Home
               <a href="#hide-graph-map" class="no-decoration">Hide Graph/Map</a>,
               <a href="#speedy" class="no-decoration">Speed Up Initial Load</a>,
               <a href="#wildcard-shortcuts" class="no-decoration">Wildcard Shortcuts</a>,
-              Bug Fixes and More
+              bug fixes, and more
             </p>
             <p class="lead text-justify mt-4">
               We are excited to share that Arkime 4.0 is now
               <a href="downloads" class="no-decoration">available</a>!
               This release includes an entirely new web intelligence investigation application (<a href="cont3xt" class="no-decoration">yay Cont3xt!</a>),
-              a new permission model with roles,
+              a new permissions model with roles,
               speedier queries by hiding or disabling the graph and map,
-              new AND arrays with ][ syntax vs OR arrays with [],
-              speedier initial load time by combining multiple calls from UI into one,
+              new AND arrays with ][ syntax vs. OR arrays with [],
+              speedier initial load time by combining multiple calls from the UI into one,
               shortcut wildcard support,
-              huge afpacket cpu improvements,
+              huge afpacket CPU improvements,
               bug fixes, and much, much more. View a list of all the changes
               <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
                 class="no-decoration">here</a>.
             </p>
             <p class="lead text-justify text-center">
               <a href="faq#how_do_i_upgrade_to_arkime_4" class="no-decoration">
-                Learn how to upgrade to 4.0 now!
+                Learn how to upgrade to Akrime 4 now!
               </a>
             </p>
             <hr>
@@ -94,7 +94,7 @@ title: Home
             </p>
             <p class="lead text-justify">
               <ul class="list-group list-group-sm">
-                <li class="list-group-item">You must be on v3.3.0+ to upgrade to 4.x</li>
+                <li class="list-group-item">You must be on v3.3.0+ to upgrade to Arkime 4</li>
                 <li class="list-group-item">Elasticsearch before 7.10 is not supported</li>
                 <li class="list-group-item">
                   Now uses roles for permission checking - userAdmin role required to edit users.
@@ -116,10 +116,8 @@ title: Home
               Cont3xt
             </p>
             <p class="lead text-justify">
-              Cont3xt intends to centralize and simplify a structured approach
-              to gathering contextual intelligence in support of technical investigations.
-              It enriches indicators using commercial and OSINT sources in a
-              structured, consistent, and thorough process.
+              Cont3xt centralizes and simplifies gathering contextual intelligence in support of technical investigations.
+              It enriches indicators using commercial and OSINT sources through a structured, consistent, and thorough approach.
               <a href="cont3xt" class="no-decoration">Learn more here!</a>
             </p>
             <hr>
@@ -128,14 +126,14 @@ title: Home
               Role Permissions
             </p>
             <p class="lead text-justify">
-              Arkime has moved to a role permission model to check for user access to resources.
+              Arkime now uses a role permission model to check for user access to resources.
               Each user can be assigned a list of roles. You can create/update/delete roles
-              from the Arkime or Cont3xt users page. View default Arkime roles
+              on the Arkime or Cont3xt Users page. View default Arkime roles
               <a href="commonapi#arkimerole-type" class="no-decoration">here</a>.
             </p>
             <p class="lead text-justify">
               Arkime Shortcuts, Notifiers, Periodic Queries, Views, and Hunts can now be shared
-              via Arkime roles or to specific users.
+              via Arkime roles or with specific users.
             </p>
             <hr>
             <p id="hide-graph-map"
@@ -145,10 +143,10 @@ title: Home
             <p class="lead text-justify">
               Fetching the data to compute the graph and map takes much longer than
               a general Arkime query for sessions. By hiding both the graph and the map,
-              you can easily speed up session searches. This is particularly useful
-              when issuing queries for long periods of time. A user can manually hide the graph
-              and map and each cluster can be configured with a maximum number of days to
-              auto-disable the graph and map (which can be overridden per user request).
+              you can speed up session searches. This is particularly useful
+              when issuing queries for long periods of time. You can manually hide the graph
+              and map, and each cluster can be configured with a maximum number of days to
+              auto-disable the graph and map (which can be overridden by user request).
             </p>
             <hr>
             <p id="speedy"
@@ -160,7 +158,7 @@ title: Home
               To improve the speed of the initial load time many queries have been
               combined into one, <a href="apiv3#appinfo-api" class="no-decoration">here</a>.
               Also, some resources are now lazy loaded by waiting for the user to request
-              their presence before loading (e.g. the graph and map libraries).
+              their presence before loading (for example, the graph and map libraries).
             </p>
             <hr>
             <p id="wildcard-shortcuts"
@@ -168,13 +166,10 @@ title: Home
               Wildcard Shortcuts
             </p>
             <p class="lead text-justify">
-              You can now issue queries for many shortcuts at a time by using a
+              You can now issue queries for many shortcuts simultaneously by using a
               wildcard like this: <code>ip.src == $TEST_*</code>.
             </p>
             <hr>
-            <p class="lead lead-lg text-justify text-center hash-link-offset">
-              MORE!
-            </p>
             <p class="lead text-center">
               View a list of all the changes
               <a href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG"
