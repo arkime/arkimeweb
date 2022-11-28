@@ -28,7 +28,7 @@ Examples of security items that are out of scope and maybe should be submitted t
 * all - Auth brute force, http-digest weaknesses, lack of rate limiting, md5 usage
 * all - Most issues around anonymous auth mode
 * all - Most OSC52 issues
-* viewer - Accessing a session using the sessionId
+* viewer - Directly accessing a session or session pcap using the sessionId
 * viewer - Viewing the results of another user's hunt
 * wise - /dump end point
 
@@ -44,6 +44,11 @@ Security Issues that are known and are either not fixable or a known limitation 
 {:class="table table-bordered"}
 | Vulnerability | Date | First | Last |
 | ------------- |-------------| ----- | ----- |
+| Several APIs had wrong content type and could be used for rXSS | 2022/08/18 | 0.20.0 | 3.4.2 |
+| Can view history of other users sometimes | 2022/08/18 | 0.20.0 | 3.4.2 |
+| viewer didn't always sanitize filenames of attachments | 2022/08/18 | 1.0.0 | 3.4.2 |
+| ESProxy could be bypassed | 2022/08/17 | 3.0.0 | 3.4.2 |
+| CSP header wasn't correct | 2022/08/17 | 2.1.0 | 3.4.2 |
 | Possible NSH parser infinite recursion | 2022/01/07 | 3.1.0 | 3.2.1 |
 | Possible tagger plugin buffer overflow write when enabled | 2021/11/16 | 0.0.0 | 3.1.1 |
 | Possible reader-pcapoverip buffer overflow write when enabled | 2021/04/05 | 2.7.0 | 2.7.1 |
