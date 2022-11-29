@@ -2721,6 +2721,9 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         <li>
           Restart viewer by turning on debugging, either add <code>--debug</code> to the start line or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini file.
         </li>
+        <li>
+          If using seilnux (<code>sestatus</code>) temporarily disable it (<code>setenforce 0</code>) and see if that fixes the problem.
+        </li>
       </ol>
 
       <h3 id="dontsavebpfs-doesn-t-work">
