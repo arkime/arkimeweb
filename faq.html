@@ -631,7 +631,7 @@ title: FAQ
               </a>
             </td>
             <td>
-              Must have finished the 1.x reindexing, stop captures for best results
+              Must have finished the 1.x reindexing; stop captures for best results
             </td>
           </tr>
           <tr>
@@ -732,7 +732,7 @@ title: FAQ
       </p>
       <ol>
         <li>
-          Check that OpenSearch/Elasticsearch is running and green by using
+          Check that OpenSearch/Elasticsearch is running and GREEN by using the following curl command
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
           on the machine running OpenSearch/Elasticsearch.
           An Unauthorized response probably means that you need user:pass in all OpenSearch/Elasticsearch URLs or that you are using the wrong URL.
@@ -781,7 +781,7 @@ title: FAQ
           data to search." but the stats tab shows packets are being captured:
           <ol type="a">
             <li>
-              Live capture Arkime only writes records when a session has ended. It may take
+              Arkime in live capture mode only writes records when a session has ended. It may take
                several minutes for a session to show up after a fresh start. See
                <code>/opt/arkime/etc/config.ini</code> to shorten the timeouts.
             </li>
@@ -807,12 +807,12 @@ title: FAQ
           You can add multiple <code>--debug</code> options to get even more information.
           Capture will print out the configuration settings it is using; verify that they
           are what you expect.
-          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code> and run <code>systemctl daemon-reload</code>.
+          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code>. Then run <code>systemctl daemon-reload</code>.
         </li>
         <li>
           If you are having issues viewing packets that were captured, restarting viewer after adding a <code>--debug</code> option may print out 
           useful information about what is wrong.
-          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code> and run <code>systemctl daemon-reload</code>.
+          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code>. Then run <code>systemctl daemon-reload</code>.
           <ol type="a">
             <li>
               Make sure the plugins and parsers directories are correctly set
@@ -868,7 +868,7 @@ title: FAQ
       <p>
         The core Arkime team does not support or recommend self-signed certificates,
         although it is possible to make them work.
-        We suggest using your cost savings from using a commercial full capture product to purchase real certificates.
+        We suggest using your cost savings from using a commercial full capture product to purchase certificates.
         Wildcard certificates are now inexpensive, and you can even choose free Lets Encrypt certificates.
         Members of the Arkime Slack workspace may be willing to help out,
         but the core developers may just link to this answer.
@@ -920,7 +920,7 @@ title: FAQ
         </li>
       </ul>
       <p>
-        If you have any special parsers, taggers, plugins, or wise sources, you may
+        If you have any special parsers, taggers, plugins, or WISE sources, you may
         need to change configurations.
       </p>
       <ul>
@@ -942,20 +942,20 @@ title: FAQ
           </a>
         </li>
         <li>
-          Shut down all capture, viewer, and wise processes.
+          Shut down all capture, viewer, and WISE processes.
         </li>
         <li>
           Install Moloch 1.1.1.
         </li>
         <li>
           Run <code>/data/moloch/bin/moloch_update_geo.sh</code> on all capture
-          nodes which will download the new mmdb style maxmind files.
+          nodes that will download the new mmdb style maxmind files.
         </li>
         <li>
           Run <code>db.pl http://ESHOST:9200 upgrade</code> once.
         </li>
         <li>
-          Start wise, then capture, then viewers.
+          Start WISE, then capture, then viewers.
           Especially watch the capture.log file for any warnings/errors.
         </li>
         <li>
@@ -979,7 +979,7 @@ title: FAQ
           <ul>
             <li>
               The number of slices should be between 2 and the number of shards
-              each index has; the higher the faster, but the more OpenSearch/Elasticsearch CPU
+              each index has; the higher slices the faster the conversion, but the more OpenSearch/Elasticsearch CPU
               that will be used. We recommend half the number of shards.
             </li>
             <li>
@@ -1058,7 +1058,7 @@ title: FAQ
         <li>wise – Custom sources will need to be modified to use the new JavaScript class design.</li>
         <li>wise – Redis URLs have a new standard format.</li>
         <li>wise – For JSON data, keyColumn has been renamed keyPath.</li>
-        <li>You may need to set the usersPrefix setting if your users index lives on an Arkime cluster that hasn't been upgraded to use arkime_ yet.</li>
+        <li>You may need to set the usersPrefix setting if your users index lives on an Arkime cluster that hasn't been upgraded to use <code>arkime_</code> yet.</li>
         <li>ilm – You will need to run the db.pl ilm command again after upgrading.</li>
       </ul>
       <h4>Instructions</h4>
@@ -1066,11 +1066,11 @@ title: FAQ
         <li>You must be using Moloch 2.4+ (Moloch 2.7.1 is recommended) BEFORE trying to upgrade to Arkime 3.x.</li>
         <li>You must be using Elasticsearch 7.10+ (Elasticsearch <a href="https://www.elastic.co/downloads/elasticsearch">7.10.2</a> or later is recommended) BEFORE trying to upgrade to Arkime 3.x.</li>
         <li>Optional: Run <code> ./db.pl http://ESHOST:9200 backup pre30 </code> to back up all administrative indices.</li>
-        <li>Install Arkime or Arkime/Moloch Hybrid &gt;= 3.0 without restarting captures/viewers (the Hybrid distribution still uses /data/moloch and old binary names).</li>
+        <li>Install Arkime or Arkime/Moloch Hybrid &gt;= 3.0 without restarting captures/viewers (the hybrid distribution still uses /data/moloch and old binary names).</li>
         <li>Shut down captures, multies, and viewers.</li>
         <li>Run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
         <li>Verify that your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to the Arkime distribution. If you continue to use the Hybrid distribution you do not need to change the paths.</li>
-        <li>If using ilm, run the db.pl ilm command again with all the same options that were used previously.</li>
+        <li>If using ILM, run the <code>db.pl ilm</code> command again with all the same options that were used previously.</li>
         <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
         <li>Verify that everything is working.</li>
       </ul>
@@ -1092,19 +1092,19 @@ title: FAQ
         <li>
           Use roles for permission checking—the userAdmin role is required to edit users.
           <br>
-          addUser.js - new --roles option, --admin creates superAdmin user
+          addUser.js use either the new <code>--roles</code> option or the <code>--admin</code> sets the <code>superAdmin</code> role
         </li>
         <li>In header auth mode, userAuthIps allows only localhost by default.</li>
-        <li>Encrypted pcap files now use the .arkime extension.</li>
+        <li>Encrypted PCAP files now use the .arkime extension.</li>
         <li>The WISE multiES prefix now defaults to arkime_.</li>
         <li>There are new defaults for the maxFileSizeG=12 and compressES=true settings.</li>
-        <li>pcap compression is turned on by default with simpleCompression=gzip; set to "none" to disable or "zstd".</li>
+        <li>PCAP compression is turned on by default with simpleCompression=gzip; set to "none" to disable or "zstd".</li>
         <li>The right-click group name was changed to value-actions in the configuration file.</li>
-        <li>The userId search in history for admin no longer adds the surrounding wildcards automatically.</li>
+        <li>The userId search on the history page no longer adds the surrounding wildcards automatically. This search box is only available for admin users.</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
-        <li>Install new arkime rpm/db.</li>
+        <li>Install new Arkime rpm/db.</li>
         <li>Shut down ALL captures, multies, and viewers.</li>
         <li>Run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
         <li>Verify that your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to the Arkime distribution. If you continue to use the Hybrid distribution, you do not need to change the paths.</li>
@@ -1280,7 +1280,7 @@ title: FAQ
           <code>--replicas 1</code>
           with your daily
           <code>./db.pl expire</code>
-          run after turning off replicate in the sessions template using
+          run after turning off replication in the sessions template using
           <code>./db.pl upgrade</code>
           without the
           <code>--replicas</code>
@@ -1324,7 +1324,7 @@ title: FAQ
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
-      <ul>
+      <ol>
         <li>
           Go into the Arkime stats page and the ES Shards subtab.
         </li>
@@ -1344,8 +1344,8 @@ title: FAQ
         </li>
         <li>
           If there are many shards that need to be redistributed, the defaults
-          might take days, which is good for the cluster, but it might make you
-          crazy. Increase the speed from the default 3 streams at 20 mb (60 mb/sec) to
+          might take days, which is good for the cluster.
+          Increase the speed from the default 3 streams at 20 mb (60 mb/sec) to
           something higher like 6 streams at 50 mb (300 mb/sec). Adjust
           for the speed of the new nodes' disks and network.
           <pre><code>curl -XPUT localhost:9200/_cluster/settings -d '{"transient":{
@@ -1367,11 +1367,11 @@ title: FAQ
         actually <strong>need</strong> replication.
       </p>
       <p>
-        To change future days:
+        To change future days, run the following command:
         <pre><code>db/db.pl &lt;http://ESHOST:9200&gt; upgrade --replicas 1</code></pre>
       </p>
       <p>
-        To change past days but not the current day:
+        To change past days but not the current day, run the following command:
         <pre><code>db/db.pl &lt;http://ESHOST:9200&gt; expire &lt;type&gt; &lt;num&gt; --replicas 1</code></pre>
       </p>
       <p>
@@ -1412,7 +1412,7 @@ title: FAQ
           Elasticsearch 8.x is NOT supported before 3.4.1, and we recommend that you use Arkime 4.x.
         </strong>
       </p>
-      <ol type="I">
+      <ol>
         <li>
           You must first upgrade to Arkime 3.4.1 or higher and run <code>db.pl http://ESHOST:9200 upgrade</code> while still using Elasticsearch 7.
         </li>
@@ -1422,7 +1422,7 @@ title: FAQ
         <li>
           Make sure your Elasticsearch configuration files are ready for Elasticsearch 8. We do not provide sample Elasticsearch configurations, but here are some things to look out for:
           <ul>
-            <li>By default, Elasticsearch 8 enables HTTPS and passwords. Either disable or update your Arkime configurations to use.</li>
+            <li>By default, Elasticsearch 8 enables HTTPS and passwords, make sure you update your Arkime configuration file to use them.</li>
             <li>There are several configuration variable changes. We suggest trying your elasticsearch.yml configuration file with a test cluster.</li>
             <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.0/breaking-changes.html">Elasticsearch 8.0 breaking changes</a>.</li>
           </ul>
@@ -1444,7 +1444,7 @@ title: FAQ
           </ul>
         </strong>
       </p>
-      <ol type="I">
+      <ol>
         <li>
           If you are NOT using Arkime DB version 63 (or later), you
           must follow <a href="/faq#how_do_i_upgrade_to_moloch_2">these instructions</a> while still using Elasticsearch 6.x and upgrade to Moloch 2.x. To find what DB version
@@ -1463,13 +1463,13 @@ title: FAQ
         </li>
         <li>
          Now you need to upgrade from Elasticsearch 6 to Elasticsearch 7. There are two options:
-        <ol>
+        <ol type="a">
           <li>
             Upgrading to Elasticsearch 7 if using Elasticsearch <a href="https://www.elastic.co/downloads/past-releases/elasticsearch-oss-6-8-6">6.8.6</a> (or later) can be done with a rolling upgrade. Follow Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/rolling-upgrades.html">instructions</a> for the best results. You do NOT need to stop capture/viewer, but after the rolling upgrade is finished, you may want to restart capture everywhere.
           </li>
           <li>
             If you are not using Elasticsearch 6.8.6, or if you would prefer to perform a full restart, follow the instructions below:
-            <ul>
+            <ol>
               <li>
                 Make sure you delete any old indices that db.pl notified you about when you installed Moloch 2.x.
               </li>
@@ -1485,7 +1485,7 @@ title: FAQ
               <li>
                 Wait for the cluster to go GREEN. This will take
                 <strong>LONGER</strong>
-                than usual as Elasticsearch upgrades things from the 6.x to the 7.x format.
+                than usual as Elasticsearch upgrades indices from the 6.x to the 7.x format.
                 <pre><code>curl http://localhost:9200/_cat/health</code></pre>
               </li>
               <li>
@@ -1571,12 +1571,12 @@ title: FAQ
           to change to <code>/data/foo/&lt;clustername&gt;</code>.
         </li>
         <li>
-          Start Elasticsearch cluster.
+          Start the Elasticsearch cluster.
         </li>
         <li>
           Wait for the cluster to go GREEN. This will take
           <strong>LONGER</strong>
-          than usual as Elasticsearch upgrades things from the 5.x to the 6.x format.
+          than usual as Elasticsearch upgrades indices from the 5.x to the 6.x format.
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
           </code>
         </li>
@@ -1628,7 +1628,7 @@ title: FAQ
           Upgrade to Elasticsearch 2.4.x.
         </li>
         <li>
-          Check for GREEN Elasticsearch cluster:
+          Check for a GREEN Elasticsearch cluster:
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
         </li>
         <li>
@@ -1665,11 +1665,11 @@ title: FAQ
           Upgrade Elasticsearch to 5.6.x.
         </li>
         <li>
-          Start Elasticsearch cluster.
+          Start the Elasticsearch cluster.
         </li>
         <li>
           Wait for the cluster to go GREEN. This will take <strong>LONGER</strong>
-          than usual as Elasticsearch upgrades things from the 2.x to the 5.x format.
+          than usual as Elasticsearch upgrades indices from the 2.x to the 5.x format.
           <pre><code>curl http://localhost:9200/_cat/health</code></pre>
         </li>
         <li>
@@ -2338,7 +2338,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         <ul>
           <li>
             Cyclical packet drops may be caused by bad connectivity to the wise
-            server. Verify that the wiseService responds quickly
+            server. Verify that the WISE responds quickly
             <pre><code>curl http://arkime-wise.hostname:8081/views</code></pre>
             on the <code>capture</code> host that is dropping packets.
           </li>
@@ -2368,16 +2368,16 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </p>
       <p>
         <code>
-          ${install_dir}/bin/capture -c [config_file] -r [pcap_file]
+          ${install_dir}/bin/capture -c [config_file] -r [PCAP file]
         </code>
       </p>
       <p>
-        For an entire directory, use <code>-R [pcap directory]</code>
+        For an entire directory, use <code>-R [PCAP directory]</code>
       </p>
       <p>
         See
         <code>${install_dir}/bin/capture --help</code> for more info.
-        The <code>--monitor</code> to monitor non NFS directories, <code>--skip</code> to skip already loaded pcap files, and <code>-R</code> to process directories are common options.
+        The <code>--monitor</code> to monitor non NFS directories, <code>--skip</code> to skip already loaded PCAP files, and <code>-R</code> to process directories are common options. Multiple <code>-r</code> and <code>-R</code> options can be used.
       </p>
       <p>
         If Arkime is failing to load a PCAP file check the following things:
@@ -2398,7 +2398,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       </ul>
       <h4>Enable Arkime UI to upload</h4>
       <p>
-        It is also possible to enable UI in Arkime to upload pcap.
+        It is also possible to enable UI in Arkime to upload PCAP.
         This is less efficient then just using <code>capture</code> directly, since it uploads the file and then rules <code>capture</code> for you.
         Just uncomment the <a href="/settings#uploadcommand"><code>uploadCommand</code></a> in the config.ini file.
       </p>
@@ -2682,7 +2682,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         capture files on disk, or by default 120G.
       </p>
       <p>
-        If still having pcap delete issues:
+        If still having PCAP delete issues:
       </p>
       <ol>
         <li>
@@ -2696,12 +2696,12 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
         <li>
           Make sure that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
-          actually delete files in the pcap DIRECTORY and has read/execute permissions in all parent directories.
+          actually delete files in the PCAP directory and has read/execute permissions in all parent directories.
           So for example you need to check the /opt and the /opt/arkime and the /opt/arkime/raw directory permissions.
-          The pcap FILES will have read/write permissions which is normal.
+          The PCAP files will have read/write permissions which is normal.
         </li>
         <li>
-          Make sure the pcap directory is on a filesystem with at least
+          Make sure the PCAP directory is on a filesystem with at least
           <a href="/settings#maxfilesizeg"><code>maxFileSizeG * 10</code></a> space available.
         </li>
         <li>
@@ -2735,7 +2735,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         There are several common reasons dontSaveBPFs might not work for you.
       </p>
       <ol>
-        <li>Look at the saved pcap, not the packet count in the UI, Arkime will still count the number of packets, it just won't save them</li>
+        <li>Look at the saved PCAP, not the packet count in the UI, Arkime will still count the number of packets, it just won't save them</li>
         <li>Make sure you've spelled it dontSaveBPFs, case matters</li>
         <li>Make sure you've placed dontSaveBPFs in the correct section, you can verify by adding a <code>--debug</code> to capture when starting and looking at the output</li>
         <li> Turns out BPF filters are tricky. :)
@@ -2762,18 +2762,18 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         is controlled with <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a>, which defaults to 262144
         bytes. An important thing to remember is the buffer is per thread, so set
         <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 on low bandwidth networks.
-        A portion of the pcap that is buffered will be written after 10 seconds of no writes.
+        A portion of the PCAP that is buffered will be written after 10 seconds of no writes.
         However it will still buffer the last pagesize bytes, usually 4096 bytes.
       </p>
       <p>
         An error that looks like
         <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code>
-        usually means that either the pcap is still being buffered and you need to wait for it to be written to disk or
-        that previously capture or the host crashed/restarted before the pcap could be written to disk.
+        usually means that either the PCAP is still being buffered and you need to wait for it to be written to disk or
+        that previously capture or the host crashed/restarted before the PCAP could be written to disk.
       </p>
 
       <p>
-        You can also end up with many zero byte pcap files if the disk is full,
+        You can also end up with many zero byte PCAP files if the disk is full,
         see
         <a href="#pcap-deletion">
           PCAP Deletion</a>.
@@ -2884,7 +2884,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           <tr><td>disk: 2</td><td>2 disk buffers writes are outstanding, each buffer will hold multiple packets</td></tr>
           <tr><td>packet: 3</td><td>3 packets are waiting to be processed in all the packet queues</td></tr>
           <tr><td>close: 4</td><td>4 tcp sessions have been marked for closing (RST/FIN), waiting on last few packets</td></tr>
-          <tr><td>ns: 5</td><td>5 sessions are ready to be saved but there is a plugin that is doing async work, such as wise</td></tr>
+          <tr><td>ns: 5</td><td>5 sessions are ready to be saved but there is a plugin that is doing async work, such as WISE</td></tr>
           <tr><td>frags: 0/1988</td><td>always 0<br>1988 current ip frags waiting to be matched</td></tr>
           <tr><td>pstats: 4132185901/1/2/3/4/5/6</td>
             <td>4132185901 packets successfully sent to a packet queue<br>
@@ -2925,7 +2925,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
 
       <h3 id="exported-pcap-files-are-corrupt-sometimes-session-detail-fails">
-        Exported pcap files are corrupt, sometimes session detail fails
+        Exported PCAP files are corrupt, sometimes session detail fails
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -3310,7 +3310,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </li>
         </ol>
         <p>
-          When pcap is retrieved from a viewer it uses the nodename associated with the SPI record to find which capture host to connect to.
+          When PCAP is retrieved from a viewer it uses the nodename associated with the SPI record to find which capture host to connect to.
         </p>
         <ol>
           <li>
@@ -3331,7 +3331,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             This is the common case with multiple capture processes per capture node.
           </li>
           <li>
-            If we make it here, the pcap data isn’t local and it must be proxied.
+            If we make it here, the PCAP data isn’t local and it must be proxied.
           </li>
           <li>
             If there is a <code>viewUrl</code> set in the <code>[nodename]</code> section, use that.
@@ -3408,7 +3408,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </li>
           <li>
             The remote machine can’t open the PCAP.
-            Make sure the <a href="/settings#dropuser"><code>dropUser</code></a> user or <a href="/settings#dropgroup"><code>dropGroup</code></a> group can read the pcap files.
+            Make sure the <a href="/settings#dropuser"><code>dropUser</code></a> user or <a href="/settings#dropgroup"><code>dropGroup</code></a> group can read the PCAP files.
             Check the directories in the path too.
           </li>
           <li>
@@ -3587,7 +3587,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
         <li>
           Check that WISE is running
           <pre><code>curl http://localhost:8081/fields</code></pre>
-          You should see a list of fields that wise knows about.
+          You should see a list of fields that WISE knows about.
         </li>
         <li>
           Check in your config.ini file you've added
@@ -3604,7 +3604,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
         <li>
           Restart <code>capture</code> after adding a
           <code>--debug</code> option may print out useful information what is
-          wrong.  Look to make sure that wise is being called with the correct URL.
+          wrong.  Look to make sure that WISE is being called with the correct URL.
           Verify that the plugins, wiseHost and wiseURL setting is what you actually think it is.
         </li>
       </ol>
