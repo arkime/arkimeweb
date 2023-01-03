@@ -698,7 +698,7 @@ title: FAQ
         </a>
         Our deployment is on RHEL 7 and RHEL 8, using both the pcap and afpacket reader, depending on the deployment.
         We recommend using afpacket (tpacketv3) whenever possible.
-        A large amount of development is done on macOS 12.5 using MacPorts or Homebrew; however, it has never been tested in a production setting.
+        A large amount of development is done on macOS 12.5 using MacPorts or Homebrew; however, it has never been tested in a production setting. :)
         Arkime is no longer supported on 32-bit machines.
       </p>
       <p>
@@ -738,8 +738,8 @@ title: FAQ
           An Unauthorized response probably means that you need user:pass in all OpenSearch/Elasticsearch URLs or that you are using the wrong URL.
         </li>
         <li>
-          Check that the db has been initialized with
-          <code>/opt/arkime/db/db.pl http://elasticsearch.hostname:9200 info</code>.
+          Check that the db has been initialized with the
+          <code>/opt/arkime/db/db.pl http://elasticsearch.hostname:9200 info</code> command.
         </li>
         <li>
           Check that viewer is reachable by visiting
@@ -755,10 +755,10 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Check for errors in <code>/opt/arkime/logs/viewer.log</code> and that viewer is running with <code>pgrep -lf viewer</code>.
+          Check for errors in <code>/opt/arkime/logs/viewer.log</code> and that viewer is running with the <code>pgrep -lf viewer</code> command.
         </li>
         <li>
-          Check for errors in <code>/opt/arkime/logs/capture.log</code> and that capture is running with <code>pgrep -lf capture</code>.
+          Check for errors in <code>/opt/arkime/logs/capture.log</code> and that capture is running with the <code>pgrep -lf capture</code> command.
         </li>
         <li>
           To check that the stats page shows the capture nodes you are expecting, visit
@@ -787,7 +787,7 @@ title: FAQ
             </li>
             <li>
               OpenSearch/Elasticsearch will only refresh the indices once a minute with the default Arkime configuration.
-              Force a refresh with <code>curl http://elasticsearch.hostname:9200/_refresh</code>.
+              Force a refresh with the <code>curl http://elasticsearch.hostname:9200/_refresh</code> command.
             </li>
             <li>
               Verify that your time frame for search covers the data (try switching to ALL).
@@ -822,7 +822,7 @@ title: FAQ
           </ol>
         </li>
         <li>
-          Check the output of the following: <pre><code>grep moloch_packet_log /opt/arkime/logs/capture.log | tail</pre></code>
+          Check the output of the following: <pre><code>grep moloch_packet_log /opt/arkime/logs/capture.log | tail</code></pre>
           Verify that the packets number is greater than 0. If not, then no packets were processed.
           Verify that the first pstats number is greater than 0. If not, Arkime didn't know how to decode any packets.
         </li>
@@ -1315,7 +1315,7 @@ title: FAQ
         OpenSearch/Elasticsearch doesn’t perform well if Java hits an OutOfMemory condition.
         If you ever have one, you should immediately delete the oldest <code>*sessions*</code> index,
         update the daily expire cron to delete more often, and restart the OpenSearch/Elasticsearch cluster.
-        Then you should order more machines.
+        Then you should order more machines. :)
       </p>
 
       <h3 id="removing-nodes">
