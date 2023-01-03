@@ -1353,7 +1353,7 @@ title: FAQ
   "indices.recovery.max_bytes_per_sec":"50mb"}
 }'</code></pre>
         </li>
-      </ul>
+      </ol>
 
       <h3 id="how-do-i-enable-elasticsearch-replication">
         How to enable OpenSearch/Elasticsearch replication
@@ -1491,7 +1491,7 @@ title: FAQ
               <li>
                 Start viewers and captures.
               </li>
-            </ul>
+            </ol>
           </li>
         </ol>
         </li>
@@ -3202,7 +3202,7 @@ viewHost = localhost</code></pre>
       </h3>
       <p>
         It is possible to search multiple Arkime clusters by setting up a special Arkime MultiViewer and a special MultiES process.
-        The MultiES process is similar to Elasticsearch tribe nodes, except it was created before tribe nodes and can deal with multiple indexes having the same name.
+        The MultiES process is similar to Elasticsearch tribe nodes, except it was created before tribe nodes and can deal with multiple indices having the same name.
         The MultiViewer talks to MultiES instead of a real OpenSearch/Elasticsearch instance.
         Currently one big limitation is that <strong>all Arkime clusters must use the same <a href="/settings#serversecret">serverSecret</a></strong>.
       </p>
