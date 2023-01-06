@@ -201,7 +201,11 @@ Of course if other hosts use that same server from host header sharing that traf
 
 ### Integer Ops Bounding
 
-Since Arkime 4.1.0 it is possible to have operations that only change a value if the value is less than or greater than the new value. This is useful when you have 2 rules changing the same value.
+Since Arkime 4.1.0 it is possible to have operations that only change a value if the value is less than or greater than the new value.
+This is useful when you have 2 rules changing the same value, and you want to make sure which rule will be used.
+To specify, use `min NEWVALUE` to only change the value if less and `max NEWVALUE` to only change the value if greater.
+In the exxample below, if foo.aol.com is seen, the first rule sets packets to save to 20 no matter what the previous value is, the second rule will NOT override it to 200 since it has the min modifier.
+Think of it as doing a `min(current value, 200)` or `min(20, 200)` which would be `20`.
 
 ```
   - name: "foo.aol.com"
@@ -217,7 +221,7 @@ Since Arkime 4.1.0 it is possible to have operations that only change a value if
       host.http,endsWith:
         - .aol.com
     ops:
-      _maxPacketsToSave: "<200"
+      _maxPacketsToSave: "min 200"
 
 ```
 
