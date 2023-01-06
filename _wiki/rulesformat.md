@@ -199,4 +199,44 @@ Of course if other hosts use that same server from host header sharing that traf
       _dropByDst: 10
 ```
 
+### Integer Ops Bounding
+
+Since Arkime 4.1.0 it is possible to have operations that only change a value if the value is less than or greater than the new value. This is useful when you have 2 rules changing the same value.
+
+```
+  - name: "foo.aol.com"
+    when: "fieldSet"
+    fields:
+      host.http:
+        - foo.aol.com
+    ops:
+      _maxPacketsToSave: 20
+  - name: "*.aol.com"
+    when: "fieldSet"
+    fields:
+      host.http,endsWith:
+        - .aol.com
+    ops:
+      _maxPacketsToSave: "<200"
+
+```
+
+---
+
+## Logging
+
+You can log when a rule is matched using the optional log element.
+{: .mb-0 }
+
+```
+  - name: "Drop ad beacon"
+    log: true
+    when: "fieldSet"
+    fields:
+      host.http:
+      - ad.beacon.something.example.com
+    ops:
+      _dropByDst: 10
+```
+
 </div>

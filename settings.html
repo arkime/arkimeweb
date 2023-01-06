@@ -1525,7 +1525,8 @@ title: Settings
               EMPTY
             </td>
             <td>
-              Where to load Yara rules from.
+              A single file where to load Yara rules from.
+              This file will be auto reloaded on changes so you don't need to restart capture.
             </td>
           </tr>
           <tr>
@@ -1539,8 +1540,9 @@ title: Settings
               TRUE
             </td>
             <td>
-              (Since 1.5.0) Apply yara to every packet or just the packets
-              that are classified.
+              (Since 1.5.0) When true yara is applied to every tcp/udp packet, otherwise only the first tcp/udp packet in a session is used.
+              Yara is run after the classification Arkime step.
+              Looking at every packet can be resource intensive.
             </td>
           </tr>
           <tr>
