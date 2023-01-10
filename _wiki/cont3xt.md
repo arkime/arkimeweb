@@ -103,7 +103,7 @@ We currently support a bunch of different services for auto enrichments, and are
 3. Install the RPM/DEB file
 4. Run `/opt/arkime/bin/Configure --cont3xt` to enable systemd file
 5. If a NEW install, run `/opt/arkime/db/db.pl http://eshost:port init`
-6. Edit /opt/arkime/etc/cont3xt.ini and update elasticsearch setting
+6. Edit /opt/arkime/etc/cont3xt.ini and update <code>elasticsearch</code> setting
 7. If a NEW install, run `/opt/arkime/bin/arkime_add_user.sh admin admin PASSWORD --admin` to create an initial user
 8. Run `systemctl restart arkimecont3xt`
 

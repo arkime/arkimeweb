@@ -260,14 +260,14 @@ Create a `[elasticsearch:UNIQUENAME]` section to configure
 Setting | Default | Description
 --------|---------|------------
 type|REQUIRED|The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
-elasticsearch|REQUIRED|Elasticsearch base url
+elasticsearch|REQUIRED|OpenSearch/Elasticsearch base url
 esIndex|REQUIRED|The index pattern to look at
 esTimestampField|REQUIRED|The field to use in queries that has the timestamp in ms.
 esMaxTimeMS|1 hour|Timestamp field must be less then this
 esResultField|REQUIRED|Field that is required to be in the result
 {: .table .table-striped .table-sm .mb-4 }
 
-Example config that will query elasticsearch for an ip that is in the 10.172/16 space, in the index TheIndex-\*, only looking at records that have a \@timestamp field newer than 86400000ms. It looks at the `cef_ext.src` field and only looks at records that has a cef_ext.suser field set. Once it has a result it sets the user field in arkime to whatever the `cef_ext.suser` field is in the document.
+Example config that will query OpenSearch/Elasticsearch for an ip that is in the 10.172/16 space, in the index TheIndex-\*, only looking at records that have a \@timestamp field newer than 86400000ms. It looks at the `cef_ext.src` field and only looks at records that has a cef_ext.suser field set. Once it has a result it sets the user field in arkime to whatever the `cef_ext.suser` field is in the document.
 
 ```
 type=ip
@@ -457,7 +457,7 @@ headers| |Semicolon separated list of headers to send in the URL request
 This are WISE sources that aren't really data sources.
 
 ### HODI
-Experimental "History of Observed Data Indicators" plugin. This watches all queries to WISE and sends a feed to a configured elasticsearch cluster with firstSeen, lastSeen, and VERY rough count metric. The elasticsearch cluster must version version 1.5 or above and requires the hobi.groovy script be installed in the elasticsearch-x.x.x/config/scripts directory on all nodes. (This directory might need to be created.)
+Experimental "History of Observed Data Indicators" plugin. This watches all queries to WISE and sends a feed to a configured OpenSearch/Elasticsearch cluster with firstSeen, lastSeen, and VERY rough count metric. The OpenSearch/Elasticsearch cluster must version version 1.5 or above and requires the hobi.groovy script be installed in the elasticsearch-x.x.x/config/scripts directory on all nodes. (This directory might need to be created.)
 
 Added in 0.11.4
 
@@ -466,7 +466,7 @@ Create a `[hodi]` section to configure
 
 Setting | Default | Description
 --------|---------|------------
-esHost|REQUIRED|The elasticsearch connection string, usually host:port
+esHost|REQUIRED|The OpenSearch/Elasticsearch connection string, usually host:port
 {: .table .table-striped .table-sm .mb-4 }
 
 ### right-click
@@ -502,7 +502,7 @@ Starting with Arkime 1.5, a section named `[right-click]` with NO colon or uniqu
 Starting with Arkime 3.0, there can no longer be a section named `[right-click]` in the wise.ini file if you want to use the WISE Config UI. It is recommended you switch to the value-actions source below.
 
 ### valueactions
-Since 3.0 this source monitors configured files, redis urls, or elasticsearch urls for valueactions (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactions:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactions files if they change.
+Since 3.0 this source monitors configured files, redis urls, or OpenSearch/Elasticsearch urls for valueactions (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactions:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactions files if they change.
 
 Create a `[valueactions:UNIQUENAME]` section to configure
 {: .mb-0}

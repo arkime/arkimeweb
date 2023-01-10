@@ -1181,7 +1181,7 @@ title: FAQ
           and half the memory to disk cache.
         </li>
         <li>
-          Use at least version 7 of Elasticsearch or version 2.3 of Opensearch.
+          Use at least version 7 of Elasticsearch or version 2.3 of OpenSearch.
         </li>
         <li>
           A quick disk requirement estimate is 5% of the PCAP storage, if storing for the same amount of time.
@@ -1196,7 +1196,7 @@ title: FAQ
       <p>
         The good news is that it is easy to add new nodes in the future, so feel free to start with fewer nodes.
         As a temporary fix for capacity problems, you can reduce the number of days of metadata that are stored.
-        You can use the Arkime ES Indices tab to delete the oldest <code>sessions2</code> index.
+        You can use the Arkime ES Indices tab to delete the oldest <code>sessions2</code> or <code>sessions3</code> index.
       </p>
 
       <h3 id="data-never-gets-deleted">
@@ -1829,7 +1829,7 @@ logger.action.level = info</code></pre>
         You can also do this with Kibana to create the ILM config, and not use the <code>molochtype</code> attribute name, however then you will need to do everything on your own.
         There are five important steps to have ILM work correctly with Arkime.
         <ol>
-          <li>If you are using hot/warm design, or might in the future, for each elasticsearch node add to your elaticsearch.yml a line with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
+          <li>If you are using hot/warm design, or might in the future, for each Elasticsearch node add to your elaticsearch.yml a line with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
           <li>Create the molochsessions and molochhistory ILM polices.  This can be done easily with kibana or we recommend <code>db.pl ilm</code> command.</li>
           <li>Assign the molochsessions and molochhistory ILM polices to all the existing indices.  Kibana or <code>db.pl ilm</code> can perform this action.</li>
           <li>Change the moloch templates to use the ILM polices for NEW indices.  You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add the <code>--ilm</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
@@ -3220,7 +3220,7 @@ multiES=true
 multiESPort = 8200
 # Host the multies.js program is listening on, elasticsearch= must match
 multiESHost = localhost
-# Semicolon list of elasticsearch instances, one per arkime cluster.  The first one listed will be used for settings
+# Semicolon list of OpenSearch/Elasticsearch instances, one per arkime cluster.  The first one listed will be used for settings
 # You MUST have a name set
 multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;http://escluster2.example.com:9200,name:escluster2
 # Uncomment if not using different rotateIndex settings

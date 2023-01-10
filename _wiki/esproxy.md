@@ -18,7 +18,7 @@ An ES Proxy should be used in cases where capture/viewer nodes live on machines 
 The ES Proxy ensures that anyone who can access a machine can only access data for that machine.
 ES by itself does NOT have this fine grain API access controls.
 
-The ES Proxy also has a secondary feature where it can send traffic to a secondary ES cluster. This is useful when migrating to a new cluster.
+The ES Proxy also has a secondary feature where it can send traffic to a secondary OpenSearch/Elasticsearch cluster. This is useful when migrating to a new cluster.
 
 <div class="alert alert-info">
 Note: You MUST be using central viewers that the operators use, and those central viewers MUST NOT talk to the ES Proxy.
@@ -49,8 +49,8 @@ The [default] section has the general configuration for esProxy and shard these 
 
 <pre>
 [default]
-# The ES server to proxy requests for.
-# Make sure the capture/viewer nodes can NOT access ES directly.
+# The OpenSearch/Elasticsearch server to proxy requests for.
+# Make sure the capture/viewer nodes can NOT access OpenSearch/Elasticsearch directly.
 elasticsearch=https://the.real.es.server:9999
 # What port we listen to for connections from the capture/viewer nodes
 esProxyPort=9999
@@ -75,10 +75,10 @@ In the Toronto `config.ini` you would use <code>elasticsearch=http://toronto01:t
 In the Singapore `config.ini` you would use <code>elasticsearch=http://singapore01:@the.esproxyhost:9999</code> (notice it does not have a password).
 For both of these the source IP address would be checked, so that another machine couldn't pretend it was toronto01 even if it had the user/password.
 <div class="alert alert-info">
-Note: this user/pass is NOT your ES user pass, this is from capture/viewer to esproxy.
+Note: this user/pass is NOT your OpenSearch/Elasticsearch user pass, this is from capture/viewer to esproxy.
 The user MUST be the nodename of the capture/viewer process since it will be used to limit data.
 There should be a unique line for each remote capture/viewer machine.
-Esproxy to ES will use the <code>elasticsearch</code> setting in the <code>[default]</code> section, which may or may not include the real OpenSearch/Elasticsearch user/pass.
+ES Proxy to OpenSearch/Elasticsearch will use the <code>elasticsearch</code> setting in the <code>[default]</code> section, which may or may not include the real OpenSearch/Elasticsearch user/pass.
 </div>
 
 #### [tee] section
