@@ -66,11 +66,6 @@ title: FAQ
         Why should I use Arkime?
       </a>
       <a class="nav-link nested"
-        href="#why-change-our-name"
-        title="Why change our name?">
-        Why did we change our name?
-      </a>
-      <a class="nav-link nested"
         href="#how-do-you-pronounce-our-name"
         title="How do you pronounce our name?">
         How do you pronounce our name?
@@ -419,25 +414,16 @@ title: FAQ
       </h3>
       <p>
         If you want a standalone open-source full packet capture (FPC)
-        system with metadata parsing and searching, then Arkime may be
-        the solution! Arkime provides you complete control of deployment
-        and architecture. There are
-        <a href="otherfpc">
-          other FPC systems
-        </a>
-        available.
+        system with metadata parsing and searching, then Arkime is
+        the solution! 
+        Full packet capture systems allow network and security analysts to see exactly 
+        what happen from a network point of view. 
+        Since Arkime is open-source, you have complete control of the deployment
+        and <a href="/architecture">architecture</a>. 
+        There are <a href="otherfpc"> other FPC systems </a> available.
       </p>
 
-      <h3 id="why-change-our-name">
-        Why did we change our name?
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'faq')">
-        </span>
-      </h3>
-      <p>
-        Read about why we made this change <a href="arkimeetus">here</a>.
-      </p>
-
+      <span id="why-change-our-name">
       <h3 id="how-do-you-pronounce-our-name">
         How do you pronounce our name?
         <span class="fa fa-link small copy-link cursor-copy"
@@ -689,7 +675,7 @@ title: FAQ
         </span>
       </h3>
       <p>
-        We have RPMs/DEBs available on the
+        We have RPMs/DEBs/ZSTs available on the
         <a href="downloads">
           downloads page.
         </a>
@@ -697,6 +683,7 @@ title: FAQ
         We recommend using afpacket (tpacketv3) whenever possible.
         A large amount of development is done on macOS 12.5 using MacPorts or Homebrew; however, it has never been tested in a production setting. :)
         Arkime is no longer supported on 32-bit machines.
+        Currently we do not support Ubuntu releases that aren't LTS and there may be library issues.
       </p>
       <p>
         The following operating systems should work out of the box:
@@ -716,6 +703,7 @@ title: FAQ
         </li>
       </ul>
 
+
       <span id="moloch-is-not-working"></span>
       <span id="checklist"></span>
       <h3 id="arkime-is-not-working">
@@ -725,18 +713,17 @@ title: FAQ
         </span>
       </h3>
       <p>
-        Here is the common checklist (replace /opt/arkime with /data/moloch for Moloch builds):
+        Here is the common checklist to perform when diagnosing a problem with Arkime (replace /opt/arkime with /data/moloch for Moloch builds):
       </p>
       <ol>
         <li>
-          Check that OpenSearch/Elasticsearch is running and GREEN by using the following curl command
-          <pre><code>curl http://localhost:9200/_cat/health</code></pre>
+          Check that OpenSearch/Elasticsearch is running and GREEN by using the curl command <code>curl http://localhost:9200/_cat/health</code>
           on the machine running OpenSearch/Elasticsearch.
           An Unauthorized response probably means that you need user:pass in all OpenSearch/Elasticsearch URLs or that you are using the wrong URL.
         </li>
         <li>
           Check that the db has been initialized with the
-          <code>/opt/arkime/db/db.pl http://elasticsearch.hostname:9200 info</code> command.
+          <code>/opt/arkime/db/db.pl http://elasticsearch.hostname:9200 info</code> command. You should see information about the database version and number of sessions.
         </li>
         <li>
           Check that viewer is reachable by visiting
@@ -750,25 +737,28 @@ title: FAQ
               </a>
             </li>
             <li>
-              If the browser can't connect, verify there are no firewalls blocking access between your browser and the viewer host.
+              If the browser can't connect and you are sure viewer.js is running, verify there are no firewalls blocking access between your browser and the viewer host.
             </li>
           </ol>
         </li>
         <li>
-          Check for errors in <code>/opt/arkime/logs/viewer.log</code> and that viewer is running with the <code>pgrep -lf viewer</code> command.
+          Check for errors in <code>/opt/arkime/logs/viewer.log</code> and that viewer is running with the <code>pgrep -lf viewer</code> command. If the UI looks strange or isn't working, <code>viewer.log</code> will usually have information about what is wrong.
         </li>
         <li>
-          Check for errors in <code>/opt/arkime/logs/capture.log</code> and that capture is running with the <code>pgrep -lf capture</code> command.
+          Check for errors in <code>/opt/arkime/logs/capture.log</code> and that capture is running with the <code>pgrep -lf capture</code> command. If packets aren't being processed or other metadata generation issues, <code>capture.log</code> will usually have infomration about what is wrong and links to the FAQ on how to fix.
         </li>
         <li>
           To check that the stats page shows the capture nodes you are expecting, visit
           <code>http://arkime-viewer.hostname:8005/stats?statsTab=1</code> in your browser.
           <ol type="a">
             <li>
-              Make sure the nodes are showing packets being received.
+              If the packets being received for any node is low, that node is having issues, please check its <code>capture.log</code>
             </li>
             <li>
-              Make sure the timestamp for nodes is recent (within 5 seconds).
+              If the timestamp for any node is over 5 seconds old, that node is having issues, please check its <code>capture.log</code>
+            </li>
+            <li>
+              If the Disk Q or ES Q for any node is above 50, that node is having issues, please check its <code>capture.log</code>
             </li>
           </ol>
         </li>
