@@ -843,6 +843,9 @@ body.wiki-body.dark-theme footer.footer {
   background-color: #333333;
   border: 1px solid rgba(0,0,0,.5);
 }
+.dark-theme ul.list-group.list-group-striped > li.list-group-item:nth-of-type(even) {
+  background-color: #1d1d1d;
+}
 
 .dark-theme .alert.alert-info {
   color: #d1ecf1;
