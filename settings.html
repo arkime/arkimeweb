@@ -104,6 +104,11 @@ title: Settings
         Reader PCAP-Over-Ip Settings
       </a>
       <a class="nav-link nested nested-more"
+        href="#reader-tzsp-settings"
+        title="Reader TZSP Settings">
+        Reader TZSP Settings
+      </a>
+      <a class="nav-link nested nested-more"
         href="#writer-s3-settings"
         title="Writer S3 Settings">
         Writer S3 Settings
@@ -2992,7 +2997,7 @@ tpacketv3NumThreads=2</pre>
         </span>
       </h3>
       <p>
-        Since Arkime 2.7.0, we can process PCAP-Over-Ip requests.
+        Since version 2.7.0, Arkime supports processing PCAP-Over-Ip requests.
         Two modes are support client and server.
         Client mode will connect to a pcap-over-ip service, server will listen for pcap-over-ip connections.
         <a href="https://netresec.com/?b=119B126">Read</a> more information about PCAP-Over-Ip.
@@ -3006,6 +3011,21 @@ tpacketv3NumThreads=2</pre>
         The <code>interface</code> setting is ignored and should just be set to <code>dummy</code>.
       </p>
       <!-- /reader poi settings -->
+
+      <!-- reader tzsp settings -->
+      <h3 id="reader-tzsp-settings">
+        Reader TZSP Settings
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h3>
+      <p>
+        Since version 4.1.0, Arkime supports listening for TZSP forwarded packets..
+        You can enable TZSP support by using <code>pcapReadMethod=tzsp</code>.
+        The only setting <code>tzspPort</code> defaults to 37008.
+        The <code>interface</code> setting is ignored and should just be set to <code>dummy</code>.
+      </p>
+      <!-- /reader tzsp settings -->
 
       <!-- writer s3 settings -->
       <h3 id="writer-s3-settings">
