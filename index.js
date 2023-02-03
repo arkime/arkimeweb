@@ -10,7 +10,13 @@ function play () {
 }
 
 function copyLink (event, page) {
-  const copyText = `https://arkime.com/${page}#${event.parentNode.id}`;
+  let copyText;
+  if (typeof event === 'string') {
+    copyText = event;
+    $(page).attr('data-original-title', "COPIED!").tooltip('show');
+  } else {
+    copyText = `https://arkime.com/${page}#${event.parentNode.id}`;
+  }
   // create an input to copy from
   const input = document.createElement('input');
   document.body.appendChild(input);

@@ -333,6 +333,13 @@ div.demo > h1.demo-small-screen {
   background-color: var(--warning-theme-color);
 }
 
+.btn-link {
+  cursor: pointer;
+  font-weight: 300;
+  color: #007bff !important;
+  background-color: transparent;
+}
+
 /* theme color dark navbar */
 .bg-dark {
   background-color: var(--secondary-theme-color) !important;
