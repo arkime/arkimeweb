@@ -1806,30 +1806,30 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        Since Moloch 2.2 you can easily use ILM to handle moving indices from hot to warm, force merge, and delete actions.
-        We recommend only using ILM with newer versions (7.2+) of Elasticsearch, since older versions did have some issues.
-        Once ILM is enabled you no longer have to use the <code>db.pl expire</code> cron job, but should occasionally run <code>db.pl optimize-admin</code>.
+        Since Moloch 2.2, you can easily use ILM to move indices from hot to warm, force merge, and delete.
+        We recommend only using ILM with newer versions (7.2+) of Elasticsearch because older versions had some issues.
+        Once ILM is enabled, you no longer have to use the <code>db.pl expire</code> cron job but should occasionally run <code>db.pl optimize-admin</code>.
       </p>
       <p>
-        ILM is only included in the free "basic" Elasticsearch license, so it is not part of the Elasticsearch OSS distribution, so you may need to upgrade.
-        Arkime does NOT currently support the auto rollover feature of ILM for performance reasons when searching.
+        ILM is only included in the free "basic" Elasticsearch license, so it is not part of the Elasticsearch OSS distribution, and you may need to upgrade.
+        Arkime does NOT currently support the ILM auto rollover feature, for performance reasons, when searching.
       </p>
       <p>
-        These instructions assume you are using db.pl or Arkime UI to setup ILM and will use a special <code>molochtype</code> attribute name.
-        You can also do this with Kibana to create the ILM config, and not use the <code>molochtype</code> attribute name, however then you will need to do everything on your own.
-        There are five important steps to have ILM work correctly with Arkime.
+        These instructions assume you are using db.pl or Arkime UI to set up ILM and will use a special <code>molochtype</code> attribute name.
+        You can also do this with Kibana to create the ILM config and not use the <code>molochtype</code> attribute name, but you will then need to do everything on your own.
+        In order for ILM work correctly with Arkime, follow these five important steps:
         <ol>
-          <li>If you are using hot/warm design, or might in the future, for each Elasticsearch node add to your elaticsearch.yml a line with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
-          <li>Create the molochsessions and molochhistory ILM polices.  This can be done easily with kibana or we recommend <code>db.pl ilm</code> command.</li>
-          <li>Assign the molochsessions and molochhistory ILM polices to all the existing indices.  Kibana or <code>db.pl ilm</code> can perform this action.</li>
-          <li>Change the moloch templates to use the ILM polices for NEW indices.  You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add the <code>--ilm</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
+          <li>If you are using a hot/warm design or might in the future, for each Elasticsearch node, add a line to your elasticsearch.yml file with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
+          <li>Create the molochsessions and molochhistory ILM polices. This can be done easily with Kibana, or we recommend the <code>db.pl ilm</code> command.</li>
+          <li>Assign the molochsessions and molochhistory ILM polices to all the existing indices. Kibana or <code>db.pl ilm</code> can perform this action.</li>
+          <li>Change the moloch templates to use the ILM polices for NEW indices. You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add <code>--ilm</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
           <li>Replace the previous <code>db.pl expire</code> cron job with <code>db.pl optimize-admin</code></li>
         </ol>
       </p>
       <p>
-        So for example to create new policies that keeps 30 weeks of history, 90 days of SPI data, with 1 replica, and optimizes all indices older than 25 hours you would run:
+        So for example, to create a new policy that keeps 30 weeks of history, 90 days of SPI data, 1 replica, and optimizes all indices older than 25 hours, you would run:
         <code>./db.pl http://localhost:9200 ilm 25h 90d --history 30 --replicas 1</code>
-        You would then need to run upgrade with all the arguments you usually used plus --ilm:
+        You would then need to run upgrade with all the arguments you usually use, plus --ilm:
         <code>./db.pl http://localhost:9200 upgrade --replicas 1 --shards 5 --ilm</code>
       </p>
       <!-- /elasticsearch -->
@@ -1845,36 +1845,36 @@ logger.action.level = info</code></pre>
       </h1>
 
       <h3 id="what-kind-of-capture-machines-should-we-buy">
-        What kind of capture machines should we buy?
+        What kind of capture machines should I buy?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
         The goal of Arkime is to use commodity hardware. If you start thinking
-        about using SSDs or expensive NICs, research if it would just be cheaper
-        to buy one more box. This gains more retention and can bring the cost of
-        each machine down.
+        about using SSDs or expensive NICs, research whether it would just be cheaper
+        to buy one more box. This gains more retention and can bring down the cost of
+        each machine.
       </p>
       <p>
         Some things to remember when selecting a machine:
       </p>
       <ul>
         <li>
-          An average of 1Gbps of network traffic requires 11TB of disk a day.
-          For example to store 7 days of 2.5Gbps average traffic you need
-          7*2.5*11 or 192.5TB of disk space.
+          An average of 1 Gbps of network traffic requires 11 TB of disk a day.
+          For example, to store 7 days of 2.5 Gbps–average traffic, you need
+          7*2.5*11, or 192.5 TB of disk space.
         </li>
         <li>
           The total bandwidth number must include both RX and TX bandwidth.
-          For example a 10G link can really produce up to 20G of traffic to
-          capture, 10G in each direction. Include both directions in your
+          For example, a 10 G link can really produce up to 20 G of traffic to
+          capture—10 G in each direction. Include both directions in your
           calculations.
         </li>
         <li>
-          Don’t overload network links to capture. Monitoring a 10G link with an
-          average of 4Gbps RX AND 4Gbps TX should use two 10G
-          <code>capture</code> links, since 8Gbps is close to the max.
+          Don’t overload network links. Monitoring a 10 G link with an
+          average of 4 Gbps RX AND 4 Gbps TX should use 2 10 G
+          <code>capture</code> links because 8 Gbps is close to the max.
         </li>
         <li>
           Arkime requires all packets from the same 5-tuple to be processed by
@@ -1883,40 +1883,39 @@ logger.action.level = info</code></pre>
       </ul>
       <p>
         When selecting Arkime capture boxes, standard "Big Data" boxes might be
-        the best bet. ($10k-$25k each) Look for:
+        the best bet ($10k–$25k each). Look for:
       <ul>
         <li>
           CASE: There are many 4RU boxes out there. If space is an issue, there
-          are more expensive 2RU boxes that hold over 20 drives (examples
+          are more expensive 2RU boxes that hold over 20 drives (examples:
           <a href="https://www.hpe.com/us/en/product-catalog/servers/proliant-servers/pip.hpe-apollo-4200-gen9-server.8261831.html"
             rel="nofollow">
             HPE Apollo 4200
-          </a>
-          ,
+          </a>,
           <a href="https://www.supermicro.com/products/system/2U/6028/SSG-6028R-E1CR24L.cfm"
             rel="nofollow">
-            Supermicro 6028R-E1CR24L</a>
+            Supermicro 6028R-E1CR24L</a>,
           or
           <a href="https://www.dell.com/en-us/work/shop/povw/poweredge-r740xd2"
             rel="nofollow">
             Dell R740XD2</a>)
         </li>
         <li>
-          MEMORY: 64GB to 96GB (or more if running other tools)
+          MEMORY: 64 GB to 96 GB (or more if running other tools)
         </li>
         <li>
           OS DISKS: We like RAID 1 small drives. SSDs are nice but not required.
         </li>
         <li>
-          CAPTURE DISKS: 20+ x 4TB or larger SATA drives. Don’t waste money on
+          CAPTURE DISKS: 20+ x 4 TB or larger SATA drives. Don’t waste money on
           enterprise/SAS/15k drives.
         </li>
         <li>
-          RAID: A hardware RAID card with at least 1G cache (2G is better). We
-          like RAID 5 with 1 hot spare or RAID 6 (with better cards)
+          RAID: A hardware RAID card with at least 1 G cache (2 G is better). We
+          like RAID 5 with 1 hot spare or RAID 6 (with better cards).
         </li>
         <li>
-          NIC: We like newer Intel base NICs, but most should work fine (might
+          NIC: We like newer Intel base NICs, but most should work fine (you might
           want to get one compatible with PFRING).
         </li>
         <li>
@@ -1925,26 +1924,25 @@ logger.action.level = info</code></pre>
         </li>
       </ul>
       <p>
-        We are big fans of using Network Packet Brokers ($6k+). They allow
+        We are big fans of using network packet brokers (NPBs) ($6k+). They allow
         multiple taps/mirrors to be aggregated and load balanced across multiple
-        <code>capture</code> machines. Read more below.
+        <code>capture</code> machines. Read more in the following sections.
       </p>
 
       <h3 id="what-kind-of-network-packet-broker-should-we-buy">
-        What kind of Network Packet Broker should we buy?
+        What kind of NPB should I buy?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        We are big fans of using Network Packet Brokers. If there is one piece of
-        advice we can give medium or large Arkime deployments — use a NPB. See
+        We are big fans of using NPBs, and we recommend that medium or large Arkime deployments use an NPB. See
         <a href="/assets/ArkimeON2017NPB.pptx">
           MolochON 2017 NPB Preso
-        </a>
+        </a>.
       </p>
       <p>
-        Main Advantages:
+        Main advantages:
       </p>
       <ul>
         <li>
@@ -1954,17 +1952,17 @@ logger.action.level = info</code></pre>
           Load balancing of traffic
         </li>
         <li>
-          Filtering of traffic before they hit the Arkime boxes
+          Filtering of traffic before it hits the Arkime boxes
         </li>
         <li>
           Easier to add more Arkime capacity or other security tools
         </li>
         <li>
-          Don’t have to worry as much about new links being added by network team
+          Don’t have to worry as much about new links being added by the network team
         </li>
       </ul>
       <p>
-        Features to look for
+        Features to look for:
       </p>
       <ul>
         <li>
@@ -1975,47 +1973,47 @@ logger.action.level = info</code></pre>
           goes out the same tool port)
         </li>
         <li>
-          MPLS/VLAN/VPN stripped (optional - some tools don’t like all the headers)
+          MPLS/VLAN/VPN stripped (optional—some tools don’t like all the headers)
         </li>
         <li>
-          Tool link detection and fail over
+          Tool link detection and failover
         </li>
         <li>
-          Automation capability (can you use ansible/apis or are you stuck using a web ui)
+          Automation capability (can you use Ansible/APIs, or are you stuck using a web UI?)
         </li>
         <li>
           Enough ports to support future tap and tool growth
         </li>
         <li>
-          If the features desired require an extra (expensive?) component and/or license
+          Whether the features desired require an extra (expensive?) component and/or license
         </li>
       </ul>
       <p>
         Just like with Arkime with commodity hardware, you don’t necessarily have
-        to pay a lot of money for a good NPB. Some switch vendors have switches
-        that can operate in switch mode or npb mode, so you might already have
-        gear laying around you can use.
+        to pay a lot of money for a good NPB. Some switch vendors offer switches
+        that can operate in switch mode or NPB mode, so you might already have
+        gear you can use.
       </p>
       <p>
         Sample vendors
       </p>
       <ul>
         <li>
-          Arista -
+          Arista –
           <a href="https://www.arista.com/en/solutions/tap-aggregation"
             rel="nofollow">
             https://www.arista.com/en/solutions/tap-aggregation
           </a>
         </li>
         <li>
-          Gigamon -
+          Gigamon –
           <a href="https://www.gigamon.com/"
             rel="nofollow">
             https://www.gigamon.com/
           </a>
         </li>
         <li>
-          Ixia -
+          Ixia –
           <a href="https://www.ixiacom.com/products/network-packet-brokers"
             rel="nofollow">
             https://www.ixiacom.com/products/network-packet-brokers
@@ -2031,9 +2029,9 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        On basic commodity hardware, it is easy to get 3Gbps or more, depending
+        On basic commodity hardware, it is easy to get 3 Gbps or more, depending
         on the number of CPUs available to Arkime and what else the machine is
-        doing. Many times the limiting factor can be the speed of the disks and
+        doing. Many times, the limiting factor is the speed of the disks and
         RAID system. See
         <a href="architecture">
           Architecture</a>
@@ -2044,17 +2042,17 @@ logger.action.level = info</code></pre>
         process the packets.
       </p>
       <p>
-        To test the local RAID device use:
+        To test the local RAID device, use:
         <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
-        To test a NAS leave off the oflag=direct and make sure you test with at least 3x the amount of memory so cache isn't a factor use:
+        To test a NAS, leave off the oflag=direct and make sure you test with at least 3x the amount of memory so that cache isn't a factor:
         <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
       </p>
       <p>
         This is the MAX disk performance. Run several times if desired and take
         the average. If you don’t want to drop any packets, you shouldn’t average
-        more then ~80% of the MAX disk performance. If using RAID and don’t want
+        more then ~80% of the MAX disk performance. If you are using RAID and don’t want to
         drop packets during a future rebuild, ~60% is a better value. Remember
-        that most network numbers will be in bits while the disk performance will
+        that most network numbers will be in bits, while the disk performance will
         be in bytes, so you’ll need to adjust the values before comparing.
       </p>
 
