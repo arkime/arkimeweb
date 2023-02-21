@@ -1,0 +1,24 @@
+name: Netflow
+before: |
+  <p>
+    Arkime can generate netflow for all sessions it saves SPI data for. Add
+    <code>netflow.so</code> to the <code>plugins=</code> line in the config
+    file.
+  </p>
+
+settings:
+  - key: netflowSNMPInput
+    value: 0
+    text: What to fill in the input field
+
+  - key: netflowSNMPOutput
+    value: 0
+    text: What to fill in the output field
+
+  - key: netflowVersion
+    value: 5
+    text: "Version of netflow to send: 1, 5, 7"
+
+  - key: netflowDestinations
+    value: EMPTY
+    text: Semicolon ';' separated list of host:port destinations to send the netflow

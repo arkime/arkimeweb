@@ -1,36 +1,47 @@
-- key: kafkaBootstrapServers 
-  text: Comma separated list of bootstrap servers to use
-  value: EMPTY
+name: Kafka
+before: |
+  <p>
+    (Single 4.2.0)
+    Arkime can send sessions to kafka instead of directly to OpenSearch/Elasticsearch.
+    Arkime will still need to directly use OpenSearch/Elasticsearch for other data store.
+    To enable add <code>kafka.so</code> to the <code>plugins=</code> line in the config
+    file.
+  </p>
 
-- key: kafkaTopic 
-  text: Topic to send the sessions to
-  value: "arkime-json"
+settings:
+  - key: kafkaBootstrapServers 
+    text: Comma separated list of bootstrap servers to use
+    value: EMPTY
 
-- key: kafkaSSL 
-  text: Enable SSL
-  value: "false"
+  - key: kafkaTopic 
+    text: Topic to send the sessions to
+    value: "arkime-json"
 
-- key: kafkaSSLCALocation 
-  text: Path where the SSL CA is located
-  value: EMPTY
+  - key: kafkaSSL 
+    text: Enable SSL
+    value: "false"
 
-- key: kafkaSSLCertificateLocation 
-  text: Path where the SSL client certificate is located
-  value: EMPTY
+  - key: kafkaSSLCALocation 
+    text: Path where the SSL CA is located
+    value: EMPTY
 
-- key: kafkaSSLKeyLocation 
-  text: Path where the SSL cilent key is located
-  value: EMPTY
+  - key: kafkaSSLCertificateLocation 
+    text: Path where the SSL client certificate is located
+    value: EMPTY
 
-- key: kafkaSSLKeyPassword 
-  text: Optional password for the client key
-  value: EMPTY
+  - key: kafkaSSLKeyLocation 
+    text: Path where the SSL cilent key is located
+    value: EMPTY
 
-- key: kafkaMsgFormat 
-  text: |
-    How to send the SPI data: <ul>
-      <li>bulk - raw bulk msg</li>
-      <li>bulk1 - bulk formatted, but just 1 doc</li>
-      <li>doc - just the doc, added "index" field with the OpenSearch/Elasticearch index to send to</li>
-    </ul>
-  value: "bulk"
+  - key: kafkaSSLKeyPassword 
+    text: Optional password for the client key
+    value: EMPTY
+
+  - key: kafkaMsgFormat 
+    text: |
+      How to send the SPI data: <ul>
+        <li>bulk - raw bulk msg</li>
+        <li>bulk1 - bulk formatted, but just 1 doc</li>
+        <li>doc - just the doc, added "index" field with the OpenSearch/Elasticearch index to send to</li>
+      </ul>
+    value: "bulk"

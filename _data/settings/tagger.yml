@@ -1,0 +1,12 @@
+name: Tagger
+before: |
+  <p>
+    See the
+    <a class="no-decoration"
+      href="tagger">
+      Tagger page</a>
+    and the
+    <a class="no-decoration"
+      href="taggerformat">
+      Tagger Format page</a>
+  </p>

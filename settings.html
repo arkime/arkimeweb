@@ -1,5 +1,13 @@
 ---
 title: Settings
+plugins:
+  - kafka
+  - lua
+  - netflow
+  - suricata
+  - tagger
+  - tcphealthcheck
+  - wise
 ---
 
 <!DOCTYPE html>
@@ -178,46 +186,19 @@ title: Settings
         title="PCAP at Rest Encryptions">
         PCAP at Rest Encryption
       </a>
-      <a href="#plugins"
+      <a href="#Plugins"
         class="nav-link"
         title="Plugins">
         Plugins
       </a>
-      <a class="nav-link nested"
-        href="#wise"
-        title="WISE">
-        WISE
-      </a>
-      <a class="nav-link nested"
-        href="#netflow"
-        title="Netflow">
-        Netflow
-      </a>
-      <a class="nav-link nested"
-        href="#suricata"
-        title="Suricata">
-        Suricata
-      </a>
-      <a class="nav-link nested"
-        href="#tagger"
-        title="Tagger">
-        Tagger
-      </a>
-      <a class="nav-link nested"
-        href="#lua"
-        title="Lua">
-        Lua
-      </a>
-      <a class="nav-link nested"
-        href="#kafka"
-        title="Kafka">
-        Kafka
-      </a>
-      <a class="nav-link nested"
-        href="#tcphealthcheck"
-        title="TCP Health Check">
-        TCP Health Check
-      </a>
+      {% for pluginid in page.plugins %}
+        {% assign plugin = site.data.settings[pluginid] %}
+        <a class="nav-link nested"
+          href="#{{pluginid}}"
+          title="{{plugin.name}}">
+          {{plugin.name}}
+        </a>
+      {% endfor %}
       <a href="#high-performance-settings"
         class="nav-link"
         title="High Performance Settings">
@@ -4810,7 +4791,7 @@ kekid2=Randomkekpassword2
       <!-- /PCAP at Rest Encryption -->
 
       <!-- Plugins -->
-      <h1 id="plugins"
+      <h1 id="Plugins"
         class="border-bottom">
         Plugins
         <span class="fa fa-link small copy-link cursor-copy"
@@ -4818,355 +4799,56 @@ kekid2=Randomkekpassword2
         </span>
       </h1>
 
-      <!-- WISE -->
-      <h2 id="wise">
-        WISE
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
       <p>
-        See the
-        <a class="no-decoration"
-          href="wise">
-          WISE page</a>
+        Arkime supports several different plugins that can be added to the capture process.
       </p>
-      <!-- /WISE -->
 
-      <!-- Netflow -->
-      <h2 id="netflow">
-        Netflow
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        Arkime can generate netflow for all sessions it saves SPI data for. Add
-        <code>netflow.so</code> to the <code>plugins=</code> line in the config
-        file.
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="netflowsnmpinput">
-              netflowSNMPInput
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              What to fill in the input field
-            </td>
-          </tr>
-          <tr>
-            <td id="netflowsnmpoutput">
-              netflowSNMPOutput
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              What to fill in the output field
-            </td>
-          </tr>
-          <tr>
-            <td id="netflowversion">
-              netflowVersion
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              5
-            </td>
-            <td>
-              Version of netflow to send: 1, 5, 7
-            </td>
-          </tr>
-          <tr>
-            <td id="netflowdestinations">
-              netflowDestinations
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              EMPTY
-            </td>
-            <td>
-              Semicolon ';' separated list of host:port destinations to send the netflow
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /Netflow -->
-
-      <!-- Suricata -->
-      <h2 id="suricata">
-        Suricata
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        Arkime can enrich sessions with Suricata alerts.
-        Suricata and Arkime must see the same traffic and share the same eve.json/alert.json for the plugin to work.
-        Sessions that have been enriched will have several new fields, all starting with suricata, and will be
-        displayed in a Suricata section of the standard Arkime session UI.
-        Arkime matches sessions based on the 5 tuple from the alert.json or eve.json file, only using the items with event_type of alert.
-        A very simple query to find all sessions that have Suricata data is <code>suricata.signature == EXISTS!</code>.
-      </p>
-      <p>
-        <strong>Note:</strong> there isn't a special Suricata UI inside Arkime,
-        this is just adding new fields to Arkime sessions like wise or tagger
-        do. The Suricata enrichment is done by moloch-capture, so
-        moloch-capture must see the traffic.
-      </p>
-      <p>
-        Add <code>suricata.so</code> to the <code>plugins=</code> line in the
-        config file.
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="suricataalertfile">
-              suricataAlertFile
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              REQUIRED
-            </td>
-            <td>
-              The full path to either the alert.json or eve.json file, make
-              sure the <code>dropUser</code> or <code>dropGroup</code> can open
-              the file
-            </td>
-          </tr>
-          <tr>
-            <td id="suricataexpireminutes">
-              suricataExpireMinutes
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              60
-            </td>
-            <td>
-              (Since 1.5.1) The number of minutes to keep Suricata alerts in memory before expiring them based on the Suricata alert timestamp.
-              For example if a Suricata alert has a timestamp of 1am, the default is to keep looking for matching traffic until 2am (60 minutes).
-              If reading offline pcap you'll want to increase this number to cover how old the pcap is.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="mb-0">
-        Sample Config:
-      </p>
-      <pre><code># Add suricata.so to your plugins line, or add a new plugins line
-plugins=suricata.so
-
-# suricataAlertFile should be the full path to your alert.json or eve.json file
-suricataAlertFile=/nids/suricata/eve.json</code></pre>
-      <!-- /Suricata -->
-
-      <!-- Tagger -->
-      <h2 id="tagger">
-        Tagger
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        See the
-        <a class="no-decoration"
-          href="tagger">
-          Tagger page</a>
-        and the
-        <a class="no-decoration"
-          href="taggerformat">
-          Tagger Format page</a>
-      </p>
-      <!-- /Tagger -->
-      <!-- Lua -->
-      <h2 id="lua">
-        Lua
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="luafiles">
-              luaFiles
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              EMPTY
-            </td>
-            <td>
-              The Lua Files to load
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /Lua -->
-      <!-- Kafka -->
-      <h2 id="kafka">
-        Kafka
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        (Single 4.2.0)
-        Arkime can send sessions to kafka instead of directly to OpenSearch/Elasticsearch.
-        Arkime will still need to directly use OpenSearch/Elasticsearch for other data store.
-        To enable add <code>kafka.so</code> to the <code>plugins=</code> line in the config
-        file.
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {% assign sorted = site.data.settings.kafka | sort: "key" %}
-          {% for item in sorted %}
-            <td id="{{ item.key }}">
-              <span id="{{ item.key | downcase}}">{{item.key}}</span>
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              {{ item.value }}
-            </td>
-            <td>
-              {{ item.text }}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <!-- /Lua -->
-      <!-- TCPHealthCheck -->
-      <h2 id="tcphealthcheck">
-        TCP Health Check
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        TCP Health Check plugin enables
-        the capture module to listen on
-        a specific TCP port and immediately
-        close accepted connections. This is useful
-        to keep load balancer health checks informed
-        about the capture module working properly.
-        One specific use case is
-        <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html">
-          Health Checks for Target Groups
-        </a>
-        in AWS
-        Network Load Balancer.
-      </p>
-      <p>
-        Add <code>tcphealthcheck.so</code> to the <code>plugins=</code> line in the
-        config file.
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="tcphealthcheckport">
-              tcpHealthCheckPort
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              EMPTY
-            </td>
-            <td>
-              Make the capture module listen on this TCP port
-              for health checks.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /TCPHealthCheck -->
+      {% for pluginid in page.plugins %}
+        {% assign plugin = site.data.settings[pluginid] %}
+        <h2 id="{{pluginid}}">
+          {{plugin.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h2>
+        {{plugin.before}}
+        {% if plugin.settings %}
+          <table class="table table-bordered table-sm table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = plugin.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{plugin.after}}
+      {% endfor %}
       <!-- /Plugins -->
 
       <!-- High Performance Settings -->

@@ -1,0 +1,9 @@
+name: WISE
+before: |
+  <p>
+    See the
+    <a class="no-decoration"
+      href="wise">
+      WISE page</a>
+  </p>
+

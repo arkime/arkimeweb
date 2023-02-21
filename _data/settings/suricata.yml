@@ -1,0 +1,44 @@
+name: Suricata
+before: |
+  <p>
+    Arkime can enrich sessions with Suricata alerts.
+    Suricata and Arkime must see the same traffic and share the same eve.json/alert.json for the plugin to work.
+    Sessions that have been enriched will have several new fields, all starting with suricata, and will be
+    displayed in a Suricata section of the standard Arkime session UI.
+    Arkime matches sessions based on the 5 tuple from the alert.json or eve.json file, only using the items with event_type of alert.
+    A very simple query to find all sessions that have Suricata data is <code>suricata.signature == EXISTS!</code>.
+  </p>
+  <p>
+    <strong>Note:</strong> there isn't a special Suricata UI inside Arkime,
+    this is just adding new fields to Arkime sessions like wise or tagger
+    do. The Suricata enrichment is done by moloch-capture, so
+    moloch-capture must see the traffic.
+  </p>
+  <p>
+    Add <code>suricata.so</code> to the <code>plugins=</code> line in the
+    config file.
+  </p>
+
+after: |
+  <p class="mb-0">
+    Sample Config:
+  </p>
+  <pre><code># Add suricata.so to your plugins line, or add a new plugins line
+  plugins=suricata.so
+
+  # suricataAlertFile should be the full path to your alert.json or eve.json file
+  suricataAlertFile=/nids/suricata/eve.json</code></pre>
+
+settings:
+  - key: suricataAlertFile
+    value: REQUIRED
+    text: |
+      The full path to either the alert.json or eve.json file, make
+      sure the <code>dropUser</code> or <code>dropGroup</code> can open the file
+
+  - key: suricataExpireMinutes
+    value : 60
+    text: |
+      (Since 1.5.1) The number of minutes to keep Suricata alerts in memory before expiring them based on the Suricata alert timestamp.
+      For example if a Suricata alert has a timestamp of 1am, the default is to keep looking for matching traffic until 2am (60 minutes).
+      If reading offline pcap you'll want to increase this number to cover how old the pcap is.
