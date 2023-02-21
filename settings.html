@@ -209,6 +209,11 @@ title: Settings
         Lua
       </a>
       <a class="nav-link nested"
+        href="#kafka"
+        title="Kafka">
+        Kafka
+      </a>
+      <a class="nav-link nested"
         href="#tcphealthcheck"
         title="TCP Health Check">
         TCP Health Check
@@ -5053,6 +5058,54 @@ suricataAlertFile=/nids/suricata/eve.json</code></pre>
               The Lua Files to load
             </td>
           </tr>
+        </tbody>
+      </table>
+      <!-- /Lua -->
+      <!-- Kafka -->
+      <h2 id="kafka">
+        Kafka
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h2>
+      <p>
+        (Single 4.2.0)
+        Arkime can send sessions to kafka instead of directly to OpenSearch/Elasticsearch.
+        Arkime will still need to directly use OpenSearch/Elasticsearch for other data store.
+        To enable add <code>kafka.so</code> to the <code>plugins=</code> line in the config
+        file.
+      </p>
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+          <tr>
+            <th>
+              Setting
+            </th>
+            <th>
+              Default
+            </th>
+            <th>
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% assign sorted = site.data.settings.kafka | sort: "key" %}
+          {% for item in sorted %}
+            <td id="{{ item.key }}">
+              <span id="{{ item.key | downcase}}">{{item.key}}</span>
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              {{ item.value }}
+            </td>
+            <td>
+              {{ item.text }}
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
       <!-- /Lua -->
