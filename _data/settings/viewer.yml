@@ -1,0 +1,219 @@
+name: Viewer Settings
+settings:
+  - key: businessDayStart
+    value: EMPTY
+    text: |
+      If both businessDayStart and businessDayEnd are set, it displays a
+      colored background on the sessions timeline graph during business hours.
+      Values are in hours from midnight UTC. For example: 9am EST would be 13.
+
+  - key: businessDayEnd
+    value: EMPTY
+    text: |
+      If both businessDayStart and businessDayEnd are set, it displays a
+      colored background on the sessions timeline graph during business hours.
+      Values are in hours from midnight UTC. For example: 5pm EST would be 21.
+
+  - key: businessDays
+    value: "1,2,3,4,5"
+    text: |
+      Displays a colored background on the sessions timeline graph on
+      only these days. businessDayStart and businessDayEnd must be set
+      for these to be of use. Values are comma separted list of days of
+      the week as numbers. The week starts at Sunday = 0 and ends on
+      Saturday = 6. For example: Monday through Friday would be 1,2,3,4,5
+
+  - key: cronQueries
+    value: "false"
+    text: |
+      Set on <strong>ONE</strong: viewer node per cluster, this viewer node will perform all the cron queries and hunts for the cluster.
+      If you do NOT set this on a cluster hunts and cron queries can be created but will never run.
+      <br>
+      (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local OpenSearch/Elasticsearch.
+
+  - key: spiDataMaxIndices
+    value: "1"
+    text: |
+      Specify the max number of indices we calculate spidata for, or set to -1 to disable any max.
+      OpenSearch/Elasticsearch MAY blow up if we allow the spiData to search too many indices.
+
+  - key: titleTemplate
+    value: "_cluster_ - _page_ _-view_ _-expression_"
+    text: |
+      <ul class="mb-0">
+        <li>
+          _cluster_ = ES cluster name
+        </li>
+        <li>
+          _userId_ = logged in User Id
+        </li>
+        <li>
+          _userName_ = logged in User Name
+        </li>
+        <li>
+          _page_ = internal page name
+        </li>
+        <li>
+          _expression_ = current search expression if set, otherwise
+          blank
+        </li>
+        <li>
+          _-expression_ = " - " + current search expression if set,
+          otherwise blank, prior spaces removed
+        </li>
+        <li>
+          _view_ = current view if set, otherwise blank
+        </li>
+        <li>
+          _-view_ = " - " + current view if set, otherwise blank, prior
+          spaces removed
+        </li>
+      </ul>
+
+  - key: certFile
+    value: EMPTY
+    text: |
+      Public certificate to use for https, if not set then http will be
+      used. keyFile must also be set.
+
+  - key: keyFile
+    value: EMPTY
+    text: |
+      Private certificate to use for https, if not set then http will
+      be used. certFile must also be set.
+
+  - key: viewerPlugins
+    value: EMPTY
+    text: |
+      Semicolon separated list of viewer plugins to load and the
+      order to load them in. Must include the trailing .js
+
+  - key: viewHost
+    value: EMPTY
+    text: |
+      The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
+      See the <code>host</code> section of
+      <a class="no-decoration"
+        href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
+        rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
+
+  - key: viewPort
+    value: "8005"
+    text: |
+      This is both the port that the viewer process listens on AND the port we try to connect to other viewer proceses on when proxing.
+      We recommend all viewers use the same port so it can be set in the [default] section.
+      If viewers can't listen on the same ports then set the one in [default] to the common one, and the one in [NODE] to the special port.
+
+  - key: viewUrl
+    value: "http[s]://hostname:[viewport]"
+    text: |
+      This shouldn't be needed anymore, but it allows you to over load both the host and port for talking to a remote node.
+      See <a href="/faq#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">How do viewers find each other</a>.
+      It is much better to use FQDNs on capture nodes, or start capture with the --host option.
+
+  - key: webBasePath
+    value: "/"
+    text: |
+      The base url for Arkime web requests.
+      Must end with a / or bad things will happen.
+      This setting is meant to be used when using a reverse proxy talking to multiviewer or central viewers.
+      Do not set in the [default] section, only in a section that matches the node name of the multiviewer/central viewer.
+
+  - key: arkimeWebURL
+    value: "http[s]://hostName:[viewPort]/[webBasePath]"
+    text: |
+      (since 3.0)
+      The website URL for Arkime. Used to create links to the Arkime web
+      UI. Must end with a / or bad things will happen. You can include
+      the "http(s)://" or exclude it. If excluded, http/https will be
+      set by determining whether a keyFile and certFile exist.
+
+  - key: accessLogFile
+    value: EMPTY
+    text: |
+      If left empty, then the viewer will log to stdout. It can be set to a filename and then logging will
+      be directed there.
+
+  - key: accessLogFormat
+    value: |
+      :date :username %1b[1m:method%1b[0m %1b[33m:url%1b[0m :status :res[content-length] bytes :response-time ms
+    text: |
+      (Since 2.3) Set the log record format -- this uses Express Morgan. The string is URL Encoded and so uses %xx
+      to escape special characters.
+      See the Morgan documentation for the <a href="https://github.com/expressjs/morgan">list of keywords</a>.
+
+  - key: accessLogSuppressPaths
+    value: EMPTY
+    text: |
+      (Since 2.3) This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
+      Setting this to /eshealth.json will suppress logging of all calls to that endpoint.
+
+  - key: aes256Encryption
+    value: |
+      forced true (since 4.0)<br>
+      true (since 2.4.0)<br>
+      false (before 2.4.0)
+    text: |
+      (Since 2.2.0) Use better encryption when talking between viewer nodes
+
+
+  - key: hstsHeader
+    value: "false"
+    text: |
+      From viewer, return a hsts header on responses
+
+  - key: huntWarn
+    value: "100000"
+    text: |
+      (Since 1.6.0) Warn users when creating a hunt if more then this
+      many sessions will be searched
+
+  - key: huntLimit
+    value: "1000000"
+    text: |
+      (Since 1.6.0) Do not create hunts for non admin users if more
+      then this many sessions will be searched
+
+  - key: huntAdminLimit
+    value: "10000000"
+    text: |
+      (Since 1.6.0) Do not create hunts for admin users if more then
+      this many sessions will be searched
+
+  - key: iframe
+    value: deny
+    text: |
+      Used to set the <code>X-Frame-Options</code> header for putting
+      Arkime in an iFrame. Options include "deny", "notallowed", or a
+      URL to allow from.
+
+  - key: uploadCommand
+    value: EMPTY
+    text: |
+      If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
+      Example setting would be <code>/opt/arkime/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
+      The following templated values will be filled in for you:
+      <ul>
+        <li>NODE - The node name of the viewer that received the upload</li>
+        <li>TMPFILE - The tmp file name uploaded to</li>
+        <li>CONFIG - The config file path used to start viewer</li>
+        <li>TAGS - The tags set with the upload</li>
+        <li>INSECURE-ORIGINALNAME - DO NOT USE!!! The full original name of the uploaded file, using this will make it EASY to take over your host. DO NOT USE!!!</li>
+      </ul>
+
+  - key: uploadFileSizeLimit
+    value: EMPTY
+    text: |
+      (Since 2.0) If set, the max size of pcap files that can be uploaded from the UI
+
+  - key: queryAllIndices
+    value: "false for viewer, true for multiviewer"
+    text: |
+      (Since 1.5.0) Always query all indices instead of trying to
+      calculate which ones. Use this if searching across that use
+      different rotateIndex values.
+
+  - key: valueAutoComplete
+    value: "true for viewer, false for multiviewer"
+    text: |
+      Autocomplete field values in the search expression.

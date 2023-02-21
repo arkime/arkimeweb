@@ -1,0 +1,35 @@
+name: "Reader - AFPacket - Settings"
+before: |
+  <p>
+    Tpacketv3, also known as AFPacket v3, is the preferred reader for arkime and can be used on most
+    3.x or later kernels. Configure moloch-capture to use tpacketv3 as the reader
+    method with <code>pcapReadMethod=tpacketv3</code> in your configuration
+    file. This is also know as afpacket.
+  </p>
+
+after: |
+  <p class="mb-0">
+    Example:
+  </p>
+  <pre>[default]
+  pcapReadMethod=tpacketv3
+  tpacketv3BlockSize=2097152
+  interface=eth0
+  tpacketv3NumThreads=2</pre>
+
+
+settings:
+  - key: tpacketv3BlockSize
+    value: "2097152"
+    text: |
+      The block size in bytes used for reads from each interface. There are 120 blocks per interface.
+
+  - key: tpacketv3NumThreads
+    value: "2"
+    text: |
+      The number of threads used to read packets from each interface. These threads take the packets from the AF packet interface and place them into the packet queues.
+
+  - key: tpacketv3ClusterId
+    value: "0"
+    text: |
+      (Since 2.0) The cluster id for use with PACKET_FANOUT

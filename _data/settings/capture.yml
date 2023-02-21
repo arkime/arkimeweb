@@ -1,0 +1,424 @@
+name: Capture Settings
+
+settings:
+  - key: bpf
+    value: EMPTY
+    text: |
+      The bpf filter used to reduce traffic. Used both on live and file traffic.
+
+  - key: dontSaveBPFs
+    value: EMPTY
+    text: |
+      Semicolon ';' separated list of bpf filters which when matched
+      for a session causes the remaining pcap from being saved for the
+      session. It is possible to specify the number of packets to save
+      per filter by ending with a :num. For example
+      dontSaveBPFs = port 22:5 will only save 5 packets for port
+      22 sessions. Currently only the initial packet is matched against
+      the bpfs.
+
+  - key: dontSaveTags
+    value: EMPTY
+    text: |
+      Semicolon ';' separated list of tags which once capture sets for
+      a session causes the remaining pcap from being saved for the
+      session. It is likely that the initial packets WILL be
+      saved for the session since tags usually aren't set until after
+      several packets. It is possible to specify the number of packets
+      to save per filter by ending with a :num.
+
+  - key: espTimeout
+    value: 600
+    text: |
+      For ESP sessions, Arkime writes a session record after this many
+      seconds of inactivity since the last session save.
+
+  - key: geoLite2ASN
+    value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
+    text: |
+      A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
+       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+      <a class="no-decoration"
+        href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-ASN"
+        rel="nofollow">Download free version</a>
+
+  - key: geoLite2Country
+    value: "/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb"
+    text: |
+      A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
+       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+      <a class="no-decoration"
+        href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-Country"
+        rel="nofollow">Download free version</a>
+
+  - key: icmpTimeout
+    value: 10
+    text: |
+      For ICMP sessions, Arkime writes a session record after this
+      many seconds of inactivity since the last session save.
+
+  - key: interface
+    value: EMPTY
+    text: |
+      Semicolon ';' separated list of interfaces to listen on for live traffic.
+
+  - key: magicMode
+    value: both
+    text: |
+      libfile can be VERY slow. Less accurate "magicing" is available for http/smtp bodies:
+      <ul class="mb-0">
+        <li>libmagic - normal libmagic</li>
+        <li>libmagicnotext - libmagic, but turns off text checks</li>
+        <li>molochmagic - (removed in 1.5.0) subset of libmagic input files, and less accurate</li>
+        <li>both - (since 1.5.0) try basic and then libmagic</li>
+        <li>basic - 50+ of most common headers</li>
+        <li>none - no libmagic or basic calls</li>
+      </ul>
+
+  - key: maxFileSizeG
+    value: 12 (since 4.0.0)<br>4 (before 4.0)
+    text: |
+      The max raw pcap file size in gigabytes.
+      The disk should have room for at least 10*maxFileSizeG files.
+
+  - key: maxFileTimeM
+    value: 0
+    text: |
+      The max time in minutes between rotating pcap files. Useful if
+      there is an external utility that needs to look for closed files
+      every so many minutes. Setting to 0 means only use
+      maxFileSizeG
+
+  - key: maxPackets
+    value: 10000
+    text: |
+      Arkime writes a session record after this many packets since the
+      last save. Arkime is only tested at 10k, anything above is not
+      recommended.
+
+  - key: maxPacketsInQueue
+    value: 200000
+    text: |
+      How many packets per packet thread that can be waiting to be processed.
+      Arkime will stop dropping packets if the queue fills up.
+
+  - key: maxStreams
+    value: 1500000
+    text: |
+      An aproximiate maximum number of active sessions Arkime will try and monitor
+
+  - key: minPacketsSaveBPFs
+    value: EMPTY
+    text: |
+      Semicolon ';' separated list of bpf filters which
+      when matched for a session have their SPI data NOT saved to
+      OpenSearch/Elasticsearch. PCAP data is still saved however. It is possible
+      to specify the number of min packets required for SPI to be saved
+      by ending with a :num. A use case is a scanning host inside the
+      network that you only want to capture if their is a conversation
+      "tcp and host 10.10.10.10:1".
+
+  - key: ouiFile
+    value: EMPTY
+    text: |
+      The mac address lookup for manufactures file
+      <a class="no-decoration"
+        href="https://raw.githubusercontent.com/wireshark/wireshark/master/manuf"
+        rel="nofollow">Download free version</a>
+
+  - key: packetThreads
+    value: "1"
+    text: |
+      Number of threads to use to process packets AFTER the reader has received the packets.
+      This also controls how many packet queues there are, since each thread has its own queue.
+      Basically how much CPU to dedicate to parsing the packets.
+      Increase this if you get errors about dropping packets or the packetQ is over flowing.
+      If using the simple writer, this also controls how many pcap files are open for writing.
+
+  - key: parseCookieValue
+    value: "false"
+    text: |
+      Parse HTTP request cookie values, cookie keys are always parsed.
+
+  - key: parseQSValue
+    value: "false"
+    text: |
+      Parse HTTP query string values, query string keys are always parsed.
+
+  - key: parseSMB
+    value: "true"
+    text: |
+      Parse extra SMB traffic info
+
+  - key: parseDNSRecordAll
+    value: "false"
+    text: |
+      Parse a full DNS record (query, answer,
+      authoritative, and additional) and store various DNS information
+      (look up hostname, name server IPs, mail exchange server IPs, and
+      so on) into multiple ES fields
+
+  - key: parseSMTP
+    value: "true"
+    text: |
+      Parse extra SMTP traffic info
+
+  - key: parseSMTPHeaderAll
+    value: "false"
+    text: |
+      Parse ALL SMTP request headers not already parsed
+      using the [headers-email] section
+
+  - key: parseHTTPHeaderRequestAll
+    value: "false"
+    text: |
+      Parse ALL HTTP request headers not already parsed
+      using the [headers-http-request] section
+
+  - key: parseHTTPHeaderResponseAll
+    value: "false"
+    text: |
+      Parse ALL HTTP request headers not already parsed
+      using the [headers-http-response] section
+
+  - key: plugins
+    value: EMPTY
+    text: |
+      Semicolon separated list of plugins to load and the order
+      to load them in. Must include the trailing .so
+
+  - key: rootPlugins
+    value: EMPTY
+    text: |
+      Semicolon separated list of plugins to load as root and
+      the order to load them in. Must include the trailing .so
+
+  - key: readTruncatedPackets
+    value: "false"
+    text: |
+      Capture will try and process truncated packets the best it can.
+      In general it is best to have full packet captures for Arkime to work well.
+
+  - key: rirFile
+    value: EMPTY
+    text: |
+      Path of the RIR assignments file.
+      <a class="no-decoration"
+        href="https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.csv"
+        rel="nofollow">Download</a>
+
+  - key: rulesFiles
+    value: EMPTY
+    text: |
+      A semicolon separated list of files that contain
+      rules. These rules match against fields set and can set other
+      fields or meta data about the sessions. See
+      <a class="no-decoration"
+        href="rulesformat">
+        RulesFormat</a>
+      for the format of the files.
+
+  - key: sctpTimeout
+    value: "60"
+    text: |
+      For SCTP sessions, Arkime writes a session record after this many
+      seconds of inactivity since the last session save.
+
+  - key: smtpIpHeaders
+    value: EMPTY
+    text: |
+      Semicolon separated list of SMTP Headers that have ips,
+      need to have the terminating colon ':'
+
+  - key: supportSha256
+    value: "false"
+    text: |
+      Generate Sha256 hashes along side of md5 hashes content.
+
+  - key: tcpSaveTimeout
+    value: "400"
+    text: |
+      For TCP sessions, Arkime writes a session record after this many
+      seconds since the last session save, no matter if active or
+      inactive.
+
+  - key: tcpTimeout
+    value: "480"
+    text: |
+      For TCP sessions, Arkime writes a session record after this many
+      seconds of inactivity since the last session save.
+
+  - key: udpTimeout
+    value: "60"
+    text: |
+      For UDP sessions, Arkime writes a session record after this many
+      seconds of inactivity since the last session save.
+
+  - key: yara
+    value: EMPTY
+    text: |
+      A single file where to load Yara rules from.
+      This file will be auto reloaded on changes so you don't need to restart capture.
+
+  - key: yaraEveryPacket
+    value: "true"
+    text: |
+      When true yara is applied to every tcp/udp packet, otherwise only the first tcp/udp packet in a session is used.
+      Yara is run after the classification Arkime step.
+      Looking at every packet can be resource intensive.
+
+  - key: yaraFastMode
+    value: "true"
+    text: |
+      Set the Yara Fast Mode flag.
+
+  - key: enablePacketLen
+    value: "false"
+    text: |
+      (Since 2.0) Index all the packet lengths in OpenSearch/Elasticsearch
+      (Before 2.0) always saved packet lengths.
+
+  - key: filenameOps
+    value: EMPTY
+    text: |
+      (Since 1.5.0) A semicolon separated list of operations that use
+      the filename. Format is <code>fieldexpr=match%value</code> so if
+      you wanted to set a tag based on part of filenames that start
+      with gre use <code>tags=/gre-(.*)\\.pcap%gretest-\\1</code>.
+      Notice two backslashes are required everywhere you want one
+      because of ini formatting.
+
+  - key: fragsTimeout
+    value: "480"
+    text: |
+      Number of seconds to keep around an ip fragment and try an reassemble it
+
+  - key: gapPacketPos
+    value: "true"
+    text: |
+      (Since 2.4.0) encode packetPos using a simple gap encoding, this reduces storage in ES
+
+  - key: interfaceOps
+    value: EMPTY
+    text: |
+      (Since 1.5.0) A semicolon separated list of a comma separted list of operations to set for each interface.
+      The semicolon list must have the same number of elements as the interface setting.
+      The format is <code>fieldexp=value</code>.
+      So for example if you have <code>interface=eth1;eth2</code> you could set a tag with <code>interfaceOps=tags=eth1;tags=eth2</code>.
+
+  - key: ja3Strings
+    value: "false"
+    text: |
+      (Since 2.0) Index the raw JA3 strings before hashing them
+
+  - key: maxFrags
+    value: "10000"
+    text: |
+      Max number of ip fragment packets to save and try and match at once
+
+  - key: maxMemPercentage
+    value: "100"
+    text: |
+      If arkime exceeds this amount of memory it will log an error and
+      send itself a SIGSEGV that should produce a core file.
+
+  - key: maxReqBody
+    value: 256
+    text: |
+      For HTTP requests, store this many bytes in the http.requestBody field.  Can be disabled by setting to 0.
+
+  - key: reqBodyOnlyUtf8
+    value: "true"
+    text: |
+      Only store request bodies that are utf8
+
+  - key: maxTcpOutOfOrderPackets
+    value: 256
+    text: |
+      (Since 1.5.0) Max number of tcp packets to track while trying to
+      reassemble the TCP stream
+
+  - key: offlineDispatchAfter
+    value: |
+      pre 2.1 - 5000 (unchangeable)<br>
+      2.1,2.2 - 1000<br>
+      2.3 - 2500<br>
+    text: |
+      How many packets to read from offline pcap files at once.
+
+  - key: offlineFilenameRegex
+    value: |
+      (?i)\.(pcap|cap)$
+    text: |
+      Regexp to control which filenames are processed when using the -R
+      option to moloch-capture.
+
+  - key: pcapBufferSize
+    value: "100000"
+    text: |
+      pcap library buffer size, see man pcap_set_buffer_size
+
+  - key: pcapReadMethod
+    value: libpcap
+    text: |
+      Specify how packets are read from network cards:
+      <ul class="mb-0">
+        <li> libpcap = Use libpcap </li>
+        <li> pfring = Use pfring directly, requires rootPlugins=reader-pfring.so </li>
+        <li> daq = Use daq, requires rootPlugins=reader-daq.so </li>
+        <li> snf = Use Myricom snf, requires rootPlugins=reader-snf.so </li>
+        <li> tpacketv3 = Use linux tpacketv3 (afpacket) interface </li>
+      </ul>
+
+  - key: pcapWriteMethod
+    value: simple
+    text: |
+      Specify how packets are written to disk:
+      <ul class="mb-0">
+        <li> simple = what you should probably use </li>
+        <li> simple-nodirect = use this with zfs/nfs </li>
+        <li> s3 = write packets into s3 </li>
+        <li> null = don't write to disk at all </li>
+      </ul>
+
+  - key: pcapWriteSize
+    value: "262144"
+    text: |
+      Buffer size when writing pcap files. Should be a multiple of the
+      raid 5/xfs stripe size and multiple of 4096 if using
+      direct/thread-direct pcapWriteMethod
+
+  - key:  snapLen
+    value: "16384"
+    text: |
+      The maximum size of a packet Arkime will read off
+      the interface. This can be changed to fix the "Arkime requires
+      full packet captures" error. It is recommend that instead of
+      changing this value that all the card "offline" features are
+      turned off so that arkime gets a picture of whats on the network
+      instead of what the capture card has reassembled. For VMs, those
+      features must be turned off on the physical interface and not the
+      virtual interface. This setting can be used when changing the
+      settings isn't possible or desired.
+
+  - key: trackESP
+    value: "false"
+    text: |
+      (Since 1.5.0) Add ESP sessions to Arkime, no decoding
+
+  - key: saveUnknownPackets
+    value: EMPTY
+    text: |
+      (Since 1.5.2) Save unknown ether, ip, or corrupt packets into
+      separate files. This variable takes a semicolon separated list of
+      the following values (applied in order):
+      <ul class="mb-0">
+        <li> all = save all unknown ip and ether packets </li>
+        <li> ip:all = save all unknown ip packets </li>
+        <li> ether:all = save all unknown ether packets </li>
+        <li> ip:N = save all unknown ip packets with type of N </li>
+        <li> -ip:N = don't save all unknown ip packets with type of N </li>
+        <li> ether:N = save all unknown ether packets with type of N </li>
+        <li> -ether:N = don't save all unknown ether packets with type of N </li>
+        <li> corrupt = save all corrupt packets (Since 1.5.3) </li>
+      </ul>

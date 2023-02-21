@@ -1,0 +1,31 @@
+name: Debug Settings
+settings:
+  - key: debug
+    value: "0"
+    text: |
+      (Since 3.0) The debug level to use if NO --debug options are given
+
+  - key: logESRequests
+    value: "false"
+    text: |
+      Write to stdout OpenSearch/Elasticsearch requests
+
+  - key: logEveryXPackets
+    value: "50000"
+    text: |
+      Write to stdout info every X packets. Set to -1 to never log status.
+
+  - key: logFileCreation
+    value: "false"
+    text: |
+      Write to stdout file creation information
+
+  - key: logHTTPConnections
+    value: "true for online captures"
+    text: |
+      Log http connection attempts and information
+
+  - key: logUnknownProtocols
+    value: "false"
+    text: |
+      Write to stdout unknown IP protocols

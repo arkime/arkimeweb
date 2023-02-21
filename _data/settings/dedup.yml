@@ -1,0 +1,29 @@
+name: Packet Deduplication Settings
+before: |
+  <p>
+    Arkime since version 2.7.1 has supported basic packet deduplication.
+    The deduplication is done early in the pipeline before a packet queue is assigned.
+    Currently only the iphdr + tcphdr or iphdr + udphdr is used to find duplicate packets, ignoring the TTL field.
+    The deduplication will only look back a configured number of seconds.
+  </p>
+  <p>
+    The packet deduplication is an expensive CPU task, so you should monitor the "Dup Drops/s" column in capture stats to see if worthwhile.
+  </p>
+
+
+settings:
+  - key: enablePacketDedup
+    value: "false"
+    text: |
+      Enable packet deduplication
+
+  - key: dedupSeconds
+    value: "2"
+    text: |
+      The number of seconds to keep packet information for.
+
+  - key: dedupPackets
+    value: "1048575"
+    text: |
+      The approximate number of packets to keep information on per second.
+      Set this number to the max number of packets per second you expect.

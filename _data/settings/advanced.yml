@@ -1,0 +1,40 @@
+name: Advanced Settings
+
+settings:
+  - key: parsersDir
+    value: /opt/arkime/parsers ; ./parsers
+    text: |
+      Semicolon separated list of directories to load parsers from
+
+  - key: pluginsDir
+    value: EMPTY
+    text: |
+      Semicolon separated list of directories to load plugins from
+
+  - key: demoMode
+    value: "false"
+    text: |
+      Enables demo mode which disables most Settings, Users, Cron, and History UI/APIs.
+      This is what https://demo.arkime.com uses.
+      Demo mode applies to the entire application, and not just a single user.
+      We recommend running 1 viewer in demo mode and another in normal mode that only an admin can access to change settings and such.
+      You can still have multiple accounts in demo mode if desired.
+
+  - key: disableUserPasswordUI
+    value: "true"
+    text: |
+      (Since 4.1.0) When true hide the Change Password form in the UI for users with Web Auth Header enabled.
+      When false always show the Change Password form.
+
+  - key: includes
+    value: EMPTY
+    text: |
+      Semicolon ';' separated list of files to load for config values.
+      Files are loaded in order and can replace values set in this file
+      or previous files. Setting includes is only supported in the top
+      level config file.
+
+  - key: isLocalViewRegExp
+    value: EMPTY
+    text: |
+      (Since 1.6.1) If the node matches the supplied regexp, then the node is considered local.

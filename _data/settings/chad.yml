@@ -1,0 +1,5 @@
+name: CHAD
+before: |
+  <p>
+    CHAD creates hashes for http and smtp headers.
+  </p>
