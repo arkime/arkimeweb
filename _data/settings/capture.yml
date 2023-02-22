@@ -351,7 +351,7 @@ settings:
       (?i)\.(pcap|cap)$
     text: |
       Regexp to control which filenames are processed when using the -R
-      option to moloch-capture.
+      option to capture.
 
   - key: pcapBufferSize
     value: "100000"

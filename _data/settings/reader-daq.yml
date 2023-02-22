@@ -10,7 +10,7 @@ before: |
       <code>rootPlugins=reader-daq.so</code>
     </li>
     <li>
-      tell moloch-capture to use daq as the reader method with
+      tell capture to use daq as the reader method with
       <code>pcapReadMethod=daq</code> in your configuration file
     </li>
     <li>

@@ -1707,7 +1707,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       </h2>
       <p>This section allows you to specify ips or cidrs to drop
         from being processed. This is different from a bpf filter since the
-        packets will actually reach moloch-capture (and counted) but won't be
+        packets will actually reach capture (and counted) but won't be
         fully processed. However if you have many ranges/ips to drop it can be
         more efficient then bpfs. It is possible to also allow ranges inside of
         dropped ranges using the "allow" keyword. Order added doesn't matter,

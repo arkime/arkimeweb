@@ -2,14 +2,14 @@ name: "Reader - SNF - Settings"
 before: |
   <ul>
     <li>
-      install the snf package on all hosts that will run moloch-capture
+      install the snf package on all hosts that will run capture
     </li>
     <li>
       load the snf plugin by changing configuration file so it has
       reader-snf.so as a rootPlugins <code>rootPlugins=reader-snf.so</code>
     </li>
     <li>
-      Configure moloch-capture to use snf as the reader method with
+      Configure capture to use snf as the reader method with
       <code>pcapReadMethod=snf</code> in your configuration file
     </li>
     <li>

@@ -191,7 +191,7 @@ settings:
     value: EMPTY
     text: |
       If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
-      Example setting would be <code>/opt/arkime/bin/moloch-capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
+      Example setting would be <code>/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
       The following templated values will be filled in for you:
       <ul>
         <li>NODE - The node name of the viewer that received the upload</li>

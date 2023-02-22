@@ -11,8 +11,8 @@ before: |
   <p>
     <strong>Note:</strong> there isn't a special Suricata UI inside Arkime,
     this is just adding new fields to Arkime sessions like wise or tagger
-    do. The Suricata enrichment is done by moloch-capture, so
-    moloch-capture must see the traffic.
+    do. The Suricata enrichment is done by capture, so
+    capture must see the traffic.
   </p>
   <p>
     Add <code>suricata.so</code> to the <code>plugins=</code> line in the

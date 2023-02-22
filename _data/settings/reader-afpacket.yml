@@ -1,8 +1,8 @@
 name: "Reader - AFPacket - Settings"
 before: |
   <p>
-    Tpacketv3, also known as AFPacket v3, is the preferred reader for arkime and can be used on most
-    3.x or later kernels. Configure moloch-capture to use tpacketv3 as the reader
+    AFPacket v3 also known as Tpacketv3, is the preferred reader for Arkime and can be used on most
+    3.x or later kernels. Configure capture to use tpacketv3 as the reader
     method with <code>pcapReadMethod=tpacketv3</code> in your configuration
     file. This is also know as afpacket.
   </p>

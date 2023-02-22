@@ -6,7 +6,7 @@ before: |
       host
     </li>
     <li>
-      install the pfring package on all hosts that will run moloch-capture
+      install the pfring package on all hosts that will run capture
       from
       <a class="no-decoration"
         href="http://packages.ntop.org/"
@@ -18,7 +18,7 @@ before: |
       <code>rootPlugins=reader-pfring.so</code>
     </li>
     <li>
-      Configure moloch-capture to use pfring as the reader method with
+      Configure capture to use pfring as the reader method with
       <code>pcapReadMethod=pfring</code> in your configuration file
     </li>
     <li>
