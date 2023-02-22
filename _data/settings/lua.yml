@@ -1,4 +1,12 @@
 name: Lua
+before: |
+  <p>
+    Arkime allows you to create simple lua scripts.
+    See the
+    <a class="no-decoration"
+      href="https://github.com/arkime/arkime/tree/main/capture/plugins/lua">
+      Lua README</a> for more information
+  </p>
 settings:
   - key: luaFiles
     value: EMPTY

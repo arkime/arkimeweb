@@ -1,0 +1,99 @@
+name: Auth & Security Settings
+
+settings:
+  - key: dropGroup
+    value: EMPTY
+    text: |
+      Group to drop privileges to. The pcapDir must be writable by this
+      group or to the user specified by dropUser
+
+  - key: dropUser
+    value: EMPTY
+    text: |
+      User to drop privileges to. The pcapDir must be writable by this
+      user or to the group specified by dropGroup
+
+  - key: httpRealm
+    value: Moloch
+    text: |
+      HTTP Digest Realm - Must be in the default section of
+      configuration file. Changing the value will cause all previous
+      stored passwords to no longer work.
+
+  - key: serverSecret
+    value: 'Value of <a href="#passwordSecret">passwordSecret</a>'
+    text: |
+      The server-to-server shared key. It must be set in the [default]
+      section of the config file, and all viewers in the arkime cluster
+      must have the same value. It can be, and should be changed
+      periodically.
+
+  - key: passwordsecret
+    value: "password"
+    text: |
+      Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
+      Since OpenSearch/Elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
+      It is also used for secure server-to-server communication if serverSecret is not set a different value.
+      Don't set if you do not want user authentication.
+      Changing the value will make all previously stored passwords no longer work.
+
+
+  - key: userNameHeader
+    value: EMPTY
+    text: |
+      Header to use for determining the username to check in the database for instead of using http digest.
+      Use this if you have apache or something else doing the auth.
+      The Web Auth Header checkbox must be set for user.
+      The userNameHeader setting should be the lower case version of the header apache is setting.
+      ONLY set this header on the viewer the reverse proxy is talking to, it doesn't need to be set on every viewer.
+      It is recommended you set viewHost to localhost when using this setting, or use iptables, otherwise a hacker can just send this header.
+
+  - key: requiredAuthHeader
+    value: EMPTY
+    text: |
+      Used for allowing an external system like LDAP or Active Directory to
+      manage user provisioning and activation/deactivation.  It is assumed that the
+      header contains a list of user roles (like active directory groups)
+      which are inspected against the value in <code>requiredAuthHeaderVal</code> (see below)
+      to verify that the user is in the appropriate group (ie. "ArkimeUsers").  If
+      so, the user is authorized to use the system, and if an account does not
+      already exist for them in the arkime user store,
+      it is created (see <code>userAutoCreateTmpl</code>)
+
+  - key: requiredAuthHeaderVal
+    value: EMPTY
+    text: |
+      See <a href="#requiredAuthHeader">requiredAuthHeader</a> for more information.
+
+  - key: userAutoCreateTmpl
+    value: EMPTY
+    text: |
+      When using <code>requiredAuthHeader</code> to externalize provisioning
+      of users to a system like LDAP/AD, this configuration parameter is used
+      to define the JSON structure used to automatically create a arkime user
+      in the arkime users database if one does not exist.  The user will only
+      be created if the <code>requiredAuthHeader</code> includes the expected
+      value in <code>requiredAuthHeaderVal</code>, and is not automatically deleted
+      if the auth headers are not present.  Values can be populated into
+      the creation JSON to dynamically populate fields into the user database,
+      which are passed in as HTTP headers along with the user and auth headers.
+      The example value below creates a user with a userId pulled from the
+      <code>http_auth_http_user</code> HTTP header with a name pulled from
+      the <code>http_auth_mail</code> user header.  It is expected that these
+      headers are passed in from an apache (or similar) instance that fronts
+      the arkime viewer as described in the documentation supporting <code>userNameHeader</code>
+      <code>
+        {"userId": "${this.http_auth_http_user}", "userName": "${this.http_auth_mail}",
+        "enabled": true, "webEnabled": true, "headerAuthEnabled": true,
+        "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true }
+      </code>
+
+  - key: caTrustFile
+    value: EMPTY
+    text: |
+      Optional file with PEM encoded certificates to use when validating certs. Make sure to read this <a href="faq#self-signed-ssl-tls-certificates">FAQ entry.</a>
+
+  - key: userAuthIps
+    value: "For header auth 127/8 and ::1, otherwise all ips"
+    text: |
+      (Since 3.4.0) Ips allowed to be used for authenticated calls

@@ -1,0 +1,31 @@
+name: "Reader - DAQ - Settings"
+before: |
+  <p class="mb-0">
+    To use daq:
+  </p>
+  <ul>
+    <li>
+      load the daq plugin by changing configuration file so it has
+      reader-daq.so as a rootPlugins
+      <code>rootPlugins=reader-daq.so</code>
+    </li>
+    <li>
+      tell moloch-capture to use daq as the reader method with
+      <code>pcapReadMethod=daq</code> in your configuration file
+    </li>
+    <li>
+      optionally change <code>interface</code> to any special daq interface
+      value
+    </li>
+  </ul>
+
+settings:
+  - key: daqModuleDirs
+    value: "/usr/local/lib/daq"
+    text: |
+      Directories where the daq modules live
+
+  - key: daqModule
+    value: pcap
+    text: |
+      The daq module to use

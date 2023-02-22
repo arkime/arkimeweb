@@ -1,0 +1,35 @@
+name: "Reader - PFRING - Settings"
+before: |
+  <ul>
+    <li>
+      We suggest you try tpacketv3 (afpacket) first if available on the
+      host
+    </li>
+    <li>
+      install the pfring package on all hosts that will run moloch-capture
+      from
+      <a class="no-decoration"
+        href="http://packages.ntop.org/"
+        rel="nofollow">http://packages.ntop.org/</a>
+    </li>
+    <li>
+      load the pfring plugin by changing configuration file so it has
+      reader-pfring.so as a rootPlugins
+      <code>rootPlugins=reader-pfring.so</code>
+    </li>
+    <li>
+      Configure moloch-capture to use pfring as the reader method with
+      <code>pcapReadMethod=pfring</code> in your configuration file
+    </li>
+    <li>
+      optionally change <code>interface</code> to any special pfring
+      interface value
+    </li>
+  </ul>
+
+settings:
+
+  - key: pfringClusterId
+    value: EMPTY
+    text: |
+      The pfring cluster id

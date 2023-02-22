@@ -1,0 +1,78 @@
+name: "Writer - S3 - Settings"
+before: |
+  See <a href="s3">S3</a> document for more information about using S3 for PCAP storage.
+
+settings:
+  - key: s3Region
+    value: us-east-1
+    text: |
+      S3 Region to send data to
+
+  - key: s3Bucket
+    value: EMPTY
+    text: |
+      S3 Bucket to store pcap info
+
+  - key: s3AccessKeyId
+    value: (Since 2.1) Obtained from the EC2 IAM Role.
+    text: |
+      S3 Access Key Id
+
+  - key: s3SecretAccessKey
+    value: (Since 2.1) Obtained from the EC2 IAM Role.
+    text: |
+      S3 Secret Access Key
+
+  - key: s3Compress
+    value: "false"
+    text: |
+      Should http requests be compressed before sending
+
+  - key: s3WriteGzip
+    value: "false"
+    text: |
+      (Since 2.1) Should the PCAP files be stored on S3 in gzipped form
+
+  - key: s3StorageClass
+    value: STANDARD
+    text: |
+      (Since 2.1) The S3 storage class to use&emdash;this has pricing implications
+
+  - key: s3PathAccessStyle
+    value: "true if there is a period in the bucket name"
+    text: |
+      (Since 2.1) If true use s3.amazonaws.com/s3Bucket if false use s3Bucket.s3.amazonaws.com
+
+  - key: s3MaxConns
+    value: 20
+    text: |
+      Max connections to S3
+
+  - key: s3MaxRequests
+    value: "500"
+    text: |
+      Max number of outstanding S3 requests
+
+  - key: s3ExpireDays
+    value: EMPTY
+    text: |
+      Expiration days for S3 stored PCAP files. Expired PCAP files will be deleted.
+
+  - key: s3Host
+    value: EMPTY
+    text: |
+      Override the default endpoint URL for the specified Bucket and Region. This is only
+      used if you want to use a third party s3 server, like a
+      <a href="https://min.io/">MinIO</a> or <a href="http://pithos.io/">pithos</a>
+      instance.
+
+  - key: s3UseHttp
+    value: "false"
+    text: |
+      Use HTTP instead of HTTPS to connect to S3 host.
+
+  - key: s3UseTokenForMetadata
+    value: "true"
+    text: |
+      If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
+      token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1
