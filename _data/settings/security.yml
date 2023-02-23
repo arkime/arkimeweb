@@ -41,12 +41,18 @@ settings:
   - key: userNameHeader
     value: EMPTY
     text: |
-      Header to use for determining the username to check in the database for instead of using http digest.
-      Use this if you have apache or something else doing the auth.
-      The Web Auth Header checkbox must be set for user.
-      The userNameHeader setting should be the lower case version of the header apache is setting.
-      ONLY set this header on the viewer the reverse proxy is talking to, it doesn't need to be set on every viewer.
-      It is recommended you set viewHost to localhost when using this setting, or use iptables, otherwise a hacker can just send this header.
+      This setting controls what auth mode is used. Possible values are:
+      <ul>
+        <li>"digest" or EMPTY - Run in digest mode where browser based authentication is used.</li>
+        <li>"oidc" - (Since 4.2.0) Use OIDC authentication.</li>
+        <li>"anonymous" - (Since 4.2.0) Use anonymous authentication.</li>
+        <li>"s2s" - (Since 4.2.0) Only server to server authentication is allowed</li>
+        <li>Any other value - The lowercase http header key to use for determining the user id.
+            It is recommended you set viewHost to localhost when using this setting, or use iptables, otherwise a hacker can just send this header.
+        </li>
+      </ul>
+      If using central viewers for maximum security set all viewers to use s2s except the central viewer.
+      Each user must have Web Auth Header checkbox set to support other methods besides digest.
 
   - key: requiredAuthHeader
     value: EMPTY

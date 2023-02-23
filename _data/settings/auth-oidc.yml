@@ -1,0 +1,48 @@
+name: Auth OIDC Settings
+before: |
+  <p>
+    (Since 4.2.0) Arkime now support direct OIDC authentication when setting <a href="#userNameHeader">userNameHeader</a> to oidc.
+    Make sure that each user has the "Web Auth Header" checkbox selected.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>authDiscoverURL=[DISCOVER or ISSUER or WELLKNOWN URL]
+  authClientId=[CLIENTID]
+  authClientSecret=[CLIENTSECRET]
+  authUserIdField=preferred_username
+  authRedirectURIs=http://ARKIMEHOST:PORT/auth/login/callback
+  # Optional to auto create users
+  #userAutoCreateTmpl={"userId": "${this.preferred_username}", "userName": "${this.name}", "enabled": true, "webEnabled": true, "headerAuthEnabled": true, "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true }
+  </code></pre>
+
+settings:
+  - key: authDiscoverURL
+    value: EMPTY
+    text: |
+      The OIDC discover wellknown URL.
+
+  - key: authClientId
+    value: EMPTY
+    text: |
+      The OIDC client id
+
+  - key: authClientSecret
+    value: EMPTY
+    text: |
+      The OIDC client secret
+
+  - key: authUserIdField
+    value: EMPTY
+    text: |
+      The field to use in the response from OIDC that contains the userId
+
+  - key: authRedirectURIs
+    value: EMPTY
+    text: |
+      Comma separated list of redirect URLs. Maybe should end with <code>/auth/login/callback</code>
+
+
+
