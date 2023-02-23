@@ -56,3 +56,15 @@ settings:
       (since 3.3.0) When TRUE use a non standard pcap file format that uses small packet headers.
       Should only be set when monitoring an interface since it requires that the timestamp is in real time.
       Saves 10 bytes per packet.
+
+  - key: localPcapIndex
+    value: "false"
+    text: |
+      Experimental feature to save the index into PCAPs locally instead of in OpenSearch/Elasticsearch.
+
+
+  - key: simpleFreeOutputBuffers
+    value: "16"
+    text: |
+      (Since 4.2.0) Max number of disk buffers Arkime keeps around to reduce the number of mmap/munmap.
+
