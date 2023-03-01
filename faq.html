@@ -869,7 +869,7 @@ title: FAQ
         Googling is the best way to figure out how to do this—it is different for almost every OS release and version.
         You may need to add the certificate to several lists because node (viewer), curl (capture), and perl (db.pl) sometimes use different locations for their list of trusted certificates.
         Viewer supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option that was contributed to the project.
-        Multies currently doesn't support the option fully; See <a href="#how-do-i-use-self-signed-ssl-tls-certificates-with-multies">here</a>.
+        Since 4.2.0 all pieces of Arkime should support the <code>caTrustFile</code> setting.
       </p>
       <p>
         Another option is to just turn off certificate checking.
@@ -3232,7 +3232,10 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         </span>
       </h3>
       <p>
-        Create a file, for example <em>CAcerts.pem</em>, containing one or more
+        Since 4.2.0 MultiES supports the <code>caTrustFile</code> setting.
+      </p>
+      <p>
+        Priority to 4.2.0 you will need to create a file, for example <em>CAcerts.pem</em>, containing one or more
         trusted certificates in PEM format.
       </p>
       <p>

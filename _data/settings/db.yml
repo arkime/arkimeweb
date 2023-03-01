@@ -109,7 +109,7 @@ settings:
       Specifies how often to create a new index in OpenSearch/Elasticsearch. Use
       daily or a form of hourly for busy live instances, use weekly or
       monthly for research instances. When choosing a value, the goal
-      is to have the avg shard be around 30G. Prior to 1.5.0 changing
+      is to have the avg shard be between 50G - 150G. Prior to 1.5.0 changing
       the value will cause previous sessions to be unreachable through
       the interface, since 1.5.0 you can set queryAllIndices if you
       need to change the value. Prior to 1.5.0 if using the multi
