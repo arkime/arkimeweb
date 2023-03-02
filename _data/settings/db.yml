@@ -83,9 +83,9 @@ settings:
   - key: prefix
     value: EMPTY
     text: |
-      It is possible for multiple Arkime clusters to live inside the
-      same OpenSearch/Elasticsearch cluster by giving each Arkime cluster a
-      different prefix value.
+      It is possible for multiple Arkime clusters to use the same OpenSearch/Elasticsearch cluster by 
+      giving each Arkime cluster a different prefix value. The prefix value will be used in all
+      index names that Arkime creates.
 
   - key: usersPrefix
     value: '[PREFIX] if <a href="#prefix">prefix</a> set otherwise EMPTY'
