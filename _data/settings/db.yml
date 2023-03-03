@@ -11,8 +11,8 @@ settings:
     value: http://localhost:9200
     text: |
       A comma separated list of urls to use to connect to the OpenSearch/Elasticsearch cluster.
-      If not using a VIP, a different OpenSearch/Elasticsearch node can be specified for each Arkime node.
-      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
+      While not required, if not using a load balancer, a different OpenSearch/Elasticsearch node can be specified for each Arkime capture node.
 
   - key: elasticsearchTimeout
     value: 300
@@ -95,10 +95,12 @@ settings:
   - key: usersElasticsearch
     value: EMPTY
     text: |
-      Set this option to which single OpenSearch/Elasticsearch cluster to use for the users index.
-      It is possible for multiple Arkime clusters to share the same users table, so that the same accounts and settings work across all clusters.
-      So the elasticsearch setting would point to a unique OpenSearch/Elasticsearch cluster per Arkime cluster, while the usersElasticsearch setting would point to a single shared OpenSearch/Elasticsearch cluster.
-      Same format as the <a href="#elasticsearch">elasticsearch</a> option.
+      Set this option to a shared OpenSearch/Elasticsearch cluster to use for the users index.
+      This allows multiple Arkime clusters to share the same users index, so that the same accounts and settings work across all Arkime clusters.
+      The <a href="#elasticsearch">elasticsearch</a> setting should use a unique OpenSearch/Elasticsearch cluster per Arkime cluster and the usersElasticsearch setting should use a single shared OpenSearch/Elasticsearch cluster.
+      <br>
+      A comma separated list of urls to use to connect to the users OpenSearch/Elasticsearch cluster is supported.
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#usersElasticsearchBasicAuth">usersElasticsearchBasicAuth</a>
       <br>
       (Since 3.0) This setting applys to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
       <strong>Note:</strong> <a href="#cronqueries">cronQueries</a> also has to be set in order for shortcuts to be saved to the usersElasticsearch and synced to each cluster.
