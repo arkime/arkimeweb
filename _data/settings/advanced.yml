@@ -38,3 +38,8 @@ settings:
     value: EMPTY
     text: |
       (Since 1.6.1) If the node matches the supplied regexp, then the node is considered local.
+
+  - key: disableParsers
+    value: "arp.so"
+    text: |
+      Semicolon separated list of parsers to NOT load. Add <code>disableParsers=</code> in config file to load all parsers.
