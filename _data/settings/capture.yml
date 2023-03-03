@@ -422,3 +422,8 @@ settings:
         <li> -ether:N = don't save all unknown ether packets with type of N </li>
         <li> corrupt = save all corrupt packets (Since 1.5.3) </li>
       </ul>
+
+  - key: disableParsers
+    value: "arp.so"
+    text: |
+      Semicolon separated list of parsers to NOT load. Add <code>disableParsers=</code> in config file to load all parsers.
