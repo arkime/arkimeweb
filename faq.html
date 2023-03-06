@@ -1224,9 +1224,10 @@ title: FAQ
         </span>
       </h3>
       <p>
-        This error almost always means that your OpenSearch/Elasticsearch cluster can not
+        This error means that your OpenSearch/Elasticsearch cluster can not
         keep up with the number of sessions that the capture nodes are trying to
-        send it. You may only see the error message on your busiest capture nodes
+        send it or there are too many messages being sent.
+        You may only see the error message on your busiest capture nodes
         because capture tries to buffer the requests.
       </p>
       <p>
@@ -1239,8 +1240,9 @@ title: FAQ
         </li>
         <li>
           The ES Nodes tab of the Stats section has the
-          ability to turn on Write Task completed and rejected columns. Look for
-          nodes having issues. Make sure those nodes don’t have disk issues.
+          ability to turn on Write Task completed and rejected columns.
+          Look for OpenSearch/Elasticsearch nodes having issues.
+          Make sure those nodes don’t have disk issues.
         </li>
         <li>
           Make sure each OpenSearch/Elasticsearch node has 30 G of memory and 30 G
@@ -1250,6 +1252,11 @@ title: FAQ
         <li>
           Try increasing the <a href="settings#dbBulkSize">dbBulkSize</a> to a larger value.
           Start with 4000000 (4MB), but we don't recommend larger then 20MB.
+        </li>
+        <li>
+          Try decreasing the <a href="settings#packetThreads">packetThreads</a> to a smaller value.
+          Many folks have set packetThreads too large, which causes extra messages to OpenSearch/Elasticsearch.
+          We recommend starting with packetThreads = 2 x Gbps.
         </li>
         <li>
           OpenSearch/Elasticsearch does NOT perform well if there is one node that is sick.

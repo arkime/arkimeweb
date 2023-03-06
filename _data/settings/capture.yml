@@ -134,6 +134,7 @@ settings:
       Basically how much CPU to dedicate to parsing the packets.
       Increase this if you get errors about dropping packets or the packetQ is over flowing.
       If using the simple writer, this also controls how many pcap files are open for writing.
+      We recommend about 2 x Gbps. Making this value too large may cause issues with Arkime.
 
   - key: parseCookieValue
     value: "false"
