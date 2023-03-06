@@ -427,3 +427,8 @@ settings:
     value: "arp.so"
     text: |
       Semicolon separated list of parsers to NOT load. Add <code>disableParsers=</code> in config file to load all parsers.
+
+  - key: tcpClosingTimeout
+    value: "5"
+    text: |
+     (Since 4.2.1) Delay before saving tcp sessions after close

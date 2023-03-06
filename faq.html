@@ -1243,9 +1243,13 @@ title: FAQ
           nodes having issues. Make sure those nodes don’t have disk issues.
         </li>
         <li>
-          Make sure each OpenSearch/Elasticsearch node has 30 G of memory (no more) and 30 G
+          Make sure each OpenSearch/Elasticsearch node has 30 G of memory and 30 G
           of disk cache (at least) available to it. So for example, if you are on
           a 64 G machine, only run 1 OpenSearch/Elasticsearch node on the machine.
+        </li>
+        <li>
+          Try increasing the <a href="settings#dbBulkSize">dbBulkSize</a> to a larger value.
+          Start with 4000000 (4MB), but we don't recommend larger then 20MB.
         </li>
         <li>
           OpenSearch/Elasticsearch does NOT perform well if there is one node that is sick.
@@ -1261,7 +1265,7 @@ title: FAQ
           support the IOPS load. It is usually best to have each OpenSearch/Elasticsearch node use its own disk.
         </li>
         <li>
-          Make sure you are running the latest Elasticsearch version that the version of
+          Make sure you are running the latest OpenSearch/Elasticsearch version that the version of
           Arkime supports; for example, 7.10.2+ if using Elasticsearch 7 or 2.3+ if using OpenSearch.
         </li>
         <li>
