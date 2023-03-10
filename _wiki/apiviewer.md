@@ -23,6 +23,9 @@ permalink: "/apiv3"
 
 This is the documentation for version 3.x & 4.x. [Here is the the API for previous versions](/api).
 
+Arkime uses digest authentication for all API calls, so make sure you enable that in your library or curl command.
+The easiest way to learn how to make API calls is to open up your browser's javascript console and observe the calls the Arkime UI is making, it uses all the same APIs.
+
 **Note:** Many of the API endpoints require a db field name, which is not the same as what you would use in a search expression.
 The easiest way to see database field names is to click the owl within Arkime -> click the fields label on left -> click display the database fields.
 
