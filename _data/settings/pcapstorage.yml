@@ -15,6 +15,8 @@ settings:
     text: |
       Semicolon separated list of directories to save pcap files to.
       The directory to save pcap to is picked using round robin by default, see <a href="#pcapdiralgorithm">pcapDirAlgorithm</a> for more options.
+      It is <strong>important</strong> that ALL parent directories of the pcapDir have the execute bit set so that either the <a href="#dropUser">dropUser</a> or <a href="#dropGroup">dropGroup</a> can enter the directory.
+      The actual pcapDir should either be owned by the <a href="#dropUser">dropUser</a> or have the group <a href="#dropGroup">dropGroup</a> and have write permission.
 
 
   - key: pcapDirTemplate
@@ -26,7 +28,7 @@ settings:
   - key: pcapDirAlgorithm
     value: "round-robin"
     text: |
-      When pcapDir is a list of directories, this determines how Arkime
+      When <a href="#pcapDir">pcapDir</a> is a list of directories, this determines how Arkime
       chooses which directory to use for each new pcap file.
       <br>
       Possible values: round-robin (rotate sequentially),

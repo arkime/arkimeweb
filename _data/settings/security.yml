@@ -4,13 +4,13 @@ settings:
   - key: dropGroup
     value: EMPTY
     text: |
-      Group to drop privileges to. The pcapDir must be writable by this
+      Group to drop privileges to. The <a href="#pcapDir">pcapDir</a> must be writable by this
       group or to the user specified by dropUser
 
   - key: dropUser
     value: EMPTY
     text: |
-      User to drop privileges to. The pcapDir must be writable by this
+      User to drop privileges to. The <a href="#pcapDir">pcapDir</a> must be writable by this
       user or to the group specified by dropGroup
 
   - key: httpRealm
