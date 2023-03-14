@@ -859,3 +859,16 @@ body.wiki-body.dark-theme footer.footer {
   border-color: #03434e;
   background-color: #0c5460;
 }
+
+.dark-theme .modal-content {
+  color: #EEEEEE;
+  background-color: #333333;
+}
+.dark-theme .close {
+  color: #EEEEEE;
+  opacity: 0.9;
+}
+.dark-theme .close:hover {
+  color: #FFFFFF !important;
+  opacity: 1;
+}
