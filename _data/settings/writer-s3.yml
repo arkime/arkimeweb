@@ -31,7 +31,8 @@ settings:
   - key: s3WriteGzip
     value: "false"
     text: |
-      (Since 2.1) Should the PCAP files be stored on S3 in gzipped form
+      (Since 2.1) Should the PCAP files be stored on S3 in gzipped form.
+      Since 4.2.1 if <a href="#s3Compression">s3Compression</a> is set this setting is ignored.
 
   - key: s3StorageClass
     value: STANDARD
@@ -76,3 +77,19 @@ settings:
     text: |
       If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
       token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1
+
+  - key: s3Compression
+    value: EMPTY
+    text: |
+      (Since 4.2.1) Select which type of compression is used when storing PCAP in S3. Valid values are EMPTY (same as none), none, gzip, zstd.
+
+  - key: s3CompressionLevel
+    value: 0
+    text: |
+      (Since 4.2.1) Select which compression level to use with gzip or zstd. 0 will use the default level.
+
+  - key: s3CompressionBlockSize
+    value: 100000
+    text: |
+      (Since 4.2.1) The default block size to use when compressing PCAP for S3 storage.
+      Do not change to larger values than 100000 if still using older versions of Arkime.
