@@ -215,13 +215,16 @@ title: Downloads
     {%- include footer.html -%}
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     let latestCommitVisible = false;
 
     function toggleLatestCommit () {
+
       latestCommitVisible = !latestCommitVisible;
       if (latestCommitVisible) {
         $('#latestCommitAccordion').attr('style', 'max-height:500px;');
+        confetti();
       } else {
         $('#latestCommitAccordion').attr('style', 'max-height:0px;');
       }
