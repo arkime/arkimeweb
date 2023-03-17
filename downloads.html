@@ -54,163 +54,185 @@ title: Downloads
   <div class="downloads-content">
     <!-- navbar -->
     {%- include navbar.html -%}
-    <div class="container-fluid">
+    <div class="container">
+
       <!-- info btns -->
       <div class="row mb-4 mt-4">
-        <div class="col text-center">
-          <a class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2"
+        <div class="col d-flex justify-content-between">
+          <a class="btn btn-outline-danger btn-lg btn-fw mb-2"
             href="https://s3.amazonaws.com/files.molo.ch/NOTICE.txt">
             NOTICE
           </a>
-          <a class="btn btn-outline-primary btn-lg mr-2 btn-fw mb-2"
+          <a class="btn btn-outline-primary btn-lg btn-fw mb-2"
             href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
             CHANGELOG
           </a>
-          <a class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2"
+          <a class="btn btn-outline-info btn-lg btn-fw mb-2"
             href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
             Instructions
           </a>
-          <a class="btn btn-outline-warning btn-lg mr-2 btn-fw mb-2"
-            href="https://github.com/arkime/arkime/issues/new">
-            Open an Issue
+          <a data-toggle="tooltip"
+            href="javascript:void(0)"
+            onclick="toggleLatestCommit()"
+            title="Feeling adventurous?"
+            class="btn btn-outline-warning btn-lg btn-fw mb-2">
+            Latest Commit
           </a>
         </div>
       </div> <!-- /info btns -->
 
-      <!-- upgrade warnings -->
-      <div class="row mb-2">
-        <div class="col">
-          <div class="jumbotron pb-2 pt-4">
-            <h3 class="primary-theme-text pb-3 text-center">
-              <span class="fa fa-exclamation-triangle">
-              </span>&nbsp;
-              Before upgrading
-              &nbsp;<span class="fa fa-exclamation-triangle">
-              </span>
-            </h3>
-            <div class="row pb-2">
-              <div class="col-lg-3 col-md-6">
-                <p>
-                  <strong>Arkime 4 requires ES 7.10+</strong>
-                  <br>
-                  Read the
-                  <a class="no-decoration"
-                    href="faq#how-do-i-upgrade-elasticsearch">
-                    How do I upgrade OpenSearch/Elasticsearch?
-                  </a>
-                  answer in the FAQ.
-                </p>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <p>
-                  <strong>From Arkime 3 To Arkime 4</strong>
-                  <br>
-                  Read the
-                  <a class="no-decoration"
-                    href="faq#how_do_i_upgrade_to_arkime_4">
-                    How do I upgrade to Arkime 4
-                  </a>
-                  answer in the FAQ.
-                  <br>
-                  <em>
-                    Upgrading to 4 requires at least ES 7.10 and a DB upgrade.
-                  </em>
-                </p>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <p>
-                  The <strong>Hybrid</strong> downloads still use the old Moloch binary names but have the Arkime branding.
-                  The <strong>Arkime</strong> downloads use new binary names and disk layout (/opt/arkime).
-                </p>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                <p>
-                  <strong>Installing the MaxMind DB</strong>
-                  <br>
-                  Read the
-                  <a class="no-decoration"
-                    href="faq#maxmind">
-                    How to install MaxMind DB
-                  </a>
-                  answer in the FAQ.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> <!-- /upgrade warnings -->
+      <!-- downloads loading -->
+      <div class="jumbotron loading-downloads text-center display-4 d-flex justify-content-center">
+        <div class="loading-letter">L</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">A</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">I</div>
+        <div class="loading-letter">N</div>
+        <div class="loading-letter">G</div>
+        <div class="loading-letter">&nbsp;&nbsp;</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">W</div>
+        <div class="loading-letter">N</div>
+        <div class="loading-letter">L</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">A</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">S</div>
+      </div>
+      <!-- /downloads loading -->
 
-      <!-- download btns -->
-      <div class="downloads mb-5 mr-5 ml-5 pl-3 pr-3">
-        <!-- main downloads -->
-        <h2 class="loading-downloads text-center mb-5 pb-5 mt-5">
-          <span class="fa fa-spinner fa-spin"></span>&nbsp;
-          Loading Arkime downloads...
-        </h2>
-        <div class="main-downloads"></div>
-        <div class="row mb-2 mt-5">
-          <div class="col-4 offset-4">
-            <a class="btn btn-info btn-lg btn-block"
-              href="downloadsall">
-              All Downloads
-            </a>
-          </div>
-        </div> <!-- /main downloads -->
-        <!-- download error -->
-        <div class="row downloads-error mt-5 mb-5 pb-5"
-          style="display:none;">
-          <div class="col-12 text-center">
-            <h4 class="primary-theme-text">
-              <span class="fa fa-frown-o fa-lg">
-              </span>&nbsp;
-              Sorry, we couldn't retrieve Arkime downloads.
-              &nbsp;<span class="fa fa-frown-o fa-lg">
-              </span>
-              <br>
-              Please try again later.
-            </h4>
-            <p>
-              Meanwhile, view Arkime on
-              <a href="https://github.com/arkime/arkime"
-                class="no-decoration">
-                GitHub
-              </a>
-            </p>
-          </div>
-        </div> <!-- /download error -->
-        <!-- latest commit btns -->
-        <div class="mt-5 commit-downloads-container"
-          style="display:none;">
-          <h3 class="text-center">
-            <span class="primary-theme-text">
-              Feeling adventurous?
-            </span>
-            Try our latest commit!
-          </h3>
-          <p class="text-center">
-            Please read the upgrading to 4
-            <a class="no-decoration"
-              href="faq#how_do_i_upgrade_to_arkime_4">instructions</a>.
-          </p>
-          <hr>
-          <div class="acommit-downloads">
-          <div class="mcommit-downloads">
-          </div>
-        </div> <!-- /latest commit btns -->
-      </div> <!-- /download btns -->
+      <!-- download error -->
+      <div style="display:none;"
+        class="jumbotron text-center downloads-error mt-5 mb-5 pb-5">
+        <h4 class="primary-theme-text lead lead-lg">
+          <span class="fa fa-frown-o fa-lg mr-2 text-muted"></span>
+          Sorry, we couldn't retrieve Arkime downloads.
+          <span class="fa fa-frown-o fa-lg ml-2 text-muted"></span>
+          <br>
+          Please try again later.
+        </h4>
+        <p class="lead lead-sm">
+          Meanwhile, view Arkime on
+          <a href="https://github.com/arkime/arkime"
+            class="no-decoration">
+            GitHub</a>.
+        </p>
+      </div>
+      <!-- /download error -->
+
+      <!-- latest commit downloads -->
+      <div
+        id="latestCommitAccordion"
+        class="accordion latest-commit">
+        <span class="acommit-downloads"></span>
+        <span class="mcommit-downloads"></span>
+        <hr>
+      </div>
+      <!-- /latest commit downloads -->
+
+      <!-- all downloads -->
+      <div
+        id="downloadsAccordion"
+        style="margin-bottom:200px"
+        class="accordion main-downloads">
+      </div>
+      <!-- /all downloads -->
+
     </div>
+
+    <!-- upgrade warnings -->
+    <div role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+      style="z-index: 2000; bottom: 27px;"
+      class="alert pb-4 position-fixed fixed-bottom m-0 rounded-0 alert-dismissible alert-secondary">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Arkime 4 requires ES 7.10+</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#how-do-i-upgrade-elasticsearch">
+              How do I upgrade OpenSearch/Elasticsearch?
+            </a>
+            answer in the FAQ.
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>From Arkime 3 To Arkime 4</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#how_do_i_upgrade_to_arkime_4">
+              How do I upgrade to Arkime 4
+            </a>
+            answer in the FAQ.
+            <br>
+            <em>
+              Upgrading to 4 requires at least ES 7.10 and a DB upgrade.
+            </em>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Arkime/Moloch Hybrid</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            The <strong>Hybrid</strong> downloads still use the old
+            Moloch binary names but have the Arkime branding.
+            The <strong>Arkime</strong> downloads use new binary
+            names and disk layout (<code>/opt/arkime</code>).
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Installing MaxMind</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#maxmind">
+              How to install MaxMind DB
+            </a>
+            answer in the FAQ.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /upgrade warnings -->
+
   </div> <!-- /container -->
 
   <!-- footer -->
-  {%- include footer.html -%}
+  <div style="z-index: 3000;"
+    class="position-fixed fixed-bottom solid-footer">
+    {%- include footer.html -%}
+  </div>
 
   <script>
+    let latestCommitVisible = false;
+
+    function toggleLatestCommit () {
+      latestCommitVisible = !latestCommitVisible;
+      if (latestCommitVisible) {
+        $('#latestCommitAccordion').attr('style', 'max-height:500px;');
+      } else {
+        $('#latestCommitAccordion').attr('style', 'max-height:0px;');
+      }
+    }
+
     $(function () { // page loaded
       const osLists = {
-        main: [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ],
-        commit: [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ]
+        main: [ 'Arch', 'Centos 6', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'Amazon Linux 2023' ],
+        commit: [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'Amazon Linux 2023' ]
       };
-      getDownloadsAndSetup(osLists, 4);
+      getDownloadsAndSetup(osLists);
     });
   </script>
 

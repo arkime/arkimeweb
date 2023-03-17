@@ -15,7 +15,8 @@ function parseXML (xml) {
     ubuntu16: 'Ubuntu 16.04',
     ubuntu18: 'Ubuntu 18.04',
     ubuntu20: 'Ubuntu 20.04',
-    ubuntu22: 'Ubuntu 22.04'
+    ubuntu22: 'Ubuntu 22.04',
+    al2023: 'Amazon Linux 2023'
   };
 
   for (let i = 0, len = files.length; i < len; ++i) {
@@ -124,12 +125,36 @@ function parseXML (xml) {
   };
 }
 
-function buildDownloadVersionRow (version, btnType, osList) {
-  let html = `<div class="row d-flex flex-row justify-content-around">
-               <div class="p-2">
-                 <div class="btn-fw"><strong>${version.title}</strong></div>
-                 <div class="time"><small>${version.modified}</small></div>
-               </div>`;
+function buildDownloadVersionRow (version, osList, listName, index) {
+  const id = version.title.replace(/[^-a-zA-Z0-9]/g, '');
+  let html = `
+    <div class="card">
+      <div
+        id="heading-${id}"
+        class="card-header p-0">
+        <h2 class="mb-0">
+          <button
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapse-${id}"
+          aria-controls="collapse-${id}"
+          class="btn btn-block text-left accordion-btn"
+          aria-expanded="${index === 0 ? 'true' : 'false'}">
+            ${version.title}
+            <small class="pull-right">
+              ${version.modified}
+            </small>
+          </button>
+        </h2>
+      </div>
+      <div
+        id="collapse-${id}"
+        data-parent="#${listName}"
+        aria-labelledby="heading-${id}"
+        class="collapse${index === 0 ? ' show' : ''}">
+        <div class="card-body p-1">
+          <div class="row d-flex flex-row justify-content-around flex-wrap">
+  `;
 
   let downloads = version.downloads;
 
@@ -138,27 +163,28 @@ function buildDownloadVersionRow (version, btnType, osList) {
     for (d = 0; d < downloads.length; d++) {
       if (downloads[d].title === osList[i]) {
         let download = downloads[d];
-        html += `<div class="p-2">
-                   <a href="${download.url}" class="btn btn-fw ${btnType}">
-                     ${download.title}
-                   </a>
-                 </div>`;
+        html += `<a href="${download.url}" class="m-2">${download.title}</a>`;
         break;
       }
     }
-
-    if (d === downloads.length) {
-      html += `<div class="p-2">
-                 <a href=""
-                   style="visibility:hidden"
-                   class="btn btn-fw btn-outline-primary">
-                   test
-                 </a>
-               </div>`;
-    }
   }
 
-  html += '</div>';
+  if (listName === 'latestCommitAccordion') {
+    html += `
+      </div>
+      <div class="alert alert-danger text-center lead lead-sm mb-0 p-1">
+        <span class="fa fa-exclamation-triangle mr-2 danger-theme-text"></span>
+        <a class="no-decoration"
+          href="faq#how_do_i_upgrade_to_arkime_4">
+          Please read the upgrading to 4 instructions
+        </a>
+        <span class="fa fa-exclamation-triangle ml-2 danger-theme-text"></span>
+      </div>
+      </div></div></div>
+    `;
+  } else {
+    html += '</div></div></div></div>';
+  }
 
   return html;
 }
@@ -166,8 +192,8 @@ function buildDownloadVersionRow (version, btnType, osList) {
 function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
   let downloadsHtml = ''
 
-  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
-  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
+  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'al2023'];
+  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'al2023' ];
   if (osLists.main) {
     osList = osLists.main
   }
@@ -175,30 +201,32 @@ function setupPage (versions, nightlies, acommities, mcommities, sortedVersions,
     osCommitList = osLists.commit
   }
 
-  let acommitDownloadsHtml = buildDownloadVersionRow(acommities, 'btn-outline-danger', osCommitList);
-  let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, 'btn-outline-danger', osCommitList);
+  let acommitDownloadsHtml = buildDownloadVersionRow(acommities, osCommitList, 'latestCommitAccordion', 0);
+  let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, osCommitList, 'latestCommitAccordion', 1);
 
   if (!length) { length = sortedVersions.length }
   for (let v = 0; v < length; ++v) {
     if (versions.hasOwnProperty(sortedVersions[v])) {
       let version = versions[sortedVersions[v]];
-      let btnType = v === 0 ? 'btn-primary' : 'btn-outline-primary';
-      let html = buildDownloadVersionRow(version, btnType, osList);
+      let html = buildDownloadVersionRow(version, osList, 'downloadsAccordion', v);
 
       downloadsHtml += html;
     }
   }
 
-  $('.commit-downloads-container').show();
   $('.main-downloads').append(downloadsHtml);
-  $('.acommit-downloads').append(acommitDownloadsHtml);
-  $('.mcommit-downloads').append(mcommitDownloadsHtml);
+  $('.acommit-downloads').replaceWith(acommitDownloadsHtml);
+  $('.mcommit-downloads').replaceWith(mcommitDownloadsHtml);
+}
+
+function removeLoading () {
+  $('.loading-letter').attr('style', 'font-size:1px;');
+  $('.loading-downloads').attr('style', 'height:0px;margin:0px;padding:0px;');
 }
 
 function setupError () {
   $('.downloads-error').show();
-  $('.loading-downloads').hide();
-  $('.commit-downloads-container').hide();
+  removeLoading();
 }
 
 function getDownloadsAndSetup (osLists, length) {
@@ -210,9 +238,11 @@ function getDownloadsAndSetup (osLists, length) {
     success: function (xml) {
       let downloads = parseXML(xml);
       setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions, osLists, length);
-      $('.loading-downloads').hide();
+      setTimeout(() => {
+        removeLoading();
+      }, 200);
     },
-    error: function(xhr, textStatus, errorThrown) {
+    error: function () {
       setupError();
     }
   });
