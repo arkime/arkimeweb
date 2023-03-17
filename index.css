@@ -888,6 +888,19 @@ body.wiki-body.dark-theme footer.footer {
   background-color: #1d1d1d;
 }
 
+.dark-theme .modal-content {
+  color: #EEEEEE;
+  background-color: #333333;
+}
+.dark-theme .close {
+  color: #EEEEEE;
+  opacity: 0.9;
+}
+.dark-theme .close:hover {
+  color: #FFFFFF !important;
+  opacity: 1;
+}
+
 .dark-theme .alert.alert-info {
   color: #d1ecf1;
   border-color: #03434e;
