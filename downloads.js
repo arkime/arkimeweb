@@ -192,8 +192,8 @@ function buildDownloadVersionRow (version, osList, listName, index) {
 function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
   let downloadsHtml = ''
 
-  let osList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'al2023'];
-  let osCommitList = [ 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04', 'al2023' ];
+  let osList = [ 'al2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04'];
+  let osCommitList = [ 'al2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   if (osLists.main) {
     osList = osLists.main
   }
