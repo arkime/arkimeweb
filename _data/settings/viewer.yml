@@ -26,7 +26,7 @@ settings:
   - key: cronQueries
     value: "false"
     text: |
-      Set on <strong>ONE</strong: viewer node per cluster, this viewer node will perform all the cron queries and hunts for the cluster.
+      Set on <strong>ONE</strong> viewer node per cluster, this viewer node will perform all the cron queries and hunts for the cluster.
       If you do NOT set this on a cluster hunts and cron queries can be created but will never run.
       <br>
       (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local OpenSearch/Elasticsearch.
