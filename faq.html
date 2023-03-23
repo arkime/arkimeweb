@@ -350,6 +350,11 @@ title: FAQ
         title="How do I change the port viewer listens on?">
         How do I change the port viewer listens on?
       </a>
+      <a class="nav-link nested"
+        href="#hunts-not-working"
+        title="Hunts not working">
+        Hunts not working
+      </a>
       <a href="#parliament"
         class="nav-link"
         title="Parliament">
@@ -415,11 +420,11 @@ title: FAQ
       <p>
         If you want a standalone open-source full packet capture (FPC)
         system with metadata parsing and searching, then Arkime is
-        the solution! 
-        Full packet capture systems allow network and security analysts to see exactly 
-        what happen from a network point of view. 
+        the solution!
+        Full packet capture systems allow network and security analysts to see exactly
+        what happen from a network point of view.
         Since Arkime is open-source, you have complete control of the deployment
-        and <a href="/architecture">architecture</a>. 
+        and <a href="/architecture">architecture</a>.
         There are <a href="otherfpc"> other FPC systems </a> available.
       </p>
 
@@ -800,7 +805,7 @@ title: FAQ
           Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code>. Then run <code>systemctl daemon-reload</code>.
         </li>
         <li>
-          If you are having issues viewing packets that were captured, restarting viewer after adding a <code>--debug</code> option may print out 
+          If you are having issues viewing packets that were captured, restarting viewer after adding a <code>--debug</code> option may print out
           useful information about what is wrong.
           Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code>. Then run <code>systemctl daemon-reload</code>.
           <ol type="a">
@@ -3539,6 +3544,26 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </tr>
         </tbody>
       </table>
+
+      <h3 id="hunts-not-working">
+        Hunts not working
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        For Hunts to work properly you must set <code>cronQueries=true</code>
+        on <strong>one and only one node</strong>.
+      </p>
+      <p>
+        If cronQueries is properly set up on a single node, and hunts still aren't working,
+        make sure the cronQueries node is running and checking in.
+        You can check this on the Stats -> ES Nodes tab and/or check the viewer logs.
+      </p>
+      <p>
+        See more information about the cronQueries setting <a href="https://arkime.com/settings#cronQueries">here</a>.
+      </p>
       <!-- /viewer -->
 
       <!-- parliament -->
