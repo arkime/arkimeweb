@@ -106,6 +106,7 @@ We currently support a bunch of different services for auto enrichments, and are
 6. Edit /opt/arkime/etc/cont3xt.ini and update <code>elasticsearch</code> setting
 7. If a NEW install, run `/opt/arkime/bin/arkime_add_user.sh admin admin PASSWORD --admin` to create an initial user
 8. Run `systemctl restart arkimecont3xt`
+9. If Cont3xt isn't working, look at `/opt/arkime/log/cont3xt.log`
 
 ### cont3xt.js
 
