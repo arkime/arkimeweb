@@ -161,7 +161,7 @@ usersElasticsearch | empty | See <a href="settings#userselasticsearch">settings 
 usersPrefix | empty | See <a href="settings#usersprefix">settings page</a>
 usersElasticsearchAPIKey | empty | See <a href="settings#usersElasticsearchAPIKey">settings page</a>
 usersElasticsearchBasicAuth | empty | See <a href="settings#usersElasticsearchBasicAuth">settings page</a>
-passwordSecret | password | See <a href="settings#passwordsecret">settings page</a>
+passwordSecret | password | See <a href="settings#passwordsecret">settings page</a>, make sure you use the same value for cont3xt and viewer if you want to share users across all applications.
 {: .table .table-striped .table-sm .mb-4 }
 
 #### Caching
