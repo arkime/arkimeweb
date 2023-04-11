@@ -68,7 +68,9 @@ title: Parliament
             </a>
           </p>
           <p class="lead text-thin text-center">
+            <img class="arkime-logo black-arkime d-none d-sm-none d-md-none d-lg-inline mr-2" height="50px" />
             Did you know that a Parliament is a group of owls?
+            <img class="arkime-logo black-arkime d-none d-sm-none d-md-none d-lg-inline ml-2" height="50px" />
           </p>
         </div>
       </div>
@@ -234,14 +236,22 @@ title: Parliament
               Search for issues within your Parliament by name cluster name,
               node name, and issue type.
             </p>
-              <h5>
-                <span class="primary-theme-text fa fa-fw fa-sort fa-lg">
-                </span>&nbsp;
-                Sort Issues
-              </h5>
-              <p>
-                Sort the issues by field to display the issues relevant to you.
-              </p>
+            <h5>
+              <span class="primary-theme-text fa fa-fw fa-filter fa-lg">
+              </span>&nbsp;
+              Filter Issues
+            </h5>
+            <p>
+              Use the filter dropdown to filter out issues you don't want to view.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-fw fa-sort fa-lg">
+              </span>&nbsp;
+              Sort Issues
+            </h5>
+            <p>
+              Sort the issues by field to display the issues relevant to you.
+            </p>
             <h5>
               <span class="primary-theme-text fa fa-check fa-fw fa-lg">
               </span>&nbsp;
@@ -341,12 +351,37 @@ title: Parliament
             <h5>
               <span class="primary-theme-text fa fa-lock fa-fw fa-lg">
               </span>&nbsp;
-              Password
+              Password (<strong>deprecated</strong>)
             </h5>
             <p>
+              <strong>These passwords are being deprecated</strong>, please use the Auth section
+              to configure access to your Parliament.
+              <br>
               You can configure a new password, or update your current password.
               <strong>Note:</strong> Parliament is readonly if there is no password set.
             </p>
+            <h5>
+              <span class="primary-theme-text fa fa-key fa-fw fa-lg">
+              </span>&nbsp;
+              Auth
+            </h5>
+            <p>
+              Auth uses the the Arkime User's database for Parliament access.
+            </p>
+            <ul>
+              <li>
+                All Arkime users can view the Parliament (like dashboard only mode).
+              </li>
+              <li>
+                Users with the "parliamentUser" role can ack, ignore, and delete
+                issues within the Parliament.
+              </li>
+              <li>
+                Users with the "parliamentAdmin" role can do everything a "parliamentUser"
+                can, plus they can configure the Parliament by adding/removing/updating
+                groups/clusters and manage the Parliament settings.
+              </li>
+            </ul>
             <h5>
               <span class="primary-theme-text fa fa-bell fa-fw fa-lg">
               </span>&nbsp;
