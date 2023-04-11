@@ -31,4 +31,13 @@ Any system role referenced by a user role will automatically be inherited by the
 For example if user role SecGroup is included and includes both arkimeUser and cont3xtUser,
 and user assigned the SecGroup role will also have access to Arkime & Cont3xt even if the user
 doesn't directly have the arkimeUser/cont3xtUser directly assigned.
+
+
+High level Role Rules:
+* Only a superAdmin can create/modify superAdmin user
+* Only a superAdmin user can set another user as a arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin - however a usersAdmin can still modify everything else about non superAdmins
+* usersAdmin can add/modify users
+* The application Admin users can still view application data for other admin and superAdmins
+ 
+
 </div>
