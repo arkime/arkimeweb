@@ -24,7 +24,7 @@ settings:
     value: EMPTY
     text: |
       A comma separated list of users that are allowed to use the ES Admin stats tab.
-      This tab allows the user to change several of the ES settings from the UI.
+      This tab allows the user to change several of the OpenSearch/Elasticsearch settings from the UI.
 
   - key: esClientCert
     value: EMPTY
@@ -145,9 +145,7 @@ settings:
   - key: compressES
     value: "false"
     text: |
-      Compress requests to ES, reduces ES bandwidth by ~80% at the cost
-      of increased CPU. MUST have "http.compression: true" in
-      elasticsearch.yml file
+      Compress requests to OpenSearch/Elasticsearch, reduces bandwidth to OpenSearch/Elasticsearch by ~80% at the cost of increased CPU.
 
   - key: dbBulkSize
     value: "20000"

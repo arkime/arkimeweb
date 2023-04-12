@@ -154,10 +154,8 @@ settings:
   - key: parseDNSRecordAll
     value: "false"
     text: |
-      Parse a full DNS record (query, answer,
-      authoritative, and additional) and store various DNS information
-      (look up hostname, name server IPs, mail exchange server IPs, and
-      so on) into multiple ES fields
+      Parse a full DNS record (query, answer, authoritative, and additional) and store various DNS information
+      (look up hostname, name server IPs, mail exchange server IPs, and so on) into multiple OpenSearch/Elasticsearch fields
 
   - key: parseSMTP
     value: "true"
@@ -211,13 +209,10 @@ settings:
   - key: rulesFiles
     value: EMPTY
     text: |
-      A semicolon separated list of files that contain
-      rules. These rules match against fields set and can set other
-      fields or meta data about the sessions. See
-      <a class="no-decoration"
-        href="rulesformat">
-        RulesFormat</a>
-      for the format of the files.
+      A semicolon separated list of files that contain Arkime rules.
+      These rules match against fields set and can set other fields or meta data about the sessions.
+      See <a class="no-decoration" href="rulesformat"> RulesFormat</a> for the format of the files.
+      Since 1.5.0 rules files are auto reloaded, so no need to restart capture.
 
   - key: sctpTimeout
     value: "60"
@@ -297,7 +292,7 @@ settings:
   - key: gapPacketPos
     value: "true"
     text: |
-      (Since 2.4.0) encode packetPos using a simple gap encoding, this reduces storage in ES
+      (Since 2.4.0) encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
 
   - key: interfaceOps
     value: EMPTY

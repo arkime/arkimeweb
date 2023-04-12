@@ -42,7 +42,7 @@ settings:
     text: |
       <ul class="mb-0">
         <li>
-          _cluster_ = ES cluster name
+          _cluster_ = OpenSearch/Elasticsearch cluster name
         </li>
         <li>
           _userId_ = logged in User Id
