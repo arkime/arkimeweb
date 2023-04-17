@@ -26,7 +26,7 @@ settings:
   - key: s3Compress
     value: "false"
     text: |
-      Should http requests be compressed before sending
+      Should http requests be compressed before sending, it is usually better to enable pcap compression instead.
 
   - key: s3WriteGzip
     value: "false"
@@ -42,7 +42,7 @@ settings:
   - key: s3PathAccessStyle
     value: "true if there is a period in the bucket name"
     text: |
-      (Since 2.1) If true use s3.amazonaws.com/s3Bucket if false use s3Bucket.s3.amazonaws.com
+      (Since 2.1) If true use s3.amazonaws.com/s3Bucket if false use s3Bucket.s3.amazonaws.com. For minio make sure you set to true.
 
   - key: s3MaxConns
     value: 20
@@ -91,5 +91,10 @@ settings:
   - key: s3CompressionBlockSize
     value: 100000
     text: |
-      (Since 4.2.1) The default block size to use when compressing PCAP for S3 storage.
-      Do not change to larger values than 100000 if still using older versions of Arkime.
+      (Since 4.2.1) The block size to use when compressing PCAP for S3 storage.
+      Do not change to values larger than 100000 if still using both older and newer versions of Arkime.
+
+  - key: s3UseECSEnv
+    value: false
+    text: |
+      (Since 4.2.1) Use the ECS_CONTAINER_METADATA_URI_V4 and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variables to find the metadata service.
