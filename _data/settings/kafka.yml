@@ -1,7 +1,7 @@
 name: Kafka
 before: |
   <p>
-    (Single 4.2.1)
+    (Single 4.2.0)
     Arkime can send sessions to kafka instead of directly to OpenSearch/Elasticsearch.
     Arkime will still need to directly use OpenSearch/Elasticsearch for other data store.
     You will need to create a kafka consumer that processes the docs and inserts them

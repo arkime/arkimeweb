@@ -32,7 +32,7 @@ settings:
     value: "false"
     text: |
       (Since 2.1) Should the PCAP files be stored on S3 in gzipped form.
-      Since 4.2.1 if <a href="#s3Compression">s3Compression</a> is set this setting is ignored.
+      Since 4.3.0 if <a href="#s3Compression">s3Compression</a> is set this setting is ignored.
 
   - key: s3StorageClass
     value: STANDARD
@@ -81,20 +81,20 @@ settings:
   - key: s3Compression
     value: EMPTY
     text: |
-      (Since 4.2.1) Select which type of compression is used when storing PCAP in S3. Valid values are EMPTY (same as none), none, gzip, zstd.
+      (Since 4.3.0) Select which type of compression is used when storing PCAP in S3. Valid values are EMPTY (same as none), none, gzip, zstd.
 
   - key: s3CompressionLevel
     value: 0
     text: |
-      (Since 4.2.1) Select which compression level to use with gzip or zstd. 0 will use the default level.
+      (Since 4.3.0) Select which compression level to use with gzip or zstd. 0 will use the default level.
 
   - key: s3CompressionBlockSize
     value: 100000
     text: |
-      (Since 4.2.1) The block size to use when compressing PCAP for S3 storage.
+      (Since 4.3.0) The block size to use when compressing PCAP for S3 storage.
       Do not change to values larger than 100000 if still using both older and newer versions of Arkime.
 
   - key: s3UseECSEnv
     value: false
     text: |
-      (Since 4.2.1) Use the ECS_CONTAINER_METADATA_URI_V4 and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variables to find the metadata service.
+      (Since 4.3.0) Use the ECS_CONTAINER_METADATA_URI_V4 and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variables to find the metadata service.

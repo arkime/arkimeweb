@@ -427,4 +427,4 @@ settings:
   - key: tcpClosingTimeout
     value: "5"
     text: |
-     (Since 4.2.1) Delay before saving tcp sessions after close
+     (Since 4.3.0) Delay before saving tcp sessions after close
