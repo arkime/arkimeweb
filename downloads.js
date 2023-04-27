@@ -16,7 +16,7 @@ function parseXML (xml) {
     ubuntu18: 'Ubuntu 18.04',
     ubuntu20: 'Ubuntu 20.04',
     ubuntu22: 'Ubuntu 22.04',
-    al2023: 'Amazon Linux 2023'
+    al2023: 'AL2023'
   };
 
   for (let i = 0, len = files.length; i < len; ++i) {
@@ -36,6 +36,7 @@ function parseXML (xml) {
       let osTitle = os.replace('-', ' ');
       osTitle = osTitle.charAt(0).toUpperCase() + osTitle.slice(1);
       osTitle = osTitle.replace('El ', 'EL ');
+      osTitle = osTitle.replace('Al2', 'AL2');
 
       let download = {
         url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
@@ -192,8 +193,8 @@ function buildDownloadVersionRow (version, osList, listName, index) {
 function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
   let downloadsHtml = ''
 
-  let osList = [ 'al2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04'];
-  let osCommitList = [ 'al2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
+  let osList = [ 'AL2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04'];
+  let osCommitList = [ 'AL2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ];
   if (osLists.main) {
     osList = osLists.main
   }
