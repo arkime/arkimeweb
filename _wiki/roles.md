@@ -35,10 +35,10 @@ doesn't have the arkimeUser/cont3xtUser directly assigned.
 
 
 High level Role Rules:
-* Only a superAdmin can create/modify/delete superAdmin user
-* Only a superAdmin user can assign another user the x arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins
-* A usersAdmin without superAdmin user can add/modify/delete any user but a superAdmin user. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
-* The application Admin users can view application data all users, including other Admin and superAdmins users
+* Only a user with the superAdmin role can create/modify/delete other users with the superAdmin role.
+* Only a user with the superAdmin role can assign another user the arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
+* A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
+* The application Admin users can view application data for all users, including other Admin and superAdmins users
  
 
 </div>

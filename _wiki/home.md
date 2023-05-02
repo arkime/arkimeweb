@@ -18,6 +18,7 @@ permalink: "/learn"
 - [Breaking TLS POC](break-tls-poc)
 - [Why Arkime?](arkimeetus)
 - [Common API](commonapi)
+- [Roles](roles)
 
 #### Capture
 - [Rules Format](rulesformat)
