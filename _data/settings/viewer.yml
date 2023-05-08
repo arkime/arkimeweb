@@ -30,6 +30,8 @@ settings:
       If you do NOT set this on a cluster then hunts and cron queries can be created but will never run.
       <br>
       (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local OpenSearch/Elasticsearch.
+      <br>
+      (Since 4.3.1) Add "auto" setting that will self select a node to be the primary Arkime viewer node, when that node dies another node will become the primary Arkime viewer node. Do not use when another node is using "true'.
 
   - key: spiDataMaxIndices
     value: "1"
