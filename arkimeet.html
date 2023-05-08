@@ -318,28 +318,16 @@ title: Arkimeet
                 <div class="mr-auto dark-primary-theme-text">13:30</div>
                 <div class="pl-3 flex-fill">
                   <div class="agenda-title">
-                    TBD
+                    Arkime Oauth2 Authentication
                   </div>
                   <span class="agenda-description">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe2LEkctWBn8Oup13FXIhxoe9GHRvtVyCth49h7sYuybr_ldg/viewform"
-                      class="no-decoration">
-                      Submit a Talk
-                    </a>
-                    <!-- <a class="agenda-description-more-btn cursor-pointer primary-theme-text no-wrap"
-                      onclick="showMore(event)">
-                      ...more&nbsp;<span class="fa fa-caret-down"></span>
-                    </a>
-                    <span class="agenda-description-more-text" style="display:none;">
-                    </span>
-                    <a class="agenda-description-less-btn cursor-pointer primary-theme-text no-wrap"
-                      onclick="showLess(event)"
-                      style="display:none;">
-                      less&nbsp;<span class="fa fa-caret-up"></span>
-                    </a> -->
+                    Oauth2 authentication: why you should use it, and how to deploy.
                   </span>
                 </div>
                 <div class="pl-3 flex-fill mr-n1 text-right">
-                  <strong>TBD</strong>
+                  <strong>
+                    <a href class="no-decoration" data-toggle="modal" data-target="#taylorbio">Taylor</a>
+                  </strong>
                 </div>
               </div>
             </li>
@@ -605,54 +593,64 @@ title: Arkimeet
             <h1 class="display-4 mb-4">
               SPEAKERS
             </h1>
-            <div class="d-flex flex-wrap flex-row justify-content-around mr-2">
-              <div class="mb-1">
+            <div class="d-flex flex-wrap flex-row justify-content-around">
+              <div class="mb-4 mr-2 ml-2">
                 <img src="assets/speakers/andy.png" height="120px" style="border-radius:6px" />
                 <br>
                 <strong>Andy Wick</strong>
-                <p class="mb-1">Distinguished Architect</p>
+                <p class="mb-1">Distinguished Architect<br>&nbsp;</p>
                 <a class="btn btn-outline-danger btn-sm"
                   data-toggle="modal" data-target="#andybio">
                   See bio
                 </a>
               </div>
-              <div class="mb-1">
+              <div class="mb-4 mr-2 ml-2">
                 <img src="assets/speakers/elyse.jpg" height="120px" style="border-radius:6px" />
                 <br>
                 <strong>Elyse Rinne</strong>
-                <p class="mb-1">Software Engineer</p>
+                <p class="mb-1">Software Engineer<br>&nbsp;</p>
                 <a class="btn btn-outline-danger btn-sm"
                   data-toggle="modal" data-target="#elysebio">
                   See bio
                 </a>
               </div>
-              <div class="mb-1">
+              <div class="mb-4 mr-2 ml-2">
                 <img src="assets/speakers/chris.png" height="120px" style="border-radius:6px" />
                 <br>
                 <strong>Chris Helma</strong>
-                <p class="mb-1">Software Engineer</p>
+                <p class="mb-1">Software Engineer<br>&nbsp;</p>
                 <a class="btn btn-outline-danger btn-sm"
                 data-toggle="modal" data-target="#chrisbio">
                   See bio
                 </a>
               </div>
-              <div class="mb-1">
+              <div class="mb-4 mr-2 ml-2">
                 <img src="assets/speakers/owen.jpg" height="120px" style="border-radius:6px" />
                 <br>
                 <strong>Owen McGill</strong>
-                <p class="mb-1">Dev/Ops Engineer</p>
+                <p class="mb-1">Dev/Ops Engineer<br>&nbsp;</p>
                 <a class="btn btn-outline-danger btn-sm"
                   data-toggle="modal" data-target="#owenbio">
                   See bio
                 </a>
               </div>
-              <div class="mb-1">
+              <div class="mb-4 mr-2 ml-2">
                 <img src="assets/speakers/matt.jpg" height="120px" style="border-radius:6px" />
                 <br>
                 <strong>Matt Carothers</strong>
-                <p class="mb-1">Senior Principal Security Architect</p>
+                <p class="mb-1">Senior Principal<br>Security Architect</p>
                 <a class="btn btn-outline-danger btn-sm"
                   data-toggle="modal" data-target="#mattbio">
+                  See bio
+                </a>
+              </div>
+              <div class="mb-4 mr-2 ml-2">
+                <img src="assets/speakers/taylor.jpeg" height="120px" style="border-radius:6px" />
+                <br>
+                <strong>Taylor</strong>
+                <p class="mb-1">Cyber Security and<br>Infrastructure Supervisor</p>
+                <a class="btn btn-outline-danger btn-sm"
+                  data-toggle="modal" data-target="#taylorbio">
                   See bio
                 </a>
               </div>
@@ -802,6 +800,23 @@ title: Arkimeet
             Beesley, who asked to be credited in this bio. There Matt formed Cox's first abuse
             department, which he led for several years, and today he serves as Cox's
             Senior Principal Security Architect.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="taylorbio" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered text-center">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Taylor</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="assets/speakers/taylor.jpeg" height="120px" style="border-radius:6px" />
+            <p class="mb-1"><strong>Cyber Security and Infrastructure Supervisor</strong></p>
           </div>
         </div>
       </div>
