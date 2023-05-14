@@ -250,6 +250,9 @@ plugins:
       <!-- Sections-->
       {% for sectionId in page.sections %}
         {% assign section = site.data.settings[sectionId] %}
+        {% if section.oldId %}
+          <span id="{{section.oldId}}"></span>
+        {% endif %}
         <h2 id="{{sectionId}}">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"

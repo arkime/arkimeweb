@@ -1,4 +1,5 @@
 name: Packet Deduplication Settings
+oldId: "packet-deduplication-settings"
 before: |
   <p>
     Arkime since version 2.7.1 has supported basic packet deduplication.

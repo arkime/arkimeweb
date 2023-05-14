@@ -744,6 +744,9 @@ title: FAQ
             <li>
               If the browser can't connect and you are sure viewer.js is running, verify there are no firewalls blocking access between your browser and the viewer host.
             </li>
+            <li>
+              Make sure <a href="/settings#viewhost"><code>viewHost=localhost</code></a> is NOT set in the config.ini file. Test that <code>curl http://IP:8005</code> works from the host viewer is running on.
+            </li>
           </ol>
         </li>
         <li>
