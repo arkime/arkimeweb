@@ -28,7 +28,7 @@ settings:
       must have the same value. It can be, and should be changed
       periodically.
 
-  - key: passwordsecret
+  - key: passwordSecret
     value: "password"
     text: |
       Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
