@@ -609,7 +609,8 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| ids | <code>string</code> | Comma separated list of sessions to retrieve |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions, only used if ids isn't provided |
 
 **Returns**:
 
@@ -658,7 +659,8 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| field | <code>string</code> | <code>&quot;node&quot;</code> | The database field to get data for. Defaults to "node". |
+| exp | <code>string</code> |  | The expression field to return data for. Either exp or field is required, field is given priority if both are present. |
+| field | <code>string</code> | <code>&quot;node&quot;</code> | The database field to return data for. Either exp or field is required, field is given priority if both are present. |
 
 **Returns**:
 
@@ -709,7 +711,8 @@ Builds an elasticsearch session query. Gets a list of unique field values (with 
 | --- | --- | --- | --- |
 | query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
 | counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
-| exp | <code>string</code> |  | Comma separated list of expression field names to return. |
+| exp | <code>string</code> |  | The expression field to return unique data for. Either exp or field is required, field is given priority if both are present. |
+| field | <code>string</code> |  | The database field to return unique data for. Either exp or field is required, field is given priority if both are present. |
 
 **Returns**:
 
@@ -732,8 +735,7 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | --- | --- | --- | --- |
 | query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
 | counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
-| exp | <code>string</code> |  | The expression field to return unique data for. Either exp or field is required, field is given priority if both are present. |
-| field | <code>string</code> |  | The database field to return unique data for. Either exp or field is required, field is given priority if both are present. |
+| exp | <code>string</code> |  | Comma separated list of expression fields to return unique data for. |
 
 **Returns**:
 
@@ -782,9 +784,9 @@ Add tag(s) to individual session(s) by id or by query.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
 | tags | <code>string</code> |  | Comma separated list of tags to add to session(s) |
 | ids | <code>string</code> |  | Comma separated list of sessions to add tag(s) to |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
 | segments | <code>string</code> | <code>&quot;no&quot;</code> | Whether to add tags to linked session segments. Default is no. Options include:      no - Don't add tags to linked segments      all - Add tags to all linked segments      time - Add tags to segments occurring in the same time period |
 
 **Returns**:
@@ -807,9 +809,9 @@ Removes tag(s) from individual session(s) by id or by query.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
 | tags | <code>string</code> |  | Comma separated list of tags to remove from session(s) |
 | ids | <code>string</code> |  | Comma separated list of sessions to remove tag(s) from |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids is provided |
 | segments | <code>string</code> | <code>&quot;no&quot;</code> | Whether to remove tags from linked session segments. Default is no. Options include:      no - Don't remove tags from linked segments      all - Remove tags from all linked segments      time - Remove tags from segments occurring in the same time period |
 
 **Returns**:
@@ -860,8 +862,8 @@ Retrieve the raw session data in pcap format.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| ids | <code>string</code> |  | The list of ids to return |
+| ids | <code>string</code> |  | The list of ids to return sessions for |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
 | segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
 
 **Returns**:
@@ -883,8 +885,8 @@ Retrieve the raw session data in pcapng format.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
-| ids | <code>string</code> |  | The list of ids to return |
+| ids | <code>string</code> |  | The list of ids to return sessions for |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
 | segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
 
 **Returns**:
@@ -1032,6 +1034,8 @@ Delete SPI and/or scrub PCAP data (remove persmission required).
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
+| ids | <code>string</code> |  | Comma separated list of sessions to delete |
+| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
 | removeSpi | <code>string</code> | <code>false</code> | Whether to remove the SPI data. |
 | removePcap | <code>string</code> | <code>true</code> | Whether to remove the PCAP data. |
 
@@ -1888,6 +1892,29 @@ Updates an Arkime view.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the update view operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
+<a name="ShortcutAPIs."></a>
+
+## ShortcutAPIs.(shortcut) (function)
+
+Normalizes the data in a shortcut by turning values and users string to arrays
+and removing the type parameter and replacing it with `type: values`
+Also validates that the users added to the shortcut are valid within the system
+NOTE: Mutates the shortcut direclty
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| shortcut | [<code>Shortcut</code>](#Shortcut) | The shortcut to normalize |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| {type, values, invalidusers} | <code>Object</code>| The shortcut type (ip, string, number),
+                                                 array of values, and list of invalid users |
 
 <a name="ArkimeQuery"></a>
 
