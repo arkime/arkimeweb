@@ -488,7 +488,9 @@ Retrives the domain names associated with an IP address.
 
 POST - /api/upload
 
-Uploads PCAP files.
+Uploads PCAP files to Arkime. This API is really only useful for demo sites and very special cases.
+Instead you almost always should just run capture locally, which will be much more
+efficient and not duplicate the PCAP. See https://arkime.com/faq#how-do-i-import-existing-pcaps
 
 
 **Parameters**:
