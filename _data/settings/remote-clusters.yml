@@ -1,0 +1,34 @@
+name: remote-clusters
+before: |
+  <p>
+    The remote-clusters (formerly moloch-clusters) section is used to describe the various
+    Arkime clustersthat are available to forward traffic to either
+    manually or through the periodic query functionality. Each line represents a
+    single cluster, with the name just being any unique string.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[remote-clusters]
+  cluster1=url:https://arkime.example.com:8005;serverSecret:password;name:Cluster
+  cluster2=url:https://cluster2.example.com:8005;serverSecret:foo;name:Test Cluster</code></pre>
+  </code></pre>
+
+settings:
+  - key: "[key]="
+    value: Unique name
+    text: The unique name for this cluster
+
+  - key: url
+    value: REQUIRED
+    text: The base url to use to contact cluster
+
+  - key: serverSecret
+    value: "[serverSecret of current cluster]"
+    text: The serverSecret for the remote cluster, if it is different from current cluster
+
+  - key: name
+    value: REQUIRED
+    text: Friendly name to display in UI

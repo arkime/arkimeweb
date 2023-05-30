@@ -24,6 +24,10 @@ after: |
   </code></pre>
 
 settings:
+  - key: "[key]="
+    value: Unique name
+    text: The unique name for this view
+
   - key: fields
     value: REQUIRED
     text: A comma separated list of field expression to display. They will be displayed in order listed.

@@ -35,6 +35,8 @@ plugins:
 specialsections:
   - custom-fields
   - custom-views
+  - override-ips
+  - remote-clusters
 
 ---
 
@@ -134,19 +136,9 @@ specialsections:
         </a>
       {% endfor %}
       <a class="nav-link nested"
-        href="#moloch-clusters"
-        title="moloch-clusters">
-        moloch-clusters
-      </a>
-      <a class="nav-link nested"
         href="#multi-viewer-settings"
         title="Multi Viewer Settings">
         Multi Viewer Settings
-      </a>
-      <a class="nav-link nested"
-        href="#override-ips"
-        title="override-ips">
-        override-ips
       </a>
       <a class="nav-link nested"
         href="#headers-http-request"
@@ -417,62 +409,6 @@ specialsections:
       {% endfor %}
       <!-- /Sections -->
 
-      <!-- moloch-clusters -->
-      <h2 id="moloch-clusters">
-        moloch-clusters
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        The moloch-clusters section is used to describe the various
-        moloch-clusters that are available to forward traffic to either
-        manually or through the CRON functionality. Each line represents a
-        single cluster, with the name just being any unique string.
-      </p>
-      <pre><code>[moloch-clusters]
-cluster1=url:https://arkime.example.com:8005;passwordSecret:password;name:Cluster
-cluster2=url:https://cluster2.example.com:8005;passwordSecret:foo;name:Test Cluster</code></pre>
-      <table class="table table-bordered table-sm table-striped">
-        <tbody>
-          <tr>
-            <td id="clusters-url">
-              url
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              The base url to use to contact cluster
-            </td>
-          </tr>
-          <tr>
-            <td id="clusters-passwordsecret">
-              passwordSecret
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              The passwordSecret for the remote cluster, if it is different
-              from current cluster
-            </td>
-          </tr>
-          <tr>
-            <td id="clusters-name">
-              name
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              Friendly name to display in UI
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /moloch-clusters -->
-
       <!-- multi viewer settings -->
       <h2 id="multi-viewer-settings">
         Multi Viewer Settings
@@ -642,71 +578,6 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
         </tbody>
       </table>
       <!-- /multi viewer settings -->
-
-      <!-- override-ips -->
-      <h2 id="override-ips">
-        override-ips
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        override-ips is a special section that overrides the MaxMind databases
-        for the fields set, but fields not set will still use MaxMind (example
-        if you set tags but not country it will use MaxMind for the country)
-        Spaces and capitalization are very important.
-      </p>
-      <pre><code>[override-ips]
-10.1.0.0/16=tag:ny-office;country:USA;asn:AS0000 This is neat</code></pre>
-      <table class="table table-bordered table-sm table-striped">
-        <tbody>
-          <tr>
-            <td id="override-ips-tag">
-              tag
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              A single tag to set for matches
-            </td>
-          </tr>
-          <tr>
-            <td id="override-ips-country">
-              country
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              A 3 character country code to set for matches
-            </td>
-          </tr>
-          <tr>
-            <td id="override-ips-asn">
-              asn
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              An ASN value to set for matches
-            </td>
-          </tr>
-          <tr>
-            <td id="override-ips-rir">
-              rir
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              A RIR value to set for matches
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /override-ips -->
 
       <!-- headers-http-request -->
       <h2 id="headers-http-request">

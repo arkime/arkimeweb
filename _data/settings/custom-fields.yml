@@ -22,6 +22,10 @@ after: |
   </code></pre>
 
 settings:
+  - key: "[key]="
+    value: Unique name
+    text: The unique name for this field, usually the field expression
+
   - key: field
     value: "[key]"
     text: The field expression, overrides the key in the ini file
