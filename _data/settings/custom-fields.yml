@@ -1,0 +1,66 @@
+name: custom-fields
+before: |
+  <p>
+    You can add custom fields to Arkime several ways, including the wise
+    and tagger plugins. Since Arkime 1.5.2 the easiest way is to use a
+    [custom-fields] section in the ini file. At capture startup it will
+    check to make sure all those fields exist in the database. The format
+    of the line is the similar as used in wise and tagger, except you use
+    <code>expression=definition</code>. You will need to also create a
+    [custom-views] section to display the data on the Sessions tab.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[custom-fields]
+  # Format is FieldExpr=text format
+  theexpression=db:theexpression
+
+  sample.md5=db:sample.md5;kind:lotermfield;friendly:Sample MD5;count:true;help:MD5 of the sample
+  </code></pre>
+
+settings:
+  - key: field
+    value: "[key]"
+    text: The field expression, overrides the key in the ini file
+
+  - key: kind
+    value: REQUIRED
+    text: |
+      <ul class="mb-0">
+        <li>integer</li>
+        <li>ip</li>
+        <li>lotermfield - lowercased string</li>
+        <li>termfield - string</li>
+        <li>uptermfield - uppercased string</li>
+      </ul>
+
+  - key: count
+    value: false
+    text: Track number of items with a .cnt field auto created
+
+  - key: friendly
+    value: "[fieldname]"
+    text: A SHORT description, used in SPI View
+
+  - key: db
+    value: REQUIRED
+    text: The DB field name
+
+  - key: group
+    value: "[Before first dot in field or general]"
+    text: Category for SPI view
+    
+  - key: nolinked
+    value: false
+    text: (Since 2.1.0) Set to true for linked sessions to have independent values for this field
+
+  - key: noutf8
+    value: false
+    text: (Since 2.1.1) Set to true for the field to be 8 bit instead of utf8
+
+  - key: help
+    value: "[fieldname]"
+    text: Help to display in about box or help page

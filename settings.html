@@ -31,6 +31,11 @@ plugins:
   - tagger
   - tcphealthcheck
   - wise
+
+specialsections:
+  - custom-fields
+  - custom-views
+
 ---
 
 <!DOCTYPE html>
@@ -120,11 +125,14 @@ plugins:
         title="Special Sections">
         Special Sections
       </a>
-      <a class="nav-link nested"
-        href="#custom-fields"
-        title="custom-fields">
-        custom-fields
-      </a>
+      {% for sectionId in page.specialsections %}
+        {% assign section = site.data.settings[sectionId] %}
+        <a class="nav-link nested"
+          href="#{{sectionId}}"
+          title="{{section.name}}">
+          {{section.name}}
+        </a>
+      {% endfor %}
       <a class="nav-link nested"
         href="#custom-views"
         title="custom-views">
@@ -366,265 +374,53 @@ plugins:
         </span>
       </h1>
 
-      <!-- custom-fields -->
-      <h2 id="custom-fields">
-        custom-fields
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        You can add custom fields to Arkime several ways, including the wise
-        and tagger plugins. Since Arkime 1.5.2 the easiest way is to use a
-        [custom-fields] section in the ini file. At capture startup it will
-        check to make sure all those fields exist in the database. The format
-        of the line is the similar as used in wise and tagger, except you use
-        <code>expression=definition</code>. You will need to also create a
-        [custom-views] section to display the data on the Sessions tab.
-      </p>
-      <p class="mb-0">
-        Field definition:
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="fields-field">
-              field
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              The field expression, overrides the key in the ini file
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-kind">
-              kind
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              REQUIRED
-            </td>
-            <td>
-              <ul class="mb-0">
-                <li>integer</li>
-                <li>ip</li>
-                <li>lotermfield - lowercased string</li>
-                <li>termfield - string</li>
-                <li>uptermfield - uppercased string</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-count">
-              count
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              false
-            </td>
-            <td>
-              Track number of items with a .cnt field auto created
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-friendly">
-              friendly
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              fieldname
-            </td>
-            <td>
-              A SHORT description, used in SPI View
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-db">
-              db
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              REQUIRED
-            </td>
-            <td>
-              The DB field name
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-group">
-              group
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              Before first dot in field or general
-            </td>
-            <td>
-              Category for SPI view
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-nolinked">
-              nolinked
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              false
-            </td>
-            <td>
-              (Since 2.1.0) Set to true for linked sessions to have independent values for this field
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-noutf8">
-              noutf8
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              false
-            </td>
-            <td>
-              (Since 2.1.1) Set to true for the field to be 8 bit instead of utf8
-            </td>
-          </tr>
-          <tr>
-            <td id="fields-help">
-              help
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              fieldname
-            </td>
-            <td>
-              Help to display in about box or help page
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <pre><code>[custom-fields]
-# Format is FieldExpr=text format
-theexpression=db:theexpression
-
-sample.md5=db:sample.md5;kind:lotermfield;friendly:Sample MD5;count:true;help:MD5 of the sample</code></pre>
-      <!-- /custom-fields -->
-
-      <!-- custom-views -->
-      <h2 id="custom-views">
-        custom-views
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        With Arkime "views" are how the SPI data is displayed in the Sessions
-        tab. Usually there is a unique "view" for each category of data. You
-        can add custom views to Arkime several ways, including the wise and
-        tagger plugins. Since Arkime 1.5.2 the easiest way is to use a
-        [custom-views] section in the ini file. At viewer startup, a new
-        section will be created for each entry. The format of the line is
-        <code>name=definition</code>. Viewer will sort all views by name when
-        choosing the order to display in.
-      </p>
-      <p class="mb-0">
-        Field definition:
-      </p>
-      <table class="table table-bordered table-sm table-striped">
-        <thead>
-          <tr>
-            <th>
-              Setting
-            </th>
-            <th>
-              Default
-            </th>
-            <th>
-              Description
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="views-fields">
-              fields
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              REQUIRED
-            </td>
-            <td>
-              A comma separated list of field expression to display. They will
-              be displayed in order listed.
-            </td>
-          </tr>
-          <tr>
-            <td id="views-title">
-              title
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              Defaults to name
-            </td>
-            <td>
-              The title to get the section on Sessions tab
-            </td>
-          </tr>
-          <tr>
-            <td id="views-require">
-              require
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              REQUIRED
-            </td>
-            <td>
-              The db session name to require be set to show the section.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <pre><code>[custom-views]
-sample=title:Samples;require:sample;fields:sample.md5,sample.house
-
-[custom-fields]
-sample.md5=db:sample.md5;kind:lotermfield;friendly:Sample MD5;count:true;help:MD5 of the sample
-sample.house=db:sample.house;kind:termfield;friendly:Sample House;count:true;help:House the sample lives in</code></pre>
-      <!-- /custom-views -->
+      {% for sectionId in page.specialsections %}
+        {% assign section = site.data.settings[sectionId] %}
+        <h2 id="{{sectionId}}">
+          {{section.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h2>
+        {{section.before}}
+        {% if section.settings %}
+          <table class="table table-bordered table-sm table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = section.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{section.after}}
+      {% endfor %}
+      <!-- /Sections -->
 
       <!-- moloch-clusters -->
       <h2 id="moloch-clusters">
@@ -1061,6 +857,17 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
                 <li>fetch: Information will be fetched and displayed in the rightclick menu for 5 seconds</li>
                 <li>empty: Nothing is done on value action click</li>
               </ul>
+            </td>
+          </tr>
+          <tr>
+            <td id="right-click-all">
+              all
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              (Since 4.3.2) Using all:true shows this item on all values.
             </td>
           </tr>
           <tr>
@@ -1512,6 +1319,17 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
             </td>
             <td>
               The menu text to display (<a href="#field-actions-menu-sub">can include these substitutions</a>)
+            </td>
+          </tr>
+          <tr>
+            <td id="field-actions-all">
+              all
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              (Since 4.3.2) Using all:true shows this item on all fields.
             </td>
           </tr>
           <tr>

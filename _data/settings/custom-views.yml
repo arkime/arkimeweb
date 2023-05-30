@@ -1,0 +1,37 @@
+name: custom-views
+before: |
+  <p>
+    With Arkime "views" are how the SPI data is displayed in the Sessions
+    tab. Usually there is a unique "view" for each category of data. You
+    can add custom views to Arkime several ways, including the wise and
+    tagger plugins. Since Arkime 1.5.2 the easiest way is to use a
+    [custom-views] section in the ini file. At viewer startup, a new
+    section will be created for each entry. The format of the line is
+    <code>name=definition</code>. Viewer will sort all views by name when
+    choosing the order to display in.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[custom-views]
+  sample=title:Samples;require:sample;fields:sample.md5,sample.house
+
+  [custom-fields]
+  sample.md5=db:sample.md5;kind:lotermfield;friendly:Sample MD5;count:true;help:MD5 of the sample
+  sample.house=db:sample.house;kind:termfield;friendly:Sample House;count:true;help:House the sample lives in</code></pre>
+  </code></pre>
+
+settings:
+  - key: fields
+    value: REQUIRED
+    text: A comma separated list of field expression to display. They will be displayed in order listed.
+
+  - key: title
+    value: Defaults to name
+    text: The title to get the section on Sessions tab
+
+  - key: require
+    value: REQUIRED
+    text: The db session name to require be set to show the section.
