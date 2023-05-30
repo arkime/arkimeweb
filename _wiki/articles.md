@@ -22,6 +22,7 @@ permalink: /articles
 * [MegaOIL and Beyond](/assets/Arkimeet2023-Generic.pdf)
 * [Infrastructure and Scaling Arkime](/assets/Arkimeet2023-InfrastructureandScalingArkime.pdf)
 * [Arkime in the Cloud](/assets/Arkimeet2023-ArkimeInTheCloud.pdf)
+  * [Presentation Recording](https://www.youtube.com/watch?v=JXFN3zR6-2k)
 * [Arkime Stream Processing with Kafka](/assets/Arkimeet2023-Arkime-Kafka.pdf)
 
 ---
