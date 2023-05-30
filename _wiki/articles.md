@@ -19,11 +19,17 @@ permalink: /articles
 ### Arkimeet 2023
 
 * [Keynote](/assets/Arkimeet2023-Keynote.pdf)
+  * [Presentation Recording](https://youtu.be/QYFNBTP52nA)
 * [MegaOIL and Beyond](/assets/Arkimeet2023-Generic.pdf)
-* [Infrastructure and Scaling Arkime](/assets/Arkimeet2023-InfrastructureandScalingArkime.pdf)
-* [Arkime in the Cloud](/assets/Arkimeet2023-ArkimeInTheCloud.pdf)
-  * [Presentation Recording](https://www.youtube.com/watch?v=JXFN3zR6-2k)
+  * [Presentation Recording](https://youtu.be/LgulnP625Jk)
 * [Arkime Stream Processing with Kafka](/assets/Arkimeet2023-Arkime-Kafka.pdf)
+  * [Presentation Recording](https://youtu.be/FhNQwTyg218)
+* Cont3xt
+  * [Presentation Recording](https://youtu.be/JO7gep5QgMI)
+* [Infrastructure and Scaling Arkime](/assets/Arkimeet2023-InfrastructureandScalingArkime.pdf)
+  * [Presentation Recording](https://youtu.be/jcoNgWtTiuU)
+* [Arkime in the Cloud](/assets/Arkimeet2023-ArkimeInTheCloud.pdf)
+  * [Presentation Recording](https://youtu.be/JXFN3zR6-2k)
 
 ---
 
