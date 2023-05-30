@@ -35,7 +35,11 @@ plugins:
 specialsections:
   - custom-fields
   - custom-views
+  - headers-email
+  - headers-http-request
+  - headers-http-response
   - override-ips
+  - packet-drop-ips
   - remote-clusters
 
 ---
@@ -141,21 +145,6 @@ specialsections:
         Multi Viewer Settings
       </a>
       <a class="nav-link nested"
-        href="#headers-http-request"
-        title="headers-http-request">
-        headers-http-request
-      </a>
-      <a class="nav-link nested"
-        href="#headers-http-response"
-        title="headers-http-response">
-        headers-http-response
-      </a>
-      <a class="nav-link nested"
-        href="#headers-email"
-        title="headers-email">
-        headers-email
-      </a>
-      <a class="nav-link nested"
         href="#right-click"
         title="valueactions">
         value actions
@@ -164,11 +153,6 @@ specialsections:
         href="#field-actions"
         title="fieldactions">
         field actions
-      </a>
-      <a class="nav-link nested"
-        href="#packet-drop-ips"
-        title="packet-drop-ips">
-        packet-drop-ips
       </a>
       <a class="nav-link nested"
         href="#pcap-at-rest-encryption"
@@ -578,91 +562,6 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX,
         </tbody>
       </table>
       <!-- /multi viewer settings -->
-
-      <!-- headers-http-request -->
-      <h2 id="headers-http-request">
-        headers-http-request
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        This section makes it easy to specify HTTP Request headers to index.
-        They will be searchable in the UI using http.[HEADERNAME]
-      </p>
-      <pre><code>[headers-http-request]
-referer=type:string;count:true;unique:true</code></pre>
-      <table class="table table-bordered table-sm table-striped">
-        <tbody>
-          <tr>
-            <td id="headers-http-request-type">
-              type
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              <ul class="mb-0">
-                <li>string - index as a string</li>
-                <li>integer - index as an integer</li>
-                <li>ip - index as an IP</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td id="headers-http-request-unique">
-              unique
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              true by default, only index unique values
-            </td>
-          </tr>
-          <tr>
-            <td id="headers-http-request-count">
-              count
-              <span class="fa fa-link small copy-link cursor-copy"
-                onclick="copyLink(this, 'settings')">
-              </span>
-            </td>
-            <td>
-              false by default, create a second field http.[HEADERNAME].cnt
-              with the number items found
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- /headers-http-request -->
-
-      <!-- headers-http-response -->
-      <h2 id="headers-http-response">
-        headers-http-response
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>
-        This section makes it easy to specify HTTP Request headers to index.
-        They will be searchable in the UI using http.[HEADERNAME]
-      </p>
-      <pre><code>[headers-http-response]
-location=type:string
-server=type:string</code></pre>
-      <!-- /headers-http-response -->
-
-      <!-- headers-email -->
-      <h2 id="headers-email">
-        headers-email
-      </h2>
-      <p>
-        This section makes it easy to specify email headers to index. They will
-        be searchable in the UI using email.[HEADERNAME]
-      </p>
-      <pre><code>[headers-email]
-x-priority=type:integer</code></pre>
-      <!-- /headers-email -->
 
       <!-- right-click -->
       <h2 id="right-click">
@@ -1385,28 +1284,6 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
         </tbody>
       </table>
       <!-- /field actions -->
-
-      <!-- packet-drop-ips -->
-      <h2 id="packet-drop-ips">
-        packet-drop-ips
-        <span class="fa fa-link small copy-link cursor-copy"
-          onclick="copyLink(this, 'settings')">
-        </span>
-      </h2>
-      <p>This section allows you to specify ips or cidrs to drop
-        from being processed. This is different from a bpf filter since the
-        packets will actually reach capture (and counted) but won't be
-        fully processed. However if you have many ranges/ips to drop it can be
-        more efficient then bpfs. It is possible to also allow ranges inside of
-        dropped ranges using the "allow" keyword. Order added doesn't matter,
-        searching always finds the best match.
-      </p>
-      <pre><code>[packet-drop-ips]
-10.0.0.0/8=drop
-10.10.0.0/16=allow
-10.10.10.0/24=drop
-10.10.10.10=allow</code></pre>
-      <!-- /packet-drop-ips -->
 
       <!-- PCAP at Rest Encryption -->
       <h2 id="pcap-at-rest-encryption">

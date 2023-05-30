@@ -1,0 +1,36 @@
+name: headers-email
+before: |
+  <p>
+    This section makes it easy to specify email headers to index. They will
+    be searchable in the UI using email.[HEADERNAME]
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[headers-email]
+  x-priority=type:integer
+  </code></pre>
+
+settings:
+  - key: "[header name]="
+    value: REQUIRED
+    text: The header name
+
+  - key: type
+    value: REQUIRED
+    text: |
+      <ul class="mb-0">
+        <li>string - index as a string</li>
+        <li>integer - index as an integer</li>
+        <li>ip - index as an IP</li>
+      </ul>
+
+  - key: unique
+    value: TRUE
+    text: Only index unique values
+
+  - key: count
+    value: FALSE
+    text: Create a second field email.[HEADERNAME].cnt with the number of items
