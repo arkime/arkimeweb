@@ -30,6 +30,7 @@ permalink: /articles
   * [Presentation Recording](https://youtu.be/jcoNgWtTiuU)
 * [Arkime in the Cloud](/assets/Arkimeet2023-ArkimeInTheCloud.pdf)
   * [Presentation Recording](https://youtu.be/JXFN3zR6-2k)
+* [Arkime v5 Possible Features](/assets/Arkimeet2023-v5.pdf)
 
 ---
 
