@@ -219,3 +219,7 @@ settings:
     value: "true for viewer, false for multiviewer"
     text: |
       Autocomplete field values in the search expression.
+
+  - key: maxAggSize
+    value: 10000
+    text: Max number of items in an aggregations to request for unique and export intersection
