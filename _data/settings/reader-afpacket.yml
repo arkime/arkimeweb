@@ -30,6 +30,6 @@ settings:
       The number of threads used to read packets from each interface. These threads take the packets from the AF packet interface and place them into the packet queues.
 
   - key: tpacketv3ClusterId
-    value: "0"
+    value: "8005"
     text: |
       (Since 2.0) The cluster id for use with PACKET_FANOUT
