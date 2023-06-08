@@ -3,7 +3,8 @@ settings:
   - key: debug
     value: "0"
     text: |
-      (Since 3.0) The debug level to use if NO --debug options are given
+      (Since 3.0) The debug level to use if NO --debug options are given.
+      The higher the number, the more information is logged.
 
   - key: logESRequests
     value: "false"
