@@ -16,7 +16,7 @@ permalink: "/learn"
 - [Moving from single host to multiple hosts](multihost)
 - [Other FPC Systems](otherfpc)
 - [Breaking TLS POC](break-tls-poc)
-- [Why Arkime?](arkimeetus)
+- [Why Arkime name?](arkimeetus)
 - [Common API](commonapi)
 - [Roles](roles)
 
