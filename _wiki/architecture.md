@@ -76,7 +76,9 @@ In some cases, it’s not practical or possible to physical co-locate a capture 
 Steps:
 1. Create named pipe on the local capture machine, you can name whatever you want: <br><code>mkfifo /tmp/10.1.2.3-ens3</code>
 1. Start capture on on the local capture machine: <br><code>/opt/arime/bin/capture --copy -r /tmp/10.1.2.3-ens3</code>
-1. Use ssh to copy the data from remote to localhost machine, exclude capturing the traffic we are sending over ssh: <br><code>ssh user@10.1.2.3 tcpdump -i ens3 -w - not host 192.168.10.5 > /tmp/10.1.2.3-ens3</code>
+1. Use ssh to copy the data from remote to localhost machine, exclude capturing the traffic we are sending over ssh: <br><code>ssh user@10.1.2.3 sudo /usr/sbin/tcpdump -i ens3 -w - not host 192.168.10.5 > /tmp/10.1.2.3-ens3</code><br>(The sudo and full path to tcpdump might not be required, remember to update the ips.)
+
+This is NOT the recommended way to use Arkime.
 
 
 </div>
