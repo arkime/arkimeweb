@@ -4,8 +4,9 @@ function parseXML (xml) {
   let files = $(xml).find('ListBucketResult').find('Contents');
   let downloads = {};
   let nightlies = { title:'Nightly', downloads:[] };
-  let acommities = { title:'Arkime Latest Commit', downloads:[] };
-  let mcommities = { title:'Arkime/Moloch Hybrid Latest Commit', downloads:[] };
+  let acommities = { title:'Arkime 4 Latest Commit', downloads:[] };
+  let acommities5 = { title:'Arkime 5 Latest Commit', downloads:[] };
+  let mcommities = { title:'Arkime/Moloch 4 Hybrid Latest Commit', downloads:[] };
   const oses = {
     'arch.x86': 'Arch',
     centos6: 'Centos 6',
@@ -114,6 +115,23 @@ function parseXML (xml) {
 
       acommities.modified = time;
       acommities.downloads.push(download);
+    } else if (key.startsWith('arkime-dev5')) {
+      const keyArr = key.split(key[11]);
+      const os = keyArr[1];
+      let time = new Date(file.find('LastModified').text());
+      time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)} ${('0'+time.getHours()).slice(-2)}:${('0'+time.getMinutes()).slice(-2)}:${('0'+time.getSeconds()).slice(-2)}`;
+
+      const osTitle = oses[os];
+
+      if (!osTitle) { continue; }
+
+      let download = {
+        url  : `https://s3.amazonaws.com/files.molo.ch/${key}`,
+        title: osTitle
+      };
+
+      acommities5.modified = time;
+      acommities5.downloads.push(download);
     }
   }
 
@@ -121,12 +139,13 @@ function parseXML (xml) {
     downloads: downloads,
     nightlies: nightlies,
     acommities: acommities,
+    acommities5: acommities5,
     mcommities: mcommities,
     sortedVersions: Object.keys(downloads).sort().reverse()
   };
 }
 
-function buildDownloadVersionRow (version, osList, listName, index) {
+function buildDownloadVersionRow (version, osList, listName, index, ver=4) {
   const id = version.title.replace(/[^-a-zA-Z0-9]/g, '');
   let html = `
     <div class="card">
@@ -176,8 +195,8 @@ function buildDownloadVersionRow (version, osList, listName, index) {
       <div class="alert alert-danger text-center lead lead-sm mb-0 p-1">
         <span class="fa fa-exclamation-triangle mr-2 danger-theme-text"></span>
         <a class="no-decoration"
-          href="faq#how_do_i_upgrade_to_arkime_4">
-          Please read the upgrading to 4 instructions
+          href="faq#how_do_i_upgrade_to_arkime_${ver}">
+          Please read the upgrading to ${ver} instructions
         </a>
         <span class="fa fa-exclamation-triangle ml-2 danger-theme-text"></span>
       </div>
@@ -190,7 +209,7 @@ function buildDownloadVersionRow (version, osList, listName, index) {
   return html;
 }
 
-function setupPage (versions, nightlies, acommities, mcommities, sortedVersions, osLists, length) {
+function setupPage (downloads, osLists, length) {
   let downloadsHtml = ''
 
   let osList = [ 'AL2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04'];
@@ -202,13 +221,14 @@ function setupPage (versions, nightlies, acommities, mcommities, sortedVersions,
     osCommitList = osLists.commit
   }
 
-  let acommitDownloadsHtml = buildDownloadVersionRow(acommities, osCommitList, 'latestCommitAccordion', 0);
-  let mcommitDownloadsHtml = buildDownloadVersionRow(mcommities, osCommitList, 'latestCommitAccordion', 1);
+  let acommitDownloadsHtml = buildDownloadVersionRow(downloads.acommities, osCommitList, 'latestCommitAccordion', 0);
+  let mcommitDownloadsHtml = buildDownloadVersionRow(downloads.mcommities, osCommitList, 'latestCommitAccordion', 1);
+  let acommit5DownloadsHtml = buildDownloadVersionRow(downloads.acommities5, osCommitList, 'latestCommitAccordion', 2, 5);
 
-  if (!length) { length = sortedVersions.length }
+  if (!length) { length = downloads.sortedVersions.length }
   for (let v = 0; v < length; ++v) {
-    if (versions.hasOwnProperty(sortedVersions[v])) {
-      let version = versions[sortedVersions[v]];
+    if (downloads.downloads.hasOwnProperty(downloads.sortedVersions[v])) {
+      let version = downloads.downloads[downloads.sortedVersions[v]];
       let html = buildDownloadVersionRow(version, osList, 'downloadsAccordion', v);
 
       downloadsHtml += html;
@@ -218,6 +238,7 @@ function setupPage (versions, nightlies, acommities, mcommities, sortedVersions,
   $('.main-downloads').append(downloadsHtml);
   $('.acommit-downloads').replaceWith(acommitDownloadsHtml);
   $('.mcommit-downloads').replaceWith(mcommitDownloadsHtml);
+  $('.acommit5-downloads').replaceWith(acommit5DownloadsHtml);
 }
 
 function removeLoading () {
@@ -238,7 +259,7 @@ function getDownloadsAndSetup (osLists, length) {
     dataType: 'xml',
     success: function (xml) {
       let downloads = parseXML(xml);
-      setupPage(downloads.downloads, downloads.nightlies, downloads.acommities, downloads.mcommities, downloads.sortedVersions, osLists, length);
+      setupPage(downloads, osLists, length);
       setTimeout(() => {
         removeLoading();
       }, 200);

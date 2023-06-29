@@ -115,6 +115,11 @@ title: FAQ
         title="How do I upgrade to Arkime 4.x">
         How do I upgrade to Arkime 4.x?
       </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_5"
+        title="How do I upgrade to Arkime 5.x">
+        How do I upgrade to Arkime 5.x?
+      </a>
       <a href="#elasticsearch"
         class="nav-link"
         title="OpenSearch/Elasticsearch">
@@ -187,8 +192,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#ilm"
-        title="Using ILM with Arkime">
-        Using ILM with Arkime
+        title="Using ILM/ISM with Arkime">
+        Using ILM/ISM with Arkime
       </a>
       <a href="#capture"
         class="nav-link"
@@ -1102,10 +1107,39 @@ title: FAQ
       </ul>
       <h4>Instructions</h4>
       <ul>
-        <li>Install new Arkime rpm/db.</li>
+        <li>Install new Arkime rpm/deb.</li>
         <li>Shut down ALL captures, multies, and viewers.</li>
         <li>Run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
         <li>Verify that your config.ini and systemd files have the new /opt/arkime path instead of /data/moloch if moving from the Moloch/Hybrid to the Arkime distribution. If you continue to use the Hybrid distribution, you do not need to change the paths.</li>
+        <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
+        <li>Verify that everything is working.</li>
+      </ul>
+
+      <h3 id="how_do_i_upgrade_to_arkime_5">
+        How do I upgrade to Arkime 5.x?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        Upgrading to Arkime 5.x requires that you are already using Arkime 4.3.2 or later.
+        <strong>Arkime 5 is still under development.</strong>
+      </p>
+      <h4>Breaking Changes</h4>
+      <ul>
+        <li>s3Compression/simpleCompression now default to zstd</li>
+        <li>s3WriteGzip removed, use s3Compression=gzip</li>
+        <li>s3GapPacketPos defaults to TRUE</li>
+        <li>enablePacketDedup defaults to TRUE</li>
+        <li>authMode defaults to digest now, use authMode=anonymous</li>
+        <li>removed old v1 API</li>
+      </ul>
+      <h4>Instructions</h4>
+      <ul>
+        <li>Install new Arkime rpm/deb.</li>
+        <li>Shut down ALL captures, multies, and viewers.</li>
+        <li>Run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
         <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
         <li>Verify that everything is working.</li>
       </ul>
@@ -1819,7 +1853,7 @@ logger.action.level = info</code></pre>
       </div>
 
       <h3 id="ilm">
-        Using ILM with Arkime
+        Using ILM/ISM with Arkime
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>

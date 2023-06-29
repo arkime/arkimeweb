@@ -428,3 +428,8 @@ settings:
     value: "5"
     text: |
      (Since 4.3.0) Delay before saving tcp sessions after close
+
+  - key: overrideIpFiles
+    value: EMPTY
+    text: |
+     (Since 5.0.0) A list of ini format files that have a <a href="#override-ips">[override-ips]</a> section. These files will reload on change without restarting capture.

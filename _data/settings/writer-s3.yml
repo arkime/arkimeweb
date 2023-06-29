@@ -33,6 +33,7 @@ settings:
     text: |
       (Since 2.1) Should the PCAP files be stored on S3 in gzipped form.
       Since 4.3.0 if <a href="#s3Compression">s3Compression</a> is set this setting is ignored.
+      Since 5.0.0 this setting has been removed.
 
   - key: s3StorageClass
     value: STANDARD
@@ -79,7 +80,7 @@ settings:
       token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1
 
   - key: s3Compression
-    value: EMPTY
+    value: zstd (>= 5.0) EMPTY (4.3 - 5.0)
     text: |
       (Since 4.3.0) Select which type of compression is used when storing PCAP in S3. Valid values are EMPTY (same as none), none, gzip, zstd.
 
@@ -98,3 +99,8 @@ settings:
     value: false
     text: |
       (Since 4.3.0) Use the ECS_CONTAINER_METADATA_URI_V4 and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variables to find the metadata service.
+
+  - key: s3GapPacketPos
+    value: "true"
+    text: |
+      (Since 5.0.0) encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
