@@ -38,12 +38,29 @@ settings:
       Changing the value will make all previously stored passwords no longer work.
 
 
+  - key: authMode
+    value: EMPTY
+    text: |
+      (Since 5.0.0) This setting controls what auth mode is used, if authMode or userNameHeader isn't set then digest is used by default. Before Arkime 5 userNameHeader is used to select the auth mode.
+      Possible values are:
+      <ul>
+        <li>"basic" - Run in basic mode where browser based basic authentication is used.</li>
+        <li>"digest" or EMPTY - Run in digest mode where browser based digest authentication is used.</li>
+        <li>"oidc" -  Use OIDC authentication.</li>
+        <li>"anonymous" - Use anonymous authentication.</li>
+        <li>"s2s" -  Only server to server authentication is allowed</li>
+      </ul>
+      If using central viewers for maximum security set all viewers to use s2s except the central viewer.
+      Each user must have Web Auth Header checkbox set to support other methods besides digest.
+
   - key: userNameHeader
     value: EMPTY
     text: |
-      This setting controls what auth mode is used. Possible values are:
+      If using Arkime 5 or later please use <a href="#authMode">authMode</a> to select the auth mode and only use userNameHeader in header auth mode.
+      This setting controls what auth mode is used OR what header to user when using header auth. 
+      Possible values are:
       <ul>
-        <li>"digest" or EMPTY - Run in digest mode where browser based authentication is used.</li>
+        <li>"digest" - Run in digest mode where browser based authentication is used.</li>
         <li>"oidc" - (Since 4.2.0) Use OIDC authentication.</li>
         <li>"anonymous" - (Since 4.2.0) Use anonymous authentication.</li>
         <li>"s2s" - (Since 4.2.0) Only server to server authentication is allowed</li>

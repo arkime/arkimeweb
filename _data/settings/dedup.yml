@@ -14,7 +14,7 @@ before: |
 
 settings:
   - key: enablePacketDedup
-    value: "false"
+    value: "true (>= 5.0) false (< 5.0)"
     text: |
       Enable packet deduplication
 

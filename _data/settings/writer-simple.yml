@@ -12,7 +12,7 @@ settings:
       Which kek to use, see <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
 
   - key: simpleCompression
-    value: gzip
+    value: zstd (>= 5) gzip (4.2 - 5)
     text: |
       (since 4.0.0) The type of compression to use on pcap files. Valid values are: none, gzip, zstd
 
