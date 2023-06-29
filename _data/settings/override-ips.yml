@@ -35,5 +35,5 @@ settings:
   - key: rir
     text: A RIR value to set for matches
 
-  - key: "(expression):"
-    text: Since 5.0 any expression can be set, for example <code>asset:computer</code> will set the asset field to expression.
+  - key: "[expression]:"
+    text: Since 5.0 any expression can be set, for example <code>asset:computer</code> will set the asset field to computer.
