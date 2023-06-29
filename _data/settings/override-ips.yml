@@ -7,7 +7,7 @@ before: |
     Spaces and capitalization are very important.
   </p>
   <p>
-    Since 5.0.0 you can now create secondary ini files that will auto reload on changes by setting the <a href="#overrideIpFiles">overrideIpFiles</a> setting.
+    Since 5.0.0 you can now create secondary ini files that will auto reload on changes by setting the <a href="#overrideIpsFiles">overrideIpsFiles</a> setting.
   </p>
 
 after: |

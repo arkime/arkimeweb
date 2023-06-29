@@ -8,6 +8,9 @@ before: |
     dropped ranges using the "allow" keyword. Order added doesn't matter,
     searching always finds the best match.
   </p>
+  <p>
+    Since 5.0.0 you can now create secondary ini files that will auto reload on changes by setting the <a href="#packetDropIpsFiles">packetDropIpsFiles</a> setting.
+  </p>
   <pre><code>[packet-drop-ips]
   10.0.0.0/8=drop
   10.10.0.0/16=allow
