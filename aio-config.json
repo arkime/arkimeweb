@@ -1,0 +1,13 @@
+---
+sections:
+  - auth-oidc
+  - pcapstorage
+  - capture
+  - dedup
+  - viewer
+  - advanced
+  - debug
+---
+{
+{% for sectionId in page.sections %}{% assign section = site.data.settings[sectionId] %}{% assign sorted = section.settings | sort: "key" %}{% for item in sorted %}"{{item.key}}": {{ item | jsonify }},
+{% endfor %}{% endfor %}}
