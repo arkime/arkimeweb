@@ -136,6 +136,7 @@ webBasePath | / | The base url for Cont3xt web requests. Must end with a / or ba
 certFile | empty | Public certificate to use for https, if not set then http will be used. keyFile must also be set.
 keyFile | empty | Private certificate to use for https, if not set then http will be used. certFile must also be set.
 userNameHeader | anonymous | Header to use for determining the username to check in the database for instead of using http digest. Set to <strong>digest</strong> to use http digest authentication.
+httpRealm | Moloch | The Realm to use with digest authentication. Must match the setting from the Viewer as set in `config.ini`.
 userAgent | cont3xt | The http user-agent header to use when talking to remote services
 geoLite2ASN | | <a href="settings#geolite2asn">settings page</a>
 geoLite2Country | | <a href="settings#geolite2country">settings page</a>
