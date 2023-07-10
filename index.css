@@ -633,12 +633,14 @@ body.full-height-body {
 .full-height-container h1[id] > span.copy-link,
 .full-height-container h2[id] > span.copy-link,
 .full-height-container h3[id] > span.copy-link,
+.full-height-container h4[id] > span.copy-link,
 .full-height-container td[id] > span.copy-link {
   visibility: hidden;
 }
 .full-height-container h1[id]:hover > span.copy-link,
 .full-height-container h2[id]:hover > span.copy-link,
 .full-height-container h3[id]:hover > span.copy-link,
+.full-height-container h4[id]:hover > span.copy-link,
 .full-height-container td[id]:hover > span.copy-link {
   visibility: visible;
 }

@@ -100,7 +100,7 @@ settings:
     value: 200000
     text: |
       How many packets per packet thread that can be waiting to be processed.
-      Arkime will stop dropping packets if the queue fills up.
+      Arkime will start dropping packets if the queue fills up.
 
   - key: maxStreams
     value: 1500000
