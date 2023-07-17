@@ -229,7 +229,7 @@ Think of it as doing a `min(current value, 200)` or `min(20, 200)` which would b
 
 ## Logging
 
-You can log when a rule is matched using the optional log element.
+Since 3.0.0 you can log when a rule is matched using the optional log element.
 {: .mb-0 }
 
 ```
