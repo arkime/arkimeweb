@@ -23,7 +23,7 @@ The system defined roles include:
 * <strong>cont3xtAdmin</strong> - An cont3xtAdmin is automatically assigned cont3xtUser. An cont3xtAdmin has extra ability to change Cont3xt configurations and view data for all Cont3xt Users (including superAdmins).
 * <strong>parliamentUser</strong> - Can use the issues feature of parliament
 * <strong>parliamentAdmin</strong> - A parliamentAmdmin is automatically a parliamentUser. A parliamentAdmin can configure the clusters and settings in parliament.
-* <strong>wiseUser</strong> - Can use the WISE UI.
+* <strong>wiseUser</strong> - View raw data for a WISE source and get all configurations.
 * <strong>wiseAdmin</strong> - A wiseAdmin is automatically a wiseUser. A wiseAdmin can setup new wise sources and edit the source data.
 
 
@@ -39,6 +39,6 @@ High level Role Rules:
 * Only a user with the superAdmin role can assign another user the arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
 * The application Admin users can view application data for all users, including other Admin and superAdmins users
- 
+
 
 </div>
