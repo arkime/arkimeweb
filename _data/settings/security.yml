@@ -57,7 +57,7 @@ settings:
     value: EMPTY
     text: |
       If using Arkime 5 or later please use <a href="#authMode">authMode</a> to select the auth mode and only use userNameHeader in header auth mode.
-      This setting controls what auth mode is used OR what header to user when using header auth. 
+      This setting controls what auth mode is used OR what header to user when using header auth.
       Possible values are:
       <ul>
         <li>"digest" - Run in digest mode where browser based authentication is used.</li>
@@ -120,3 +120,9 @@ settings:
     value: "For header auth 127/8 and ::1, otherwise all ips"
     text: |
       (Since 3.4.0) Ips allowed to be used for authenticated calls
+
+  - key: authTrustProxy
+    value: EMPTY
+    text: |
+      Used to set the express "trust proxy" setting that might be needed if viewer is running in http mode and a reverse proxy is being used in https mode.
+      Please <a href="https://expressjs.com/en/guide/behind-proxies.html">read more</a> about the setting and possible values.
