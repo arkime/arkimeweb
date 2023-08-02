@@ -808,7 +808,7 @@ POST - Used by capture to lookup all the wise items
 
 ## /sources API
 
-GET - Used by wise UI to retrieve all the sources
+GET - Used by wise UI to retrieve all the sources (unathenticated).
 
 **Returns**:
 
@@ -816,83 +816,23 @@ GET - Used by wise UI to retrieve all the sources
 | --- | --- | --- |
 |  | <code>string</code> \| <code>array</code>| All the sources |
 
-<a name="/source/_source/get"></a>
-
-## /source/:source/get API
-
-GET - Used by wise UI to retrieve the raw file being used by the section.
-      This is an authenticated API and requires wiseService to be started with --webconfig.
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| :source | <code>string</code> | The source to get the raw data for |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>object</code>| All the views |
-
-<a name="/source/_source/put"></a>
-
-## /source/:source/put API
-
-PUT - Used by wise UI to save the raw file being used by the source.
-      This is an authenticated API and requires wiseService to be started with --webconfig.
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| :source | <code>string</code> | The source to put the raw data for |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>object</code>| All the views |
-
 <a name="/config/defs"></a>
 
 ## /config/defs API
 
-GET - Used by wise UI to retrieve all the configuration definitions for the various sources.
+GET - Used by wise UI to retrieve all the configuration definitions for the various sources (unauthenticated).
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code>|  |
-
-<a name="/config/get"></a>
-
-## /config/get API
-
-GET - Used by wise UI to retrieve the current config.
-      This is an authenticated API and requires wiseService to be started with --webconfig.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| object | <code>object</code>|  |
-
-<a name="/config/save"></a>
-
-## /config/save API
-
-PUT - Used by wise UI to save the current config.
-      This is an authenticated API, requires the pin code, and requires wiseService to be started with --webconfig.
 
 <a name="/types"></a>
 
 ## /types API
 
-GET - Used by the wise UI to all the types known.
+GET - Used by the wise UI to all the types known (unathenticated).
 
 **Returns**:
 
@@ -972,4 +912,64 @@ GET - Query for the stats
 | Name | Type | Description |
 | --- | --- | --- |
 |  | <code>object</code>| Object with array of stats per type and array of stats per source |
+
+<a name="/source/_source/get"></a>
+
+## /source/:source/get API
+
+GET - Used by wise UI to retrieve the raw file being used by the section.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| :source | <code>string</code> | The source to get the raw data for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| All the views |
+
+<a name="/source/_source/put"></a>
+
+## /source/:source/put API
+
+PUT - Used by wise UI to save the raw file being used by the source.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| :source | <code>string</code> | The source to put the raw data for |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| All the views |
+
+<a name="/config/get"></a>
+
+## /config/get API
+
+GET - Used by wise UI to retrieve the current config.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| object | <code>object</code>|  |
+
+<a name="/config/save"></a>
+
+## /config/save API
+
+PUT - Used by wise UI to save the current config.
+      This is an authenticated API, requires the pin code, and requires wiseService to be started with --webconfig.
 

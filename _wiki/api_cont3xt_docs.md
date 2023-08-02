@@ -48,7 +48,7 @@ Returns list of audit logs (sorted by issuedAt) that the requesting user is allo
 
 DELETE - /api/audit/:id
 
-Delete a log from history
+Delete a log from history. Users can delete their own logs. Admins can delete any log.
 
 **Returns**:
 
@@ -72,6 +72,7 @@ Returns all the settings relevant for the cont3xt settings page
 | success | <code>boolean</code>| True if the request was successful, false otherwise |
 | settings | <code>object</code>| General cont3xt settings |
 | linkGroups | [<code>Array.&lt;LinkGroup&gt;</code>](#LinkGroup)| An array of link groups that the logged in user can view/edit |
+| selectedOverviews | <code>object</code>| A mapping of the selected overview per iType, of shape {[iType]: overviewId} |
 
 <a name="/settings"></a>
 
@@ -154,9 +155,7 @@ Fetches integration data about a single itype/integration
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| True if the request was successful, false otherwise |
-| _query | <code>string</code>| The query that was run against the integration to retrieve data |
-| data | <code>object</code>| The data from the integration query. This varies based upon the integration. The IntegrationCard describes how to present this data to the user. |
+|  | [<code>IntegrationChunk</code>](#IntegrationChunk)| The chunk with either: purpose:data, purpose:fail, or purpose:error |
 
 <a name="/integration/settings"></a>
 
@@ -271,6 +270,81 @@ Updates a link group
 DELETE - /api/linkGroup/:id
 
 Deletes a link group
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+| text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/overview"></a>
+
+## /overview API
+
+PUT - /api/overview
+
+Creates a new overview
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| req.body | [<code>Cont3xtOverview</code>](#Cont3xtOverview) | The overview to create |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+| text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/overview/_id"></a>
+
+## /overview/:id API
+
+PUT - /api/overview/:id
+
+Updates an overview
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| req.params.id | <code>string</code> | The id of the overview to update |
+| req.body | [<code>Cont3xtOverview</code>](#Cont3xtOverview) | The new value of the overview to update |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+| text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/overviews"></a>
+
+## /overviews API
+
+GET - /api/overview
+
+Returns overviews that the requesting user is allowed to view.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| overviews | [<code>Array.&lt;Cont3xtOverview&gt;</code>](#Cont3xtOverview)| An array of overviews that the logged in user can view |
+| success | <code>boolean</code>| True if the request was successful, false otherwise |
+
+<a name="/overview/_id"></a>
+
+## /overview/:id API
+
+DELETE - /api/overview/:id
+
+Deletes an overview
 
 **Returns**:
 
@@ -493,6 +567,44 @@ Integrations are the configured data sources for Cont3xt.
 | card | [<code>IntegrationCard</code>](#IntegrationCard) | Information on how to display the integration's data |
 | tidbits | [<code>IntegrationTidbitContainer</code>](#IntegrationTidbitContainer) | Information on how to pull specialized fields into indicator-tree UI |
 
+
+* [Integration](#Integration) : <code>object</code>
+    * [.initialize()](#Integration.initialize)
+    * [.register()](#Integration.register)
+
+<a name="Integration.initialize"></a>
+
+### Integration.initialize() (function)
+
+Initialize the Integrations subsystem
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| options.debug | <code>number</code> | <code>0</code> | The debug level to use for Integrations |
+| options.cache | <code>object</code> |  | The ArkimeCache implementation |
+| options.getConfig | <code>function</code> |  | function used to get configuration items |
+| options.integrationsPath | <code>string</code> | <code>&quot;__dirname/integrations/&quot;</code> | Where to find the integrations |
+
+<a name="Integration.register"></a>
+
+### Integration.register() (function)
+
+Register an integration implementation
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| integration.name | <code>string</code> |  | The name of the integration |
+| integration.itypes | <code>object</code> |  | An object of itypes to functions to call |
+| integration.cacheable | <code>boolean</code> | <code>true</code> | Should results be cache |
+| integration.noStats | <code>boolean</code> | <code>false</code> | Should we not save stats |
+| integration.order | <code>number</code> | <code>10000</code> | What order should this integration be shown |
+
 <a name="Itype"></a>
 
 ## Itype Type
@@ -505,6 +617,12 @@ The classification of the search string
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | itype | <code>string</code> | <code>&quot;\&quot;text\&quot;&quot;</code> | The type of the search                                ip, domain, url, email, phone, hashes, or text |
+
+<a name="DataChunkPurpose"></a>
+
+## DataChunkPurpose Type
+
+The classification of the data chunk
 
 <a name="IntegrationChunk"></a>
 
@@ -519,13 +637,15 @@ An chunk of data returned from searching integrations
 
 | Param | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code> | Whether the search was successful (sent in first chunk only) |
-| itype | [<code>Itype</code>](#Itype) | The type of the search |
+| purpose | [<code>DataChunkPurpose</code>](#DataChunkPurpose) | String discriminator to indicate the use of this data chunk |
+| text | <code>string</code> | The message describing the error (on purpose: 'error') |
+| indicator | <code>Cont3xtIndicator</code> | The itype and query that correspond to this chunk of data (all purposes except: 'finish' and 'error') |
 | total | <code>number</code> | The total number of integrations to query |
 | sent | <code>number</code> | The number of integration results that have completed and been sent to the client |
-| name | <code>string</code> | The name of the integration result within the chunk |
-| query | <code>string</code> | The query that was run against the integration to retrieve data |
-| data | <code>object</code> | The data from the integration query. This varies based upon the integration. The <a href="#integrationcard-type">IntegrationCard</a> describes how to present this data to the user. |
+| name | <code>string</code> | The name of the integration result within the chunk (purpose: 'data') |
+| data | <code>object</code> | The data from the integration query (purpose: 'data'). This varies based upon the integration. The <a href="#integrationcard-type">IntegrationCard</a> describes how to present this data to the user. |
+| parentIndicator | <code>Cont3xtIndicator</code> | The indicator that caused this integration/query to be run, or undefined if this is a root-level query (purpose: 'link') |
+| enhanceInfo | <code>object</code> | Curated data contributed from an integration to an indicator of a separate query (purpose: 'enhance') |
 
 <a name="IntegrationSetting"></a>
 
@@ -612,6 +732,47 @@ Link Groups are used to list links to external sources.
 | viewRoles | <code>array</code> | The Arkime roles that can view this link group |
 | _editable | <code>boolean</code> | Whether the logged in user is allowed to edit this link group |
 | _viewable | <code>boolean</code> | Whether the logged in user is allowed to view this link group |
+
+<a name="Cont3xtOverviewField"></a>
+
+## Cont3xtOverviewField Type
+
+A Cont3xt Overview Field Object
+
+Cont3xt Overview Fields configure the display for an entry in an overview
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| from | <code>string</code> | The name of the integration to use a field from |
+| field | <code>string</code> | The label of the field to use |
+| alias | <code>string</code> \| <code>undefined</code> | Optional replacement label to display for this field in the overview |
+
+<a name="Cont3xtOverview"></a>
+
+## Cont3xtOverview Type
+
+A Cont3xt Overview Object
+
+Cont3xt Overviews are used to configure the default display for an itype
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| _id | <code>string</code> | The id of the overview |
+| creator | <code>string</code> | The creator of the overview |
+| name | <code>string</code> | The name of the overview |
+| title | <code>string</code> | The title of the overview, filled for display on the integration card panel |
+| iType | <code>string</code> | The itype this overview can be displayed for |
+| fields | [<code>Array.&lt;Cont3xtOverviewField&gt;</code>](#Cont3xtOverviewField) | The array of fields to be displayed by this overview |
+| editRoles | <code>array</code> | The Arkime roles that can edit this overview |
+| viewRoles | <code>array</code> | The Arkime roles that can view this overview |
+| _editable | <code>boolean</code> | Whether the logged in user is allowed to edit this overview |
+| _viewable | <code>boolean</code> | Whether the logged in user is allowed to view this overview |
 
 <a name="Cont3xtView"></a>
 
