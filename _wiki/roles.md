@@ -39,6 +39,7 @@ High level Role Rules:
 * Only a user with the superAdmin role can assign another user the arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
 * The application Admin users can view application data for all users, including other Admin and superAdmins users
+* webEnabled and headerAuthEnabled values are not inherited from roles. They must be set on each user individually.
 
 
 </div>
