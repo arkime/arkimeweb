@@ -119,7 +119,7 @@ settings:
   - key: userAuthIps
     value: "For header auth 127/8 and ::1, otherwise all ips"
     text: |
-      (Since 3.4.0) Ips allowed to be used for authenticated calls
+      (Since 3.4.0) A comma separated list of Ips allowed to be used for authenticated calls
 
   - key: authTrustProxy
     value: EMPTY
