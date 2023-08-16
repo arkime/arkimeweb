@@ -1,0 +1,128 @@
+name: Parliament Settings
+
+before: |
+  <p>
+    (Since 5.0.0) Must be in the [parliament] section. This can be in its own file or in the viewer config.
+    This config must exist and point to your Parliament JSON file using the <code>file</code> setting.
+    If you were passing in port/certFile/keyFile into the command line arguments when starting Parliament, you must also include those in this config.
+    It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
+    The upgrade will update the config with your auth settings. Otherwise you will need to input them manually as
+    basic passworth auth has been disabled for Parliament.
+  </p>
+
+settings:
+  - key: file
+    value: REQUIRED
+    text: The location of your Parliament json file.
+
+  - key: port
+    value: "8008"
+    text: The port that the parliament process listens on.
+
+  - key: webBasePath
+    value: "/"
+    text: |
+      The base url for Parliament web requests.
+      Must end with a / or bad things will happen.
+
+  - key: certFile
+    value: EMPTY
+    text: |
+      Public certificate to use for https, if not set then http will be
+      used. keyFile must also be set.
+
+  - key: keyFile
+    value: EMPTY
+    text: |
+      Private certificate to use for https, if not set then http will
+      be used. certFile must also be set.
+
+  - key: parliamentHost
+    value: EMPTY
+    text: |
+      The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
+      See the <code>host</code> section of
+      <a class="no-decoration"
+        href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
+        rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
+
+  - key: authMode
+    value: EMPTY
+    text: See <a href="#authMode">security section</a>
+
+  - key: userNameHeader
+    value: EMPTY
+    text: See <a href="#userNameHeader">security section</a>
+
+  - key: passwordSecret
+    value: password
+    text: See <a href="#passwordSecret">security section</a>
+
+  - key: httpRealm
+    value: Moloch
+    text: See <a href="#httpRealm">security section</a>
+
+  - key: usersElasticsearch
+    value: Empty
+    text: See <a href="#usersElasticsearch">OS/ES section</a>
+
+  - key: usersElasticsearchAPIKey
+    value: Empty
+    text: See <a href="#usersElasticsearchAPIKey">OS/ES section</a>
+
+  - key: usersElasticsearchBasicAuth
+    value: Empty
+    text: See <a href="#usersElasticsearchBasicAuth">OS/ES section</a>
+
+  - key: usersPrefix
+    value: EMPTY
+    text: See <a href="#usersPrefix">OS/ES section</a>
+
+  - key: requiredAuthHeader
+    value: EMPTY
+    text: See <a href="#requiredAuthHeader">security section</a>
+
+  - key: requiredAuthHeaderVal
+    value: EMPTY
+    text: See <a href="#requiredAuthHeaderVal">security section</a>
+
+  - key: userAutoCreateTmpl
+    value: EMPTY
+    text: See <a href="#userAutoCreateTmpl">security section</a>
+
+  - key: userAuthIps
+    value: "For header auth 127/8 and ::1, otherwise all ips"
+    text: See <a href="#userAuthIps">security section</a>
+
+  - key: caTrustFile
+    value: EMPTY
+    text: See <a href="#caTrustFile">security section</a>
+
+  - key: authTrustProxy
+    value: EMPTY
+    text: See <a href="#authTrustProxy">security section</a>
+
+  - key: authDiscoverURL
+    value: EMPTY
+    text: See <a href="#authDiscoverURL">OIDC section</a>
+
+  - key: authClientId
+    value: EMPTY
+    text: See <a href="#authClientId">OIDC section</a>
+
+  - key: authClientSecret
+    value: EMPTY
+    text: See <a href="#authClientSecret">OIDC section</a>
+
+  - key: authUserIdField
+    value: EMPTY
+    text: See <a href="#authUserIdField">OIDC section</a>
+
+  - key: authRedirectURIs
+    value: EMPTY
+    text: See <a href="#authRedirectURIs">OIDC section</a>
+
+  - key: debug
+    value: 0
+    text: The debug level to use if NO --debug options are given. The higher the number, the more information is logged.
+
