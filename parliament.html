@@ -63,8 +63,12 @@ title: Parliament
             clusters and as a status page to monitor the health of your clusters.
           </p>
           <p class="lead lead-lg text-center">
+            As of v5 of Arkime, Parliament requires a configuration file.
+            See <a href="settings#parliament">Parliament Settings</a> for details.
+          </p>
+          <p class="lead lead-lg text-center">
             <a href="https://github.com/arkime/arkime/tree/main/parliament#arkime-parliament">
-              Learn more here
+              View the Parliament README on GitHub!
             </a>
           </p>
           <p class="lead text-thin text-center">
@@ -351,7 +355,7 @@ title: Parliament
             <h5>
               <span class="primary-theme-text fa fa-lock fa-fw fa-lg">
               </span>&nbsp;
-              Password (<strong>deprecated</strong>)
+              Password (<strong>deprecated in v4, removed in v5</strong>)
             </h5>
             <p>
               <strong>These passwords are being deprecated</strong>, please use the Auth section
@@ -363,7 +367,7 @@ title: Parliament
             <h5>
               <span class="primary-theme-text fa fa-key fa-fw fa-lg">
               </span>&nbsp;
-              Auth
+              Auth (<strong>removed in v5</strong>)<sup>*</sup>
             </h5>
             <p>
               Auth uses the the Arkime User's database for Parliament access.
@@ -382,6 +386,11 @@ title: Parliament
                 groups/clusters and manage the Parliament settings.
               </li>
             </ul>
+            <p>
+              <sup>*</sup>
+              You must configure this in v4 or add these settings to the Parliament config manually
+              (see <a href="settings#parliament">Parliament ini settings</a>).
+            </p>
             <h5>
               <span class="primary-theme-text fa fa-bell fa-fw fa-lg">
               </span>&nbsp;
