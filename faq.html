@@ -2803,7 +2803,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </h3>
       <p>
         Arkime buffers writes to disk, which is great for high bandwidth
-        networks, but bad for low bandwidth networks. How much data is buffered
+        networks, but bad for <a href="/settings#lab-settings">low bandwidth networks</a>. How much data is buffered
         is controlled with <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a>, which defaults to 262144
         bytes. An important thing to remember is the buffer is per thread, so set
         <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 on low bandwidth networks.
