@@ -15,7 +15,7 @@ settings:
     value: 3218
     text: The port that the cont3xt service listens on
   - key: cont3xtHost
-    value: empty
+    value: EMPTY
     text: What hostname to bind to
   - key: hstsHeader
     value: false
@@ -24,10 +24,10 @@ settings:
     value: /
     text: The base url for Cont3xt web requests. Must end with a / or bad things will happen.
   - key: certFile
-    value: empty
+    value: EMPTY
     text: Public certificate to use for https, if not set then http will be used. keyFile must also be set.
   - key: keyFile
-    value: empty
+    value: EMPTY
     text: Private certificate to use for https, if not set then http will be used. certFile must also be set.
   - key: userNameHeader
     value: anonymous

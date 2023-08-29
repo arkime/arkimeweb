@@ -11,15 +11,15 @@ settings:
     text: "`memory`, `redis`, `memcached`, `lmdb` are supported. `lmdb` is recommend for a local disk cache and `redis` for a shared cache."
 
   - key: redisURL
-    value: empty
+    value: EMPTY
     text: Format is `redis://[:password@]host:port/db-number, redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number, or redis-cluster://[:password@]host:port/db-number`
 
   - key: memcachedURL
-    value: empty
+    value: EMPTY
     text: Format is `memcached://[user:pass@]server1[:11211],[user:pass@]server2[:11211],...`
 
   - key: lmdbDir
-    value: empty
+    value: EMPTY
     text: Path where to create the lmdb cache directory
 
   - key: cacheSize
