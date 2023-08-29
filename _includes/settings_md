@@ -1,0 +1,8 @@
+{% assign sorted = section.settings | sort: "key" %}
+
+{{section.name}}
+{{section.before}}
+Setting | Default | Description
+--------|---------|------------
+{% for item in sorted %}{{item.key}} | {{item.value}} | {{item.text}}
+{% endfor %}{: .table .table-striped .table-sm .mb-4 }

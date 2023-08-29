@@ -1,0 +1,52 @@
+name: "#### OpenSearch/Elasticsearch Integration"
+before: |
+  Since 5.0 Cont3xt can query OpenSearch/Elasticsearch for results.
+
+  Create a `[opensearch:NAME]` or `[elasticsearch:NAME]` section where NAME is a unique name for all integrations
+
+  {: .mb-0}
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: OpenSearch/Elasticsearch icon
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: REQUIRED
+    text: Comma separated list of itypes this integration supports
+
+  - key: index
+    value: REQUIRED
+    text: Which index to search
+
+  - key: method
+    value: search
+    text: How to do the lookup, can be either get or search
+
+  - key: queryField
+    value: REQUIRED if search
+    text: Which field in the data to search against
+
+  - key: url
+    value: REQUIRED
+    text: The OpenSearch/Elasticsearch URL
+
+  - key: insecure
+    value: EMPTY
+    text: If true the connection to OpenSearch/Elasticsearch will disable certificate verification for https calls
+
+  - key: apiKey
+    value: EMPTY
+    text: The Elasticsearch API Key to use
+
+  - key: basicAuth
+    value: EMPTY
+    text: The OpenSearch/Elasticsearch user:password to use, it can be base64 encoded

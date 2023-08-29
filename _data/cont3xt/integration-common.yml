@@ -1,0 +1,20 @@
+name: "#### Common settings per integration"
+before: |
+  Every integration can have its own settings with keys, passwords and other things.
+  Usually keys and passwords should be set per user in the UI, which will override these.
+
+  In each `[integrationname]` section
+  {: .mb-0}
+
+settings:
+  - key: disabled
+    value: false
+    text: If set to true users can NOT use this integration
+
+  - key: cacheTimeout
+    value: cont3xt.cacheTimeout
+    text: How long to cache results for this integration
+
+  - key: cachePolicy
+    value: cont3xt.cachePolicy
+    text: Can be `shared` or `user`, if set to user then the cache is per user
