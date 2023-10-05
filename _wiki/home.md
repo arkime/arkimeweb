@@ -10,7 +10,7 @@ permalink: "/learn"
 
 - [FAQ](faq)
 - [Settings](settings)
-- [Security](security)
+- [Security](https://github.com/arkime/arkime/security/policy)
 - [Arkime Architecture Designs](architecture)
 - [Articles and Presentations About Arkime](articles)
 - [Moving from single host to multiple hosts](multihost)
