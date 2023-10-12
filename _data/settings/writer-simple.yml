@@ -14,14 +14,17 @@ settings:
   - key: simpleCompression
     value: zstd (>= 5) gzip (4.2 - 5)
     text: |
-      (since 4.0.0) The type of compression to use on pcap files. Valid values are: none, gzip, zstd
+      (since 4.0.0) The type of seekable compression to use on pcap files.
+      Zstd (don't use before 4.5.1) will has better compression for less cpu than glib.
+      Valid values are: none, gzip, zstd (>= 4.5.1)
+
 
   - key: simpleCompressionBlockSize
     value: "32000"
     text: |
       (since 4.0.0)
-      The block size is how much uncompressed data to attempt to compress into a block.
-      The larger the value the better the compression, but the slower the read.
+      How many bytes of uncompressed data to attempt to compress at once.
+      The larger the value the better the compression, without increasing CPU on capture, but may slow down reads in viewer.
       Recommend using values between 30000 and 120000.
 
   - key: simpleGzipBlockSize
@@ -37,9 +40,11 @@ settings:
       (since 3.3.0) When GZip is enabled using simpleCompression=gzip, this is the gzip compression level.
 
   - key: simpleZstdLevel
-    value: "6"
+    value: "3"
     text: |
-      (since 4.0.0) When zstd is enabled using simpleCompression=zstd, this is the zstd compression level.
+      (since 4.0.0, > 4.5.1 recommended) When zstd is enabled using simpleCompression=zstd, this is the compression level to use.
+      Increasing or decreasing this value will effect the CPU usage of capture, with the default value being a good balance between CPU and compression.
+      It is better to increase the <a href="#simpleCompressionBlockSize">simpleCompressionBlockSize setting</a> before increasing simpleZstdLevel.
 
   - key: simpleMaxQ
     value: "2000"
@@ -55,7 +60,7 @@ settings:
     text: |
       (since 3.3.0) When TRUE use a non standard pcap file format that uses small packet headers.
       Should only be set when monitoring an interface since it requires that the timestamp is in real time.
-      Saves 10 bytes per packet.
+      Saves 10 bytes per packet!
 
   - key: localPcapIndex
     value: "false"
