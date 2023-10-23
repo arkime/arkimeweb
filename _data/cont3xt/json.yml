@@ -1,0 +1,41 @@
+name: "#### JSON Integration"
+before: |
+  Since 5.0 Cont3xt can query JSON files or urls for results.
+
+  Create a `[json:NAME]` section where NAME is a unique name for all integrations
+
+  {: .mb-0}
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: icon for integration in UI
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: REQUIRED
+    text: Comma separated list of itypes this integration supports
+
+  - key: url
+    value: REQUIRED
+    text: |
+      Where to find the JSON file. It can be file://PATH, http(s)://PATH, or redis://[:pass@]redishost[:redisport]/redisDbNum/key. The URL must return the entire JSON document.
+
+  - key: reload
+    value: EMPTY
+    text: How often in minutes to reload the JSON file. For file urls cont3xt will monitor the files for changes automatically.
+
+  - key: arrayPath
+    value: EMPTY
+    text: The path in the JSON document to find the array of values, if not set it is assume the JSON document is an array at the top level.
+
+  - key: keyPath
+    value: REQUIRED
+    text: The path inside each item of the array that contains the key that lookups should be performed on.

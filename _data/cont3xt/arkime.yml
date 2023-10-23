@@ -1,0 +1,44 @@
+name: "#### Arkime Integration"
+before: |
+  Since 5.0 Cont3xt can query Arkime for results
+
+  Create a `[arkime:NAME]` section where NAME is a unique name for all integrations
+
+  {: .mb-0}
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: icon for integration in UI
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: prefix
+    value: arkime
+    text: The prefix used for the OpenSearch/Elasticsearch indices, see [settings](settings#prefix)
+
+  - key: elasticsearch
+    value: http://localhost:9200
+    text: The OpenSearch/Elasticsearch url, see [settings](settings#elasticsearch)
+
+  - key: elasticsearchAPIKey
+    value: EMPTY
+    text: The Elasticsearch API key, see [settings](settings#elasticsearchAPIKey)
+
+  - key: elasticsearchBasicAuth
+    value: EMPTY
+    text: The OpenSearch/Elasticsearch basic auth information, seee [settings](settings#elasticsearchBasicAuth)
+
+  - key: maxResults
+    value: 20
+    text: The OpenSearch/Elasticsearch basic auth information, seee [settings](settings#elasticsearchBasicAuth)
+
+  - key: searchDays
+    value: -1 == ALL
+    text: The number of past days to search Arkime

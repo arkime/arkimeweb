@@ -18,3 +18,11 @@ settings:
   - key: cachePolicy
     value: cont3xt.cachePolicy
     text: Can be `shared` or `user`, if set to user then the cache is per user
+
+  - key: viewRoles
+    value: EMPTY
+    text: (Since 5.0) List of roles that the user must have to use the integration. Use this if some integrations should be limited to certain users.
+
+  - key: userAgent
+    value: [cont3xt].userAgent
+    text: (Since 5.0) The http userAgent to use for any requests this integration makes

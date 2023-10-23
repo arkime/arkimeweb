@@ -1,0 +1,37 @@
+name: "#### Redis Integration"
+before: |
+  Since 5.0 Cont3xt can query Redis for results
+
+  Create a `[redis:NAME]` section where NAME is a unique name for all integrations
+
+  {: .mb-0}
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: icon for integration in UI
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: REQUIRED
+    text: Comma separated list of itypes this integration supports
+
+  - key: url
+    value: REQUIRED
+    text: |
+      redis://[:pass@]redishost[:redisport]/redisDbNum.
+
+  - key: keyTemplate
+    value: '%key%'
+    text: A template used to form the key to lookup inside redis. Two replacements are supported, %key% and %type%.
+
+  - key: redisMethod
+    value: 'get'
+    text: Which redis method is used to lookup the key

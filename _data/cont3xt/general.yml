@@ -7,10 +7,10 @@ before: |
 settings:
   - key: cacheTimeout
     value: 1h
-    text: How long to cache results for integrations, can be overridden, can be overriden per intergration
+    text: How long to cache results for integrations, can be overriden per integration
   - key: cachePolicy
     value: shared
-    text: Can be `shared` or `user`, if set to user then the cache is per user, can be overriden per intergration
+    text: Can be `shared` or `user`, if set to user then the cache is per user, can be overriden per integration
   - key: port
     value: 3218
     text: The port that the cont3xt service listens on
@@ -37,7 +37,7 @@ settings:
     text: The Realm to use with digest authentication. Must match the setting from the Viewer as set in `config.ini`.
   - key: userAgent
     value: cont3xt
-    text: The http user-agent header to use when talking to remote services
+    text: The http user-agent header to use when talking to remote services, can by override per integration
   - key: geoLite2ASN
     value:
     text: <a href="settings#geolite2asn">settings page</a>

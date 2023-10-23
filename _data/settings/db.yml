@@ -83,13 +83,13 @@ settings:
   - key: prefix
     value: EMPTY
     text: |
-      It is possible for multiple Arkime clusters to use the same OpenSearch/Elasticsearch cluster by 
+      It is possible for multiple Arkime clusters to use the same OpenSearch/Elasticsearch cluster by
       giving each Arkime cluster a different prefix value. The prefix value will be used in all
       index names that Arkime creates.
 
   - key: usersPrefix
     value: '[PREFIX] if <a href="#prefix">prefix</a> set otherwise EMPTY'
-    text: | 
+    text: |
       Like prefix but only for the users information if <a href=#usersElasticsearch>usersElasticsearch</a> set.
 
   - key: usersElasticsearch
@@ -143,9 +143,12 @@ settings:
       (Since 1.6) Use OpenSearch/Elasticsearch auto generated ids
 
   - key: compressES
-    value: "false"
+    value: |
+      true (since 4.0.0)<br>
+      false
     text: |
-      Compress requests to OpenSearch/Elasticsearch, reduces bandwidth to OpenSearch/Elasticsearch by ~80% at the cost of increased CPU.
+      Compress requests TO OpenSearch/Elasticsearch, reduces bandwidth to OpenSearch/Elasticsearch by ~80% at the cost of increased CPU.
+      This doesn't control responses FROM OpenSearch/Elasticsearch.
 
   - key: dbBulkSize
     value: "20000"
