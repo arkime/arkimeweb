@@ -4,9 +4,9 @@ function parseXML (xml) {
   let files = $(xml).find('ListBucketResult').find('Contents');
   let downloads = {};
   let nightlies = { title:'Nightly', downloads:[] };
-  let acommities = { title:'Arkime 4 Latest Commit', downloads:[] };
-  let acommities5 = { title:'Arkime 5 Latest Commit', downloads:[] };
-  let mcommities = { title:'Arkime/Moloch 4 Hybrid Latest Commit', downloads:[] };
+  let acommities = { title:'Arkime 5 Latest Commit', downloads:[] };
+  let acommities5 = { title:'Arkime DEV5 Latest Commit', downloads:[] };
+  let mcommities = { title:'Arkime/Moloch 5 Hybrid Latest Commit', downloads:[] };
   const oses = {
     'arch.x86': 'Arch',
     centos6: 'Centos 6',
@@ -190,6 +190,7 @@ function buildDownloadVersionRow (version, osList, listName, index, ver=4) {
   }
 
   if (listName === 'latestCommitAccordion') {
+    ver=5
     html += `
       </div>
       <div class="alert alert-danger text-center lead lead-sm mb-0 p-1">
