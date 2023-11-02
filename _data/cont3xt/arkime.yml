@@ -33,12 +33,16 @@ settings:
 
   - key: elasticsearchBasicAuth
     value: EMPTY
-    text: The OpenSearch/Elasticsearch basic auth information, seee [settings](settings#elasticsearchBasicAuth)
+    text: The OpenSearch/Elasticsearch basic auth information, see [settings](settings#elasticsearchBasicAuth)
 
   - key: maxResults
     value: 20
-    text: The OpenSearch/Elasticsearch basic auth information, seee [settings](settings#elasticsearchBasicAuth)
+    text: The OpenSearch/Elasticsearch basic auth information, see [settings](settings#elasticsearchBasicAuth)
 
   - key: searchDays
     value: -1 == ALL
     text: The number of past days to search Arkime
+
+  - key: arkimeUrl
+    value: http://localhost:8123
+    text: The url to the Arkime UI
