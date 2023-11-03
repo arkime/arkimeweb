@@ -44,5 +44,5 @@ settings:
     text: The number of past days to search Arkime
 
   - key: arkimeUrl
-    value: http://localhost:8123
+    value: http://localhost:8005
     text: The url to the Arkime UI
