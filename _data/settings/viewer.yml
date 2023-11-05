@@ -203,6 +203,10 @@ settings:
         <li>INSECURE-ORIGINALNAME - DO NOT USE!!! The full original name of the uploaded file, using this will make it EASY to take over your host. DO NOT USE!!!</li>
       </ul>
 
+  - key: uploadRoles
+    value: arkimeUser
+    text: A user must have this role to be able to upload, the uploadCommand also needs to be set to enable.
+
   - key: uploadFileSizeLimit
     value: EMPTY
     text: |
@@ -223,3 +227,15 @@ settings:
   - key: maxAggSize
     value: 10000
     text: Max number of items in an aggregations to request for unique and export intersection
+
+  - key: turnOffGraphDays
+    value: 30
+    text: (Since 4.0.0) Automatically turn off the graph if the query is more then this many days. This is to protect overloading OpenSearch/Elasticsarch.
+
+  - key: elasticsearchScrollTimeout
+    value: 300
+    text: How long to wait for OpenSearch/Elasticsearch to respond to queries
+
+  - key: esMaxConcurrentShardRequests
+    value: EMPTY
+    text: Tells OpenSearch/Elasticsearch how many shards to search at the same time

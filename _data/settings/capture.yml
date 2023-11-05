@@ -384,7 +384,7 @@ settings:
       raid 5/xfs stripe size and multiple of 4096 if using
       direct/thread-direct pcapWriteMethod
 
-  - key:  snapLen
+  - key: snapLen
     value: "16384"
     text: |
       The maximum size of a packet Arkime will read off
@@ -438,3 +438,24 @@ settings:
     value: EMPTY
     text: |
      (Since 5.0.0) A list of ini format files that have a <a href="#packet-drop-ips">[packet-drop-ips]</a> section. These files will reload on change without restarting capture.
+
+  - key: parseHTTPHeaderValueMaxLen
+    value: 1024
+    text: (Since 3.2.1) Truncate length for http header values before adding to SPI data.
+
+  - key: esBulkQuery
+    value: /_bulk
+    text: (Since 2.3.0) The path to send session bulk queries to.
+
+  - key: ecsEventDataset
+    value: EMPTY
+    text: (Since 4.0.0) Value for event.dataset in SPI
+
+  - key: ecsEventProvider
+    value: EMPTY
+    text: (Since 3.3.0) Value for event.provider in SPI
+
+  - key: esMaxRetries
+    value: 2
+    text: (Since 2.3.1) How many times to retry OpenSearch/Elasticsearch operations
+

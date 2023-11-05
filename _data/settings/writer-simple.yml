@@ -6,7 +6,7 @@ settings:
     text: |
       Arkime support <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
 
-  - key:  simpleKEKId
+  - key: simpleKEKId
     value: EMPTY
     text: |
       Which kek to use, see <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.

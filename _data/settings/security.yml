@@ -48,13 +48,19 @@ settings:
         <li>"basic+oidc" - Use basic auth when present otherwise use oidc auth. This is useful when you want to support API calls using basic auth. WARNING - the password for basic auth is from Arkime which isn't synced with oidc.</li>
         <li>"basic+form" - Use basic auth when present otherwise use form auth. This is useful when you want to support API calls using basic auth.</li>
         <li>"digest" or EMPTY - Use digest auth where browser based digest authentication is used.</li>
-        <li>"form" - Use a html form to enter the user/password. Not using https is insecure and will require setting <a href="#authCookieSecure">authCookieSecure</a>.</li>
-        <li>"oidc" -  Use OIDC authentication. Not using https is insecure and will require setting <a href="#authCookieSecure">authCookieSecure</a>.</li>
+        <li>"form" - Use a html form to enter the user/password.</li>
+        <li>"oidc" -  Use OIDC authentication.</li>
         <li>"anonymous" - Use anonymous authentication.</li>
         <li>"s2s" -  Only server to server authentication is allowed</li>
       </ul>
       If using central viewers for maximum security set all viewers to use s2s except the central viewer.
       Each user must have Web Auth Header checkbox set to support other methods besides digest.
+      <br><br>
+      For authentication modes that require cookies (form, oidc, saml) you may need to also change:
+      <ul>
+        <li> <a href="#authCookieSecure">authCookieSecure</a> - Set to <b>false</b> if using http WITHOUT a reverse proxy. This is insecure.</li>
+        <li> <a href="#authTrustProxy">authTrustProxy</a> - Set to <b>true</b> if using http WITH a https reverse proxy.</li>
+      </ul>
 
   - key: userNameHeader
     value: EMPTY
@@ -136,3 +142,13 @@ settings:
     text: |
       (Since 5.0.0) This setting controls if authentication cookies are marked as "secure".
       If using cookie based auth (form, oidc, saml) over http change this to false.
+
+  - key: authCookieSameSite
+    value: 'Lax'
+    text: |
+      (Since 5.0.0) For auth cookies (form, oidc, saml) what value is used for sameSite.
+
+  - key: logoutUrl
+    value: Only set for form authMode
+    text: |
+      (Since 5.0.0) Show a logout button in the UI that will take the user to a page to logout. For form authMode we provide a working version.

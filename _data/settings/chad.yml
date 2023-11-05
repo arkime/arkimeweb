@@ -3,3 +3,20 @@ before: |
   <p>
     CHAD creates hashes for http and smtp headers.
   </p>
+
+settings:
+  - key: chadHTTPIgnores
+    value: X-IPINTELL;rpauserdata;rspauth;x-novinet;x-is-aol;x-lb-client-ip;x-lb-client-ssl;x-ssl-offload;dnt;X-CHAD;X-QS-CHAD;X-POST-CHAD;X-OREO-CHAD
+    text: HTTP headers to ignore
+
+  - key: chadHTTPItems
+    value: default
+    text: Headers that are calculated in chad value
+
+  - key: chadSMTPIgnores
+    value: x-freebsd-cvs-branch;x-beenthere;x-mailman-version;list-unsubscribe;list-subscribe;list-id;list-archive;list-post;list-help;x-return-path-hint;x-roving-id;x-lumos-senderid;x-roving-campaignid;x-roving-streamid;x-server-id;x-antiabuse;x-aol-ip;x-originalarrivaltime
+    text: SMTP headers to ignore
+
+  - key: chadSMTPItems
+    value: default
+    text: Headers that are calculated in chad value

@@ -15,3 +15,8 @@ before: |
     The <code>interface</code> setting is ignored and should just be set to <code>dummy</code>.
   </p>
 
+
+settings:
+  - key: pcapOverIpPort
+    value: 57012
+    text: In server mode this is the port to listen on
