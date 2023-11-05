@@ -1,0 +1,48 @@
+settings:
+  - key: elasticsearch
+    value: http://localhost:9200
+    text: The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
+
+  - key: elasticsearchAPIKey
+    value: EMPTY
+    text: See [settings page](settings#elasticsearchAPIKey)
+
+  - key: elasticsearchBasicAuth
+    value: EMPTY
+    text: See [settings page](settings#elasticsearchBasicAuth)
+
+  - key: elasticsearchTimeout
+    value: 300
+    text: See [settings page](settings#elasticsearchtimeout)
+
+  - key: esClientKey
+    value: EMPTY
+    text: See [settings page](settings#esclientkey)
+
+  - key: esClientCert
+    value: EMPTY
+    text: See [settings page](settings#esclientcert)
+
+  - key: esClientKeyPass
+    value: EMPTY
+    text: See [settings page](settings#esclientkeypass)
+
+  - key: caTrustFile
+    value: EMPTY
+    text: See [settings page](settings#caTrustFile)
+
+  - key: debug
+    value: 0
+    text: The debug level to use if NO --debug options are given. The higher the number, the more information is logged.
+
+  - key: prefix
+    value: EMPTY
+    text: It is possible for multiple Arkime clusters to use the same OpenSearch/Elasticsearch cluster by giving each Arkime cluster a different prefix value. The prefix value will be used in all index names that Arkime creates.
+
+  - key: esProxyHost
+    value: EMPTY
+    text: The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips, see the host [host section](https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback)
+
+  - key: esProxyPort
+    value: 7200
+    text: Port that esProxy listens on

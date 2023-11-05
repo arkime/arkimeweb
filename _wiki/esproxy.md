@@ -37,15 +37,10 @@ In the following configuration example we will use the node names `toronto01` an
 There are 2 required sections in the esproxy.ini file, `[default]` and `[esproxy-sensors]`:
 
 #### [default] section
+{: .mb-0}
 
-The [default] section has the general configuration for esProxy and shard these settings with viewer:
-<a href="settings#elasticsearch">elasticsearch</a>
-<a href="settings#esclientkey">esClientKey</a>
-<a href="settings#esclientcert">esClientCert</a>
-<a href="settings#esclientkey">esClientKey</a>
-<a href="settings#esclientkeypass">esClientKeyPass</a>
-<a href="settings#elasticsearchAPIKey">elasticsearchAPIKey</a>
-<a href="settings#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
+{% assign section = site.data.settings.esproxy %}
+{% include settings_md %}
 
 <pre>
 [default]

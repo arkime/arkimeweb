@@ -48,8 +48,8 @@ settings:
         <li>"basic+oidc" - Use basic auth when present otherwise use oidc auth. This is useful when you want to support API calls using basic auth. WARNING - the password for basic auth is from Arkime which isn't synced with oidc.</li>
         <li>"basic+form" - Use basic auth when present otherwise use form auth. This is useful when you want to support API calls using basic auth.</li>
         <li>"digest" or EMPTY - Use digest auth where browser based digest authentication is used.</li>
-        <li>"form" - Use a html form to enter the user/password.
-        <li>"oidc" -  Use OIDC authentication.</li>
+        <li>"form" - Use a html form to enter the user/password. Not using https is insecure and will require setting <a href="#authCookieSecure">authCookieSecure</a>.</li>
+        <li>"oidc" -  Use OIDC authentication. Not using https is insecure and will require setting <a href="#authCookieSecure">authCookieSecure</a>.</li>
         <li>"anonymous" - Use anonymous authentication.</li>
         <li>"s2s" -  Only server to server authentication is allowed</li>
       </ul>
@@ -130,3 +130,9 @@ settings:
     text: |
       Used to set the express "trust proxy" setting that might be needed if viewer is running in http mode and a reverse proxy is being used in https mode.
       Please <a href="https://expressjs.com/en/guide/behind-proxies.html">read more</a> about the setting and possible values.
+
+  - key: authCookieSecure
+    value: true
+    text: |
+      (Since 5.0.0) This setting controls if authentication cookies are marked as "secure".
+      If using cookie based auth (form, oidc, saml) over http change this to false.

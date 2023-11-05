@@ -1,0 +1,46 @@
+name: Capture wise.so Settings
+
+settings:
+  - key: wiseCacheSecs
+    value: 600
+    text: Number of seconds to cache results before asking wiseService again
+
+  - key: wiseHost
+    value: 127.0.0.1
+    text: Host to connect to for wiseService, not used if wiseURL is set
+
+  - key: wiseMaxCache
+    value: 100000
+    text: Max number of items to store in the wise cache that is local to each arkime-capture node
+
+  - key: wiseMaxConns
+    value: 10
+    text: Number of connections to wiseService, this is also the number of concurrent wise queries.
+
+  - key: wiseMaxRequests
+    value: 100
+    text: Number of oustanding requests to the wiseService
+
+  - key: wisePort
+    value: 8081
+    text: Port the wiseService is listening on, not used if wiseURL is set
+
+  - key: wiseTcpTupleLookups
+    value: FALSE
+    text: Should we send tcp tuple lookups to wise
+
+  - key: wiseUdpTupleLookups
+    value: FALSE
+    text: Should we send udp tuple lookups to wise
+
+  - key: wiseURL
+    value: EMPTY
+    text: (Since 1.5.0) The url to use to connect to wise
+
+  - key: wiseLogEvery
+    value: 10000
+    text: Log wise stats every X wise requests
+
+  - key: wiseExcludeDomains
+    value: .in-addr.arpa;.ip6.arpa
+    text: A semicolon separate list of domain suffixes to not send to wise

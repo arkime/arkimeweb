@@ -76,20 +76,8 @@ Each arkime-capture node needs to have the wise.so plugin
 Usually just setting wiseHost is enough. These can be set globally, per class or per node.
 {: .mb-0}
 
-Setting | Default | Description
---------|---------|------------
-wiseCacheSecs|600|Number of seconds to cache results before asking wiseService again
-wiseHost|127.0.0.1|Host to connect to for wiseService, not used if wiseURL is set
-wiseMaxCache|100000|Max number of items to store in the wise cache that is local to each arkime-capture node
-wiseMaxConns|10|Number of connections to wiseService, this is also the number of concurrent wise queries.
-wiseMaxRequests|100|Number of oustanding requests to the wiseService
-wisePort|8081|Port the wiseService is listening on, not used if wiseURL is set
-wiseTcpTupleLookups|FALSE|Should we send tcp tuple lookups to wise
-wiseUdpTupleLookups|FALSE|Should we send udp tuple lookups to wise
-wiseURL| |(Since 1.5.0) The url to use to connect to wise
-wiseLogEvery|10000|Log wise stats every X wise requests
-wiseExcludeDomains|.in-addr.arpa;.ip6.arpa|A semicolon separate list of domain suffixes to not send to wise
-{: .table .table-striped .table-sm .mb-4 }
+{% assign section = site.data.wise.wise_so%}
+{% include settings_md %}
 
 Since 1.5.0 wise also now lets you configure which fields are used for the standard wise types and you can add your own wise types. You do this by creating a `[wise-types]` section in the capture config.ini AND listing the fields using `{type}={expression};{db:dbfield}...`. The type field must be less then 12 characters, and is the same type field you would use in the wise service.
 
