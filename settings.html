@@ -1377,6 +1377,13 @@ simpleCompression=none
 # Lower pcap buffer to smallest possible, although Arkime will write pageSize
 # blocks if a timer fires.
 pcapWriteSize=65536
+
+# Lower the number of streams expected for lower memory usage
+maxStreams=1500
+
+# Decrease the size of writes to DB
+dbBulkSize=100000
+maxESConns=2
 </code></pre>
       <!-- /Lab Settings -->
 
