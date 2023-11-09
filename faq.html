@@ -1132,8 +1132,11 @@ title: FAQ
         <li>s3WriteGzip removed, use s3Compression=gzip</li>
         <li>s3GapPacketPos defaults to TRUE</li>
         <li>enablePacketDedup defaults to TRUE</li>
-        <li>authMode defaults to digest now, use authMode=anonymous</li>
+        <li>authMode defaults to digest now, use authMode=anonymous for old behaviour</li>
         <li>removed old v1 API</li>
+        <li>Centos 7 no longer includes pfring support</li>
+        <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
+        <li>Increased simpleCompressionBlockSize default to 64000</li>
         <li>
           If using Parliament, you must create a parliament.ini or a [parliament] section in your Arkime ini before upgrading
           (see <a href="settings#parliament">Parliament ini settings</a>). It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
