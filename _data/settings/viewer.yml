@@ -239,3 +239,7 @@ settings:
   - key: esMaxConcurrentShardRequests
     value: EMPTY
     text: Tells OpenSearch/Elasticsearch how many shards to search at the same time
+
+  - key: defaultTimeRange
+    value: 1
+    text: Number (in hours) of the default sessions search time range. This is applied automatically to searches in Arkime if no date query param is defined in the URL.
