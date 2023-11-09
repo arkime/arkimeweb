@@ -27,12 +27,12 @@ function parseXML (xml) {
     if (key.startsWith('builds/')) {
       let keyArr = key.split('/');
       let os     = keyArr[1];
-      let vers   = keyArr[2];
+      let vers   = keyArr[2].replace(/_rc/, '-rc');
       let time   = new Date(file.find('LastModified').text());
 
       time = `${time.getFullYear()}-${('0'+(time.getMonth()+1)).slice(-2)}-${('0'+time.getDate()).slice(-2)}`;
 
-      let uniqueVers = vers.match(/([0-9]+)\.([0-9]+)\.([0-9]+)/g);
+      let uniqueVers = vers.match(/([0-9]+)\.([0-9]+)\.([0-9]+)(-rc[12345])?/g);
 
       let osTitle = os.replace('-', ' ');
       osTitle = osTitle.charAt(0).toUpperCase() + osTitle.slice(1);
