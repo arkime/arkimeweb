@@ -152,3 +152,7 @@ settings:
     value: Only set for form authMode
     text: |
       (Since 5.0.0) Show a logout button in the UI that will take the user to a page to logout. For form authMode we provide a working version.
+
+  - key: loginMessage
+    value: EMPTY
+    text: An optional login message to present on the login page when using authMode=form
