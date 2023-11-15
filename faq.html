@@ -1128,13 +1128,13 @@ title: FAQ
       </p>
       <h4>Breaking Changes</h4>
       <ul>
-        <li>s3Compression/simpleCompression now default to zstd</li>
-        <li>s3WriteGzip removed, use s3Compression=gzip</li>
+        <li>s3Compression/simpleCompression now defaults to zstd</li>
+        <li>s3WriteGzip removed, use s3Compression=gzip for gzip instead of new zstd default</li>
         <li>s3GapPacketPos defaults to TRUE</li>
         <li>enablePacketDedup defaults to TRUE</li>
         <li>authMode defaults to digest now, use authMode=anonymous for old behaviour</li>
-        <li>removed old v1 API</li>
-        <li>Centos 7 no longer includes pfring support</li>
+        <li>removed old v1 viewer APIs</li>
+        <li>Centos 7 build no longers includes pfring support</li>
         <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
         <li>Increased simpleCompressionBlockSize default to 64000</li>
         <li>
@@ -1145,7 +1145,7 @@ title: FAQ
       <h4>Instructions</h4>
       <ul>
         <li>Install new Arkime rpm/deb.</li>
-        <li>Shut down ALL captures, multies, and viewers.</li>
+        <li>It is recommended but not required to shut down ALL captures, multies, and viewers.</li>
         <li>Run <code> ./db.pl http://ESHOST:9200 upgrade [other options]</code>, and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
         <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
         <li>Verify that everything is working.</li>

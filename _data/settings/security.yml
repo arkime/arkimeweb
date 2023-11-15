@@ -118,7 +118,8 @@ settings:
       <code>
         {"userId": "${this.http_auth_http_user}", "userName": "${this.http_auth_mail}",
         "enabled": true, "webEnabled": true, "headerAuthEnabled": true,
-        "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true }
+        "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true,
+        "roles": ["arkimeUser", "cont3xtUser"]}
       </code>
 
   - key: caTrustFile
