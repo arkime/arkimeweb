@@ -1,0 +1,31 @@
+name: custom-fields-remap
+before: |
+  <p>
+    Starting with 5.0 it is now possible to remap results turned by wise or
+    the tagger plugin to set different fields based on what field matched.
+    For example instead of only being able to set the asset field based
+    on if the ip.src or ip.dst field matched, it is now possible to
+    set asset.src when ip.src matches or asset.dst when ip.dst matches.
+    This is done by remapping the asset field.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[custom-fields-remap]
+  asset=ip.src=asset.src;ip.dst=asset.dst
+
+  [custom-fields]
+  asset.src=kind:lotermfield;count:true;friendly:Asset Src;db:assetName.src;help:Asset Name Src
+  asset.dst=kind:lotermfield;count:true;friendly:Aseet Dst;db:assetName.dst;help:Asset Name Dst
+  </code></pre>
+
+settings:
+  - key: "[oldField]="
+    value: Unique field expression
+    text: The field that we want to remap
+
+  - key: "matchField=newField"
+    value: EMPTY
+    text: When the value we are matching against is 'match field' instead of setting 'oldFIeld' we set 'newField'
