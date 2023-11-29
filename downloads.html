@@ -221,7 +221,6 @@ title: Downloads
     let latestCommitVisible = false;
 
     function toggleLatestCommit () {
-
       latestCommitVisible = !latestCommitVisible;
       if (latestCommitVisible) {
         $('#latestCommitAccordion').attr('style', 'max-height:500px;');
@@ -232,6 +231,12 @@ title: Downloads
     }
 
     $(function () { // page loaded
+      // open latest commit if hash is #latest
+      const hash = window.location.hash;
+      if (hash === '#latest') {
+        toggleLatestCommit();
+      }
+
       const osLists = {
         main: [ 'AL2023', 'Arch', 'Centos 6', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ],
         commit: [ 'AL2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ]
