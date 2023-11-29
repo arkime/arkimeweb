@@ -183,7 +183,14 @@ function buildDownloadVersionRow (version, osList, listName, index, ver=4) {
     for (d = 0; d < downloads.length; d++) {
       if (downloads[d].title === osList[i]) {
         let download = downloads[d];
-        html += `<a href="${download.url}" class="m-2">${download.title}</a>`;
+        if (download.title === 'AL2023' && listName === 'latestCommitAccordion') {
+          // Need to hardcode x86 link also
+          html += `<a href="https://s3.amazonaws.com/files.molo.ch/arkime-main.al2023.x86_64.rpm" class="m-2">${download.title}</a> (<a href="https://s3.amazonaws.com/files.molo.ch/arkime-main.al2023.aarch64.rpm">arm</a>)`;
+        } else if (download.title === 'Ubuntu 22.04' && listName === 'latestCommitAccordion') {
+          html += `<a href="${download.url}" class="m-2">${download.title}</a> (<a href="https://s3.amazonaws.com/files.molo.ch/arkime-main_ubuntu2204_arm64.deb">arm</a>)`;
+        } else {
+          html += `<a href="${download.url}" class="m-2">${download.title}</a>`;
+        }
         break;
       }
     }

@@ -205,7 +205,7 @@ settings:
 
   - key: uploadRoles
     value: arkimeUser
-    text: A user must have this role to be able to upload, the uploadCommand also needs to be set to enable.
+    text: (Since 5.0) A user must have this role to be able to upload, the uploadCommand also needs to be set to enable.
 
   - key: uploadFileSizeLimit
     value: EMPTY
