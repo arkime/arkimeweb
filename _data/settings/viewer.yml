@@ -243,3 +243,10 @@ settings:
   - key: defaultTimeRange
     value: 1
     text: Number (in hours) of the default sessions search time range. This is applied automatically to searches in Arkime if no date query param is defined in the URL.
+
+  - key: spiViewCategoryOrder
+    value: EMPTY
+    text: |
+      (Since 5.0) A comma separated list of categories to be pushed to the top of the
+      SPI View page and the order to show them in. The default is alphabetic (with general ALWAYS at the top).
+      Example: "cert,ldap,quic,tls" would have general at the top, then cert, ldap, quic, tls, and then the rest of the categories in alphabetic order.
