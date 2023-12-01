@@ -250,3 +250,9 @@ settings:
       (Since 5.0) A comma separated list of categories to be pushed to the top of the
       SPI View page and the order to show them in. The default is alphabetic (with general ALWAYS at the top).
       Example: "cert,ldap,quic,tls" would have general at the top, then cert, ldap, quic, tls, and then the rest of the categories in alphabetic order.
+
+  - key: footerTemplate
+    value: Arkime v_version_ | <a href="https://arkime.com">arkime.com</a> | _responseTime_ms
+    text: |
+      (Since 5.0) A customizable footer template to display at the bottom of every Arkime page.
+      Use <code>_version_</code> to display the Arkime version and <code>_responseTime_</code> to display the response time of the current page.
