@@ -2,11 +2,14 @@ name: "Reader - PF_RING - Settings"
 before: |
   <ul>
     <li>
-      We suggest you try tpacketv3 (afpacket) first if available on the host. 
+      We suggest you try tpacketv3 (afpacket) first if available on the host.
       Arkime only supports vanilla PF_RING and NOT PF_RING DNA nor PF_RING ZC.
-      Simce vanilla PF_RING and afpacket are about the same, we recommend you use afpacket.
-      Usually the only time you should use PF_RING is when you have other tools on the 
+      Simce vanilla PF_RING and afpacket are similar, we recommend you use afpacket,
+      since the Arkime support for afpacket in Arkime is much stronger.
+      Usually the only time you should use PF_RING is when you have other tools on the
       same machine also using vanilla PF_RING.
+      If you want to monitor a large amount of traffic you must set up a PF_RING
+      Cluster with multiple virtual interfaces.
 
     </li>
     <li>
