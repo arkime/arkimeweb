@@ -72,10 +72,27 @@ title: Home
       </div>
       <div class="row mb-5 mt-3">
         <div class="col text-center">
-          <a href="https://github.com/arkime/arkime/releases/latest"
-            class="btn btn-primary btn-lg mr-2 btn-fw mb-2">
-            Download
-          </a>
+          <div class="btn-group mr-2 mb-2 dropdown">
+            <a type="button"
+              class="btn btn-primary btn-lg"
+              href="https://github.com/arkime/arkime/releases/latest">
+              Download
+            </a>
+            <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="https://github.com/arkime/arkime/releases/latest">
+                Stable
+              </a>
+              <a class="dropdown-item" href="https://latest.arkime.net/">
+                Latest Commit
+              </a>
+              <a class="dropdown-item" href="https://github.com/arkime/arkime/releases">
+                All Downloads
+              </a>
+            </div>
+          </div>
           <a href="https://github.com/arkime/arkime"
             class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2">
             GitHub
@@ -639,60 +656,12 @@ title: Home
   <script>
     // page loaded
     $(function () {
-      $('#homeLink').addClass('active');
-
       $('[data-toggle="tooltip"]').tooltip();
-
-      function setupDownloadBtns (versions, sortedVersions) {
-        const version = versions[sortedVersions[0]]; // get the latest version
-        const osList = [ 'Arch', 'Centos 8', 'EL 9', 'Ubuntu 22.04' ];
-        const downloads = version.downloads;
-
-        let html = `<div class="row text-center">
-                     <div class="col">
-                       <h2>${version.title}</h2>
-                       <p class="lead">Latest Release: ${version.modified}</p>
-                     </div>
-                    </div>
-                    <div class="row text-center"><div class="col">`;
-
-        let i, d;
-        for (i = 0, len = osList.length; i < len; ++i) {
-          for (d = 0; d < downloads.length; d++) {
-            if (downloads[d].title === osList[i]) {
-              let download = downloads[d];
-              html += `<a href="${download.url}" class="btn btn-primary btn-lg btn-fw ml-1 mr-1 mb-2">
-                         ${download.title}
-                       </a>`;
-              break;
-            }
-          }
-        }
-
-        html += '</div></div>';
-
-        $('.main-downloads').append(html);
-      }
 
       function setupError() {
         $('.downloads-error').show();
         $('.loading-downloads').hide();
       }
-
-      $.ajax({
-        url: 'https://s3.amazonaws.com/files.molo.ch',
-        type: 'GET',
-        crossDomain: true,
-        dataType: 'xml',
-        success: function (xml) {
-          let downloads = parseXML(xml);
-          setupDownloadBtns(downloads.downloads, downloads.sortedVersions);
-          $('.loading-downloads').hide();
-        },
-        error: function(xhr, textStatus, errorThrown) {
-          setupError();
-        }
-      });
     });
   </script>
 

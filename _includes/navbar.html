@@ -54,11 +54,25 @@
           </a>
         </div>
       </li>
-      <li class="nav-item d-none d-sm-none d-md-block">
-        <a class="nav-link downloads-link"
-          href="https://github.com/arkime/arkime/releases">
-          Downloads
+      <li class="nav-item dropdown d-none d-sm-none d-md-block">
+        <a class="nav-link dropdown-toggle cursor-pointer downloads-link"
+          data-toggle="dropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false">
+          Download
         </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="https://github.com/arkime/arkime/releases/latest">
+            Stable
+          </a>
+          <a class="dropdown-item" href="https://latest.arkime.net/">
+            Latest Commit
+          </a>
+          <a class="dropdown-item" href="https://github.com/arkime/arkime/releases">
+            All Downloads
+          </a>
+        </div>
       </li>
       <li class="nav-item d-none d-sm-none d-md-block">
         <a class="nav-link estimators-link"
@@ -225,12 +239,11 @@
 
 <script>
   const homeSubPaths = {
-    home: true, demo: true, screenshots: true,
-    download: true, help: true
+    home: true, demo: true, screenshots: true, help: true
   };
 
   const wikiSubPaths = {
-    learn: true, faq: true, settins: true, api: true, wisesources: true
+    learn: true, faq: true, settings: true, api: true, allapis: true
   }
 
   // on home section navlink click, set active class and remove others
