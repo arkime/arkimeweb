@@ -281,7 +281,7 @@ Setting | Default | Description
 file|REQUIRED|The file to load
 tags|REQUIRED|Comma separated list of tags to set for matches
 type|REQUIRED|The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
-format|csv|csv,[Tagger Format](taggerformat),json - The format of data file
+format|csv|csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
 keyColumn|0|For json formatted files, which json field is the key
 column|0|For csv formatted files, which column is the data
 {: .table .table-striped .table-sm .mb-4 }
@@ -358,6 +358,34 @@ The JSON File
 
 **Note:** you use shortcut to match between fields in the JSON dictionary and the properties in OpenSearch/Elasticsearch.
 
+#### JSONL Example
+
+Added in 5.0, WISE now supports jsonl files with one full json object per line.
+
+Config File
+{: .mb-0}
+
+```
+[file:ipcsv]
+file=./ip.wise.jsonl
+tags=ipwisejsonl
+type=ip
+keyColumn=theip
+format=jsonl
+#Asset field already exist, use field asset for value. extra field is new, use field extra for value
+fields=field:asset;shortcut:asset\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:extra\n
+```
+
+The JSON File
+{: .mb-0}
+
+```
+{"asset": "blah", "theip": "10.0.0.3"}
+{"asset": "blah2", "theip": "10.0.0.2", "extra": "foo"}
+```
+
+**Note:** you use shortcut to match between fields in the JSONL dictionary and the properties in OpenSearch/Elasticsearch.
+
 #### Subnets Example
 
 More complex example of the above where you want to create a new section
@@ -398,7 +426,7 @@ Setting | Default | Description
 url|REQUIRED|The format is `[redis:]//[[user][:password@]]host:port[/db-number]`
 tags|REQUIRED|Comma separated list of tags to set for matches
 type|REQUIRED|The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
-format|csv|csv,[Tagger Format](taggerformat),json - The format of data file
+format|csv|csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
 column|0|For csv formatted files, which column is the data
 template|%key%|The template when forming the key name. %key% = the key being looked up, %type% = the type being looked up.
 {: .table .table-striped .table-sm .mb-4 }
@@ -432,10 +460,13 @@ url|REQUIRED
 |The URL to load
 tags|REQUIRED|Comma separated list of tags to set for matches
 type|REQUIRED|The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
-format|csv|csv,[Tagger Format](taggerformat),json - The format of data file
+format|csv|csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
 column|0|For csv formatted files, which column is the data
 refresh| -1|How often in minutes to refresh the file, or -1 to never refresh it
 headers| |Semicolon separated list of headers to send in the URL request
+urlScrapeRedirect| EMPTY | Search the results of the URL for this RE and redirect to the match for the actual data
+urlScrapePrefix | EMPTY | (Since 5.0) Prepend to the urlScrapeRedirect results
+urlScrapeSuffix | EMPTY | (Since 5.0) Append to the urlScrapeRedirect results
 {: .table .table-striped .table-sm .mb-4 }
 
 ---
