@@ -16,6 +16,7 @@ Arkime supports JA4, JA4s, JA4x with versions 5.0.0 and later.
 ## JA4
 JA4, the TLS Client Fingerprinting portion, is built into the Arkime capture binary.
 After install Arkime 5 or later, you will automatically see tls.ja4 data show up.
+We recommend using the [latest commit builds](https://latest.arkime.net) for now.
 
 ## JA4+
 JA4+ algorithms have some licensing requirements.
