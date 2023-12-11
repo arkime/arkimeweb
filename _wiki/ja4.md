@@ -20,7 +20,7 @@ We recommend using the [latest commit builds](https://latest.arkime.net) for now
 
 ## JA4+
 JA4+ algorithms have some licensing requirements.
-Please [familiarize](https://github.com/arkime/arkime/releases/tag/last-commit) yourself with them before installing/enabling the JA4+ portions of Arkime.
+Please [familiarize](https://github.com/FoxIO-LLC/ja4#licensing) yourself with them before installing/enabling the JA4+ portions of Arkime.
 
 
 To enable JA4s and JA4x you need to
