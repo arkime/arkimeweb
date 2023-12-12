@@ -804,18 +804,16 @@ title: FAQ
           </ol>
         </li>
         <li>
-          If you are having packet capture issues, restarting <code>capture</code> after adding a
-          <code>--debug</code> option may print out useful information about what is
-          wrong.
-          You can add multiple <code>--debug</code> options to get even more information.
-          Capture will print out the configuration settings it is using; verify that they
-          are what you expect.
-          Usually this setting is changed in <code>/etc/systemd/system/molochcapture.service</code>. Then run <code>systemctl daemon-reload</code>.
+          If you are having packet capture issues, restart <code>capture</code> after turning on debugging,
+          either add <code>--debug</code> to the start line or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini file.
+          You can add multiple <code>--debug</code> options or set <code>debug=</code> to a larger number to get even more information.
+          Capture will print out the configuration settings it is using; verify that they are what you expect.
         </li>
         <li>
-          If you are having issues viewing packets that were captured, restarting viewer after adding a <code>--debug</code> option may print out
-          useful information about what is wrong.
-          Usually this setting is changed in <code>/etc/systemd/system/molochviewer.service</code>. Then run <code>systemctl daemon-reload</code>.
+          If you are having issues viewing packets that were captured, restart viewer after turning on debugging,
+          either add <code>--debug</code> to the start line or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini file.
+          You can add multiple <code>--debug</code> options or set <code>debug=</code> to a larger number to get even more information.
+          Viewer will print out the configuration settings it is using; verify that they are what you expect.
           <ol type="a">
             <li>
               Make sure the plugins and parsers directories are correctly set
@@ -2734,7 +2732,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
       <ol>
         <li>
-          Make sure <a href="/settings#freespaceg">freeSpaceG</a> is set correctly for the environment and verify the setting by running viewer with --debug.
+          Make sure <a href="/settings#freespaceg">freeSpaceG</a> is set correctly for the environment and verify the setting by running viewer with --debug or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini
         </li>
         <li>
           Make sure there is free space where viewer is writing its logs.
