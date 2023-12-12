@@ -414,7 +414,8 @@ specialsections:
       <pre><code>[value-actions]
 VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
 VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
-VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url</code></pre>
+VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
+KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:'%ISOSTART%',to:'%ISOSTOP%'))&_a=(columns:!(_source),index:'filebeat-*',interval:auto,query:(language:kuery,query:'network.community_id: "%URIEncodedText%"'));name:Discover communityId;fields:communityId</code></pre>
       <p class="mb-0">
         Each line in the valueactions section contains possible actions:
       </p>
@@ -597,6 +598,17 @@ VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;cate
             </td>
             <td>
               The text clicked on in raw form
+            </td>
+          </tr>
+          <tr>
+            <td id="url-sub-uriencodedtext">
+              %URIEncodedText%
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'settings')">
+              </span>
+            </td>
+            <td>
+              The text clicked on, URI encoded
             </td>
           </tr>
           <tr>
