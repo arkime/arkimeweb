@@ -11,7 +11,7 @@ permalink: "/ja4"
 ---
 
 
-Arkime supports JA4, JA4s, JA4x with versions 5.0.0 and later.
+Arkime supports JA4, JA4s, JA4x, JA4ssh with versions 5.0.0 and later.
 
 ## JA4
 JA4, the TLS Client Fingerprinting portion, is built into the Arkime capture binary.
@@ -23,7 +23,7 @@ JA4+ algorithms have some licensing requirements.
 Please [familiarize](https://github.com/FoxIO-LLC/ja4#licensing) yourself with them before installing/enabling the JA4+ portions of Arkime.
 
 
-To enable JA4s and JA4x you need to
+To enable JA4s, JA4x, and JA4ssh you need to
 * download the ja4plus plugin and install it in the `/opt/arkime/plugins` directory on all machines that run capture
 * edit the /opt/arkime/etc/config.ini file, modifying the `plugins=` line so it contains the plugin, for example `plugins=ja4plus.amd64.so`
 * restart capture, which will cause the tls.ja4s and cert.ja4x fields to be automatically created for new sessions
