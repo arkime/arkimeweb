@@ -56,7 +56,7 @@ settings:
   - key: group
     value: "[Before first dot in field or general]"
     text: Category for SPI view
-    
+
   - key: nolinked
     value: false
     text: (Since 2.1.0) Set to true for linked sessions to have independent values for this field
@@ -68,3 +68,7 @@ settings:
   - key: help
     value: "[fieldname]"
     text: Help to display in about box or help page
+
+  - key: viewerOnly
+    value: false
+    text: (Since 4.5.0) When true this field is added to the field definition database, but is NOT loaded into capture, which saves capture memory. Use this for session fields that are added by software other than capture/wise.
