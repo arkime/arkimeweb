@@ -262,8 +262,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#dontsavebpfs-doesn-t-work"
-        title="dontSaveBPFs doesn’t work">
-        dontSaveBPFs doesn’t work
+        title="dontSaveBPFs doesn't work">
+        dontSaveBPFs doesn't work
       </a>
       <a class="nav-link nested"
         href="#zero-byte-pcap-files"
@@ -342,8 +342,8 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data"
-        title="Error: Couldn’t connect to remote viewer, only displaying SPI data">
-        Error: Couldn’t connect to remote viewer, only displaying SPI data
+        title="Error: Couldn't connect to remote viewer, only displaying SPI data">
+        Error: Couldn't connect to remote viewer, only displaying SPI data
       </a>
       <a class="nav-link nested"
         href="#compiled-against-a-different-node-js-version-error"
@@ -458,7 +458,7 @@ title: FAQ
       </h3>
       <p>
         Upgrading Arkime requires you to install major versions in order, as
-        described in the chart below. If your current version isn’t listed, please upgrade to the next-highest version in the
+        described in the chart below. If your current version isn't listed, please upgrade to the next-highest version in the
         chart. You can then install the major releases in order to catch up.
         New installs can start from the latest version.
         Unless otherwise stated, you should only need to db.pl upgrade between versions.
@@ -741,7 +741,7 @@ title: FAQ
           from your browser.
           <ol type="a">
             <li>
-              If it doesn’t render, looks strange, or warns of an old browser, use a newer
+              If it doesn't render, looks strange, or warns of an old browser, use a newer
               <a href="#what-browsers-are-supported">
                 supported browser.
               </a>
@@ -796,10 +796,10 @@ title: FAQ
               Verify that your time frame for search covers the data (try switching to ALL).
             </li>
             <li>
-              Check that you don’t have a view set.
+              Check that you don't have a view set.
             </li>
             <li>
-              Check that your user doesn’t have a forced expression set. You might need to ask your Arkime admin.
+              Check that your user doesn't have a forced expression set. You might need to ask your Arkime admin.
             </li>
           </ol>
         </li>
@@ -849,7 +849,7 @@ title: FAQ
           <code>db.pl</code> script with either the <code>init</code> or
           <code>wipe</code> commands. The only difference between the two
           commands is that <code>wipe</code> leaves the
-          added users so that they don’t need to be re-added.
+          added users so that they don't need to be re-added.
           <pre><code>/opt/arkime/db/db.pl http://ESHOST:9200 wipe</code></pre>
         </li>
         <li>
@@ -926,7 +926,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          All db fields will need -term removed, or capture won’t start and will
+          All db fields will need -term removed, or capture won't start and will
           warn you.
         </li>
       </ul>
@@ -1130,7 +1130,7 @@ title: FAQ
         <li>s3WriteGzip removed, use s3Compression=gzip for gzip instead of new zstd default</li>
         <li>s3GapPacketPos defaults to TRUE</li>
         <li>enablePacketDedup defaults to TRUE</li>
-        <li>authMode defaults to digest now, use authMode=anonymous for old behaviour</li>
+        <li>authMode defaults to digest now, use authMode=anonymous for old behavior</li>
         <li>removed old v1 viewer APIs</li>
         <li>Centos 7 build no longers includes pfring support</li>
         <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
@@ -1258,7 +1258,7 @@ title: FAQ
       <p>
         The UI does have commands to delete and scrub individual sessions, but
         the user must have the <code>Remove Data</code> ability on the users tab.
-        This feature is used for things you don’t want operators to see, such as bad images,
+        This feature is used for things you don't want operators to see, such as bad images,
         and not as a general solution for freeing disk space.
       </p>
 
@@ -1289,7 +1289,7 @@ title: FAQ
           The ES Nodes tab of the Stats section has the
           ability to turn on Write Task completed and rejected columns.
           Look for OpenSearch/Elasticsearch nodes having issues.
-          Make sure those nodes don’t have disk issues.
+          Make sure those nodes don't have disk issues.
         </li>
         <li>
           Make sure each OpenSearch/Elasticsearch node has 30 G of memory and 30 G
@@ -1308,7 +1308,7 @@ title: FAQ
         <li>
           OpenSearch/Elasticsearch does NOT perform well if there is one node that is sick.
           Check all the node hardware, disks, RAID, etc.
-          Make sure that on the ES Nodes tab, there isn't a sigle node with a high
+          Make sure that on the ES Nodes tab, there isn't a single node with a high
           OS Load and low Write/s, which might indicate an issue.
         </li>
         <li>
@@ -1342,7 +1342,7 @@ title: FAQ
         </li>
       </ul>
       <p>
-        If these don’t help, you need to add more nodes or reduce the number of
+        If these don't help, you need to add more nodes or reduce the number of
         sessions being monitored. You can reduce the number of sessions with
         <a href="settings#packet-drop-ips">
           packet-drop-ips</a>,
@@ -1360,7 +1360,7 @@ title: FAQ
       </h3>
       <p>
         If queries are too slow, the easiest fix is to add additional OpenSearch/Elasticsearch nodes.
-        OpenSearch/Elasticsearch doesn’t perform well if Java hits an OutOfMemory condition.
+        OpenSearch/Elasticsearch doesn't perform well if Java hits an OutOfMemory condition.
         If you ever have one, you should immediately delete the oldest <code>*sessions*</code> index,
         update the daily expire cron to delete more often, and restart the OpenSearch/Elasticsearch cluster.
         Then you should order more machines. :)
@@ -1761,7 +1761,7 @@ title: FAQ
         <p>
           You will probably want to change the watermark settings so you can use
           more of your disk space. You have the option to use ALL percentages or
-          ALL values, but you can’t mix them. The most common sign of a problem
+          ALL values, but you can't mix them. The most common sign of a problem
           with these settings is an error that has
           <code>FORBIDDEN/12/index read-only / allow delete</code> in it. You can
           use
@@ -1801,7 +1801,7 @@ cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
         </h4>
         <p>
           No longer need to set since Elasticsearch 7.9.
-          If you hit a lot of bulk failures, this can help, but Elastic doesn’t
+          If you hit a lot of bulk failures, this can help, but Elastic doesn't
           recommend raising too much. In older versions of Elasticsearch, it is
           named <code>thread_pool.bulk.queue_size</code>, so check the docs for
           your version.
@@ -1930,7 +1930,7 @@ logger.action.level = info</code></pre>
           calculations.
         </li>
         <li>
-          Don’t overload network links. Monitoring a 10 G link with an
+          Don't overload network links. Monitoring a 10 G link with an
           average of 4 Gbps RX AND 4 Gbps TX should use 2 10 G
           <code>capture</code> links because 8 Gbps is close to the max.
         </li>
@@ -1965,7 +1965,7 @@ logger.action.level = info</code></pre>
           OS DISKS: We like RAID 1 small drives. SSDs are nice but not required.
         </li>
         <li>
-          CAPTURE DISKS: 20+ x 4 TB or larger SATA drives. Don’t waste money on
+          CAPTURE DISKS: 20+ x 4 TB or larger SATA drives. Don't waste money on
           enterprise/SAS/15k drives.
         </li>
         <li>
@@ -1996,7 +1996,7 @@ logger.action.level = info</code></pre>
       <p>
         We are big fans of using NPBs, and we recommend that medium or large Arkime deployments use an NPB. See
         <a href="/assets/ArkimeON2017NPB.pptx">
-          MolochON 2017 NPB Preso
+          MolochON 2017 NPB Presentation
         </a>.
       </p>
       <p>
@@ -2016,7 +2016,7 @@ logger.action.level = info</code></pre>
           Easier to add more Arkime capacity or other security tools
         </li>
         <li>
-          Don’t have to worry as much about new links being added by the network team
+          Don't have to worry as much about new links being added by the network team
         </li>
       </ul>
       <p>
@@ -2031,7 +2031,7 @@ logger.action.level = info</code></pre>
           goes out the same tool port)
         </li>
         <li>
-          MPLS/VLAN/VPN stripped (optional—some tools don’t like all the headers)
+          MPLS/VLAN/VPN stripped (optional—some tools don't like all the headers)
         </li>
         <li>
           Tool link detection and failover
@@ -2047,7 +2047,7 @@ logger.action.level = info</code></pre>
         </li>
       </ul>
       <p>
-        Just like with Arkime with commodity hardware, you don’t necessarily have
+        Just like with Arkime, with commodity hardware, you don't necessarily have
         to pay a lot of money for a good NPB. Some switch vendors offer switches
         that can operate in switch mode or NPB mode, so you might already have
         gear you can use.
@@ -2107,11 +2107,11 @@ logger.action.level = info</code></pre>
       </p>
       <p>
         This is the MAX disk performance. Run several times if desired and take
-        the average. If you don’t want to drop any packets, you shouldn’t average
-        more then ~80% of the MAX disk performance. If you are using RAID and don’t want to
+        the average. If you don't want to drop any packets, you shouldn't average
+        more then ~80% of the MAX disk performance. If you are using RAID and don't want to
         drop packets during a future rebuild, ~60% is a better value. Remember
         that most network numbers will be in bits, while the disk performance will
-        be in bytes, so you’ll need to adjust the values before comparing.
+        be in bytes, so you'll need to adjust the values before comparing.
       </p>
 
       <span id="moloch_requires_full_packet_captures_error"></span>
@@ -2165,7 +2165,7 @@ logger.action.level = info</code></pre>
         </li>
       </ol>
       <p>
-        There are two work arounds:
+        There are two workarounds:
       </p>
       <ol>
         <li>
@@ -2218,7 +2218,7 @@ logger.action.level = info</code></pre>
         </h4>
         <p>
           Make sure the network card is configured correctly by increasing the ring
-          buf to max size and turning off most of the card’s features. The features
+          buf to max size and turning off most of the card's features. The features
           are not useful anyway, since we want to capture what is on the network
           instead of what the local OS sees. Example configuration:
           <pre><code># Set ring buf size, see max with ethool -g eth0
@@ -2261,21 +2261,21 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </p>
         <ul>
           <li>
-            Make sure swap has been disabled, swappiness is 0, or at the very least, isn’t writing to the disk being used for PCAP.
+            Make sure swap has been disabled, swappiness is 0, or at the very least, isn't writing to the disk being used for PCAP.
           </li>
           <li>
-            Make sure the RAID isn’t in the middle of a rebuild or something worse.
+            Make sure the RAID isn't in the middle of a rebuild or something worse.
             Most RAID cards will have a status of OPTIMAL when things are all good and DEGRADED or SUBOPTIMAL when things are bad.
           </li>
           <li>
             To test the RAID device use:
             <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
             This is the MAX disk performance. Run several times if desired and take
-            the average. If you don’t want to drop any packets, you shouldn’t average
-            more then ~80% of the MAX disk performance. If using RAID and don’t want
+            the average. If you don't want to drop any packets, you shouldn't average
+            more then ~80% of the MAX disk performance. If using RAID and don't want
             drop packets during a future rebuild, ~60% is a better value. Remember
             that most network numbers will be in bits while the disk performance will
-            be in bytes, so you’ll need to adjust the values before comparing.
+            be in bytes, so you'll need to adjust the values before comparing.
           </li>
           <li>
             Make sure you actually have enough disk write thru capacity and disks.
@@ -2302,7 +2302,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             If you are using <code>xfs</code> make sure you use mount options <code>defaults,inode64,noatime</code>
           </li>
           <li>
-            Don’t run capture and OpenSearch/Elasticsearch on the same machine.
+            Don't run capture and OpenSearch/Elasticsearch on the same machine.
           </li>
         </ul>
         <p>
@@ -2369,11 +2369,11 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             There are conflicting reports that disabling irqbalancer may help.
           </li>
           <li>
-            Check that the CPU you are giving <code>capture</code> isn’t
+            Check that the CPU you are giving <code>capture</code> isn't
             handling lots of interrupts (<code>cat /proc/interrupts</code>).
           </li>
           <li>
-            Make sure other processes aren’t using the same CPU as
+            Make sure other processes aren't using the same CPU as
             <code>capture</code>.
           </li>
         </ul>
@@ -2466,7 +2466,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       <ul>
         <li>
           Arkime by default uses the unqualified hostname as the name of
-          the Arkime node, so you’ll need to come up with a naming scheme. Appending
+          the Arkime node, so you'll need to come up with a naming scheme. Appending
           a, b, c, …​ or the interface number to the hostname are possible methods.
         </li>
         <li>
@@ -2484,7 +2484,7 @@ interface=eth5</code></pre>
         </li>
         <li>
           If <code>hostname</code> + <code>domainname</code> on the machine
-          doesn’t return a FQDN, you’ll also need to set a viewUrl, or easier
+          doesn't return a FQDN, you'll also need to set a viewUrl, or easier
           use the <code>--host</code> option.
         </li>
         <li>
@@ -2526,7 +2526,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
       <ul>
         <li>
-          You’ll need to allow suid or user changing programs to save core dumps.
+          You'll need to allow suid or user changing programs to save core dumps.
           Use <code>sysctl</code> to change until the next reboot. Setting it to
           0 will change it back to the default.
           <pre><code>sysctl -w fs.suid_dumpable=2</code></pre>
@@ -2550,7 +2550,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ul>
       <p>
-        If it is easy to reproduce, sometimes it’s easier to just run
+        If it is easy to reproduce, sometimes it's easier to just run
         <code>gdb</code> as root:
       </p>
       <ul>
@@ -2630,14 +2630,14 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           The first gatekeeper and most important is the bpf filter,
           <a href="/settings#bpf"><code>bpf=</code></a> in the config file. This filter can be implemented in
           the kernel, the network card, libpcap or network drivers. It is a
-          single filter and it controls what Arkime capture "sees" or doesn’t
+          single filter and it controls what Arkime capture "sees" or doesn't
           "see". Any packet that is dropped because of the bpf filter is usually
           not counted in ANY Arkime stats, but some implementation do expose
           stats.
         </li>
         <li>
           Arkime does a high level decode of the ethernet, IP, IP protocol
-          information and sees if it understands it. If it doesn’t supports it,
+          information and sees if it understands it. If it doesn't supports it,
           Arkime will discard the packet.
         </li>
         <li>
@@ -2683,7 +2683,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           number of packets for the session (set by rules or
           <a href="/settings#dontsavebpf">dontSaveBPFs</a>)
           OR if there was another method (plugin) that said stop saving packets
-          for the session the packet won’t be saved.
+          for the session the packet won't be saved.
         </li>
         <li>
           If the number of packets for the session is greater then
@@ -2754,8 +2754,8 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           If there is a mismatch between the files in the directory and the files on the Files tab run the <code>db.pl http://localhost:9200 sync-files</code> command
         </li>
         <li>
-          Make sure the files in the file tab don’t have <code>locked</code> set,
-          viewer won’t deleted locked files
+          Make sure the files in the file tab don't have <code>locked</code> set,
+          viewer won't deleted locked files
         </li>
         <li>
           Try restarting viewer
@@ -2772,7 +2772,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </ol>
 
       <h3 id="dontsavebpfs-doesn-t-work">
-        dontSaveBPFs doesn’t work
+        dontSaveBPFs doesn't work
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -2836,7 +2836,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         In small environments with low amounts of traffic this is possible. With
         Openvswitch you can create mirror port from a physical or virtual adapter
         and send the data to another virtual NIC as the listening interface. In
-        KVM, one issue is that it isn’t possible to increase the buffer size past
+        KVM, one issue is that it isn't possible to increase the buffer size past
         256 on the adapter using the Virtio network adapter (mentioned in another
         part of the FAQ). Without Arkime capture will continuously crash. To
         solve this in KVM, use the E1000 adapter, and configure the buffer size
@@ -2998,7 +2998,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           uniques.
         </li>
         <li>
-          Some countries aren’t shown, but can still be searched using their
+          Some countries aren't shown, but can still be searched using their
           ISO-3 (&lt; 1.0) or ISO-2 (&gt;= 1.0).
         </li>
       </ul>
@@ -3011,7 +3011,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </h3>
       <p>
         Recent versions of Chrome, Firefox, and Safari should all work fairly equally.
-        Below are the <strong>minimum</strong> versions required. We aren’t kidding.
+        Below are the <strong>minimum</strong> versions required. We aren't kidding.
       </p>
       <table class="table table-sm table-bordered">
         <thead>
@@ -3101,7 +3101,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </h3>
       <p>
         This seems to be caused when proxying requests from one viewer node to
-        another and the machines don’t use FQDNs for their hostnames and the
+        another and the machines don't use FQDNs for their hostnames and the
         short hostnames are not resolvable by DNS. You can check if your
         machine uses FQDNs by running the <code>hostname</code> command. There
         are several options to resolve the error:
@@ -3159,7 +3159,7 @@ viewUrl=http://node2.fqdn</code></pre>
         </li>
         <li>
           Install Apache, turn on the auth method of your choice. This example
-          also uses HTTPS from Apache to Arkime, but if on localhost that isn’t
+          also uses HTTPS from Apache to Arkime, but if on localhost that isn't
           required. Configure it to set a special header for Arkime to check.
           In this example <code>ARKIME_USER</code> is the header that is being
           set from a variable, if your auth method already sets a header use
@@ -3183,7 +3183,7 @@ ProxyPassReverse /arkime/ https://localhost:8005/</code></pre>
           sure the "Web Auth Header" is checked for the users.
         </li>
         <li>
-          Edit Arkime’s <code>config.ini</code>
+          Edit Arkime's <code>config.ini</code>
           <ul>
             <li>
               Create a new arkime-proxy section (you can use any name) for the Arkime proxy.
@@ -3197,7 +3197,7 @@ ProxyPassReverse /arkime/ https://localhost:8005/</code></pre>
               All other sections should <strong>NOT</strong> have a <code>webBasePath</code>.
             </li>
             <li>
-              Add a <a href="/settings#viewhost"><code>viewHost=localhost</code></a>, so externals can’t just set the <a href="/settings#usernameheader"><code>userNameHeader</code></a> and access Arkime with no auth:
+              Add a <a href="/settings#viewhost"><code>viewHost=localhost</code></a>, so externals can't just set the <a href="/settings#usernameheader"><code>userNameHeader</code></a> and access Arkime with no auth:
               <pre><code>[arkime-proxy]
 userNameHeader=arkime_user
 webBasePath = /arkime/
@@ -3211,7 +3211,7 @@ viewHost = localhost</code></pre>
         </li>
         <li>
           To prevent the users from going directly to Arkime in the future, scramble their passwords.
-          You might want to leave an admin user that doesn’t use the Apache auth.
+          You might want to leave an admin user that doesn't use the Apache auth.
           Or you can temporarily add one with the <code>addUser.js</code> script.
         </li>
         <li>
@@ -3310,7 +3310,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         </span>
       </h3>
       <p>
-        An admin can change anyone’s password on the Users tab by clicking the
+        An admin can change anyone's password on the Users tab by clicking the
         Settings link in the Actions column next to the user.
       </p>
       <p>
@@ -3324,7 +3324,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
       </p>
 
       <h3 id="error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">
-        Error: Couldn’t connect to remote viewer, only displaying SPI data
+        Error: Couldn't connect to remote viewer, only displaying SPI data
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -3332,7 +3332,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
       <p>
         Viewers have the ability to proxy traffic for each other. The ability
         relies on Arkime node names that are mapped to hostnames. Common
-        problems are when systems don’t use FQDNs or certs don’t match.
+        problems are when systems don't use FQDNs or certs don't match.
       </p>
 
       <div class="ml-5 mr-5">
@@ -3377,13 +3377,13 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </li>
           <li>
             If the <code>stats[nodename].hostname</code> is the same as the
-            <code>arkime-viewer</code>’s hostname (exact match) then it can be
+            <code>arkime-viewer</code>'s hostname (exact match) then it can be
             processed locally, STOP HERE.
             Remember this is written by capture above, either the FQDN or <code>--host</code>.
             This is the common case with multiple capture processes per capture node.
           </li>
           <li>
-            If we make it here, the PCAP data isn’t local and it must be proxied.
+            If we make it here, the PCAP data isn't local and it must be proxied.
           </li>
           <li>
             If there is a <code>viewUrl</code> set in the <code>[nodename]</code> section, use that.
@@ -3424,8 +3424,8 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             <code>[nodename]</code>
           </li>
           <li>
-            The remote machine doesn’t return a FQDN from the
-            <code>hostname</code> command AND the viewer machine can’t resolve
+            The remote machine doesn't return a FQDN from the
+            <code>hostname</code> command AND the viewer machine can't resolve
             just the hostname. To fix this, do ONE of the following:
             <ol type="a">
               <li>
@@ -3438,8 +3438,8 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
               </li>
               <li>
                 Set a <code>viewUrl</code> in each node section of the
-                <code>config.ini</code>. If you don’t have a node section for
-                each host, you’ll need to create one.
+                <code>config.ini</code>. If you don't have a node section for
+                each host, you'll need to create one.
               </li>
               <li>
                 Edit <code>/etc/resolv.conf</code> and add
@@ -3451,7 +3451,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             </ol>
           </li>
           <li>
-            The remote machine’s FQDN doesn’t match the CN or SANs in the cert it
+            The remote machine's FQDN doesn't match the CN or SANs in the cert it
             is presenting. The fixes are the same as #2 above.
           </li>
           <li>
@@ -3459,7 +3459,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             turn off HTTPS or see the certificate answer above.
           </li>
           <li>
-            The remote machine can’t open the PCAP.
+            The remote machine can't open the PCAP.
             Make sure the <a href="/settings#dropuser"><code>dropUser</code></a> user or <a href="/settings#dropgroup"><code>dropGroup</code></a> group can read the PCAP files.
             Check the directories in the path too.
           </li>
@@ -3507,7 +3507,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         packages are different.
       </p>
       <p>
-        This shouldn’t happen when using the prebuilt Arkime releases. If it
+        This shouldn't happen when using the prebuilt Arkime releases. If it
         does, then double check that <code>/opt/arkime/bin/node</code> is
         being used to run viewer.
       </p>
@@ -3716,6 +3716,16 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
     {%- include footer.html -%}
 
   </div> <!-- /faq container -->
+
+  <script>
+    $(document).ready(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        window.location.hash = '';
+        window.location.hash = hash;
+      }
+    });
+  </script>
 
 </body>
 </html>
