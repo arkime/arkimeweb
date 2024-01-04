@@ -1,0 +1,29 @@
+name: "Reader - Offline Scheme"
+before: |
+  <p>
+    Arkime 5.0.0 introduces the concept of reader schems to process to process pcap files from multiple local and report locations.
+    Support for new schemes can be built into capture/viewer or added with a plugin.
+    When a scheme is used to process an offline pcap file, which is used and information about the file is stored in Arkime for viewer to use.
+    The schemes run in a single thread, which will make file processing faster then previous version.
+    Switching to "scheme" mode vs libpcap-file mode is done either by using -r with any scheme OR the --scheme option.
+    It is all or nothing, once in scheme mode, non scheme supported command line options will be ignored with no warning.
+  </p>
+  <dl>
+    <dt>file:///fullpath</dt>
+    <dd>- Process a file on the local disk</dd>
+
+    <dt>s3://bucket/key</dt>
+    <dd>- Process a file that lives in s3</dd>
+
+    <dt>s3http(s)://host(:port)/bucket/key</dt>
+    <dd>- Process a file using s3 protocol but use a certain host, useful with minio for example</dd>
+
+    <dt>http(s)://host(:port)/path</dt>
+    <dd>- Process a file using http range requests</dd>
+  </dl>
+  <p>
+    So for example <code>./capture -r http://hostname/foo.pcap -r s3://pcapbucket/file.pcap</code> will process 2 files.
+  </p>
+
+
+settings:
