@@ -729,6 +729,22 @@ body.full-height-body {
   padding-top: 56px;
 }
 
+/* description lists horizontal styles */
+dl.dl-horizontal dt {
+  float: left;
+  width: 275px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+dl.dl-horizontal dd {
+  margin-left: 290px;
+  margin-bottom: 0;
+}
+
 /* dark mode switch */
 .switch-container {
   display: inline-block;
