@@ -28,3 +28,13 @@ permalink: "/commonapi"
 {% include_relative api_common_docs.md %}
 
 </div>
+
+<script>
+  $(document).ready(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      window.location.hash = '';
+      window.location.hash = hash;
+    }
+  });
+</script>

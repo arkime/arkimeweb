@@ -243,3 +243,13 @@ A POST request that can add tags to individual sessions by id or by query. The U
 A POST request that can remove tags from individual sessions by id or by query. The URL query parameters can be the same as session.json to select the session to remove tags from. The POST body must contain a tags item which is a comma separated list of tags to remove and optionally ids which is a comma separated list of document ids.
 
 </div>
+
+<script>
+  $(document).ready(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      window.location.hash = '';
+      window.location.hash = hash;
+    }
+  });
+</script>

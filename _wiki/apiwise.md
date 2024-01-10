@@ -28,3 +28,13 @@ This is the documentation for version 3.x & 5.x.
 {% include_relative api_wise_docs.md %}
 
 </div>
+
+<script>
+  $(document).ready(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      window.location.hash = '';
+      window.location.hash = hash;
+    }
+  });
+</script>

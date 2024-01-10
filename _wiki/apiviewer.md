@@ -34,3 +34,13 @@ The easiest way to see database field names is to click the owl within Arkime ->
 {% include_relative api_viewer_docs.md %}
 
 </div>
+
+<script>
+  $(document).ready(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      window.location.hash = '';
+      window.location.hash = hash;
+    }
+  });
+</script>
