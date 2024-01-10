@@ -1409,6 +1409,16 @@ maxESConns=2
 
   </div> <!-- /settings container -->
 
+  <script>
+    $(document).ready(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        window.location.hash = '';
+        window.location.hash = hash;
+      }
+    });
+  </script>
+
 </body>
 
 </html>
