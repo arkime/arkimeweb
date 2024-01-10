@@ -16,12 +16,12 @@ permalink: "/apiv3"
 
 <div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3 api-container" markdown="1">
 
-# Viewer v3.x - v4.x API
+# Viewer v3.x - v5.x API
 
 **_This API is not final and is subject to change._**
 {: .primary-theme-text }
 
-This is the documentation for version 3.x & 4.x. [Here is the the API for previous versions](/api).
+This is the documentation for version 3.x - 5.x. [Here is the the API for previous versions](/api).
 
 Arkime uses digest authentication for all API calls, so make sure you enable that in your library or curl command.
 The easiest way to learn how to make API calls is to open up your browser's javascript console and observe the calls the Arkime UI is making, it uses all the same APIs.
