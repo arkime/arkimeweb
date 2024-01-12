@@ -292,7 +292,12 @@ specialsections:
         </span>
       </h1>
       <p>
-        Arkime supports several different builtin methods for reading and writing packets.
+        Arkime supports several different methods for reading and writing packets during a live capture.
+        These are selected by setting the <a href="#pcapReadMethod"<pcapReadMethod></a> and <a href="#pcapWriteMethod"<pcapWriteMethod></a> config settings..
+        We suggest using <code>pcapReadMethod=tpacketv3</code> and the default <code>pcapWriteMethod=simple</code> for best performance.
+      </p>
+      <p>
+        For offline pcap processing see the command line options of capture and <a href="/faq#how-do-i-import-existing-pcaps">FAQ - How do I import existing PCAPs?</a>.
       </p>
       {% for sectionId in page.readerswriters %}
         {% assign section = site.data.settings[sectionId] %}
@@ -349,6 +354,12 @@ specialsections:
           onclick="copyLink(this, 'settings')">
         </span>
       </h1>
+
+      <p>
+        Besides the normal <code>[default]</code> and <code>[node]</code> sections, Arkime supports several special config file sections.
+        These sections are used to configure custom fields, views, and other more complex features.
+        Be careful to not place normal config items in these special sections.
+      </p>
 
       {% for sectionId in page.specialsections %}
         {% assign section = site.data.settings[sectionId] %}
