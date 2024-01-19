@@ -256,6 +256,13 @@ div.demo > h1.demo-small-screen {
 .screenshot-img.parliament-settings {
   content: url('assets/parliament-settings.png');
 }
+.screenshot-img.parliament-users {
+  content: url('assets/parliament-users.png');
+}
+
+.screenshot-img.cont3xt {
+  content: url('assets/cont3xt.png');
+}
 
 
 /* all page styles ----------------- */
@@ -889,6 +896,13 @@ body.wiki-body.dark-theme footer.footer {
 }
 .dark-theme .screenshot-img.parliament-settings {
   content: url('assets/parliament-settings-dark.png');
+}
+.dark-theme .screenshot-img.parliament-users {
+  content: url('assets/parliament-users-dark.png');
+}
+
+.dark-theme .screenshot-img.cont3xt {
+  content: url('assets/cont3xt-dark.png');
 }
 
 .dark-theme .collapse-btn {

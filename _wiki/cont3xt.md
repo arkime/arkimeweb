@@ -52,7 +52,7 @@ Share links with team mates that are tailored to specific views and link filters
 
 Export full reports, or subsets of response data.
 
-<img src="assets/cont3xt-purple.org.png" height="800px" />
+<img alt="Cont3xt Dashboard Screenshot" class="screenshot-img cont3xt" />
 
 ## Auto Enrichments:
 
