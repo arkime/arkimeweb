@@ -1,10 +1,8 @@
-name: "#### OpenSearch/Elasticsearch Integration"
+name: "OpenSearch/Elasticsearch Integration"
 before: |
   Since 5.0 Cont3xt can query OpenSearch/Elasticsearch for results.
 
-  Create a `[opensearch:NAME]` or `[elasticsearch:NAME]` section where NAME is a unique name for all integrations
-
-  {: .mb-0}
+  Create a <code>[opensearch:NAME]</code> or <code>[elasticsearch:NAME]</code> section where NAME is a unique name for all integrations
 
 settings:
   - key: name

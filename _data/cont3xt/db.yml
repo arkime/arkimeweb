@@ -1,8 +1,6 @@
-name: "#### DB"
+name: "DB"
 before: |
-  These also live in the `[cont3xt]` section.
-
-  {: .mb-0}
+  These also live in the <code>[cont3xt]</code> section.
 
 settings:
   - key: dbUrl

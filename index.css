@@ -55,6 +55,16 @@ div.demo > h1.demo-small-screen {
   margin-top: -20px;
 }
 
+div.cont3xt-demo {
+  top: -160px;
+  position: relative;
+  margin-bottom: -100px;
+}
+div.cont3xt-demo > h1 {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
 .arkime-brand {
   width: 40vw;
   min-width: 400px;

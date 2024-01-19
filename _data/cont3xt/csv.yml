@@ -1,10 +1,8 @@
-name: "#### CSV Integration"
+name: "CSV Integration"
 before: |
   Since 5.0 Cont3xt can query CSV files or urls for results.
 
-  Create a `[csv:NAME]` section where NAME is a unique name for all integrations
-
-  {: .mb-0}
+  Create a <code>[csv:NAME]</code> section where NAME is a unique name for all integrations
 
 settings:
   - key: name

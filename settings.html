@@ -47,6 +47,16 @@ specialsections:
   - remote-clusters
   - multi-viewer-settings
 
+cont3xt:
+  - general
+  - db
+  - caching
+  - integration-common
+  - arkime
+  - csv
+  - elasticsearch
+  - json
+  - redis
 ---
 
 <!DOCTYPE html>
@@ -182,6 +192,20 @@ specialsections:
         title="Lab Settings">
         Lab Settings
       </a>
+      <a href="#cont3xt"
+        class="nav-link"
+        title="Cont3xt">
+        Cont3xt
+      </a>
+      {% for cont3xtId in page.cont3xt %}
+        {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
+        <a class="nav-link nested"
+          href="#{{cont3xtId}}-cont3xt"
+          title="{{cont3xt.name}}">
+          {{cont3xt.name}}
+        </a>
+      {% endfor %}
+
     </div>
   </div> <!-- /toc nav -->
 
@@ -1412,6 +1436,70 @@ dbBulkSize=100000
 maxESConns=2
 </code></pre>
       <!-- /Lab Settings -->
+
+      <!-- Cont3xt -->
+      <h1 id="cont3xt"
+        class="border-bottom">
+        Cont3xt
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h1>
+
+      <p>
+        By default, settings live in a config.ini file.
+        There are two types of settings that you may need to change: Settings with the cont3xt service itself and settings with the integrations.
+        It is assumed that each user of Cont3xt will set up their own integration users/keys but it is possible to have global keys.
+      </p>
+      <!-- TODO why doesn't this render properly!? -->
+
+      {% for cont3xtId in page.cont3xt %}
+        {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
+        <h2 id="{{cont3xtId}}-cont3xt">
+          {{cont3xt.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h2>
+        {{cont3xt.before}}
+        {% if cont3xt.settings %}
+          <table class="table table-bordered table-sm table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = cont3xt.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{cont3xt.after}}
+      {% endfor %}
+      <!-- /Cont3xt -->
 
     </div> <!-- /settings content -->
 
