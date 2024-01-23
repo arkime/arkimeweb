@@ -1,7 +1,7 @@
 name: JA4+
 before: |
   <p>
-  Arkime supports JA4, JA4s, JA4x, and JA4ssh with versions 5.0.0 and later.
+  Arkime supports JA4, JA4s, JA4x, JA4t, JA4l, and JA4ssh with versions 5.0.0 and later.
   </p>
   <h4>JA4 algorithm</h4>
   <p>
