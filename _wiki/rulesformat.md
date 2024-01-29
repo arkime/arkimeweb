@@ -160,7 +160,7 @@ The operations are a map of the fields to set in the session. There are some spe
 {: .mb-0 }
 
 * `_dontSaveSPI: 1`                 - Don't save SPI data for session, either 0 or 1
-* `_maxPacketsToSave: 20`           - Don't save more then 20 packets, max value is 65535
+* `_maxPacketsToSave: 20`           - Try to save at most 20 packets, max value is 65535. Arkime will sometimes save more packets if it couldn't determine to stop saving packets until later.
 * `_minPacketsBeforeSavingSPI: 33`  - Don't save SPI data unless 33 many packets have been sent/received, max value is 255
 * `_dropByDst: 5`                  - (Since 1.5) drop all traffic to dst ip:port for 5 minutes. This is good for dropping traffic that is going to the cloud and has shifting ips.
 * `_dropBySrc: 10`                  - (Since 1.5) drop all traffic from src ip:port for 10 minutes. You probably almost never want to use this.
