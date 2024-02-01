@@ -2443,6 +2443,9 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           unknown link or GRE types)
         </li>
       </ul>
+      <p>
+        <strong>Important</strong> By default importing offline pcap does NOT make a copy of the pcap file, Arkime saves a reference to the original file. If you want to make a copy of the pcap file, use the <code>--copy</code> option with capture.
+        </p>
       <h4>Enable Arkime UI to upload</h4>
       <p>
         It is also possible to enable UI in Arkime to upload PCAP.
