@@ -1033,3 +1033,10 @@ body.wiki-body.dark-theme footer.footer {
     opacity: 0;
   }
 }
+
+/* arkime pronunciation on index page */
+.arkime-pronunciation {
+  cursor: pointer;
+  font-size: 1.5rem;
+  vertical-align: sub;
+}

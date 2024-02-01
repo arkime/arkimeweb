@@ -60,6 +60,8 @@ title: Home
         <div class="col-md-12">
           <h1 class="display-1 text-center">
             <img class="arkime-brand" />
+            <audio id="audio"><source src="assets/arkime_short.m4a" type="audio/mpeg" /></audio>
+            <span class="fa fa-volume-up arkime-pronunciation" onclick="play()"></span>
           </h1>
           <h1 class="display-4 text-center">
             Network Analysis & Packet Capture
@@ -753,9 +755,13 @@ title: Home
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
 
-      function setupError() {
+      function setupError () {
         $('.downloads-error').show();
         $('.loading-downloads').hide();
+      }
+
+      function play () {
+        document.getElementById('audio').play();
       }
     });
   </script>
