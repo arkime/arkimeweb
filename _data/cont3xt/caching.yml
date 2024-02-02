@@ -2,7 +2,7 @@ name: "Caching"
 before: |
   Cont3xt can cache integration queries to speed up results and to lower the load on the integration services.
 
-  Create a <code>[cache]</code> section
+  These settings live in the <code>[cache]</code> section
 
 settings:
   - key: type

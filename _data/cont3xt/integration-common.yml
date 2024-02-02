@@ -3,7 +3,7 @@ before: |
   Every integration can have its own settings with keys, passwords and other things.
   Usually keys and passwords should be set per user in the UI, which will override these.
 
-  In each <code>[integrationname]</code> section
+  These live in each <code>[INTEGRATION-NAME]</code> section
 
 settings:
   - key: disabled

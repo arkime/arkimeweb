@@ -1,6 +1,6 @@
 name: "General"
 before: |
-  Create a <code>[cont3xt]</code> section
+  These settings live in the <code>[cont3xt]</code> section.
 
 settings:
   - key: cacheTimeout

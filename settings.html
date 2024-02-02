@@ -1456,9 +1456,16 @@ maxESConns=2
       </h1>
 
       <p>
-        By default, settings live in a config.ini file.
-        There are two types of settings that you may need to change: Settings with the cont3xt service itself and settings with the integrations.
-        It is assumed that each user of Cont3xt will set up their own integration users/keys but it is possible to have global keys.
+        Cont3xt, by default, utilizes configuration files using INI format.
+        The configuration file is located at <code>/opt/arkime/etc/cont3xt.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
+        With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
+        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+      </p>
+      <p>
+        The configuration file can contain sections for Cont3xt itself and then sections for each integration.
+        The sections for each integration are optional and can be used to set specific settings for each integration.
+        Usually, integration keys will be set up by each user, but it is possible to have global keys.
       </p>
 
       {% for cont3xtId in page.cont3xt %}
