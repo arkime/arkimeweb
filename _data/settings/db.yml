@@ -1,10 +1,11 @@
 name: OpenSearch/Elasticsearch Settings
 before: |
   <p>
-    Arkime uses OpenSearch/Elasticsearch both as a database and as time based storage for all the sessions saved.
-    These settings have to do with how Arkime talks to OpenSearch/Elasticsearch.
-    While the terms elasticsearch and es are used in the variables, both OpenSearch and Elasticsearch are supported for most settings.
+    Arkime leverages OpenSearch/Elasticsearch both as a database and as time-based storage for all saved sessions.
+    The settings pertain to the communication between Arkime and OpenSearch/Elasticsearch.
+    Although the terms "elasticsearch" and "es" appear in the variable names, both OpenSearch and Elasticsearch are compatible with most settings.
   </p>
+
 
 settings:
   - key: elasticsearch

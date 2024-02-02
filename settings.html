@@ -118,7 +118,7 @@ cont3xt:
       <a href="#ini-settings"
         class="nav-link"
         title="General">
-        INI Settings
+        Settings
       </a>
       {% for sectionId in page.sections %}
         {% assign section = site.data.settings[sectionId] %}
@@ -225,32 +225,41 @@ cont3xt:
       <!-- ini settings -->
       <h1 id="ini-settings"
         class="border-bottom">
-        INI Settings
+        Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
       </h1>
       <p>
-        Arkime uses a tiered system for configuration variables. A tiered
-        system allows Arkime to share one config file for many machines. The
-        ordering of sections within the config file doesn't matter.
+        Arkime, by default, utilizes configuration files using INI format.
+        The configuration file is located at <code>/opt/arkime/etc/config.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
+        With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
+        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+      </p>
+
+      <p>
+        When searching for a setting, Arkime employs a tiered system for configuration variables.
+        This tiered system enables Arkime to use a single config file across multiple machines.
+        The order of sections within the config file is not significant; however, the specific section in which a variable resides can be crucial.
+        A frequent issue encountered is the misplacement of a variable in an incorrect section.
       </p>
       <p class="mb-0">
         Order of config variables:
       </p>
       <ol>
         <li>
-          [optional] The section titled with the node name is used first.
-          Arkime will always tag sessions with node: &lt;node name&gt;
+          [optional] The section titled with the node name is given priority and used first.
+          Arkime will always tag sessions with node: &lt;node name&gt;.
         </li>
         <li>
-          [optional] If a node has a nodeClass variable, the section titled
-          with the nodeClass name is used next. Sessions will be tagged with
-          node:&lt;node class name&gt; which is useful if watching different
+          [Optional] If a node section possesses a nodeClass variable, the section titled
+          with the nodeClass name is utilized next. Sessions will be tagged with
+          node:&lt;node class name&gt;, which is beneficial for monitoring different
           network classes.
         </li>
         <li>
-          The section titled "default" is used last.
+          The section titled "default" is considered last.
         </li>
       </ol>
       <!-- /ini settings -->
