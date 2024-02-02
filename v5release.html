@@ -45,7 +45,7 @@ title: V5!
 
 <body id="viewport">
 
-  <div class="v3-content">
+  <div class="v5-content">
     <!-- navbar -->
     {%- include navbar.html -%}
 
@@ -63,6 +63,7 @@ title: V5!
             <hr>
             <p class="lead lead-lg text-justify mt-4 text-center">
               <a href="#cont3xt-bulk-search" class="no-decoration">Cont3xt Bulk Search</a>,
+              <a href="#improved-session-detail-display" class="no-decoration">Improved Session Detail Display</a>,
               <a href="#unified-configs" class="no-decoration">Unified Configs</a>,
               <a href="#unified-auth" class="no-decoration">Unified Auth</a>,
               <a href="#ja4-support" class="no-decoration">JA4 Support</a>,
@@ -85,6 +86,10 @@ title: V5!
             <p class="lead text-justify mt-4">
               This release includes a highly requested feature: Cont3xt Bulk Search enabling users to enrich multiple indicators simultaneously.
               This is accompanied by an improved user interface to better analyze the massive amount of data presented.
+            </p>
+            <p class="lead text-justify mt-4">
+              The session details have been redesigned to minimize unused space.
+              On large screens, the layout exhibits a dual-column structure, enabling users to access a greater amount of information without the need for scrolling.
             </p>
             <p class="lead text-justify">
               After coming to our senses, all applications utilize a unified configuration subsystem.
@@ -112,7 +117,6 @@ title: V5!
               </a>
             </p>
             <hr>
-            <!-- TODO emojis? -->
             <p class="lead lead-lg text-justify mt-4 text-center">
               Breaking Changes
             </p>
@@ -139,120 +143,190 @@ title: V5!
                 <li class="list-group-item">right-click changed to value-actions in config</li>
               </ul>
             </p>
-            <hr>
-            <p id="cont3xt-bulk-search"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Cont3xt Bulk Search
-            </p>
-            <p class="lead text-justify">
-              Cont3xt was integrated into the Arkime ecosystem with the release of version 4.0.
-              For detailed information, please refer the <a href="cont3xt" class="no-decoration">Cont3xt documentation</a>.
-              In version 5.0, we have introduced a bulk search feature, enabling users to enrich multiple indicators simultaneously.
-              The user interface has undergone a comprehensive rewrite, incorporating multiple columns to minimize empty space and present all data on a single, streamlined page.
-              As part of our user-centric enhancements, we now offer a severity emoji map, facilitating the quick identification of crucial indicators.
-            </p>
-            <hr>
-            <p id="unified-configs"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Unified Configurations
-            </p>
-            <p class="lead text-justify">
-              Every application within the Arkime ecosystem now seamlessly employs a unified configuration subsystem.
-              This enables the straightforward addition of new file formats, such as json and yaml.
-              Arkime further supports the retrieval of configuration files from various sources, including local files, http(s), and OpenSearch/Elasticsearch.
-              Notably, the introduction of json and yaml file formats enhances the native format of lists, eliminating the need for comma-separated strings.
-              For comprehensive details on all configuration settings, we invite you to explore the <a href="settings" class="no-decoration">Settings Documentation</a>.
-            </p>
-            <hr>
-            <p id="unified-auth"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Unified Authorization
-            </p>
-            <p class="lead text-justify">
-              Every application within the Arkime ecosystem now adheres to a unified authorization model, centralized into a new common module that each application imports and utilizes.
-            </p>
-            <p class="lead text-justify">
-              A noteworthy change is the removal of anonymous mode as the default authorization, which has been replaced by digest.
-              Furthermore, a range of new authorization modes can be configured, including basic, form, basic+form, basic+oidc, headerOnly, header+digest (equivalent to header), and header+basic.
-              Detailed information on these modes can be found in the <a href="settings#authMode" class="no-decoration">Settings Documentation</a>.
-            </p>
-            <p class="lead text-justify">
-              It's important to note that Parliament has deprecated the JWT authorization model, replacing it with Arkime common authorization.
-              This change was alluded to in Arkime 4.0, encouraging users to configure common authorization within the Parliament Settings page.
-              In Arkime version 5.0, this configuration is now mandatory.
-              Users can implement common authentication through the Parliament Settings Page prior to upgrading to version 5.0 or manually in the configuration file.
-              For comprehensive details, please refer to the <a href="settings#parliament" class="no-decoration">Parliament documentation</a> and the
-              <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">upgrade guide for version 5.0</a>.
-            </p>
-            <hr>
-            <p id="ja4-support"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              JA4 Support
-            </p>
-            <p class="lead text-justify">
-              Arkime now features JA4 support, with JA4 values accessible through the http.ja4 field, allowing for convenient viewing and searching.
-              For enhanced JA4+ support, a downloadable plugin is required.
-              To learn more and install the plugin, refer to the provided resource to <a href="ja4" class="no-decoration">learn more</a>.
-            </p>
-            <hr>
-            <p id="additional-multiviewer-support"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Additional Multiviewer Support
-            </p>
-            <p class="lead text-justify">
-              Multiviewer support has been incorporated into the Files, History, and Stats tabs.
-              Within a Multiviewer interface on these pages, a dropdown menu has been introduced, presenting all associated viewers for selection.
-              By default, all viewers are pre-selected, allowing users the flexibility to conduct searches across all viewers or specifically choose viewers for searches on these pages.
-              This enhancement provides a more customizable and efficient user experience when using Multiviewers.
-            </p>
-            <hr>
-            <p id="offline-pcap-retrieval-improvements"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Offline PCAP Retrieval Improvements
-            </p>
-            <p class="lead text-justify">
-              Arkime has advanced its capabilities to directly import PCAP files from S3 or http(s) URLs, eliminating the need for prior file downloads.
-              Capture now accommodates URLs on the command line, providing specifications on how to retrieve the files.
-              For in-depth information, explore the <a href="settings#reader-scheme" class="no-decoration">detailed resource</a> on how to leverage this functionality.
-            </p>
-            <hr>
-            <p id="bug-fixes-and-more"
-              class="lead lead-lg text-justify text-center hash-link-offset">
-              Bug Fixes and More
-            </p>
-            <p class="lead text-justify">
-              Arkime 5.0 includes an extensive array of improvements, comprising numerous bug fixes, minor feature additions, and upgraded dependencies.
-            </p>
-            <p class="lead text-justify">
-              Notable minor features encompass integrations for Arkime, Elasticsearch/OpenSearch, CSV, JSON, and Redis within Cont3xt.
-              Simplification and enhanced user experience was introduced by allowing Parliament and Arkime to share the same notifiers.
-              Additional enhancements involve the introduction of configurable links in the Parliament navbar to WISE and Cont3xt.
-              Ownership transfer functionalities have been extended to Arkime and Cont3xt resources, encompassing views, shortcuts, periodic queries, and link groups.
-              Furthermore, edit roles have been incorporated for Arkime resources, specifically targeting views, shortcuts, and periodic queries.
-            </p>
-            <p class="lead text-justify">
-              Among the bug fixes, notable resolutions include the enforcement of user time limits on unique endpoints, the flexibility to add Arkime DB fields in any order within the same group,
-              and the replacement of unappealing JSON errors in the Arkime navbar with a more generic "Error loading health" message.
-              These collective improvements contribute to a more refined and robust Arkime experience.
-            </p>
-            <p>&nbsp;</p>
-            <p class="lead lead-lg text-center mt-4">
+            <p class="lead lead-lg text-center mt-4 pt-4">
               <a href="https://github.com/arkime/arkime/releases/tag/v5.0.0" class="no-decoration">
                 View a detailed list of all the changes and download it now!
               </a>
             </p>
+            <div class="text-center black-arkime">
+              <img class="arkime-logo" style="height:150px" />
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="text-center black-arkime">
-        <img class="arkime-logo" />
+    </div>
+    <div class="container-fluid">
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="cont3xt-bulk-search">
+            Cont3xt Bulk Search
+          </h1>
+          <img
+            alt="Cont3xt Bulk Search Screenshot"
+            class="screenshot-img cont3xt"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          Cont3xt was integrated into the Arkime ecosystem with the release of version 4.0.
+          For detailed information, please refer the <a href="cont3xt" class="no-decoration">Cont3xt documentation</a>.
+          In version 5.0, we have introduced a bulk search feature, enabling users to enrich multiple indicators simultaneously.
+          The user interface has undergone a comprehensive rewrite, incorporating multiple columns to minimize empty space and present all data on a single, streamlined page.
+          As part of our user-centric enhancements, we now offer a severity emoji map, facilitating the quick identification of crucial indicators.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-5 col-md-6 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset align-self-start" id="ja4-support">
+            JA4 Support
+          </h1>
+          Arkime now features JA4 support, with JA4 values accessible through the http.ja4 field, allowing for convenient viewing and searching.
+          For enhanced JA4+ support, a downloadable plugin is required.
+          To learn more and install the plugin, refer to the provided resource to <a href="ja4" class="no-decoration">learn more</a>.
+        </div>
+        <div class="col-lg-7 col-md-6 align-self-start">
+          <img
+            alt="JA4 Screenshot"
+            class="screenshot-img ja4"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="improved-session-detail-display">
+            Improved Session Detail Display
+          </h1>
+          <img
+            alt="Multiviewer Dropdown Screenshot"
+            class="screenshot-img session-detail"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          <p>
+            The session detail's intricacies have undergone a comprehensive redesign, strategically enhancing the presentation of information within the confines of screen dimensions and minimizing superfluous space.
+            On expansive screens, the layout adopts a dual-column structure, facilitating an expanded view of information without the necessity of scrolling.
+            To optimize space, field labels and values align on the same line, with extensive values intelligently wrapped, and lengthy field labels truncated with an ellipsis.
+          </p>
+          <p>
+            Moreover, the session detail display now boasts heightened customizability.
+            Users possess the flexibility to adjust label widths, thereby allocating more screen real estate to accommodate extensive values or prolonged field labels.
+            Notably, each section and subsection within the session detail display is collapsible, with user preferences persistently stored in the browser's storage.
+            This ensures facile customization while traversing through sessions during analytical processes.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="additional-multiviewer-support">
+            Additional Multiviewer Support
+          </h1>
+          Multiviewer support has been incorporated into the Files, History, and Stats tabs.
+          Within a Multiviewer interface on these pages, a dropdown menu has been introduced, presenting all associated viewers for selection.
+          By default, all viewers are pre-selected, allowing users the flexibility to conduct searches across all viewers or specifically choose viewers for searches on these pages.
+          This enhancement provides a more customizable and efficient user experience when using Multiviewers.
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Multiviewer Dropdown Screenshot"
+            class="screenshot-img multiviewer"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Form Auth Login Screenshot"
+            class="screenshot-img auth pull-right"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-8 col-md-8 ">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="unified-auth">
+            Unified Authorization
+          </h1>
+          <p class="lead text-justify">
+            Every application within the Arkime ecosystem now adheres to a unified authorization model, centralized into a new common module that each application imports and utilizes.
+          </p>
+          <p class="lead text-justify">
+            A noteworthy change is the removal of anonymous mode as the default authorization, which has been replaced by digest.
+            Furthermore, a range of new authorization modes can be configured, including basic, form, basic+form, basic+oidc, headerOnly, header+digest (equivalent to header), and header+basic.
+            Detailed information on these modes can be found in the <a href="settings#authMode" class="no-decoration">Settings Documentation</a>.
+          </p>
+          <p class="lead text-justify">
+            It's important to note that Parliament has deprecated the JWT authorization model, replacing it with Arkime common authorization.
+            This change was alluded to in Arkime 4.0, encouraging users to configure common authorization within the Parliament Settings page.
+            In Arkime version 5.0, this configuration is now mandatory.
+            Users can implement common authentication through the Parliament Settings Page prior to upgrading to version 5.0 or manually in the configuration file.
+            For comprehensive details, please refer to the <a href="settings#parliament" class="no-decoration">Parliament documentation</a> and the
+            <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">upgrade guide for version 5.0</a>.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="unified-configs">
+            Unified Configurations
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          Every application within the Arkime ecosystem now seamlessly employs a unified configuration subsystem.
+          This enables the straightforward addition of new file formats, such as json and yaml.
+          Arkime further supports the retrieval of configuration files from various sources, including local files, http(s), and OpenSearch/Elasticsearch.
+          Notably, the introduction of json and yaml file formats enhances the native format of lists, eliminating the need for comma-separated strings.
+          For comprehensive details on all configuration settings, we invite you to explore the <a href="settings" class="no-decoration">Settings Documentation</a>.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="offline-pcap-retrieval-improvements">
+            Offline PCAP Retrieval Improvements
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          Arkime has advanced its capabilities to directly import PCAP files from S3 or http(s) URLs, eliminating the need for prior file downloads.
+            Capture now accommodates URLs on the command line, providing specifications on how to retrieve the files.
+            For in-depth information, explore the <a href="settings#reader-scheme" class="no-decoration">detailed resource</a> on how to leverage this functionality.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="bug-fixes-and-more">
+            Bug Fixes and More
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          <p class="lead text-justify">
+            Arkime 5.0 includes an extensive array of improvements, comprising numerous bug fixes, minor feature additions, and upgraded dependencies.
+          </p>
+          <p class="lead text-justify">
+            Notable minor features encompass integrations for Arkime, Elasticsearch/OpenSearch, CSV, JSON, and Redis within Cont3xt.
+            Simplification and enhanced user experience was introduced by allowing Parliament and Arkime to share the same notifiers.
+            Additional enhancements involve the introduction of configurable links in the Parliament navbar to WISE and Cont3xt.
+            Ownership transfer functionalities have been extended to Arkime and Cont3xt resources, encompassing views, shortcuts, periodic queries, and link groups.
+            Furthermore, edit roles have been incorporated for Arkime resources, specifically targeting views, shortcuts, and periodic queries.
+          </p>
+          <p class="lead text-justify">
+            Among the bug fixes, notable resolutions include the enforcement of user time limits on unique endpoints, the flexibility to add Arkime DB fields in any order within the same group,
+            and the replacement of unappealing JSON errors in the Arkime navbar with a more generic "Error loading health" message.
+            These collective improvements contribute to a more refined and robust Arkime experience.
+          </p>
+        </div>
       </div>
 
     </div> <!-- /container -->
 
     <!-- footer -->
-    <div class="v3-footer">
+    <div>
       {%- include footer.html -%}
     </div>
 
