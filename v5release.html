@@ -41,6 +41,9 @@ title: V5!
   <!-- custom index page styles -->
   <link rel="stylesheet" type="text/css" href="index.css">
 
+  <!-- page functions -->
+  <script src="index.js"></script>
+
 </head>
 
 <body id="viewport">
@@ -88,7 +91,7 @@ title: V5!
               This is accompanied by an improved user interface to better analyze the massive amount of data presented.
             </p>
             <p class="lead text-justify mt-4">
-              The session details have been redesigned to minimize unused space.
+              The session details section has been redesigned to minimize unused space.
               On large screens, the layout exhibits a dual-column structure, enabling users to access a greater amount of information without the need for scrolling.
             </p>
             <p class="lead text-justify">
@@ -158,8 +161,12 @@ title: V5!
     <div class="container-fluid">
       <div class="row d-flex align-items-end">
         <div class="col-lg-8 col-md-7 align-self-start">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="cont3xt-bulk-search">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="cont3xt-bulk-search">
             Cont3xt Bulk Search
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
           <img
             alt="Cont3xt Bulk Search Screenshot"
@@ -178,8 +185,12 @@ title: V5!
       <hr>
       <div class="row d-flex align-items-start">
         <div class="col-lg-5 col-md-6 lead text-justify">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset align-self-start" id="ja4-support">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset align-self-start"
+            id="ja4-support">
             JA4 Support
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
           Arkime now features JA4 support, with JA4 values accessible through the http.ja4 field, allowing for convenient viewing and searching.
           For enhanced JA4+ support, a downloadable plugin is required.
@@ -196,8 +207,12 @@ title: V5!
       <hr>
       <div class="row d-flex align-items-end">
         <div class="col-lg-8 col-md-7 align-self-start">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="improved-session-detail-display">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="improved-session-detail-display">
             Improved Session Detail Display
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
           <img
             alt="Multiviewer Dropdown Screenshot"
@@ -207,23 +222,27 @@ title: V5!
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
           <p>
-            The session detail's intricacies have undergone a comprehensive redesign, strategically enhancing the presentation of information within the confines of screen dimensions and minimizing superfluous space.
-            On expansive screens, the layout adopts a dual-column structure, facilitating an expanded view of information without the necessity of scrolling.
-            To optimize space, field labels and values align on the same line, with extensive values intelligently wrapped, and lengthy field labels truncated with an ellipsis.
+            The session detail section has undergone a comprehensive redesign, strategically enhancing the presentation of information within the confines of screen dimensions and minimizing superfluous space :)
+            On expansive screens, the layout adopts a dual-column structure, facilitating an expanded view of information without the need of scrolling.
+            To optimize space, field labels and values display on the same line, with extensive values wrapped, and lengthy field labels truncated with an ellipsis.
           </p>
           <p>
-            Moreover, the session detail display now boasts heightened customizability.
-            Users possess the flexibility to adjust label widths, thereby allocating more screen real estate to accommodate extensive values or prolonged field labels.
-            Notably, each section and subsection within the session detail display is collapsible, with user preferences persistently stored in the browser's storage.
-            This ensures facile customization while traversing through sessions during analytical processes.
+            Moreover, the session detail section now boasts heightened customizability.
+            Users possess the flexibility to adjust label widths, thereby allocating more screen real estate to accommodate long values or field labels.
+            Notably, each section and subsection within the session detail is collapsible, with user preferences persistently stored.
+            This ensures customization while traversing through sessions during the analytical processes.
           </p>
         </div>
       </div>
       <hr>
       <div class="row d-flex align-items-start">
         <div class="col-lg-8 col-md-8 lead text-justify">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="additional-multiviewer-support">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="additional-multiviewer-support">
             Additional Multiviewer Support
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
           Multiviewer support has been incorporated into the Files, History, and Stats tabs.
           Within a Multiviewer interface on these pages, a dropdown menu has been introduced, presenting all associated viewers for selection.
@@ -248,8 +267,12 @@ title: V5!
           />
         </div>
         <div class="col-lg-8 col-md-8 ">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="unified-auth">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+          id="unified-auth">
             Unified Authorization
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
           <p class="lead text-justify">
             Every application within the Arkime ecosystem now adheres to a unified authorization model, centralized into a new common module that each application imports and utilizes.
@@ -272,8 +295,12 @@ title: V5!
       <hr>
       <div class="row d-flex align-items-end">
         <div class="col-12 align-self-start">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="unified-configs">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="unified-configs">
             Unified Configurations
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
         </div>
         <div class="col-12 lead text-justify">
@@ -287,8 +314,12 @@ title: V5!
       <hr>
       <div class="row d-flex align-items-end">
         <div class="col-12 align-self-start">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="offline-pcap-retrieval-improvements">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="offline-pcap-retrieval-improvements">
             Offline PCAP Retrieval Improvements
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
         </div>
         <div class="col-12 lead text-justify">
@@ -300,8 +331,12 @@ title: V5!
       <hr>
       <div class="row d-flex align-items-end">
         <div class="col-12 align-self-start">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="bug-fixes-and-more">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="bug-fixes-and-more">
             Bug Fixes and More
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'v5release')">
+            </span>
           </h1>
         </div>
         <div class="col-12 lead text-justify">
@@ -337,5 +372,13 @@ title: V5!
     confetti();
     setTimeout(() => { confetti(); }, 200);
     setTimeout(() => { confetti(); }, 300);
+
+    $(document).ready(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        window.location.hash = '';
+        window.location.hash = hash;
+      }
+    });
   </script>
 </body>
