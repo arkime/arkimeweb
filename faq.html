@@ -423,14 +423,10 @@ title: FAQ
         </span>
       </h3>
       <p>
-        If you want a standalone open-source full packet capture (FPC)
-        system with metadata parsing and searching, then Arkime is
-        the solution!
-        Full packet capture systems allow network and security analysts to see exactly
-        what happen from a network point of view.
-        Since Arkime is open-source, you have complete control of the deployment
-        and <a href="/architecture">architecture</a>.
-        There are <a href="otherfpc"> other FPC systems </a> available.
+        If you're in search of a comprehensive, standalone open-source solution for full packet capture (FPC) and network analysis that includes both metadata parsing and searching capabilities, Arkime stands out as the premier choice.
+        Full packet capture systems are indispensable tools for network and security analysts, offering an unfiltered view of network activities and enabling a detailed analysis of events from a network perspective.
+        As an open-source platform, Arkime affords its users total control over both deployment and <a href="/architecture">architecture</a>, ensuring that you can tailor the system to meet your specific requirements.
+        While there are <a href="otherfpc">other FPC systems</a> available, Arkime's unique blend of features and open-source accessibility makes it a standout solution for those needing detailed and actionable network insights.
       </p>
 
       <span id="why-change-our-name">
@@ -459,11 +455,13 @@ title: FAQ
         </span>
       </h3>
       <p>
-        Upgrading Arkime requires you to install major versions in order, as
-        described in the chart below. If your current version isn't listed, please upgrade to the next-highest version in the
-        chart. You can then install the major releases in order to catch up.
-        New installs can start from the latest version.
-        Unless otherwise stated, you should only need to db.pl upgrade between versions.
+        Upgrading Arkime is a sequential process that requires installing each major version in the order outlined in the table below.
+        This step-by-step approach ensures that your system transitions smoothly between versions without missing critical updates or features.
+        If you find that your current version of Arkime is not explicitly mentioned in the chart, it is recommended to upgrade to the immediately higher version listed.
+        By following this method, you can sequentially upgrade through the major releases until your system is up-to-date.
+        Typically, transitioning between versions requires the execution of the <code>db.pl</code> upgrade script.
+        This script is designed to update your database schemas and configurations to be compatible with the newer version of Arkime.
+        Unless specified otherwise in the upgrade documentation, running this script should be the only additional step needed to complete the upgrade process.
       </p>
       <table class="table table-sm table-bordered">
         <thead>
@@ -497,13 +495,35 @@ title: FAQ
               Arkime
             </th>
             <td>
+              5.0+
+            </td>
+            <td>
+              4.3.2+ (4.6.0 recommended)
+            </td>
+            <td>
+              1.0.0+ (2.10+ recommended)
+            </td>
+            <td>
+              7.10+ or 8+
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_5"> Arkime 5.x instructions </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Arkime
+            </th>
+            <td>
               4.0+
             </td>
             <td>
               3.3.0+ (3.4.0 recommended)
             </td>
             <td>
-              1.0.0+ (2.3 recommended)
+              1.0.0+ (2.3+ recommended)
             </td>
             <td>
               7.10+
@@ -687,18 +707,14 @@ title: FAQ
         </span>
       </h3>
       <p>
-        We have RPMs/DEBs/ZSTs available on the
-        <a href="downloads">
-          downloads page.
-        </a>
-        Our deployment is on RHEL 7 and RHEL 8, using both the pcap and afpacket reader, depending on the deployment.
-        We recommend using afpacket (tpacketv3) whenever possible.
-        A large amount of development is done on macOS 12.5 using MacPorts or Homebrew; however, it has never been tested in a production setting. :)
-        Arkime is no longer supported on 32-bit machines.
-        Currently we do not support Ubuntu releases that aren't LTS and there may be library issues.
-      </p>
+        Arkime is pre packaged to support a wide range of operating systems, available on the <a href="https://github.com/arkime/arkime/releases">downloads page</a>.
+        The Arkime development team predominantly works with the EL 8 build, opting between the pcap and afpacket readers based on the specific needs of each deployment.
+        You are encouraged to use the afpacket reader whenever possible to achieve the best capture performance.
+        While a substantial portion of our development efforts takes place on macOS, leveraging the Homebrew package manager, it's important to note that this environment has not been vetted in a production setting. :)
+        It's also worth mentioning that Arkime has phased out support for 32-bit machines, consequently, the software is incompatible with many lower-powered devices.
+        Furthermore, our support is currently limited to LTS versions of Ubuntu, due to potential library compatibility issues with non-LTS releases.
       <p>
-        The following operating systems should work out of the box:
+        The following operating systems are supported directly:
       </p>
       <ul>
         <li>
@@ -708,7 +724,7 @@ title: FAQ
           CentOS/RHEL 7, 8, 9
         </li>
         <li>
-          Amazon Linux 2
+          Amazon Linux 2, 2023
         </li>
         <li>
           Ubuntu 18.04, 20.04, 22.04
