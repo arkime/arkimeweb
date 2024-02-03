@@ -504,7 +504,7 @@ title: FAQ
               1.0.0+ (2.10+ recommended)
             </td>
             <td>
-              7.10+ or 8+
+              7.10+, 8+ (7.17+, 8.10+ recommended)
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_5"> Arkime 5.x instructions </a>
@@ -526,7 +526,7 @@ title: FAQ
               1.0.0+ (2.3+ recommended)
             </td>
             <td>
-              7.10+
+              7.10+, 8+
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.x instructions </a>
@@ -714,7 +714,7 @@ title: FAQ
         It's also worth mentioning that Arkime has phased out support for 32-bit machines, consequently, the software is incompatible with many lower-powered devices.
         Furthermore, our support is currently limited to LTS versions of Ubuntu, due to potential library compatibility issues with non-LTS releases.
       <p>
-        The following operating systems are supported directly:
+        The following operating systems distributions and versions are supported directly:
       </p>
       <ul>
         <li>
@@ -885,28 +885,26 @@ title: FAQ
         </span>
       </h3>
       <p>
-        The core Arkime team does not support or recommend self-signed certificates,
-        although it is possible to make them work.
-        We suggest using your cost savings from using a commercial full capture product to purchase certificates.
-        Wildcard certificates are now inexpensive, and you can even choose free Lets Encrypt certificates.
-        Members of the Arkime Slack workspace may be willing to help out,
-        but the core developers may just link to this answer.
-        Private CA certificates will have the same issues and solutions as self-signed certificates.
-      </p>
-      <p>
-        Potentially the easiest solution is to add the self-signed certificate to the operating system's list of valid certificates or chains.
-        Googling is the best way to figure out how to do this—it is different for almost every OS release and version.
-        You may need to add the certificate to several lists because node (viewer), curl (capture), and perl (db.pl) sometimes use different locations for their list of trusted certificates.
-        Viewer supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option that was contributed to the project.
-        Since 4.2.0 all pieces of Arkime should support the <code>caTrustFile</code> setting.
-      </p>
-      <p>
-        Another option is to just turn off certificate checking.
-        Capture, viewer, arkime_add_user.sh, and db.pl can run with <code>--insecure</code> to turn off certificate checking.
-        You will need to add this option to the startup command for both capture and viewer.
-        For example, in the <code>/etc/systemd/system/arkimecapture.conf</code> file, change the <code>ExecStart</code>
-        line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
-        You would need to do the same thing for any viewer systemd files.
+        The core Arkime team advises against the use of self-signed certificates, despite their technical feasibility.
+        Instead, we encourage leveraging the financial benefits derived from using Arkime over commercial full packet capture solutions to invest in legitimate certificates.
+        The cost of wildcard certificates has decreased significantly, making them an affordable option.
+        Alternatively, free certificates from Let's Encrypt represent a viable option.
+        While members of the Arkime Slack workspace may offer assistance, the core development team typically refers queries back to this guidance.
+        It's important to note that private CA certificates face similar challenges and require analogous solutions as those encountered with self-signed certificates.
+    </p>
+    <p>
+        One of the simplest methods to bypass the hurdles associated with self-signed certificates involves adding them to your operating system's list of recognized certificates or chains.
+        The process for doing so varies widely across different OS distributions and versions, making a quick internet search the most efficient strategy to find specific instructions.
+        It may be necessary to register the certificate across multiple trust stores due to the varied certificate validation locations utilized by node (for the viewer), curl (for capture), and perl (for db.pl).
+        The Viewer component of Arkime includes a <code>caTrustFile</code> option, a feature introduced by contributors to the project.
+        Since version 4.2.0, all components of Arkime are designed to support the <code>caTrustFile</code> configuration.
+    </p>
+    <p>
+        An alternative, though less secure option, involves disabling certificate verification entirely.
+        Key components such as Capture, Viewer, arkime_add_user.sh, and db.pl accept the <code>--insecure</code> flag to bypass certificate checks.
+        This flag must be appended to the startup commands for both capture and viewer services.
+        For instance, in the <code>/etc/systemd/system/arkimecapture.conf</code> configuration file, modify the <code>ExecStart</code> line from its original state to include the <code>--insecure</code> option, changing <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
+        A similar adjustment is required for any systemd files associated with Viewer, Cont3xt or Parliament.
       </p>
 
       <h3 id="how_do_i_upgrade_to_moloch_1">
@@ -1139,24 +1137,26 @@ title: FAQ
       </h3>
 
       <p>
-        Upgrading to Arkime 5.x requires that you are already using Arkime 4.3.2 or later.
-        <strong>Arkime 5 is still under development.</strong>
+        Upgrading to Arkime 5 requires that you are already using Arkime 4.3.2 or later.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
         <li>s3Compression/simpleCompression now defaults to zstd</li>
-        <li>s3WriteGzip removed, use s3Compression=gzip for gzip instead of new zstd default</li>
+        <li>s3WriteGzip removed, use s3Compression=gzip for old behavior</li>
         <li>s3GapPacketPos defaults to TRUE</li>
         <li>enablePacketDedup defaults to TRUE</li>
-        <li>authMode defaults to digest now, use authMode=anonymous for old behavior</li>
-        <li>removed old v1 viewer APIs</li>
-        <li>Centos 7 build no longers includes pfring support</li>
-        <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
-        <li>Increased simpleCompressionBlockSize default to 64000</li>
+        <li>authMode defaults to digest instead of anonymous</li>
+        <li>Removed old v1 APIs</li>
         <li>
-          If using Parliament, you must create a parliament.ini or a [parliament] section in your Arkime ini before upgrading
-          (see <a href="settings#parliament">Parliament ini settings</a>). It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
+          The Parliament password has been removed. You must create a parliament.ini file or [parliament] section in your arkime config.ini before upgrading.
+          See <a href="/settings#parliament" class="no-decoration">Parliament</a>.
+          You can configure common auth via the Parliament settings UI before upgrading or manually in the config file.
         </li>
+        <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
+        <li>Centos 7 build no longers supports pfring</li>
+        <li>simpleCompressionBlockSize defaults to 64000</li>
+        <li>simpleGzipBlockSize defaults to 32000</li>
+        <li>right-click changed to value-actions in config</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
@@ -1178,11 +1178,12 @@ title: FAQ
         </span>
       </h1>
       <p>
-        Arkime supports both OpenSearch and Elasticsearch, and our goal is to continue to support both.
-        Some older documentation and settings may only refer to Elasticsearch, but OpenSearch should work for Arkime versions supporting Elasticsearch 7+.
-        As OpenSearch and Elasticsearch diverge, we may add features that are only enabled based on which is being used.
-        Arkime will never require any Elasticsearch pay features but may optionally support them.
+        Arkime is designed to work seamlessly with both OpenSearch and Elasticsearch, underscoring our commitment to support both platforms moving forward.
+        While some of the documentation and configurations might exclusively mention Elasticsearch, it's important to note that OpenSearch is compatible with Arkime versions that support Elasticsearch 7 and above.
+        As the two systems continue to evolve separately, there might be new features introduced that are specific to either OpenSearch or Elasticsearch.
+        Rest assured, Arkime is committed to remaining accessible without the necessity for any paid features of Elasticsearch, though we may choose to provide optional support for such features.
       </p>
+
       <h3 id="how-many-elasticsearch-nodes-or-machines-do-i-need">
         How many OpenSearch/Elasticsearch nodes or machines do I need?
         <span class="fa fa-link small copy-link cursor-copy"
@@ -1390,30 +1391,33 @@ title: FAQ
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
+      <p>
+        If you need to remove nodes from your OpenSearch/Elasticsearch cluster, follow these steps as an Admin:
+      </p>
       <ol>
         <li>
-          Go into the Arkime stats page and the ES Shards subtab.
+            Access the Arkime stats page and navigate to the ES Shards tab.
         </li>
         <li>
-          Click on the nodes you want to remove and exclude them.
+            Identify and select the nodes you wish to remove, then choose to exclude them.
         </li>
         <li>
-          Wait for the shards to be moved.
+            Allow some time for the shards to be relocated.
         </li>
         <li>
-          If no shards move, you may need to configure OpenSearch/Elasticsearch to allow two
-          shards per node, although a large number may be required if you are removing
-          many nodes.
+          <p>
+          If no shards are relocated, you might need to adjust the OpenSearch/Elasticsearch settings to permit the allocation of at least two shards per node.
+          This is particularly crucial if you're in the process of removing several nodes from the cluster.
+          A higher number of shards per node may be necessary to facilitate this process effectively.
           <pre><code>curl -XPUT 'localhost:9200/sessions*/_settings' -d '{
   "index.routing.allocation.total_shards_per_node": 2
 }'</code></pre>
         </li>
         <li>
-          If there are many shards that need to be redistributed, the defaults
-          might take days, which is good for the cluster.
-          Increase the speed from the default 3 streams at 20 mb (60 mb/sec) to
-          something higher like 6 streams at 50 mb (300 mb/sec). Adjust
-          for the speed of the new nodes' disks and network.
+          If a large number of shards require redistribution, the default settings might result in the process taking several days, which can be beneficial for maintaining cluster stability, but annoying.
+          To expedite the process, consider increasing the transfer rate from the default setting of 3 streams at 20 MB (totaling 60 MB/sec) to a higher throughput, such as 6 streams at 50 MB (300 MB/sec).
+          Make adjustments based on the disk and network capabilities of the new nodes.
+
           <pre><code>curl -XPUT localhost:9200/_cluster/settings -d '{"transient":{
   "indices.recovery.concurrent_streams":6,
   "indices.recovery.max_bytes_per_sec":"50mb"}
@@ -1429,8 +1433,7 @@ title: FAQ
       </h3>
       <p>
         Turning on replication will consume twice the disk space on the nodes
-        and increase the network bandwidth between nodes, so make sure you
-        actually <strong>need</strong> replication.
+        and increase the network bandwidth between nodes.
       </p>
       <p>
         To change future days, run the following command:
@@ -2105,17 +2108,10 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        On basic commodity hardware, it is easy to get 3 Gbps or more, depending
-        on the number of CPUs available to Arkime and what else the machine is
-        doing. Many times, the limiting factor is the speed of the disks and
-        RAID system. See
-        <a href="architecture">
-          Architecture</a>
-        and
-        <a href="multihost">
-          Multiple Host</a>
-        for more information. Arkime allows multiple threads to be used to
-        process the packets.
+        On basic commodity hardware, achieving throughput of 3 Gbps or more is easy, depending largely on the number of CPUs allocated to Arkime and the other tasks the machine is handling.
+        Often, the bottleneck in performance is the speed of the disks and the RAID configuration.
+        For further details, refer to the <a href="architecture">Architecture</a> and <a href="multihost">Multiple Host</a> sections.
+        Arkime supports the utilization of multiple threads for both packet acquisition and packet processing.
       </p>
       <p>
         To test the local RAID device, use:
@@ -2123,13 +2119,13 @@ logger.action.level = info</code></pre>
         To test a NAS, leave off the oflag=direct and make sure you test with at least 3x the amount of memory so that cache isn't a factor:
         <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
       </p>
+
       <p>
-        This is the MAX disk performance. Run several times if desired and take
-        the average. If you don't want to drop any packets, you shouldn't average
-        more then ~80% of the MAX disk performance. If you are using RAID and don't want to
-        drop packets during a future rebuild, ~60% is a better value. Remember
-        that most network numbers will be in bits, while the disk performance will
-        be in bytes, so you'll need to adjust the values before comparing.
+        The output represents the maximum disk performance.
+        If you wish to obtain a more accurate assessment, run several tests and average the results.
+        To avoid packet loss, it's advisable to operate Arkime at no more than approximately 80% of the maximum disk performance.
+        For systems utilizing RAID, aiming for about 60% of this performance metric can further minimize the risk of dropping packets, especially during RAID rebuilds.
+        It's important to note that network throughput is typically measured in bits, whereas disk performance is gauged in bytes, requiring the conversion of these measurements for accurate comparison.
       </p>
 
       <span id="moloch_requires_full_packet_captures_error"></span>
@@ -2821,27 +2817,22 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </span>
       </h3>
       <p>
-        Arkime buffers writes to disk, which is great for high bandwidth
-        networks, but bad for <a href="/settings#lab-settings">low bandwidth networks</a>. How much data is buffered
-        is controlled with <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a>, which defaults to 262144
-        bytes. An important thing to remember is the buffer is per thread, so set
-        <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 on low bandwidth networks.
-        A portion of the PCAP that is buffered will be written after 10 seconds of no writes.
-        However it will still buffer the last pagesize bytes, usually 4096 bytes.
-      </p>
-      <p>
-        An error that looks like
-        <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code>
-        usually means that either the PCAP is still being buffered and you need to wait for it to be written to disk or
-        that previously capture or the host crashed/restarted before the PCAP could be written to disk.
+        Arkime optimizes disk writes for efficiency, making it highly suitable for high bandwidth networks.
+        However, this approach might not be ideal for <a href="/settings#lab-settings">low bandwidth environments</a>.
+        The amount of data Arkime buffers before writing to disk is determined by the <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a> setting, which has a default value of 262144 bytes.
+        It's crucial to remember that this buffering occurs on a per-thread basis.
+        Therefore, for low bandwidth networks, it's advisable to set <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 (a single thread).
+        The system is designed to flush the buffered PCAP to disk after 10 seconds of inactivity, but direct-io requires pagesize bytes to still be buffered, typically around 4096 bytes.
       </p>
 
       <p>
-        You can also end up with many zero byte PCAP files if the disk is full,
-        see
-        <a href="#pcap-deletion">
-          PCAP Deletion</a>.
+        Encountering an error message such as <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code> usually indicates that the PCAP data is either still in the process of buffering and requires more time to be fully written to disk, or it suggests that a capture process or system crash occurred before the PCAP data could be saved.
       </p>
+
+      <p>
+        Note, running out of disk space can lead to the creation of numerous zero-byte PCAP files.
+        For details on managing disk space and preventing such issues, refer to <a href="#pcap-deletion">PCAP Deletion</a>.
+     </p>
 
       <span id="can-i-virtualize-moloch-with-kvm-using-openvswitch"></span>
       <h3 id="can-i-virtualize-arkime-with-kvm-using-openvswitch">
@@ -2880,7 +2871,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         <ol>
           <li><a href="https://www.maxmind.com/en/geolite2/signup">Sign up for a MaxMind account</a> (no purchase required)</li>
           <li>Wait for MaxMind email and set your password</li>
-          <li>Install the geoipupdate tool, pay attention to version installed, for many distributions you can just do a <code>yum install geoipupdate</code> or <code>apt-get install geoipupdate</code></li>
+          <li>Install the geoipupdate tool, pay attention to version installed, for many distributions you can just do a <code>yum install geoipupdate</code> or <code>apt install geoipupdate</code></li>
           <li>Create a <a href="https://www.maxmind.com/en/accounts/current/license-key">license key</a></li>
           <li>Select Yes when asked "Will this key be used for GeoIP Update?" and select the version you have</li>
           <li>Use the MaxMind feature to generate a config file for you, usually you will replace </code>/etc/GeoIP.conf</code> with this file</li>
@@ -3625,7 +3616,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         You can check this on the Stats -> ES Nodes tab and/or check the viewer logs.
       </p>
       <p>
-        See more information about the cronQueries setting <a href="https://arkime.com/settings#cronQueries">here</a>.
+        See more information about the cronQueries setting <a href="/settings#cronQueries">here</a>.
       </p>
       <!-- /viewer -->
 
