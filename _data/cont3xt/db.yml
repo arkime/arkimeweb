@@ -5,36 +5,54 @@ before: |
 settings:
   - key: dbUrl
     value: EMPTY
-    text: Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt data.
+    text: Use this setting to override the elasticsearch setting, useful if running cont3xt standalone with no OpenSearch/Elasticsearch. Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt data.
 
   - key: elasticsearch
     value: http://localhost:9200
-    text: The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
-
-  - key: elasticsearchAPIKey
-    value: EMPTY
-    text: See <a href="settings#elasticsearchAPIKey">settings page</a>
-
-  - key: elasticsearchBasicAuth
-    value: EMPTY
-    text: See <a href="settings#elasticsearchBasicAuth">settings page</a>
-
-  - key: elasticsearchTimeout
-    value: 300
-    text: See <a href="settings#elasticsearchtimeout">settings page</a>
-
-  - key: esClientKey
-    value: EMPTY
-    text: See <a href="settings#esclientkey">settings page</a>
+    text: |
+      The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
 
   - key: esClientCert
     value: EMPTY
-    text: See <a href="settings#esclientcert">settings page</a>
+    text: |
+      The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
+
+  - key: esClientKey
+    value: EMPTY
+    text: |
+      The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
 
   - key: esClientKeyPass
     value: EMPTY
-    text: See <a href="settings#esclientkeypass">settings page</a>
+    text: |
+      The password for the esClientKey setting.
+
+  - key: elasticsearchAPIKey
+    value: EMPTY
+    text: |
+      Use an Elasticsearch API key for access without
+      requiring basic authentication. Once you have created an API Key,
+      you must base64 encode the id and api_key joined by a colon.
+      <code>echo -n "id:api_key" | base64</code> is one way to generate
+      the base64 key. Notice the -n, you have to make sure you don't
+      encode an extra newline.
+
+  - key: elasticsearchBasicAuth
+    value: EMPTY
+    text: |
+      Use basic auth with OpenSearch/Elasticsearch.
+      The value can either be the plain text "user:pass" or the base64 encoded version.
+      One way to generate base64 <code>echo -n "username:password" | base64</code> version.
+      Notice the -n, you have to make sure you don't encode an extra newline.
+      All Arkime versions also support http://user:pass@hostname:port in the elasticsearch setting.
+
+  - key: elasticsearchTimeout
+    value: 300
+    text: |
+      Approximate timeout for most requests to OpenSearch/Elasticsearch.
+      OpenSearch/Elasticsearch will automatically cancel any request after this expires.
 
   - key: usersUrl
     value: EMPTY
-    text: Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt users database. Can be the same that all Arkime tools use.
+    text: Use this setting to override the usersElasticsearch setting, useful if running cont3xt standalone with no OpenSearch/Elasticsearch. Can be lmdb:DIRECTORY, redis:URL  or an OpenSearch/Elasticsearch URL.
