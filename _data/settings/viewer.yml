@@ -130,26 +130,6 @@ settings:
       the "http(s)://" or exclude it. If excluded, http/https will be
       set by determining whether a keyFile and certFile exist.
 
-  - key: accessLogFile
-    value: EMPTY
-    text: |
-      If left empty, then the viewer will log to stdout. It can be set to a filename and then logging will
-      be directed there.
-
-  - key: accessLogFormat
-    value: |
-      :date :username %1b[1m:method%1b[0m %1b[33m:url%1b[0m :status :res[content-length] bytes :response-time ms
-    text: |
-      (Since 2.3) Set the log record format -- this uses Express Morgan. The string is URL Encoded and so uses %xx
-      to escape special characters.
-      See the Morgan documentation for the <a href="https://github.com/expressjs/morgan">list of keywords</a>.
-
-  - key: accessLogSuppressPaths
-    value: EMPTY
-    text: |
-      (Since 2.3) This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
-      Setting this to /eshealth.json will suppress logging of all calls to that endpoint.
-
   - key: aes256Encryption
     value: |
       forced true (since 4.0)<br>

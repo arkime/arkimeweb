@@ -1,4 +1,9 @@
 name: Auth & Security Settings
+before: |
+  <p>
+    Arkime applications have common authorization and security settings.
+    These settings will live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the application.
+  </p>
 
 settings:
   - key: dropGroup
@@ -27,16 +32,6 @@ settings:
       section of the config file, and all viewers in the arkime cluster
       must have the same value. It can be, and should be changed
       periodically.
-
-  - key: passwordSecret
-    value: "password"
-    text: |
-      Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
-      Since OpenSearch/Elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
-      It is also used for secure server-to-server communication if serverSecret is not set a different value.
-      Don't set if you do not want user authentication.
-      Changing the value will make all previously stored passwords no longer work.
-
 
   - key: authMode
     value: EMPTY

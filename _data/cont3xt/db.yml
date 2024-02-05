@@ -38,23 +38,3 @@ settings:
   - key: usersUrl
     value: EMPTY
     text: Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt users database. Can be the same that all Arkime tools use.
-
-  - key: usersElasticsearch
-    value: EMPTY
-    text: See <a href="settings#userselasticsearch">settings page</a>
-
-  - key: usersPrefix
-    value: EMPTY
-    text: See <a href="settings#usersprefix">settings page</a>
-
-  - key: usersElasticsearchAPIKey
-    value: EMPTY
-    text: See <a href="settings#usersElasticsearchAPIKey">settings page</a>
-
-  - key: usersElasticsearchBasicAuth
-    value: EMPTY
-    text: See <a href="settings#usersElasticsearchBasicAuth">settings page</a>
-
-  - key: passwordSecret
-    value: password
-    text: See <a href="settings#passwordsecret">settings page</a>, make sure you use the same value for cont3xt and viewer if you want to share users across all applications.

@@ -1,0 +1,29 @@
+name: Parliament Settings
+
+before: |
+  <p>
+    (Since 5.0.0) Must be in the [parliament] section. This can be in its own file or in the viewer config.
+    This config must exist and point to your Parliament JSON file using the <code>file</code> setting.
+    If you were passing in port/certFile/keyFile into the command line arguments when starting Parliament, you must also include those in this config.
+    It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
+    The upgrade will update the config with your auth settings. Otherwise you will need to input them manually as
+    basic passworth auth has been disabled for Parliament.
+  </p>
+
+settings:
+  - key: file
+    value: REQUIRED
+    text: The location of your Parliament json file.
+
+  - key: port
+    value: "8008"
+    text: The port that the parliament process listens on.
+
+  - key: parliamentHost
+    value: EMPTY
+    text: |
+      The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
+      See the <code>host</code> section of
+      <a class="no-decoration"
+        href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
+        rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
