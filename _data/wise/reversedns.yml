@@ -1,0 +1,28 @@
+name: ReverseDNS
+before: |
+  <p>
+    For IPs that are included by the ips setting, do a reverse lookup and place everything before the first dot in the field specified.
+    <br>
+    Create a <code>[reversedns]</code> section to configure
+  </p>
+
+settings:
+  - key: field
+    value: REQUIRED
+    text: The field to set with the hostname
+
+  - key: ips
+    value: REQUIRED
+    text: Semicolon separated list of IPs or CIDRs to lookups. Ips that don't match this list will NOT be reverse lookuped.
+
+  - key: servers
+    value: EMPTY
+    text: Since 1.6.1, if set the reversedns source will use the semicolon separated list of ip addresses to reverse lookuped.
+
+  - key: stripDomains
+    value: EMPTY
+    text: If EMPTY then all domains are stripped after the FIRST period. When set ONLY domains that match the semicolon separated list of domain names are modified, and only the matching part is removed. Those that don't match will be saved in full. The list is checked in order. A leading dot is recommended. For example `stripDomains=.foo.example.com;.example.com` will convert `test1.foo.example.com` to `test1`, `test2.bar.example.com` to `test2.bar` and finally `test3.bar.com` to `test3.bar.com` - Added in 0.11.4
+
+  - key: cacheSize
+    value: 200000
+    text: Maximum number of results to cache

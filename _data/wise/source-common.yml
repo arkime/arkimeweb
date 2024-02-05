@@ -1,0 +1,42 @@
+name: Common Source Settings
+
+before: |
+  All sources support some common settings such excluding IPs, Domains and Email addresses from lookups.
+  It is also possible to exclude across all sources by placing the exclude config in the <code>[wiseService]</code> section.
+
+settings:
+  - key: excludeIPs
+    value: EMPTY
+    text: Semicolon separated list of IPs or CIDRs to exclude in lookups
+  - key: excludeDomains
+    value: EMPTY
+    text: Semicolon separated list of modified glob patterns to exclude in lookups
+  - key: excludeEmails
+    value: EMPTY
+    text: Semicolon separated list of modified glob patterns to exclude in lookups
+  - key: cacheAgeMin
+    value: 60
+    text: Number of minutes items in the cache for this source are valid for. Ignored for sources that use internal data, such as file sources.
+  - key: onlyIPs
+    value: EMPTY
+    text: If set, only ips that match the semicolon separated list of IPs or CIDRs will be looked up
+  - key: fields
+    value: EMPTY
+    text: A "\n" separated list of fields that this source will add. Some wise sources automatically set for you. See [Tagger Format](taggerformat) for more information on the parts of a field entry.
+  - key: view
+    value: EMPTY
+    text: The view to show in session detail when opening up a session with unique fields. The value for view can either be written in simplified format or in more powerful jade format. For the jade format see <a href="/taggerformat">Tagger Format</a> for more information except everything has to be on one line, so replace newlines with \n. Simple format looks like <code>require:[toplevel db name];title:[title string];fields:[field1],[field2],[fieldN]</code>
+
+after: |
+  <p>
+    <b>Glob Rules:</b>
+    <ul>
+      <li>To match zero or more characters either `*` or `%` may be used</li>
+      <li>To match a single digit `#` may be used</li>
+      <li>To match a character with special meaning, you must precede it with "~". The "~" also serves as the escape character</li>
+      <li>To match one of a specific list of characters, you may surround the character with square brackets</li>
+      <li>Globs are anchorced on both end, use `*` to unanchor</li>
+      <li>String case doesn't matter</li>
+    </ul>
+  </p>
+

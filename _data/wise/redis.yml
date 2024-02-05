@@ -1,0 +1,34 @@
+name: Redis
+before: |
+  <p>
+    Redis can be used as a wise data source.
+    If using redis as a wise cache you'll probably want to use a different redis "database" by specifying the database number in the url. Example: `url=redis://localhost/1`
+    Each redis source can only handle one type of data, although multiple redis sources can be configured and they can use the same redis database.
+    <br>
+    Create a <code>[redis:UNIQUENAME]</code> section to configure.
+  </p>
+
+settings:
+  - key: url
+    value: REQUIRED
+    text: The format is `[redis:]//[[user][:password@]]host:port[/db-number]`
+
+  - key: tags
+    value: REQUIRED
+    text: Comma separated list of tags to set for matches
+
+  - key: type
+    value: REQUIRED
+    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
+
+  - key: format
+    value: csv
+    text: csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
+
+  - key: column
+    value: 0
+    text: For csv formatted files, which column is the data
+
+  - key: template
+    value: "%key%"
+    text: The template when forming the key name. %key% = the key being looked up, %type% = the type being looked up.

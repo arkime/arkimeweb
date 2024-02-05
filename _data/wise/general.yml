@@ -1,0 +1,5 @@
+name: General
+before: boom
+settings:
+  - key: hi
+    value: ok
