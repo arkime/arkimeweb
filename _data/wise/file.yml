@@ -32,7 +32,7 @@ settings:
     text: For csv formatted files, which column is the data
 
 after: |
-  <h3>CSV Example</h3>
+  <h4>CSV Example</h4>
   <p>Config File</p>
   <pre>
     [file:ipcsv]
@@ -50,7 +50,7 @@ after: |
     blah2,10.0.0.2,foo
   </pre>
 
-  <h3>Tagger Example</h3>
+  <h4>Tagger Example</h4>
   <p>Config File</p>
   <pre>
     [file:iptagger]
@@ -66,7 +66,7 @@ after: |
     10.0.0.2;asset=blah2;extra=foo
   </pre>
 
-  <h3> JSON Example</h3>
+  <h4>JSON Example</h4>
   <p>Config File</p>
   <pre>
     [file:ipcsv]
@@ -85,7 +85,7 @@ after: |
   </pre>
   <p>**Note:** you use shortcut to match between fields in the JSON dictionary and the properties in OpenSearch/Elasticsearch.</p>
 
-  <h3>JSONL Example</h3>
+  <h4>JSONL Example</h4>
   <p>Added in 5.0, WISE now supports jsonl files with one full json object per line.</p>
   <p>Config File</p>
   <pre>
@@ -105,7 +105,7 @@ after: |
   </pre>
   <p>**Note:** you use shortcut to match between fields in the JSONL dictionary and the properties in OpenSearch/Elasticsearch.</p>
 
-  <h3> Subnets Example</h3>
+  <h4>Subnets Example</h4>
   <p>More complex example of the above where you want to create a new section</p>
   <pre>
     [file:subnets]
