@@ -124,7 +124,7 @@ parliament:
   <div class="left-nav d-none d-sm-block">
     <div class="nav nav-pills nav-pills-nested pb-3">
       <a href="#ini-settings"
-        class="nav-link"
+        class="nav-link main-nav-link"
         title="General">
         Settings
       </a>
@@ -136,9 +136,8 @@ parliament:
           {{section.name}}
         </a>
       {% endfor %}
-
       <a href="#capture-viewer"
-        class="nav-link"
+        class="nav-link main-nav-link"
         title="General">
         Capture/Viewer
       </a>
@@ -150,72 +149,74 @@ parliament:
           {{section.name}}
         </a>
       {% endfor %}
-      <a href="#ReadersWriters"
-        class="nav-link"
-        title="Readers/Writers">
-        Readers/Writers
-      </a>
-      {% for sectionId in page.readerswriters %}
-        {% assign section = site.data.settings[sectionId] %}
-        <a class="nav-link nested"
-          href="#{{sectionId}}"
-          title="{{section.name}}">
-          {{section.name}}
+      <div class="toc-nested">
+        <a href="#ReadersWriters"
+          class="nav-link"
+          title="Readers/Writers">
+          Readers/Writers
         </a>
-      {% endfor %}
-      <a href="#SpecialSections"
-        class="nav-link"
-        title="Special Sections">
-        Special Sections
-      </a>
-      {% for sectionId in page.specialsections %}
-        {% assign section = site.data.settings[sectionId] %}
-        <a class="nav-link nested"
-          href="#{{sectionId}}"
-          title="{{section.name}}">
-          {{section.name}}
+        {% for sectionId in page.readerswriters %}
+          {% assign section = site.data.settings[sectionId] %}
+          <a class="nav-link nested"
+            href="#{{sectionId}}"
+            title="{{section.name}}">
+            {{section.name}}
+          </a>
+        {% endfor %}
+        <a href="#SpecialSections"
+          class="nav-link"
+          title="Special Sections">
+          Special Sections
         </a>
-      {% endfor %}
-      <a class="nav-link nested"
-        href="#right-click"
-        title="valueactions">
-        value actions
-      </a>
-      <a class="nav-link nested"
-        href="#field-actions"
-        title="fieldactions">
-        field actions
-      </a>
-      <a class="nav-link nested"
-        href="#pcap-at-rest-encryption"
-        title="PCAP at Rest Encryptions">
-        PCAP at Rest Encryption
-      </a>
-      <a href="#Plugins"
-        class="nav-link"
-        title="Plugins">
-        Plugins
-      </a>
-      {% for pluginId in page.plugins %}
-        {% assign plugin = site.data.settings[pluginId] %}
+        {% for sectionId in page.specialsections %}
+          {% assign section = site.data.settings[sectionId] %}
+          <a class="nav-link nested"
+            href="#{{sectionId}}"
+            title="{{section.name}}">
+            {{section.name}}
+          </a>
+        {% endfor %}
         <a class="nav-link nested"
-          href="#{{pluginId}}"
-          title="{{plugin.name}}">
-          {{plugin.name}}
+          href="#right-click"
+          title="valueactions">
+          value actions
         </a>
-      {% endfor %}
-      <a href="#high-performance-settings"
-        class="nav-link"
-        title="High Performance Settings">
-        High Performance Settings
-      </a>
-      <a href="#lab-settings"
-        class="nav-link"
-        title="Lab Settings">
-        Lab Settings
-      </a>
+        <a class="nav-link nested"
+          href="#field-actions"
+          title="fieldactions">
+          field actions
+        </a>
+        <a class="nav-link nested"
+          href="#pcap-at-rest-encryption"
+          title="PCAP at Rest Encryptions">
+          PCAP at Rest Encryption
+        </a>
+        <a href="#Plugins"
+          class="nav-link"
+          title="Plugins">
+          Plugins
+        </a>
+        {% for pluginId in page.plugins %}
+          {% assign plugin = site.data.settings[pluginId] %}
+          <a class="nav-link nested"
+            href="#{{pluginId}}"
+            title="{{plugin.name}}">
+            {{plugin.name}}
+          </a>
+        {% endfor %}
+        <a href="#high-performance-settings"
+          class="nav-link"
+          title="High Performance Settings">
+          High Performance Settings
+        </a>
+        <a href="#lab-settings"
+          class="nav-link"
+          title="Lab Settings">
+          Lab Settings
+        </a>
+      </div>
       <a href="#cont3xt"
-        class="nav-link"
+        class="nav-link main-nav-link"
         title="Cont3xt">
         Cont3xt
       </a>
@@ -227,9 +228,8 @@ parliament:
           {{cont3xt.name}}
         </a>
       {% endfor %}
-
       <a href="#parliament"
-        class="nav-link"
+        class="nav-link main-nav-link"
         title="Parliament">
         Parliament
       </a>
@@ -288,7 +288,7 @@ parliament:
         </h2>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -375,7 +375,7 @@ parliament:
         </h2>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -439,7 +439,7 @@ parliament:
         </h2>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -501,7 +501,7 @@ parliament:
         </h2>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -562,7 +562,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         Each line in the valueactions section contains possible actions:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -720,7 +720,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         The possible URL Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -891,7 +891,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         The categories that Arkime uses are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -1027,7 +1027,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0">
         Each line in the fieldactions section contains possible actions:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -1141,7 +1141,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0" id="field-actions-url-sub">
         The possible URL Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -1224,7 +1224,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0" id="field-actions-menu-sub">
         The possible Field Action Menu Name Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-striped-secondary">
         <thead>
           <tr>
             <th>
@@ -1378,7 +1378,7 @@ kekid2=Randomkekpassword2
         </h2>
         {{plugin.before}}
         {% if plugin.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -1575,7 +1575,7 @@ maxESConns=2
         </h2>
         {{cont3xt.before}}
         {% if cont3xt.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>
@@ -1622,7 +1622,7 @@ maxESConns=2
         </span>
       </h1>
 
-      <p class="lead lead-lg text-thin text-center">
+      <p>
         Parliament contains a grouped list of your Arkime clusters with links, Elasticsearch/OpenSearch health, and issues for each.
         You can use Parliament as a landing page for all of your Arkime clusters and as a status page to monitor the health of your clusters.
         See <a href="parliament" class="no-decoration">Parliament</a> for more information.
@@ -1639,7 +1639,7 @@ maxESConns=2
         </h2>
         {{parliament.before}}
         {% if parliament.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-striped-secondary">
             <thead>
               <tr>
                 <th>

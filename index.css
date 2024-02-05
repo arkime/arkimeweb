@@ -3,6 +3,7 @@
   --primary-theme-text-color: #66B689;
   --primary-theme-dark-text-color: #228C50;
   --primary-theme-background-color: #EDF8FF;
+  --secondary-theme-background-color: #66b68926;
   --primary-theme-color: #004C83;
   --primary-theme-hover-color: #003E6B;
   --info-theme-hover-color: #50916c;
@@ -215,7 +216,6 @@ div.cont3xt-demo > h1 {
 .audio-container {
   width: 300px;
 }
-
 
 /* api page styles ----------------- */
 /* make sure columns are wide enough */
@@ -546,6 +546,11 @@ ul.list-group.list-group-striped > li.list-group-item:nth-of-type(even) {
   background-color: #f8f9fa;
 }
 
+/* secondary theme zebra stripey tables */
+.table-striped.table-striped-secondary tbody tr:nth-of-type(odd) {
+  background-color: var(--secondary-theme-background-color)
+}
+
 /* condensed list groups */
 ul.list-group.list-group-sm > li.list-group-item {
   padding: 0.4rem 0.8rem;
@@ -660,6 +665,20 @@ body.full-height-body {
 }
 .left-nav div.nav-pills.nav-pills-nested a.nav-link:not(.nested) {
   font-weight: bold;
+}
+
+.toc-nested {
+  margin-left: 12px;
+}
+.nav-link {
+  font-weight: 500 !important;
+}
+.nav-link.nested {
+  font-weight: 200 !important;
+}
+.nav-link.main-nav-link {
+  font-weight: 900 !important;
+  font-size: larger;
 }
 
 /* hide/show copy link for faq anchors */
