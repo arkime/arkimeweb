@@ -878,7 +878,8 @@ title: FAQ
         </li>
       </ol>
 
-      <h3 class="subsection"id="self-signed-ssl-tls-certificates">
+      <span id="insecure"></span>
+      <h3 class="subsection" id="self-signed-ssl-tls-certificates">
         Self-Signed or Private CA TLS Certificates
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2456,6 +2457,9 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           unknown link or GRE types)
         </li>
       </ul>
+      <p class="alert alert-secondary">
+        <span class="fa fa-exclamation-triangle"></span> By default importing offline pcap does NOT make a copy of the pcap file, Arkime saves a reference to the original file. If you want to make a copy of the pcap file, use the <code>--copy</code> option with capture.
+        </p>
       <h4>Enable Arkime UI to upload</h4>
       <p>
         It is also possible to enable UI in Arkime to upload PCAP.

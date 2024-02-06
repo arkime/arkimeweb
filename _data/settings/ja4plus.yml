@@ -10,7 +10,9 @@ before: |
   </p>
 
   <h4>JA4+ algorithms</h4>
-  <p>
+  <p class="alert alert-secondary">
+    <span class="fa fa-exclamation-triangle">
+    </span>
     JA4+ algorithms have licensing requirements.
     Please <a href="https://github.com/FoxIO-LLC/ja4#licensing">familiarize</a> yourself with them before installing/enabling the JA4+ portions of Arkime.
   </p>
