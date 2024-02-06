@@ -1,10 +1,10 @@
 name: "Reader - Offline Scheme"
 before: |
   <p>
-    Arkime 5.0.0 introduces the concept of reader schems to process to process pcap files from multiple local and report locations.
+    Arkime 5 introduces the concept of reader schemes to process offline pcap files from multiple local and remote locations.
     Support for new schemes can be built into capture/viewer or added with a plugin.
-    When a scheme is used to process an offline pcap file, which is used and information about the file is stored in Arkime for viewer to use.
-    The schemes run in a single thread, which will make file processing faster then previous version.
+    When a scheme is used to process an offline pcap file, which scheme is used and information about the file is stored in Arkime files index for viewer to use.
+    The schemes run in a dedicated thread, which will make file processing faster then previous versions.
     Switching to "scheme" mode vs libpcap-file mode is done either by using -r with any scheme OR the --scheme option.
     It is all or nothing, once in scheme mode, non scheme supported command line options will be ignored with no warning.
   </p>

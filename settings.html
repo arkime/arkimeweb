@@ -370,7 +370,7 @@ wiseService:
         The default confguration file for capture and viewer is <code>/opt/arkime/etc/config.ini</code>.
         When searching for a setting, capture and viewer employ a tiered system for configuration variables.
         This tiered system enables a single configuration file to be used across multiple servers.
-        The order of sections within the config file is not significant; however, the specific section in which a variable resides can be crucial.
+        The order of sections within the configuration file is not significant; however, the specific section in which a variable resides can be crucial.
         A frequent issue encountered is the misplacement of a variable in an incorrect section.
       </p>
       <p class="mb-0">
@@ -453,7 +453,7 @@ wiseService:
         </span>
       </h2>
       <p>
-        Arkime supports several different methods for reading and writing packets during a live capture.
+        Capture supports several different methods for reading and writing packets during a live capture.
         These are selected by setting the <a href="#pcapReadMethod"<pcapReadMethod></a> and <a href="#pcapWriteMethod"<pcapWriteMethod></a> config settings..
         We suggest using <code>pcapReadMethod=tpacketv3</code> and the default <code>pcapWriteMethod=simple</code> for best performance.
       </p>
@@ -516,7 +516,7 @@ wiseService:
       </h2>
 
       <p>
-        Besides the normal <code>[default]</code> and <code>[node]</code> sections, Arkime supports several special config file sections.
+        Besides the normal <code>[default]</code> and <code>[node]</code> sections, Capture/Viewer support several special configuration file sections.
         These sections are used to configure custom fields, views, and other more complex features.
         Be careful to not place normal config items in these special sections.
       </p>
@@ -1314,7 +1314,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       </p>
       <p>
         The current implementation is based around openssl. The encoding that
-        you wish to use is configured in the config file by setting the
+        you wish to use is configured in the configuration file by setting the
         <code>simpleEncoding</code> variable. The simpleEncoding may be set
         either globally or per node.
       </p>
@@ -1328,14 +1328,14 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       </p>
       <p>
         The kek passwords that may be used should be placed in a
-        <code>[keks]</code> section of the config file. There is one line for
+        <code>[keks]</code> section of the configuration file. There is one line for
         each kekid to kek mapping. An easy way to create kek passwords is
         <code>openssl rand -base64 30</code>. Remember a kek is password used
         to encrypt the dek and NOT the password used to encrypt the files.
         The dek is what is used to encrypt the files, and is unique per file.
       </p>
       <p>
-        You MUST secure your config file.
+        You MUST secure your configuration file.
       </p>
       <p>
         You are not required to use the same keks on all nodes, however, you

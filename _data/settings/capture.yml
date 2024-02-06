@@ -315,7 +315,7 @@ settings:
   - key: maxMemPercentage
     value: "100"
     text: |
-      If arkime exceeds this amount of memory it will log an error and
+      If capture exceeds this amount of memory it will log an error and
       send itself a SIGSEGV that should produce a core file.
 
   - key: maxReqBody
@@ -391,7 +391,7 @@ settings:
       the interface. This can be changed to fix the "Arkime requires
       full packet captures" error. It is recommend that instead of
       changing this value that all the card "offline" features are
-      turned off so that arkime gets a picture of whats on the network
+      turned off so that capture gets a picture of whats on the network
       instead of what the capture card has reassembled. For VMs, those
       features must be turned off on the physical interface and not the
       virtual interface. This setting can be used when changing the

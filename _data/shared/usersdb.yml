@@ -5,6 +5,8 @@ before: |
     The Arkime applications store all the users in OpenSearch/Elasticsearch.
     Since you will have multiple Arkime clusters and applications, Arkime allows you to share the database to use.
     When these settings aren't use Arkime will fallback to using a non shared Users Database for viewer/capture.
+    <br>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 
 
@@ -12,14 +14,14 @@ settings:
   - key: usersElasticsearchAPIKey
     value: EMPTY
     text: |
-      (Since 3.0.0) Use an Elasticsearch API key for users DB access without requiring basic authentication.
+      Use an Elasticsearch API key for users DB access without requiring basic authentication.
       See <a href="#elasticsearchAPIKey">elasticsearchAPIKey setting</a> for information on creating and encoding an Elasticsearch API Key.
       See <a href="#userselasticsearch">usersElasticsearch setting</a> for information about the Users DB.
 
   - key: usersElasticsearchBasicAuth
     value: EMPTY
     text: |
-      (Since 3.1.0) Use basic auth with OpenSearch/Elasticsearch for Users DB.
+      Use basic auth with OpenSearch/Elasticsearch for Users DB.
       See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth setting</a> for information
       on creating and encoding an OpenSearch/Elasticsearch Basic Auth.
       See <a href="#userselasticsearch">usersElasticsearch setting</a>
@@ -29,7 +31,7 @@ settings:
   - key: usersPrefix
     value: '[PREFIX] if <a href="#prefix">prefix</a> set otherwise EMPTY'
     text: |
-      Like prefix but only for the users information if <a href=#usersElasticsearch>usersElasticsearch</a> set.
+      Like <a href="#prefix">prefix</a> but only for the users information if <a href=#usersElasticsearch>usersElasticsearch</a> set.
 
   - key: usersElasticsearch
     value: EMPTY
@@ -47,9 +49,9 @@ settings:
   - key: passwordSecret
     value: "password"
     text: |
-      Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
-      Since OpenSearch/Elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
-      It is also used for secure server-to-server communication if serverSecret is not set a different value.
-      Don't set if you do not want user authentication.
+      Password hash secret - All Arkime applications sharing the same users database must have the same value.
+      Since OpenSearch/Elasticsearch used to be wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
+      It is also used for secure server-to-server communication if <a href="#serverSecret>serverSecret</a> is not set a different value.
+      Previously not setting would disable user authentication, with Arkime 5 you should use <code>authMode=anonymous</code>.
       Changing the value will make all previously stored passwords no longer work.
 

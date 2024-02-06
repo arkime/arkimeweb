@@ -2,7 +2,8 @@ name: Auth & Security Settings
 before: |
   <p>
     Arkime applications have common authorization and security settings.
-    These settings will live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the application.
+    <br>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 
 settings:
@@ -21,17 +22,14 @@ settings:
   - key: httpRealm
     value: Moloch
     text: |
-      HTTP Digest Realm - Must be in the default section of
-      configuration file. Changing the value will cause all previous
-      stored passwords to no longer work.
+      HTTP Digest Realm - Used by digest mode AND for encoding user passwords.
+      Changing the value will cause all previous stored passwords to no longer work.
 
   - key: serverSecret
     value: 'Value of <a href="#passwordSecret">passwordSecret</a>'
     text: |
-      The server-to-server shared key. It must be set in the [default]
-      section of the config file, and all viewers in the arkime cluster
-      must have the same value. It can be, and should be changed
-      periodically.
+      The server-to-server shared key. All viewers in the Arkime cluster must have the same value.
+      It should be changed periodically.
 
   - key: authMode
     value: EMPTY
@@ -85,7 +83,7 @@ settings:
       which are inspected against the value in <code>requiredAuthHeaderVal</code> (see below)
       to verify that the user is in the appropriate group (ie. "ArkimeUsers").  If
       so, the user is authorized to use the system, and if an account does not
-      already exist for them in the arkime user store,
+      already exist for them in the Arkime user store,
       it is created (see <code>userAutoCreateTmpl</code>)
 
   - key: requiredAuthHeaderVal
@@ -98,8 +96,8 @@ settings:
     text: |
       When using <code>requiredAuthHeader</code> to externalize provisioning
       of users to a system like LDAP/AD, this configuration parameter is used
-      to define the JSON structure used to automatically create a arkime user
-      in the arkime users database if one does not exist.  The user will only
+      to define the JSON structure used to automatically create a Arkime user
+      in the Arkime users database if one does not exist.  The user will only
       be created if the <code>requiredAuthHeader</code> includes the expected
       value in <code>requiredAuthHeaderVal</code>, and is not automatically deleted
       if the auth headers are not present.  Values can be populated into
@@ -109,7 +107,7 @@ settings:
       <code>http_auth_http_user</code> HTTP header with a name pulled from
       the <code>http_auth_mail</code> user header.  It is expected that these
       headers are passed in from an apache (or similar) instance that fronts
-      the arkime viewer as described in the documentation supporting <code>userNameHeader</code>
+      the Arkime viewer as described in the documentation supporting <code>userNameHeader</code>
       <code>
         {"userId": "${this.http_auth_http_user}", "userName": "${this.http_auth_mail}",
         "enabled": true, "webEnabled": true, "headerAuthEnabled": true,
@@ -130,7 +128,7 @@ settings:
   - key: authTrustProxy
     value: EMPTY
     text: |
-      Used to set the express "trust proxy" setting that might be needed if viewer is running in http mode and a reverse proxy is being used in https mode.
+      (Since 5.0.0) Used to set the express "trust proxy" setting that might be needed if viewer is running in http mode and a reverse proxy is being used in https mode.
       Please <a href="https://expressjs.com/en/guide/behind-proxies.html">read more</a> about the setting and possible values.
 
   - key: authCookieSecure

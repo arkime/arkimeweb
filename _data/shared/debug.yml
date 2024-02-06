@@ -2,9 +2,9 @@ name: Debugging & Logging
 
 before: |
   <p>
-    The are two methods for enabling debugging to Arkime applications, either the command line <code>--debug</code> option or a setting <code>debug=1</code> in the configuration file.
+    The are two methods for enabling debugging to Arkime applications, either the command line <code>--debug</code> option or a setting <code>debug=N</code> in the configuration file.
     If any command line options are present, then the configuration file is ignored.
-    To increase the debug level on the command line use multiple options, so for example <code>--debug --debug</code> will set the debug level to 2.
+    To increase the debug level on the command line use multiple options, so for example <code>--debug --debug</code> will set the debug level to 2, so will <code>debug=2</code> in the configuration file.
   </p>
 
 settings:
@@ -22,12 +22,12 @@ settings:
     value: |
       :date :username %1b[1m:method%1b[0m %1b[33m:url%1b[0m :status :res[content-length] bytes :response-time ms
     text: |
-      (Since 2.3) Set the log record format -- this uses Express Morgan. The string is URL Encoded and so uses %xx
+      Set the log record format -- this uses Express Morgan. The string is URL Encoded and so uses %xx
       to escape special characters.
       See the Morgan documentation for the <a href="https://github.com/expressjs/morgan">list of keywords</a>.
 
   - key: accessLogSuppressPaths
     value: EMPTY
     text: |
-      (Since 2.3) This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
+      This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
       Setting this to /eshealth.json will suppress logging of all calls to that endpoint.
