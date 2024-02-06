@@ -7,15 +7,15 @@ permalink: /esssl
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Elasticsearch SSL
-
----
+{: .section-header.mt-1 }
 
 Arkime supports connecting to Elasticsearch using TLS.  We've tested with both [search-guard](https://search-guard.com) and [elasticsearch](https://www.elastic.co/guide/en/elastic-stack-overview/current/ssl-tls.html), but these instructions should apply to other solutions.  You should still use iptables, there is someone on your network, you just don't know it :).
 
 **Try this on a test cluster first!**
 
 
-## Elasticsearch implementation
+### Elasticsearch implementation
+{: .subsection }
 
 * First make sure you are using ES 6.8/7.1 or later for the free version
 * We recommend you get the ES cluster and Arkime working before enabling TLS
@@ -54,7 +54,8 @@ xpack.security.authc:
 * See https://www.elastic.co/guide/en/elastic-stack-overview/current/ssl-tls.html for more information
 
 
-## Searchguard implementation
+### Searchguard implementation
+{: .subsection }
 
 * We recommend you get the ES cluster and Arkime working before enabling TLS
 * Visit https://docs.search-guard.com/latest/search-guard-versions and select the proper ES version and search guard version
@@ -81,9 +82,8 @@ searchguard.ssl.http.pemtrustedcas_filepath: es.cert
 * Change your Arkime config.ini files for everything to use https
 
 
----
-
-##### Notes:
+### Notes:
+{: .subsection }
 
 * Arkime 2.0 supports using client auth with Elasticsearch SSL.  You will need to set the the <a href="/settings#esclientkey">esClientKey</a> and <a href="/settings#esclientcert">esClientCert</a> settings.
 * When using curl you may need to add the ```--tlsv1.1``` option on older machines

@@ -7,6 +7,7 @@ permalink: /break-tls-poc
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Break TLS Proof of concept
+{: .section-header.mt-1 }
 
 We've been interested in breaking TLS for certain types of traffic and sending thru our visibility stack for a while now.
 Here is a proof of concept we've put together to meet our requirements.
@@ -46,7 +47,8 @@ Other Solutions:
 * Setup different machines (or VMs) in each location for normal vs decrypted traffic
 * Connect multiple interfaces on visibility machines to NPB for normal vs decrypted traffic instead of using vlan
 
-# Sample Configs
+## Sample Configs
+{: .subsection-header }
 
 These are the configs we used for this POC.
 
@@ -58,7 +60,8 @@ In this POC for the VPN we are using TCP and not UDP.
 We don't need to worry about traffic retransmits from using TCP because this is a mirror of the real traffic.
 We should probably do more testing on TCP vs UDP for this use case.
 
-## How to setup a vlan interface - /etc/sysconfig/network-scripts/ifcfg-eth1.4000
+### How to setup a vlan interface - /etc/sysconfig/network-scripts/ifcfg-eth1.4000
+{: .subsection }
 
 ```
 {% raw %}
@@ -70,7 +73,8 @@ VLAN=yes
 {% endraw %}
 ```
 
-## Setup client side openvpn 
+### Setup client side openvpn
+{: .subsection }
 
 ```
 {% raw %}
@@ -85,7 +89,8 @@ ifconfig br1 up
 {% endraw %}
 ```
 
-## Client side /etc/openvpn/client/tap1.conf
+### Client side /etc/openvpn/client/tap1.conf
+{: .subsection }
 
 We decided to use tcp/tls to connect to the tls visibility server and we used public certs since every host already had one.
 For a real deployment you might not want to use public certs.
@@ -111,7 +116,8 @@ link-mtu 2048
 {% endraw %}
 ```
 
-## Server side /etc/openvpn/server/tap1.conf
+### Server side /etc/openvpn/server/tap1.conf
+{: .subsection }
 
 Because we are using public certs we set verify-x509-name.
 

@@ -5,7 +5,8 @@ permalink: "/wise-configs"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-### WISE 3.x - 5.x Configurations
+# WISE 3.x - 5.x Configurations
+{: .section-header.mt-1 }
 
 This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
 
@@ -15,12 +16,10 @@ This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribu
   placeholder="Search WISE Configs by name or tag..."
 />
 
----
-
 {% for file in site.posts %}
   {% if file.path contains 'wiseconfigs' %}
   <div class="gallery-item">
-    <h4 class="search-title">{{file.title}}</h4>
+    <h3 class="search-title subsection">{{file.title}}</h3>
     {% if file.description %}
     <p class="lead mb-1">{{file.description}}</p>
     {% endif %}
@@ -35,7 +34,6 @@ This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribu
     <div id="{{file.title}}">
     {{file.content}}
     </div>
-    <hr>
   </div>
   {% endif %}
 {% endfor %}
@@ -50,11 +48,11 @@ This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribu
       <br>
       No Results
     </h1>
-    <hr>
   </div>
 </div>
 
-#### Want to contribute a WISE Configuration?
+## Want to contribute a WISE Configuration?
+{: .subsection-header }
 
 Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs) file for more information.
 

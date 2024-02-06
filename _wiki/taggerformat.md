@@ -7,10 +7,10 @@ permalink: /taggerformat
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Tagger Format
-
----
+{: .section-header.mt-1 }
 
 ### Basic
+{: .subsection}
 
 Simple tagger files contain one element of the same type per line
 
@@ -23,9 +23,8 @@ Simple tagger files contain one element of the same type per line
 10.0.0.3
 ```
 
----
-
 ### Set Existing Fields
+{: .subsection}
 
 Tagger files can also set other Arkime fields by appending a semicolon, the field name, and value.
 
@@ -38,9 +37,8 @@ Tagger files can also set other Arkime fields by appending a semicolon, the fiel
 10.0.0.3
 ```
 
----
-
 ### Set NEW Fields
+{: .subsection}
 
 It is also possible to create NEW fields inside the tagger file. These new fields are comments and must start with `#field:`. To save typing and bytes, it is possible to create shortcuts that are valid just for that file.
 
@@ -60,9 +58,8 @@ It is also possible to create NEW fields inside the tagger file. These new field
 
 **Note:**  See the Definitions section below for definitions of the fields used in this example.
 
----
-
 ### Set a View Template
+{: .subsection}
 
 When the tagger format is used with the WISE plugin it is also possible to specify the view to use by using a leading #view:. The view section is written in the pug templating language which is very sensitive to spaces. Look at `viewer/views/sessionDetail.pug` for examples and ideas.
 
@@ -83,12 +80,10 @@ When the tagger format is used with the WISE plugin it is also possible to speci
 10.0.0.3
 ```
 
----
-
 ### Definitions
+{: .subsection}
 
 ##### Field definition
-{: .mb-0}
 
 Setting | Default | Description
 --------|---------|------------
@@ -102,10 +97,9 @@ help | fieldname | Help to describe more information about the field
 shortcut | NONE | Used when loading file
 nolinked | false | (Since 2.0.1) When true, the data in this field will not be set on linked sessions
 noutf8 | false | (Since 2.1.1) When true, the data in this field is not treated as utf-8 automatically
-{: .table .table-striped .table-sm .mb-4 }
+{: .table .table-striped .table-sm .table-primary .mb-4 }
 
 ##### Valid values for "kind" (data type)
-{: .mb-0 }
 
 Name | Description
 -----|------------
@@ -117,6 +111,6 @@ termfield | non tokenized string
 uptermfield | upper case non tokenized string
 uptextfield | uppercase tokenized string (no longer supported with Arkime 1.x)
 integer | integer
-{: .table .table-striped .table-sm .mb-4 }
+{: .table .table-striped .table-sm .table-primary .mb-4 }
 
 </div>

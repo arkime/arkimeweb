@@ -7,40 +7,41 @@ permalink: "/wisesources"
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Adding New WISE Sources
+{: .section-header.mt-1 }
 
 Adding a new source to WISE is a fairly easy task.  The framework handles most caching and configuration needs leaving the developer to focus on retrieving the data and converting it to a format that Arkime understands.  The best way to learn is to look at other sources.
 
 All sources need to be named `source.something.js` and must contain a class that extends WISESource.
 
----
-
-## Creating Fields
+### Creating Fields
+{: .subsection }
 
 Each source needs to specify which fields it will be setting.  This is done by calling `api.addField` with information about the field.  Don't worry about calling `api.addField` multiple times for the same field as it will only be added once.  More information about specifying the field definition can be found [here](taggerformat).
 
----
+### Retrieving Data
+{: .subsection }
 
-## Retrieving Data
-
-There are usually only two general types of sources:  
-1. Sources that load data into memory - refreshing when needed  
+There are usually only two general types of sources:
+1. Sources that load data into memory - refreshing when needed
 2. Sources that make an API call to retrieve data.
 
 In both cases the results will need to be converted from whatever form they are in into a special encoded form that WISE understands.
 
 ### Memory data
+{: .subsection }
 
 For memory data, sources should use javsscript `Map` to store the data which is loaded into memory.  An interval should be setup to occasionally reload the data.  The `cacheTimeout` variable should be set to -1 so the wiseService doesn't actually cache the data as it is already loaded into memory inside your source.
 
 ### API Data
+{: .subsection }
 
 API data sources only need to have routines to fetch the data from the API when requests come in.
 
----
-
 ## Creating Views
+{: .subsection-header }
 
-### Template
+##### Template
+
 ```
     const fs = require('fs');
     const WISESource = require('./wiseSource.js');

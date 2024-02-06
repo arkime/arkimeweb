@@ -7,9 +7,9 @@ permalink: "/otherfpc"
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Other FPC Systems
+{: .section-header.mt-1.mb-3 }
 
-##### Here are some other full packet capture systems that might be useful to compare against Arkime
-{: .mb-0 }
+#### Here are some other full packet capture systems that might be useful to compare against Arkime
 
 Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 -----|------|----------------|-------------------|----|------

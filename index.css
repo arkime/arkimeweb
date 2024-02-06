@@ -5,6 +5,7 @@
   --primary-theme-background-color: #EDF8FF;
   --secondary-theme-background-color: #66b68926;
   --primary-theme-color: #004C83;
+  --primary-theme-light-color: #0084e4;
   --primary-theme-hover-color: #003E6B;
   --info-theme-hover-color: #50916c;
   --secondary-theme-color: #303030;
@@ -1089,26 +1090,34 @@ body.wiki-body.dark-theme footer.footer {
 }
 
 /* settings page styles ------------ */
-.settings h1 {
-  padding: 10px;
+h1.section-header {
+  color: white;
+  padding: 15px;
   margin-top: 50px;
   margin-left: -10px;
   margin-right: -10px;
   border-radius: 10px;
   box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.5);
-  background-color: var(--primary-theme-text-color);
+  background-color: var(--primary-theme-color);
 }
-.settings h2 {
-  padding: 10px;
+h2.subsection-header {
+  color: white;
+  padding: 6px;
   margin-top: 40px;
   border-radius: 10px;
   box-shadow: 0px 1px 2px -1px rgba(0,0,0,0.5);
-  background-color: var(--primary-theme-background-color);
+  background-color: var(--primary-theme-light-color);
 }
-.dark-theme.settings h2 {
-  background-color: var(--primary-theme-color);
-}
-.settings h3 {
+h3.subsection {
   padding-top: 5px;
-  border-top: 2px solid var(--info-theme-hover-color);
+  border-top: 2px solid var(--primary-theme-color);
+}
+.table-primary, .table-primary > td, .table-primary > th {
+  background-color: #d5e7fbc9;
+}
+.dark-theme .table-primary, .dark-theme .table-primary > td, .dark-theme .table-primary > th {
+  background-color: #05192e;
+}
+.dark-theme .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgb(0 0 0 / 50%);
 }

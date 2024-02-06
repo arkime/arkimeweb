@@ -5,7 +5,8 @@ permalink: "/rules"
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-### Arkime Rules
+# Arkime Rules
+{: .section-header.mt-1 }
 
 This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#arkime-rules).
 
@@ -15,12 +16,10 @@ This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](
   placeholder="Search Arkime Rules by name or tag..."
 />
 
----
-
 {% for file in site.posts %}
   {% if file.path contains 'rules' %}
   <div class="gallery-item">
-    <h4 class="search-title">{{file.title}}</h4>
+    <h3 class="search-title subsection">{{file.title}}</h3>
     {% if file.description %}
     <p class="lead mb-1">{{file.description}}</p>
     {% endif %}
@@ -35,7 +34,6 @@ This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](
     <div id="{{file.title}}">
     {{file.content}}
     </div>
-    <hr>
   </div>
   {% endif %}
 {% endfor %}
@@ -50,11 +48,11 @@ This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](
       <br>
       No Results
     </h1>
-    <hr>
   </div>
 </div>
 
-#### Want to contribute an Arkime Rule?
+## Want to contribute an Arkime Rule?
+{: .subsection-header }
 
 Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#arkime-rules) file for more information.
 
