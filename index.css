@@ -1121,3 +1121,14 @@ h3.subsection {
 .dark-theme .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgb(0 0 0 / 50%);
 }
+
+/* pretty list group styles --------- */
+ul.list-group.angle-list > li.list-group-item {
+  border: none;
+  margin-top: 4px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: monospace;
+  border-left: 2px solid var(--primary-theme-color);
+  clip-path: polygon(99% 0, 100% 50%, 99% 100%, 0 100%, 0 0);
+}
