@@ -6,21 +6,27 @@ settings:
   - key: cacheTimeout
     value: 1h
     text: How long to cache results for integrations, can be overridden per integration
+
   - key: cachePolicy
     value: shared
     text: Can be <code>shared</code> or <code>user</code>, if set to user then the cache is per user, can be overriden per integration
+
   - key: port
     value: 3218
     text: The port that the cont3xt service listens on
+
   - key: cont3xtHost
     value: EMPTY
     text: What hostname to bind to
+
   - key: hstsHeader
     value: false
     text: Set the HSTS header on requests to cont3xt
+
   - key: userAgent
     value: cont3xt
     text: The http user-agent header to use when talking to remote services, can by override per integration
+
   - key: geoLite2ASN
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
     text: |
@@ -38,3 +44,7 @@ settings:
       <a class="no-decoration"
         href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-Country"
         rel="nofollow">Download free version</a>
+
+  - key: expireHistoryDays
+    value: 180
+    text: How long to store the cont3xt history

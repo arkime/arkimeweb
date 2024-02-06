@@ -44,5 +44,9 @@ settings:
     text: |
       Comma separated list of redirect URLs. Maybe should end with <code>/auth/login/callback</code>
 
+  - key: authOIDCScope
+    value: openid
+    text: The OIDC scope
+
 
 

@@ -48,3 +48,15 @@ settings:
   - key: basicAuth
     value: EMPTY
     text: The OpenSearch/Elasticsearch user:password to use, it can be base64 encoded
+
+  - key: includeId
+    value: false
+    text: Include the OpenSearch/Elasticsearch document id in result
+
+  - key: includeIndex
+    value: false
+    text: Include the OpenSearch/Elasticsearch document index in result
+
+  - key: timestampField
+    value: EMPTY
+    text: The document field that has a timestamp used to sort results by, if not set results will not be sorted.
