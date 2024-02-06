@@ -1,0 +1,55 @@
+name: Users Database
+
+before: |
+  <p>
+    The Arkime applications store all the users in OpenSearch/Elasticsearch.
+    Since you will have multiple Arkime clusters and applications, Arkime allows you to share the database to use.
+    When these settings aren't use Arkime will fallback to using a non shared Users Database for viewer/capture.
+  </p>
+
+
+settings:
+  - key: usersElasticsearchAPIKey
+    value: EMPTY
+    text: |
+      (Since 3.0.0) Use an Elasticsearch API key for users DB access without requiring basic authentication.
+      See <a href="#elasticsearchAPIKey">elasticsearchAPIKey setting</a> for information on creating and encoding an Elasticsearch API Key.
+      See <a href="#userselasticsearch">usersElasticsearch setting</a> for information about the Users DB.
+
+  - key: usersElasticsearchBasicAuth
+    value: EMPTY
+    text: |
+      (Since 3.1.0) Use basic auth with OpenSearch/Elasticsearch for Users DB.
+      See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth setting</a> for information
+      on creating and encoding an OpenSearch/Elasticsearch Basic Auth.
+      See <a href="#userselasticsearch">usersElasticsearch setting</a>
+      for information about the Users DB.
+      All Arkime versions also support http://user:pass@hostname:port in the usersElasticsearch setting.
+
+  - key: usersPrefix
+    value: '[PREFIX] if <a href="#prefix">prefix</a> set otherwise EMPTY'
+    text: |
+      Like prefix but only for the users information if <a href=#usersElasticsearch>usersElasticsearch</a> set.
+
+  - key: usersElasticsearch
+    value: EMPTY
+    text: |
+      Set this option to a shared OpenSearch/Elasticsearch cluster to use for the users index.
+      This allows multiple Arkime clusters to share the same users index, so that the same accounts and settings work across all Arkime clusters.
+      The <a href="#elasticsearch">elasticsearch</a> setting should use a unique OpenSearch/Elasticsearch cluster per Arkime cluster and the usersElasticsearch setting should use a single shared OpenSearch/Elasticsearch cluster.
+      <br>
+      A comma separated list of urls to use to connect to the users OpenSearch/Elasticsearch cluster is supported.
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#usersElasticsearchBasicAuth">usersElasticsearchBasicAuth</a>
+      <br>
+      (Since 3.0) This setting applys to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
+      <strong>Note:</strong> <a href="#cronqueries">cronQueries</a> also has to be set in order for shortcuts to be saved to the usersElasticsearch and synced to each cluster.
+
+  - key: passwordSecret
+    value: "password"
+    text: |
+      Password hash secret - Must be in [default] section of the config file, and all viewers in the arkime cluster must have the same value.
+      Since OpenSearch/Elasticsearch is wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
+      It is also used for secure server-to-server communication if serverSecret is not set a different value.
+      Don't set if you do not want user authentication.
+      Changing the value will make all previously stored passwords no longer work.
+

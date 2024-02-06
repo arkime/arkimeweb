@@ -408,7 +408,7 @@ title: FAQ
 
       <!-- general -->
       <h1 id="general"
-        class="border-bottom">
+        class="section-header mt-1">
         General
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -416,25 +416,21 @@ title: FAQ
       </h1>
 
       <span id="why-should-i-use-moloch"></span>
-      <h3 id="why-should-i-use-arkime">
+      <h3 class="subsection" id="why-should-i-use-arkime">
         Why should I use Arkime?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        If you want a standalone open-source full packet capture (FPC)
-        system with metadata parsing and searching, then Arkime is
-        the solution!
-        Full packet capture systems allow network and security analysts to see exactly
-        what happen from a network point of view.
-        Since Arkime is open-source, you have complete control of the deployment
-        and <a href="/architecture">architecture</a>.
-        There are <a href="otherfpc"> other FPC systems </a> available.
+        If you're in search of a comprehensive, standalone open-source solution for full packet capture (FPC) and network analysis that includes both metadata parsing and searching capabilities, Arkime stands out as the premier choice.
+        Full packet capture systems are indispensable tools for network and security analysts, offering an unfiltered view of network activities and enabling a detailed analysis of events from a network perspective.
+        As an open-source platform, Arkime affords its users total control over both deployment and <a href="/architecture">architecture</a>, ensuring that you can tailor the system to meet your specific requirements.
+        While there are <a href="otherfpc">other FPC systems</a> available, Arkime's unique blend of features and open-source accessibility makes it a standout solution for those needing detailed and actionable network insights.
       </p>
 
-      <span id="why-change-our-name">
-      <h3 id="how-do-you-pronounce-our-name">
+      <span id="why-change-our-name"></span>
+      <h3 class="subsection" id="how-do-you-pronounce-our-name">
         How do you pronounce our name?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -445,23 +441,27 @@ title: FAQ
           title="Click to play pronunciation"
           data-toggle="tooltip"
           onclick="play()">
-          (/ɑːrkɪˈmi/)<audio id="audio" src="assets/arkime.mp3" type="audio/mpeg"></audio></a>?
+          (/ɑːrkɪˈmi/)
+          <span class="fa fa-volume-up mr-2"></span>
+          <audio id="audio" src="assets/arkime_short.m4a" type="audio/mpeg"></audio></a>
         Read more about why we changed our name <a href="arkimeetus">here</a>.
       </p>
 
       <span id="upgrading-moloch"></span>
-      <h3 id="upgrading-arkime">
+      <h3 class="subsection"id="upgrading-arkime">
         Upgrading Arkime
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        Upgrading Arkime requires you to install major versions in order, as
-        described in the chart below. If your current version isn't listed, please upgrade to the next-highest version in the
-        chart. You can then install the major releases in order to catch up.
-        New installs can start from the latest version.
-        Unless otherwise stated, you should only need to db.pl upgrade between versions.
+        Upgrading Arkime is a sequential process that requires installing each major version in the order outlined in the table below.
+        This step-by-step approach ensures that your system transitions smoothly between versions without missing critical updates or features.
+        If you find that your current version of Arkime is not explicitly mentioned in the chart, it is recommended to upgrade to the immediately higher version listed.
+        By following this method, you can sequentially upgrade through the major releases until your system is up-to-date.
+        Typically, transitioning between versions requires the execution of the <code>db.pl</code> upgrade script.
+        This script is designed to update your database schemas and configurations to be compatible with the newer version of Arkime.
+        Unless specified otherwise in the upgrade documentation, running this script should be the only additional step needed to complete the upgrade process.
       </p>
       <table class="table table-sm table-bordered">
         <thead>
@@ -495,16 +495,38 @@ title: FAQ
               Arkime
             </th>
             <td>
+              5.0+
+            </td>
+            <td>
+              4.3.2+ (4.6.0 recommended)
+            </td>
+            <td>
+              1.0.0+ (2.10+ recommended)
+            </td>
+            <td>
+              7.10+, 8+ (7.17+, 8.10+ recommended)
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_5"> Arkime 5.x instructions </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Arkime
+            </th>
+            <td>
               4.0+
             </td>
             <td>
               3.3.0+ (3.4.0 recommended)
             </td>
             <td>
-              1.0.0+ (2.3 recommended)
+              1.0.0+ (2.3+ recommended)
             </td>
             <td>
-              7.10+
+              7.10+, 8+
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.x instructions </a>
@@ -678,25 +700,21 @@ title: FAQ
         </tbody>
       </table>
 
-      <h3 id="what-oses-are-supported">
+      <h3 class="subsection"id="what-oses-are-supported">
         What operating systems are supported?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        We have RPMs/DEBs/ZSTs available on the
-        <a href="downloads">
-          downloads page.
-        </a>
-        Our deployment is on RHEL 7 and RHEL 8, using both the pcap and afpacket reader, depending on the deployment.
-        We recommend using afpacket (tpacketv3) whenever possible.
-        A large amount of development is done on macOS 12.5 using MacPorts or Homebrew; however, it has never been tested in a production setting. :)
-        Arkime is no longer supported on 32-bit machines.
-        Currently we do not support Ubuntu releases that aren't LTS and there may be library issues.
-      </p>
+        Arkime is pre packaged to support a wide range of operating systems, available on the <a href="https://github.com/arkime/arkime/releases">downloads page</a>.
+        The Arkime development team predominantly works with the EL 8 build, opting between the pcap and afpacket readers based on the specific needs of each deployment.
+        You are encouraged to use the afpacket reader whenever possible to achieve the best capture performance.
+        While a substantial portion of our development efforts takes place on macOS, leveraging the Homebrew package manager, it's important to note that this environment has not been vetted in a production setting. :)
+        It's also worth mentioning that Arkime has phased out support for 32-bit machines, consequently, the software is incompatible with many lower-powered devices.
+        Furthermore, our support is currently limited to LTS versions of Ubuntu, due to potential library compatibility issues with non-LTS releases.
       <p>
-        The following operating systems should work out of the box:
+        The following operating systems distributions and versions are supported directly:
       </p>
       <ul>
         <li>
@@ -706,7 +724,7 @@ title: FAQ
           CentOS/RHEL 7, 8, 9
         </li>
         <li>
-          Amazon Linux 2
+          Amazon Linux 2, 2023
         </li>
         <li>
           Ubuntu 18.04, 20.04, 22.04
@@ -716,7 +734,7 @@ title: FAQ
 
       <span id="moloch-is-not-working"></span>
       <span id="checklist"></span>
-      <h3 id="arkime-is-not-working">
+      <h3 class="subsection"id="arkime-is-not-working">
         Arkime is not working
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -830,7 +848,7 @@ title: FAQ
       </ol>
 
       <span id="how-do-i-reset-moloch"></span>
-      <h3 id="how-do-i-reset-arkime">
+      <h3 class="subsection"id="how-do-i-reset-arkime">
         How do I reset Arkime?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -861,38 +879,36 @@ title: FAQ
       </ol>
 
       <span id="insecure"></span>
-      <h3 id="self-signed-ssl-tls-certificates">
+      <h3 class="subsection" id="self-signed-ssl-tls-certificates">
         Self-Signed or Private CA TLS Certificates
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        The core Arkime team does not support or recommend self-signed certificates,
-        although it is possible to make them work.
-        We suggest using your cost savings from using a commercial full capture product to purchase certificates.
-        Wildcard certificates are now inexpensive, and you can even choose free Lets Encrypt certificates.
-        Members of the Arkime Slack workspace may be willing to help out,
-        but the core developers may just link to this answer.
-        Private CA certificates will have the same issues and solutions as self-signed certificates.
-      </p>
-      <p>
-        Potentially the easiest solution is to add the self-signed certificate to the operating system's list of valid certificates or chains.
-        Googling is the best way to figure out how to do this—it is different for almost every OS release and version.
-        You may need to add the certificate to several lists because node (viewer), curl (capture), and perl (db.pl) sometimes use different locations for their list of trusted certificates.
-        Viewer supports a <a href="/settings#catrustfile"><code>caTrustFile</code></a> option that was contributed to the project.
-        Since 4.2.0 all pieces of Arkime should support the <code>caTrustFile</code> setting.
-      </p>
-      <p>
-        Another option is to just turn off certificate checking.
-        Capture, viewer, arkime_add_user.sh, and db.pl can run with <code>--insecure</code> to turn off certificate checking.
-        You will need to add this option to the startup command for both capture and viewer.
-        For example, in the <code>/etc/systemd/system/arkimecapture.conf</code> file, change the <code>ExecStart</code>
-        line from <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
-        You would need to do the same thing for any viewer systemd files.
+        The core Arkime team advises against the use of self-signed certificates, despite their technical feasibility.
+        Instead, we encourage leveraging the financial benefits derived from using Arkime over commercial full packet capture solutions to invest in legitimate certificates.
+        The cost of wildcard certificates has decreased significantly, making them an affordable option.
+        Alternatively, free certificates from Let's Encrypt represent a viable option.
+        While members of the Arkime Slack workspace may offer assistance, the core development team typically refers queries back to this guidance.
+        It's important to note that private CA certificates face similar challenges and require analogous solutions as those encountered with self-signed certificates.
+    </p>
+    <p>
+        One of the simplest methods to bypass the hurdles associated with self-signed certificates involves adding them to your operating system's list of recognized certificates or chains.
+        The process for doing so varies widely across different OS distributions and versions, making a quick internet search the most efficient strategy to find specific instructions.
+        It may be necessary to register the certificate across multiple trust stores due to the varied certificate validation locations utilized by node (for the viewer), curl (for capture), and perl (for db.pl).
+        The Viewer component of Arkime includes a <code>caTrustFile</code> option, a feature introduced by contributors to the project.
+        Since version 4.2.0, all components of Arkime are designed to support the <code>caTrustFile</code> configuration.
+    </p>
+    <p>
+        An alternative, though less secure option, involves disabling certificate verification entirely.
+        Key components such as Capture, Viewer, arkime_add_user.sh, and db.pl accept the <code>--insecure</code> flag to bypass certificate checks.
+        This flag must be appended to the startup commands for both capture and viewer services.
+        For instance, in the <code>/etc/systemd/system/arkimecapture.conf</code> configuration file, modify the <code>ExecStart</code> line from its original state to include the <code>--insecure</code> option, changing <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
+        A similar adjustment is required for any systemd files associated with Viewer, Cont3xt or Parliament.
       </p>
 
-      <h3 id="how_do_i_upgrade_to_moloch_1">
+      <h3 class="subsection"id="how_do_i_upgrade_to_moloch_1">
         How do I upgrade to Moloch 1.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1014,7 +1030,7 @@ title: FAQ
         </li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_moloch_2">
+      <h3 class="subsection"id="how_do_i_upgrade_to_moloch_2">
         How do I upgrade to Moloch 2.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1038,7 +1054,7 @@ title: FAQ
         <li>Verify that everything is working.</li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_arkime_3">
+      <h3 class="subsection"id="how_do_i_upgrade_to_arkime_3">
         How do I upgrade to Arkime 3.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1077,7 +1093,7 @@ title: FAQ
         <li>Verify that everything is working.</li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_arkime_4">
+      <h3 class="subsection"id="how_do_i_upgrade_to_arkime_4">
         How do I upgrade to Arkime 4.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1114,7 +1130,7 @@ title: FAQ
         <li>Verify that everything is working.</li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_arkime_5">
+      <h3 class="subsection"id="how_do_i_upgrade_to_arkime_5">
         How do I upgrade to Arkime 5.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1122,24 +1138,26 @@ title: FAQ
       </h3>
 
       <p>
-        Upgrading to Arkime 5.x requires that you are already using Arkime 4.3.2 or later.
-        <strong>Arkime 5 is still under development.</strong>
+        Upgrading to Arkime 5 requires that you are already using Arkime 4.3.2 or later.
       </p>
       <h4>Breaking Changes</h4>
       <ul>
         <li>s3Compression/simpleCompression now defaults to zstd</li>
-        <li>s3WriteGzip removed, use s3Compression=gzip for gzip instead of new zstd default</li>
+        <li>s3WriteGzip removed, use s3Compression=gzip for old behavior</li>
         <li>s3GapPacketPos defaults to TRUE</li>
         <li>enablePacketDedup defaults to TRUE</li>
-        <li>authMode defaults to digest now, use authMode=anonymous for old behavior</li>
-        <li>removed old v1 viewer APIs</li>
-        <li>Centos 7 build no longers includes pfring support</li>
-        <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
-        <li>Increased simpleCompressionBlockSize default to 64000</li>
+        <li>authMode defaults to digest instead of anonymous</li>
+        <li>Removed old v1 APIs</li>
         <li>
-          If using Parliament, you must create a parliament.ini or a [parliament] section in your Arkime ini before upgrading
-          (see <a href="settings#parliament">Parliament ini settings</a>). It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
+          The Parliament password has been removed. You must create a parliament.ini file or [parliament] section in your arkime config.ini before upgrading.
+          See <a href="/settings#parliament" class="no-decoration">Parliament</a>.
+          You can configure common auth via the Parliament settings UI before upgrading or manually in the config file.
         </li>
+        <li>WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
+        <li>Centos 7 build no longers supports pfring</li>
+        <li>simpleCompressionBlockSize defaults to 64000</li>
+        <li>simpleGzipBlockSize defaults to 32000</li>
+        <li>right-click changed to value-actions in config</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
@@ -1154,19 +1172,20 @@ title: FAQ
       <!-- elasticsearch -->
       <br>
       <h1 id="elasticsearch"
-        class="border-bottom">
+        class="section-header mt-2">
         OpenSearch/Elasticsearch
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
       <p>
-        Arkime supports both OpenSearch and Elasticsearch, and our goal is to continue to support both.
-        Some older documentation and settings may only refer to Elasticsearch, but OpenSearch should work for Arkime versions supporting Elasticsearch 7+.
-        As OpenSearch and Elasticsearch diverge, we may add features that are only enabled based on which is being used.
-        Arkime will never require any Elasticsearch pay features but may optionally support them.
+        Arkime is designed to work seamlessly with both OpenSearch and Elasticsearch, underscoring our commitment to support both platforms moving forward.
+        While some of the documentation and configurations might exclusively mention Elasticsearch, it's important to note that OpenSearch is compatible with Arkime versions that support Elasticsearch 7 and above.
+        As the two systems continue to evolve separately, there might be new features introduced that are specific to either OpenSearch or Elasticsearch.
+        Rest assured, Arkime is committed to remaining accessible without the necessity for any paid features of Elasticsearch, though we may choose to provide optional support for such features.
       </p>
-      <h3 id="how-many-elasticsearch-nodes-or-machines-do-i-need">
+
+      <h3 class="subsection"id="how-many-elasticsearch-nodes-or-machines-do-i-need">
         How many OpenSearch/Elasticsearch nodes or machines do I need?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1237,7 +1256,7 @@ title: FAQ
         You can use the Arkime ES Indices tab to delete the oldest <code>sessions2</code> or <code>sessions3</code> index.
       </p>
 
-      <h3 id="data-never-gets-deleted">
+      <h3 class="subsection"id="data-never-gets-deleted">
         Data never gets deleted
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1265,7 +1284,7 @@ title: FAQ
 
 
       <span id="error-dropping-request-_bulk"></span>
-      <h3 id="error-dropping-request">
+      <h3 class="subsection"id="error-dropping-request">
         ERROR - Dropping request
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1353,7 +1372,7 @@ title: FAQ
         for example.
       </p>
 
-      <h3 id="when-do-i-add-additional-nodes-why-are-queries-slow">
+      <h3 class="subsection"id="when-do-i-add-additional-nodes-why-are-queries-slow">
         When do I add additional nodes? Why are queries slow?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1367,36 +1386,39 @@ title: FAQ
         Then you should order more machines. :)
       </p>
 
-      <h3 id="removing-nodes">
+      <h3 class="subsection"id="removing-nodes">
         Removing Nodes
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
+      <p>
+        If you need to remove nodes from your OpenSearch/Elasticsearch cluster, follow these steps as an Admin:
+      </p>
       <ol>
         <li>
-          Go into the Arkime stats page and the ES Shards subtab.
+            Access the Arkime stats page and navigate to the ES Shards tab.
         </li>
         <li>
-          Click on the nodes you want to remove and exclude them.
+            Identify and select the nodes you wish to remove, then choose to exclude them.
         </li>
         <li>
-          Wait for the shards to be moved.
+            Allow some time for the shards to be relocated.
         </li>
         <li>
-          If no shards move, you may need to configure OpenSearch/Elasticsearch to allow two
-          shards per node, although a large number may be required if you are removing
-          many nodes.
+          <p>
+          If no shards are relocated, you might need to adjust the OpenSearch/Elasticsearch settings to permit the allocation of at least two shards per node.
+          This is particularly crucial if you're in the process of removing several nodes from the cluster.
+          A higher number of shards per node may be necessary to facilitate this process effectively.
           <pre><code>curl -XPUT 'localhost:9200/sessions*/_settings' -d '{
   "index.routing.allocation.total_shards_per_node": 2
 }'</code></pre>
         </li>
         <li>
-          If there are many shards that need to be redistributed, the defaults
-          might take days, which is good for the cluster.
-          Increase the speed from the default 3 streams at 20 mb (60 mb/sec) to
-          something higher like 6 streams at 50 mb (300 mb/sec). Adjust
-          for the speed of the new nodes' disks and network.
+          If a large number of shards require redistribution, the default settings might result in the process taking several days, which can be beneficial for maintaining cluster stability, but annoying.
+          To expedite the process, consider increasing the transfer rate from the default setting of 3 streams at 20 MB (totaling 60 MB/sec) to a higher throughput, such as 6 streams at 50 MB (300 MB/sec).
+          Make adjustments based on the disk and network capabilities of the new nodes.
+
           <pre><code>curl -XPUT localhost:9200/_cluster/settings -d '{"transient":{
   "indices.recovery.concurrent_streams":6,
   "indices.recovery.max_bytes_per_sec":"50mb"}
@@ -1404,7 +1426,7 @@ title: FAQ
         </li>
       </ol>
 
-      <h3 id="how-do-i-enable-elasticsearch-replication">
+      <h3 class="subsection"id="how-do-i-enable-elasticsearch-replication">
         How to enable OpenSearch/Elasticsearch replication
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1412,8 +1434,7 @@ title: FAQ
       </h3>
       <p>
         Turning on replication will consume twice the disk space on the nodes
-        and increase the network bandwidth between nodes, so make sure you
-        actually <strong>need</strong> replication.
+        and increase the network bandwidth between nodes.
       </p>
       <p>
         To change future days, run the following command:
@@ -1429,7 +1450,7 @@ title: FAQ
         be replicated.
       </p>
 
-      <h3 id="how-do-i-upgrade-elasticsearch">
+      <h3 class="subsection"id="how-do-i-upgrade-elasticsearch">
         How do I upgrade OpenSearch/Elasticsearch?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1450,7 +1471,7 @@ title: FAQ
         </ul>
       </p>
 
-      <h3 id="how-do-i-upgrade-to-es-8-x">
+      <h3 class="subsection"id="how-do-i-upgrade-to-es-8-x">
         How do I upgrade to Elasticsearch 8.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1479,7 +1500,7 @@ title: FAQ
         <li>Follow Elastic's <a href="https://www.elastic.co/guide/en/elastic-stack/8.0/upgrading-elasticsearch.html">rolling upgrade instructions</a>.</li>
       </ol>
 
-      <h3 id="how-do-i-upgrade-to-es-7-x">
+      <h3 class="subsection"id="how-do-i-upgrade-to-es-7-x">
         How do I upgrade to Elasticsearch 7.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1546,7 +1567,7 @@ title: FAQ
         </li>
       </ol>
 
-      <h3 id="how-do-i-upgrade-to-es-6-x">
+      <h3 class="subsection"id="how-do-i-upgrade-to-es-6-x">
         How do I upgrade to Elasticsearch 6.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1634,7 +1655,7 @@ title: FAQ
         </li>
       </ul>
 
-      <h3 id="how_do_i_upgrade_to_es_5x">
+      <h3 class="subsection"id="how_do_i_upgrade_to_es_5x">
         How do I upgrade to Elasticsearch 5.x?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1726,7 +1747,7 @@ title: FAQ
         </li>
       </ul>
 
-      <h3 id="version-conflict">
+      <h3 class="subsection"id="version-conflict">
         version conflict, current version [N] is higher or equal to the one provided [M]
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1741,7 +1762,7 @@ title: FAQ
         If the N vs. M version numbers are very different from each other, it usually means that you are running two nodes with the same node name at the same time, which is not supported.
       </p>
 
-      <h3 id="recommended-elasticsearch-settings">
+      <h3 class="subsection"id="recommended-elasticsearch-settings">
         Recommended OpenSearch/Elasticsearch Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1858,7 +1879,7 @@ indices.recovery.max_bytes_per_sec: "400mb"</code></pre>
 logger.action.level = info</code></pre>
       </div>
 
-      <h3 id="ilm">
+      <h3 class="subsection"id="ilm">
         Using ILM/ISM with Arkime
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1896,14 +1917,14 @@ logger.action.level = info</code></pre>
       <!-- capture -->
       <br>
       <h1 id="capture"
-        class="border-bottom">
+        class="section-header mt-2">
         Capture
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
 
-      <h3 id="what-kind-of-capture-machines-should-we-buy">
+      <h3 class="subsection"id="what-kind-of-capture-machines-should-we-buy">
         What kind of capture machines should I buy?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -1988,7 +2009,7 @@ logger.action.level = info</code></pre>
         <code>capture</code> machines. Read more in the following sections.
       </p>
 
-      <h3 id="what-kind-of-network-packet-broker-should-we-buy">
+      <h3 class="subsection"id="what-kind-of-network-packet-broker-should-we-buy">
         What kind of NPB should I buy?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2081,24 +2102,17 @@ logger.action.level = info</code></pre>
       </ul>
 
       <span id="what-kind-of-packet-capture-speeds-can-moloch-capture-handle"></span>
-      <h3 id="what-kind-of-packet-capture-speeds-can-arkime-capture-handle">
+      <h3 class="subsection"id="what-kind-of-packet-capture-speeds-can-arkime-capture-handle">
         What kind of packet capture speeds can <code>arkime-capture</code> handle?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        On basic commodity hardware, it is easy to get 3 Gbps or more, depending
-        on the number of CPUs available to Arkime and what else the machine is
-        doing. Many times, the limiting factor is the speed of the disks and
-        RAID system. See
-        <a href="architecture">
-          Architecture</a>
-        and
-        <a href="multihost">
-          Multiple Host</a>
-        for more information. Arkime allows multiple threads to be used to
-        process the packets.
+        On basic commodity hardware, achieving throughput of 3 Gbps or more is easy, depending largely on the number of CPUs allocated to Arkime and the other tasks the machine is handling.
+        Often, the bottleneck in performance is the speed of the disks and the RAID configuration.
+        For further details, refer to the <a href="architecture">Architecture</a> and <a href="multihost">Multiple Host</a> sections.
+        Arkime supports the utilization of multiple threads for both packet acquisition and packet processing.
       </p>
       <p>
         To test the local RAID device, use:
@@ -2106,17 +2120,17 @@ logger.action.level = info</code></pre>
         To test a NAS, leave off the oflag=direct and make sure you test with at least 3x the amount of memory so that cache isn't a factor:
         <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
       </p>
+
       <p>
-        This is the MAX disk performance. Run several times if desired and take
-        the average. If you don't want to drop any packets, you shouldn't average
-        more then ~80% of the MAX disk performance. If you are using RAID and don't want to
-        drop packets during a future rebuild, ~60% is a better value. Remember
-        that most network numbers will be in bits, while the disk performance will
-        be in bytes, so you'll need to adjust the values before comparing.
+        The output represents the maximum disk performance.
+        If you wish to obtain a more accurate assessment, run several tests and average the results.
+        To avoid packet loss, it's advisable to operate Arkime at no more than approximately 80% of the maximum disk performance.
+        For systems utilizing RAID, aiming for about 60% of this performance metric can further minimize the risk of dropping packets, especially during RAID rebuilds.
+        It's important to note that network throughput is typically measured in bits, whereas disk performance is gauged in bytes, requiring the conversion of these measurements for accurate comparison.
       </p>
 
       <span id="moloch_requires_full_packet_captures_error"></span>
-      <h3 id="arkime_requires_full_packet_captures_error">
+      <h3 class="subsection"id="arkime_requires_full_packet_captures_error">
         Arkime requires full packet captures error
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2180,7 +2194,7 @@ logger.action.level = info</code></pre>
         </li>
       </ol>
 
-      <h3 id="why-am-i-dropping-packets">
+      <h3 class="subsection"id="why-am-i-dropping-packets">
         Why am I dropping packets? (and Disk Q issues)
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2379,7 +2393,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           </li>
         </ul>
 
-        <h4 id="wise">
+        <h4 id="wise-drop">
           WISE
         </h4>
         <ul>
@@ -2402,7 +2416,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </p>
       </div>
 
-      <h3 id="how-do-i-import-existing-pcaps">
+      <h3 class="subsection"id="how-do-i-import-existing-pcaps">
         How do I import existing PCAPs?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2453,7 +2467,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         Just uncomment the <a href="/settings#uploadcommand"><code>uploadCommand</code></a> in the config.ini file.
       </p>
 
-      <h3 id="how-do-i-monitor-multiple-interfaces">
+      <h3 class="subsection"id="how-do-i-monitor-multiple-interfaces">
         How do I monitor multiple interfaces?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2514,7 +2528,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
 
       <span id="moloch-capture-crashes"></span>
-      <h3 id="arkime-capture-crashes">
+      <h3 class="subsection"id="arkime-capture-crashes">
         Arkime capture crashes
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2577,7 +2591,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ul>
 
-      <h3 id="error-pcap-open-failed">
+      <h3 class="subsection"id="error-pcap-open-failed">
         ERROR - pcap open failed
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2592,7 +2606,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         and that the pcapDir itself must be writeable.
       </p>
 
-      <h3 id="how-to-reduce-amount-of-traffic-pcap">
+      <h3 class="subsection"id="how-to-reduce-amount-of-traffic-pcap">
         How to reduce amount of traffic/pcap?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2619,7 +2633,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ol>
 
-      <h3 id="life-of-a-packet">
+      <h3 class="subsection"id="life-of-a-packet">
         Life of a packet
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2710,7 +2724,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ul>
 
-      <h3 id="pcap-deletion">
+      <h3 class="subsection"id="pcap-deletion">
         PCAP Deletion
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2775,7 +2789,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ol>
 
-      <h3 id="dontsavebpfs-doesn-t-work">
+      <h3 class="subsection"id="dontsavebpfs-doesn-t-work">
         dontSaveBPFs doesn't work
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2800,37 +2814,32 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         Arkime converts dontSaveBPFs into a rule for you behind the scenes, so Arkime Rules are actually more powerful.
       </p>
 
-      <h3 id="zero-byte-pcap-files">
+      <h3 class="subsection"id="zero-byte-pcap-files">
         Zero or missing bytes PCAP files
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h3>
       <p>
-        Arkime buffers writes to disk, which is great for high bandwidth
-        networks, but bad for <a href="/settings#lab-settings">low bandwidth networks</a>. How much data is buffered
-        is controlled with <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a>, which defaults to 262144
-        bytes. An important thing to remember is the buffer is per thread, so set
-        <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 on low bandwidth networks.
-        A portion of the PCAP that is buffered will be written after 10 seconds of no writes.
-        However it will still buffer the last pagesize bytes, usually 4096 bytes.
-      </p>
-      <p>
-        An error that looks like
-        <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code>
-        usually means that either the PCAP is still being buffered and you need to wait for it to be written to disk or
-        that previously capture or the host crashed/restarted before the PCAP could be written to disk.
+        Arkime optimizes disk writes for efficiency, making it highly suitable for high bandwidth networks.
+        However, this approach might not be ideal for <a href="/settings#lab-settings">low bandwidth environments</a>.
+        The amount of data Arkime buffers before writing to disk is determined by the <a href="/settings#pcapwritesize"><code>pcapWriteSize</code></a> setting, which has a default value of 262144 bytes.
+        It's crucial to remember that this buffering occurs on a per-thread basis.
+        Therefore, for low bandwidth networks, it's advisable to set <a href="/settings#packetthreads"><code>packetThreads</code></a> to 1 (a single thread).
+        The system is designed to flush the buffered PCAP to disk after 10 seconds of inactivity, but direct-io requires pagesize bytes to still be buffered, typically around 4096 bytes.
       </p>
 
       <p>
-        You can also end up with many zero byte PCAP files if the disk is full,
-        see
-        <a href="#pcap-deletion">
-          PCAP Deletion</a>.
+        Encountering an error message such as <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code> usually indicates that the PCAP data is either still in the process of buffering and requires more time to be fully written to disk, or it suggests that a capture process or system crash occurred before the PCAP data could be saved.
       </p>
+
+      <p>
+        Note, running out of disk space can lead to the creation of numerous zero-byte PCAP files.
+        For details on managing disk space and preventing such issues, refer to <a href="#pcap-deletion">PCAP Deletion</a>.
+     </p>
 
       <span id="can-i-virtualize-moloch-with-kvm-using-openvswitch"></span>
-      <h3 id="can-i-virtualize-arkime-with-kvm-using-openvswitch">
+      <h3 class="subsection"id="can-i-virtualize-arkime-with-kvm-using-openvswitch">
         Can I virtualize Arkime with KVM using OpenVswitch?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2850,7 +2859,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           https://www.rivy.org/2013/03/configure-a-mirror-port-on-open-vswitch/</a>.
       </p>
 
-      <h3 id="maxmind">
+      <h3 class="subsection"id="maxmind">
         Installing MaxMind Geo free database files
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2866,7 +2875,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         <ol>
           <li><a href="https://www.maxmind.com/en/geolite2/signup">Sign up for a MaxMind account</a> (no purchase required)</li>
           <li>Wait for MaxMind email and set your password</li>
-          <li>Install the geoipupdate tool, pay attention to version installed, for many distributions you can just do a <code>yum install geoipupdate</code> or <code>apt-get install geoipupdate</code></li>
+          <li>Install the geoipupdate tool, pay attention to version installed, for many distributions you can just do a <code>yum install geoipupdate</code> or <code>apt install geoipupdate</code></li>
           <li>Create a <a href="https://www.maxmind.com/en/accounts/current/license-key">license key</a></li>
           <li>Select Yes when asked "Will this key be used for GeoIP Update?" and select the version you have</li>
           <li>Use the MaxMind feature to generate a config file for you, usually you will replace </code>/etc/GeoIP.conf</code> with this file</li>
@@ -2876,7 +2885,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </ol>
       </p>
 
-      <h3 id="loglines">
+      <h3 class="subsection"id="loglines">
         What do these log lines mean?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2955,14 +2964,14 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       <!-- viewer -->
       <br>
       <h1 id="viewer"
-        class="border-bottom">
+        class="section-header mt-2">
         Viewer
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
 
-      <h3 id="where-do-i-learn-more-about-the-expressions-available">
+      <h3 class="subsection"id="where-do-i-learn-more-about-the-expressions-available">
         Where do I learn more about the expressions available
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2974,7 +2983,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         search expression.
       </p>
 
-      <h3 id="exported-pcap-files-are-corrupt-sometimes-session-detail-fails">
+      <h3 class="subsection"id="exported-pcap-files-are-corrupt-sometimes-session-detail-fails">
         Exported PCAP files are corrupt, sometimes session detail fails
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -2986,7 +2995,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         everywhere, or that the time stamps are in sync.
       </p>
 
-      <h3 id="map-counts-are-wrong">
+      <h3 class="subsection"id="map-counts-are-wrong">
         Map counts are wrong
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3007,7 +3016,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
       </ul>
 
-      <h3 id="what-browsers-are-supported">
+      <h3 class="subsection"id="what-browsers-are-supported">
         What browsers are supported?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3097,7 +3106,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         the most attention.
       </p>
 
-      <h3 id="error-getaddrinfo-eaddrinfo">
+      <h3 class="subsection"id="error-getaddrinfo-eaddrinfo">
         Error: getaddrinfo EADDRINFO
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3138,7 +3147,7 @@ viewUrl=http://node2.fqdn</code></pre>
       </ol>
 
       <span id="how-do-i-proxy-moloch-using-apache"></span>
-      <h3 id="how-do-i-proxy-arkime-using-apache">
+      <h3 class="subsection"id="how-do-i-proxy-arkime-using-apache">
         How do I proxy Arkime using Apache
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3223,7 +3232,7 @@ viewHost = localhost</code></pre>
         </li>
       </ul>
 
-      <h3 id="i-still-get-prompted-for-password-after-setting-up-apache-auth">
+      <h3 class="subsection"id="i-still-get-prompted-for-password-after-setting-up-apache-auth">
         I still get prompted for password after setting up Apache auth
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3244,7 +3253,7 @@ viewHost = localhost</code></pre>
       </ol>
 
       <span id="how-do-i-search-multiple-moloch-clusters"></span>
-      <h3 id="how-do-i-search-multiple-arkime-clusters">
+      <h3 class="subsection"id="how-do-i-search-multiple-arkime-clusters">
         How do I search multiple Arkime clusters
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3287,7 +3296,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         optionally <a href="/settings#usersprefix"><code>usersPrefix</code></a> in the multi viewer config file.
       </p>
 
-      <h3 id="how-do-i-use-self-signed-ssl-tls-certificates-with-multies">
+      <h3 class="subsection"id="how-do-i-use-self-signed-ssl-tls-certificates-with-multies">
         How do I use self-signed SSL/TLS Certificates with MultiES?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3307,7 +3316,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         <pre><code>NODE_EXTRA_CA_CERTS=./CAcerts.pem /opt/arkime/bin/node multies.js -c /opt/arkime/etc/config.ini -n allnode</pre></code>
       </p>
 
-      <h3 id="how-do-i-reset-my-password">
+      <h3 class="subsection"id="how-do-i-reset-my-password">
         How do I reset my password?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3327,7 +3336,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         <pre><code>node addUser -c &lt;configfilepath&gt; &lt;user id&gt; &lt;user friendly name&gt; &lt;password&gt; [--admin]</code></pre>
       </p>
 
-      <h3 id="error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">
+      <h3 class="subsection"id="error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">
         Error: Couldn't connect to remote viewer, only displaying SPI data
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3495,7 +3504,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         </ol>
       </div>
 
-      <h3 id="compiled-against-a-different-node-js-version-error">
+      <h3 class="subsection"id="compiled-against-a-different-node-js-version-error">
         Compiled against a different Node.js version error
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3534,7 +3543,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         </li>
       </ul>
 
-      <h3 id="change-viewer-port">
+      <h3 class="subsection"id="change-viewer-port">
         How do I change the port viewer listens on?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3594,7 +3603,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         </tbody>
       </table>
 
-      <h3 id="hunts-not-working">
+      <h3 class="subsection"id="hunts-not-working">
         Hunts not working
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3611,21 +3620,21 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         You can check this on the Stats -> ES Nodes tab and/or check the viewer logs.
       </p>
       <p>
-        See more information about the cronQueries setting <a href="https://arkime.com/settings#cronQueries">here</a>.
+        See more information about the cronQueries setting <a href="/settings#cronQueries">here</a>.
       </p>
       <!-- /viewer -->
 
       <!-- parliament -->
       <br>
       <h1 id="parliament"
-        class="border-bottom">
+        class="section-header mt-2">
         Parliament
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
 
-      <h3 id="sample-apache-config">
+      <h3 class="subsection"id="sample-apache-config">
         Sample Apache Config
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3643,14 +3652,14 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
       <!-- wise -->
       <br>
       <h1 id="wise"
-        class="border-bottom">
+        class="section-header mt-2">
         WISE
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
 
-      <h3 id="wise-is-not-working">
+      <h3 class="subsection"id="wise-is-not-working">
         WISE is not working
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
@@ -3689,14 +3698,14 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
       <!-- arkime.com -->
       <br>
       <h1 id="arkimeweb"
-        class="border-bottom">
+        class="section-header mt-2">
         arkime.com
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
       </h1>
 
-      <h3 id="how-can-i-contribute">
+      <h3 class="subsection"id="how-can-i-contribute">
         How can I contribute?
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">

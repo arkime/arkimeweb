@@ -7,8 +7,7 @@ permalink: "/rulesformat"
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Rules Format
-
----
+{: .section-header.mt-1 }
 
 Rules files allow you to specify actions to perform when criteria are met with certain fields or state.
 The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting.
@@ -69,10 +68,8 @@ rules:
       _maxPacketsToSave: 10
 ```
 
-
----
-
-## When
+### When
+{: .subsection }
 
 **Possible values for the when field, only available when using a field check:**
 {: .mb-0 }
@@ -90,9 +87,8 @@ rules:
 * sessionSetup     - Check just during the first few packets of a session. The config settings dontSaveBPFs and minPacketsSaveBPFs are converted to sessionSetup rules.
 * everyPacket      - Check after every packet
 
----
-
-## Fields
+### Fields
+{: .subsection }
 A map of field expressions and values for each field, one value from each field expression must be set.
 Currently not all field expressions are supported, but will be added over time.
 
@@ -114,6 +110,8 @@ If those two fields are set, then it will add tlsrulestest to the protocols fiel
       "protocols": "tlsrulestest"
 ```
 ### String Fields Modifier
+{: .subsection }
+
 While we don't support wildcards in strings fields, we do support 3 different modifiers that allow you to perform some of the same actions.
 Rules support endsWith, startsWith, or contains modifiers which are placed after the field name separated by a comma.
 So for example you could do the following to get aol.com, google.com, and any sub hostnames of those two domains.
@@ -134,6 +132,8 @@ So for example you could do the following to get aol.com, google.com, and any su
 ```
 
 ### Numeric ranges
+{: .subsection }
+
 Since Akrime 3.4.1 you can also specify numeric ranges for integer fields.
 Use the format of MIN-MAX.
 For example this rule requires the src port to be < 1024 and dst port be > 1024
@@ -151,16 +151,16 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
       "protocols": "lowsrcport"
 ```
 
----
+### Ops
+{: .subsection }
 
-## Ops
 The operations are a map of the fields to set in the session. There are some special field names that set meta data about the session.
 
 **Special field names**
 {: .mb-0 }
 
 * `_dontSaveSPI: 1`                 - Don't save SPI data for session, either 0 or 1
-* `_maxPacketsToSave: 20`           - Don't save more then 20 packets, max value is 65535
+* `_maxPacketsToSave: 20`           - Try to save at most 20 packets, max value is 65535. Arkime will sometimes save more packets if it couldn't determine to stop saving packets until later.
 * `_minPacketsBeforeSavingSPI: 33`  - Don't save SPI data unless 33 many packets have been sent/received, max value is 255
 * `_dropByDst: 5`                  - (Since 1.5) drop all traffic to dst ip:port for 5 minutes. This is good for dropping traffic that is going to the cloud and has shifting ips.
 * `_dropBySrc: 10`                  - (Since 1.5) drop all traffic from src ip:port for 10 minutes. You probably almost never want to use this.
@@ -200,6 +200,7 @@ Of course if other hosts use that same server from host header sharing that traf
 ```
 
 ### Integer Ops Bounding
+{: .subsection }
 
 Since Arkime 4.1.0 it is possible to have operations that only change a value if the value is less than or greater than the new value.
 This is useful when you have 2 rules changing the same value, and you want to make sure which rule will be used.
@@ -225,9 +226,8 @@ Think of it as doing a `min(current value, 200)` or `min(20, 200)` which would b
 
 ```
 
----
-
-## Logging
+### Logging
+{: .subsection }
 
 Since 3.0.0 you can log when a rule is matched using the optional log element.
 {: .mb-0 }

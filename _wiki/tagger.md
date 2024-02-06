@@ -7,13 +7,12 @@ permalink: "/tagger"
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
 # Tagger Plugin
-
----
+{: .section-header.mt-1 }
 
 The Tagger plugin allows you to automatically assign tags when certain content matches the item in the tagfile.
 
-##### Tagging by five types of data is currently possible:
-{: .mb-0}
+### Tagging by five types of data is currently possible:
+{: .subsection }
 
 * IP address
 * Host(name)
@@ -23,8 +22,8 @@ The Tagger plugin allows you to automatically assign tags when certain content m
 
 To get started you will need to `uncomment` `tagger.so`  plugin in config file.
 
-##### Next, prepare and upload your tagger files.
-{: .mb-0}
+### Next, prepare and upload your tagger files.
+{: .subsection}
 
 * Place your IPs into `iptagdata`
 * Hosts into `hosttagdata`
@@ -32,8 +31,8 @@ To get started you will need to `uncomment` `tagger.so`  plugin in config file.
 * email fields into `emailtagdata`
 * uri fields into `uritagdata`
 
-##### Once done, you should be able to upload content with `taggerUpload.pl` script:
-{: .mb-0}
+### Once done, you should be able to upload content with `taggerUpload.pl` script:
+{: .subsection}
 
  ```
 ./capture/plugins/taggerUpload.pl localhost:9200 ip iptagdata tag tag .. tag

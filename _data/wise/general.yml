@@ -1,0 +1,18 @@
+name: General
+before: |
+  <p>
+    General settings for WISE, located in a <code>[wiseService]</code> section.
+  </p>
+
+settings:
+  - key: port
+    value: 8081
+    text: Port that wiseService listens on
+
+  - key: wiseHost
+    value: EMPTY
+    text: Host that wiseService listens on
+
+  - key: sourcePath
+    value: "/opt/arkime/wiseService"
+    text: Directory to look for wise source files

@@ -1,6 +1,5 @@
 ---
 sections:
-  - auth-oidc
   - pcapstorage
   - capture
   - dedup

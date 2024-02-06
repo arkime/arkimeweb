@@ -1,0 +1,27 @@
+name: Web Settings
+
+before: |
+  <p>
+    For Arkime applications that have a web interface there are common settings for listening for web traffic.
+  </p>
+
+
+settings:
+  - key: webBasePath
+    value: "/"
+    text: |
+      The base url for web requests to the application.
+      Must end with a / or bad things will happen.
+
+  - key: certFile
+    value: EMPTY
+    text: |
+      Public certificate to use for https, if not set then http will be
+      used. keyFile must also be set.
+
+  - key: keyFile
+    value: EMPTY
+    text: |
+      Private certificate to use for https, if not set then http will
+      be used. certFile must also be set.
+

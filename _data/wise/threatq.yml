@@ -1,0 +1,16 @@
+name: ThreatQ
+before: |
+  <p>
+    The ThreatQ export interval time should be configured depending on process requirements and indicator volume.
+    <br>
+    Create a <code>[threatq]</code> section to configure
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key
+
+  - key: host
+    value: REQUIRED
+    text: Server hostname location

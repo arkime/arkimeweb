@@ -1,0 +1,13 @@
+name: Alien Vault
+
+before: |
+  <p>
+    The Alien Vault data source currently uses the downloadable database that is updated often. Requires that access be purchased and configured.
+    <br>
+    Create a <code>[alienvault]</code> section to configure
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key

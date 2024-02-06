@@ -1,0 +1,385 @@
+---
+title: V5!
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="v5-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- container -->
+    <div class="container">
+
+      <div class="primary-theme-background pl-4 pr-4 p-nav-lg angle-background angle-background-long">
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h1 class="display-3 text-center">
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="mr-4 arkime-logo" />
+              Arkime 5.0
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="ml-4 arkime-logo" />
+            </h1>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              <a href="#cont3xt-bulk-search" class="no-decoration">Cont3xt Bulk Search</a>,
+              <a href="#improved-session-detail-display" class="no-decoration">Improved Session Detail Display</a>,
+              <a href="#unified-configs" class="no-decoration">Unified Configs</a>,
+              <a href="#unified-auth" class="no-decoration">Unified Auth</a>,
+              <a href="#ja4-support" class="no-decoration">JA4 Support</a>,
+              <a href="#additional-multiviewer-support" class="no-decoration">Additional Multiviewer Support</a>,
+              <a href="#offline-pcap-retrieval-improvements" class="no-decoration">Offline PCAP Retrieval Improvements</a>,
+              Bug Fixes, and More
+            </p>
+            <p class="text-center mt-4">
+              <a role="button"
+                class="bt btn-lg btn-primary no-decoration"
+                href="https://github.com/arkime/arkime/releases/tag/v5.0.0">
+                ✨ Download Arkime 5.0 now! ✨
+              </a>
+            </p>
+            <p class="lead text-justify mt-4">
+              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v5.0.0" class="no-decoration">release of Arkime 5.0</a>!
+              This open-source network analysis and packet capture tool just got even better.
+              Our latest release offers new features, enhancements and bug fixes to speed up your incident response and empower your security and network teams to investigate and mitigate threats.
+            </p>
+            <p class="lead text-justify mt-4">
+              This release introduces a highly anticipated feature: Cont3xt Bulk Search!
+              Now, you have the power to simultaneously enrich multiple indicators with just a single query, streamlining data analysis process like never before.
+              We've revamped our user interface to help you navigate through and analyze the wealth of information more intuitively.
+            </p>
+            <p class="lead text-justify mt-4">
+              The session details section has been redesigned to minimize unused space.
+              On large screens, the layout displays a dual-column structure, enabling you to access a greater amount of information without the need for scrolling.
+            </p>
+            <p class="lead text-justify">
+              After coming to our senses, all applications now utilize a unified configuration subsystem.
+              This enhancement enables support for multiple configuration file formats (ini, json, yaml) and facilitates retrieval from both disk and network sources.
+              The Arkime authorization model has been standardized across all applications and finally includes basic and form authorization.
+            </p>
+            <p class="lead text-justify">
+              JA4 support has been added and is visible as new session fields for viewing and searching.
+              For those wanting JA4+ support, it can be added through an <a href="https://arkime.com/ja4" class="no-decoration">easy-to-install plugin</a>.
+            </p>
+            <p class="lead text-justify">
+              To enhance the user experience, multiviewer dropdowns have been added to the Files, History, and Stats tabs, allowing users to perform searches against multiple viewers on these pages.
+            </p>
+            <p class="lead text-justify">
+              In this release, we have also introduced the ability to ingest offline PCAP directly from various network sources, such as S3 and HTTP(S).
+            </p>
+            <p class="lead text-justify">
+              In the spirit of continuous improvement, we have addressed numerous bugs and introduced several minor features.
+              For a detailed overview, please refer to the <a href="https://github.com/arkime/arkime/releases/tag/v5.0.0" class="no-decoration">release notes</a>.
+              Thank you for your continued support!
+            </p>
+            <p class="lead lead-lg text-justify text-center">
+              <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">
+                Learn how to upgrade to Arkime 5 now!
+              </a>
+            </p>
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Breaking Changes
+            </p>
+            <p class="lead text-justify">
+              <ul class="list-group list-group-sm angle-list">
+                <li class="list-group-item">You must be on v4.3.2 or later to upgrade to v5.x</li>
+                <li class="list-group-item">A db.pl upgrade is required when upgrading</li>
+                <li class="list-group-item">Restart wiseService before capture when upgrading</li>
+                <li class="list-group-item">s3Compression/simpleCompression now defaults to zstd</li>
+                <li class="list-group-item">s3WriteGzip removed, use s3Compression=gzip for old behavior</li>
+                <li class="list-group-item">s3GapPacketPos defaults to TRUE</li>
+                <li class="list-group-item">enablePacketDedup defaults to TRUE</li>
+                <li class="list-group-item">authMode defaults to digest instead of anonymous</li>
+                <li class="list-group-item">Removed old v1 APIs</li>
+                <li class="list-group-item">
+                  The Parliament password has been removed. You must create a parliament.ini file or [parliament] section in your arkime config.ini before upgrading.
+                  See <a href="https://arkime.com/settings#parliamen" class="no-decoration">Parliament</a> and  <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">how do I upgrade to 5</a>.
+                  You can configure common auth via the Parliament settings UI before upgrading or manually in the config file.
+                </li>
+                <li class="list-group-item">WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
+                <li class="list-group-item">Centos 7 build no longers supports pfring</li>
+                <li class="list-group-item">simpleCompressionBlockSize defaults to 64000</li>
+                <li class="list-group-item">simpleGzipBlockSize defaults to 32000</li>
+                <li class="list-group-item">right-click changed to value-actions in config</li>
+              </ul>
+            </p>
+            <p class="lead lead-lg text-center mt-4 pt-4">
+              <a href="https://github.com/arkime/arkime/releases/tag/v5.0.0" class="no-decoration">
+                View a detailed list of all the changes and download it now!
+              </a>
+            </p>
+            <div class="text-center black-arkime">
+              <img class="arkime-logo" style="height:150px" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="cont3xt-bulk-search">
+            Cont3xt Bulk Search
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+          <img
+            alt="Cont3xt Bulk Search Screenshot"
+            class="screenshot-img cont3xt"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          Cont3xt was integrated into the Arkime ecosystem with the release of version 4.0.
+          For detailed information, please refer the <a href="cont3xt" class="no-decoration">Cont3xt documentation</a>.
+          In version 5.0, we have introduced a bulk search feature, enabling you to enrich multiple indicators simultaneously.
+          The user interface has undergone a full rewrite, incorporating multiple columns to minimize empty space and present all data on a single, streamlined page.
+          As part of our user-centric enhancements, we now offer a severity emoji map, facilitating the quick identification of crucial indicators.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-5 col-md-6 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset align-self-start"
+            id="ja4-support">
+            JA4 Support
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+          Arkime now features JA4 support, with JA4 values accessible through the http.ja4 field, allowing for convenient viewing and searching.
+          For enhanced JA4+ support, a downloadable plugin is required.
+          To learn more and install the plugin, refer to the provided resource to <a href="ja4" class="no-decoration">learn more</a>.
+        </div>
+        <div class="col-lg-7 col-md-6 align-self-start">
+          <img
+            alt="JA4 Screenshot"
+            class="screenshot-img ja4"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="improved-session-detail-display">
+            Improved Session Detail Display
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+          <img
+            alt="Multiviewer Dropdown Screenshot"
+            class="screenshot-img session-detail"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          <p>
+            The session detail section has undergone a comprehensive redesign, strategically enhancing the presentation of information within the confines of screen dimensions and minimizing superfluous space :)
+            On large screens, the layout adopts a dual-column structure, facilitating an expanded view of information without the need of scrolling.
+            To optimize space, field labels and values display on the same line, with extensive values wrapped, and lengthy field labels truncated with an ellipsis.
+          </p>
+          <p>
+            Moreover, the session detail section now boasts heightened customizability.
+            Users possess the flexibility to adjust label widths, thereby allocating more screen real estate to accommodate long values or field labels.
+            Notably, each section and subsection within the session detail is collapsible, with user preferences persistently stored.
+            This ensures customization while traversing through sessions during the analytical processes.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="additional-multiviewer-support">
+            Additional Multiviewer Support
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+          Multiviewer support has been incorporated into the Files, History, and Stats tabs.
+          Within a Multiviewer interface on these pages, a dropdown menu has been introduced, presenting all associated viewers for selection.
+          By default, all viewers are pre-selected, allowing users the flexibility to conduct searches across all viewers or specifically choose viewers for searches on these pages.
+          This enhancement provides a more customizable and efficient user experience when using Multiviewers.
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Multiviewer Dropdown Screenshot"
+            class="screenshot-img multiviewer"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Form Auth Login Screenshot"
+            class="screenshot-img auth pull-right"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-8 col-md-8 ">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+          id="unified-auth">
+            Unified Authorization
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+          <p class="lead text-justify">
+            Every application within the Arkime ecosystem now adheres to a unified authorization model, centralized into a new common module that each application imports and utilizes.
+          </p>
+          <p class="lead text-justify">
+            A noteworthy change is the removal of anonymous mode as the default authorization, which has been replaced by digest.
+            Furthermore, a range of new authorization modes can be configured, including basic, form, basic+form, basic+oidc, headerOnly, header+digest (equivalent to header), and header+basic.
+            Detailed information on these modes can be found in the <a href="settings#authMode" class="no-decoration">Settings Documentation</a>.
+          </p>
+          <p class="lead text-justify">
+            It's important to note that Parliament has deprecated the previous JWT authorization model, replacing it with Arkime common authorization.
+            This change was alluded to in Arkime 4.0, encouraging users to configure common authorization within the Parliament Settings page.
+            In Arkime version 5.0, this configuration is now mandatory.
+            Users can implement common authentication through the Parliament Settings Page prior to upgrading to version 5.0 or manually in the configuration file.
+            For details, please refer to the <a href="settings#parliament" class="no-decoration">Parliament documentation</a> and the
+            <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">upgrade guide for version 5.0</a>.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="unified-configs">
+            Unified Configurations
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          Every application within the Arkime ecosystem now seamlessly employs a unified configuration subsystem.
+          This enables the straightforward addition of new file formats, such as json and yaml.
+          Arkime further supports the retrieval of configuration files from various sources, including local files, http(s), and OpenSearch/Elasticsearch.
+          Notably, the introduction of json and yaml file formats enhances the native format of lists, eliminating the need for comma-separated strings.
+          For details on all configuration settings, we invite you to explore the <a href="settings" class="no-decoration">Settings Documentation</a>.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="offline-pcap-retrieval-improvements">
+            Offline PCAP Retrieval Improvements
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          Arkime has advanced its capabilities to directly import PCAP files from S3 or http(s) URLs, eliminating the need for prior file downloads.
+            Capture now accommodates URLs on the command line, providing specifications on how to retrieve the files.
+            For in-depth information, explore the <a href="settings#reader-scheme" class="no-decoration">detailed resource</a> on how to leverage this functionality.
+        </div>
+      </div>
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-12 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="bug-fixes-and-more">
+            Bug Fixes and More
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v5')">
+            </span>
+          </h1>
+        </div>
+        <div class="col-12 lead text-justify">
+          <p class="lead text-justify">
+            Arkime 5.0 includes an extensive array of improvements, comprising numerous bug fixes, minor feature additions, and upgraded dependencies.
+          </p>
+          <p class="lead text-justify">
+            Notable minor features encompass integrations for Arkime, Elasticsearch/OpenSearch, CSV, JSON, and Redis within Cont3xt.
+            Simplification and enhanced user experience was introduced by allowing Parliament and Arkime to share the same notifiers.
+            Additional enhancements involve the introduction of configurable links in the Parliament navbar to WISE and Cont3xt.
+            Ownership transfer functionalities have been extended to Arkime and Cont3xt resources, encompassing views, shortcuts, periodic queries, and link groups.
+            Furthermore, edit roles have been incorporated for Arkime resources, specifically targeting views, shortcuts, and periodic queries.
+          </p>
+          <p class="lead text-justify">
+            Among the bug fixes, notable resolutions include the enforcement of user time limits on unique endpoints, the flexibility to add Arkime DB fields in any order within the same group,
+            and the replacement of unappealing JSON errors in the Arkime navbar with a more generic "Error loading health" message.
+            These collective improvements contribute to a more refined and robust Arkime experience.
+          </p>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- footer -->
+    <div>
+      {%- include footer.html -%}
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    confetti();
+    setTimeout(() => { confetti(); }, 200);
+    setTimeout(() => { confetti(); }, 300);
+
+    $(document).ready(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        window.location.hash = '';
+        window.location.hash = hash;
+      }
+    });
+  </script>
+</body>

@@ -16,14 +16,8 @@ permalink: "/rediswise"
 
 <div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3" markdown="1">
 
-# WISE
-## With Intelligence See Everything
-{: .no_toc}
-
-
-## Overall idea
-
-----
+# WISE - With Intelligence See Everything
+{: .no_toc.section-header.mt-1 }
 
 Capture can query basically any supported Arkime fields from Wise. WISE can query Redis source and enrich Arkime with results. Logstash/other log shippers can ship different logs to Redis. This means, that given a proper "key", we can enrich Arkime sessions with pretty much any kind of logs. It is likely that using Kafka for doing it would be better, but Arkime Kafka output is not very well supported. Also, this method seems to work reasonably well and is simple to configure.
 
@@ -31,10 +25,11 @@ Sample configuration uses logstash, but other log shippers should work as well. 
 
 Do note that this requires Arkime/Moloch version 3.4.x+, as previously Redis source in Wise was broken.
 
----
-
 ## Configuration
+{: .subsection-header }
+
 ### Logstash
+{: .subsection }
 
 Logstash configuration is rather simple, we just add a redis output and tell it to use "keyfield" (currently community_id) as redis key. The example conf also checks if the log actually has "keyfield" set, which is a good idea, because otherwise logstash would simply output events that don't have the field set to key "%{community_id}". You can use https://github.com/Cyb3rWard0g/HELK/blob/master/docker/helk-logstash/pipeline/8911-fingerprints-network_community_id-filter.conf to calculate network community id-s for logs that do not have it by default (that means most network logs :) ).
 
@@ -54,9 +49,8 @@ output {
 
 ```
 
-
-
 ### Capture
+{: .subsection }
 
 Capture configuration is very simple, we must tell capture to use Wise and query the field that should match the values in Wise for the "keyfield".
 
@@ -75,6 +69,7 @@ communityid=communityId
 ```
 
 ### Redis
+{: .subsection }
 
 As some logs might not get hits, Redis should be configured to automatically remove older data.
 
@@ -87,6 +82,7 @@ maxmemory-policy allkeys-lru
 ```
 
 ### WISE
+{: .subsection }
 
 Wise should get an extra source, as follows. For the sake of simplicity this is using ECS compatible Sysmon event code 3 logs, but any other logs that have the correct key may work as well.
 
@@ -108,6 +104,7 @@ view=if (session.sysmon)\n  div.sessionDetailMeta.bold SYSMON\n  dl.sessionDetai
 ```
 
 ### Starting it all up
+{: .subsection }
 
 1. Start redis server
 2. Start wise server

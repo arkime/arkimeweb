@@ -6,6 +6,8 @@ permalink: "/roles"
 
 
 <div class="full-height-and-width-container with-footer pt-3 pr-5 pl-5 pb-3" markdown="1">
+# Arkime Roles
+{: .section-header.mt-1 }
 
 In Arkime 4.0 the concept of Roles was introduced to Arkime.
 We will be moving our permission model over to use roles.
@@ -13,7 +15,8 @@ Start with Arkime 4.3 we have strengthed the roles and clearly outlined the rule
 
 There are two classes of roles: System defined roles and User defined roles.
 
-The system defined roles include:
+### The system defined roles include:
+{: .subsection }
 
 * <strong>superAdmin</strong> - Has all system roles assigned. Only superAdmin can create or edit other superAdmin users. Only superAdmin can assign the userAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, and wiseAdmin role to another user.
 * <strong>userAdmin</strong> - Can create, update, and delete users (except for superAdmin users). Can assign and unassign non Admin roles to users. Can unassign Admin roles from users.
@@ -34,7 +37,8 @@ any user assigned the SecGroup role will also have access to Arkime & Cont3xt ev
 doesn't have the arkimeUser/cont3xtUser directly assigned.
 
 
-High level Role Rules:
+### High level Role Rules:
+{: .subsection }
 * Only a user with the superAdmin role can create/modify/delete other users with the superAdmin role.
 * Only a user with the superAdmin role can assign another user the arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.

@@ -38,3 +38,7 @@ settings:
     value: EMPTY
     text: |
       (Since 1.6.1) If the node matches the supplied regexp, then the node is considered local.
+
+  - key: nodeClass
+    value: EMPTY
+    text: If a <code>[node]</code> section doesn't have a setting, but has a nodeClass value, the <code>[$nodeClass]</code> section will be checked BEFORE <code>[default]</code>.

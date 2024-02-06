@@ -1,0 +1,16 @@
+name: OpenDNS Umbrella
+before: |
+  <p>
+    The OpenDNS source currently uses the bulk query api and does live queries. Requires that access be purchased and configured.
+    <br>
+    Create a <code>[opendns]</code> section to configure
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key
+
+  - key: cacheSize
+    value: 200000
+    text: Maximum number of results to cache

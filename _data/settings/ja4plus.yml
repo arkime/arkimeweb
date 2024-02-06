@@ -1,34 +1,35 @@
 name: JA4+
 before: |
   <p>
-  Arkime supports JA4, JA4s, JA4x, and JA4ssh with versions 5.0.0 and later.
+    Arkime supports JA4 and JA4+ algorithms starting from version 5 onwards.
   </p>
   <h4>JA4 algorithm</h4>
   <p>
-  JA4, the TLS Client Fingerprinting portion, is built into the Arkime capture binary.
-  After installing Arkime 5 or later, you will automatically see tls.ja4 field show up.
-  We recommend using the <a href="https://github.com/arkime/arkime/releases/tag/last-commit">latest commit builds</a> for now.
+    JA4, the TLS Client Fingerprinting portion, is built into the Arkime capture binary.
+    After installing Arkime 5 or later, you will automatically see tls.ja4 field show up.
   </p>
 
   <h4>JA4+ algorithms</h4>
   <p class="alert alert-secondary">
-  <span class="fa fa-exclamation-triangle">
-  </span>
-  JA4+ algorithms have licensing requirements.
-  Please <a href="https://github.com/FoxIO-LLC/ja4#licensing">familiarize</a> yourself with them before installing/enabling the JA4+ portions of Arkime.
+    <span class="fa fa-exclamation-triangle">
+    </span>
+    JA4+ algorithms have licensing requirements.
+    Please <a href="https://github.com/FoxIO-LLC/ja4#licensing">familiarize</a> yourself with them before installing/enabling the JA4+ portions of Arkime.
   </p>
 
   <p>
-  To install/enable the JA4+ algorithms you need to:
-  <ul>
-    <li>download the ja4plus.amd64.so or ja4plus.arm64.so plugin, please download from the SAME location/version as the Arkime you are using</li>
-    <li>copy the downloaded plugin to the <code>/opt/arkime/plugins</code> directory on all machines that run capture</li>
-    <li>edit the /opt/arkime/etc/config.ini file, modifying the <code>plugins=</code> line so it contains the downloaded filename, for example <code>plugins=ja4plus.amd64.so</code></li>
-    <li>restart capture, which will cause the tls.ja4s and cert.ja4x fields to be automatically created for new sessions</li>
-  </ul>
+    To install/enable the JA4+ algorithms, you need to:
+    <ul>
+      <li>Download the <code>ja4plus.amd64.so</code> or <code>ja4plus.arm64.so</code> plugin. Please ensure to download it from the same location/version as the Arkime version you are using.</li>
+      <li>Copy the downloaded plugin to the <code>/opt/arkime/plugins</code> directory on all machines that run capture.</li>
+      <li>Edit the <code>/opt/arkime/etc/config.ini</code> file, modifying the <code>plugins=</code> line to include the downloaded filename, for example, <code>plugins=ja4plus.amd64.so</code>.</li>
+      <li>Restart capture, which will automatically create and start using the new JA4 fields.</li>
+    </ul>
   </p>
 
-  <h4>Other JA4+ algorithms</h4>
-  <p>
-    Implementing some of the other JA4+ algorithms is on the Arkime todo list.
-  </p>
+
+settings:
+  - key: ja4Raw
+    value: false
+    text: |
+      Enable to generate the JA4 raw Arkime fields.

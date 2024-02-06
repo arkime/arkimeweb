@@ -1,0 +1,49 @@
+name: Elasticsearch
+before: |
+  <p>
+    The Elasticsearch wise service can query OpenSearch or Elasticsearch for fields to set
+    <br>
+    Create a <code>[elasticsearch:UNIQUENAME]</code> section to configure
+  </p>
+
+
+settings:
+  - key: type
+    value: REQUIRED
+    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
+
+  - key: elasticsearch
+    value: REQUIRED
+    text: OpenSearch/Elasticsearch base url
+
+  - key: esIndex
+    value: REQUIRED
+    text: The index pattern to look at
+
+  - key: esTimestampField
+    value: REQUIRED
+    text: The field to use in queries that has the timestamp in ms.
+
+  - key: esMaxTimeMS
+    value: 1 hour
+    text: Timestamp field must be less then this
+
+  - key: esResultField
+    value: REQUIRED
+    text: Field that is required to be in the result
+
+after: |
+  <p>
+    Example config that will query OpenSearch/Elasticsearch for an ip that is in the 10.172/16 space, in the index TheIndex-\*, only looking at records that have a \@timestamp field newer than 86400000ms. It looks at the `cef_ext.src` field and only looks at records that has a cef_ext.suser field set. Once it has a result it sets the user field in arkime to whatever the `cef_ext.suser` field is in the document.
+  </p>
+  <pre>
+    type=ip
+    onlyIPs=10.172.0.0/16
+    elasticsearch=http://ELKCLUSTERHOST1:9200,http://ELKCLUSTERHOST2:9200
+    esIndex=TheIndex-*
+    esTimestampField=@timestamp
+    esQueryField=cef_ext.src
+    esMaxTimeMS=86400000
+    esResultField=cef_ext.suser
+    fields=field:user;shortcut:cef_ext.suser
+  </pre>

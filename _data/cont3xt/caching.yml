@@ -1,22 +1,21 @@
-name: "#### Caching"
+name: "Caching"
 before: |
   Cont3xt can cache integration queries to speed up results and to lower the load on the integration services.
 
-  Create a `[cache]` section
-  {: .mb-0}
+  These settings live in the <code>[cache]</code> section
 
 settings:
   - key: type
     value: memory
-    text: "`memory`, `redis`, `memcached`, `lmdb` are supported. `lmdb` is recommend for a local disk cache and `redis` for a shared cache."
+    text: "<code>memory</code>, <code>redis</code>, <code>memcached</code>, <code>lmdb</code> are supported. <code>lmdb</code> is recommend for a local disk cache and <code>redis</code> for a shared cache."
 
   - key: redisURL
     value: EMPTY
-    text: Format is `redis://[:password@]host:port/db-number, redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number, or redis-cluster://[:password@]host:port/db-number`
+    text: Format is <code>redis://[:password@]host:port/db-number, redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number, or redis-cluster://[:password@]host:port/db-number</code>
 
   - key: memcachedURL
     value: EMPTY
-    text: Format is `memcached://[user:pass@]server1[:11211],[user:pass@]server2[:11211],...`
+    text: Format is <code>memcached://[user:pass@]server1[:11211],[user:pass@]server2[:11211],...</code>
 
   - key: lmdbDir
     value: EMPTY

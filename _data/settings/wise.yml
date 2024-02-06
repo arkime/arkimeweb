@@ -1,9 +1,79 @@
 name: WISE
 before: |
   <p>
-    See the
-    <a class="no-decoration"
-      href="wise">
-      WISE page</a>
+    The With Intelligence See Everyting (WISE) plugin is used to communitcate to the wiseService Arkime application.
+
+    <a href="/wise">Learn more</a> about the wiseServce.
+  </p>
+  <p>
+    Each capture node needs to have the wise plugin enabled.
+    You will need to make a few changes to the <code>[default]</code> section of the configuration file.
+    <ol>
+      <li> Add <code>wiseURL=http://WISEHOST:8081</code></li>
+      <li> Enable the plugin with by adding <code>wise.so</code> to the `plugins=` variable.</li>
+    </ol>
+  </p>
+  <p>
+    Each viewer node that a operator uses needs to have the wise plugin enabled.
+    You will need to make a few changes to the <code>[default]</code> section of the configuration file.
+    <ol>
+      <li>Add <code>wiseURL=http://WISEHOST:8081</code></li>
+      <li>Enable the plugin with by adding <code>wise.js</code> to the <code>viewerPlugins=</code> variable.</li>
+    </ol>
+  </p>
+  <p>
+    Usually just setting wiseURL is enough.
   </p>
 
+
+settings:
+  - key: wiseCacheSecs
+    value: 600
+    text: Number of seconds to cache results before asking wiseService again
+
+  - key: wiseHost
+    value: 127.0.0.1
+    text: Host to connect to for wiseService, not used if wiseURL is set
+
+  - key: wiseMaxCache
+    value: 100000
+    text: Max number of items to store in the wise cache that is local to each arkime-capture node
+
+  - key: wiseMaxConns
+    value: 10
+    text: Number of connections to wiseService, this is also the number of concurrent wise queries.
+
+  - key: wiseMaxRequests
+    value: 100
+    text: Number of oustanding requests to the wiseService
+
+  - key: wisePort
+    value: 8081
+    text: Port the wiseService is listening on, not used if wiseURL is set
+
+  - key: wiseTcpTupleLookups
+    value: FALSE
+    text: Should we send tcp tuple lookups to wise
+
+  - key: wiseUdpTupleLookups
+    value: FALSE
+    text: Should we send udp tuple lookups to wise
+
+  - key: wiseURL
+    value: EMPTY
+    text: (Since 1.5.0) The url to use to connect to wise
+
+  - key: wiseLogEvery
+    value: 10000
+    text: Log wise stats every X wise requests
+
+  - key: wiseExcludeDomains
+    value: .in-addr.arpa;.ip6.arpa
+    text: A semicolon separate list of domain suffixes to not send to wise
+
+after: |
+  <p>
+    WISE also lets you configure which fields are used for the standard wise types and you can add your own wise types.
+    You do this by creating a <code>[wise-types]</code> section in the capture configuration file AND listing the fields using `{type}={expression};{db:dbfield}...`.
+    The type field must be less then 12 characters, and is the same type field you would use in the wise service.
+  </p>

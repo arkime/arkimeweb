@@ -6,7 +6,8 @@ permalink: "/learn"
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
-#### General
+## General
+{: .subsection-header.mt-1 }
 
 - [FAQ](faq)
 - [Settings](settings)
@@ -19,38 +20,51 @@ permalink: "/learn"
 - [Why Arkime name?](arkimeetus)
 - [Common API](commonapi)
 - [Roles](roles)
+- [JA4](ja4)
 
-#### Capture
+## Capture
+{: .subsection-header.mt-1 }
+
 - [Rules Format](rulesformat)
 - [Rules Gallery](rules)
 - [Tagger Format](taggerformat)
 - [Tagger Plugin](tagger)
 - [S3 PCAP Storage](s3)
 
-#### Viewer
+## Viewer
+{: .subsection-header.mt-1 }
+
 - [Viewer v3.x - v5.x API](apiv3)
 - [Viewer v0.x - v2.x API](api)
 
-#### Parliament
+## Parliament
+{: .subsection-header.mt-1 }
+
 - [What is Parliament?](parliament)
 
-#### Cont3xt
+## Cont3xt
+{: .subsection-header.mt-1 }
+
 - [Everything Cont3xt](cont3xt)
 - [Cont3xt API](cont3xtapi)
 
-#### OpenSearch/Elasticsearch
+## OpenSearch/Elasticsearch
+{: .subsection-header.mt-1 }
+
 - [Elasticsearch SSL](esssl)
 - [Security ES Proxy](esproxy)
 
-#### WISE
+## WISE
+{: .subsection-header.mt-1 }
+
 - [All about WISE](wise)
 - [Building new WISE sources](wisesources)
 - [WISE API](wiseapi)
 - [WISE Configuration Gallery](wise-configs)
 
----
 
-### Want to contribute to our documentation?
+## Want to contribute to our documentation?
+{: .subsection-header.mt-1 }
 
 Check out our [contributing](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md) file for more information.
 

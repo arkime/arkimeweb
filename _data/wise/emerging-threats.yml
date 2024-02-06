@@ -1,0 +1,13 @@
+name: Emerging Threats Pro
+
+before: |
+  <p>
+    The Emerging Threats Pro data source currently uses the downloadable database that is updated often. Requires that access be purchased and configured.
+    <br>
+    Create a <code>[emergingthreats]</code> section to configure
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key

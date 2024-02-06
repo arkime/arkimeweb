@@ -1,10 +1,8 @@
-name: "#### JSON Integration"
+name: "JSON Integration"
 before: |
   Since 5.0 Cont3xt can query JSON files or urls for results.
 
-  Create a `[json:NAME]` section where NAME is a unique name for all integrations
-
-  {: .mb-0}
+  Create a <code>[json:NAME]</code> section where NAME is a unique name for all integrations
 
 settings:
   - key: name

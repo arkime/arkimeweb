@@ -1,16 +1,21 @@
 ---
 title: Settings
-sections:
-  - db
+
+shared:
+  - debug
+  - web
   - security
   - auth-oidc
+  - usersdb
+
+sections:
+  - db
   - pcapstorage
   - capture
   - dedup
   - viewer
   - advanced
   - debug
-  - parliament
 
 readerswriters:
   - reader-afpacket
@@ -46,6 +51,39 @@ specialsections:
   - packet-drop-ips
   - remote-clusters
   - multi-viewer-settings
+  - wise-types
+
+cont3xt:
+  - general
+  - db
+  - caching
+  - integration-common
+  - arkime
+  - csv
+  - elasticsearch
+  - json
+  - redis
+
+parliament:
+  - general
+
+wiseService:
+  - general
+  - caching
+  - source-common
+  - alien-vault
+  - emerging-threats
+  - opendns-umbrella
+  - threatq
+  - threatstream
+  - splunk
+  - elasticsearch
+  - file
+  - redis
+  - reversedns
+  - url
+  - value-actions
+
 
 ---
 
@@ -97,7 +135,7 @@ specialsections:
 </head>
 
 <body id="viewport"
-  class="full-height-body">
+  class="full-height-body settings">
 
   <!-- navbar -->
   {%- include navbar.html -%}
@@ -106,9 +144,22 @@ specialsections:
   <div class="left-nav d-none d-sm-block">
     <div class="nav nav-pills nav-pills-nested pb-3">
       <a href="#ini-settings"
-        class="nav-link"
+        class="nav-link main-nav-link"
         title="General">
-        INI Settings
+        Settings
+      </a>
+      {% for sectionId in page.shared %}
+        {% assign section = site.data.shared[sectionId] %}
+        <a class="nav-link nested"
+          href="#{{sectionId}}"
+          title="{{section.name}}">
+          {{section.name}}
+        </a>
+      {% endfor %}
+      <a href="#capture-viewer"
+        class="nav-link main-nav-link"
+        title="General">
+        Capture/Viewer
       </a>
       {% for sectionId in page.sections %}
         {% assign section = site.data.settings[sectionId] %}
@@ -118,70 +169,113 @@ specialsections:
           {{section.name}}
         </a>
       {% endfor %}
-      <a href="#ReadersWriters"
-        class="nav-link"
-        title="Readers/Writers">
-        Readers/Writers
-      </a>
-      {% for sectionId in page.readerswriters %}
-        {% assign section = site.data.settings[sectionId] %}
+      <div class="toc-nested">
+        <a href="#ReadersWriters"
+          class="nav-link"
+          title="Readers/Writers">
+          Readers/Writers
+        </a>
+        {% for sectionId in page.readerswriters %}
+          {% assign section = site.data.settings[sectionId] %}
+          <a class="nav-link nested"
+            href="#{{sectionId}}"
+            title="{{section.name}}">
+            {{section.name}}
+          </a>
+        {% endfor %}
+        <a href="#SpecialSections"
+          class="nav-link"
+          title="Special Sections">
+          Special Sections
+        </a>
+        {% for sectionId in page.specialsections %}
+          {% assign section = site.data.settings[sectionId] %}
+          <a class="nav-link nested"
+            href="#{{sectionId}}"
+            title="{{section.name}}">
+            {{section.name}}
+          </a>
+        {% endfor %}
         <a class="nav-link nested"
-          href="#{{sectionId}}"
-          title="{{section.name}}">
-          {{section.name}}
+          href="#right-click"
+          title="valueactions">
+          value actions
+        </a>
+        <a class="nav-link nested"
+          href="#field-actions"
+          title="fieldactions">
+          field actions
+        </a>
+        <a class="nav-link nested"
+          href="#pcap-at-rest-encryption"
+          title="PCAP at Rest Encryptions">
+          PCAP at Rest Encryption
+        </a>
+        <a href="#Plugins"
+          class="nav-link"
+          title="Plugins">
+          Plugins
+        </a>
+        {% for pluginId in page.plugins %}
+          {% assign plugin = site.data.settings[pluginId] %}
+          <a class="nav-link nested"
+            href="#{{pluginId}}"
+            title="{{plugin.name}}">
+            {{plugin.name}}
+          </a>
+        {% endfor %}
+        <a href="#high-performance-settings"
+          class="nav-link"
+          title="High Performance Settings">
+          High Performance Settings
+        </a>
+        <a href="#lab-settings"
+          class="nav-link"
+          title="Lab Settings">
+          Lab Settings
+        </a>
+      </div>
+      <a href="#cont3xt"
+        class="nav-link main-nav-link"
+        title="Cont3xt">
+        Cont3xt
+      </a>
+      {% for cont3xtId in page.cont3xt %}
+        {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
+        <a class="nav-link nested"
+          href="#{{cont3xtId}}-cont3xt"
+          title="{{cont3xt.name}}">
+          {{cont3xt.name}}
         </a>
       {% endfor %}
-      <a href="#SpecialSections"
-        class="nav-link"
-        title="Special Sections">
-        Special Sections
+      <a href="#parliament"
+        class="nav-link main-nav-link"
+        title="Parliament">
+        Parliament
       </a>
-      {% for sectionId in page.specialsections %}
-        {% assign section = site.data.settings[sectionId] %}
+      {% for parliamentId in page.parliament %}
+        {% assign parliament = site.data.parliament[parliamentId] %}
         <a class="nav-link nested"
-          href="#{{sectionId}}"
-          title="{{section.name}}">
-          {{section.name}}
+          href="#{{parliamentId}}-parliament"
+          title="{{parliament.name}}">
+          {{parliament.name}}
         </a>
       {% endfor %}
-      <a class="nav-link nested"
-        href="#right-click"
-        title="valueactions">
-        value actions
+
+      <a href="#wiseService"
+        class="nav-link main-nav-link"
+        title="WISE Service">
+        WISE Service
       </a>
-      <a class="nav-link nested"
-        href="#field-actions"
-        title="fieldactions">
-        field actions
-      </a>
-      <a class="nav-link nested"
-        href="#pcap-at-rest-encryption"
-        title="PCAP at Rest Encryptions">
-        PCAP at Rest Encryption
-      </a>
-      <a href="#Plugins"
-        class="nav-link"
-        title="Plugins">
-        Plugins
-      </a>
-      {% for pluginId in page.plugins %}
-        {% assign plugin = site.data.settings[pluginId] %}
+      {% for wiseServiceId in page.wiseService %}
+        {% assign wiseService = site.data.wise[wiseServiceId] %}
         <a class="nav-link nested"
-          href="#{{pluginId}}"
-          title="{{plugin.name}}">
-          {{plugin.name}}
+          href="#{{wiseServiceId}}-wise"
+          title="{{wiseService.name}}">
+          {{wiseService.name}}
         </a>
       {% endfor %}
-      <a href="#high-performance-settings"
-        class="nav-link"
-        title="High Performance Settings">
-        High Performance Settings
-      </a>
-      <a href="#lab-settings"
-        class="nav-link"
-        title="Lab Settings">
-        Lab Settings
-      </a>
+
     </div>
   </div> <!-- /toc nav -->
 
@@ -199,34 +293,102 @@ specialsections:
     <div class="pl-3 pr-3">
 
       <!-- ini settings -->
-      <h1 id="ini-settings"
-        class="border-bottom">
-        INI Settings
+      <h1 id="ini-settings" class="mt-1 section-header">
+        Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
       </h1>
       <p>
-        Arkime uses a tiered system for configuration variables. A tiered
-        system allows Arkime to share one config file for many machines. The
-        ordering of sections within the config file doesn't matter.
+        The Arkime system utilizes configuration files using INI format by default.
+        With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats using <code>json</code> or <code>yaml</code> extensions, respectively.
+        When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+        The configuration file location can be specified using the <code>-c</code> command-line option.
+      </p>
+      <!-- /ini settings -->
+
+      <!-- Sections-->
+      {% for sectionId in page.shared %}
+        {% assign section = site.data.shared[sectionId] %}
+        {% if section.oldId %}
+          <span id="{{section.oldId}}"></span>
+        {% endif %}
+        <h3 id="{{sectionId}}" class="subsection">
+          {{section.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h3>
+        {{section.before}}
+        {% if section.settings %}
+          <table class="table table-sm table-striped table-primary">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = section.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{section.after}}
+      {% endfor %}
+      <!-- /Sections -->
+
+      <!-- capture viewer -->
+      <h1 id="capture-viewer" class="section-header">
+        Capture/Viewer
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h1>
+      <p>
+        The default confguration file for capture and viewer is <code>/opt/arkime/etc/config.ini</code>.
+        When searching for a setting, capture and viewer employ a tiered system for configuration variables.
+        This tiered system enables a single configuration file to be used across multiple servers.
+        The order of sections within the config file is not significant; however, the specific section in which a variable resides can be crucial.
+        A frequent issue encountered is the misplacement of a variable in an incorrect section.
       </p>
       <p class="mb-0">
-        Order of config variables:
+        Order of config variables for capture and viewer:
       </p>
       <ol>
         <li>
-          [optional] The section titled with the node name is used first.
-          Arkime will always tag sessions with node: &lt;node name&gt;
+          [optional] The section titled with the node name is given priority and used first.
+          Arkime will always tag sessions with node: &lt;node name&gt;.
         </li>
         <li>
-          [optional] If a node has a nodeClass variable, the section titled
-          with the nodeClass name is used next. Sessions will be tagged with
-          node:&lt;node class name&gt; which is useful if watching different
+          [Optional] If a node section possesses a nodeClass variable, the section titled
+          with the nodeClass name is utilized next. Sessions will be tagged with
+          node:&lt;node class name&gt;, which is beneficial for monitoring different
           network classes.
         </li>
         <li>
-          The section titled "default" is used last.
+          The section titled "default" is considered last.
         </li>
       </ol>
       <!-- /ini settings -->
@@ -237,15 +399,15 @@ specialsections:
         {% if section.oldId %}
           <span id="{{section.oldId}}"></span>
         {% endif %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}" class="subsection">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-primary">
             <thead>
               <tr>
                 <th>
@@ -284,13 +446,12 @@ specialsections:
       <!-- /Sections -->
 
       <!-- Readers/Writers-->
-      <h1 id="ReadersWriters"
-        class="border-bottom">
+      <h2 id="ReadersWriters" class="subsection-header">
         Readers/Writers
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Arkime supports several different methods for reading and writing packets during a live capture.
         These are selected by setting the <a href="#pcapReadMethod"<pcapReadMethod></a> and <a href="#pcapWriteMethod"<pcapWriteMethod></a> config settings..
@@ -301,15 +462,15 @@ specialsections:
       </p>
       {% for sectionId in page.readerswriters %}
         {% assign section = site.data.settings[sectionId] %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}" id="subsection">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-primary">
             <thead>
               <tr>
                 <th>
@@ -347,13 +508,12 @@ specialsections:
       {% endfor %}
       <!-- /Sections -->
 
-      <h1 id="SpecialSections"
-        class="border-bottom">
+      <h2 id="SpecialSections" class="subsection-header">
         Special Sections
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
 
       <p>
         Besides the normal <code>[default]</code> and <code>[node]</code> sections, Arkime supports several special config file sections.
@@ -363,15 +523,15 @@ specialsections:
 
       {% for sectionId in page.specialsections %}
         {% assign section = site.data.settings[sectionId] %}
-        <h2 id="{{sectionId}}">
-          {{section.name}}
+        <h3 id="{{sectionId}}" class="subsection">
+          Special Sections - {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-primary">
             <thead>
               <tr>
                 <th>
@@ -410,7 +570,7 @@ specialsections:
       <!-- /Sections -->
 
       <!-- right-click -->
-      <h2 id="right-click">
+      <h2 id="right-click" class="subsection-header">
         Value Actions (previously right-click)
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -432,7 +592,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         Each line in the valueactions section contains possible actions:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -590,7 +750,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         The possible URL Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -761,7 +921,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <p class="mb-0">
         The categories that Arkime uses are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -877,12 +1037,12 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
       <!-- /right-click -->
 
       <!-- field actions -->
-      <h2 id="field-actions">
+      <h3 id="field-actions" class="subsection">
         Field Actions
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h2>
+      </h3>
       <p>
         It is possible to configure actions to add to any SPI data field label.
         Field actions can be added based on either the field name or the category of the data.
@@ -897,7 +1057,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0">
         Each line in the fieldactions section contains possible actions:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -1011,7 +1171,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0" id="field-actions-url-sub">
         The possible URL Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -1094,7 +1254,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <p class="mb-0" id="field-actions-menu-sub">
         The possible Field Action Menu Name Substitutions are:
       </p>
-      <table class="table table-bordered table-sm table-striped">
+      <table class="table table-sm table-striped table-primary">
         <thead>
           <tr>
             <th>
@@ -1144,7 +1304,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <!-- /field actions -->
 
       <!-- PCAP at Rest Encryption -->
-      <h2 id="pcap-at-rest-encryption">
+      <h3 id="pcap-at-rest-encryption" class="subsection">
         PCAP at Rest Encryption
       </h2>
       <p>
@@ -1226,13 +1386,12 @@ kekid2=Randomkekpassword2
       <!-- /PCAP at Rest Encryption -->
 
       <!-- Plugins -->
-      <h1 id="Plugins"
-        class="border-bottom">
+      <h2 id="Plugins" class="subsection-header">
         Plugins
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
 
       <p>
         Arkime supports several different plugins that can be added to the capture process.
@@ -1240,15 +1399,15 @@ kekid2=Randomkekpassword2
 
       {% for pluginId in page.plugins %}
         {% assign plugin = site.data.settings[pluginId] %}
-        <h2 id="{{pluginId}}">
-          {{plugin.name}}
+        <h3 id="{{pluginId}}" class="subsection">
+          Plugins - {{plugin.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{plugin.before}}
         {% if plugin.settings %}
-          <table class="table table-bordered table-sm table-striped">
+          <table class="table table-sm table-striped table-primary">
             <thead>
               <tr>
                 <th>
@@ -1287,13 +1446,12 @@ kekid2=Randomkekpassword2
       <!-- /Plugins -->
 
       <!-- High Performance Settings -->
-      <h1 id="high-performance-settings"
-        class="border-bottom">
+      <h2 id="high-performance-settings" class="subsection-header">
         High Performance Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Sample config items for max performance. Most of
         the defaults are fine. Reading
@@ -1381,13 +1539,12 @@ rules:
       <!-- /High Performance Settings -->
 
       <!-- Lab Settings -->
-      <h1 id="lab-settings"
-        class="border-bottom">
+      <h2 id="lab-settings" class="subsection-header">
         Lab Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Arkime by default is not configured to monitor low bandwidth networks.
         You'll want to update the configuration to have a better experience when
@@ -1412,6 +1569,206 @@ dbBulkSize=100000
 maxESConns=2
 </code></pre>
       <!-- /Lab Settings -->
+
+      <!-- Cont3xt -->
+      <h1 id="cont3xt" class="section-header">
+        Cont3xt
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h1>
+
+      <p>
+        Cont3xt, by default, utilizes configuration files using INI format.
+        The configuration file is located at <code>/opt/arkime/etc/cont3xt.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
+        With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
+        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+      </p>
+      <p>
+        The configuration file can contain sections for Cont3xt itself and then sections for each integration.
+        The sections for each integration are optional and can be used to set specific settings for each integration.
+        Usually, integration keys will be set up by each user, but it is possible to have global keys.
+      </p>
+
+      {% for cont3xtId in page.cont3xt %}
+        {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
+        <h3 id="{{cont3xtId}}-cont3xt" class="subsection">
+          {{cont3xt.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h3>
+        {{cont3xt.before}}
+        {% if cont3xt.settings %}
+          <table class="table table-sm table-striped table-primary">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = cont3xt.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{cont3xt.after}}
+      {% endfor %}
+      <!-- /Cont3xt -->
+
+      <!-- Parliament -->
+      <h1 id="parliament" class="section-header">
+        Parliament
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h1>
+
+      <p>
+        Parliament contains a grouped list of your Arkime clusters with links, Elasticsearch/OpenSearch health, and issues for each.
+        You can use Parliament as a landing page for all of your Arkime clusters and as a status page to monitor the health of your clusters.
+        See <a href="parliament" class="no-decoration">Parliament</a> for more information.
+      </p>
+
+
+      {% for parliamentId in page.parliament %}
+        {% assign parliament = site.data.parliament[parliamentId] %}
+        <h3 id="{{parliamentId}}-parliament" class="subsection">
+          {{parliament.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h3>
+        {{parliament.before}}
+        {% if parliament.settings %}
+          <table class="table table-sm table-striped table-primary">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = parliament.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{parliament.after}}
+      {% endfor %}
+      <!-- /Parliament -->
+
+      <!-- wiseService -->
+      <h1 id="wiseService" class="section-header">
+        WISE Service
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'settings')">
+        </span>
+      </h1>
+
+      <p>
+        WISE Service, by default, utilizes configuration files using INI format.
+        The configuration file is located at <code>/opt/arkime/etc/wiseService.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
+        With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
+        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+      </p>
+      <p>
+        The configuration file can contain sections for wiseService  itself and then sections for each WISE source.
+        WISE will not try and query sources until a section is created for them.
+      </p>
+
+      {% for wiseServiceId in page.wiseService %}
+        {% assign wiseService = site.data.wise[wiseServiceId] %}
+        <h3 id="{{wiseServiceId}}-wise" class="subsection">
+          {{wiseService.name}}
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'settings')">
+          </span>
+        </h3>
+        {{wiseService.before}}
+        {% if wiseService.settings %}
+          <table class="table table-sm table-striped table-primary">
+            <thead>
+              <tr>
+                <th>
+                  Setting
+                </th>
+                <th>
+                  Default
+                </th>
+                <th>
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% assign sorted = wiseService.settings | sort: "key" %}
+              {% for item in sorted %}
+                <td id="{{ item.key }}">
+                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                  <span class="fa fa-link small copy-link cursor-copy"
+                    onclick="copyLink(this, 'settings')">
+                  </span>
+                </td>
+                <td>
+                  {{ item.value }}
+                </td>
+                <td>
+                  {{ item.text }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {{wiseService.after}}
+      {% endfor %}
+      <!-- /Cont3xt -->
 
     </div> <!-- /settings content -->
 

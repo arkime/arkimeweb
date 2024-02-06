@@ -1,0 +1,29 @@
+name: Value Actions
+
+before: |
+  <p>
+    Not really a WISE data source, this source monitors configured files, redis urls, or OpenSearch/Elasticsearch urls for valueactions (previously right-click) to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `valueactions:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the valueactions files if they change.
+    <br>
+    Create a <code>[valueactions:UNIQUENAME]</code> section to configure
+  </p>
+
+settings:
+  - key: url
+    value: REQUIRED
+    text: The file to load, can be a file path, redis url (Format is redis://[:password@]host:port/db-number/key, redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number/key, or redis-cluster://[:password@]host:port/db-number/key), or elasticsearch url (Format elasticsearch://host:9200/INDEX/_doc/DOCNAME with elasticsearchs:// also supported.)
+
+after: |
+  <p>
+    So for example you might have
+  </p>
+  <pre>
+    [valueactions:virustotal]
+    url=/opt/arkime/etc/valueactions-virustotal.ini
+  </pre>
+
+  <p>and then /opt/arkime/etc/valueactions-virustotal.ini could contain</p>
+  <pre>
+    VTIP=url:https://www.virustotal.com/en/ip-address/%TEXT%/information/;name:Virus Total IP;category:ip
+    VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus Total Host;category:host
+    VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
+  </pre>

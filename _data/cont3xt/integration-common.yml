@@ -1,10 +1,9 @@
-name: "#### Common settings per integration"
+name: "Common settings per integration"
 before: |
   Every integration can have its own settings with keys, passwords and other things.
   Usually keys and passwords should be set per user in the UI, which will override these.
 
-  In each `[integrationname]` section
-  {: .mb-0}
+  These live in each <code>[INTEGRATION-NAME]</code> section
 
 settings:
   - key: disabled
@@ -17,7 +16,7 @@ settings:
 
   - key: cachePolicy
     value: cont3xt.cachePolicy
-    text: Can be `shared` or `user`, if set to user then the cache is per user
+    text: Can be <code>shared</code> or <code>user</code>, if set to user then the cache is per user
 
   - key: viewRoles
     value: EMPTY

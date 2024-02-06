@@ -58,16 +58,16 @@ title: Parliament
           </h1>
           <p class="lead lead-lg text-thin text-center">
             Parliament contains a grouped list of your Arkime clusters with
-            links, ES health, and issues for each.
+            links, Elasticsearch/OpenSearch health, and issues for each.
             You can use Parliament as a landing page for all of your Arkime
             clusters and as a status page to monitor the health of your clusters.
           </p>
           <p class="lead lead-lg text-center">
             As of v5 of Arkime, Parliament requires a configuration file.
-            See <a href="settings#parliament">Parliament Settings</a> for details.
+            See <a href="settings#parliament" class="no-decoration">Parliament Settings</a> for details.
           </p>
           <p class="lead lead-lg text-center">
-            <a href="https://github.com/arkime/arkime/tree/main/parliament#arkime-parliament">
+            <a href="https://github.com/arkime/arkime/tree/main/parliament#arkime-parliament" class="no-decoration">
               View the Parliament README on GitHub!
             </a>
           </p>
@@ -89,10 +89,10 @@ title: Parliament
         <div class="row d-flex align-items-end">
           <div class="col-lg-8 col-md-7 align-self-start">
             <h1 class="display-4 mb-3 dark-primary-theme-text">
-              Parliament Dashboad
+              Parliament Dashboard
             </h1>
             <p class="lead mb-3">
-              The Parliament Dashboad displays a grouped list of your configured
+              The Parliament Dashboard displays a grouped list of your configured
               Arkime Clusters. Here you can navigate to any cluster and view
               stats and health.
             </p>
@@ -133,7 +133,7 @@ title: Parliament
               Ignore issues in your cluster for a certain amount of time by
               clicking the eye dropdown. Ignored issues will not send alerts
               until the ignore time has expired and the issue still persists.
-              You can unignore them on the Issues page.
+              You can un-ignore them on the Issues page.
               <br>
               <strong>Note:</strong> only logged in users can ignore issues.
             </p>
@@ -146,7 +146,7 @@ title: Parliament
               You can click the cluster's name to navigate to the Arkime
               sessions page of that cluster. You can also navigate to the
               Arkime main stats page by clicking the bar graph icon and the
-              ES Nodes stats page by clicing on the ES status indicator.
+              Elasticsearch/OpenSearch Nodes stats page by clicking on the Elasticsearch/OpenSearch status indicator.
             </p>
           </div>
         </div>
@@ -264,7 +264,7 @@ title: Parliament
             <p>
               Acknowledge issues in your clusters by clicking the check box.
               Acknowledged issues will remain on the issues page (grayed out)
-              but will not be visible on the Parliament dashboad. Acknowledged
+              but will not be visible on the Parliament dashboard. Acknowledged
               issues will be removed after 15 minutes (or your configured
               setting) or can be removed at any time via the trashcan button.
               <br>
@@ -279,8 +279,8 @@ title: Parliament
               Ignore issues in your cluster for a certain amount of time by
               clicking the eye dropdown. Ignored issues will remain on the
               issues page (grayed out) but will not be visible on the parliament
-              dashboad. Ignored issues will not send alerts until the ignore
-              time has expired and the issue still persists. You can unignore
+              dashboard. Ignored issues will not send alerts until the ignore
+              time has expired and the issue still persists. You can un-ignore
               issues here as well to begin receiving alerts again.
               <br>
               <strong>Note:</strong> only logged in users can ignore issues.
@@ -323,7 +323,7 @@ title: Parliament
                 <li>
                   The OpenSearch/Elasticsearch query timeout setting controls the maximum
                   OpenSearch/Elasticsearch status query duration. If the query exceeds this
-                  time setting, an ES Down issue is added to the cluster. The
+                  time setting, an Elasticsearch/OpenSearch Down issue is added to the cluster. The
                   default for this setting is 5 seconds.
                 </li>
                 <li>
@@ -353,45 +353,6 @@ title: Parliament
               </ul>
             </p>
             <h5>
-              <span class="primary-theme-text fa fa-lock fa-fw fa-lg">
-              </span>&nbsp;
-              Password (<strong>deprecated in v4, removed in v5</strong>)
-            </h5>
-            <p>
-              <strong>These passwords are being deprecated</strong>, please use the Auth section
-              to configure access to your Parliament.
-              <br>
-              You can configure a new password, or update your current password.
-              <strong>Note:</strong> Parliament is readonly if there is no password set.
-            </p>
-            <h5>
-              <span class="primary-theme-text fa fa-key fa-fw fa-lg">
-              </span>&nbsp;
-              Auth (<strong>removed in v5</strong>)<sup>*</sup>
-            </h5>
-            <p>
-              Auth uses the the Arkime User's database for Parliament access.
-            </p>
-            <ul>
-              <li>
-                All Arkime users can view the Parliament (like dashboard only mode).
-              </li>
-              <li>
-                Users with the "parliamentUser" role can ack, ignore, and delete
-                issues within the Parliament.
-              </li>
-              <li>
-                Users with the "parliamentAdmin" role can do everything a "parliamentUser"
-                can, plus they can configure the Parliament by adding/removing/updating
-                groups/clusters and manage the Parliament settings.
-              </li>
-            </ul>
-            <p>
-              <sup>*</sup>
-              You must configure this in v4 or add these settings to the Parliament config manually
-              (see <a href="settings#parliament">Parliament ini settings</a>).
-            </p>
-            <h5>
               <span class="primary-theme-text fa fa-bell fa-fw fa-lg">
               </span>&nbsp;
               Notifiers
@@ -399,16 +360,48 @@ title: Parliament
             <p>
               Configure services to send alerts here. Currently, you can
               configure Slack, Email, and Twilio (SMS) alerts. You can select
-              which type of alerts each notifer alerts on. Update, delete, or
+              which type of alerts each notifier alerts on. Update, delete, or
               test an alert at any time.
               <br>
               <strong>Note:</strong> If you configure a Parliament hostname and
               enable Parliament dashboard links, every alert will contain a
-              link to the Parliament Dashbaord
+              link to the Parliament Dashboard
             </p>
           </div>
         </div>
       </div> <!-- /settings -->
+      <!-- users -->
+      <hr>
+      <div class="container-fluid mb-4">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament Users
+            </h1>
+            <p class="lead mb-3">
+              You can configure users and roles for access to Parliament, Arkime, Cont3xt, and WISE here.
+            </p>
+            <img
+              alt="Parliament Users screenshot"
+              class="screenshot-img parliament-users"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-user fa-fw fa-lg">
+              </span>&nbsp;
+              Users
+            </h5>
+            <p>
+              <strong>New to v5!</strong>
+              <br>
+              This is the same page that is available within both Arkime and Cont3xt.
+              <br>
+              Here, you can create, update, and delete users and roles.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /users -->
     </div> <!-- /screenshots -->
 
     <!-- contribute -->

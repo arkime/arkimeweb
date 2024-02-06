@@ -1,0 +1,57 @@
+name: Splunk
+
+before: |
+  <p>
+    The Splunk wise service can run in two different modes.
+    It can query Splunk for every value or it can query splunk periodicly for a table of values.
+    Many Splunk operators prefer the periodic query since they can scale for it.
+    <br>
+    Create a <code>[splunk:UNIQUENAME]</code> section to configure
+  </p>
+
+settings:
+  - key: type
+    value: REQUIRED
+    text: any type- The type of data in the file
+
+  - key: host
+    value: REQUIRED
+    text: The Splunk hostname
+
+  - key: keyColumn
+    value: REQUIRED
+    text: The column to use from the returned data to use as the key
+
+  - key: periodic
+    value: false
+    text: Should we do periodic queries or individual queries
+
+  - key: port
+    value: REQUIRED
+    text: The Splunk port
+
+  - key: query
+    value: REQUIRED
+    text: The query to run against Splunk. For non periodic queries the string %%SEARCHTERM%% will be replaced with the key.
+
+  - key: version
+    value: 5
+    text: The Splunk api version to use
+
+after: |
+  <p>
+    Example config that will query Splunk for all the vpn_ip to user name mappings during the last 24 hours every 60 seconds. It will then set the user field for any ip that matches.
+  </p>
+  <pre>
+    [splunk:users]
+    type = ip
+    format = json
+    host = spunk.example.com
+    port=5500
+    username=theuser
+    password=thepassword
+    periodic=60
+    query=search index="THEINDEX" sourcetype="vpn" assigned earliest=-24h | rex "User <(?<user>[^>]+)>.*IPv4 Address <(?<vpn_ip>[^>]+)>" | dedup vpn_ip | table user, vpn_ip
+    keyColumn=vpn_ip
+    fields=field:user;shortcut:user
+  </pre>

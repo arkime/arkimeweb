@@ -60,13 +60,14 @@ title: Home
         <div class="col-md-12">
           <h1 class="display-1 text-center">
             <img class="arkime-brand" />
+            <audio id="audio"><source src="assets/arkime_short.m4a" type="audio/mpeg" /></audio>
+            <span class="fa fa-volume-up arkime-pronunciation" onclick="play()"></span>
           </h1>
-          <h1 class="display-3 text-center">
-            Full Packet Capture
+          <h1 class="display-4 text-center">
+            Network Analysis & Packet Capture
           </h1>
           <p class="lead lead-lg text-thin text-center">
-            Arkime (formerly Moloch) is a large-scale, open-source, indexed
-            packet capture and search tool.
+            It's amazing what you discover when you start looking.
           </p>
         </div>
       </div>
@@ -98,8 +99,12 @@ title: Home
             GitHub
           </a>
           <a href="https://slackinvite.arkime.com/"
-            class="btn btn-outline-danger btn-lg btn-fw mb-2">
+            class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2">
             Slack Us
+          </a>
+          <a href="mini-arkimeetus"
+            class="btn btn-outline-warning btn-lg btn-fw mb-2">
+            Office Hours
           </a>
         </div>
       </div>
@@ -138,31 +143,22 @@ title: Home
         </div>
         <hr> -->
         <div class="row">
-          <div class="col-1 d-none d-lg-block">
-            <h1 class="text-center primary-theme-text">
-              <span class="fa fa-bullhorn fa-lg fa-fw" />
+          <div class="col-1 d-none d-lg-block mt-4">
+            <h1 class="text-center">
+              ✨
             </h1>
           </div>
           <div class="col-lg-10">
             <div class="row">
               <div class="col">
-                <h4 class="display-4 lead text-center"
-                  style="font-size: 2rem;">
-                  <a href="v4release" class="no-decoration">
-                    Arkime 4.0 is HERE!
+                <h4 class="display-3 lead text-center">
+                  <a href="release-v5" class="no-decoration">
+                    Arkime 5.0 is HERE!
                   </a>
                 </h4>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <h4 class="display-5 lead text-center">
-                  It includes a new app! Check out
-                  <a href="cont3xt" class="no-decoration">
-                    Cont3xt</a>.
-                </h4>
-              </div>
-            </div>
+            <!--
             <div class="row mt-2">
               <div class="col">
                 <h4 class="lead text-center">
@@ -172,10 +168,11 @@ title: Home
                 </h4>
               </div>
             </div>
+            -->
           </div>
-          <div class="col-1 d-none d-lg-block">
-            <h1 class="text-center primary-theme-text">
-              <span class="fa fa-bullhorn fa-lg fa-fw fa-flip-horizontal" />
+          <div class="col-1 d-none d-lg-block mt-4">
+            <h1 class="text-center">
+              ✨
             </h1>
           </div>
         </div>
@@ -185,28 +182,18 @@ title: Home
           Augment your current security infrastructure to store and
           index network traffic in standard PCAP format.
           <br>
-          Arkime is not meant to replace Intrusion Detection Systems (IDS)
-          but instead provides more visibility.
+          <!-- Arkime offers full network visibility, speeding up incident response and empowering security teams to investigate and mitigate threats. -->
+          Arkime offers full network visibility, facilitating the swift identification and resolution of security and network issues.
         </p>
         <div class="row mt-5">
           <div class="col-lg-3 col-md-6">
-            <span class="fa fa-lock fa-3x">
+            <span class="fa fa-eye fa-3x">
             </span>
             <h5 class="primary-theme-text mt-1">
-              Security
+              Visibility
             </h5>
             <p>
-              Access to Arkime is protected by using HTTPS with digest passwords or
-              by using an authentication-providing web server proxy. All PCAPs are
-              stored on the installed Arkime sensors and are only available through the Arkime
-              web interface or API. Arkime supports encrypting PCAP files at rest.
-            </p>
-            <p>
-              Want to report a security issue or just learn more? There's
-              <a href="security"
-                class="no-decoration">
-                more info here</a>.
-            </p>
+              Security teams gain access to the necessary network visibility data essential for responding to and investigating incidents to expose the full attack scope.
           </div>
           <div class="col-lg-3 col-md-6">
             <span class="fa fa-expand fa-3x">
@@ -215,40 +202,27 @@ title: Home
               Scalability
             </h5>
             <p>
-              Arkime is designed to be deployed across multiple clustered systems, providing the ability to scale to handle multiple gigabits per second of traffic.
-              PCAP retention is based on available sensor disk space, while metadata retention is based on the scale of the OpenSearch/Elasticsearch cluster.
-              Both can be increased at any time.
+              Designed to be deployed across multiple clustered systems, providing the ability to scale to hundreds of gigabits per second.
             </p>
           </div>
           <div class="col-lg-3 col-md-6">
             <span class="fa fa-hand-pointer-o fa-3x cursor-pointer">
             </span>
             <h5 class="primary-theme-text mt-1">
-              Interface
+              Productivity
             </h5>
             <p>
-              A web application is provided for PCAP browsing,
-              searching, analysis, and PCAP carving for exporting. Arkime
-              stores and exports all packets in standard PCAP format,
-              allowing you to use your favorite PCAP ingestion tools
-              during your analysis workflow.
+              Allows security analysts to respond, reconstruct, investigate and confirm information about the threats within your network and take the appropriate response quickly and precisely.
             </p>
           </div>
           <div class="col-lg-3 col-md-6">
             <span class="fa fa-cloud-download fa-3x">
             </span>
             <h5 class="primary-theme-text mt-1">
-              APIs
+              Open Source
             </h5>
             <p>
-              Exposed APIs allow PCAP data and JSON-formatted
-              session data to be downloaded directly.
-            </p>
-            <p>
-              <a href="allapis"
-                class="no-decoration mt-2">
-                View the API documentation
-              </a>.
+              Provides users with the benefits of transparency, cost-effectiveness, flexibility, and community support.
             </p>
           </div>
         </div>
@@ -551,7 +525,119 @@ title: Home
           </div>
         </div>
       </div> <!-- /connections -->
+      <!-- parliament -->
+      <hr>
+      <div class="container-fluid mb-4">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament Application
+            </h1>
+            <p class="lead mb-3">
+              Parliament contains a grouped list of your Arkime clusters with links, ES health, and issues for each.
+              <a href="parliament" class="no-decoration">
+                Learn more about Parliament</a>!
+            </p>
+            <img
+              alt="Parliament Dashboard Screenshot"
+              class="screenshot-img parliament-dashboard"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-dashboard fa-lg">
+              </span>&nbsp;
+              Landing Page
+            </h5>
+            <p>
+              You can use Parliament as a landing page for all of your Arkime clusters.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-eye fa-lg">
+              </span>&nbsp;
+              Monitoring
+            </h5>
+            <p>
+              View issues within your Arkime clusters and monitor the health of your Elasticsearch clusters.
+            </p>
+          </div>
+        </div>
+      </div> <!-- /parliament -->
+      <!-- context -->
+      <div class="container-fluid primary-theme-background angle-background angle-background-long pt-4 mb-4">
+        <div class="row d-flex align-items-end">
+          <div class="col-lg-8 col-md-7 align-self-start">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Cont3xt Application
+            </h1>
+            <p class="lead mb-3">
+              Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
+              <a href="cont3xt" class="no-decoration">
+                Learn more about Cont3xt</a>!
+            </p>
+            <img
+              alt="Cont3xt Dashboard Screenshot"
+              class="screenshot-img cont3xt"
+            />
+          </div>
+          <div class="col-lg-4 col-md-5 small mt-3">
+            <h5>
+              <span class="primary-theme-text fa fa-search fa-lg">
+              </span>&nbsp;
+              Search
+            </h5>
+            <p>
+              It enriches indicators using popular commercial and OSINT sources in a structured, consistent, and thorough process.
+              Some of the default enrichment integrations include PassiveTotal, VirusTotal, Censys, Shodan, and more.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-link fa-lg">
+              </span>&nbsp;
+              Links to External Sources
+            </h5>
+            <p>
+              You can add custom link to query your available resources that will simplify team access to frequently queried resources.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-share fa-lg">
+              </span>&nbsp;
+              Share
+            </h5>
+            <p>
+              Share links with team mates that are tailored to specific views and link filters to guide the investigative process.
+            </p>
+            <h5>
+              <span class="primary-theme-text fa fa-download fa-lg">
+              </span>&nbsp;
+              Reports
+            </h5>
+            <p>
+              Download full reports, or subsets of response data.
+            </p>
+          </div>
+        </div>
+        <br><br><br>
+      </div> <!-- /cont3xt -->
+      <div class="demo cont3xt-demo">
+        <h1 class="display-4 text-center d-none d-sm-none d-md-block">
+          Cont3xt Demo
+        </h1>
+        <h1 class="display-4 text-center d-block d-md-none demo-small-screen">
+          Cont3xt<br>Demo
+        </h1>
+        <p class="text-center">
+          <a class="btn btn-primary btn-lg"
+            href="https://cont3xt.arkime.com">
+            Check it out!
+          </a>
+        </p>
+        <p class="lead text-center mb-0">
+          The username and password are both <code>arkime</code>.
+        </p>
+      </div> <!-- /demo -->
     </div> <!-- /screenshots -->
+
+    <hr>
 
     <!-- help -->
     <a id="help"
@@ -565,63 +651,74 @@ title: Home
           </h1>
         </div>
       </div>
-      <div class="jumbotron row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <span class="fa fa-question-circle fa-2x">
-          </span>
-          <h5 class="primary-theme-text mt-1">
-            FAQ
-          </h5>
-          <p>
-            Read our
-            <a href="faq"
-              class="no-decoration">
+      <div class="jumbotron ">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <span class="fa fa-question-circle fa-2x">
+            </span>
+            <h5 class="primary-theme-text mt-1">
               FAQ
-            </a>
-            first!
-          </p>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <span class="fa fa-slack fa-2x">
-          </span>
-          <h5 class="primary-theme-text mt-1">
-            Slack
-          </h5>
-          <p>
-            Join our
-            <a class="no-decoration"
-              href="https://slackinvite.arkime.com/">
+            </h5>
+            <p>
+              Read our
+              <a href="faq"
+                class="no-decoration">
+                FAQ
+              </a>
+              first!
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <span class="fa fa-slack fa-2x">
+            </span>
+            <h5 class="primary-theme-text mt-1">
               Slack
-            </a>
-            workspace to discuss Arkime and ask questions.
-          </p>
+            </h5>
+            <p>
+              Join our
+              <a class="no-decoration"
+                href="https://slackinvite.arkime.com/">
+                Slack
+              </a>
+              workspace to discuss Arkime and ask questions.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <span class="fa fa-github fa-2x">
+            </span>
+            <h5 class="primary-theme-text mt-1">
+              Issues
+            </h5>
+            <p>
+              Find a bug? Want a new feature?
+              Open an
+              <a class="no-decoration no-wrap"
+                href="https://github.com/arkime/arkime/issues/new">
+                issue on GitHub</a>.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <span class="fa fa-pencil fa-2x">
+            </span>
+            <h5 class="primary-theme-text mt-1">
+              Feedback
+            </h5>
+            <p>
+              We'd love to hear your feedback!
+              <a class="no-decoration no-wrap"
+                href="https://forms.gle/h4gjuwShThcFRJHM7">
+                Take the Arkime user survey</a>.
+            </p>
+          </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <span class="fa fa-github fa-2x">
-          </span>
-          <h5 class="primary-theme-text mt-1">
-            Issues
-          </h5>
-          <p>
-            Find a bug? Want a new feature?
-            Open an
-            <a class="no-decoration no-wrap"
-              href="https://github.com/arkime/arkime/issues/new">
-              issue on GitHub</a>.
-          </p>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <span class="fa fa-pencil fa-2x">
-          </span>
-          <h5 class="primary-theme-text mt-1">
-            Feedback
-          </h5>
-          <p>
-            We’d love to hear your feedback!
-            <a class="no-decoration no-wrap"
-              href="https://forms.gle/h4gjuwShThcFRJHM7">
-              Take the Arkime user survey</a>.
-          </p>
+        <div class="row">
+          <div class="col text-center mt-4">
+            <span class="fa fa-question-circle mr-2"></span>
+            Still have questions? Join our
+            <a href="mini-arkimeetus" class="no-decoration">
+              Office Hours</a>!
+            <span class="fa fa-question-circle ml-2"></span>
+          </div>
         </div>
       </div>
     </div> <!-- /help -->
@@ -658,9 +755,13 @@ title: Home
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
 
-      function setupError() {
+      function setupError () {
         $('.downloads-error').show();
         $('.loading-downloads').hide();
+      }
+
+      function play () {
+        document.getElementById('audio').play();
       }
     });
   </script>

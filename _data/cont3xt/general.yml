@@ -1,46 +1,50 @@
-name: "#### General"
+name: "General"
 before: |
-  Create a `[cont3xt]` section
-
-  {: .mb-0}
+  These settings live in the <code>[cont3xt]</code> section.
 
 settings:
   - key: cacheTimeout
     value: 1h
-    text: How long to cache results for integrations, can be overriden per integration
+    text: How long to cache results for integrations, can be overridden per integration
+
   - key: cachePolicy
     value: shared
-    text: Can be `shared` or `user`, if set to user then the cache is per user, can be overriden per integration
+    text: Can be <code>shared</code> or <code>user</code>, if set to user then the cache is per user, can be overriden per integration
+
   - key: port
     value: 3218
     text: The port that the cont3xt service listens on
+
   - key: cont3xtHost
     value: EMPTY
     text: What hostname to bind to
+
   - key: hstsHeader
     value: false
-    text: Set the hsts header on requests to cont3xt
-  - key: webBasePath
-    value: /
-    text: The base url for Cont3xt web requests. Must end with a / or bad things will happen.
-  - key: certFile
-    value: EMPTY
-    text: Public certificate to use for https, if not set then http will be used. keyFile must also be set.
-  - key: keyFile
-    value: EMPTY
-    text: Private certificate to use for https, if not set then http will be used. certFile must also be set.
-  - key: userNameHeader
-    value: anonymous
-    text: Header to use for determining the username to check in the database for instead of using http digest. Set to <strong>digest</strong> to use http digest authentication.
-  - key: httpRealm
-    value: Moloch
-    text: The Realm to use with digest authentication. Must match the setting from the Viewer as set in `config.ini`.
+    text: Set the HSTS header on requests to cont3xt
+
   - key: userAgent
     value: cont3xt
     text: The http user-agent header to use when talking to remote services, can by override per integration
+
   - key: geoLite2ASN
-    value:
-    text: <a href="settings#geolite2asn">settings page</a>
+    value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
+    text: |
+      A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
+       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+      <a class="no-decoration"
+        href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-ASN"
+        rel="nofollow">Download free version</a>
+
   - key: geoLite2Country
-    value:
-    text: <a href="settings#geolite2country">settings page</a>
+    value: "/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb"
+    text: |
+      A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
+       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+      <a class="no-decoration"
+        href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-Country"
+        rel="nofollow">Download free version</a>
+
+  - key: expireHistoryDays
+    value: 180
+    text: How long to store the cont3xt history
