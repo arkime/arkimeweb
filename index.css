@@ -1087,3 +1087,28 @@ body.wiki-body.dark-theme footer.footer {
   font-size: 1.5rem;
   vertical-align: sub;
 }
+
+/* settings page styles ------------ */
+.settings h1 {
+  padding: 10px;
+  margin-top: 50px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.5);
+  background-color: var(--primary-theme-text-color);
+}
+.settings h2 {
+  padding: 10px;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px -1px rgba(0,0,0,0.5);
+  background-color: var(--primary-theme-background-color);
+}
+.dark-theme.settings h2 {
+  background-color: var(--primary-theme-color);
+}
+.settings h3 {
+  padding-top: 5px;
+  border-top: 2px solid var(--info-theme-hover-color);
+}

@@ -135,7 +135,7 @@ wiseService:
 </head>
 
 <body id="viewport"
-  class="full-height-body">
+  class="full-height-body settings">
 
   <!-- navbar -->
   {%- include navbar.html -%}
@@ -293,8 +293,7 @@ wiseService:
     <div class="pl-3 pr-3">
 
       <!-- ini settings -->
-      <h1 id="ini-settings"
-        class="border-bottom">
+      <h1 id="ini-settings" class="mt-0">
         Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -314,12 +313,12 @@ wiseService:
         {% if section.oldId %}
           <span id="{{section.oldId}}"></span>
         {% endif %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -361,8 +360,7 @@ wiseService:
       <!-- /Sections -->
 
       <!-- capture viewer -->
-      <h1 id="capture-viewer"
-        class="border-bottom">
+      <h1 id="capture-viewer">
         Capture/Viewer
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -401,12 +399,12 @@ wiseService:
         {% if section.oldId %}
           <span id="{{section.oldId}}"></span>
         {% endif %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -448,13 +446,12 @@ wiseService:
       <!-- /Sections -->
 
       <!-- Readers/Writers-->
-      <h1 id="ReadersWriters"
-        class="border-bottom">
+      <h2 id="ReadersWriters">
         Readers/Writers
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Arkime supports several different methods for reading and writing packets during a live capture.
         These are selected by setting the <a href="#pcapReadMethod"<pcapReadMethod></a> and <a href="#pcapWriteMethod"<pcapWriteMethod></a> config settings..
@@ -465,12 +462,12 @@ wiseService:
       </p>
       {% for sectionId in page.readerswriters %}
         {% assign section = site.data.settings[sectionId] %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -511,13 +508,12 @@ wiseService:
       {% endfor %}
       <!-- /Sections -->
 
-      <h1 id="SpecialSections"
-        class="border-bottom">
+      <h2 id="SpecialSections">
         Special Sections
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
 
       <p>
         Besides the normal <code>[default]</code> and <code>[node]</code> sections, Arkime supports several special config file sections.
@@ -527,12 +523,12 @@ wiseService:
 
       {% for sectionId in page.specialsections %}
         {% assign section = site.data.settings[sectionId] %}
-        <h2 id="{{sectionId}}">
+        <h3 id="{{sectionId}}">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{section.before}}
         {% if section.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -1390,13 +1386,12 @@ kekid2=Randomkekpassword2
       <!-- /PCAP at Rest Encryption -->
 
       <!-- Plugins -->
-      <h1 id="Plugins"
-        class="border-bottom">
+      <h2 id="Plugins">
         Plugins
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
 
       <p>
         Arkime supports several different plugins that can be added to the capture process.
@@ -1404,12 +1399,12 @@ kekid2=Randomkekpassword2
 
       {% for pluginId in page.plugins %}
         {% assign plugin = site.data.settings[pluginId] %}
-        <h2 id="{{pluginId}}">
+        <h3 id="{{pluginId}}">
           {{plugin.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{plugin.before}}
         {% if plugin.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -1451,13 +1446,12 @@ kekid2=Randomkekpassword2
       <!-- /Plugins -->
 
       <!-- High Performance Settings -->
-      <h1 id="high-performance-settings"
-        class="border-bottom">
+      <h2 id="high-performance-settings">
         High Performance Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Sample config items for max performance. Most of
         the defaults are fine. Reading
@@ -1545,13 +1539,12 @@ rules:
       <!-- /High Performance Settings -->
 
       <!-- Lab Settings -->
-      <h1 id="lab-settings"
-        class="border-bottom">
+      <h2 id="lab-settings">
         Lab Settings
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h1>
+      </h2>
       <p>
         Arkime by default is not configured to monitor low bandwidth networks.
         You'll want to update the configuration to have a better experience when
@@ -1578,8 +1571,7 @@ maxESConns=2
       <!-- /Lab Settings -->
 
       <!-- Cont3xt -->
-      <h1 id="cont3xt"
-        class="border-bottom">
+      <h1 id="cont3xt">
         Cont3xt
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -1601,12 +1593,12 @@ maxESConns=2
 
       {% for cont3xtId in page.cont3xt %}
         {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
-        <h2 id="{{cont3xtId}}-cont3xt">
+        <h3 id="{{cont3xtId}}-cont3xt">
           {{cont3xt.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{cont3xt.before}}
         {% if cont3xt.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -1648,8 +1640,7 @@ maxESConns=2
       <!-- /Cont3xt -->
 
       <!-- Parliament -->
-      <h1 id="parliament"
-        class="border-bottom">
+      <h1 id="parliament">
         Parliament
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -1665,12 +1656,12 @@ maxESConns=2
 
       {% for parliamentId in page.parliament %}
         {% assign parliament = site.data.parliament[parliamentId] %}
-        <h2 id="{{parliamentId}}-parliament">
+        <h3 id="{{parliamentId}}-parliament">
           {{parliament.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{parliament.before}}
         {% if parliament.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
@@ -1712,8 +1703,7 @@ maxESConns=2
       <!-- /Parliament -->
 
       <!-- wiseService -->
-      <h1 id="wiseService"
-        class="border-bottom">
+      <h1 id="wiseService">
         WISE Service
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
@@ -1734,12 +1724,12 @@ maxESConns=2
 
       {% for wiseServiceId in page.wiseService %}
         {% assign wiseService = site.data.wise[wiseServiceId] %}
-        <h2 id="{{wiseServiceId}}-wise">
+        <h3 id="{{wiseServiceId}}-wise">
           {{wiseService.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
           </span>
-        </h2>
+        </h3>
         {{wiseService.before}}
         {% if wiseService.settings %}
           <table class="table table-sm table-striped table-striped-secondary">
