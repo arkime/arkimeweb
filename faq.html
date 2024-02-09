@@ -2178,6 +2178,9 @@ logger.action.level = info</code></pre>
             </li>
           </ol>
         </li>
+        <li>
+          Sometimes switching to the Arkime <a href="settings#reader-afpacket">AFPacket read method</a> will fix the issue.
+        </li>
       </ol>
       <p>
         There are two workarounds:
@@ -2186,11 +2189,11 @@ logger.action.level = info</code></pre>
         <li>
           If you are reading from a file you can set
           <a href="/settings#readtruncatedpackets"><code>readTruncatedPackets=true</code></a> in the config file, this is
-          the only solution for saved .pcap files
+          the only solution for saved .pcap files. Arkime doesn't support this option for live captures.
         </li>
         <li>
           You can increase the max packet length with <a href="/settings#snaplen"><code>snapLen=65536</code></a>
-          in the config file, this is not recommended
+          in the config file, this is not recommended.
         </li>
       </ol>
 
