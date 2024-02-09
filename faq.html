@@ -2139,7 +2139,7 @@ logger.action.level = info</code></pre>
       <p>
         When you get an error about the capture length not matching the packet
         length, it is <strong>NOT</strong> an issue with Arkime. The issue is
-        with the network card settings.
+        with the network card settings OR how the pcap file was created.
       </p>
       <p>
         By default modern network cards offload work that the CPUs would need to
@@ -2183,18 +2183,13 @@ logger.action.level = info</code></pre>
         </li>
       </ol>
       <p>
-        There are two workarounds:
+        Workarounds:
       </p>
       <ol>
-        <li>
-          If you are reading from a file you can set
-          <a href="/settings#readtruncatedpackets"><code>readTruncatedPackets=true</code></a> in the config file, this is
-          the only solution for saved .pcap files. Arkime doesn't support this option for live captures.
-        </li>
-        <li>
-          You can increase the max packet length with <a href="/settings#snaplen"><code>snapLen=65536</code></a>
-          in the config file, this is not recommended.
-        </li>
+        <li>For offline pcap files, make sure they were created without a snaplen, for example with tcpdump use <code>-s 0</code>.</li>
+        <li>For offline pcap files, you can set <a href="/settings#readtruncatedpackets"><code>readTruncatedPackets=true</code></a> in the config file, most protocol parsing in Arkime will not work.</li>
+        <li>(Since 5.0.1) For live pcap capture, you can set <a href="/settings#readtruncatedpackets"><code>readTruncatedPackets=true</code></a> in the config file.</li>
+        <li>For both offline and live capture you can increase the max packet length with <a href="/settings#snaplen"><code>snapLen=65536</code></a> in the config file, this is not recommended.</li>
       </ol>
 
       <h3 class="subsection"id="why-am-i-dropping-packets">
