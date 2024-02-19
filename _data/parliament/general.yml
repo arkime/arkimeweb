@@ -10,6 +10,26 @@ before: |
     basic passworth auth has been disabled for Parliament.
   </p>
 
+after: |
+  <p>
+    Sample configuration:
+    <pre>
+  [parliament]
+  # Where to store issues
+  file=../etc/parliament.dev.json
+
+  # Port to listen on
+  #port=8008
+
+  ### Parliament supports authentication like viewer/cont3xt, make sure to use the same settings across all tools
+  #usersElasticsearch=http://localhost:9200
+  #usersPrefix=arkime
+  #authMode=digest
+  #passwordSecret=password
+  #httpRealm=Moloch</pre>
+  </p>
+
+
 settings:
   - key: file
     value: REQUIRED
