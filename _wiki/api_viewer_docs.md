@@ -11,7 +11,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
 | dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
 | baselineDate | <code>number</code> | <code>0</code> | The baseline date range to compare connections against. Default is 0, disabled. Options include:      1x - 1 times query range.      2x - 2 times query range.      4x - 4 times query range.      6x - 6 times query range.      8x - 8 times query range.      10x - 10 times query range.      1 - 1 hour.      6 - 6 hours.      24 - 1 day.      48 - 2 days.      72 - 3 days.      168 - 1 week.      336 - 2 weeks.      720 - 1 month.      1440 - 2 months.      4380 - 6 months.      8760 - 1 year. |
@@ -37,7 +37,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links in csv
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | srcField | <code>string</code> | <code>&quot;ip.src&quot;</code> | The source database field name |
 | dstField | <code>string</code> | <code>&quot;ip.dst:port&quot;</code> | The destination database field name |
 
@@ -174,7 +174,7 @@ Creates a new hunt.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions. |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 | totalSessions | <code>number</code> | The number of sessions to search. |
 | name | <code>string</code> | The name of the hunt (not unique). |
 | size | <code>number</code> | The number of packets to search within each session. |
@@ -418,21 +418,6 @@ Retrieves the filesize of a PCAP file.
 | --- | --- | --- |
 | filesize | <code>number</code>| The size of the file ( |
 
-<a name="/title"></a>
-
-## /title API
-
-GET - /api/title
-
-Retrieves the browser page title for the Arkime app.
-Configure it using <a href="https://arkime.com/settings#titletemplate">the titleTemplate setting</a>
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| title | <code>string</code>| The title of the app based on the configured setting. |
-
 <a name="/valueactions"></a>
 
 ## /valueactions API
@@ -557,14 +542,14 @@ eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, field
 
 POST/GET - /api/buildquery
 
-Builds an elasticsearch session query and returns the query and the elasticsearch indices to the client.
+This API allows you to build the query that Arkime viewer would use so you can use yourself against OpenSearch/Elasticsearch.
 
 
 **Parameters**:
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 
 **Returns**:
 
@@ -573,20 +558,25 @@ Builds an elasticsearch session query and returns the query and the elasticsearc
 | query | <code>object</code>| The elasticsearch query |
 | indices | <code>object</code>| The elasticsearch indices that contain sessions in this query |
 
+**Example**  
+```js
+Returns the OpenSearch/Elasticsearch query for all the sessions with the source IP of 1.2.3.4
+  curl -v 'http://localhost:8005/api/buildquery?date=-1&expression=ip.src%3D%3D1.2.3.4'
+```
 <a name="/sessions"></a>
 
 ## /sessions API
 
-POST/GET - /api/sessions
+POST/GET - /api/sessions OR /sessions.json
 
-Builds an elasticsearch session query. Gets a list of sessions and returns them to the client.
+Return all the JSON formatted session data based on the query parameters.
 
 
 **Parameters**:
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 
 **Returns**:
 
@@ -598,13 +588,18 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | recordsTotal | <code>number</code>| The total number of sessions Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of sessions matching query |
 
+**Example**  
+```js
+Returns all the sessions with the source IP of 1.2.3.4
+  curl -v 'http://localhost:8005/api/sessions?date=-1&expression=ip.src%3D%3D1.2.3.4'
+```
 <a name="/sessions/csv"></a>
 
 ## /sessions/csv API
 
-POST/GET - /api/sessions/csv OR /api/sessions.csv
+POST/GET - /api/sessions/csv OR /sessions.csv
 
-Builds an elasticsearch session query. Gets a list of sessions and returns them as CSV to the client.
+Return all the JSON formatted session data based on the query parameters.
 
 
 **Parameters**:
@@ -612,7 +607,7 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | Param | Type | Description |
 | --- | --- | --- |
 | ids | <code>string</code> | Comma separated list of sessions to retrieve |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions, only used if ids isn't provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 
 **Returns**:
 
@@ -620,6 +615,11 @@ Builds an elasticsearch session query. Gets a list of sessions and returns them 
 | --- | --- | --- |
 | csv | <code>csv</code>| The csv with the sessions requested |
 
+**Example**  
+```js
+Returns all the sessions with the source IP of 1.2.3.4
+  curl -v 'http://localhost:8005/api/sessions/csv?date=-1&expression=ip.src%3D%3D1.2.3.4'
+```
 <a name="/spiview"></a>
 
 ## /spiview API
@@ -633,7 +633,7 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 | spi | <code>string</code> | Comma separated list of db fields to return. Optionally can be followed by :{count} to specify the number of values returned for the field (defaults to 100). |
 
 **Returns**:
@@ -647,6 +647,11 @@ Builds an elasticsearch session query. Gets a list of field values with counts a
 | recordsTotal | <code>number</code>| The total number of sessions Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of sessions matching query |
 
+**Example**  
+```js
+Returns first 100 unique values for the destination.ip field for last 10 hours
+  curl -v 'http://localhost:8005/api/spiview?spi=destination.ip:200&date=10
+```
 <a name="/spigraph"></a>
 
 ## /spigraph API
@@ -660,7 +665,7 @@ Builds an elasticsearch session query. Gets a list of values for a field with co
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | exp | <code>string</code> |  | The expression field to return data for. Either exp or field is required, field is given priority if both are present. |
 | field | <code>string</code> | <code>&quot;node&quot;</code> | The database field to return data for. Either exp or field is required, field is given priority if both are present. |
 
@@ -687,7 +692,7 @@ Builds an elasticsearch session query. Gets a list of values for each field with
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | exp | <code>string</code> |  | Comma separated list of db fields to populate the graph/table. |
 | strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
 
@@ -711,7 +716,7 @@ Builds an elasticsearch session query. Gets a list of unique field values (with 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
 | exp | <code>string</code> |  | The expression field to return unique data for. Either exp or field is required, field is given priority if both are present. |
 | field | <code>string</code> |  | The database field to return unique data for. Either exp or field is required, field is given priority if both are present. |
@@ -735,7 +740,7 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
 | exp | <code>string</code> |  | Comma separated list of expression fields to return unique data for. |
 
@@ -788,7 +793,7 @@ Add tag(s) to individual session(s) by id or by query.
 | --- | --- | --- | --- |
 | tags | <code>string</code> |  | Comma separated list of tags to add to session(s) |
 | ids | <code>string</code> |  | Comma separated list of sessions to add tag(s) to |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | segments | <code>string</code> | <code>&quot;no&quot;</code> | Whether to add tags to linked session segments. Default is no. Options include:      no - Don't add tags to linked segments      all - Add tags to all linked segments      time - Add tags to segments occurring in the same time period |
 
 **Returns**:
@@ -813,7 +818,7 @@ Removes tag(s) from individual session(s) by id or by query.
 | --- | --- | --- | --- |
 | tags | <code>string</code> |  | Comma separated list of tags to remove from session(s) |
 | ids | <code>string</code> |  | Comma separated list of sessions to remove tag(s) from |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids is provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | segments | <code>string</code> | <code>&quot;no&quot;</code> | Whether to remove tags from linked session segments. Default is no. Options include:      no - Don't remove tags from linked segments      all - Remove tags from all linked segments      time - Remove tags from segments occurring in the same time period |
 
 **Returns**:
@@ -865,7 +870,7 @@ Retrieve the raw session data in pcap format.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | ids | <code>string</code> |  | The list of ids to return sessions for |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
 
 **Returns**:
@@ -874,6 +879,11 @@ Retrieve the raw session data in pcap format.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAP file with the sessions requested |
 
+**Example**  
+```js
+Returns pcap for sessions with the source IP of 1.2.3.4
+  curl -v 'http://localhost:8005/api/sessions/pcap/anyfilename.pcap?date=-1&expression=ip.src%3D%3D1.2.3.4'
+```
 <a name="/sessions/pcapng"></a>
 
 ## /sessions/pcapng API
@@ -888,7 +898,7 @@ Retrieve the raw session data in pcapng format.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | ids | <code>string</code> |  | The list of ids to return sessions for |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | segments | <code>boolean</code> | <code>false</code> | When set return linked segments |
 
 **Returns**:
@@ -897,41 +907,13 @@ Retrieve the raw session data in pcapng format.
 | --- | --- | --- |
 |  | <code>pcap</code>| A PCAPNG file with the sessions requested |
 
-<a name="/session/_nodeName/_id/pcap"></a>
-
-## /session/:nodeName/:id/pcap API
-
-GET - /api/session/:nodeName/:id/pcap OR /api/session/:nodeName/:id.pcap
-
-Retrieve the raw session data in pcap format from a specific node.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>pcap</code>| A PCAP file with the session requested |
-
-<a name="/session/_nodeName/_id/pcapng"></a>
-
-## /session/:nodeName/:id/pcapng API
-
-GET - /api/session/:nodeName/:id/pcapng OR /api/session/:nodeName/:id.pcapng
-
-Retrieve the raw session data in pcapng format from a specific node.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>pcap</code>| A PCAPNG file with the session requested |
-
 <a name="/session/entire/_nodeName/_id/pcap"></a>
 
 ## /session/entire/:nodeName/:id/pcap API
 
 GET - /api/session/entire/:nodeName/:id/pcap OR /api/session/entire/:nodeName/:id.pcap
 
-Retrieve the entire pcap for a session.
+Retrieve the pcap for a session given the session id and node name.
 
 **Returns**:
 
@@ -945,7 +927,7 @@ Retrieve the entire pcap for a session.
 
 GET - /api/session/raw/:nodeName/:id/png OR /api/session/raw/:nodeName/:id.png
 
-Retrieve a bitmap image representation of packets in a session.
+Retrieve a bitmap image representation of packets in a session given the session id and node name.
 
 
 **Parameters**:
@@ -966,7 +948,7 @@ Retrieve a bitmap image representation of packets in a session.
 
 GET - /api/session/raw/:nodeName/:id
 
-Retrieve raw packets for a session.
+Retrieve raw packets for a session given the session id and node name.
 
 
 **Parameters**:
@@ -994,7 +976,7 @@ Retrieve a file given a hash of that file.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 
 **Returns**:
 
@@ -1015,7 +997,7 @@ Retrieve a file from a specific node given a hash of that file.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
 
 **Returns**:
 
@@ -1037,7 +1019,7 @@ Delete SPI and/or scrub PCAP data (remove persmission required).
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | ids | <code>string</code> |  | Comma separated list of sessions to delete |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) |  | The request query to filter sessions, only used if ids isn't provided |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | removeSpi | <code>string</code> | <code>false</code> | Whether to remove the SPI data. |
 | removePcap | <code>string</code> | <code>true</code> | Whether to remove the PCAP data. |
 
@@ -1124,13 +1106,14 @@ Updates a shortcut.
 | description | <code>string</code> | The optional description of this shortcut. |
 | users | <code>string</code> | A comma separated list of users that can view this shortcut. |
 | roles | <code>Array</code> | The roles that can view this shortcut. |
+| editRoles | <code>Array</code> | The roles that can edit this shortcut. |
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
 | shortcut | [<code>Shortcut</code>](#Shortcut)| The updated shortcut object. |
-| success | <code>boolean</code>| Whether the upate shortcut operation was successful. |
+| success | <code>boolean</code>| Whether the update operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/shortcut/_id"></a>
@@ -1154,7 +1137,7 @@ Deletes a shortcut.
 
 GET - /api/eshealth
 
-Retrive OpenSearch/Elasticsearch health and stats
+Retrieve OpenSearch/Elasticsearch health and stats
 There is no auth necessary to retrieve eshealth
 
 **Returns**:
@@ -1895,29 +1878,6 @@ Updates an Arkime view.
 | success | <code>boolean</code>| Whether the update view operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="ShortcutAPIs."></a>
-
-## ShortcutAPIs.(shortcut) (function)
-
-Normalizes the data in a shortcut by turning values and users string to arrays
-and removing the type parameter and replacing it with `type: values`
-Also validates that the users added to the shortcut are valid within the system
-NOTE: Mutates the shortcut direclty
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| shortcut | [<code>Shortcut</code>](#Shortcut) | The shortcut to normalize |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| {type, values, invalidusers} | <code>Object</code>| The shortcut type (ip, string, number),
-                                                 array of values, and list of invalid users |
-
 <a name="ArkimeQuery"></a>
 
 ## ArkimeQuery Type
@@ -1940,12 +1900,15 @@ A query to be run periodically that can perform actions on sessions that match t
 | creator | <code>string</code> |  | The id of the user that created this query. |
 | tags | <code>string</code> |  | A comma separated list of tags to add to each session that matches this query. |
 | notifier | <code>string</code> |  | The name of the notifier to alert when there are matches for this query. |
-| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 mintues. Format is seconds since Unix EPOC. |
+| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 minutes. Format is seconds since Unix EPOC. |
 | lastNotifiedCount | <code>number</code> |  | The count of sessions that matched since the last notification was sent. |
 | description | <code>string</code> |  | The description of this query. |
 | created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOC. |
 | lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOC. |
 | lastToggledBy | <code>string</code> |  | The user who last enabled or disabled this query. |
+| users | <code>string</code> |  | The list of userIds who have access to use this query. |
+| roles | <code>string</code> |  | The list of roles who have access to use this query. |
+| editRoles | <code>string</code> |  | The list of roles who have access to edit this query. |
 
 <a name="History"></a>
 
@@ -1980,6 +1943,13 @@ The history object to describe user client requests.
 
 A packet search job that allows users to search within session packets for text.
 
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
+
 **Properties**
 
 | Name | Type | Description |
@@ -2000,7 +1970,6 @@ A packet search job that allows users to search within session packets for text.
 | created | <code>number</code> | The time that the hunt was created. Format is seconds since Unix EPOC. |
 | lastUpdated | <code>number</code> | The time that the hunt was last updated in the DB. Used to only update every 2 seconds. Format is seconds since Unix EPOC. |
 | started | <code>number</code> | The time that the hunt was started (put into running state). Format is seconds since Unix EPOC. |
-| query | [<code>SessionsQuery</code>](#SessionsQuery) | The request query to filter sessions. |
 | errors | <code>array</code> | The list of errors that a hunt encountered. A hunt error includes:      value - The error text to display to the user.      time - The time the error was encountered.      node - The Arkime node that the hunt was searching sessions for when the error occurred. |
 | notifier | <code>string</code> | The otional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
 | unrunnable | <code>boolean</code> | Whether an error has rendered the hunt unrunnable. |
@@ -2010,30 +1979,30 @@ A packet search job that allows users to search within session packets for text.
 
 <a name="SessionsQuery"></a>
 
-## SessionsQuery Type
+## SessionsQuery Parameter List
 
-The query params to build an OpenSearch/Elasticsearch sessions query.
-
-For long expressions use POST for client requests to the server.
-When using POST the request body and request query are merged. Any duplicate parameters use the request body parameter.
+Many Arkime Session requests support a standard set of query parameters.
+These parameters can be used to filter and sort the returned data.
+For large queries, prefer the POST method to avoid URL length limits, which allows you to include parameters in the request body (these override any URL duplicates).
+Ensure parameters with special characters are URL encoded when placed in the URL.
 
 
 **Parameters**:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| date | <code>number</code> | <code>1</code> | The number of hours of data to return (-1 means all data). Defaults to 1 |
-| expression | <code>string</code> |  | The search expression string |
-| facets | <code>number</code> | <code>0</code> | 1 = include the aggregation information for maps and timeline graphs. Defaults to 0 |
-| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 100, Max is 2,000,000 |
-| start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
+| date | <code>number</code> | <code>1</code> | Perform the search from a specified number of hours ago until the present moment, where '-1' indicates searching all available data. |
+| expression | <code>string</code> |  | The search expression string, ensure URL encoded |
+| facets | <code>number</code> | <code>0</code> | 1 = include the aggregation information for maps and timeline graphs. |
+| length | <code>number</code> | <code>100</code> | The number of items to return, beginning at start parameter, max is 2,000,000 |
+| start | <code>number</code> | <code>0</code> | The entry to start at for pagination purposes. |
 | startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOC. |
 | stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
-| view | <code>string</code> |  | The view name to apply before the expression. |
+| view | <code>string</code> |  | The Arkime view name to apply before the expression. |
 | order | <code>string</code> |  | Comma separated list of db field names to sort on. Data is sorted in order of the list supplied. Optionally can be followed by :asc or :desc for ascending or descending sorting. |
 | fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, client.bytes, server.bytes, firstPacket, lastPacket, source.ip, source.port, destination.ip, destination.port, network.packets, source.packets, destination.packets, network.bytes, source.bytes, destination.bytes, node, http.uri, source.geo.country_iso_code, destination.geo.country_iso_code, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel, http.xffGEO |
 | bounding | <code>string</code> | <code>&quot;last&quot;</code> | Query sessions based on different aspects of a session's time. Options include:      'first' - First Packet: the timestamp of the first packet received for the session.      'last' - Last Packet: The timestamp of the last packet received for the session.      'both' - Bounded: Both the first and last packet timestamps for the session must be inside the time window.      'either' - Session Overlaps: The timestamp of the first packet must be before the end of the time window AND the timestamp of the last packet must be after the start of the time window.      'database' - Database: The timestamp the session was written to the database. This can be up to several minutes AFTER the last packet was received. |
-| strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+| strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bounding to 'both' |
 
 <a name="Shortcut"></a>
 
@@ -2052,8 +2021,9 @@ The shortcut object to store lists of values that can be used in search queries.
 | number | <code>Array.&lt;number&gt;</code> |  | A list of number values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
 | ip | <code>Array.&lt;string&gt;</code> |  | A list of ip values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
 | string | <code>Array.&lt;string&gt;</code> |  | A list of string values to use as the shortcut value. A shortcut must contain a list of numbers, strings, or ips. |
-| users | <code>Array.&lt;string&gt;</code> |  | A list of userIds that have access to this shortcut. |
+| users | <code>string</code> |  | A list of userIds that have access to this shortcut. |
 | roles | <code>Array.&lt;string&gt;</code> |  | A list of Arkime roles that have access to this shortcut. |
+| editRoles | <code>Array.&lt;string&gt;</code> |  | A list of Arkime roles that have edit access to this shortcut. |
 | locked | <code>boolean</code> | <code>false</code> | Whether the shortcut is locked and must be updated using the db.pl script (can't be updated in the web application user interface). |
 
 <a name="ESHealth"></a>
@@ -2193,11 +2163,7 @@ A database view that can be applied to any search.
 | expression | <code>string</code> | The search expression to filter sessions. |
 | sessionsColConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig) | The Sessions column configuration to apply to the Sessions table when applying the view. |
 | user | <code>string</code> | The user ID of the user who created the view. |
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| users | <code>Arrray</code> | The list of userIds who have access to use this view. |
-| roles | <code>Array</code> | The list of roles who have access to use this view. |
+| users | <code>string</code> | The list of userIds who have access to use this view. |
+| roles | <code>Array.&lt;string&gt;</code> | The list of roles who have access to use this view. |
+| editRoles | <code>Array.&lt;string&gt;</code> | The list of roles who have access to edit this view. |
 

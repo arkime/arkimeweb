@@ -127,6 +127,7 @@ Fetches integration data
 | query | <code>string</code> | The string to query integrations |
 | doIntegrations | <code>Array.&lt;string&gt;</code> | A list of integration names to query |
 | skipCache | <code>boolean</code> | Ignore any cached data and query all integrations again |
+| skipChildren | <code>boolean</code> | Don't query integrations for sub-indicators |
 | tags | <code>Array.&lt;string&gt;</code> | Tags applied at the time of search |
 | viewId | <code>string</code> \| <code>undefined</code> | The ID of the view at the time of search (if any) |
 
@@ -583,7 +584,6 @@ Initialize the Integrations subsystem
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| options.debug | <code>number</code> | <code>0</code> | The debug level to use for Integrations |
 | options.cache | <code>object</code> |  | The ArkimeCache implementation |
 | options.getConfig | <code>function</code> |  | function used to get configuration items |
 | options.integrationsPath | <code>string</code> | <code>&quot;__dirname/integrations/&quot;</code> | Where to find the integrations |
@@ -616,7 +616,7 @@ The classification of the search string
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| itype | <code>string</code> | <code>&quot;\&quot;text\&quot;&quot;</code> | The type of the search                                ip, domain, url, email, phone, hashes, or text |
+| itype | <code>string</code> | <code>&quot;\&quot;text\&quot;&quot;</code> | The type of the search                                ip, domain, url, email, phone, hash, or text |
 
 <a name="DataChunkPurpose"></a>
 
@@ -639,12 +639,13 @@ An chunk of data returned from searching integrations
 | --- | --- | --- |
 | purpose | [<code>DataChunkPurpose</code>](#DataChunkPurpose) | String discriminator to indicate the use of this data chunk |
 | text | <code>string</code> | The message describing the error (on purpose: 'error') |
-| indicator | <code>Cont3xtIndicator</code> | The itype and query that correspond to this chunk of data (all purposes except: 'finish' and 'error') |
+| indicators | <code>Array.&lt;Cont3xtIndicator&gt;</code> | The deduped, top-level indicators searched, given in search-order (purpose: 'init') |
+| indicator | <code>Cont3xtIndicator</code> | The itype and query that correspond to this chunk of data (all purposes except: 'init', 'finish', and 'error') |
 | total | <code>number</code> | The total number of integrations to query |
 | sent | <code>number</code> | The number of integration results that have completed and been sent to the client |
 | name | <code>string</code> | The name of the integration result within the chunk (purpose: 'data') |
 | data | <code>object</code> | The data from the integration query (purpose: 'data'). This varies based upon the integration. The <a href="#integrationcard-type">IntegrationCard</a> describes how to present this data to the user. |
-| parentIndicator | <code>Cont3xtIndicator</code> | The indicator that caused this integration/query to be run, or undefined if this is a root-level query (purpose: 'link') |
+| parentIndicator | <code>Cont3xtIndicator</code> | The indicator that caused this integration/query to be run (purpose: 'link') |
 | enhanceInfo | <code>object</code> | Curated data contributed from an integration to an indicator of a separate query (purpose: 'enhance') |
 
 <a name="IntegrationSetting"></a>

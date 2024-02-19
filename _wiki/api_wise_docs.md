@@ -28,7 +28,9 @@ Sources need to
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
     * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
     * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
+    * [.parseJSONArray(body, setCb, endCB)](#WISESource+parseJSONArray)
     * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+    * [.parseJSONL(body, setCb, endCB)](#WISESource+parseJSONL)
     * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
     * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
 
@@ -166,6 +168,22 @@ Util function to parse tagger formatted data
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 
+<a name="WISESource+parseJSONArray"></a>
+
+### simpleSource.parseJSONArray(body, setCb, endCB) (function)
+
+Util function to parse JSON formatted data
+
+**Overrides**: [<code>parseJSONArray</code>](#WISESource+parseJSONArray)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw JSON data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
 <a name="WISESource+parseJSON"></a>
 
 ### simpleSource.parseJSON(body, setCb, endCB) (function)
@@ -179,6 +197,22 @@ Util function to parse JSON formatted data
 | Param | Type | Description |
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSON data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSONL"></a>
+
+### simpleSource.parseJSONL(body, setCb, endCB) (function)
+
+Util function to parse JSONL formatted data
+
+**Overrides**: [<code>parseJSONL</code>](#WISESource+parseJSONL)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw JSONL data |
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 
@@ -224,9 +258,9 @@ When sources are created they get an api object to interact with the wise servic
     * _instance_
         * [.debug](#WISESourceAPI+debug) : <code>integer</code>
         * [.insecure](#WISESourceAPI+insecure) : <code>boolean</code>
-        * [.getConfig(section, sectionKey, [default])](#WISESourceAPI+getConfig) ⇒ <code>string</code>
-        * [.getConfigSections()](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
-        * [.getConfigSection(section)](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
+        * [.getConfig](#WISESourceAPI+getConfig) ⇒ <code>string</code>
+        * [.getConfigSections](#WISESourceAPI+getConfigSections) ⇒ <code>string</code> \| <code>Array</code>
+        * [.getConfigSection](#WISESourceAPI+getConfigSection) ⇒ <code>object</code>
         * [.addField(field)](#WISESourceAPI+addField)
         * [.addView(viewName, view)](#WISESourceAPI+addView)
         * [.addSource(section, src, types)](#WISESourceAPI+addSource)
@@ -252,7 +286,7 @@ Is wiseService running in insecure mode
 
 <a name="WISESourceAPI+getConfig"></a>
 
-### wiseSourceAPI.getConfig(section, sectionKey, [default]) (function)
+### wiseSourceAPI.getConfig (member)
 
 Get from the config section a value or default
 
@@ -273,7 +307,7 @@ Get from the config section a value or default
 
 <a name="WISESourceAPI+getConfigSections"></a>
 
-### wiseSourceAPI.getConfigSections() (function)
+### wiseSourceAPI.getConfigSections (member)
 
 Get a list of all the sections in the config file
 
@@ -285,7 +319,7 @@ Get a list of all the sections in the config file
 
 <a name="WISESourceAPI+getConfigSection"></a>
 
-### wiseSourceAPI.getConfigSection(section) (function)
+### wiseSourceAPI.getConfigSection (member)
 
 Get the full config for a section
 
@@ -451,7 +485,9 @@ All sources need to have the WISESource as their top base class.
         * [.parseFieldDef(line)](#WISESource+parseFieldDef)
         * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
         * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
+        * [.parseJSONArray(body, setCb, endCB)](#WISESource+parseJSONArray)
         * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
+        * [.parseJSONL(body, setCb, endCB)](#WISESource+parseJSONL)
         * [.itemCount()](#WISESource+itemCount) ⇒ <code>integer</code>
         * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
         * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
@@ -557,6 +593,21 @@ Util function to parse tagger formatted data
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 
+<a name="WISESource+parseJSONArray"></a>
+
+### wiseSource.parseJSONArray(body, setCb, endCB) (function)
+
+Util function to parse JSON formatted data
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw JSON data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
 <a name="WISESource+parseJSON"></a>
 
 ### wiseSource.parseJSON(body, setCb, endCB) (function)
@@ -569,6 +620,21 @@ Util function to parse JSON formatted data
 | Param | Type | Description |
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSON data |
+| setCb | <code>function</code> | the function to call for each row found |
+| endCB | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSONL"></a>
+
+### wiseSource.parseJSONL(body, setCb, endCB) (function)
+
+Util function to parse JSONL formatted data
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| body | <code>string</code> | the raw JSONL data |
 | setCb | <code>function</code> | the function to call for each row found |
 | endCB | <code>function</code> | all done parsing |
 

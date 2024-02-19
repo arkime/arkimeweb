@@ -152,6 +152,14 @@ Retrieves a list of users (admin only).
 | recordsTotal | <code>number</code>| The total number of users. |
 | recordsFiltered | <code>number</code>| The number of users returned in this result. |
 
+<a name="/users/csv"></a>
+
+## /users/csv API
+
+POST - /api/users/csv
+
+Retrieves a list of users (admin only).
+
 <a name="/users/min"></a>
 
 ## /users/min API
@@ -241,6 +249,7 @@ Updates whether a user has a certain role (admin & roleAssigners only).
 POST - /api/user/password
 
 Update user password.
+NOTE: currentPassword is not required so that a usersAdmin can update anyone user's password.
 
 **Returns**:
 
@@ -248,26 +257,6 @@ Update user password.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the update password operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="Notifier."></a>
-
-## Notifier.(type, fields) (function)
-
-Checks that the notifier type is valid and the required fields are filled out
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | The type of notifier that is being checked |
-| fields | <code>Array</code> | The list of fields to be checked against the type of notifier                         to determine that all the required fields are filled out |
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-|  | <code>string</code> \| <code>undefined</code>| String message to describe check error or undefined if all is good |
 
 <a name="Notifier"></a>
 
@@ -332,8 +321,6 @@ The Arkime user object.
 | disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
 | expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
 | settings | <code>ArkimeSettings</code> |  | The Arkime app settings. |
-| views | <code>object</code> |  | A list of views that the user can apply to their search. |
-| notifiers | <code>object</code> |  | A list of notifiers taht the user can use. |
 | columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
 | spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
 | tableStates | <code>object</code> |  | A list of table states used to render Arkime tables as the user has configured them. |
