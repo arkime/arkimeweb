@@ -113,14 +113,6 @@ settings:
       See <a href="/faq#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">How do viewers find each other</a>.
       It is much better to use FQDNs on capture nodes, or start capture with the --host option.
 
-  - key: webBasePath
-    value: "/"
-    text: |
-      The base url for Arkime web requests.
-      Must end with a / or bad things will happen.
-      This setting is meant to be used when using a reverse proxy talking to multiviewer or central viewers.
-      Do not set in the [default] section, only in a section that matches the node name of the multiviewer/central viewer.
-
   - key: arkimeWebURL
     value: "http[s]://hostName:[viewPort]/[webBasePath]"
     text: |

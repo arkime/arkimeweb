@@ -10,8 +10,11 @@ settings:
   - key: webBasePath
     value: "/"
     text: |
-      The base url for web requests to the application.
-      Must end with a / or bad things will happen.
+      When configuring Arkime behind a reverse proxy, it's essential to specify the <code>webBasePath</code> to ensure correct request routing and cookie management.
+      For instance, if Arkime is accessed via <code>https://example.com/arkime</code>, set <code>webBasePath=/arkime/</code> to direct requests appropriately.
+      This setting must include a trailing slash (/) to avoid issues.
+      It's also recommended to strip this base path in the reverse proxy configuration to ensure seamless integration.
+      <strong>Note:</strong> Avoid setting <code>webBasePath</code> in the <code>[default]</code> section for viewer configurations; it should only be applied in the node-specific sections.
 
   - key: certFile
     value: EMPTY
