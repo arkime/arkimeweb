@@ -1,0 +1,252 @@
+---
+title: Downloads - OLD
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Download Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Arkime downloads" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com/downloads" />
+  <meta property="og:description" content="Arkime downloads" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="Arkime downloads" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com/downloads" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- parseXML function -->
+  <script src="downloads.js"></script>
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <!-- container -->
+  <div class="downloads-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+    <div class="container">
+
+      <!-- info btns -->
+      <div class="row mb-4 mt-4">
+        <div class="col d-flex justify-content-between">
+          <a class="btn btn-outline-danger btn-lg btn-fw mb-2"
+            href="https://s3.amazonaws.com/files.molo.ch/NOTICE.txt">
+            NOTICE
+          </a>
+          <a class="btn btn-outline-primary btn-lg btn-fw mb-2"
+            href="https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG">
+            CHANGELOG
+          </a>
+          <a class="btn btn-outline-info btn-lg btn-fw mb-2"
+            href="https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt">
+            Instructions
+          </a>
+          <a data-toggle="tooltip"
+            href="javascript:void(0)"
+            onclick="toggleLatestCommit()"
+            title="Feeling adventurous?"
+            class="btn btn-outline-warning btn-lg btn-fw mb-2">
+            Latest Commit
+          </a>
+        </div>
+      </div> <!-- /info btns -->
+
+      <!-- downloads loading -->
+      <div class="jumbotron loading-downloads text-center display-4 d-flex justify-content-center">
+        <div class="loading-letter">L</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">A</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">I</div>
+        <div class="loading-letter">N</div>
+        <div class="loading-letter">G</div>
+        <div class="loading-letter">&nbsp;&nbsp;</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">W</div>
+        <div class="loading-letter">N</div>
+        <div class="loading-letter">L</div>
+        <div class="loading-letter">O</div>
+        <div class="loading-letter">A</div>
+        <div class="loading-letter">D</div>
+        <div class="loading-letter">S</div>
+      </div>
+      <!-- /downloads loading -->
+
+      <!-- download error -->
+      <div style="display:none;"
+        class="jumbotron text-center downloads-error mt-5 mb-5 pb-5">
+        <h4 class="primary-theme-text lead lead-lg">
+          <span class="fa fa-frown-o fa-lg mr-2 text-muted"></span>
+          Sorry, we couldn't retrieve Arkime downloads.
+          <span class="fa fa-frown-o fa-lg ml-2 text-muted"></span>
+          <br>
+          Please try again later.
+        </h4>
+        <p class="lead lead-sm">
+          Meanwhile, view Arkime on
+          <a href="https://github.com/arkime/arkime"
+            class="no-decoration">
+            GitHub</a>.
+        </p>
+      </div>
+      <!-- /download error -->
+
+      <div class="alert alert-warning">This page is going away 3/1/2024. Please start using our <a href="https://github.com/arkime/arkime/releases">releases page</a> or <a href="https://github.com/arkime/arkime/releases/tag/last-commit">latest commit page</a>.</div>
+
+      <!-- latest commit downloads -->
+      <div
+        id="latestCommitAccordion"
+        class="accordion latest-commit">
+        <span class="acommit-downloads"></span>
+        <span class="mcommit-downloads"></span>
+        <!-- <span class="acommit5-downloads"></span> -->
+        <hr>
+      </div>
+      <!-- /latest commit downloads -->
+
+      <!-- all downloads -->
+      <div
+        id="downloadsAccordion"
+        style="margin-bottom:200px"
+        class="accordion main-downloads">
+      </div>
+      <!-- /all downloads -->
+
+    </div>
+
+    <!-- upgrade warnings -->
+    <div role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+      style="z-index: 2000; bottom: 27px;"
+      class="alert pb-4 position-fixed fixed-bottom m-0 rounded-0 alert-dismissible alert-secondary">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Arkime 4 requires ES 7.10+</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#how-do-i-upgrade-elasticsearch">
+              How do I upgrade OpenSearch/Elasticsearch?
+            </a>
+            answer in the FAQ.
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>From Arkime 3 To Arkime 4</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#how_do_i_upgrade_to_arkime_4">
+              How do I upgrade to Arkime 4
+            </a>
+            answer in the FAQ.
+            <br>
+            <em>
+              Upgrading to 4 requires at least ES 7.10 and a DB upgrade.
+            </em>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Arkime/Moloch Hybrid</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            The <strong>Hybrid</strong> downloads still use the old
+            Moloch binary names but have the Arkime branding.
+            The <strong>Arkime</strong> downloads use new binary
+            names and disk layout (<code>/opt/arkime</code>).
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <p class="lead mb-0">
+            <strong>Installing MaxMind</strong>
+          </p>
+          <p class="lead lead-sm mb-0">
+            Read the
+            <a class="no-decoration"
+              href="faq#maxmind">
+              How to install MaxMind DB
+            </a>
+            answer in the FAQ.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /upgrade warnings -->
+
+  </div> <!-- /container -->
+
+  <!-- footer -->
+  <div style="z-index: 3000;"
+    class="position-fixed fixed-bottom solid-footer">
+    {%- include footer.html -%}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    let latestCommitVisible = false;
+
+    function toggleLatestCommit () {
+      latestCommitVisible = !latestCommitVisible;
+      if (latestCommitVisible) {
+        $('#latestCommitAccordion').attr('style', 'max-height:500px;');
+        confetti();
+      } else {
+        $('#latestCommitAccordion').attr('style', 'max-height:0px;');
+      }
+    }
+
+    $(function () { // page loaded
+      // open latest commit if hash is #latest
+      const hash = window.location.hash;
+      if (hash === '#latest') {
+        toggleLatestCommit();
+      }
+
+      const osLists = {
+        main: [ 'AL2023', 'Arch', 'Centos 6', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 16.04', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ],
+        commit: [ 'AL2023', 'Arch', 'Centos 7', 'Centos 8', 'EL 9', 'Ubuntu 18.04', 'Ubuntu 20.04', 'Ubuntu 22.04' ]
+      };
+      getDownloadsAndSetup(osLists);
+    });
+  </script>
+
+</body>
+
+</html>
