@@ -10,6 +10,8 @@ permalink: "/rules"
 
 This is a gallery of Arkime Rules to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#arkime-rules).
 
+Check out the [rules format](rulesformat) page for more details on Arkime Rules.
+
 <input type="text"
   id="rulesSearch"
   class="form-control"
