@@ -1931,34 +1931,32 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        The goal of Arkime is to use commodity hardware. If you start thinking
-        about using SSDs or expensive NICs, research whether it would just be cheaper
-        to buy one more box. This gains more retention and can bring down the cost of
-        each machine.
+        Arkime prioritizes cost-effective solutions by utilizing standard hardware components.
+        Consider carefully before opting for upgrades like SSDs or high-end network cards.
+        In some cases, adding another server might be a more economical choice. This approach not only reduces individual machine costs but also enhances overall data retention capacity.
       </p>
       <p>
-        Some things to remember when selecting a machine:
+        Choosing the right machine for the job requires careful consideration. Here are some key factors to keep in mind:
       </p>
       <ul>
         <li>
-          An average of 1 Gbps of network traffic requires 11 TB of disk a day.
-          For example, to store 7 days of 2.5 Gbps–average traffic, you need
-          7*2.5*11, or 192.5 TB of disk space.
+          Network traffic storage requirements can be substantial.
+          On average, uncompressed traffic of 1 Gbps can consume around 11 TB of disk space daily.
+          This translates to needing hundreds of terabytes to store just a week's worth of data at moderate traffic levels (2.5 Gbps for 7 days equates to roughly 192.5 TB).
+          Fortunately, compression and excluding full TLS sessions can significantly reduce storage needs.
         </li>
         <li>
-          The total bandwidth number must include both RX and TX bandwidth.
-          For example, a 10 G link can really produce up to 20 G of traffic to
-          capture—10 G in each direction. Include both directions in your
-          calculations.
+          When calculating bandwidth requirements, consider both incoming (RX) and outgoing (TX) traffic.
+          While a 10 Gbps link is advertised as such, it can handle the combined traffic of up to 20 Gbps, as it allows 10 Gbps in each direction.
+          Remember to include both directions in your calculations to avoid underestimating your needs.
         </li>
         <li>
-          Don't overload network links. Monitoring a 10 G link with an
-          average of 4 Gbps RX AND 4 Gbps TX should use 2 10 G
-          <code>capture</code> links because 8 Gbps is close to the max.
+           Avoid overloading network links from your NPB.
+           For example, when monitoring a combined traffic of 8 Gbps (4 Gbps RX and 4 Gbps TX), using two separate 10 Gbps from the NPB to capture is recommended.
+           This is because the combined traffic (8 Gbps) is approaching the maximum capacity (10 Gbps) of a single link, potentially leading to dropped packets during bursts.
         </li>
         <li>
-          Arkime requires all packets from the same 5-tuple to be processed by
-          the same <code>capture</code> process.
+          Arkime requires all packets belonging to the same "5-tuple" (source IP, destination IP, source port, destination port, and protocol) to be processed by the same capture process. Ensure your network visibility architecture can accommodate this requirement.
         </li>
       </ul>
       <p>
@@ -1968,7 +1966,7 @@ logger.action.level = info</code></pre>
         <li>
           CASE: There are many 4RU boxes out there. If space is an issue, there
           are more expensive 2RU boxes that hold over 20 drives (examples:
-          <a href="https://www.hpe.com/us/en/product-catalog/servers/proliant-servers/pip.hpe-apollo-4200-gen9-server.8261831.html"
+          <a href="https://buy.hpe.com/us/en/storage/disk-storage-systems/storage-servers/apollo-4200/hpe-apollo-4200-gen10-plus-system/p/1013422400"
             rel="nofollow">
             HPE Apollo 4200
           </a>,
@@ -1976,7 +1974,7 @@ logger.action.level = info</code></pre>
             rel="nofollow">
             Supermicro 6028R-E1CR24L</a>,
           or
-          <a href="https://www.dell.com/en-us/work/shop/povw/poweredge-r740xd2"
+          <a href="https://www.delltechnologies.com/asset/en-us/products/servers/technical-support/dell_emc_poweredge_r740xd2_spec_sheet.pdf"
             rel="nofollow">
             Dell R740XD2</a>)
         </li>
