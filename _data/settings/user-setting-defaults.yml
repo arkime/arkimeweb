@@ -1,0 +1,119 @@
+name: Arkime Default User Settings
+
+before: |
+  <p>
+    (Since 5.0.2) Must be in the [user-setting-defaults] section in the viewer config.
+    These options override the default Arkime user settings. They are used when a new user is created.
+  </p>
+
+settings:
+  - key: timezone
+    value: 'local'
+    text: |
+      The timezone to use for time values within Arkime.
+      <ul class="mb-0">
+        <li>'local' to use the timezone of the browser</li>
+        <li>'localtz' to use the timezone of the browser and display it in the UI</li>
+        <li>'gmt' to use GMT/UTC</li>
+      </ul>
+
+  - key: detailFormat
+    value: 'last'
+    text: |
+      The format of the session PCAP.
+      <ul class="mb-0">
+        <li>'last' to use the last selected option</li>
+        <li>'natural' to use natural format</li>
+        <li>'ascii' to use ascii format</li>
+        <li>'hex' to see hex format</li>
+      </ul>
+
+  - key: showTimestamps
+    value: 'last'
+    text: |
+      Display the timestamps in the session PCAP.
+      <ul class="mb-0">
+        <li>'last' to use the last selected option</li>
+        <li>'on' to display timestamps and packet information</li>
+        <li>'off' to hide timestamps and packet information</li>
+      </ul>
+
+  - key: numPackets
+    value: 'last'
+    text: |
+      The number of packets to display in the session PCAP.
+      <ul class="mb-0">
+        <li>'last' to use the last selected option</li>
+        <li>'50' to display 50 packets</li>
+        <li>'200' to display 200 packets</li>
+        <li>'500' to display 500 packets</li>
+        <li>'1000' to display 1000 packets</li>
+        <li>'2000' to display 2000 packets</li>
+      </ul>
+
+  - key: sortColumn
+    value: 'firstPacket'
+    text: |
+      The default sort column for the sessions page.
+      This can be any database field name.
+
+  - key: sortDirection
+    value: 'desc'
+    text: |
+      The default sort direction for the sessions page.
+      <ul class="mb-0">
+        <li>'asc' for ascending</li>
+        <li>'desc' for descending</li>
+      </ul>
+
+  - key: spiGraph
+    value: 'node'
+    text: |
+      The default graph type for the SPI graph.
+      This can be any database field name.
+
+  - key: connSrcField
+    value: 'source.ip'
+    text: |
+      The default connection page source node field.
+      This can be any database field name.
+
+  - key: connDstField
+    value: 'ip.dst:port'
+    text: |
+      The default connection page destination node field.
+      This can be any database field name.
+
+  - key: theme
+    value: 'default-theme'
+    text: |
+      The default theme for the UI.
+      <ul class="mb-0">
+        <li>'default-theme' for the default theme (dark or light based on the OS settings)</li>
+        <li>'arkime-light-theme' for the light theme</li>
+        <li>'arkime-dark-theme' for the dark theme</li>
+        <li>'purp-theme' for the purple theme</li>
+        <li>'blue-theme' for the blue theme</li>
+        <li>'green-theme' for the green theme</li>
+        <li>'cotton-candy-theme' for the cotton candy theme</li>
+        <li>'dark-2-theme' for green on black theme</li>
+        <li>'dark-3-theme' for dark blue theme</li>
+      </ul>
+
+  - key: manualQuery
+    value: false
+    text: |
+      The default for the manual query mode.
+      In manual query mode, you must press enter or click search to execute a query.
+      <ul class="mb-0">
+        <li>true to enable manual query mode</li>
+        <li>false to disable manual query mode</li>
+      </ul>
+
+  - key: timelineDataFilters
+    value: 'network.packets;network.bytes;totDataBytes'
+    text: |
+      A semicolon separated list of the visible data filter buttons for the sessions timeline.
+      Can have 0-3 values.
+      These can be any database field containing numerical data
+
