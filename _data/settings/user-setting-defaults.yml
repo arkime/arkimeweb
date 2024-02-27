@@ -115,5 +115,5 @@ settings:
     text: |
       A semicolon separated list of the visible data filter buttons for the sessions timeline.
       Can have 0-3 values.
-      These can be any database field name.
+      These can be any database field containing numerical data
 
