@@ -2,7 +2,7 @@ name: Arkime Default User Settings
 
 before: |
   <p>
-    (Since 5.0.2) Must be in the [user-setting-defaults] section. This can be in its own file or in the viewer config.
+    (Since 5.0.2) Must be in the [user-setting-defaults] section in the viewer config.
     These options override the default Arkime user settings. They are used when a new user is created.
   </p>
 
