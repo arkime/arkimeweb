@@ -9,6 +9,11 @@ permalink: /articles
 # Articles and Presentations About Arkime [Arkime YouTube<span class="fa fa-youtube-play ml-2 mr-1"></span>](https://www.youtube.com/channel/UCCtFDN7jSW_Np6i0Z_B6t8Q/videos){: .no-decoration.pull-right.primary-theme-text }
 {: .section-header.mt-1 }
 
+## 2024
+{: .subsection-header.mt-0 }
+
+* [JA4+ Introduction](https://youtu.be/b1c7xxe6ouM)
+
 ## 2023
 {: .subsection-header.mt-0 }
 
