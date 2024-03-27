@@ -25,3 +25,15 @@ function copyLink (event, page) {
   document.execCommand('copy', false);
   input.remove();
 }
+
+function setupLinks () {
+  document.addEventListener("DOMContentLoaded", function() {
+    var headings = document.querySelectorAll("h1, h2, h3");
+    headings.forEach(function(heading) {
+      var span = document.createElement("span");
+      span.classList.add("fa", "fa-link", "small", "copy-link", "cursor-copy");
+      span.setAttribute("onclick", "copyLink(this, '" + heading.id + "')");
+      heading.parentNode.insertBefore(span, heading.nextSibling);
+    });
+  });
+}

@@ -2,6 +2,7 @@
 title: Rules Format
 layout: wiki
 permalink: "/rulesformat"
+copyLink: True
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
