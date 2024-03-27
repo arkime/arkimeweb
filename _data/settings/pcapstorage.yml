@@ -1,4 +1,11 @@
 name: PCAP Storage Settings
+before: |
+  <p>
+    <span class="fa fa-exclamation-triangle mr-1"></span>
+    Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
+    Arkime will <strong>NOT</strong> work in this configuration.
+    It is strongly recommended running capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
+  </p>
 
 settings:
   - key: freeSpaceG
