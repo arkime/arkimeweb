@@ -25,3 +25,15 @@ function copyLink (event, page) {
   document.execCommand('copy', false);
   input.remove();
 }
+
+function setupLinks () {
+  // get the name of the page
+  const page = window.location.pathname.split('/').pop().split('.')[0];
+  const headings = document.querySelectorAll('h1, h2, h3');
+  headings.forEach((heading) => {
+    const span = document.createElement('span');
+    span.classList.add('fa', 'fa-link', 'small', 'copy-link', 'cursor-copy', 'ml-2');
+    span.setAttribute('onclick', "copyLink(this, '" + page + "')");
+    heading.appendChild(span);
+  });
+}
