@@ -27,13 +27,13 @@ function copyLink (event, page) {
 }
 
 function setupLinks () {
-  document.addEventListener("DOMContentLoaded", function() {
-    var headings = document.querySelectorAll("h1, h2, h3");
-    headings.forEach(function(heading) {
-      var span = document.createElement("span");
-      span.classList.add("fa", "fa-link", "small", "copy-link", "cursor-copy");
-      span.setAttribute("onclick", "copyLink(this, '" + heading.id + "')");
-      heading.parentNode.insertBefore(span, heading.nextSibling);
-    });
+  // get the name of the page
+  const page = window.location.pathname.split('/').pop().split('.')[0];
+  const headings = document.querySelectorAll('h1, h2, h3');
+  headings.forEach((heading) => {
+    const span = document.createElement('span');
+    span.classList.add('fa', 'fa-link', 'small', 'copy-link', 'cursor-copy', 'ml-2');
+    span.setAttribute('onclick', "copyLink(this, '" + page + "')");
+    heading.appendChild(span);
   });
 }
