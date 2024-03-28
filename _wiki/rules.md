@@ -2,6 +2,7 @@
 title: Arkime Rules
 layout: wiki
 permalink: "/rules"
+copyLink: True
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
@@ -21,7 +22,7 @@ Check out the [rules format](rulesformat) page for more details on Arkime Rules.
 {% for file in site.posts %}
   {% if file.path contains 'rules' %}
   <div class="gallery-item">
-    <h3 class="search-title subsection">{{file.title}}</h3>
+    <h3 class="search-title subsection" id="{{file.title | slugify}}">{{file.title}}</h3>
     {% if file.description %}
     <p class="lead mb-1">{{file.description}}</p>
     {% endif %}

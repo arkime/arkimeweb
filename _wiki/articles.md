@@ -2,6 +2,7 @@
 title: Arkime Articles
 layout: wiki
 permalink: /articles
+copyLink: True
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
