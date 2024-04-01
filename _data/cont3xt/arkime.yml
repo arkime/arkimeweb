@@ -44,3 +44,7 @@ settings:
   - key: arkimeUrl
     value: http://localhost:8005
     text: The url to the Arkime UI
+
+  - key: insecure
+    value: EMPTY
+    text: If true the connection to OpenSearch/Elasticsearch will disable certificate verification for https calls
