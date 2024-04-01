@@ -1619,8 +1619,8 @@ maxESConns=2
             <tbody>
               {% assign sorted = cont3xt.settings | sort: "key" %}
               {% for item in sorted %}
-                <td id="{{ item.key }}">
-                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                <td id="cont3xt-{{cont3xtId}}-{{item.key}}">
+                  <span id="{{item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
                     onclick="copyLink(this, 'settings')">
                   </span>
@@ -1750,8 +1750,8 @@ maxESConns=2
             <tbody>
               {% assign sorted = wiseService.settings | sort: "key" %}
               {% for item in sorted %}
-                <td id="{{ item.key }}">
-                  <span id="{{ item.key | downcase}}">{{item.key}}</span>
+                <td id="wise-{{wiseServiceId}}-{{item.key}}">
+                  <span id="{{item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
                     onclick="copyLink(this, 'settings')">
                   </span>
