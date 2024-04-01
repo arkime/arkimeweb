@@ -244,7 +244,7 @@ wiseService:
       {% for cont3xtId in page.cont3xt %}
         {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
         <a class="nav-link nested"
-          href="#{{cont3xtId}}-cont3xt"
+          href="#cont3xt-{{cont3xtId}}"
           title="{{cont3xt.name}}">
           {{cont3xt.name}}
         </a>
@@ -257,7 +257,7 @@ wiseService:
       {% for parliamentId in page.parliament %}
         {% assign parliament = site.data.parliament[parliamentId] %}
         <a class="nav-link nested"
-          href="#{{parliamentId}}-parliament"
+          href="#parliament-{{parliamentId}}"
           title="{{parliament.name}}">
           {{parliament.name}}
         </a>
@@ -271,7 +271,7 @@ wiseService:
       {% for wiseServiceId in page.wiseService %}
         {% assign wiseService = site.data.wise[wiseServiceId] %}
         <a class="nav-link nested"
-          href="#{{wiseServiceId}}-wise"
+          href="#wise-{{wiseServiceId}}"
           title="{{wiseService.name}}">
           {{wiseService.name}}
         </a>
@@ -1594,7 +1594,7 @@ maxESConns=2
 
       {% for cont3xtId in page.cont3xt %}
         {% assign cont3xt = site.data.cont3xt[cont3xtId] %}
-        <h3 id="{{cont3xtId}}-cont3xt" class="subsection">
+        <h3 id="cont3xt-{{cont3xtId}}" class="subsection">
           {{cont3xt.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
@@ -1657,7 +1657,7 @@ maxESConns=2
 
       {% for parliamentId in page.parliament %}
         {% assign parliament = site.data.parliament[parliamentId] %}
-        <h3 id="{{parliamentId}}-parliament" class="subsection">
+        <h3 id="parliament-{{parliamentId}}" class="subsection">
           {{parliament.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
@@ -1725,7 +1725,7 @@ maxESConns=2
 
       {% for wiseServiceId in page.wiseService %}
         {% assign wiseService = site.data.wise[wiseServiceId] %}
-        <h3 id="{{wiseServiceId}}-wise" class="subsection">
+        <h3 id="wise-{{wiseServiceId}}" class="subsection">
           {{wiseService.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
