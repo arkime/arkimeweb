@@ -228,3 +228,10 @@ settings:
     text: |
       (Since 5.0) A customizable footer template to display at the bottom of every Arkime page.
       Use <code>_version_</code> to display the Arkime version and <code>_responseTime_</code> to display the response time of the current page.
+
+  - key: queryExtraIndices
+    value: EMPTY
+    text: |
+      (Since 5.1) A comma separated list of indices to always query in addition to the normal Arkime indices.
+      This is useful for querying external indices that still use the Arkime schema.
+

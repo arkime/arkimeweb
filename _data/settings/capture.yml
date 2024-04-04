@@ -155,7 +155,8 @@ settings:
     value: "false"
     text: |
       Parse a full DNS record (query, answer, authoritative, and additional) and store various DNS information
-      (look up hostname, name server IPs, mail exchange server IPs, and so on) into multiple OpenSearch/Elasticsearch fields
+      (look up hostname, name server IPs, mail exchange server IPs, and so on) into multiple OpenSearch/Elasticsearch fields.
+      Starting with 5.1.0 please use <a href="#dnsOutputAnswers">dnsOutputAnswers</a> instead.
 
   - key: parseSMTP
     value: "true"
@@ -458,4 +459,9 @@ settings:
   - key: esMaxRetries
     value: 2
     text: (Since 2.3.1) How many times to retry OpenSearch/Elasticsearch operations
+
+  - key: dnsOutputAnswers
+    value: "false"
+    text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display in the session display.
+
 
