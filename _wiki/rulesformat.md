@@ -152,6 +152,25 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
       "protocols": "lowsrcport"
 ```
 
+### NOT fields
+{: .subsection }
+
+Since Arkime 5.2.0 you can also speciy fields that match when a value is NOT in the list for string and integer fields.
+These fields can not be used with the fieldSet when attribute.
+To special a NOT field use a exclamtion mark before the field name.
+```
+- name: "NOT example"
+  when: "beforeFinalSave"
+  fields:
+    "!protocols":
+      - tcp
+      - http
+      - dns
+    ip.src: 10.0.0.2
+  ops:
+    "tags": "nottcpdnshttp"
+```
+
 ### Ops
 {: .subsection }
 
