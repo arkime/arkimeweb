@@ -406,11 +406,13 @@ settings:
   - key: saveUnknownPackets
     value: EMPTY
     text: |
-      (Since 1.5.2) Save unknown ether, ip, or corrupt packets into
-      separate files. This variable takes a semicolon separated list of
-      the following values (applied in order):
+      (Since 1.5.2) Save unknown ether, ip, or corrupt packets into separate files.
+      The files will be created in the first entry of the <a href="#pcapDir">pcapDir</a> list and
+      named starting with unknown.ether, unknown.ip, or corrupt depending on the packet issue.
+      The files are NOT automatically deleted, so you will need to monitor and delete them.
+      This variable takes a semicolon separated list of the following values (applied in order):
       <ul class="mb-0">
-        <li> all = save all unknown ip and ether packets </li>
+        <li> all = save all unknown ip and ether packets, but not corrupt packets </li>
         <li> ip:all = save all unknown ip packets </li>
         <li> ether:all = save all unknown ether packets </li>
         <li> ip:N = save all unknown ip packets with type of N </li>
