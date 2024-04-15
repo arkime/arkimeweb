@@ -155,7 +155,7 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
 ### NOT fields
 {: .subsection }
 
-Since Arkime 5.2.0 you can also speciy fields that match when a value is NOT in the list for string and integer fields.
+Since Arkime 5.1.1 you can also speciy fields that match when a value is NOT in the list for string and integer fields.
 These fields can not be used with the fieldSet when attribute.
 To special a NOT field use a exclamtion mark before the field name.
 ```
