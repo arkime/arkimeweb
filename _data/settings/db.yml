@@ -119,10 +119,11 @@ settings:
       This doesn't control responses FROM OpenSearch/Elasticsearch.
 
   - key: dbBulkSize
-    value: "20000"
+    value: "1000000 (since 4.3.0)"
     text: |
-      Size of indexing request to send to OpenSearch/Elasticsearch. Increase if
-      monitoring a high bandwidth network.
+      Approximate size of bulk indexing request to send to OpenSearch/Elasticsearch.
+      Since 4.3.0 the minumum value is 500000 and maximum value is 15000000.
+      If monitoring a high bandwidth network, increasing may help with performance, as long as OpenSearch/Elasticsearch can handle the load.
 
   - key: dbEsHealthCheck
     value: "true"
