@@ -42,3 +42,23 @@ settings:
   - key: nodeClass
     value: EMPTY
     text: If a <code>[node]</code> section doesn't have a setting, but has a nodeClass value, the <code>[$nodeClass]</code> section will be checked BEFORE <code>[default]</code>.
+
+  - key: sessionIdTracking
+    value: "none"
+    text: |
+      (Since 5.2) How to track sessions, by default we track based on the source/destination IP and port.
+      Arkime can also extend the session id by vlan or vni.
+      This allows sessions that have the same source/destination IP and port but are on different vlans or vnids to be tracked separately.
+      It is also possible to treat vlan and vni ids as the same with the vlan-vni-collapse section.
+      <ul>
+      <li>none - Only track based on source/destination IP and port</li>
+      <li>vlan - Track based on source/destination IP, port, and vlan</li>
+      <li>vni - Track based on source/destination IP, port, and vni</li>
+      </ul>
+
+  - key: httpVLanVNI
+    value: 0
+    text: |
+      (Since 5.2) If set to a non-zero value, then this is the vlan or vni that will be used for http connections from capture to OpenSearch/Elasticsearch that we will try and ignore.
+
+
