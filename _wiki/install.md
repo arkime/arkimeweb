@@ -5,7 +5,11 @@ permalink: "/install"
 copyLink: True
 ---
 
-<div class="full-height-and-width-container with-footer p-3" markdown="1">
+- TOC
+{:toc}
+{: .left-nav .d-none .d-sm-block .pt-3 .with-footer .wiki-toc }
+
+<div class="full-height-container with-footer p-3" markdown="1">
 
 
 # Installation Guide for Arkime
@@ -34,9 +38,57 @@ If you must use the same machines, please use different disk partitions for the 
 There are many ways to install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official documentation.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with 3 leader/master nodes.
+We currently support both OpenSearch and Elasticsearch equally.
 
+### Install and Configure OpenSearch
 
-## Single Machine OpenSearch Example on Ubuntu
+Once you download OpenSearch, you can install it by running the following commands:
+`apt install ./opensearch-*.deb`
+
+You'll need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
+
+`nano /etc/opensearch/jvm.options`
+
+look for the following lines and update them:
+```
+-Xms1g
+-Xmx1g
+```
+
+Change them based on how much memory you have available, the minimum recommended heap size is 4GB, and the maximum heap size is 31GB. This example uses 12GB. It is suggested you don't use more than 50% of your system memory for the JVM heap size and that both values are the same.
+```
+-Xms12g
+-Xmx12g
+```
+
+You'll need to enable it to start on boot and start it with the following commands:
+`systemctl enable --now opensearch`
+
+### Install and Configure Elasticsearch
+
+Once you download OpenSearch, you can install it by running the following commands:
+`apt install ./elasticsearch-*.deb`
+
+You'll need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
+
+`nano /etc/elasticsearch/jvm.options`
+
+look for the following lines and update them:
+```
+-Xms1g
+-Xmx1g
+```
+
+Change them based on how much memory you have available, the minimum recommended heap size is 4GB, and the maximum heap size is 31GB. This example uses 12GB. It is suggested you don't use more than 50% of your system memory for the JVM heap size and that both values are the same.
+```
+-Xms12g
+-Xmx12g
+```
+
+You'll need to enable it to start on boot and start it with the following commands:
+`systemctl enable --now elasticsearch`
+
+### Single Machine OpenSearch Example on Ubuntu
 ```
 apt update
 apt install -y wget curl
@@ -47,7 +99,7 @@ wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.13.0/opensear
 export OPENSEARCH_INITIAL_ADMIN_PASSWORD="PleaseChangeM3!"
 
 apt install -y ./opensearch-2.13.0-linux-x64.deb
-systemctl start opensearch.service
+systemctl enable --now opensearch
 
 # Verify that OpenSearch is running
 sleep 5
@@ -60,7 +112,7 @@ curl -k --user "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200
 
 Once you have a working OpenSearch/Elasticsearch cluster you can install the Arkime sensors.
 
-## Download Arkime
+### Download Arkime
 
 If new to Arkime we recommend starting with the latest [stabe version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit).
 
@@ -101,7 +153,8 @@ You can change the password or other settings later in the Arkime UI.
 
 ### Start the Arkime Sensor
 
-To start the Arkime sensor, run the following command: `systemctl start arkimecapture.service` and `systemctl start arkimeviewer.service`
+To start the Arkime sensor, run the following command: `systemctl enable --now arkimecapture` and `systemctl enable --now arkimeviewer`
+Log files are located in the `/opt/arkime/logs` directory if something goes wrong.
 
 ### Accessing the Arkime UI
 
@@ -134,8 +187,13 @@ apt install -y ./arkime-main_ubuntu2204_amd64.deb
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 
 # Start the Arkime Sensor
-systemctl start arkimecapture.service
-systemctl start arkimeviewer.service
+systemctl enable --now arkimecapture
+systemctl enable --now arkimeviewer
+
+# Verify that Arkime is running
+sleep 1
+tail /opt/arkime/logs/*.log
+curl -u admin:changeme --digest http://localhost:8005/eshealth.json
 ```
 
 </div>
