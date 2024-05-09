@@ -14,30 +14,33 @@ copyLink: True
 
 # Installation Guide for Arkime
 
-This guide details the steps involved in installing Arkime, a large-scale indexed packet capture and search tool.
+This guide details the steps involved in installing Arkime on a Linux machine.
 A basic Arkime cluster consists of a database (OpenSearch or Elasticsearch) and Arkime sensors.
-Arkime sensors run the capture and viewer tools.
+Arkime sensors run the capture and viewer tools and process the network traffic.
 The capture tool is responsible for processing and storing the packets along with extracting the metadata to be stored in OpenSearch or Elasticsearch.
-The viewer tool provides the end-user interface and packet retrieval.
-While it is possible to run both the database and sensors on the same machine, it is not recommended for production environments.
+The viewer tool provides the end-user interface, packet retrieval, and some housekeeping functions.
+While it is possible to run both the database and sensors on the same machine, however it is not recommended for production environments.
 
-## Prerequisites
+If you are interested in how many and types of machines you need for your environment, please see our [hardware estimators](https://arkime.com/estimators).
 
-A functional Linux system.
-We recommend using a Long-Term Support (LTS) version of Ubuntu for its extended support window (5 years).
+## Linux Distribution
+
+We recommend using a Long-Term Support (LTS) version of Ubuntu for its extended support window (5 years) and ease of upgrade.
 Users of other distributions may need to modify the installation commands.
 
 ## Installing OpenSearch or Elasticsearch
 
 Arkime requires a database to store the metadata associated with the network sessions that are processed.
 It is strongly recommended to NOT use the same machines for both the database and the sensors.
-If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and things will stop working.
+If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and things may eventually stop working.
+
+We answer many OpenSearch/Elasticsearch questions in our [FAQ](https://arkime.com/faq#elasticsearch).
 
 ### Download and Install OpenSearch or Elasticsearch
 
-There are many ways to install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official documentation.
+There are many ways to install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
-In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with 3 leader/master nodes.
+In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
 We currently support both OpenSearch and Elasticsearch equally.
 
 ### Install and Configure OpenSearch
@@ -61,7 +64,7 @@ Change them based on how much memory you have available, the minimum recommended
 -Xmx12g
 ```
 
-You'll need to enable it to start on boot and start it with the following commands:
+You'll need to enable OpenSearch to start now and on boot with the following commands:
 `systemctl enable --now opensearch`
 
 ### Install and Configure Elasticsearch
@@ -85,7 +88,7 @@ Change them based on how much memory you have available, the minimum recommended
 -Xmx12g
 ```
 
-You'll need to enable it to start on boot and start it with the following commands:
+You'll need to enable Elasticsearch to start now and on boot with the following commands:
 `systemctl enable --now elasticsearch`
 
 ### Single Machine OpenSearch Example on Ubuntu
@@ -114,12 +117,12 @@ Once you have a working OpenSearch/Elasticsearch cluster you can install the Ark
 
 ### Download Arkime
 
-If new to Arkime we recommend starting with the latest [stabe version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit).
+If new to Arkime we recommend starting with the latest [stabe version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit) that is rebuilt after every commit to github.
 
-The download page for each release contains multiple downloads.
+The download page for each release contains multiple Arkime packages.
 When choosing an Arkime package, please select a version that corresponds to the Operating System and the architecture of your system.
 
-NOTE: A clear indication of incorrect download are libssl or libyaml errors when trying to run capture.
+NOTE: A clear indication of theincorrect download are libssl or libyaml errors when trying to run capture.
 
 ### Installing Arkime Package
 
@@ -132,7 +135,7 @@ After downloading the Arkime package, you can install it by running the followin
 Once the Arkime package is installed, you need to initialize the OpenSearch/Elasticsearch database.
 Most database operations are completed using the `db.pl` script located in the `/opt/arkime/db` directory.
 You'll need to provide the URL of the OpenSearch/Elasticsearch database and the password you set during the OpenSearch/Elasticsearch installation.
-If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add a --insecure option if not on localhost.
+If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add a --insecure option if not on the same server.
 ```
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
 ```
@@ -140,26 +143,26 @@ If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add a
 ### Configure Arkime
 
 We provide a simple Configuration script that will take a sample config.ini and create a new one with the correct settings.
-You can always edit the /opt/arkime/etc/config.ini file directly.
 To use the Configuration script, run the following command: `/opt/arkime/bin/Configure`
+You can always edit the /opt/arkime/etc/config.ini file directly after runnig Configure.
 
 ### Adding admin user
 
-Before you can use Arkime you must add the first user.
-You can change the password or other settings later in the Arkime UI.
+Before you can use the Arkime UI, you must add the first user.
 ```
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 ```
+You can change the password or other settings later in the Arkime UI under the Users tab.
 
 ### Start the Arkime Sensor
 
-To start the Arkime sensor, run the following command: `systemctl enable --now arkimecapture` and `systemctl enable --now arkimeviewer`
-Log files are located in the `/opt/arkime/logs` directory if something goes wrong.
+To start the Arkime sensor, run the following command: `systemctl enable --now arkimecapture` and `systemctl enable --now arkimeviewer` which will start the capture and viewer services now and on boot.
+If there are issues, log files are located in the `/opt/arkime/logs` directory.
 
 ### Accessing the Arkime UI
 
 Once the Arkime sensor is running, you can access the Arkime UI by navigating to `http://<hostname>:8005` in your web browser.
-Use the authentication information from above, username `admin` and the password is `changeme`.
+Use the authentication information from above, username `admin` and the password is `changeme` in the example.
 
 ### Single Machine Arkime Example on Ubuntu 22 LTS
 ```
@@ -195,5 +198,10 @@ sleep 1
 tail /opt/arkime/logs/*.log
 curl -u admin:changeme --digest http://localhost:8005/eshealth.json
 ```
+
+## Arkime isn't working
+
+If you are having issues with Arkime, please see our [FAQ](https://arkime.com/faq#arkime-is-not-working) for common issues and solutions.
+
 
 </div>
