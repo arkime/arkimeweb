@@ -19,40 +19,41 @@ A basic Arkime cluster consists of a database (OpenSearch or Elasticsearch) and 
 Arkime sensors run the capture and viewer tools and process the network traffic.
 The capture tool is responsible for processing and storing the packets along with extracting the metadata to be stored in OpenSearch or Elasticsearch.
 The viewer tool provides the end-user interface, packet retrieval, and some housekeeping functions.
-While it is possible to run both the database and sensors on the same machine, however it is not recommended for production environments.
+It is possible to run both the database and sensors on the same machine, however it is not recommended for production environments.
 
 If you are interested in how many and types of machines you need for your environment, please see our [hardware estimators](https://arkime.com/estimators).
 
 ## Linux Distribution
 
-We recommend using a Long-Term Support (LTS) version of Ubuntu for its extended support window (5 years) and ease of upgrade.
-Users of other distributions may need to modify the installation commands.
+We recommend using a stable version of Debian or Long-Term Support (LTS) version of Ubuntu.
+Both of these distributions are well supported, receive regular updates, and are easy to upgrade.
+Users of other distributions may need to modify the installation commands or run into library compatibility issues.
 
 ## Installing OpenSearch or Elasticsearch
 
 Arkime requires a database to store the metadata associated with the network sessions that are processed.
-It is strongly recommended to NOT use the same machines for both the database and the sensors.
-If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and things may eventually stop working.
+It is strongly recommended to NOT use the same machines for both the database and the sensors in a production environment.
+If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and things will eventually stop working.
 
-We answer many OpenSearch/Elasticsearch questions in our [FAQ](https://arkime.com/faq#elasticsearch).
+We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
 
 ### Download and Install OpenSearch or Elasticsearch
 
-There are many ways to install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages when possible.
+There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your OS distribution when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
 We currently support both OpenSearch and Elasticsearch equally.
 
 ### Install and Configure OpenSearch
 
-Once you download OpenSearch, you can install it by running the following commands:
+Once you download OpenSearch, you can install it by running the following command:
 `apt install ./opensearch-*.deb`
 
 You'll need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
 
 `nano /etc/opensearch/jvm.options`
 
-look for the following lines and update them:
+look for the following lines:
 ```
 -Xms1g
 -Xmx1g
@@ -69,14 +70,14 @@ You'll need to enable OpenSearch to start now and on boot with the following com
 
 ### Install and Configure Elasticsearch
 
-Once you download OpenSearch, you can install it by running the following commands:
+Once you download Elasticsearch, you can install it by running the following command:
 `apt install ./elasticsearch-*.deb`
 
 You'll need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
 
 `nano /etc/elasticsearch/jvm.options`
 
-look for the following lines and update them:
+look for the following lines:
 ```
 -Xms1g
 -Xmx1g
@@ -91,7 +92,7 @@ Change them based on how much memory you have available, the minimum recommended
 You'll need to enable Elasticsearch to start now and on boot with the following commands:
 `systemctl enable --now elasticsearch`
 
-### Single Machine OpenSearch Example on Ubuntu
+### Single Machine OpenSearch Example on Ubuntu or Debian
 ```
 apt update
 apt install -y wget curl
@@ -110,10 +111,21 @@ curl -k --user "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200
 
 ```
 
+### Moving to multiple machines
+
+When you are ready to have multiple OpenSearch/Elasticsearch machines or have the Arkime Sensor on a different machine, you'll need to update the `/etc/opensearch/opensearch.yml` or `/etc/elasticsearch/elasticsearch.yml` file to have the following settings:
+
+```
+network.host: 0.0.0.0
+```
+
+This causes OpenSearch/Elasticsearch to listen on all interfaces, not just localhost.
+We also have a list of some common settings you may need to change in the [FAQ](https://arkime.com/faq#recommended-elasticsearch-settings), many of these can also be changed in the Arkime UI.
+
 
 ## Installing Arkime Sensors
 
-Once you have a working OpenSearch/Elasticsearch cluster you can install the Arkime sensors.
+Once you have a working OpenSearch/Elasticsearch cluster you can install the Arkime sensor.
 
 ### Download Arkime
 
