@@ -37,7 +37,7 @@ Users of other distributions may need to modify the installation commands or run
 
 Arkime requires a database to store the metadata associated with the network sessions that are processed.
 It is strongly recommended to NOT use the same machines for both the database and the sensors in a production environment.
-If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and things will eventually stop working.
+If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and Arkime will eventually stop working.
 
 We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
 
@@ -53,7 +53,8 @@ We currently support both OpenSearch and Elasticsearch equally.
 {: .subsection }
 
 Once you download OpenSearch, you can install it by running the following command:
-`apt install ./opensearch-*.deb`
+* Debian/Ubuntu: `apt install ./opensearch-*.deb`
+* EL: `yum install ./opensearch-*.rpm`
 
 You'll need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
 
@@ -78,7 +79,8 @@ You'll need to enable OpenSearch to start now and on boot with the following com
 {: .subsection }
 
 Once you download Elasticsearch, you can install it by running the following command:
-`apt install ./elasticsearch-*.deb`
+* Debian/Ubuntu: `apt install ./elasticsearch-*.deb`
+* EL: `yum install ./elasticsearch-*.rpm`
 
 You'll need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
 
@@ -151,7 +153,7 @@ NOTE: A clear indication of the incorrect download are libssl or libyaml errors 
 {: .subsection }
 
 After downloading the Arkime package, you can install it by running the following commands:
-* Ubuntu: `apt install ./arkime-*.deb`
+* Debian/Ubuntu: `apt install ./arkime-*.deb`
 * EL: `yum install ./arkime-*.rpm`
 
 ### Initialize the OpenSearch/Elasticsearch database
