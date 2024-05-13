@@ -11,7 +11,7 @@ settings:
     value: http://localhost:9200
     text: |
       The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
-      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#cont3xt-db-elasticsearchBasicAuth">elasticsearchBasicAuth</a>
 
   - key: esClientCert
     value: EMPTY
