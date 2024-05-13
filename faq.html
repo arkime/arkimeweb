@@ -360,6 +360,16 @@ title: FAQ
         title="Hunts not working">
         Hunts not working
       </a>
+      <a href="#cont3xt"
+        class="nav-link"
+        title="Cont3xt">
+        Cont3xt
+      </a>
+      <a class="nav-link nested"
+        href="#cont3xt-is-not-working"
+        title="Cont3xt is not working">
+        Cont3xt is not working
+      </a>
       <a href="#parliament"
         class="nav-link"
         title="Parliament">
@@ -3640,6 +3650,40 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         See more information about the cronQueries setting <a href="/settings#cronQueries">here</a>.
       </p>
       <!-- /viewer -->
+
+      <!-- cont3xt -->
+      <br>
+      <h1 id="cont3xt"
+        class="section-header mt-2">
+        Cont3xt
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h1>
+
+      <h3 class="subsection"id="cont3xt-is-not-working">
+        Cont3xt is not working
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Here is the common check list:
+      </p>
+      <ol>
+        <li>
+          Check that Cont3xt integrations are configured and not disabled
+          <pre><code>curl http://localhost:3218/settings#integrations</code></pre>
+        </li>
+        <li>
+          Verify there are no errors in the <code>/opt/arkime/logs/cont3xt.log</code> file.
+        </li>
+        <li>
+          Restart <code>cont3xt</code> after adding a
+          <code>debug=2</code> in the <code>[cont3xt]</code> section may print out useful information what is wrong.
+        </li>
+      </ol>
+      <!-- /wise -->
 
       <!-- parliament -->
       <br>

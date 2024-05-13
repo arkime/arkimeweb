@@ -16,7 +16,7 @@ copyLink: True
 # Installation Guide for Arkime
 {: .section-header .mt-1 }
 
-This guide details the steps involved in installing Arkime on a Linux machine.
+This guide details the steps involved in installing Arkime 5.2 or later on a Linux machine.
 A basic Arkime cluster consists of a database (OpenSearch or Elasticsearch) and Arkime sensors.
 Arkime sensors run the capture and viewer tools and process the network traffic.
 The capture tool is responsible for processing and storing the packets along with extracting the metadata to be stored in OpenSearch or Elasticsearch.
@@ -229,6 +229,54 @@ systemctl enable --now arkimeviewer
 sleep 1
 tail /opt/arkime/logs/*.log
 curl -u admin:changeme --digest http://localhost:8005/eshealth.json
+```
+# Installing Cont3xt
+{: .section-header }
+
+Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
+Cont3xt requires a database and can use the same OpenSearch/Elasticsearch database instance as Arkime, or it can use a separate instance.
+
+See the OpeningSearch/Elastic section [above](#download-and-install-opensearch-or-elasticsearch) for instructions on installing OpenSearch or Elasticsearch.
+
+See the Arkime section [above](#download-arkime) for instructions on installing the Arkime package
+
+We answer many Cont3xt questions in the Cont3xt section of the [FAQ](https://arkime.com/faq#cont3xt).
+
+### Configuring Cont3xt
+{: .subsection }
+
+We provide a simple Configuration script that will take a sample cont3xt.ini and create a new one with the correct settings.
+To use the Configuration script, run the following command: `/opt/arkime/bin/Configure --cont3xt`
+You can always edit the /opt/arkime/etc/cont3xt.ini file directly after running Configure.
+
+### Single Machine Arkime Example on Ubuntu 22 LTS
+{: .subsection }
+```
+apt update
+apt install -y wget
+#wget https://github.com/arkime/arkime/releases/download/v5.2.0/arkime_5.2.0-1.ubuntu2204_amd64.deb
+#apt install -y ./arkime_5.2.0-1.ubuntu2204_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2204_amd64.deb
+apt install -y ./arkime-main_ubuntu2204_amd64.deb
+
+# Configure Arkime
+/opt/arkime/bin/Configure --cont3xt
+#### OpenSearch/Elasticsearch URL: https://localhost:9200
+#### OpenSearch/Elasticsearch User: admin
+#### OpenSearch/Elasticsearch Password: PleaseChangeM3!
+#### Password: A new password, not the ES password
+
+# Initialize the database if not done previously, use the password from OpenSearch/Elasticsearch!!!
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
+
+# Create the admin user if not done previously
+/opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
+
+# Start the Arkime Sensor
+systemctl enable --now arkimecont3xt
+
+sleep 1
+tail /opt/arkime/logs/cont3xt.log
 ```
 
 # Arkime isn't working
