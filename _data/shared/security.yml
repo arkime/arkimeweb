@@ -2,7 +2,8 @@ name: Auth & Security Settings
 before: |
   <p>
     Arkime applications have common authorization and security settings.
-    <br>
+  </p>
+  <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 

@@ -5,7 +5,8 @@ before: |
     The Arkime applications store all the users in OpenSearch/Elasticsearch.
     Since you will have multiple Arkime clusters and applications, Arkime allows you to share the database to use.
     When these settings aren't use Arkime will fallback to using a non shared Users Database for viewer/capture.
-    <br>
+  </p>
+  <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 

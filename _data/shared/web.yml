@@ -4,6 +4,9 @@ before: |
   <p>
     For Arkime applications that have a web interface there are common settings for listening for web traffic.
   </p>
+  <p>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
+  </p>
 
 
 settings:

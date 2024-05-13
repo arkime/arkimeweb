@@ -6,6 +6,9 @@ before: |
     If any command line options are present, then the configuration file is ignored.
     To increase the debug level on the command line use multiple options, so for example <code>--debug --debug</code> will set the debug level to 2, so will <code>debug=2</code> in the configuration file.
   </p>
+  <p>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
+  </p>
 
 settings:
   - key: debug

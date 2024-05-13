@@ -3,7 +3,8 @@ before: |
   <p>
     (Since 4.2.0) Arkime now support direct OIDC authentication when setting <a href="#userNameHeader">userNameHeader</a> to oidc.
     Make sure that each user has the "Web Auth Header" checkbox selected.
-    <br>
+  </p>
+  <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 
