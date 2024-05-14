@@ -1473,8 +1473,10 @@ kekid2=Randomkekpassword2
       <pre><code># MOST IMPORTANT, use basic magicMode, libfile kills performance
 magicMode=basic
 
-# Disable compression (since 4.0)
-simpleCompression=none
+# Optionally disable compression, this will use more disk space but less CPU.
+# simpleCompression=none
+# Switch from gzip to zlib if you want compression, zstd uses less CPU than gzip
+# simpleCompression=zstd
 
 pcapReadMethod=tpacketv3
 tpacketv3BlockSize=8388608
