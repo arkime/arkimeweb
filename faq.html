@@ -2835,7 +2835,8 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
 
       <p>
-        Encountering an error message such as <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code> usually indicates that the PCAP data is either still in the process of buffering and requires more time to be fully written to disk, or it suggests that a capture process or system crash occurred before the PCAP data could be saved.
+      Encountering an error message such as <code>ERROR - processSessionIdDisk - SESSIONID in file FILENAME couldn't read packet at FILEPOS packet # 0 of 2</code> or <code>Not enough data 0 for header 16</code> usually indicates that the PCAP data is either still in the process of buffering and requires more time to be fully written to disk, or it suggests that a capture process or system crash occurred before the PCAP data could be saved.
+      It may be useful to turn OFF compression <code>simpleCompression=none</code> on low bandwidth networks since compression causes more data to be buffered.
       </p>
 
       <p>
