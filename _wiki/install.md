@@ -44,7 +44,7 @@ We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearc
 ### Download and Install OpenSearch or Elasticsearch
 {: .subsection }
 
-There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your OS distribution when possible.
+There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your Linux distribution when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
 We currently support both OpenSearch and Elasticsearch equally.
@@ -145,9 +145,9 @@ Once you have a working OpenSearch/Elasticsearch cluster you can install the Ark
 If new to Arkime we recommend starting with the latest [stable version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit) that is rebuilt after every commit to github.
 
 The download page for each release contains multiple Arkime packages.
-When choosing an Arkime package, please select a version that corresponds to the Operating System and the architecture of your system.
+When choosing an Arkime package, please select a version that corresponds to the Linux distribution, version, and the architecture of your system.
 
-NOTE: A clear indication of the incorrect download are libssl or libyaml errors when trying to run capture.
+NOTE: A clear indication of an incorrect download are libssl or libyaml errors when trying to run capture.
 
 ### Installing Arkime Package
 {: .subsection }
@@ -182,6 +182,8 @@ Before you can use the Arkime UI, you must add the first user.
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 ```
 You can change the password or other settings later in the Arkime UI under the Users tab.
+NOTE: This isn't the same as the admin user for OpenSearch/Elasticsearch, this is the admin user the Arkime UI.
+Please use a different password than the OpenSearch/Elasticsearch password.
 
 ### Start the Arkime Sensor
 {: .subsection }
