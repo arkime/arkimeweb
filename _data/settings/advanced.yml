@@ -47,9 +47,9 @@ settings:
     value: "none"
     text: |
       (Since 5.2) How to track sessions, by default we track based on the source/destination IP and port.
-      Arkime can also extend the session id by vlan or vni.
-      This allows sessions that have the same source/destination IP and port but are on different vlans or vnids to be tracked separately.
-      It is also possible to treat vlan and vni ids as the same with the <a href="#vlan-vni-collapse">[vlan-vni-collapse]</a> section.
+      Arkime can also extend the session id by VLAN or VNI.
+      This allows sessions that have the same source/destination IP and port but are on different VLANs or VNIs to be tracked separately.
+      It is also possible to treat VLAN and VNI ids as the same with the <a href="#vlan-vni-collapse">[vlan-vni-collapse]</a> section.
       <ul>
       <li>none - Only track based on source/destination IP and port</li>
       <li>vlan - Track based on source/destination IP, port, and vlan</li>
