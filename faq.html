@@ -914,8 +914,15 @@ title: FAQ
         An alternative, though less secure option, involves disabling certificate verification entirely.
         Key components such as Capture, Viewer, arkime_add_user.sh, and db.pl accept the <code>--insecure</code> flag to bypass certificate checks.
         This flag must be appended to the startup commands for both capture and viewer services.
-        For instance, in the <code>/etc/systemd/system/arkimecapture.conf</code> configuration file, modify the <code>ExecStart</code> line from its original state to include the <code>--insecure</code> option, changing <code>... capture -c ...</code> to <code>... capture --insecure -c ...</code>.
-        A similar adjustment is required for any systemd files associated with Viewer, Cont3xt or Parliament.
+        In newer versions of Arkime this can be done by
+        <pre><code>
+          cp /opt/arkime/etc/env.sample /opt/arkime/etc/capture.env
+          echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/capture.env
+          cp /opt/arkime/etc/env.sample /opt/arkime/etc/viewer.env
+          echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/viewer.env
+        </code></pre>
+        You can edit /opt/arkime/etc/capture.env and /opt/arkime/etc/viewer.env to add other options.
+        We recommend using env files instead of editing the systemd files since they may get overwritten by new installs.
       </p>
 
       <h3 class="subsection"id="how_do_i_upgrade_to_moloch_1">
