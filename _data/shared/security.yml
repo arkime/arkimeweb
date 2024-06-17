@@ -90,7 +90,15 @@ settings:
   - key: requiredAuthHeaderVal
     value: EMPTY
     text: |
-      See <a href="#requiredAuthHeader">requiredAuthHeader</a> for more information.
+      A value (or comma seperated list of possible values since 5.2.1) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
+      If the header contains one of the values, the user is authorized to use the system otherwise they will be denied.
+
+      For example
+      <pre>requiredAuthHeader=company-x-role
+      requiredAuthHeaderVal=arkime,admin
+      </pre>
+      a user with a header of <code>company-x-role: foo,arkime,office</code> or <code>company-x-role: foo,admin,bar</code> would
+      be authorized, while a user with a header of <code>company-x-role: foo,office</code> would not be authorized.
 
   - key: userAutoCreateTmpl
     value: EMPTY
