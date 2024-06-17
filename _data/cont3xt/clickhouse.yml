@@ -1,0 +1,30 @@
+name: "Clickhouse Integration"
+before: |
+  Since 5.2 Cont3xt can query Clickhouse for results.
+
+  Create a <code>[clickhouse:NAME]</code> section where NAME is a unique name for all integrations
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: OpenSearch/Elasticsearch icon
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: REQUIRED
+    text: Comma separated list of itypes this integration supports
+
+  - key: statement
+    value: REQUIRED
+    text: Which index to search
+
+  - key: url
+    value: REQUIRED
+    text: The Clickhouse URL

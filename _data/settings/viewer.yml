@@ -235,3 +235,11 @@ settings:
       (Since 5.1) A comma separated list of indices to always query in addition to the normal Arkime indices.
       This is useful for querying external indices that still use the Arkime schema.
 
+  - key: maxSessionsQueried
+    value: 2000000
+    text: |
+      (Since 5.2.1) The maximum number of sessions that can be queried at once.
+      This is to prevent users from accidentally querying too many sessions.
+
+
+
