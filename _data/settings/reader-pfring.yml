@@ -2,10 +2,11 @@ name: "Reader - PF_RING - Settings"
 before: |
   <ul>
     <li>
-      We suggest you try tpacketv3 (afpacket) first if available on the host. 
-      Arkime only supports vanilla PF_RING and NOT PF_RING DNA nor PF_RING ZC.
-      Simce vanilla PF_RING and afpacket are about the same, we recommend you use afpacket.
-      Usually the only time you should use PF_RING is when you have other tools on the 
+      We <b>strongly</b> suggest you try tpacketv3 (afpacketv3) first if available BEFORE
+      using PF_RING since Arkime supports afpacket better.
+      Note that Arkime only supports vanilla PF_RING and NOT PF_RING DNA nor PF_RING ZC.
+      Since vanilla PF_RING and afpacket are about the same, we recommend you use afpacket.
+      Usually the only time you should use PF_RING is when you have other tools on the
       same machine also using vanilla PF_RING.
 
     </li>

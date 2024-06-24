@@ -360,11 +360,15 @@ settings:
     text: |
       Specify how packets are read from network cards:
       <ul class="mb-0">
-        <li> libpcap = Use libpcap </li>
-        <li> pfring = Use pfring directly, requires rootPlugins=reader-pfring.so </li>
+        <li> afpacketv3 = Use linux tpacketv3 (afpacket) interface </li>
         <li> daq = Use daq, requires rootPlugins=reader-daq.so </li>
+        <li> libpcap = Use libpcap </li>
+        <li> pcap-over-ip-client = Use pcap over ip, where Arkime is the client </li>
+        <li> pcap-over-ip-server = Use pcap over ip, where Arkime is the server </li>
+        <li> pfring = Use vanilla pfring directly, requires rootPlugins=reader-pfring.so </li>
         <li> snf = Use Myricom snf, requires rootPlugins=reader-snf.so </li>
-        <li> tpacketv3 = Use linux tpacketv3 (afpacket) interface </li>
+        <li> tpacketv3 = Use linux tpacketv3 (afpacket) interface - RECOMMENDED </li>
+        <li> tzsp = Listen for forwarded packets using tzsp </li>
       </ul>
 
   - key: pcapWriteMethod
