@@ -12,18 +12,22 @@ before: |
     <dt>file:///fullpath</dt>
     <dd>Process a file on the local disk</dd>
 
-    <dt>s3://bucket/key</dt>
-    <dd>Process a file that lives in s3</dd>
-
-    <dt>s3http(s)://host(:port)/bucket/key</dt>
-    <dd>Process a file using s3 protocol but use a certain host, useful with minio for example</dd>
-
     <dt>http(s)://host(:port)/path</dt>
     <dd>Process a file using http range requests</dd>
+
+    <dt>s3://bucket/key</dt>
+    <dd>Process a file that lives in s3, <a href="#reader-scheme-s3">more info</a></dd>
+
+    <dt>s3http(s)://host(:port)/bucket/key</dt>
+    <dd>Process a file using s3 protocol but use a certain host, useful with MinIO/LocalStack for example, <a href="#reader-scheme-s3">more info</a></dd>
+
+    <dt>sqs://host(:port)/account/queue</dt>
+    <dd>Process SQS queue of s3 pcap files <a href="#reader-scheme-sqs">more info</a></dd>
+
+    <dt>sqshttp(s)://host(:port)/account/queue</dt>
+    <dd>Process SQS queue of s3 pcap files, useful with LocalStack <a href="#reader-scheme-sqs">more info</a></dd>
   </dl>
   <p>
     So for example <code>./capture -r http://hostname/foo.pcap -r s3://pcapbucket/file.pcap</code> will process 2 files.
   </p>
 
-
-settings:

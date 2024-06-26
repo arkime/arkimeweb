@@ -1,0 +1,52 @@
+name: "Reader - Scheme - S3"
+before: |
+  <p>
+    Arkime 5.0 added the ability to process S3 files directly without having to first download the files.
+    Arkime 5.3 enhance the capability to process multiple S3 files using a prefix
+  </p>
+  <p>
+    Two forms of the S3 URL are supported:
+    <ul>
+      <li>s3://bucket/key</li>
+      <li>s3http(s)://host(:port)/bucket/key</li>
+    </ul>
+  </p>
+  <p>
+  <dl>
+    <dt>Process a single file</dt>
+    <dd><code>capture -r s3://testbucket/filepath/file.pcap</code></dd
+    <dt>Process files with a matching prefix</dt>
+    <dd><code>capture -R s3https://host:443/testbucket/filepath/abc</code></dd
+  </dl>
+  </p>
+
+settings:
+  - key: s3Region
+    value: us-east-1
+    text: |
+      S3 Region the bucket is in
+
+  - key: s3AccessKeyId
+    value: EMPTY
+    text: |
+      The awsAccessKeyId to use to access the SQS queue
+
+  - key: s3SecretAccessKey
+    value: EMPTY
+    text: |
+      The awsSecretAccessKey to use to access the SQS queue
+
+  - key: s3Host
+    value: EMPTY
+    text: |
+      In <code>s3://</code> mode the host to use for the S3 bucket, otherwise the amazonaws.com host will be used.
+
+  - key: s3GapPacketPos
+    value: "true"
+    text: |
+      Encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
+
+  - key: s3PathAccessStyle
+    value: "false"
+    text: |
+      In <code>s3://</code> mode if true use <code>s3.amazonaws.com/s3Bucket</code> if false use <code>s3Bucket.s3.amazonaws.com</code>.

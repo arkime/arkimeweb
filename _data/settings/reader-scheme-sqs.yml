@@ -1,0 +1,37 @@
+name: "Reader - Scheme - SQS"
+before: |
+  <p>
+    Arkime 5.3 added the ability to process a SQS queue for pcap files added to S3.
+    As files are added to S3, S3 will automatically add a message to the SQS queue.
+    Arkime will monitor the SQS queue and process the S3 files.
+    By default Arkime will exit after all the messages are processed, use the <code>-m</code> option to keep running.
+  </p>
+  <p>
+    Two forms of the SQS URL are supported:
+    <ul>
+      <li>sqs://sqs.REGION.amazonaws.com/ACCOUNT/QUEUE</li>
+      <li>sqshttp(s)://sqs.REGION.DOMAIN(:PORT)/ACCOUNT/QUEUE</dt>
+    </ul>
+  </p>
+  <p>
+    Example:
+    <pre>
+      capture -R sqs://sqs.us-east-1.amazonaws.com/00000000/testqueue -m
+    </pre>
+  </p>
+
+settings:
+  - key: sqsAccessKeyId
+    value: EMPTY
+    text: |
+      The awsAccessKeyId to use to access the SQS queue
+
+  - key: sqsSecretAccessKey
+    value: EMPTY
+    text: |
+      The awsSecretAccessKey to use to access the SQS queue
+
+  - key: s3Host
+    value: EMPTY
+    text: |
+      The host to use to access the S3 bucket, if not set Arkime and sqshttp(s) was used, Arkime will use the same host as the SQS queue, otherwise it will use the s3:// scheme settings
