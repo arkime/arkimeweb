@@ -12,12 +12,12 @@ before: |
     </ul>
   </p>
   <p>
-  <dl>
-    <dt>Process a single file</dt>
-    <dd><code>capture -r s3://testbucket/filepath/file.pcap</code></dd
-    <dt>Process files with a matching prefix</dt>
-    <dd><code>capture -R s3https://host:443/testbucket/filepath/abc</code></dd
-  </dl>
+    <dl>
+      <dt>Process a single file</dt>
+      <dd><code>capture -r s3://testbucket/filepath/file.pcap</code></dd>
+      <dt>Process files with a matching prefix</dt>
+      <dd><code>capture -R s3https://host:443/testbucket/filepath/abc</code></dd>
+    </dl>
   </p>
 
 settings:

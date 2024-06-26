@@ -13,11 +13,12 @@ before: |
       <li>sqshttp(s)://sqs.REGION.DOMAIN(:PORT)/ACCOUNT/QUEUE</dt>
     </ul>
   </p>
-  <p>
-    Example:
-    <pre>
-      capture -R sqs://sqs.us-east-1.amazonaws.com/00000000/testqueue -m
-    </pre>
+    <dl>
+      <dt>Process an AWS queue and exit</dt>
+      <dd><code>capture -R sqs://sqs.us-east-1.amazonaws.com/00000000/testqueue</code></dd>
+      <dt>Process a LocalStack queue forever</dt>
+      <dd><code>capture -m -R sqshttp://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue</code></dd>
+    </dl>
   </p>
 
 settings:
