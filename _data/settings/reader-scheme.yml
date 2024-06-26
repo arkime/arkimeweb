@@ -24,7 +24,7 @@ before: |
     <dt>sqs://host(:port)/account/queue</dt>
     <dd>Process SQS queue of s3 pcap files <a href="#reader-scheme-sqs">more info</a></dd>
 
-    <dt>sqshttp(s)://host(:port)/account/queue</dt>
+    <dt title="sqshttp(s)://host(:port)/account/queue">sqshttp(s)://host(:port)/account/queue</dt>
     <dd>Process SQS queue of s3 pcap files, useful with LocalStack <a href="#reader-scheme-sqs">more info</a></dd>
   </dl>
   <p>
