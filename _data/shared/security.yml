@@ -131,9 +131,9 @@ settings:
       Optional file with PEM encoded certificates to use when validating certs. Make sure to read this <a href="faq#self-signed-ssl-tls-certificates">FAQ entry.</a>
 
   - key: userAuthIps
-    value: "For header auth 127/8 and ::1, otherwise all ips"
+    value: "For header auth 127.0.0.0/8 and ::1, otherwise all ips"
     text: |
-      (Since 3.4.0) A comma separated list of Ips allowed to be used for authenticated calls
+      (Since 3.4.0) A comma separated list of ips allowed to be used for authenticated calls, no error checking is done on the ips.
 
   - key: authTrustProxy
     value: EMPTY
