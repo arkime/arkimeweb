@@ -34,3 +34,8 @@ settings:
     text: |
       This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
       Setting this to /eshealth.json will suppress logging of all calls to that endpoint.
+
+after: |
+  <p>
+    The capture application has additional settings for logging, see the <a href="#capture-debug">Capture Debug</a> section.
+  </p>
