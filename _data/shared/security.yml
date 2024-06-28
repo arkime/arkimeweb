@@ -91,7 +91,7 @@ settings:
   - key: requiredAuthHeaderVal
     value: EMPTY
     text: |
-      A value (or comma seperated list of possible values since 5.2.1) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
+      A value (or comma seperated list of possible values since 5.3.0) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
       If the header contains one of the values, the user is authorized to use the system otherwise they will be denied.
 
       For example
