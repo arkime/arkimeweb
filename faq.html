@@ -2746,16 +2746,16 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </span>
       </h3>
       <p>
-        PCAP deletion is actually handled by the viewer process, so make sure the viewer process is running on all capture boxes.
+        PCAP deletion is handled by the viewer process, so verify the viewer process is running on all capture instances.
         The viewer process checks on startup and then every minute to see how much space is available, and if it is below
         <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the oldest file.
-        The viewer process will log every time a file is deleted, so you can figure out when a file is deleted if you need to.
+        The viewer process logs every time a file is deleted, so it is possible to figure out when a file is deleted if needed.
         If the viewer complains about not finding the PCAP data, make sure you check the viewer.log.
 
       </p>
       <p>
-        <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can also be a percentage,
-        with <a href="/settings#freespaceg"><code>freeSpaceG=5%</code></a> for the default.
+      <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can be a number <code>freeSpaceG=1000</code> or
+        a percentage, with <code>freeSpaceG=5%</code> the default.
         The viewer process will always leave at least 10 PCAP files on the disk,
         so make sure there is room for at least <a href="/settings#maxfilesizeg"><code>maxFileSizeG * 10</code></a>
         capture files on disk, or by default 120G.
@@ -2765,16 +2765,16 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
       <ol>
         <li>
-          Make sure <a href="/settings#freespaceg">freeSpaceG</a> is set correctly for the environment and verify the setting by running viewer with --debug or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini
+          Verify <a href="/settings#freespaceg">freeSpaceG</a> is set correctly for the node in the config file
         </li>
         <li>
-          Make sure there is free space where viewer is writing its logs.
+          Restart viewer after turning on debugging by adding <code>debug=2</code> in the <code>[default]</code> section of your config.ini file. After restarting viewer, check the viewer.log for messages or use <code>grep -i expire /opt/arkime/logs/viewer.log</code> to see the relevant messages
         </li>
         <li>
-          Make sure viewer can reach OpenSearch/Elasticsearch
+          Make sure there is free space where viewer is writing its logs if you don't see any messages in viewer.log
         </li>
         <li>
-          Make sure that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
+          Verify that <a href="/settings#dropuser">dropUser</a> or <a href="/settings#dropgroup">dropGroup</a> can
           actually delete files in the PCAP directory and has read/execute permissions in all parent directories.
           So for example you need to check the /opt and the /opt/arkime and the /opt/arkime/raw directory permissions.
           The PCAP files will have read/write permissions which is normal.
@@ -2792,12 +2792,6 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
         <li>
           Try restarting viewer
-        </li>
-        <li>
-          The viewer.log should be printing out that it is trying to delete files, you can look for the string "Deleting" in the viewer.log
-        </li>
-        <li>
-          Restart viewer by turning on debugging, either add <code>--debug</code> to the start line or add <code>debug=1</code> in the <code>[default]</code> section of your config.ini file.
         </li>
         <li>
           If using seilnux (<code>sestatus</code>) temporarily disable it (<code>setenforce 0</code>) and see if that fixes the problem.
