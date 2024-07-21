@@ -14,7 +14,6 @@ settings:
       Can be specified either as percentage (<code>freeSpaceG=2%</code>) or the number of gigabytes (<code>freeSpaceG=150</code>) that should be kept available on the <a href="#pcapDir">pcapDir</a> disk(s).
       Viewer will delete PCAP files to try and maintain at least this much free space at all times.
       Viewer will NOT delete the corresponding session records in the database, instead that is done either by <code>db.pl expire</code> script or using ILM/ISM.
-      Starting with Arkime 5.4.0, Arkime will override the setting if less than 10 * <a href="#maxFileSizeG">maxFileSizeG</a> for the setting.
       See the <a href="faq#pcap-deletion">FAQ</a> if you are having issues with this setting.
 
   - key: pcapDir
