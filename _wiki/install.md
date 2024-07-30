@@ -202,8 +202,8 @@ Use the authentication information from above, username `admin` and the password
 ```
 apt update
 apt install -y wget iproute2 ethtool
-#wget https://github.com/arkime/arkime/releases/download/v5.2.0/arkime_5.2.0-1.ubuntu2204_amd64.deb
-#apt install -y ./arkime_5.2.0-1.ubuntu2204_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/v5.3.0/arkime_5.3.0-1.ubuntu2204_amd64.deb
+#apt install -y ./arkime_5.3.0-1.ubuntu2204_amd64.deb
 wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2204_amd64.deb
 apt install -y ./arkime-main_ubuntu2204_amd64.deb
 
@@ -256,8 +256,8 @@ You can always edit the /opt/arkime/etc/cont3xt.ini file directly after running 
 ```
 apt update
 apt install -y wget
-#wget https://github.com/arkime/arkime/releases/download/v5.2.0/arkime_5.2.0-1.ubuntu2204_amd64.deb
-#apt install -y ./arkime_5.2.0-1.ubuntu2204_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/v5.3.0/arkime_5.3.0-1.ubuntu2204_amd64.deb
+#apt install -y ./arkime_5.3.0-1.ubuntu2204_amd64.deb
 wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2204_amd64.deb
 apt install -y ./arkime-main_ubuntu2204_amd64.deb
 
