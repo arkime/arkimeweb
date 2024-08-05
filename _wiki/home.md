@@ -30,6 +30,7 @@ permalink: "/learn"
 - [Tagger Format](taggerformat)
 - [Tagger Plugin](tagger)
 - [S3 PCAP Storage](s3)
+- [Command Socket](command-socket)
 
 ## Viewer
 {: .subsection-header.mt-1 }
