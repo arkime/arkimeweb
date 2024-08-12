@@ -3643,8 +3643,14 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
       </h3>
 
       <p>
-        For Hunts to work properly you must set <code>cronQueries=true</code>
-        on <strong>one and only one node</strong>.
+        Hunts require a single viewer node be specified to actually coordinate the hunts.
+        Since 4.3.1 the preferred method is to set <code>cronQueries=auto</code> in the <code>[default]</code> section of the config.ini file for nodes that should be eligible to run hunts.
+        This will automatically select a single node to run hunts, and if that node goes down, another node will be selected.
+        If using central viewers, it is recommended to only set <code>cronQueries=auto</code> on the central viewers.
+      </p>
+      <p>
+        You can also force hunts to run on a specific node by setting <code>cronQueries=true</code> in the <code>[default]</code> section of the config.ini file.
+        You must only set <code>cronQueries=true</code> on <strong>one and only one node</strong>.
       </p>
       <p>
         If cronQueries is properly set up on a single node, and hunts still aren't working,
