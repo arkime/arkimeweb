@@ -155,7 +155,10 @@ settings:
   - key: logoutUrl
     value: Only set for form authMode
     text: |
-      (Since 5.0.0) Show a logout button in the UI that will take the user to a page to logout. For form authMode we provide a working version.
+      (Since 5.0.0) When set Arkime will show a logout button in the UI that will redirect to this url.
+      For "form" authMode, Arkime provides a web page to logout.
+      All other authMode requires this setting to be set, or no logout button will be shown.
+      Note, "basic" and "digest" authMode do not support logout in most browsers and "oidc" authMode will require an url from the OIDC provier.
 
   - key: loginMessage
     value: EMPTY
