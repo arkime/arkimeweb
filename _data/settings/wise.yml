@@ -10,7 +10,7 @@ before: |
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
     <ol>
       <li> Add <code>wiseURL=http://WISEHOST:8081</code></li>
-      <li> Enable the plugin with by adding <code>wise.so</code> to the `plugins=` variable.</li>
+      <li> Enable the plugin by adding <code>wise.so</code> to the `plugins=` variable, it should be the <strong>last entry</strong>.</li>
     </ol>
   </p>
   <p>
@@ -18,7 +18,7 @@ before: |
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
     <ol>
       <li>Add <code>wiseURL=http://WISEHOST:8081</code></li>
-      <li>Enable the plugin with by adding <code>wise.js</code> to the <code>viewerPlugins=</code> variable.</li>
+      <li>Enable the plugin by adding <code>wise.js</code> to the <code>viewerPlugins=</code> variable.</li>
     </ol>
   </p>
   <p>
