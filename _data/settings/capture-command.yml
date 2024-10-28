@@ -1,4 +1,8 @@
 name: Capture Command Line
+before: |
+  <p>
+    The capture tool supports several important command line options, please use the <code>--help</code> command line option for the most up-to-date options supported by your version.
+  </p>
 
 settings:
   - display: -c, --config {uri}
