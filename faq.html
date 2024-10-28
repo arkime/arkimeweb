@@ -2751,12 +2751,11 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         Arkime will <strong>NOT</strong> work in this configuration as the tools fight for space.
       </p>
       <p>
-        PCAP deletion is handled by the viewer process, so it is important that it running on all capture instances.
+        PCAP deletion is handled by the viewer process, so it is important that viewer is running on all capture instances.
         The viewer process checks on startup and then every minute to see how much space is available. 
         When free space is below <a href="/settings#freespaceg">freeSpaceG</a>, then viewer will start deleting the oldest PCAP files.
         The viewer process logs every time a file is deleted, so it is possible to figure out when a file is deleted if needed.
-        If the viewer complains about not finding the PCAP data, make sure you check the viewer.log.
-
+        If viewer complains about not finding the PCAP file, make sure you check the viewer.log for errors.
       </p>
       <p>
       <strong>Note</strong>: <a href="/settings#freespaceg">freeSpaceG</a> can be a number <code>freeSpaceG=1000</code> or
