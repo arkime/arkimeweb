@@ -2746,9 +2746,14 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </span>
       </h3>
       <p>
-        PCAP deletion is handled by the viewer process, so verify the viewer process is running on all capture instances.
-        The viewer process checks on startup and then every minute to see how much space is available, and if it is below
-        <a href="/settings#freespaceg">freeSpaceG</a>, then it will start deleting the oldest file.
+        <span class="fa fa-exclamation-triangle mr-1"></span>
+        Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
+        Arkime will <strong>NOT</strong> work in this configuration as the tools fight for space.
+      </p>
+      <p>
+        PCAP deletion is handled by the viewer process, so it is important that it running on all capture instances.
+        The viewer process checks on startup and then every minute to see how much space is available. 
+        When free space is below <a href="/settings#freespaceg">freeSpaceG</a>, then viewer will start deleting the oldest PCAP files.
         The viewer process logs every time a file is deleted, so it is possible to figure out when a file is deleted if needed.
         If the viewer complains about not finding the PCAP data, make sure you check the viewer.log.
 
