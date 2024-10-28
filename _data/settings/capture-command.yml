@@ -1,28 +1,32 @@
 name: Capture Command Line
 
 settings:
-  - key: -c, --config {uri}
+  - display: -c, --config {uri}
+    key: option-c
     value: /opt/arkime/etc/config.ini
     text: |
       The configuration file to use, in ini format.
       Since 5.0 the configuration can be in ini, json, or yaml format and can be on disk (/opt/arkime/etc/config.ini), 
       an url (https://example.com/config.ini), or OpenSearch (opensearchs://example.com/INDEX/_doc/DOC) or Elasticsearch (elasticsearch://example.com:9200/INDEX/_doc/DOC).
 
-  - key: -r, --pcapfile {file}
+  - display: -r, --pcapfile {file}
+    key: option-r
     value: EMPTY
     text: |
       The path to an offline pcap file to read packets from.
       There can be multiple -r options on the command line.
       Since Arkime 5 the file can be a url to the pcap location, see <a href="#reader-scheme">Reader - Offline Scheme</a> for more information.
 
-  - key: -R, --pcapdir {directory}
+  - display: -R, --pcapdir {directory}
+    key: option-r
     value: EMPTY
     text: |
       The path to an offline pcap directory to find pca files in.
       There can be multiple -R options on the command line.
       Since Arkime 5 the directory can be a url to the pcap location, see <a href="#reader-scheme">Reader - Offline Scheme</a> for more information.
 
-  - key: --command-socket {file}
+  - display: --command-socket {file}
+    key: option-command-socket
     value: EMPTY
     text: |
       The path to a unix domain socket to listen for commands on.
@@ -31,125 +35,148 @@ settings:
       help
       exit</pre>
 
-  - key: -command-wait
+  - display: --command-wait
+    key: option-command-wait
     value: N/A
     text: |
       Wait for the shutdown command on the command socket before exiting.
 
-  - key: -m, --monitor
+  - display: -m, --monitor
+    key: option-m
     value: N/A
     text: |
       Monitor the pcap directory for new files and read them as they appear.
 
-  - key: --packetcnt {num}
+  - display: --packetcnt {num}
+    key: option-packetcntr
     value: EMPTY
     text: |
       The max number of packets to process from each pcap file.
 
-  - key: --delete
+  - display: --delete
+    key: option-delete
     value: N/A
     text: |
       When processing offline pcap files, delete the file after processing.
 
-  - key: -s, --skip
+  - display: -s, --skip
+    key: option-s
     value: N/A
     text: |
       Skip offline pcap files already processed.
 
-  - key: --reprocess
+  - display: --reprocess
+    key: option-reprocess
     value: N/A
     text: |
       In offline mode reprocess the pcap files using the same files index information.
 
-  - key: --recursive
+  - display: --recursive
+    key: option-recursive
     value: N/A
     text: |
       When processing a directory, process all subdirectories.
 
-  - key: -n, --node {node name}
+  - display: -n, --node {node name}
+    key: option-n
     value: [hostname before first dot]
     text: |
       The node name of this capture instance.
       This node name will be used in stats and with any pcap files that are processed.
 
-  - key: --host {hostname}
+  - display: --host {hostname}
+    key: option-host
     value: [OS hostname]
     text: |
       Override the OS hostname for this capture instance.
       The viewer will use this hostname when trying to find the packets for this node, see <a href="/faq#how-do-viewers-find-each-other">the FAQ</a> for more information on how nodes find each other..
       The hostname should be a FQDN to make life easier.
 
-  - key: -t, --tag {tag}
+  - display: -t, --tag {tag}
+    key: option-t
     value: EMPTY
     text: |
       Add a tag to all sessions processed by this capture instance.
       The tag can be used in queries and in the viewer to filter packets.
       Equivalent to <pre>--op tags={tag}</pre>
 
-  - key: -F, --filelist {file | -}
+  - display: -F, --filelist {file | -}
+    key: option-f
     value: EMPTY
     text: |
       File that has alist of pcap file names to process, 1 per line.
 
-  - key: --op {FieldExpr=Value}
+  - display: --op {FieldExpr=Value}
+    key: option-op
     value: EMPTY
     text: |
       For all sessions processed by this capture instance, set the field expression to the value.
 
-  - key: -o {Key=Value}
+  - display: -o {Key=Value}
+    key: option-o
     value: EMPTY
     text: |
       Set a configuration key in the default section to the value provided.
       There can be multiple -o options on the command line.
 
-  - key: -v, --version
+  - display: -v, --version
+    key: option-v
     value: N/A
     text: |
       Provide the version of Arkime, build information, and exit.
 
-  - key: -d, --debug
+  - display: -d, --debug
+    key: option-d
     value: N/A
     text: |
       Increase the debug level by one.
 
-  - key: -q, --quiet
+  - display: -q, --quiet
+    key: option-q
     value: N/A
     text: |
       Turn off most regular logging.
 
-  - key: --copy
+  - display: --copy
+    key: option-copy
     value: N/A
     text: |
       As offline pcap files are processed, process the packets as if a live capture and write them back out to pcapDir.
 
-  - key: --flush
+  - display: --flush
+    key: option-flush
     value: N/A
     text: |
       When processing offline pcap files, flush all the data between each files.
       This is important when the pcap files are not related to each other and you don't want them to be accidentally stitched together.
 
-  - key: --insecure
+  - display: --insecure
+    key: option-insecure
     value: N/A
     text: |
       Disable certificate verification for any https calls.
 
-  - key: --nolockpcap
+  - display: --nolockpcap
+    key: option-nolockpcap
     value: N/A
     text: |
       When processing offline pcap files and --copy wasn't used, Arkime will usually mark the pcap files as locked so they aren't deleted.
       This option will disable that behavior and viewer WILL delete the pcap files if short on space.
 
-  - key: --scheme
+  - display: --scheme
+    key: option-scheme
     value: N/A
     text: |
       Force the use of the new Arkime 5 scheme mode for reading offline pcap files.
 
-  - key: --libpcap
+  - display: --libpcap
+    key: option-libpcap
     value: N/A
     text: |
       Force the use of the old pre Arkime 5 libpcap mode for reading offline pcap files.
 
-  - key: --profile {file}
+  - display: --profile {file}
+    key: option-profile
     value: N/A
     text: |
       A cloud profile file to use for this capture instance.
