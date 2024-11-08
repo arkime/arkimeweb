@@ -7,7 +7,7 @@ settings:
       Semicolon separated list of directories to load parsers from
 
   - key: pluginsDir
-    value: EMPTY
+    value: (Since 5.5.0) /opt/arkime/parsers ; ./plugins (before 5.5.0) EMPTY
     text: |
       Semicolon separated list of directories to load plugins from
 

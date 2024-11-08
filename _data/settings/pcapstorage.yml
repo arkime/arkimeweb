@@ -17,7 +17,7 @@ settings:
       See the <a href="faq#pcap-deletion">FAQ</a> if you are having issues with this setting.
 
   - key: pcapDir
-    value: EMPTY
+    value: (Since 5.5.0) /opt/arkime/raw (before 5.5.0) EMPTY
     text: |
       Semicolon separated list of directories to save pcap files to.
       The directory to save pcap to is picked using round robin by default, see <a href="#pcapdiralgorithm">pcapDirAlgorithm</a> for more options.
