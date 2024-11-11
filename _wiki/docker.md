@@ -36,6 +36,28 @@ To see the options that docker.sh supports try out `docker run ghcr.io/arkime/ar
 * snapshot-v5-latest: This tag points to the latest development snapshot, which is built after each commit. Use this if you're testing the latest features or bug fixes, if you're contributing to the Arkime project, or you like the thrill of living on the edge. This should be stable enough for most users, but it's not recommended for production use.
 * snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Currently not recommended for anyone.
 
+## Configuring Arkime Docker Containers
+{: .subsection }
+
+You can configure Arkime Docker containers using three primary methods:
+
+1. Configuration File:
+* Create a local configuration file.
+* Mount this file into the container to override default settings.
+* Some complex config file sections require this method.
+2. Environment Variables:
+* Set environment variables to configure the container. (`ARKIME_<section>__<config>=<value>`)
+* These variables take precedence over configuration file settings.
+3. Command-Line Options:
+* Use the `-o` command-line option to specify additional configuration options. (`-o <section>.<config>=<value>`)
+* This method provides flexibility for one-time or specific configuration changes, but not recommended.
+
+For comprehensive configuration, consider combining these methods:
+* Base Configuration: Use a configuration file for general settings.
+* Overrides: Employ environment variables for specific overrides.
+
+By strategically combining these methods, you can effectively tailor Arkime Docker containers to your specific requirements.
+
 ## Docker Compose Examples
 {: .subsection }
 
