@@ -23,7 +23,7 @@ To see the options that docker.sh supports try out `docker run ghcr.io/arkime/ar
 ## Choosing the Right Arkime Image Tag
 {: .subsection }
 
-[https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime](Github Container Registry)
+[Github Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
 
 ### Stable Releases:
 
