@@ -18,12 +18,15 @@ We provide a docker.sh script (optional) to initiate different tools using the i
 However you don't have to use it, you can run the tools directly from the container.
 This gives you control over how you interact with Arkime within your container environment.
 
-To see the options that docker.sh supports try out `docker run ghcr.io/arkime/arkime/arkime:snapshot-v5-latest /opt/arkime/bin/docker.sh help`
+To see the options that docker.sh supports try out `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/bin/docker.sh help`
 
 [Github Arkime Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
 
 ## Choosing the Right Arkime Image Tag
 {: .subsection }
+
+We offer several tags to help you choose the right Arkime image for your needs.
+All of our releases are multi architecture, so you can use the same tag on both amd64 and arm64 systems.
 
 ### Stable Releases:
 
