@@ -20,10 +20,10 @@ This gives you control over how you interact with Arkime within your container e
 
 To see the options that docker.sh supports try out `docker run ghcr.io/arkime/arkime/arkime:snapshot-v5-latest /opt/arkime/bin/docker.sh help`
 
+[Github Arkime Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
+
 ## Choosing the Right Arkime Image Tag
 {: .subsection }
-
-[Github Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
 
 ### Stable Releases:
 
