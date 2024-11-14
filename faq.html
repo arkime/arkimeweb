@@ -2012,8 +2012,12 @@ logger.action.level = info</code></pre>
           like RAID 5 with 1 hot spare or RAID 6 (with better cards).
         </li>
         <li>
-          NIC: We like newer Intel base NICs, but most should work fine (you might
-          want to get one compatible with PFRING).
+          NIC: We like newer Mellanox/Intel base NICs. Most newish cards should work fine, however double check the drivers for your Linux distribution.
+          <ul>
+            <li>10G NICs are the best value. Scaling Arkime over 10Gbps can be difficult anyway because of disk write performance, unless using flash.
+            <li>25G NICs can be a good choice when connecting to 100G NPB ports. Many NPBs support 4x25G links per 100G port, allowing you quadruple the number of tool hosts you have.</li>
+            <li>40G NICs are not recommended. Instead many  NPBs support 4x10G links per 40G NPB port, allowing you to quadruple the number of tool hosts you have if you use 10G ports on the tool hosts.</li>
+          </ul>
         </li>
         <li>
           CPU: At least 2 x 6 cores. The higher the average Gbps, the more
