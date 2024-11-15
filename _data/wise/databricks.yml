@@ -1,0 +1,60 @@
+name: Databricks
+
+before: |
+  <p>
+    (Since 5.5.1) The Databricks wise service can run in two different modes.
+    It can query Databricks for every value or it can query Databricks periodicly for a table of values.
+    Many Databricks operators prefer the periodic query since they can scale for it.
+    <br>
+    Create a <code>[databricks:UNIQUENAME]</code> section to configure
+  </p>
+
+settings:
+  - key: type
+    value: REQUIRED
+    text: any type- The type of data in the file
+
+  - key: host
+    value: REQUIRED
+    text: The Databricks hostname
+
+  - key: token
+    value: REQUIRED
+    text: The Databricks token
+
+  - key: keyPath
+    value: REQUIRED
+    text: The column to use from the returned data to use as the key
+
+  - key: periodic
+    value: false
+    text: Should we do periodic queries or individual queries
+
+  - key: path
+    value: REQUIRED
+    text: The Databricks path
+
+  - key: query
+    value: REQUIRED
+    text: The query to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key.
+
+  - key: mergeQuery
+    value: EMPTY
+    text: When in periodic mode, use this query after startup and merge the keyPath value into previous table otherwise query will be run and replace all values.
+
+after: |
+  <p>
+    Example config that will query Databricks for all the vpn_ip to user name mappings during the last 24 hours every 60 seconds. It will then set the user field for any ip that matches.
+  </p>
+  <pre>
+    [databricks:users]
+    type = ip
+    format = json
+    host = databricks.example.com
+    path = /sql/2.0/warehouses/vpndata
+    token = THETOKEN
+    periodic=60
+    query=
+    keyPath=vpn_ip
+    fields=field:user;shortcut:user
+  </pre>

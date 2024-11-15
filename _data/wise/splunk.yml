@@ -3,7 +3,7 @@ name: Splunk
 before: |
   <p>
     The Splunk wise service can run in two different modes.
-    It can query Splunk for every value or it can query splunk periodicly for a table of values.
+    It can query Splunk for every value or it can query Splunk periodicly for a table of values.
     Many Splunk operators prefer the periodic query since they can scale for it.
     <br>
     Create a <code>[splunk:UNIQUENAME]</code> section to configure
@@ -18,7 +18,7 @@ settings:
     value: REQUIRED
     text: The Splunk hostname
 
-  - key: keyColumn
+  - key: keyPath
     value: REQUIRED
     text: The column to use from the returned data to use as the key
 
@@ -33,6 +33,10 @@ settings:
   - key: query
     value: REQUIRED
     text: The query to run against Splunk. For non periodic queries the string %%SEARCHTERM%% will be replaced with the key.
+
+  - key: mergeQuery
+    value: EMPTY
+    text: When in periodic mode, use this query after startup and merge the keyPath value into previous table otherwise query will be run and replace all values.
 
   - key: version
     value: 5
