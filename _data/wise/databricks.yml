@@ -36,7 +36,7 @@ settings:
 
   - key: query
     value: REQUIRED
-    text: The query to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key. (e.g. SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM)
+    text: The query to run against Databricks. For non periodic queries the named parameter <code>:SEARCHTERM</code> will be replaced with the key. (e.g. <code>SELECT * FROM catalog.schema.table WHERE ip = :SEARCHTERM</code>)
 
   - key: mergeQuery
     value: EMPTY
@@ -54,7 +54,7 @@ after: |
     path = /sql/1.0/warehouses/abcxyz125789
     token = THESUPERSECRETTOKEN
     periodic=60
-    query=SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM
+    query=SELECT * FROM catalog.schema.table WHERE ip = :SEARCHTERM
     keyPath=vpn_ip
     fields=field:user;shortcut:user
   </pre>

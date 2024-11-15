@@ -27,7 +27,7 @@ settings:
 
   - key: statement
     value: REQUIRED
-    text: The query statement to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key. (e.g. SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM)
+    text: The query statement to run against Databricks, the named parameter <code>:SEARCHTERM</code> will be replaced with the search key. (e.g. <code>SELECT * FROM catalog.schema.table WHERE ip = :SEARCHTERM</code>)
 
 after: |
   <p>
@@ -40,5 +40,5 @@ after: |
     host = abc-123456-789.cloud.databricks.com
     path = /sql/1.0/warehouses/abcxyz125789
     token = THESUPERSECRETTOKEN
-    statement=SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM
+    statement=SELECT * FROM catalog.schema.table WHERE ip = :SEARCHTERM
   </pre>
