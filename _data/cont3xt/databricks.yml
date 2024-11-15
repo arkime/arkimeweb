@@ -1,0 +1,44 @@
+name: "Databricks Integration"
+before: |
+  (Since 5.5.1) Cont3xt can query Databricks for results.
+
+  Create a <code>[databricks:NAME]</code> section where NAME is a unique name for all integrations
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: icon for integration in UI
+    text: Path to icon to use in UI
+
+  - key: host
+    value: REQUIRED
+    text: The Databricks hostname (usually something like *******.databricks.com)
+
+  - key: token
+    value: REQUIRED
+    text: The Databricks token (usually starts with "dapi")
+
+  - key: path
+    value: REQUIRED
+    text: The Databricks path (usually something like /sql/1.0/warehouses/******)
+
+  - key: statement
+    value: REQUIRED
+    text: The query statement to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key. (e.g. SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM)
+
+after: |
+  <p>
+    Example config that will query Databricks for all the IPs that match.
+  </p>
+  <pre>
+    [databricks:users]
+    itypes = ip
+    name = DataBricks Users
+    host = abc-123456-789.cloud.databricks.com
+    path = /sql/1.0/warehouses/abcxyz125789
+    token = THESUPERSECRETTOKEN
+    statement=SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM
+  </pre>

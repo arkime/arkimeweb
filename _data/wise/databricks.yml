@@ -16,11 +16,11 @@ settings:
 
   - key: host
     value: REQUIRED
-    text: The Databricks hostname
+    text: The Databricks hostname (usually something like *******.databricks.com)
 
   - key: token
     value: REQUIRED
-    text: The Databricks token
+    text: The Databricks token (usually starts with "dapi")
 
   - key: keyPath
     value: REQUIRED
@@ -32,11 +32,11 @@ settings:
 
   - key: path
     value: REQUIRED
-    text: The Databricks path
+    text: The Databricks path (usually something like /sql/1.0/warehouses/******)
 
   - key: query
     value: REQUIRED
-    text: The query to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key.
+    text: The query to run against Databricks. For non periodic queries the named parameter SEARCHTERM will be replaced with the key. (e.g. SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM)
 
   - key: mergeQuery
     value: EMPTY
@@ -50,11 +50,11 @@ after: |
     [databricks:users]
     type = ip
     format = json
-    host = databricks.example.com
-    path = /sql/2.0/warehouses/vpndata
-    token = THETOKEN
+    host = abc-123456-789.cloud.databricks.com
+    path = /sql/1.0/warehouses/abcxyz125789
+    token = THESUPERSECRETTOKEN
     periodic=60
-    query=
+    query=SELECT * FROM catalog.schema.table WHERE ip = SEARCHTERM
     keyPath=vpn_ip
     fields=field:user;shortcut:user
   </pre>
