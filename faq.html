@@ -2130,13 +2130,14 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        On basic commodity hardware, achieving throughput of 3 Gbps or more is easy, depending largely on the number of CPUs allocated to Arkime and the other tasks the machine is handling.
-        Often, the bottleneck in performance is the speed of the disks and the RAID configuration.
+        On modern commodity hardware, achieving throughput of 5 Gbps or more is easy, depending largely on the number of CPUs allocated to Arkime and the other tasks the machine is handling.
+        The bottleneck in performance is almost always the speed of storing PCAP to disk!
+        If your disks or RAID can't keep up, you either need to not save as much PCAP using Arkime Rules and other options, select a faster RAID configuration and disks, or give Arkime dedicate disks.
         For further details, refer to the <a href="architecture">Architecture</a> and <a href="multihost">Multiple Host</a> sections.
         Arkime supports the utilization of multiple threads for both packet acquisition and packet processing.
       </p>
       <p>
-        To test the local RAID device, use:
+        A simple method to test a local RAID devicee:
         <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
         To test a NAS, leave off the oflag=direct and make sure you test with at least 3x the amount of memory so that cache isn't a factor:
         <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
@@ -2145,8 +2146,8 @@ logger.action.level = info</code></pre>
       <p>
         The output represents the maximum disk performance.
         If you wish to obtain a more accurate assessment, run several tests and average the results.
-        To avoid packet loss, it's advisable to operate Arkime at no more than approximately 80% of the maximum disk performance.
-        For systems utilizing RAID, aiming for about 60% of this performance metric can further minimize the risk of dropping packets, especially during RAID rebuilds.
+        To avoid packet loss, it's advisable to operate Arkime at no more than 80% of the maximum disk performance.
+        For systems utilizing RAID, aiming for about 60% of this performance metric can further minimize issues, especially during RAID rebuilds.
         It's important to note that network throughput is typically measured in bits, whereas disk performance is gauged in bytes, requiring the conversion of these measurements for accurate comparison.
       </p>
 
@@ -2158,7 +2159,7 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        When you get an error about the capture length not matching the packet
+        When you have an error about the capture length not matching the packet
         length, it is <strong>NOT</strong> an issue with Arkime. The issue is
         with the network card settings OR how the pcap file was created.
       </p>
@@ -2171,8 +2172,8 @@ logger.action.level = info</code></pre>
         from Arkime.
       </p>
       <p>
-        The sample config files
-        (<code>/opt/arkime/bin/arkime_config_interfaces.sh</code>) turn off many
+        The sample config file
+        (<code>/opt/arkime/bin/arkime_config_interfaces.sh</code>) turns off many
         common features but there are still some possible problems:
       </p>
       <ol>
