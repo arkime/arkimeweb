@@ -104,7 +104,7 @@ services:
 
 ### Capture and Viewer
 
-For capture and viewer you'll need to mount a directory for the pcap data and we recommend mount a etc directory for the configuration and all the extra GEO files.
+For capture and viewer you'll need to mount a directory for the pcap data and we recommend mounting a etc directory for the configuration and all the extra GEO files. Make sure the directories are writable by the container.
 
 ```
 version: '3'
@@ -115,7 +115,7 @@ services:
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh capture --update-geo
     volumes:
-      - /pcap:/opt/arkime/raw
+      - /opt/arkime/raw:/opt/arkime/raw
       - /opt/arkime/etc:/opt/arkime/etc
     restart: always
   viewer:
@@ -123,7 +123,7 @@ services:
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh viewer
     volumes:
-      - /pcap:/opt/arkime/raw
+      - /opt/arkime/raw:/opt/arkime/raw
       - /opt/arkime/etc:/opt/arkime/etc
     restart: always
 ```
