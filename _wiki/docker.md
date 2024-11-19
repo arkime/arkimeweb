@@ -98,9 +98,9 @@ pcapDir=/opt/arkime/raw
 
 ### Processing - https://arkime.com/settings#capture
 packetThreads=1
-rulesFiles=/opt/arkime/etc/default.rules
 rirFile=/opt/arkime/etc/ipv4-address-space.csv
 ouiFile=/opt/arkime/etc/oui.txt
+#rulesFiles=/opt/arkime/etc/default.rules
 
 ### User/Group to drop privileges to, pcapDir must be writable by this user or group
 dropUser=nobody
