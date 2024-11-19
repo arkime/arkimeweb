@@ -64,9 +64,17 @@ By strategically combining these methods, you can effectively tailor Arkime Dock
 ## Setting up an Arkime environment
 {: .subsection }
 
-1. Install OpenSearch or Elasticsearch - You can use either Docker or a standalone installation.
-2. Initialize OpenSearch or Elasticsearch - `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure http://ESHOST:9200 init` you may need to specify a network mode.
-3. Setup directories - You'll need directories for your pcap and configuration files, for example `/opt/arkime/raw` and `/opt/arkime/etc` mounting these directories into the container.
+1. Install OpenSearch or Elasticsearch
+* You can use either Docker or a standalone installation.
+2. Initialize OpenSearch or Elasticsearch for Arkime use
+* `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
+* This is a one time operation to create the Arkime indices in OpenSearch/Elasticsearch.
+* Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host.
+* You may need to specify a network mode for docker, such as `--network=host`.
+3. Setup directories
+* You'll need directories for your pcap and configuration files.
+* The examples use `/opt/arkime/raw` and `/opt/arkime/etc` - mounting these directories into the container.
+* When using /home directories you may run into permission issues.
 4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` [Arkime Settings](/settings).
 5. Start your Arkime containers.
 
