@@ -78,6 +78,35 @@ By strategically combining these methods, you can effectively tailor Arkime Dock
 4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` [Arkime Settings](/settings).
 5. Start your Arkime containers.
 
+## Sample Capture/Viewer Config File
+{: .subsection }
+The Arkime defaults are usually good enough to get started.  The examples save this file as `/opt/arkime/etc/config.ini` and mount the `/opt/arkime/etc` directory into the container.
+
+```
+[default]
+### DB Settings - https://arkime.com/settings#db
+elasticsearch=***UPDATE***
+
+### PCAP Reading - https://arkime.com/settings#reader-afpacket
+interface=***UPDATE***
+snapLen=32768
+pcapReadMethod=afpacketv3
+tpacketv3NumThreads=1
+
+### PCAP Writing - https://arkime.com/settings#pcapstorage
+pcapDir=/opt/arkime/raw
+
+### Processing - https://arkime.com/settings#capture
+packetThreads=1
+rulesFiles=/opt/arkime/etc/default.rules
+rirFile=/opt/arkime/etc/ipv4-address-space.csv
+ouiFile=/opt/arkime/etc/oui.txt
+
+### User/Group to drop privileges to, pcapDir must be writable by this user or group
+dropUser=nobody
+dropGroup=daemon
+```
+
 ## Docker Compose Examples
 {: .subsection }
 
