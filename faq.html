@@ -2267,6 +2267,15 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
           <code>/data/moloch/bin/moloch_config_interfaces.sh</code>
         </p>
 
+        <h4 id="mtu-setting">
+          MTU Setting
+        </h4>
+        <p>
+          Many network cards will drop packets if the packet MTU is larger than the interface MTU.
+          It is common when sniffing network taffic to have encapsulated packets that are larger than the default MTU of 1500.
+          Make sure the MTU of the capture interface is set to at least 1600 or 9216 if you are using jumbo frames.
+        </p>
+
         <h4 id="packetthreads-and-the-packet-q-is-overflowing-error">
           packetThreads and the PacketQ is overflowing error
         </h4>
