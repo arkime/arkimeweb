@@ -1,21 +1,32 @@
 name: Kafka
 before: |
   <p>
-    (Since 4.2.0)
-    Arkime can send sessions to kafka instead of directly to OpenSearch/Elasticsearch.
-    Arkime will still need to directly use OpenSearch/Elasticsearch for other data store.
-    You will need to create a kafka consumer that processes the docs and inserts them
-    into OpenSearch/Elasticsearch using either the bulk header or index field to determine which
-    index to insert into.
-    To enable add <code>kafka.so</code> to the <code>plugins=</code> line in the config
-    file.
-  </p>
-  <p>
-    (Since 5.0.0)
-    It is possible to have full control of the librdkafka configuration by creating a new <code>[kafka-config]</code> section in the Arkime config file.
-    Each item is an entry from the <a href="https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md">Global Configuration</a> section and is applied AFTER the Arkime settings below.
+    (Since 4.2.0) Arkime can be decoupled from directly sending sessions to OpenSearch/Elasticsearch by leveraging Kafka as a message queue.
+    This approach offers greater flexibility and scalability.
+    Arkime will continue to interact directly with OpenSearch/Elasticsearch for other data storage needs.
   </p>
 
+  <h4>To integrate Kafka:</h4>
+
+  <ol>
+    <li><strong>Producer:</strong> Configure Arkime to publish session data to a specific Kafka topic.</li>
+    <li>
+      <strong>Consumer:</strong> Develop a Kafka consumer that subscribes to the session topic. This consumer will be responsible for processing the session data and indexing it into OpenSearch/Elasticsearch.
+      The consumer can determine the target OpenSearch/Elasticsearch index based on either:
+      <ul>
+        <li><strong>Bulk Header:</strong> This can be used directly to index the data.</li>
+        <li><strong>Document Field:</strong> Extracting the index name from a specific field within the session data.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4>Configuration:</h4>
+  <ul>
+    <li>Update the Arkime configuration file by adding <code>kafka.so</code> to the <code>plugins=</code> line to enable the Kafka plugin.</li>
+    <li>Add any of the following settings to the Arkime configuration file.
+    <li> (Since 5.0.0) It is possible to have full control of the librdkafka configuration by creating a new <code>[kafka-config]</code> section in the Arkime configuration file.
+    Each item is an entry from the <a href="https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md">Global Configuration</a> section and is applied AFTER the Arkime settings below.</li>
+  </ul>
 
 settings:
   - key: kafkaBootstrapServers
@@ -48,9 +59,9 @@ settings:
 
   - key: kafkaMsgFormat
     text: |
-      How to send the SPI data: <ul>
-        <li>bulk - raw bulk msg</li>
-        <li>bulk1 - bulk formatted, but just 1 doc</li>
-        <li>doc - just the doc, added "index" field with the OpenSearch/Elasticearch index to send to</li>
+      Format of sessions data sent to Kafka: <ul>
+        <li><strong>bulk</strong> - uses the OpenSearch/Elasticsearch bulk format and may contain multiple sessions</li>
+        <li><strong>bulk1</strong> - same as bulk formatted, but always just 1 session</li>
+        <li><strong>doc</strong> - just the session, added "index" field with the OpenSearch/Elasticearch index to send to, you should delete index field before sending to DB</li>
       </ul>
     value: "bulk"
