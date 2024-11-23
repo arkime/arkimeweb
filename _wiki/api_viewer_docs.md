@@ -404,20 +404,6 @@ Gets a list of PCAP files that Arkime knows about.
 | recordsTotal | <code>number</code>| The total number of files Arkime knows about |
 | recordsFiltered | <code>number</code>| The number of files returned in this result |
 
-<a name="/_nodeName/_fileNum/filesize"></a>
-
-## /:nodeName/:fileNum/filesize API
-
-GET - /api/:nodeName/:fileNum/filesize
-
-Retrieves the filesize of a PCAP file.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| filesize | <code>number</code>| The size of the file ( |
-
 <a name="/valueactions"></a>
 
 ## /valueactions API
@@ -1551,6 +1537,21 @@ Include OpenSearch/Elasticsearch node by ip or name (admin only).
 | success | <code>boolean</code>| Whether include node operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/esshards/_index/_shard/delete"></a>
+
+## /esshards/:index/:shard/delete API
+
+POST - /api/esshards/:index/:shard/delete
+
+Delete OpenSearch/Elasticsearch (admin only).
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether include node operation was successful. |
+| text | <code>string</code>| The success/error message to (optionally) display to the user. |
+
 <a name="/esrecovery"></a>
 
 ## /esrecovery API
@@ -1637,126 +1638,69 @@ Updates an Arkime user's settings.
 | success | <code>boolean</code>| Whether the update user settings operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
-<a name="/user/columns"></a>
+<a name="/user/layouts/_type"></a>
 
-## /user/columns API
+## /user/layouts/:type API
 
-GET - /api/user/columns
+GET - /api/user/layouts/:type
 
-Retrieves user configured custom Sessions column configurations.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| columnConfigs | [<code>Array.&lt;ArkimeColumnConfig&gt;</code>](#ArkimeColumnConfig)| The custom Sessions column configurations. |
-
-<a name="/user/column"></a>
-
-## /user/column API
-
-POST - /api/user/column
-
-Creates a new user configured custom Sessions column configuration.
+Retrieves a user configured layouts.
+Valid layouts are: sessionstable, sessionsinfofields, spiview
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the create column configuration operation was successful. |
+| layout | <code>Array</code>| The user configured layout |
+
+<a name="/user/layouts/_type"></a>
+
+## /user/layouts/:type API
+
+POST - /api/user/layouts/:type
+
+Creates a new user configured layout.
+Valid layouts are: sessionstable, sessionsinfofields, spiview
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| name | <code>string</code>| The name of the new custom Sessions column configuration. |
+| layout | <code>object</code>| The new layout configuration. |
 
-<a name="/user/column/_name"></a>
+<a name="/user/layouts/_type"></a>
 
-## /user/column/:name API
+## /user/layouts/:type API
 
-PUT - /api/user/column/:name
+PUT - /api/user/layouts/:type
 
-Updates a user configured custom Sessions column configuration.
+Updates a user configured layout.
+Valid layouts are: sessionstable, sessionsinfofields, spiview
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the update column configuration operation was successful. |
+| success | <code>boolean</code>| Whether the update layout operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| colConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig)| The udpated custom Sessions column configuration. |
+| layout | <code>object</code>| The updated layout configuration. |
 
-<a name="/user/column/_name"></a>
+<a name="/user/layouts/_type/_name"></a>
 
-## /user/column/:name API
+## /user/layouts/:type/:name API
 
-DELETE - /api/user/column/:name
+DELETE - /api/user/layouts/:type/:name
 
-Deletes a user configured custom Sessions column configuration.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete Sessions column configuration operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-
-<a name="/user/spiview"></a>
-
-## /user/spiview API
-
-GET - /api/user/spiview
-
-Retrieves a user configured SPI View fields configuration.
+Deletes a user configured layout.
+Valid layouts are: sessionstable, sessionsinfofields, spiview
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| spiviewFieldConfigs | <code>Array</code>| User configured SPI View field configuration. |
-
-<a name="/user/spiview"></a>
-
-## /user/spiview API
-
-POST - /api/user/spiview
-
-Create a user configured SPI View fields configuration.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update SPI View fields configuration operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| name | <code>string</code>| The name of the new SPI View fields configuration. |
-
-<a name="/user/spiview/_name"></a>
-
-## /user/spiview/:name API
-
-PUT - /api/user/spiview/:name
-
-Updates a user configured SPI View fields configuration.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the update SPI View fields configuration operation was successful. |
-| text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| colConfig | <code>object</code>| The udpated SPI View fields configuration. |
-
-<a name="/user/spiview/_name"></a>
-
-## /user/spiview/:name API
-
-DELETE - /api/user/spiview/:name
-
-Deletes a user configured SPI View fields configuration.
-
-**Returns**:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| success | <code>boolean</code>| Whether the delete SPI View fields configuration operation was successful. |
+| success | <code>boolean</code>| Whether the delete layout operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/user/_userId/acknowledge"></a>
@@ -1809,7 +1753,7 @@ Updates or creates a user table state object. These are used to save the states 
 
 GET - /api/user/config/:page
 
-Fetches the configuration information for a UI page for a user.
+Fetches the configuration/layout information for a UI page for a user.
 
 **Returns**:
 
@@ -2099,7 +2043,7 @@ The user object.
 | disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
 | expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
 | settings | [<code>ArkimeSettings</code>](#ArkimeSettings) |  | The Arkime app settings. |
-| notifiers | <code>object</code> |  | A list of notifiers taht the user can use. |
+| notifiers | <code>object</code> |  | A list of notifiers that the user can use. |
 | columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
 | spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
 | tableStates | <code>object</code> |  | A list of table states used to render Arkime tables as the user has configured them. |
@@ -2123,7 +2067,7 @@ The settings object.
 | timezone | <code>string</code> | <code>&quot;local&quot;</code> | The timezone applied to timestamps within the UI. |
 | detailFormat | <code>string</code> | <code>&quot;last&quot;</code> | The format to display the session packets. Options include: last used, natural, ascii, utf-8, hex. |
 | showTimestamps | <code>string</code> | <code>&quot;last&quot;</code> | Whether to display timestamps at the top of each packet. |
-| sortColumn | <code>string</code> | <code>&quot;firstPacket&quot;</code> | Which column to sort the sesssions table by default. Default is start time. |
+| sortColumn | <code>string</code> | <code>&quot;firstPacket&quot;</code> | Which column to sort the sessions table by default. Default is start time. |
 | sortDirection | <code>string</code> | <code>&quot;desc&quot;</code> | Whether to sort the sessions table ascending or descending. |
 | spiGraph | <code>string</code> | <code>&quot;node&quot;</code> | The default field to show spigraph data for. |
 | connSrcField | <code>string</code> | <code>&quot;source.ip&quot;</code> | The default connections graph source node field. |
@@ -2132,11 +2076,12 @@ The settings object.
 | theme | <code>string</code> | <code>&quot;default-theme&quot;</code> | The color theme to apply to the UI. Can be a name of a predefined field or a list of color codes if using a custom theme. |
 | manualQuery | <code>boolean</code> | <code>false</code> | Whether to load the sessions data by default or wait for a user to hit search manually. |
 | timelineDataFilters | <code>array</code> | <code>[&#x27;network.packets&#x27;,&#x27;network.bytes&#x27;,&#x27;totDataBytes&#x27;</code> | The filters to display on the sessions timeline graph to change the graphs data. |
+| hideTags | <code>string</code> | <code>&quot;\&quot;\&quot;&quot;</code> | A comma separated list of tags to hide from sessions |
 | logo | <code>string</code> |  | The optionally configurable logo to show in the top navbar. |
 
-<a name="ArkimeColumnConfig"></a>
+<a name="ArkimeColumnLayout"></a>
 
-## ArkimeColumnConfig Type
+## ArkimeColumnLayout Type
 
 A sessions table view that can be applied.
 
@@ -2145,8 +2090,23 @@ A sessions table view that can be applied.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the column configuration. |
 | order | <code>Array.&lt;Array&gt;</code> | <code>[[&quot;firstPacket&quot;,&quot;desc&quot;]</code> | What to sort the Sessions table by. The table is sorted by the first item in the array first, then the second, and so on. Each element in the array includes first the sort field followed by whether to sort descending (["firstPacket", "desc"]). |
 | visibleHeaders | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;source.port&quot;,&quot;dst&quot;,&quot;destination.port&quot;,&quot;network.packets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
+
+<a name="ArkimeInfoColumnLayout"></a>
+
+## ArkimeInfoColumnLayout Type
+
+A sessions info view that can be applied.
+
+
+**Parameters**:
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> |  | The name of the info column configuration. |
+| fields | <code>Array</code> | <code>[&quot;firstPacket&quot;,&quot;lastPacket&quot;,&quot;src&quot;,&quot;source.port&quot;,&quot;dst&quot;,&quot;destination.port&quot;,&quot;network.packets&quot;,&quot;dbby&quot;,&quot;node&quot;</code> | The list of Sessions table columns. |
 
 <a name="ArkimeView"></a>
 
@@ -2161,7 +2121,7 @@ A database view that can be applied to any search.
 | --- | --- | --- |
 | name | <code>string</code> | The name of the view. |
 | expression | <code>string</code> | The search expression to filter sessions. |
-| sessionsColConfig | [<code>ArkimeColumnConfig</code>](#ArkimeColumnConfig) | The Sessions column configuration to apply to the Sessions table when applying the view. |
+| sessionsColConfig | <code>ArkimeColumnConfig</code> | The Sessions column configuration to apply to the Sessions table when applying the view. |
 | user | <code>string</code> | The user ID of the user who created the view. |
 | users | <code>string</code> | The list of userIds who have access to use this view. |
 | roles | <code>Array.&lt;string&gt;</code> | The list of roles who have access to use this view. |

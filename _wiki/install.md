@@ -25,6 +25,8 @@ It is possible to run both the database and sensors on the same machine, however
 
 If you are interested in how many and types of machines you need for your environment, please see our [hardware estimators](https://arkime.com/estimators).
 
+If you want to use an Arkime container instead of installing on a Linux machine, please see our [docker guide](https://arkime.com/docker).
+
 # Linux Distribution
 {: .section-header }
 

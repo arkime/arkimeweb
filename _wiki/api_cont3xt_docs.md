@@ -662,6 +662,7 @@ The settings for an integration for the logged in user
 | Param | Type | Description |
 | --- | --- | --- |
 | globalConfiged | <code>boolean</code> | Whether integration is configured globally across cont3xt users or by this user (if a user has changed the settings for an integration, this if false) |
+| locked | <code>boolean</code> | Whether integration is locked. Locked integrations use the globally configured settings. Users cannot update locked integrations. Any previously configured settings for locked integrations will be ignored in favor of the global configuration. |
 | homePage | <code>string</code> | The link to the home page for this integration so a user can learn more |
 | settings | <code>object</code> | The setting field definitions for this integration |
 | values | <code>object</code> | The values that map to the setting fields for this integration (empty object if not set) |
