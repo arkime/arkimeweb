@@ -19,6 +19,7 @@ If you have any questions or need help, please join us on [Slack](https://slacki
 
 We are providing demo instances of the main branch of both Arkime 5 and Arkime 6.
 Arkime 6 is currently in development and is not feature complete, but will be getting some UI updates!
+The biggest changes in Arkime 6 currently are with Cont3xt.
 
 ## Arkime
 {: .section-header .mt-1 }
