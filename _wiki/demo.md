@@ -25,8 +25,8 @@ Arkime 6 is currently in development and is not feature complete, but will be ge
 
 Arkime is the main tool in the Arkime system. It is a web interface for searching and analyzing packet captures.
 
-* [Arkime 5 Latest Commit](https://demo.arkime.com/sessions/)
-* [Arkime 6 Latest Commit](https://demo6.arkime.com/sessions/)
+* [Arkime 5 Latest Commit](https://demo.arkime.com/sessions)
+* [Arkime 6 Latest Commit](https://demo6.arkime.com/sessions)
 
 ## Cont3xt
 {: .section-header .mt-1 }
