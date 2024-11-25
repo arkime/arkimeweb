@@ -35,7 +35,7 @@ Arkime is the main tool in the Arkime system. It is a web interface for searchin
 [Cont3xt](/cont3xt) centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
 
 * [Cont3xt 5 Latest Commit](https://cont3xt.arkime.com/)
-* [Cont3xt 6 Latest Commit](https://cont3xt6.arkime.com/)
+* [Cont3xt 6 Latest Commit](https://demo6.arkime.com/cont3xt/)
 
 ## Parliament
 {: .section-header .mt-1 }
@@ -50,5 +50,5 @@ Arkime is the main tool in the Arkime system. It is a web interface for searchin
 [WISE](/wise) is a framework for integrating data feeds into Arkime.
 
 * [WISE 5 Latest Commit](https://wise.arkime.com/)
-* [WISE 6 Latest Commit](https://wise6.arkime.com/)
+* [WISE 6 Latest Commit](https://demo6.arkime.com/wise/)
 </div>
