@@ -1,0 +1,178 @@
+---
+title: Demo
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Cont3xt</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open-source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open-source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open-source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="container-fluid full-width-page">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <div class="primary-theme-background angle-background p-nav-lg mb-5">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 text-center">
+          <img class="arkime-brand" />
+          <audio id="audio"><source src="assets/arkime_short.m4a" type="audio/mpeg" /></audio>
+          <span class="fa fa-volume-up arkime-pronunciation" onclick="play()"></span>
+          <p class="lead lead-lg text-thin text-center">
+            We've created a playground for you to explore Arkime!
+            We've deployed the Arkime system with demo data, so you can experience its capabilities firsthand.
+            Keep in mind that this is a live system with public data, so please be respectful of other users and avoid uploading any sensitive information.
+          </p>
+          <p class="lead lead-lg text-center">
+            If you have any questions or need assistance, feel free to join us on
+            <a href="https://slackinvite.arkime.com/">Slack</a>
+          </p>
+          <p class="mt-5">
+            <a href="https://demo.arkime.com/sessions"
+              class="btn btn-lg btn-fw btn-info">
+              Arkime Demo
+            </a>
+            <a href="https://cont3xt.arkime.com/"
+              class="btn btn-lg btn-fw btn-info">
+              Cont3xt Demo
+            </a>
+          </p>
+        </div>
+      </div>
+    </div> <!-- /info -->
+
+    <p class="lead lead-lg text-center">
+      Explore the latest and greatest of Arkime with our demo instances!
+      <br>
+      We offer both Arkime 5 (stable release) and a sneak peek at Arkime 6 (under development).
+      <br>
+      While Arkime 6 is still a work in progress, you can get a glimpse of upcoming UI updates
+      <br>
+      and experience the significant changes to Cont3xt.
+    </p>
+
+    <hr>
+
+    <div class="mt-5">
+      <div class="container-fluid primary-theme-background pb-5 mb-5">
+        <div class="row">
+          <div class="col-md-12 col-lg-6 mt-5">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Arkime
+              <audio id="audio"><source src="assets/arkime_short.m4a" type="audio/mpeg" /></audio>
+              <span class="fa fa-volume-up small cursor-pointer" onclick="play()"></span>
+            </h1>
+            <p class="lead mb-3">
+              Arkime's core component is the Arkime tool itself. This tool provides a web interface to search and analyze network packet captures.
+              <a href="/" class="no-decoration">Learn More about Arkime</a>
+            </p>
+            <a href="https://demo.arkime.com/sessions"
+              class="btn btn-primary">
+              Arkime 5 Latest Commit
+            </a>
+            <a href="https://demo6.arkime.com/sessions"
+              class="btn btn-outline-warning">
+              Arkime 6 Latest Commit
+            </a>
+          </div>
+          <div class="col-md-12 col-lg-6 mt-5">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Cont3xt
+            </h1>
+            <p class="lead mb-3">
+              Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
+              <a href="/cont3xt" class="no-decoration">Learn More about Cont3xt</a>
+            </p>
+            <a href="https://cont3xt.arkime.com/"
+              class="btn btn-primary">
+              Cont3xt 5 Latest Commit
+            </a>
+            <a href="https://demo6.arkime.com/cont3xt/"
+              class="btn btn-outline-warning">
+              Cont3xt 6 Latest Commit
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-6 mt-5">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              Parliament
+            </h1>
+            <p class="lead mb-3">
+              Parliament acts as a central hub for your Arkime clusters, providing an overview with links to each, health checks for Elasticsearch/OpenSearch, and alerts for any issues. Use it as a landing page and status monitor for all your Arkime deployments.
+              <a href="/parliament" class="no-decoration">Learn More about Parliament</a>
+            </p>
+            <a href="https://parliament.arkime.com/"
+              class="btn btn-primary">
+              Parliament 5 Latest Commit
+            </a>
+            <a href="https://parliament6.arkime.com/"
+              class="btn btn-outline-warning">
+              Parliament 6 Latest Commit
+            </a>
+          </div>
+          <div class="col-md-12 col-lg-6 mt-5">
+            <h1 class="display-4 mb-3 dark-primary-theme-text">
+              WISE
+            </h1>
+            <p class="lead mb-3">
+              WISE provides a way to incorporate external data feeds into Arkime.
+              <a href="/wise" class="no-decoration">Learn More about WISE</a>
+            </p>
+            <a href="https://wise.arkime.com/"
+              class="btn btn-primary">
+              WISE 5 Latest Commit
+            </a>
+            <a href="https://demo6.arkime.com/wise/"
+              class="btn btn-outline-warning">
+              WISE 6 Latest Commit
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    {%- include footer.html -%}
+
+  </body>
+
+  </html>
