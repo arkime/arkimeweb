@@ -728,7 +728,10 @@ title: FAQ
       </p>
       <ul>
         <li>
-          Amazon Linux 2 and 2023
+          Amazon Linux 2 and EL 7 - will no longer be supported in Arkime 6
+        </li>
+        <li>
+          Amazon Linux 2023
         </li>
         <li>
           Arch
@@ -2239,13 +2242,10 @@ logger.action.level = info</code></pre>
         </h4>
         <p>
           The most common cause of packet drops with Arkime is leaving the reader
-          default of libpcap instead of switching to tpacketv3, pfring or one of
-          the other <a href="settings#high-performance-settings">high performance</a> packet readers.
-          We strongly recommend tpacketv3.  See plugin
-          <a class="no-decoration"
-            href="settings#reader-tpacketv3-settings">
-            settings</a>
-          for more information.
+          default of libpcap instead of switching to tpacketv3, also known as AFPacket.
+          The tpacketv3 reader was greatly improved in Arkime 4.0, so please upgrade.
+          Review the <a href="settings#high-performance-settings">high performance</a> sample config and the
+          <a class="no-decoration" href="settings#reader-afpacket">tpacketv3 settings</a> to configure the tpacketv3 reader.
         </p>
 
         <h4 id="network-card-config">
