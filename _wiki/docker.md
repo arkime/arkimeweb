@@ -11,14 +11,14 @@ copyLink: True
 {: .section-header.mt-1 }
 
 Great news for containerized deployments!
-Starting with version 5.5.0, Arkime offers official Docker images for a simplified setup.
+Starting with version 5.5.0, Arkime offers official images for a simplified setup.
 We've adopted a user-friendly approach: a single image handles all Arkime tools, with specific commands determining which tool launches.
 
 We provide a docker.sh script (optional) to initiate different tools using the image.
 However you don't have to use it, you can run the tools directly from the container.
 This gives you control over how you interact with Arkime within your container environment.
 
-To see the options that docker.sh supports try out `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/bin/docker.sh help`
+To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/bin/docker.sh help`
 
 [Github Arkime Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
 
@@ -66,15 +66,15 @@ By strategically combining these methods, you can effectively tailor Arkime Dock
 
 1. Install OpenSearch or Elasticsearch
 * You can use either Docker or a standalone installation.
-2. Initialize OpenSearch or Elasticsearch for Arkime use
+2. Initialize OpenSearch or Elasticsearch for Arkime
 * `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
 * This is a one time operation to create the Arkime indices in OpenSearch/Elasticsearch.
 * Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host.
 * You may need to specify a network mode for docker, such as `--network=host`.
 3. Setup directories
-* You'll need directories for your pcap and configuration files.
-* The examples use `/opt/arkime/raw` and `/opt/arkime/etc` - mounting these directories into the container.
-* When using /home directories you may run into permission issues.
+* You'll need directories for your pcap and configuration files to be mounted into the container.
+* The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
+* We don't recommend using /home based directories since you may run into permission issues.
 4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` [Arkime Settings](/settings).
 5. Start your Arkime containers.
 
