@@ -39,10 +39,10 @@ All of our releases are multi architecture, so you can use the same tag on both 
 * snapshot-v5-latest: This tag points to the latest development snapshot, which is built after each commit. Use this if you're testing the latest features or bug fixes, if you're contributing to the Arkime project, or you like the thrill of living on the edge. This should be stable enough for most users, but it's not recommended for production use.
 * snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Currently not recommended for anyone.
 
-## Configuring Arkime Docker Containers
+## Configuring Arkime Containers
 {: .subsection }
 
-You can configure Arkime Docker containers using three primary methods:
+You can configure Arkime containers using three primary methods:
 
 1. Configuration File:
 * Create a local configuration file.
@@ -59,13 +59,13 @@ For comprehensive configuration, consider combining these methods:
 * Base Configuration: Use a configuration file for general settings.
 * Overrides: Employ environment variables for specific overrides.
 
-By strategically combining these methods, you can effectively tailor Arkime Docker containers to your specific requirements.
+By strategically combining these methods, you can effectively tailor Arkime containers to your specific requirements.
 
 ## Setting up an Arkime environment
 {: .subsection }
 
 1. Install OpenSearch or Elasticsearch
-* You can use either Docker or a standalone installation.
+* You can use either containerized or a standalone installation.
 2. Initialize OpenSearch or Elasticsearch for Arkime
 * `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
 * This is a one time operation to create the Arkime indices in OpenSearch/Elasticsearch.
@@ -75,7 +75,7 @@ By strategically combining these methods, you can effectively tailor Arkime Dock
 * You'll need directories for your pcap and configuration files to be mounted into the container.
 * The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
 * We don't recommend using /home based directories since you may run into permission issues.
-4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` [Arkime Settings](/settings).
+4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` see [Arkime Settings](/settings).
 5. Start your Arkime containers.
 
 ## Sample Capture/Viewer Config File
