@@ -32,6 +32,10 @@ settings:
     value: REQUIRED
     text: Field that is required to be in the result
 
+  - key: esQueryField
+    value: REQUIRED
+    text: The field in each document that is being queried
+
 after: |
   <p>
     Example config that will query OpenSearch/Elasticsearch for an ip that is in the 10.172/16 space, in the index TheIndex-\*, only looking at records that have a \@timestamp field newer than 86400000ms. It looks at the `cef_ext.src` field and only looks at records that has a cef_ext.suser field set. Once it has a result it sets the user field in arkime to whatever the `cef_ext.suser` field is in the document.

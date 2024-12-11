@@ -9,9 +9,13 @@ before: |
   </p>
 
 settings:
-  - key: url
+  - key: redisURL
     value: REQUIRED
     text: The format is `[redis:]//[[user][:password@]]host:port[/db-number]`
+
+  - key: redisMethod
+    value: get
+    text: The lowercase redis method to retrieve values
 
   - key: tags
     value: REQUIRED
@@ -32,3 +36,7 @@ settings:
   - key: template
     value: "%key%"
     text: The template when forming the key name. %key% = the key being looked up, %type% = the type being looked up.
+
+  - key: keyPath
+    value: REQUIRED
+    text: The path of what field to use as the key when in json/jsonl mode

@@ -42,6 +42,18 @@ settings:
     value: 5
     text: The Splunk api version to use
 
+  - key: username
+    value: REQUIRED
+    text: The Splunk username
+
+  - key: password
+    value: REQUIRED
+    text: The Splunk password
+
+  - key: arrayPath
+    value: EMPTY
+    text: The path of where to find the array, if the json result isn't an array
+
 after: |
   <p>
     Example config that will query Splunk for all the vpn_ip to user name mappings during the last 24 hours every 60 seconds. It will then set the user field for any ip that matches.
