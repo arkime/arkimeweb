@@ -2,12 +2,13 @@ name: user-role-mappings
 before: |
   <p>
     Starting with 5.4.1 it is now possible to dynamically update the roles associated with a user when using header or oidc authMode.
-    When using this section, all possible roles must be defined, one per line, and any role no longer enabled for the user will be removed.
+    When using this section, all roles you are using must be defined, one per line, and any role no longer enabled for the user will be removed.
     The rules are evaluated on login, and the user's roles are updated accordingly.
+    To ensure immediate role changes, manually edit the user's roles on the Users tab, as automated updates require a user login.
   </p>
   <p>
     Each line is of the format <code>rolename=javascript expression</code>.
-    The jaascript expression can use two variable, <code>this</code> which allows you to reference any user fields and <code>vals</code> which allows you to access any of the request headers for header auth or the oidc info for oidc auth.
+    The javascript expression can use two variable, <code>this</code> which allows you to reference any user fields and <code>vals</code> which allows you to access any of the request headers for header auth or the oidc info for oidc auth.
   </p>
 
 after: |
