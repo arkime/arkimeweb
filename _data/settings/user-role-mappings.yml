@@ -4,6 +4,10 @@ before: |
     Starting with 5.4.1 it is now possible to dynamically update the roles associated with a user when using header or oidc authMode.
     When using this section, all roles you are using must be defined, one per line, and any role no longer enabled for the user will be removed.
     The rules are evaluated on login, and the user's roles are updated accordingly.
+  </p>
+  <p class="alert alert-secondary">
+    <span class="fa fa-exclamation-triangle">
+    </span>
     To ensure immediate role changes, manually edit the user's roles on the Users tab, as automated updates require a user login.
   </p>
   <p>
