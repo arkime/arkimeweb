@@ -19,7 +19,7 @@ This site is created using Jekyll. Get started with Jekyll [here](https://jekyll
 Once you have jekyll and the bundler installed, run
 
 ```
-bundle install
+bundle install --path vendor/bundle
 ```
 
 Then run
