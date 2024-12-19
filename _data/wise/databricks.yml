@@ -49,7 +49,6 @@ after: |
   <pre>
     [databricks:users]
     type = ip
-    format = json
     host = abc-123456-789.cloud.databricks.com
     path = /sql/1.0/warehouses/abcxyz125789
     token = THESUPERSECRETTOKEN
