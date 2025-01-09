@@ -1285,6 +1285,11 @@ title: FAQ
         </span>
       </h3>
       <p>
+        <span class="fa fa-exclamation-triangle mr-1"></span>
+        Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
+        Arkime will <strong>NOT</strong> work in this configuration as the tools fight for space.
+      </p>
+      <p>
         The SPI data in OpenSearch/Elasticsearch and the PCAP data are not deleted at the same time.
         The PCAP data is deleted as the disk fills up on the capture machines. See <a href="#pcap-deletion">here</a> for more information.
         PCAP deletion happens automatically, and nothing needs to be done.
