@@ -49,7 +49,7 @@ You can configure Arkime containers using three primary methods:
 * Mount this file into the container to override default settings.
 * Some complex config file sections require this method.
 2. Environment Variables:
-* Set environment variables to configure the container. (`ARKIME_<section>__<config>=<value>`)
+* Set environment variables to configure the container. (`ARKIME>__<config>=<value>` for default section or `ARKIME_<section>__<config>=<value>`)
 * These variables take precedence over configuration file settings.
 3. Command-Line Options:
 * Use the `-o` command-line option to specify additional configuration options. (`-o <section>.<config>=<value>`)
@@ -143,6 +143,8 @@ services:
     image: ghcr.io/arkime/arkime/arkime:v5-latest
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh capture --update-geo
+    environment:
+      - ARKIME__elasticsearch=https://example.com:9200
     volumes:
       - /opt/arkime/raw:/opt/arkime/raw
       - /opt/arkime/etc:/opt/arkime/etc
@@ -151,6 +153,8 @@ services:
     image: ghcr.io/arkime/arkime/arkime:v5-latest
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh viewer
+    environment:
+      - ARKIME__elasticsearch=https://example.com:9200
     volumes:
       - /opt/arkime/raw:/opt/arkime/raw
       - /opt/arkime/etc:/opt/arkime/etc
