@@ -320,7 +320,7 @@ wiseService:
       <p>
         All of the Arkime application support overriding configuration files by setting via a command line option using either <code>-o variable=value</code> or <code>-o section.variable=value</code>, so for example <code>-o elasticsearch=https://localhost:9200</code>.
         Starting in Arkime 5.4 environment variables can be used to override configuration settings, these are processed after the <code>-o</code> command line options but before the config file.
-        Environment variables are specified in the format <code>ARKIME__variable=value</code> or <code>ARKIME_SECTION__variable=value</code> (for default section), so for example <code>ARKIME__elasticsearch=https://localhost:9200</code>.
+        Environment variables are specified in the format <code>ARKIME__variable=value</code> (for default section) or <code>ARKIME_SECTION__variable=value</code>, so for example <code>ARKIME__elasticsearch=https://localhost:9200</code>.
       </p>
       <!-- /ini settings -->
 
