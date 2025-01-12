@@ -922,10 +922,12 @@ title: FAQ
         This flag must be appended to the startup commands for both capture and viewer services.
         In newer versions of Arkime this can be done by
         <pre><code>
-          cp /opt/arkime/etc/env.sample /opt/arkime/etc/capture.env
+          cp /opt/arkime/etc/env.example /opt/arkime/etc/capture.env
           echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/capture.env
-          cp /opt/arkime/etc/env.sample /opt/arkime/etc/viewer.env
+          cp /opt/arkime/etc/env.example /opt/arkime/etc/viewer.env
           echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/viewer.env
+          cp /opt/arkime/etc/env.example /opt/arkime/etc/cont3xt.env
+          echo 'OPTIONS="--insecure"' >> /opt/arkime/etc/cont3xt.env
         </code></pre>
         You can edit /opt/arkime/etc/capture.env and /opt/arkime/etc/viewer.env to add other options.
         We recommend using env files instead of editing the systemd files since they may get overwritten by new installs.
