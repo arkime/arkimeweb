@@ -186,6 +186,7 @@ The operations are a map of the fields to set in the session. There are some spe
 * `_dropBySrc: 10`                  - (Since 1.5) drop all traffic from src ip:port for 10 minutes. You probably almost never want to use this.
 * `_dontCheckYara: 1`               - (Since 1.6) don't check yara for remaining packets of session, either 0 or 1
 * `_closeNow: 1`                    - (Since 5.4.1) mark the session to be closed now
+* `_flipSrcDst: 1`                  - (Since 5.6.0) flip the src and dst ip/port for the session
 
 
 **The following example would not save syn scans, it requires all 3 fields to be set**
@@ -263,5 +264,35 @@ Since 3.0.0 you can log when a rule is matched using the optional log element.
     ops:
       _dropByDst: 10
 ```
+
+### Special Fields
+{: .subsection }
+
+Capture rules supports some special fields that don't aren't actually written to OpenSearch/Elasticsearch.
+
+Field | Description
+------|------------
+ip.dst:port | The destination ip and port in string format
+dst.ip:port | The destination ip and port in string format
+tcp.synSet | (since 5.6.0) For the session and all linked session if a syn/syn-ack was received 0 - not set, 1 - src set, 2 - dst set, 3 - both set
+
+### Values from config file
+{: .subsection }
+
+Starting with 5.6.0 rules values can come from the config file or environment variables.
+Use the new "${varname}" syntax will allow you to have either the config file value of `varname=value` or the environment variable value of `ARKIME_varname=value`.
+{: .mb-0 }
+
+For example:
+```
+  - name: "Drop tls"
+    when: "fieldSet"
+    fields:
+      protocols:
+      - tls
+    ops:
+      _maxPacketsToSave: ${maxPacketsToSave}
+```
+
 
 </div>
