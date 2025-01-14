@@ -18,8 +18,8 @@ settings:
   - key: accessLogFile
     value: EMPTY
     text: |
-      If left empty, then the viewer will log to stdout. It can be set to a filename and then logging will
-      be directed there.
+      If left empty, then the various node applications will log to stdout. It can be set to a filename and then logging will
+      be directed there. The capture application doesn't support this setting.
 
   - key: accessLogFormat
     value: |
