@@ -315,12 +315,24 @@ wiseService:
         The Arkime system utilizes configuration files using INI format by default.
         With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats using <code>json</code> or <code>yaml</code> extensions, respectively.
         When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
+      </p>
+      <p>
         The configuration file location can be specified using the <code>-c</code> command-line option.
+        Since Arkime 5 the configuration doesn't have to be local, it can also be an url, OpenSearch/Elasticsearch, or Valkey/Redis. Currently capture doesn't support Valkey/Redis.
+        Formats:
+        <ul>
+          <li> URL - https://[user:password@]example.com/config.ini</li>
+          <li> Opensearch - opensearchs://[user:password@]example.com/INDEX/_doc/DOC</li>
+          <li> Elasticsearch - elasticsearchs://[user:password@]example.com:9200/INDEX/_doc/DOC</li>
+          <li> Redis - redis://[:password@]host:port/db-number/DOC</li>
+          <li> Redis Sentinel - redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number/DOC</li>
+        </ul>
       </p>
       <p>
         All of the Arkime application support overriding configuration files by setting via a command line option using either <code>-o variable=value</code> or <code>-o section.variable=value</code>, so for example <code>-o elasticsearch=https://localhost:9200</code>.
         Starting in Arkime 5.4 environment variables can be used to override configuration settings, these are processed after the <code>-o</code> command line options but before the config file.
         Environment variables are specified in the format <code>ARKIME__variable=value</code> (for default section) or <code>ARKIME_SECTION__variable=value</code>, so for example <code>ARKIME__elasticsearch=https://localhost:9200</code>.
+        Starting in Arkime 5.6 if the section or key needs a DOT, DASH, COLON, or SLASH you can use those keywords since environment variables can't have those characters. For example <code>ARKIME_arkimeDASHclusters__example=url:http://localhost:8124</code>
       </p>
       <!-- /ini settings -->
 
