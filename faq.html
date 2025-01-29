@@ -2305,12 +2305,18 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
 
         <h4 id="disk">
           Disk and Disk Q issues
+          <span class="fa fa-link small copy-link cursor-copy"
+            onclick="copyLink(this, 'faq')">
+          </span>
         </h4>
         <p>
           In general errors about the Disk Q being exceeded are NOT a problem with Arkime, but usually an issue with either the hardware or the packet rate exceeding what the hardware can save to disk.
           You will usually need to either fix/upgrade the hardware or reduce the amount of traffic being saved to disk.
         </p>
         <ul>
+          <li>
+            Make sure OpenSearch/Elasticsearch isn't using the same disks.
+          </li>
           <li>
             Make sure swap has been disabled, swappiness is 0, or at the very least, isn't writing to the disk being used for PCAP.
           </li>
