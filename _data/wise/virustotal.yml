@@ -1,0 +1,29 @@
+name: Virus Total
+
+before: |
+  <p>
+    WISE can integration with Virus Total to provide additional threat intelligence.
+    <br>
+    Create a <code>[virustotal]</code> section to configure.
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key
+
+  - key: contentTypes
+    value: "application/x-dosexec,application/vnd.ms-cab-compressed,application/pdf,application/x-shockwave-flash,application/x-java-applet,application/jar"
+    text: A comma separated list of content types to look up in Virus Total
+
+  - key: queriesPerMinute
+    value: 3
+    text: The number of queries per minute to not hit rate limits
+
+  - key: maxOutstanding
+    value: 25
+    text: Max number of outstanding queries at one time
+
+  - key: dataSources
+    value: McAfee,Symantec,Microsoft,Kaspersky
+    text: A comma separated list of data sources to use in virus total responses

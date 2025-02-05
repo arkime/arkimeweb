@@ -42,3 +42,18 @@ settings:
       with the highest percentage of available space),
       max-free-bytes (choose the directory on the filesystem
       with the highest number of available bytes).
+
+  - key: maxFileTimeM
+    value: 0
+    text: |
+      The max time in minutes between rotating pcap files. Useful if
+      there is an external utility that needs to look for closed files
+      every so many minutes. Setting to 0 means only use
+      maxFileSizeG
+
+  - key: maxFileSizeG
+    value: 12 (since 4.0.0)<br>4 (before 4.0)
+    text: |
+      The approximate max raw pcap file size in gigabytes.
+      The disk should have room for at least 10*maxFileSizeG files.
+

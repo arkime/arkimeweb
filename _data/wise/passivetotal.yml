@@ -1,0 +1,17 @@
+name: Passive Total
+
+before: |
+  <p>
+    WISE can integration with Passive Total to provide additional threat intelligence.
+    <br>
+    Create a <code>[passive]</code> section to configure.
+  </p>
+
+settings:
+  - key: key
+    value: REQUIRED
+    text: The API key
+
+  - key: user
+    value: REQUIRED
+    text: The API user
