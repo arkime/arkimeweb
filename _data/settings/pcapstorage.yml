@@ -36,12 +36,12 @@ settings:
     text: |
       When <a href="#pcapDir">pcapDir</a> is a list of directories, this determines how Arkime
       chooses which directory to use for each new pcap file.
-      <br>
-      Possible values: round-robin (rotate sequentially),
-      max-free-percent (choose the directory on the filesystem
-      with the highest percentage of available space),
-      max-free-bytes (choose the directory on the filesystem
-      with the highest number of available bytes).
+      Possible values:
+      <ul class="mb-0">
+        <li>round-robin = rotate sequentially</li>
+        <li>max-free-percent = choose the directory on the filesystem with the highest percentage of available space</li>
+        <li>max-free-bytes = choose the directory on the filesystem with the highest number of available bytes</li>
+      </ul>
 
   - key: maxFileTimeM
     value: 0

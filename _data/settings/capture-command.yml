@@ -9,9 +9,14 @@ settings:
     key: option-c
     value: /opt/arkime/etc/config.ini
     text: |
-      The configuration file to use, in ini format.
-      Since 5.0 the configuration can be in ini, json, or yaml format and can be on disk (/opt/arkime/etc/config.ini), 
-      an url (https://example.com/config.ini), or OpenSearch (opensearchs://example.com/INDEX/_doc/DOC) or Elasticsearch (elasticsearch://example.com:9200/INDEX/_doc/DOC).
+      The configuration file to use, in ini format before 5.0. 
+      Since 5.0 the configuration can be in ini, json, or yaml format and can be on:
+      <ul class="mb-0">
+        <li>disk /opt/arkime/etc/config.ini)</li>
+        <li>an url (https://example.com/config.ini)</li>
+        <li>OpenSearch (opensearchs://example.com/INDEX/_doc/DOC)</li>
+        <li>Elasticsearch (elasticsearch://example.com:9200/INDEX/_doc/DOC)</li>
+      </ul>
 
   - display: -r, --pcapfile {file}
     key: option-r
@@ -44,6 +49,12 @@ settings:
     value: N/A
     text: |
       Wait for the shutdown command on the command socket before exiting.
+
+  - display: --command {command}
+    key: option-command
+    value: EMPTY
+    text: |
+      (Since 5.6.0) Run the {command} as if it was sent on the command socket. Can be multiple --command options.
 
   - display: -m, --monitor
     key: option-m
