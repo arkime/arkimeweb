@@ -31,15 +31,18 @@ All of our releases are multi architecture, so you can use the same tag on both 
 ### Stable Releases:
 
 * v5-latest: This tag points to the most recent stable release within the 5.x series. Use this if you want to stay on a specific major version. (recommended)
+* v5-ja4-latest: Same as v5-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 * latest: This tag points to the most recent stable release.
+* ja4-latest: Same as latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 * v5.M.B: This tag points to a specific release version (e.g., v5.5.0). Use this if you need a particular version for compatibility or other reasons.
+* v5.M.B-ja4: Same as v5.M.B but with the [ja4 plugin](https://arkime.com/ja4) included.
 
 ### Development Snapshots:
 
 * snapshot-v5-latest: This tag points to the latest development snapshot, which is built after each commit. Use this if you're testing the latest features or bug fixes, if you're contributing to the Arkime project, or you like the thrill of living on the edge. This should be stable enough for most users, but it's not recommended for production use.
-* snapshot-v5-ja4-latest: Same as snapshot-v5-latest but with the [ja4 plugin](https://arkime.com/ja4) installed.
+* snapshot-v5-ja4-latest: Same as snapshot-v5-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 * snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Currently not recommended for anyone.
-* snapshot-v6-ja4-latest: Same as snapshot-v6-latest but with the [ja4 plugin](https://arkime.com/ja4) installed.
+* snapshot-v6-ja4-latest: Same as snapshot-v6-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 
 ## Configuring Arkime Containers
 {: .subsection }
