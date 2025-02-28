@@ -11,7 +11,7 @@ copyLink: True
 {: .section-header.mt-1 }
 
 Great news for containerized deployments!
-Starting with version 5.5.0, Arkime offers official images for a simplified setup.
+Starting with version 5.5.0 Arkime offers official images for a simplified setup.
 We've adopted a user-friendly approach: a single image handles all Arkime tools, with specific commands determining which tool launches.
 
 We provide a docker.sh script (optional) to initiate different tools using the image.
@@ -27,6 +27,7 @@ To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime
 
 We offer several tags to help you choose the right Arkime image for your needs.
 All of our releases are multi architecture, so you can use the same tag on both amd64 and arm64 systems.
+We recommend using the v5-lastet tag or v5.6.1 (or later) for the most stable experience.
 
 ### Stable Releases:
 
@@ -49,13 +50,13 @@ All of our releases are multi architecture, so you can use the same tag on both 
 
 You can configure Arkime containers using three primary methods:
 
-1. Configuration File:
-* Create a local configuration file.
-* Mount this file into the container to override default settings.
-* Some complex config file sections require this method.
-2. Environment Variables:
+1. Environment Variables:
 * Set environment variables to configure the container. (`ARKIME>__<config>=<value>` for default section or `ARKIME_<section>__<config>=<value>`)
 * These variables take precedence over configuration file settings.
+2. Configuration File:
+* Create a local configuration file.
+* Mount this file into the container to override default settings.
+* Some complex config file sections may require this method.
 3. Command-Line Options:
 * Use the `-o` command-line option to specify additional configuration options. (`-o <section>.<config>=<value>`)
 * This method provides flexibility for one-time or specific configuration changes, but not recommended.
@@ -77,11 +78,20 @@ By strategically combining these methods, you can effectively tailor Arkime cont
 * Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host.
 * You may need to specify a network mode for docker, such as `--network=host`.
 3. Setup directories
-* You'll need directories for your pcap and configuration files to be mounted into the container.
+* You'll need directories for your pcap and optionally configuration files to be mounted into the container.
 * The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
 * We don't recommend using /home based directories since you may run into permission issues.
 4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` see [Arkime Settings](/settings).
 5. Start your Arkime containers.
+
+## Common issues
+{: .subsection }
+
+### Can't view PCAP files
+
+The capture and viewer must use the same node name when on the same physical host.
+When using different containers for capture and viewer, you may need to add a `-n <nodename>` to both the capture and viewer commands.
+
 
 ## Sample Capture/Viewer Config File
 {: .subsection }
