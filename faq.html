@@ -357,8 +357,13 @@ title: FAQ
       </a>
       <a class="nav-link nested"
         href="#hunts-not-working"
-        title="Hunts not working">
-        Hunts not working
+        title="Hunts are not working">
+        Hunts are not working
+      </a>
+      <a class="nav-link nested"
+        href="#fields-missing"
+        title="Fields are missing or showing an error">
+        Fields are missing or showing an error
       </a>
       <a href="#cont3xt"
         class="nav-link"
@@ -3667,7 +3672,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
       </table>
 
       <h3 class="subsection"id="hunts-not-working">
-        Hunts not working
+        Hunts are not working
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'faq')">
         </span>
@@ -3690,6 +3695,31 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
       </p>
       <p>
         See more information about the cronQueries setting <a href="/settings#cronQueries">here</a>.
+      </p>
+
+      <h3 class="subsection"id="fields-missing">
+        Fields are missing or showing an error
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        Arkime stores which fields are available in the <code>arkime_fields</code> index.
+        The index is populated by <code>db.pl</code> when the Arkime cluster is created and by <code>capture</code>.
+        New fields are added with new versions of Arkime, new plugins, wise or the <a href="/settings#custom-fields">custom fields</a> feature.
+        Arkime rarely deletes fields from the index, except for major reindexing.
+      </p>
+      <p>
+        The viewer application checks this index on start up and periodically for any changes.
+        It can take around 10 minutes for new fields to show up in the web application since the viewer caches the fields.
+      </p>
+      <p>
+        If fields are missing the solution is almost always
+        <ol>
+          <li>Run capture so it has a chance to re-add any missing fields</li>
+          <li>Restart viewer or wait 10 minutes</li>
+          <li>Reload the web page so it is forced to refetch the fields from viewer</li>
+        </ol>
       </p>
       <!-- /viewer -->
 
