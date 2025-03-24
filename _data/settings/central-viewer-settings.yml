@@ -1,0 +1,28 @@
+name: Central Viewer Settings
+before: |
+  <p>
+    Using a central viewer isn't required, but is useful when you want to funnel all your users thru a single viewer.
+    This is especially useful when using a reverse proxy or the network topology requires it.
+    There is no special configuration for the central viewer, just start it with the same configuration as the other viewers.
+  </p>
+
+after: |
+  <p class="mb-0">
+    A sample configuration for central viewer
+  </p>
+  <pre><code>[default]
+  passwordSecret =CHANGEME
+  serverSecret=CHANGEME
+  cronQueries=auto
+
+  [central-viewer]
+  elasticsearch=https://127.0.0.1:9200
+  
+  # If using a reverse proxy make sure viewHost is localhost and viewPort is the port the reverse proxy will communicate to viewer on
+  viewHost = localhost
+  viewPort = 8009
+  </code></pre>
+
+  You can start manually or
+  <pre><code>cd /opt/arkime/viewer
+  /opt/arkime/bin/node viewer.js -n central-viewer</code></pre>
