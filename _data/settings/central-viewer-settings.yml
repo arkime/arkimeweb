@@ -4,6 +4,7 @@ before: |
     Using a central viewer isn't required, but is useful when you want to funnel all your users thru a single viewer.
     This is especially useful when using a reverse proxy or the network topology requires it.
     There is no special configuration for the central viewer, just start it with the same configuration as the other viewers.
+    Remember, you must still run a viewer on each capture node, unless you are using S3 storage.
   </p>
 
 after: |
