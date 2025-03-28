@@ -27,7 +27,7 @@ To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime
 
 We offer several tags to help you choose the right Arkime image for your needs.
 All of our releases are multi architecture, so you can use the same tag on both amd64 and arm64 systems.
-We recommend using the v5-lastet tag or v5.6.1 (or later) for the most stable experience.
+We recommend using the v5-latest tag or v5.6.1 (or later) for the most stable experience.
 
 ### Stable Releases:
 
