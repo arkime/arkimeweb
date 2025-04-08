@@ -2,11 +2,14 @@ name: Parliament Settings
 
 before: |
   <p>
-    (Since 5.0.0) Must be in the [parliament] section. This can be in its own file or in the viewer config.
-    This config must exist and point to your Parliament JSON file using the <code>file</code> setting.
-    If you were passing in port/certFile/keyFile into the command line arguments when starting Parliament, you must also include those in this config.
-    It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading.
-    The upgrade will update the config with your auth settings. Otherwise you will need to input them manually as
+    (Since 5.0.0) These settings must be in the [parliament] section, either in their own file or in shared configuration file.
+    The issues <code>file</code> setting must exist and is set to your Parliament JSON file.
+  </p>
+  <p>
+    When upgrading to 5.x of Parliament there are some important changes.
+    If you were passing in port/certFile/keyFile into the command line arguments when starting Parliament, you must also include those in this configuration file.
+    It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading to 5.x.
+    The upgrade will update the configuration with your authentication settings, otherwise you will need to input them manually as
     basic passworth auth has been disabled for Parliament.
   </p>
 
@@ -16,12 +19,13 @@ after: |
     <pre>
   [parliament]
   # Where to store issues
-  file=../etc/parliament.dev.json
+  file=../etc/parliament.issues.json
 
   # Port to listen on
   #port=8008
 
   ### Parliament supports authentication like viewer/cont3xt, make sure to use the same settings across all tools
+  ### Important to use the usersElasticsearch/usersPrefix settings and not the elasticsearch/prefix settings
   #usersElasticsearch=http://localhost:9200
   #usersPrefix=arkime
   #authMode=digest
