@@ -42,7 +42,7 @@ settings:
         <li>"basic+oidc" - Use basic auth when present otherwise use oidc auth. This is useful when you want to support API calls using basic auth. WARNING - the password for basic auth is from Arkime which isn't synced with oidc.</li>
         <li>"basic+form" - Use basic auth when present otherwise use form auth. This is useful when you want to support API calls using basic auth.</li>
         <li>"digest" or EMPTY - Use digest auth where browser based digest authentication is used.</li>
-        <li>"form" - Use a html form to enter the user/password.</li>
+        <li>"form" - Use a html form to enter the user/password. Using over http is is insecure.</li>
         <li>"header" - Use a http header containing the user id for authentication, see <a href="#userNameHeader">userNameHeader</a>.</li>
         <li>"oidc" -  Use OIDC authentication.</li>
         <li>"anonymous" - Use anonymous authentication.</li>

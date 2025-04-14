@@ -50,9 +50,9 @@ settings:
   - key: passwordSecret
     value: "password"
     text: |
-      Password hash secret - All Arkime applications sharing the same users database must have the same value.
-      Since OpenSearch/Elasticsearch used to be wide open by default, we encrypt the stored password hashes with this so a malicious person can't insert a working new account.
+      The user password hash secret - All Arkime applications sharing the same users database must have the same value.
+      Since OpenSearch/Elasticsearch used to be wide open by default, we encrypt the stored user password hashes with this so a malicious person can't insert a working new account.
       It is also used for secure server-to-server communication if <a href="#serverSecret">serverSecret</a> is not set a different value.
       Previously not setting would disable user authentication, with Arkime 5 you should use <code>authMode=anonymous</code>.
-      Changing the value will make all previously stored passwords no longer work.
+      Changing the value will make all previously stored user passwords no longer work.
 
