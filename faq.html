@@ -1941,31 +1941,41 @@ logger.action.level = info</code></pre>
         </span>
       </h3>
       <p>
-        Since Moloch 2.2, you can easily use ILM to move indices from hot to warm, force merge, and delete.
+        You can easily use ILM (Elasticsearch) or ISM (OpenSearch) to move indices from hot to warm, force merge, and delete.
+      </p>
+      <p>
         We recommend only using ILM with newer versions (7.2+) of Elasticsearch because older versions had some issues.
-        Once ILM is enabled, you no longer have to use the <code>db.pl expire</code> cron job but should occasionally run <code>db.pl optimize-admin</code>.
+        Some versions of Elasticsearch don't include ILM, so you may need to upgrade or subscribe to a paid license.
+      </p>
+
+      <p>
+        Once ILM/ISM is enabled, you no longer have to use the <code>db.pl expire</code> cron job but should occasionally run <code>db.pl optimize-admin</code>.
+      </p>
+        Arkime does NOT currently support the ILM/ISM auto rollover feature, for performance reasons when searching.
       </p>
       <p>
-        ILM is only included in the free "basic" Elasticsearch license, so it is not part of the Elasticsearch OSS distribution, and you may need to upgrade.
-        Arkime does NOT currently support the ILM auto rollover feature, for performance reasons, when searching.
-      </p>
-      <p>
-        These instructions assume you are using db.pl or Arkime UI to set up ILM and will use a special <code>molochtype</code> attribute name.
-        You can also do this with Kibana to create the ILM config and not use the <code>molochtype</code> attribute name, but you will then need to do everything on your own.
-        In order for ILM work correctly with Arkime, follow these five important steps:
+        These instructions assume you are using db.pl or Arkime UI to set up ILM/ISM and will use a special <code>molochtype</code> attribute name.
+        You can also do this with Kibana to create the ILM/ISM config and not use the <code>molochtype</code> attribute name, but you will then need to do everything on your own.
+        In order for ILM/ISM work correctly with Arkime, follow these five important steps:
         <ol>
-          <li>If you are using a hot/warm design or might in the future, for each Elasticsearch node, add a line to your elasticsearch.yml file with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
-          <li>Create the molochsessions and molochhistory ILM polices. This can be done easily with Kibana, or we recommend the <code>db.pl ilm</code> command.</li>
-          <li>Assign the molochsessions and molochhistory ILM polices to all the existing indices. Kibana or <code>db.pl ilm</code> can perform this action.</li>
-          <li>Change the moloch templates to use the ILM polices for NEW indices. You'll need to rerun <code>db.pl upgrade ... --ilm</code> and add <code>--ilm</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
+          <li>If you are using a hot/warm design or might in the future, for each Elasticsearch/OpenSearch node, add a line to your elasticsearch.yml file with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
+          <li>Create the molochsessions and molochhistory ILM/ISM polices. This can be done easily with Kibana, or we recommend the <code>db.pl ilm</code> or <code>db.pl ism</code> command.</li>
+          <li>Assign the molochsessions and molochhistory ILM/ISM polices to all the existing indices. Kibana or <code>db.pl ilm</code> or <code>db.pl ism</code> can perform this action.</li>
+          <li>Change the moloch templates to use the ILM/ISM polices for NEW indices. You'll need to rerun <code>db.pl upgrade ...</code> and add <code>--ilm</code> or <code>--ism</code> to the command. Also add <code>--hotwarm</code> if using a hot/warm design.</li>
           <li>Replace the previous <code>db.pl expire</code> cron job with <code>db.pl optimize-admin</code></li>
         </ol>
       </p>
       <p>
-        So for example, to create a new policy that keeps 30 weeks of history, 90 days of SPI data, 1 replica, and optimizes all indices older than 25 hours, you would run:
+        Elasticsearch example: to create a new policy that keeps 30 weeks of history, 90 days of SPI data, 1 replica, and optimizes all indices older than 25 hours, you would run:
         <code>./db.pl http://localhost:9200 ilm 25h 90d --history 30 --replicas 1</code>
         You would then need to run upgrade with all the arguments you usually use, plus --ilm:
         <code>./db.pl http://localhost:9200 upgrade --replicas 1 --shards 5 --ilm</code>
+      </p>
+      <p>
+        OpenSearch example: to create a new policy that keeps 30 weeks of history, 90 days of SPI data, 1 replica, and optimizes all indices older than 25 hours, you would run:
+        <code>./db.pl http://localhost:9200 ism 25h 90d --history 30 --replicas 1</code>
+        You would then need to run upgrade with all the arguments you usually use, plus --ism:
+        <code>./db.pl http://localhost:9200 upgrade --replicas 1 --shards 5 --ism</code>
       </p>
       <!-- /elasticsearch -->
 
