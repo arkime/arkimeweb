@@ -41,7 +41,7 @@ Arkime requires a database to store the metadata associated with the network ses
 It is strongly recommended to NOT use the same machines for both the database and the sensors in a production environment.
 If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and Arkime will eventually stop working.
 
-We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
+The official matrix of supported versions of OpenSearch and Elasticsearch is available at the top of the [CHANGELOG](https://raw.githubusercontent.com/arkime/arkime/master/CHANGELOG). We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
 
 ### Download and Install OpenSearch or Elasticsearch
 {: .subsection }
