@@ -45,6 +45,9 @@ You do NOT need to use these filenames, they are just examples.
 ### Once done, you should be able to upload content with `taggerUpload.pl` script:
 {: .subsection}
 
+The upload script will replace the existing tagger data in OpenSearch/Elasticsearch with the new data.
+The capture nodes check for updates from OpenSearch/Elasticsearch every minute, so you will need to wait for the capture nodes to pick up the new data.
+
  ```
 /opt/arkime/bin/taggerUpload.pl localhost:9200 ip iptagdata tag tag .. tag
 /opt/arkime/bin/taggerUpload.pl localhost:9200 host hosttagdata tag ..
