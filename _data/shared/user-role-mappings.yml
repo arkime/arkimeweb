@@ -1,7 +1,7 @@
 name: user-role-mappings
 before: |
   <p>
-    Starting with 5.4.1 it is now possible to dynamically update the roles associated with a user when using header or oidc authMode.
+    Starting with 5.5.0 it is now possible to dynamically update the roles associated with a user when using header or oidc authMode.
     This is done by adding a <code>[user-role-mappings]</code> section to the configuration file.
     When using the user-role-mappings section, all roles you are using must be defined, one per line, and any role no longer enabled for the user will be removed.
     The rules are evaluated on login, and the user's roles are updated accordingly.
@@ -18,6 +18,11 @@ before: |
   <p>
     Depending on what IAM system you are using, you may need to enable the sending of userinfo to Arkime.
   </p>
+  <p>
+    For user defined roles you must use the format <code>role:a-user-defined-role</code> and have created the role <code>a-user-defined-role</code> in the Users page UI.
+    The leading <code>role:</code> is required to distinguish it from the built-in roles.
+    Using user defined roles is broken before 5.6.5, so please upgrade to take advantage of this feature.
+  </p>
 
 after: |
   <p>
@@ -31,7 +36,7 @@ after: |
   # fred and wilma are superAdmin
   superAdmin=this.userId === 'fred' || this.userId === 'wilma'
   # custom role based on header value
-  role-special=vals.roles.includes('special')
+  role:a-user-defined-role=vals.roles.includes('special')
   # If you need to debug what is in this or vals you can use console.log
   # wiseUser=console.log(this, vals),true
   </code></pre>
