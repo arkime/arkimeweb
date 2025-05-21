@@ -10,6 +10,9 @@ permalink: "/tagger"
 {: .section-header.mt-1 }
 
 The Tagger plugin allows you to automatically assign tags (or other fields) when certain content matches the item in the tagfile.
+The tagger data is stored in OpenSearch/Elasticsearch centrally so multiple capture nodes can share the same tagger data.
+You can also use [WISE](wise) for a more advanced centralized method of setting fields in sessions.
+If you want to be able to have complex matching logic look at [Arkime Rules](rules) instead, which lives on each capture node.
 
 ### Tagging by five types of data is currently possible:
 {: .subsection }
