@@ -19,6 +19,8 @@ after: |
   authRedirectURIs=http://ARKIMEHOST:PORT/auth/login/callback
   # Optional to auto create users, make sure userId/userName variables are right
   #userAutoCreateTmpl={"userId": "${this.preferred_username}", "userName": "${this.name}", "enabled": true, "webEnabled": true, "headerAuthEnabled": true, "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true, "roles": ["arkimeUser", "cont3xtUser"] }
+  # Optionally set a logout URL from provider
+  #logoutUrl=https://the.oidc.provider.com/logout
   </code></pre>
 
 settings:
