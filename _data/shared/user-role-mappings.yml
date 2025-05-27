@@ -31,8 +31,8 @@ after: |
   <pre><code>[user-role-mappings]
   # Everyone is arkimeUser
   arkimeUser=true
-  # userAdmin have -svc extension in userId
-  userAdmin=this.userId.endsWith('-svc')
+  # usersAdmin have -svc extension in userId
+  usersAdmin=this.userId.endsWith('-svc')
   # fred and wilma are superAdmin
   superAdmin=this.userId === 'fred' || this.userId === 'wilma'
   # custom role based on header value

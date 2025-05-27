@@ -18,8 +18,8 @@ There are two classes of roles: System defined roles and User defined roles.
 ### The system defined roles include:
 {: .subsection }
 
-* <strong>superAdmin</strong> - Has all system roles assigned. Only superAdmin can create or edit other superAdmin users. Only superAdmin can assign the userAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, and wiseAdmin role to another user.
-* <strong>userAdmin</strong> - Can create, update, and delete users (except for superAdmin users). Can assign and unassign non Admin roles to users. Can unassign Admin roles from users.
+* <strong>superAdmin</strong> - Has all system roles assigned. Only superAdmin can create or edit other superAdmin users. Only superAdmin can assign the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, and wiseAdmin role to another user.
+* <strong>usersAdmin</strong> - Can create, update, and delete users (except for superAdmin users). Can assign and unassign non Admin roles to users. Can unassign Admin roles from users.
 * <strong>arkimeUser</strong> - Can use Arkime application, also known as viewer
 * <strong>arkimeAdmin</strong> - An arkimeAdmin is automatically assigned arkimeUser. An arkimeAdmin has extra ability to change Arkime configurations, view data for all Arkime Users (including superAdmins), and has different query limitations.
 * <strong>cont3xtUser</strong> - Can use Cont3xt application
