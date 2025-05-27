@@ -942,6 +942,9 @@ title: FAQ
         You can edit /opt/arkime/etc/capture.env and /opt/arkime/etc/viewer.env to add other options.
         We recommend using env files instead of editing the systemd files since they may get overwritten by new installs.
       </p>
+      <p>
+        For node.js applications (viewer, wise, cont3xt), you can also set the <a href="https://nodejs.org/api/cli.html#node_extra_ca_certsfile">NODE_EXTRA_CA_CERTS</a> environment variable to the path of your CA certificate files.
+      </p>
 
       <h3 class="subsection"id="how_do_i_upgrade_to_moloch_1">
         How do I upgrade to Moloch 1.x?
@@ -2815,7 +2818,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
       </p>
       <p>
         PCAP deletion is handled by the viewer process, so it is important that viewer is running on all capture instances.
-        The viewer process checks on startup and then every minute to see how much space is available. 
+        The viewer process checks on startup and then every minute to see how much space is available.
         When free space is below <a href="/settings#freespaceg">freeSpaceG</a>, then viewer will start deleting the oldest PCAP files.
         The viewer process logs every time a file is deleted, so it is possible to figure out when a file is deleted if needed.
         If viewer complains about not finding the PCAP file, make sure you check the viewer.log for errors.
