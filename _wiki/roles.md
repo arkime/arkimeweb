@@ -11,7 +11,7 @@ permalink: "/roles"
 
 In Arkime 4.0 the concept of Roles was introduced to Arkime.
 We will be moving our permission model over to use roles.
-Start with Arkime 4.3 we have strengthed the roles and clearly outlined the rules.
+Starting with Arkime 4.3 we have strengthed the roles and clearly outlined the rules.
 
 There are two classes of roles: System defined roles and User defined roles.
 
@@ -44,6 +44,14 @@ doesn't have the arkimeUser/cont3xtUser directly assigned.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
 * The application Admin users can view application data for all users, including other Admin and superAdmins users
 * webEnabled and headerAuthEnabled values are not inherited from roles. They must be set on each user individually.
+
+### Creating User defined Roles Programmatically:
+{: .subsection }
+
+Behind the scenes, user defined roles are stored in the users database with a leading role: prefix.
+You can use the arkime_add_user script to creat a user defined role.
+<code>/opt/arkime/bin/arkime_add_user.sh role:role-name "Role Name" passwordignored [other-options]</code>
+
 
 
 </div>
