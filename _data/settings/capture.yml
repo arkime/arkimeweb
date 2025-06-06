@@ -33,6 +33,11 @@ settings:
       For ESP sessions, Arkime writes a session record after this many
       seconds of inactivity since the last session save.
 
+  - key: espSavePackets
+    value: "false"
+    text: |
+      Save ESP packets to pcap files.
+
   - key: geoLite2ASN
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
     text: |

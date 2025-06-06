@@ -33,3 +33,9 @@ settings:
     value: false
     text: |
       Enable to generate the JA4 raw Arkime fields.
+
+  - key: ja4hOmitZeroSections
+    value: false
+    text: |
+      Enable to omit zero sections in JA4 hashes.
+      This will reduce the size of the JA4 hashes, but may cause search issues if those are expected.
