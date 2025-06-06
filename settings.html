@@ -2,6 +2,7 @@
 title: Settings
 
 shared:
+  - override-configuration
   - debug
   - web
   - security
@@ -330,12 +331,6 @@ wiseService:
           <li> Redis - redis://[:password@]host:port/db-number/DOC</li>
           <li> Redis Sentinel - redis-sentinel://[[sentinelPassword]:[password]@]host[:port]/redis-name/db-number/DOC</li>
         </ul>
-      </p>
-      <p>
-        All of the Arkime application support overriding configuration files by setting via a command line option using either <code>-o variable=value</code> or <code>-o section.variable=value</code>, so for example <code>-o elasticsearch=https://localhost:9200</code>.
-        Starting in Arkime 5.4 environment variables can be used to override configuration settings, these are processed after the <code>-o</code> command line options but before the config file.
-        Environment variables are specified in the format <code>ARKIME__variable=value</code> (for default section) or <code>ARKIME_SECTION__variable=value</code>, so for example <code>ARKIME__elasticsearch=https://localhost:9200</code>.
-        Starting in Arkime 5.6 if the section or key needs a DOT, DASH, COLON, or SLASH you can use those keywords since environment variables can't have those characters. For example <code>ARKIME_arkimeDASHclusters__example=url:http://localhost:8124</code>
       </p>
       <!-- /ini settings -->
 
