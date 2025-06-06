@@ -1,4 +1,9 @@
 name: Capture Debug Settings
+before:
+  <p>
+    These are the capture specific debug settings. They control the logging of various events during the capture process.
+    See the <a href="#debug">Debug Settings</a> section for general debug settings that apply to all Arkime applications.
+  </p>
 settings:
   - key: logESRequests
     value: "false"

@@ -2,7 +2,7 @@ name: Web Settings
 
 before: |
   <p>
-    For Arkime applications that have a web interface there are common settings for listening for web traffic.
+    For Arkime applications that have a web interface these are the common settings for listening for web traffic.
   </p>
   <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
@@ -22,12 +22,12 @@ settings:
   - key: certFile
     value: EMPTY
     text: |
-      Public certificate to use for https, if not set then http will be
-      used. keyFile must also be set.
+      Public certificate to use for https, if not set then http will be used.
+      The <a href="#keyFile">keyFile</a> setting must also be set.
 
   - key: keyFile
     value: EMPTY
     text: |
-      Private certificate to use for https, if not set then http will
-      be used. certFile must also be set.
+      Private certificate to use for https, if not set then http will be used.
+      The <a href="#certFile">certFile</a> setting must also be set.
 

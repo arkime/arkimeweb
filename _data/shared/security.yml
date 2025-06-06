@@ -35,27 +35,28 @@ settings:
   - key: authMode
     value: EMPTY
     text: |
-      (Since 5.0.0) This setting controls what auth mode is used, if authMode or userNameHeader isn't set then digest is used by default. Before Arkime 5 userNameHeader is used to select the auth mode.
+      (Since 5.0.0) This setting controls what authentication mode is used, if authMode or userNameHeader isn't set then digest is used by default. Before Arkime 5 <a href="#userNameHeader">userNameHeader</a> is used to select the auth mode.
       Possible values are:
       <ul>
         <li><strong>basic</strong> - Use basic auth where browser based basic authentication is used.</li>
         <li><strong>basic+oidc</strong> - Use basic auth when present otherwise use oidc auth. This is useful when you want to support API calls using basic auth. WARNING - the password for basic auth is from Arkime which isn't synced with oidc.</li>
         <li><strong>basic+form</strong> - Use basic auth when present otherwise use form auth. This is useful when you want to support API calls using basic auth.</li>
         <li><strong>digest</strong> or EMPTY - Use digest auth where browser based digest authentication is used.</li>
-        <li><strong>form</strong> - Use a html form to enter the user/password. Using over http is is insecure.</li>
+        <li><strong>form</strong> - Use a html form to enter the user/password. Using over http is insecure.</li>
         <li><strong>header</strong> - Use a http header containing the user id for authentication, see <a href="#userNameHeader">userNameHeader</a>.</li>
         <li><strong>oidc</strong> -  Use OIDC authentication.</li>
-        <li><strong>anonymous</strong> - Use anonymous authentication.</li>
+        <li><strong>anonymous</strong> - Use anonymous authentication, not recommended.</li>
         <li><strong>s2s</strong> -  Only server to server authentication is allowed</li>
       </ul>
       If using central viewers for maximum security set all viewers to use s2s except the central viewer.
-      Each user must have Web Auth Header checkbox set to support other methods besides digest.
+      Each user must have Web Auth Header checkbox set to support other methods besides basic or digest.
       <br><br>
       For authentication modes that require cookies (form, oidc, saml) you may need to also change:
       <ul>
         <li> <a href="#authCookieSecure">authCookieSecure</a> - Set to <b>false</b> if using http WITHOUT a reverse proxy. This is insecure.</li>
         <li> <a href="#authTrustProxy">authTrustProxy</a> - Set to <b>true</b> if using http WITH a https reverse proxy.</li>
       </ul>
+      See the <a href="#logoutUrl">logoutUrl</a> setting for how to configure a logout button in the UI.
 
   - key: userNameHeader
     value: EMPTY
