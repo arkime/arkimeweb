@@ -129,8 +129,8 @@ settings:
       </p>
       <p>
         <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since Javascript treats as subtraction.
-        For example with <code>"userId": "$(this.user-id)"</code> Javascript sees as <code>this.user - id</code>.
-        Instead you will need to use <code>"userId": "$(this[\\"user-id\\"])"</code> if you can't switch to a different variable name.
+        For example with <code>"userId": "${this.user-id}"</code> Javascript sees as <code>this.user - id</code>.
+        Instead you will need to use <code>"userId": "${this[\\"user-id\\"]}"</code> if you can't switch to a different variable name.
       </p>
 
   - key: caTrustFile
