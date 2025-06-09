@@ -105,6 +105,7 @@ settings:
   - key: userAutoCreateTmpl
     value: EMPTY
     text: |
+      <p>
       When using <code>requiredAuthHeader</code> to externalize provisioning
       of users to a system like LDAP/AD, this configuration parameter is used
       to define the JSON structure used to automatically create a Arkime user
@@ -125,6 +126,12 @@ settings:
         "emailSearch": true, "createEnabled": false, "removeEnabled": false, "packetSearch": true,
         "roles": ["arkimeUser", "cont3xtUser"]}
       </code>
+      </p>
+      <p>
+        <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since Javascript treats as subtraction.
+        For example with <code>"userId": "$(this.user-id)"</code> Javascript sees as <code>this.user - id</code>.
+        Instead you will need to use <code>"userId": "$(this[\\"user-id\\"])"</code> if you can't switch to a different variable name.
+      </p>
 
   - key: caTrustFile
     value: EMPTY
