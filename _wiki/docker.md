@@ -27,7 +27,7 @@ To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime
 
 We offer several tags to help you choose the right Arkime image for your needs.
 All of our releases are multi architecture, so you can use the same tag on both amd64 and arm64 systems.
-We recommend using the v5-latest tag or v5.6.1 (or later) for the most stable experience.
+We recommend using the v5-latest tag or v5.6.4 (or later) for the most stable experience.
 
 ### Stable Releases:
 
@@ -35,8 +35,8 @@ We recommend using the v5-latest tag or v5.6.1 (or later) for the most stable ex
 * v5-ja4-latest: Same as v5-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 * latest: This tag points to the most recent stable release.
 * ja4-latest: Same as latest but with the [ja4 plugin](https://arkime.com/ja4) included.
-* v5.M.B: This tag points to a specific release version (e.g., v5.5.0). Use this if you need a particular version for compatibility or other reasons.
-* v5.M.B-ja4: Same as v5.M.B but with the [ja4 plugin](https://arkime.com/ja4) included.
+* vM.M.B: This tag points to a specific release version (e.g., v5.5.0). Use this if you need a particular version for compatibility or other reasons.
+* vM.M.B-ja4: Same as vM.M.B but with the [ja4 plugin](https://arkime.com/ja4) included.
 
 ### Development Snapshots:
 
