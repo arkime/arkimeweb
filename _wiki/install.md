@@ -165,9 +165,28 @@ Once the Arkime package is installed, you need to initialize the OpenSearch/Elas
 Most database operations are completed using the `db.pl` script located in the `/opt/arkime/db` directory.
 You'll need to provide the URL of the OpenSearch/Elasticsearch database and the password you set during the OpenSearch/Elasticsearch installation.
 If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add a --insecure option if not on the same server.
+You will also need to decide how you want to delete old sessions, either by ILM/ISM or by using the `db.pl` script in a cron job.
+We suggest using ILM/ISM.
+
+
+These examples assume you are doing daily rollovers and keeping 30 days of data.
+#### Elasticsearch ILM Example
+```
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 init --ilm
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 ilm 1d 30d
+```
+#### OpenSearch ISM Example
+```
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 init --ism
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 ism 1d 30d
+```
+#### Cron Job Example
 ```
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
+### In a cron job during off peak hours
+/opt/arkime/db/db.pl --esuser admin:password https://localhost:9200 expire daily 30
 ```
+
 
 ### Configure Arkime
 {: .subsection }
@@ -219,7 +238,7 @@ apt install -y ./arkime-main_ubuntu2204_amd64.deb
 #### Password: A new password, not the ES password
 #### Download GeoIP: yes
 
-# Initialize the database, use the password from OpenSearch/Elasticsearch!!!
+# Initialize the database using cron expire, use the password from OpenSearch/Elasticsearch!!!
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
 
 # Create the admin user
