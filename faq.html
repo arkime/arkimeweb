@@ -1306,10 +1306,11 @@ title: FAQ
       </p>
       <p>
         The SPI data in OpenSearch/Elasticsearch and the PCAP data are not deleted at the same time.
-        The PCAP data is deleted as the disk fills up on the capture machines. See <a href="#pcap-deletion">here</a> for more information.
+        The PCAP data is deleted as the disk fills up on the capture machines.
+        See <a href="#pcap-deletion">here</a> for more information.
         PCAP deletion happens automatically, and nothing needs to be done.
-        The SPI data is either deleted by using <a href="#ilm">ILM</a> or when the <code>./db.pl expire</code> command is run, usually from cron during off peak.
-        Unless you use <a href="#ilm">ILM</a>, the SPI data deletion does NOT happen automatically, and a cron job MUST be set up.
+        The SPI data is either deleted by using <a href="#ilm">ILM/ISM</a> or when the <code>./db.pl expire</code> command is run, usually from cron during off peak.
+        You MUST setup either ILM/ISM or a cron job to delete the SPI data, nothing happens automatically.
         A cron setup that only keeps 90 days of data and expires at midnight might look like this:
         <pre> 0 0 * * * /opt/arkime/db/db.pl http://localhost:9200 expire daily 90</pre>
       </p>
