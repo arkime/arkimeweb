@@ -21,8 +21,18 @@ before: |
   <p>
     For user defined roles you must use the format <code>role:a-user-defined-role</code> and have created the role <code>a-user-defined-role</code> in the Users page UI.
     The leading <code>role:</code> is required to distinguish it from the built-in roles.
-    Using user defined roles is broken before 5.6.5, so please upgrade to take advantage of this feature.
+    Using user defined roles is broken before 5.7.0, so please upgrade to take advantage of this feature.
   </p>
+  <p>
+    <strong>Important:</strong>
+    <ul>
+      <li>Nodejs lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your javascript expressions. For example <code>vals['x-roles']</code> NOT <code>vals['X-Roles']</code>.</li>
+      <li>Javascript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-roles']</code> NOT <code>vals.x-roles</code>.</li>
+      <li>A role that isn't defined will be removed from the user.</li>
+    </ul>
+  </p>
+
+
 
 after: |
   <p>
@@ -35,10 +45,12 @@ after: |
   usersAdmin=this.userId.endsWith('-svc')
   # fred and wilma are superAdmin
   superAdmin=this.userId === 'fred' || this.userId === 'wilma'
-  # custom role based on header value
+  # custom role based on header 'roles' containing the string 'special' anywhere
   role:a-user-defined-role=vals.roles.includes('special')
   # If you need to debug what is in this or vals you can use console.log
   # wiseUser=console.log(this, vals),true
+  # Checks a comma separated x-roles header for the string arkime_wise_admin
+  wiseAdmin=vals['x-roles'] && vals['x-roles'].split(',').map(s => s.trim()).includes('arkime_wise_admin')
   </code></pre>
 
 settings:
