@@ -1,8 +1,17 @@
 name: Auth OIDC Settings
 before: |
   <p>
-    (Since 4.2.0) Arkime now support direct OIDC authentication when setting <a href="#userNameHeader">userNameHeader</a> to oidc.
+    Arkime supports direct OIDC authentication when setting <a href="#authMode">authMode</a> to <code>oidc</code>.
     Make sure that each user has the "Web Auth Header" checkbox selected.
+  </p>
+  <p>
+    OIDC is <strong>very tricky</strong> to get setup correctly, you will <strong>not</strong> make it work on the first try.
+    If you are new to Arkime we recommend following these steps:
+    <ol>
+      <li>Setup Arkime with <a href="#authMode">authMode</a> set to <code>basic</code> or <code>digest</code>. Get this working.</li>
+      <li>Setup Arkime with <strong>one</strong> node configured with <a href="#authMode">authMode</a> set to <code>oidc</code>. Do NOT use a load balancer. Get this working. This is the recommended setup, with the single node being what we call a "central viewer". It will proxy all requests to the other nodes.</li>
+      <li>If you must have multiple nodes, this is the next step. Make sure if using a load balancer you have stickiness enabled. We don't recommend more then a few nodes configured this way.</li>
+    </ol>
   </p>
   <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
