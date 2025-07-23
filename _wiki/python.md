@@ -16,7 +16,7 @@ This allows you to write custom classifiers and parsers in Python.
 The Python support in Arkime requires Python 3.12 or newer, so it may not be enabled with old linux distributions.
 Use the setting <code>disablePython=true</code> true to disable Python support in Arkime.
 
-<strong>Currently Python support is disabled in the Ubuntu 20/22 and Debian 12 packages.</strong>
+<strong>Currently Python support is disabled in the AL2023, Ubuntu 22, and Debian 12 Arkime packages.</strong>
 
 # Python Arkime Module
 
