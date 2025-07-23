@@ -165,4 +165,40 @@ Increment the reference count of a session.
 * session: The session object from the classifyCb or parserCb.
 * parserCb: The callback to call for every packet of the session in each direction.
 
+## Example
+
+```python
+import arkime
+import arkime_session
+import sys
+
+def my_parsers_cb(session, bytes, len, which):
+    # Write code here to parse the bytes and extract information
+    print("PARSER:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "len", len, "which", which)
+
+    # then you could set a field
+    # arkime_session.add_string(session, pos, "my value")
+
+    # A parser should return -1 to unregister itself, 0 to continue parsing
+    return 0
+
+def my_classify_callback(session, bytes, len, which):
+    print("CLASSIFY:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "len", len, "which", which)
+
+    # Example of adding a tag
+    arkime_session.add_tag(session, "python")
+
+    # Do some kind of check to see if you want to classify this session, if so register
+    arkime_session.register_parser(session, my_parsers_cb)
+
+
+### Start ###
+# Register a classifier. This example will match all TCP sessions
+arkime.register_tcp_classifier("test", 0, bytes("", "ascii"), my_classify_callback)
+
+# Creatre a new field in the session we will be setting
+pos = arkime.field_define("arkime_rulz", "kind:lotermfield;db:arkime_rulz")
+
+print("VERSION", arkime.VERSION, "CONFIG_PREFIX", arkime.CONFIG_PREFIX, "POS", pos)
+```
 </div>
