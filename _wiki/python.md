@@ -44,6 +44,13 @@ Return -1 to unregister the parser for the session, 0 is normal case or positive
 * packetLen: The length of the packet.
 * direction: The direction of the packet, 0 for client to server, 1 for server to client.
 
+### saveCb(session, final)
+This callback is used for both pre_save and save callbacks. 
+
+* session: The opaque session object, used with any arkime_session module methods.
+* final: True if this is the final session save callback, False if there are more linked sessions.
+
+
 ## Methods
 
 ### fieldPos field_define(fieldExpression, fieldDefinition)
@@ -74,6 +81,9 @@ This usually isn't recommended since most protocols can run on any port.
   * 0x08 0 tcp dst
 * classifyCb: The callback to call when the classifier matches.
 
+### register_pre_save(saveCb)
+* saveCb: The callback to call when the session is going to be saved to the database but before some hosekeeping is done, such as running the save rules.
+
 ### register_tcp_classifier(name, matchOffset, matchBytes, classifyCb)
 
 Register a TCP classifier that will call the classifyCb callback for the first packet of a session in each direction that matches the matchBytes starting at the matchOffset.
@@ -91,6 +101,9 @@ Register a UDP classifier that will call the classifyCb callback for the first p
 * matchOffset: The byte offset in the packet where the matchBytes should be found.
 * matchBytes: The bytes to match in the packet.
 * classifyCb: The callback to call when the classifier matches.
+
+### register_save(saveCb)
+* saveCb: The callback to call when the session is being saved to the database.
 
 ## Variables
 
@@ -193,10 +206,18 @@ def my_classify_callback(session, bytes, len, which):
     # Do some kind of check to see if you want to classify this session, if so register
     arkime_session.register_parser(session, my_parsers_cb)
 
+def my_pre_save_callback(session, final):
+    print("PRE SAVE:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "final", final)
+
+def my_save_callback(session, final):
+    print("SAVE:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "final", final)
+
 
 ### Start ###
 # Register a classifier. This example will match all TCP sessions
 arkime.register_tcp_classifier("test", 0, bytes("", "ascii"), my_classify_callback)
+arkime.register_pre_save(my_pre_save_callback)
+arkime.register_save(my_save_callback)
 
 # Creatre a new field in the session we will be setting
 pos = arkime.field_define("arkime_rulz", "kind:lotermfield;db:arkime_rulz")
