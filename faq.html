@@ -120,6 +120,11 @@ title: FAQ
         title="How do I upgrade to Arkime 5.x">
         How do I upgrade to Arkime 5.x?
       </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_6"
+        title="How do I upgrade to Arkime 6.x">
+        How do I upgrade to Arkime 6.x?
+      </a>
       <a href="#elasticsearch"
         class="nav-link"
         title="OpenSearch/Elasticsearch">
@@ -515,16 +520,42 @@ title: FAQ
               Arkime
             </th>
             <td>
+              6.0+
+            </td>
+            <td>
+              5.2.0+
+            </td>
+            <td>
+              1.x, 2.x, 3.x (2.10+ or 3.x recommended), 2.19.0 broken, 3.x requires Arkime 5.7.0+
+            </td>
+            <td>
+              7.10+, 8.x, 9.x (8.10+ or 9.x recommended)
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_6"> Arkime 6.x instructions </a>
+            </td>
+            <td>
+              <strong>
+                Unreleased
+              </strong>
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+              Arkime
+            </th>
+            <td>
               5.0+
             </td>
             <td>
               4.3.2+ (4.6.0 recommended)
             </td>
             <td>
-              1.0.0+ (2.10+ recommended), 2.19.0 broken
+              1.x, 2.x, 3.x (2.10+ or 3.x recommended), 2.19.0 broken, 3.x requires Arkime 5.7.0+
             </td>
             <td>
-              7.10+, 8+ (7.17+, 8.10+ recommended)
+              7.10+, 8+, 9.x (7.17+, 8.10+ recommended), 9.x requires Arkime 5.7.0+
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_5"> Arkime 5.x instructions </a>
@@ -540,10 +571,10 @@ title: FAQ
               4.0+
             </td>
             <td>
-              3.3.0+ (3.4.0 recommended)
+              3.3.0+ (3.4.0+ recommended)
             </td>
             <td>
-              1.0.0+ (2.3+ recommended), 2.19.0 broken
+              1.x, 2.x (2.3+ recommended), 2.19.0 broken
             </td>
             <td>
               7.10+, 8+
@@ -565,7 +596,7 @@ title: FAQ
               2.4.0
             </td>
             <td>
-              1.0.0+ (2.3 recommended), 2.19.0 broken
+              1.x, 2.x (2.3+ recommended), 2.19.0 broken
             </td>
             <td>
               7.10+, not 8.x
@@ -1204,6 +1235,32 @@ title: FAQ
         <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
         <li>Verify that everything is working.</li>
       </ul>
+
+      <h3 class="subsection"id="how_do_i_upgrade_to_arkime_6">
+        How do I upgrade to Arkime 6.x?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <p>
+        <strong>Arkime 6 is still in development and not ready for production use.</strong>
+
+      <p>
+        Upgrading to Arkime 6 requires that you are already using Arkime 5.2.0 or later.
+      </p>
+      <h4>Breaking Changes</h4>
+      <ul>
+        <li>TBD</li>
+      </ul>
+      <h4>Instructions</h4>
+      <ul>
+        <li>Install new Arkime rpm/deb.</li>
+        <li>It is recommended but not required to shut down ALL captures, multies, and viewers.</li>
+        <li>Run <code>/opt/arkime/db/db.pl http://ESHOST:9200 upgrade [other options]</code>, replace ESHOST and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
+        <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
+        <li>Verify that everything is working.</li>
+      </ul>
       <!-- /general -->
 
       <!-- elasticsearch -->
@@ -1522,7 +1579,9 @@ title: FAQ
         </span>
       </h3>
       <p>
-        <strong>Elasticsearch 9.x is NOT fully tested yet</strong>
+        <strong>
+          Elasticsearch 9.x is NOT supported before Arkime 5, and we recommend that you use Arkime 5.7.1 or later.
+        </strong>
       </p>
       <ol>
         <li>Elasticsearch 9 can only perform upgrades from Elasticsearch 8.18 or later, so you will need to upgrade Elasticsearch to 8.18 or later.</li>
@@ -1538,7 +1597,7 @@ title: FAQ
       </h3>
       <p>
         <strong>
-          Elasticsearch 8.x is NOT supported before 3.4.1, and we recommend that you use Arkime 4.x.
+          Elasticsearch 8.x is NOT supported before Arkime 3.4.1, and we recommend that you use Arkime 4.x.
         </strong>
       </p>
       <ol>
