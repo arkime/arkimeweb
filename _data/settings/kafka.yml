@@ -3,19 +3,19 @@ before: |
   <p>
     (Since 4.2.0) Arkime can be decoupled from directly sending sessions to OpenSearch/Elasticsearch by leveraging Kafka as a message queue.
     This approach offers greater flexibility and scalability.
-    Arkime will continue to interact directly with OpenSearch/Elasticsearch for other data storage needs.
+    Arkime will continue to interact directly with OpenSearch/Elasticsearch for other data storage needs and session retrieval.
   </p>
 
   <h4>To integrate Kafka:</h4>
 
   <ol>
-    <li><strong>Producer:</strong> Configure Arkime to publish session data to a specific Kafka topic.</li>
+    <li><strong>Producer:</strong> Configure Arkime to publish session data to a specific Kafka topic using the <a href="#kafkaTopic">kafkaTopic</a> setting.</li>
     <li>
       <strong>Consumer:</strong> Develop a Kafka consumer that subscribes to the session topic. This consumer will be responsible for processing the session data and indexing it into OpenSearch/Elasticsearch.
-      The consumer can determine the target OpenSearch/Elasticsearch index based on either:
+      The consumer can determine the target OpenSearch/Elasticsearch index based on the <a href="#kafkaMsgFormat">kafkaMsgFormat</a> setting, which defines how the session data is formatted.
       <ul>
         <li><strong>Bulk Header:</strong> This can be used directly to index the data.</li>
-        <li><strong>Document Field:</strong> Extracting the index name from a specific field within the session data.</li>
+        <li><strong>Document Field:</strong> Extract the index name from the <code>index</code> field within the session data.</li>
       </ul>
     </li>
   </ol>
