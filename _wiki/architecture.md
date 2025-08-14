@@ -19,13 +19,13 @@ Here are some sample deployments of Arkime for different network architectures. 
 * It is possible to run multiple capture processes per machine, or have a single capture process listen to multiple interfaces - ([FAQ Answer](faq#what-kind-of-packet-capture-speeds-can-arkime-capture-handle))
 * Recommend "Big Data" style boxes for capture - ([FAQ Answer](faq#what-kind-of-capture-machines-should-we-buy))
 * Run multiple OpenSearch/Elasticsearch processes per machine since each ES node should be configured at most to 30G - ([FAQ Answer](faq#how-many-elasticsearch-nodes-or-machines-do-i-need))
-* Except for single host deployments, it is recommended/useful that all operator access flows through a single apache/viewer combination that can provide better authentication, logging, and a single choke point - ([FAQ Answer](faq#how-do-i-proxy-arkime-using-apache))
+* Except for single host deployments, it is recommended/useful that all operator access flows through a central viewer with potentially a reverse proxy that can provide enterprise level authentication, logging, and a single choke point - ([FAQ Answer](faq#how-do-i-proxy-arkime-using-apache))
 
 #### Security
 
 * All ES instances should have iptables for port 9200-920N and 9300-930N, where N is the number of ES instances per machine, and only allow the other OpenSearch/Elasticsearch, capture and viewer machines to connect
-* All viewer hosts, except the apache/viewer box, should have iptables for port 8005 and only allow other viewer machines to connect. The viewer must listen on OS interface if using multiple machines
-* The shared viewer instances can listen on localhost since only apache talks to it
+* All viewer hosts, except the central viewer box, should have iptables for port 8005 and only allow other viewer machines to connect. The viewer must listen on OS interface if using multiple machines
+* The shared viewer instances can listen on localhost since only reverse proxy talks to it
 
 ## Single Host
 {: .subsection-header }
