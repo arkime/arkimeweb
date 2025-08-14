@@ -51,7 +51,7 @@ A single host deployment should usually only be used for demos and extremely low
 * By using a NPB, other security devices can see the same traffic arkime sees
 * When running multiple arkime-captures on the same host make sure the IO doesn't over whelm the disk and other subsystems.
 * Use a TAP with high traffic networks since many mirror ports drop traffic under heavy load
-* Operators use an apache fronted viewer and don't hit the other viewers directly. The apache provides authentication.
+* Operators use an apache fronted viewer (central viewer) and don't hit the other viewers directly. The apache provides authentication.
 * Lock down ES and arkime viewer with iptables
 
 ## Multiple Clusters
@@ -63,7 +63,7 @@ A single host deployment should usually only be used for demos and extremely low
 {: .subsection }
 
 * It is possible to use a single ES cluster using the prefix= ini configuration
-* Operator uses apache fronted viewers and doesn't hit the other viewers directly. The apache provides authentication. Can use virtual paths to route to different clusters.
+* Operator uses apache fronted viewers (central viewers) and doesn't hit the other viewers directly. The apache provides authentication. Can use virtual paths to route to different clusters.
 * NPBs are recommended for high traffic networks
 
 ## Remote Device capture
