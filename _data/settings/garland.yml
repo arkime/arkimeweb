@@ -1,0 +1,21 @@
+name: Garland
+before: |
+  <p>
+    This plugin allows Arkime 5.7.2 or later to skip the headers added by Garland PacketMAX NPB.
+  </p>
+
+  <p>
+    To enable you need to:
+    <ul>
+      <li>Edit the <code>/opt/arkime/etc/config.ini</code> file, modifying the <code>plugins=</code> line to include the garland.so filename, for example, <code>plugins=garland.so</code>.</li>
+      <li>Edit the <code>/opt/arkime/etc/config.ini</code> file, modifying the <code>viewerPlugins=</code> line to include the garland.js filename, for example, <code>viewerPlugins=garland.js</code>.</li>
+      <li>Restart both capture and viewer</li>
+    </ul>
+  </p>
+
+
+settings:
+  - key: garlandEthertype
+    value: "0xff12"
+    text: |
+      The ethertype used by Garland PacketMAX NPB for the timestamp of packets.
