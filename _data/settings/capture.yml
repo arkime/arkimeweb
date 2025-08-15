@@ -50,6 +50,8 @@ settings:
   - key: geoLite2Country
     value: "/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb"
     text: |
+      Where to find the Maxmind Country or City database, either can be used since a City database is a superset of the Country database.
+      Starting with Arkime 6 the region and city names are also saved if a City database is used.
       A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
        Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
       <a class="no-decoration"
