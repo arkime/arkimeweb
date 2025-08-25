@@ -55,4 +55,9 @@ settings:
       It is also used for secure server-to-server communication if <a href="#serverSecret">serverSecret</a> is not set.
       Previously not setting passwordSecret would disable user authentication, with Arkime 5 you should use <code>authMode=anonymous</code>.
       Changing the value will make all previously stored user passwords no longer work.
+      <pre><code>Since we support digest auth the hash must use the md5 algorithm:
+      ha1 = md5(userId + ':' + httpRealm + ':' + password)
+      iv = randomBytes(16)
+      dbEntry = iv.hex() + '.' + aes-256-cbc(passwordSecret, iv, ha1).hex()
+      </code></pre>
 
