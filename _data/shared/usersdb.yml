@@ -50,7 +50,7 @@ settings:
   - key: passwordSecret
     value: "password"
     text: |
-      The user password hash secret when using basic, digest, header, or related <a href="#authMode">authMode</a> - All Arkime applications sharing the same users database must have the same value. Arkime doesn't need passwords when using header or oidc without basic or digest support since authentication is external and Arkime only does authorization. The Cont3xt application also uses this value to encrypt integration information.
+      The user password hash encryption key when using basic, digest, form, or related <a href="#authMode">authMode</a> - All Arkime applications sharing the same users database must have the same value. Arkime doesn't need passwords when using header or oidc without basic, digest, or form support since authentication is external and Arkime only does authorization. The Cont3xt application also uses this value to encrypt integration information.
       <br>
       Since OpenSearch/Elasticsearch used to be wide open by default, we encrypt the stored user password hashes with this so a malicious person can't insert a working new account.
       It is also used for secure server-to-server communication if <a href="#serverSecret">serverSecret</a> is not set.
