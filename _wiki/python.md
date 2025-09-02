@@ -50,7 +50,6 @@ This callback is used for both pre_save and save callbacks.
 * session: The opaque session object, used with any arkime_session module methods.
 * final: True if this is the final session save callback, False if there are more linked sessions.
 
-
 ## Methods
 
 ### fieldPos field_define(fieldExpression, fieldDefinition)
@@ -178,6 +177,61 @@ Increment the reference count of a session.
 * session: The session object from the classifyCb or parserCb.
 * parserCb: The callback to call for every packet of the session in each direction.
 
+# Python Arkime Packet Module
+
+The Python Arkime Packet module has methods for dealing with packets before they are associated with sessions.
+The API is very unpythonic and treats the packet as a opaque object that needs to be passed around.
+
+## Callbacks
+
+### packetCb(batch, packet, packetBytes, packetLen)
+This callback is called for packets by the reader threads that the Python script has registered for.
+Usually some basic processing is done and then the run_ethernet_cb or run_ip_cb methods are called to process the packet.
+The callback should return the results from the run calls or one of the ARKIME_PACKET_* values.
+
+* batch: The opaque batch object
+* packet: The opaque patch object
+* packetBytes: The memory view of the packet bytes; only valid during the callback.
+* packetLen: The length of the packet.
+
+## Methods
+
+### get(packet, field)
+Retrieve the value of a packet field.
+* packet: The packet object from the packetCb.
+* field: The string field name to retrieve.
+
+### set(packet, field, value)
+Set the value of a packet field. Not all fields can be set.
+* packet: The packet object from the packetCb.
+* field: The string field name to set.
+* value: The integer value to set
+
+### set_ethernet_cb(type, packetCb)
+Register an ethertype packet callback that will be called for packets of the given type.
+Usually this callback with just need to strip some headers and call either run_ip_cb or run_ethernet_cb.
+* type: The Ethertype to register the callback for.
+* packetCb: The callback to call for packets of the given ethertype.
+
+### set_ip_cb(type, ipCb)
+Register an IP protocol packet callback that will be called for packets of the given protocol.
+* type: The IP protocol to register the callback for.
+* ipCb: The callback to call for packets of the given protocol.
+
+### set_run_ethernet_cb(batch, packet, packetBytes, type, str)
+* batch: The opaque batch object
+* packet: The opaque patch object
+* packetBytes: The memory view of the packet bytes
+* type: The Ethertype of the packet now
+* str: A string description of the packet now
+
+### set_run_ip_cb(batch, packet, packetBytes, type, str)
+* batch: The opaque batch object
+* packet: The opaque patch object
+* packetBytes: The memory view of the packet bytes
+* type: The ip protocol of the packet now
+* str: A string description of the packet now
+
 ## Example
 
 Create a <code>/opt/arkime/parsers/example.py</code> file with the following content:
@@ -185,6 +239,7 @@ Create a <code>/opt/arkime/parsers/example.py</code> file with the following con
 ```python
 import arkime
 import arkime_session
+import arkime_packet
 import sys
 
 def my_parsers_cb(session, bytes, len, which):
@@ -212,6 +267,13 @@ def my_pre_save_callback(session, final):
 def my_save_callback(session, final):
     print("SAVE:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "final", final)
 
+def my_ethernet_cb(batch, packet, bytes, len):
+    print("ETHERNET:", "batch", batch, "packet", "packet", "bytes", bytes, "len", len, "pktlen", arkime_packet.get(packet, "pktlen"))
+
+    # Remove first 18 bytes of ethernet header and run ethernet callback again
+    bytes = bytes[18:]
+    return arkime_packet.run_ethernet_cb(batch, packet, bytes, 0, "example")
+
 
 ### Start ###
 # Register a classifier. This example will match all TCP sessions
@@ -219,7 +281,9 @@ arkime.register_tcp_classifier("test", 0, bytes("", "ascii"), my_classify_callba
 arkime.register_pre_save(my_pre_save_callback)
 arkime.register_save(my_save_callback)
 
-# Creatre a new field in the session we will be setting
+arkime_packet.set_ethernet_cb(0xff12, my_ethernet_cb)
+
+# Create a new field in the session we will be setting
 pos = arkime.field_define("arkime_rulz", "kind:lotermfield;db:arkime_rulz")
 
 print("VERSION", arkime.VERSION, "CONFIG_PREFIX", arkime.CONFIG_PREFIX, "POS", pos)
