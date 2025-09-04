@@ -463,4 +463,8 @@ settings:
     value: "false"
     text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display in the session display.
 
+  - key: disablePython
+    value: "false"
+    text: (Since 6.0.0) When true disable the embedded python support. See <a href="/python">Python</a> for more information.
+
 

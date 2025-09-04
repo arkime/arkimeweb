@@ -161,12 +161,18 @@ settings:
       (Since 5.0.0) For auth cookies (form, oidc, saml) what value is used for sameSite.
 
   - key: logoutUrl
-    value: Only set for form authMode
+    value: Only set for form/oidc authMode
     text: |
       (Since 5.0.0) When set Arkime will show a logout button in the UI that will redirect to this url.
       For "form" authMode, Arkime provides a web page to logout.
+      Since 6.0.0 "oidc" authMode will auto set IFF the oidc provider has an end session endpoint.
       All other authMode requires this setting to be set, or no logout button will be shown.
-      Note, "basic" and "digest" authMode do not support logout in most browsers and "oidc" authMode will require an url from the OIDC provier.
+      Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require an url from the OIDC provier.
+
+  - key: logoutUrlMethod
+    value: 'POST'
+    text: |
+      (Since 6.0.0) When using <a href="#logoutUrl">logoutUrl</a> does the browser do a GET or POST to the url.
 
   - key: loginMessage
     value: EMPTY
