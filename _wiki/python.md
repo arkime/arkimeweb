@@ -22,6 +22,10 @@ Use the setting <code>disablePython=true</code> to disable Python support in Ark
 
 The Python Arkime module has high level methods to register callbacks for packet processing.
 
+## Constants
+ * VERSION : String - The Arkime version as a string
+ * CONFIG_PREFIX : String - The Arkime install prefix, usually /opt/arkime
+ * API_VERSION : Integer - The Arkime API version from arkime.h
 
 ## Callbacks
 
@@ -182,9 +186,19 @@ Increment the reference count of a session.
 The Python Arkime Packet module has methods for dealing with packets before they are associated with sessions.
 The API is very unpythonic and treats the packet as a opaque object that needs to be passed around.
 
+## Constants
+
+### PacketRC
+The return values for a packetCb callback.
+ * DO_PROCESS : Integer - Process the packet normally
+ * CORRUPT : Integer - The packet is corrupt
+ * UNKNOWN : Integer - The packet is unknown and can't be processed
+ * DONT_PROCESS : Integer - The packet should not be processed but can be freed
+ * DONT_PROCESS_OR_FREE : Integer - The packet should not be processed and should not be freed
+
 ## Callbacks
 
-### packetCb(batch, packet, packetBytes, packetLen)
+### PacketRC packetCb(batch, packet, packetBytes, packetLen)
 This callback is called for packets by the reader threads that the Python script has registered for.
 Usually some basic processing is done and then the run_ethernet_cb or run_ip_cb methods are called to process the packet.
 The callback should return the results from the run calls or one of the ARKIME_PACKET_* values.
