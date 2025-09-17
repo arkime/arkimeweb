@@ -27,6 +27,14 @@ The Python Arkime module has high level methods to register callbacks for packet
  * CONFIG_PREFIX : String - The Arkime install prefix, usually /opt/arkime
  * API_VERSION : Integer - The Arkime API version from arkime.h
 
+### PortKind - The PortKind for register_port_classifier. Bitwise OR the values together to match multiple ports.
+ * PORT_UDP_SRC : Integer - Match on udp src port
+ * PORT_UDP_DST : Integer - Match on udp dst port
+ * PORT_TCP_SRC : Integer - Match on tcp src port
+ * PORT_TCP_DST : Integer - Match on tcp dst port
+ * PORT_SCTP_SRC : Integer - Match on sctp src port
+ * PORT_SCTP_DST : Integer - Match on sctp dst port
+
 ## Callbacks
 
 ### classifyCb(session, packetBytes, packetLen, direction)
@@ -70,18 +78,14 @@ Retrieve the field position for a field expression.
 
 * fieldExpression: The expression used in viewer to access the field
 
-### register_port_classifier(name, port, type, classifyCb)
+### register_port_classifier(name, port, portKind, classifyCb)
 
 Register a classifier that matchs on a specific port and protocol type.
 This usually isn't recommended since most protocols can run on any port.
 
 * name: The short name of the classifier, used internally to identify the classifier.
 * port: The IP port to match on.
-* type: Or the following values:
-  * 0x01 - udp src
-  * 0x02 - udp dst
-  * 0x04 - tcp src
-  * 0x08 0 tcp dst
+* portKind: Bitwise OR the values from the PortKind constants to match on.
 * classifyCb: The callback to call when the classifier matches.
 
 ### register_pre_save(saveCb)
@@ -104,6 +108,23 @@ Register a UDP classifier that will call the classifyCb callback for the first p
 * matchOffset: The byte offset in the packet where the matchBytes should be found.
 * matchBytes: The bytes to match in the packet.
 * classifyCb: The callback to call when the classifier matches.
+
+### register_sctp_classifier(name, matchOffset, matchBytes, classifyCb)
+
+Register a SCTP classifier that will call the classifyCb callback for the first packet of a session in each direction that matches the matchBytes starting at the matchOffset.
+
+* name: The short name of the classifier, used internally to identify the classifier.
+* matchOffset: The byte offset in the packet where the matchBytes should be found.
+* matchBytes: The bytes to match in the packet.
+* classifyCb: The callback to call when the classifier matches. The which field will contain the direction AND sctp stream id. Arkime will send full messages to the callback.
+
+### register_sctp_protocol_classifier(name, protocol, classifyCb)
+
+Register a SCTP protocol classifier that will call the classifyCb callback for the first packet of a session in each direction that matches the protocolId in the SCTP header.
+
+* name: The short name of the classifier, used internally to identify the classifier.
+* protocol: The protocol id in the SCTP header to match.
+* classifyCb: The callback to call when the classifier matches. The which field will contain the direction AND sctp stream id. Arkime will send full messages to the callback.
 
 ### register_save(saveCb)
 * saveCb: The callback to call when the session is being saved to the database.
