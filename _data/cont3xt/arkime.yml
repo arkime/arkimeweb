@@ -1,8 +1,8 @@
 name: "Arkime Integration"
 before: |
-  Since 5.0 Cont3xt can query Arkime for results
-
-  Create a <code>[arkime:NAME]</code> section where NAME is a unique name for all integrations
+  Since 5.0 Cont3xt can query Arkime for results.
+  This integration must be enabled in the configuration file and not the UI.
+  To enable, create a <code>[arkime:NAME]</code> section where NAME is unique.
 
 settings:
   - key: name
@@ -48,3 +48,13 @@ settings:
   - key: insecure
     value: EMPTY
     text: If true the connection to OpenSearch/Elasticsearch will disable certificate verification for https calls
+
+after: |
+  Here is the example configuration that the demo site uses:
+  <pre>
+  [arkime:arkime]
+  name=Arkime
+  arkimeUrl=https://demo.arkime.com
+  searchDays=-1
+  </pre>
+
