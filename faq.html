@@ -3519,14 +3519,14 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </span>
         </h4>
         <p>
-          First the SPI records are created on the <code>capture</code>
-          side.
+          First the SPI (Session) records are created on the <code>capture</code> side.
         </p>
         <ol>
           <li>
             Each <code>capture</code> gets a nodename, either by the
             <code>-n</code> command line option or everything in front of the
             first period of the hostname.
+            This is <strong>no</strong> config setting to set the node name.
           </li>
           <li>
             Each <code>capture</code> writes a stats record every few
@@ -3534,11 +3534,11 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             It is possible to override the FDQN with the <code>--host</code> option to capture.
           </li>
           <li>
-            Each SPI record has a nodename in it.
+            Each SPI (Session)record has a nodename in it, this NEVER changes for a session record and there is no way to update it.
           </li>
         </ol>
         <p>
-          When PCAP is retrieved from a viewer it uses the nodename associated with the SPI record to find which capture host to connect to.
+          When PCAP is retrieved by a viewer it usually uses the nodename associated with the SPI (Session) record to find which capture host to connect to.
         </p>
         <ol>
           <li>
@@ -3550,6 +3550,11 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
             If the SPI record nodename is the same as the <code>arkime-viewer</code>
             nodename it can be processed locally, STOP HERE. This is the common
             case with one arkime node.
+          </li>
+          <li>
+            If the SPI record nodename matches the <a href="/settings#isLocalViewRegExp"><code>isLocalViewRegExp</code></a> setting,
+            it can be processed locally, STOP HERE. This is the common case 
+            when using a shared filesystem across all nodes.
           </li>
           <li>
             If the <code>stats[nodename].hostname</code> is the same as the

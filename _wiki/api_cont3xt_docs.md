@@ -23,7 +23,7 @@ Creates a new history audit log
 
 GET - /api/audits
 
-Returns list of audit logs (sorted by issuedAt) that the requesting user is allowed to view.
+Returns list of audit logs that the requesting user is allowed to view.
 
 
 **Parameters**:
@@ -34,6 +34,10 @@ Returns list of audit logs (sorted by issuedAt) that the requesting user is allo
 | startMs | <code>string</code> | an optional query parameter to specify the start of results (milliseconds since Unix EPOC) |
 | stopMs | <code>string</code> | an optional query parameter to specify the end of results (milliseconds since Unix EPOC) |
 | seeAll | <code>string</code> | an optional query parameter to request viewing all history (only works for admin users) |
+| sortBy | <code>string</code> | an optional query parameter to specify the field to sort by |
+| sortOrder | <code>string</code> | an optional query parameter to specify the order to sort by |
+| itemsPerPage | <code>string</code> | an optional query parameter to specify the number of results to return |
+| page | <code>string</code> | an optional query parameter to specify the page number (1-indexed) |
 
 **Returns**:
 
