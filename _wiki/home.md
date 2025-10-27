@@ -21,6 +21,7 @@ permalink: "/learn"
 - [Common API](commonapi)
 - [Roles](roles)
 - [JA4](ja4)
+- [Arkime with a UDR7](udr7)
 
 ## Capture
 {: .subsection-header.mt-1 }

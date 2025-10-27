@@ -97,7 +97,13 @@ Start the services in this specific order to ensure the backend is ready before 
     docker compose up -d viewer
     ```
 
-Once started, access the Arkime viewer by navigating to `http://arkime_host:8005`. Log in with the default **admin/admin** credentials and **change the password immediately** for security.
+3. **Visit the Arkime Web Interface:** Access the Arkime viewer by navigating to `http://<arkime_host>:8005` in your browser. Log in with the default **admin/admin** credentials and **change the password immediately** by navigating to the **Settings -> Password**.
+
+4. **Future Updating:** By using a snapshot tag you can update the Arkime containers in the future by simply running:
+    ```bash
+    docker compose pull
+    docker compose up -d
+    ```
 
 ---
 
@@ -126,7 +132,7 @@ gcc tzsp_forwarder.c -o tzsp_forwarder -lpcap
 
 ### B. Test the Forwarder
 
-Run the forwarder manually to test connectivity. Replace `<arkime_host>` with the machine running the Arkime Docker containers.
+Run the forwarder manually to test connectivity. **Replace `<arkime_host>`** with the machine running the Arkime Docker containers.
 
 ```bash
 # Test forwarding traffic from the br0 interface
@@ -138,7 +144,7 @@ Verify in the Arkime web interface that traffic is now appearing. If it works, s
 
 To ensure the forwarder runs on every reboot, create a systemd service file.
 
-Create the file `/etc/systemd/system/tzsp-forwarder.service`:
+Create the file `/etc/systemd/system/tzsp-forwarder.service`, **replace `<arkime_host>`** with the machine running the Arkime Docker containers.:
 
 ```ini
 [Unit]
