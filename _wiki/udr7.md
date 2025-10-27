@@ -18,7 +18,7 @@ I recently upgraded to the **Ubiquiti Dream Router (UDR7)**, and while it's powe
 
 # Step 1: Set Up the Arkime Backend (Docker)
 
-We will deploy Arkime and Elasticsearch using Docker Compose on the dedicated monitoring machine. This setup uses three services: **Elasticsearch** (our "database"), the **Viewer** (the web UI on port 8005), and the **Capture** container (configured to listen for TZSP packets).
+We will deploy Arkime and Elasticsearch using Docker Compose on the monitoring machine. This setup uses three services: **Elasticsearch** (our "database"), the **Viewer** (the web UI on port 8005), and the **Capture** container (configured to listen for TZSP packets).
 
 First, set up the required local directories:
 ```bash
@@ -162,5 +162,6 @@ systemctl enable tzsp-forwarder
 systemctl start tzsp-forwarder
 ```
 
-You should now have a reliable, persistent forwarding mechanism sending all your UDR7 traffic to your dedicated Arkime analysis server!
+# Step 3: Profit!!!
+You should now have a reliable, persistent forwarding mechanism sending all your UDR7 traffic to your Arkime analysis server!
 </div>
