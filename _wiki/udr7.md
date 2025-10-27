@@ -59,6 +59,7 @@ services:
     environment:
       - ARKIME__interface=ignore
       - ARKIME__pcapReadMethod=tzsp
+      - ARKIME__plugins=ja4plus.amd64.so
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
@@ -102,7 +103,7 @@ Once started, access the Arkime viewer by navigating to `http://arkime_host:8005
 
 # Step 2: Configure the UDR7 Traffic Forwarder
 
-We'll use the official `tzsp_forwarder` utility on the UDR7, compile it, and set it up as a persistent systemd service.
+We'll use the `tzsp_forwarder` utility on the UDR7, compile it, and set it up as a persistent systemd service.
 
 ### A. Install Prerequisites and Compile
 
@@ -110,6 +111,8 @@ Enable SSH access on the UDR7 by logging into the UDR7 web interface, navigating
 
 SSH into the UDR7 using your terminal:
 ```bash
+ssh root@192.168.1.1
+
 # Update package lists and install necessary tools
 apt update
 apt install -y gcc libpcap-dev
@@ -151,6 +154,10 @@ RestartSec=1
 WantedBy=multi-user.target
 ```
 
+The `<bpf_filter>` is optional and can be used to limit the traffic being forwarded.
+By default, the bpf_filter is set to **not** include the tzsp packets themselves.
+In my case since I use plex heavily, I also filter out plex traffic: `not port 32400 and not port 37008`.
+
 ### D. Enable and Start the Service
 
 ```bash
@@ -163,5 +170,5 @@ systemctl start tzsp-forwarder
 ```
 
 # Step 3: Profit!!!
-You should now have a reliable, persistent forwarding mechanism sending all your UDR7 traffic to your Arkime analysis server!
+You should now have a reliable, persistent forwarding mechanism sending your UDR7 traffic to your Arkime analysis server!
 </div>
