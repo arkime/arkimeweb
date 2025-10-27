@@ -22,7 +22,9 @@ We will deploy Arkime and Elasticsearch using Docker Compose on the dedicated mo
 
 First, set up the required local directories:
 ```bash
-mkdir /arkime/etc /arkime/pcap
+# /arkime will hold the raw pcap and extra configuratoin files, it should be it's own partition
+# /esdata will hold the Elasticsearch data
+mkdir /arkime/etc /arkime/pcap /esdata
 ```
 
 Here is the `docker-compose.yml` file I used, this example is using the **unreleased Arkime v6**:
@@ -33,7 +35,7 @@ services:
     image: elasticsearch:8.19.6
     network_mode: "host"
     environment:
-      - discovery.type=single-node # For
+      - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms8g -Xmx8g" # Set JVM heap size to 8GB
       - xpack.security.enabled=false
       - xpack.security.enrollment.enabled=false
