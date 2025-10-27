@@ -10,7 +10,7 @@ copyLink: True
 
 # Elevating Network Visibility on the UDR7
 
-I recently upgraded to the **Ubiquiti Dream Router (UDR7)**, and while it's powerful, I wanted to be able to use Arkime. Since the UDR7 allows SSH access but lacks the **storage or memory** for a full Arkime installation, this guide shows you how to use the **TSZP protocol** to **forward UDR7 traffic** to a separate machine running Arkime containers. This gives you deep, searchable network visibility without straining your router.
+I recently upgraded to the [**Ubiquiti Dream Router (UDR7)**](https://store.ui.com/us/en/products/udr7), and while it's powerful, I wanted to be able to use Arkime. Since the UDR7 allows SSH access but lacks the **storage or memory** for a full Arkime installation, this guide shows you how to use the **TSZP protocol** to **forward UDR7 traffic** to a separate machine running Arkime containers. This gives you deep, searchable network visibility without straining your router.
 
 *Note: The UDR7 appears to truncate traffic on monitored interfaces, meaning we likely won't need complex Arkime Rules for general capture.*
 
@@ -25,6 +25,7 @@ First, set up the required local directories:
 # /arkime will hold the raw pcap and extra configuratoin files, it should be it's own partition
 # /esdata will hold the Elasticsearch data
 mkdir /arkime/etc /arkime/pcap /esdata
+chown nobody /arkime/pcap /arkime/etc
 ```
 
 Here is the `docker-compose.yml` file I used, this example is using the **unreleased Arkime v6** (help us test!):
