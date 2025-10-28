@@ -20,9 +20,9 @@ I recently upgraded to the [**Ubiquiti Dream Router (UDR7)**](https://store.ui.c
 
 We will deploy Arkime and Elasticsearch using Docker Compose on the monitoring machine. This setup uses three services: **Elasticsearch** (our "database"), the **Viewer** (the web UI on port 8005), and the **Capture** container (configured to listen for TZSP packets).
 
-First, set up the required local directories:
+First, set up the required local directories that will be mounted into the Arkime containers:
 ```bash
-# /arkime will hold the raw pcap and extra configuratoin files, it should be it's own partition
+# /arkime will hold the raw pcap and extra configuration files, it should be it's own partition
 # /esdata will hold the Elasticsearch data
 mkdir /arkime/etc /arkime/pcap /esdata
 chown nobody /arkime/pcap /arkime/etc
