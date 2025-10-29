@@ -235,11 +235,43 @@ The callback should return the results from the run calls or one of the ARKIME_P
 Retrieve the value of a packet field.
 * packet: The packet object from the packetCb.
 * field: The string field name to retrieve.
+  * copied - Integer - 0 = not copied, 1 = copied
+  * direction - Integer - 0 = client to server, 1 = server to client
+  * etherOffset - Integer - Offset of ethernet header
+  * ipOffset - Integer - Offset of IP header
+  * ipProtocol - Integer - If an ip packet, the IP protocol
+  * mProtocol - Integer - The Arkime mProtocol number
+  * outerEtherOffset - Integer - Offset of outer ethernet header for tunneled packets
+  * outerIpOffset - Integer - Offset of outer IP header for tunneled packets
+  * outerv6 - Integer - 1 if outer IP is IPv6, 0 if IPv4
+  * payloadLen - Integer - Length of the payload
+  * payloadOffset - Integer - Offset of the payload
+  * pktlen - Integer - The full packet length
+  * readerFilePos - Integer - The file position of the packet in the pcap file
+  * readerPos - Integer - Index of the reader internal data
+  * tunnel - Integer - bitflag of various tunnel protocols that were seen
+  * v6 - Integer - 1 if IP is IPv6, 0 if IPv4
+  * vlan - Integer - The first VLAN tag if present, 0 if not present
+  * vni - Integer - The VXLAN VNI if present, 0 if not present
+  * wasfrag - Integer - 1 if the packet was a fragment, 0 if not
+  * writerFileNum - Integer - The writer file number from files index
+  * writerFilePos - Integer - The offset in the writer file
 
 ### set(packet, field, value)
 Set the value of a packet field. Not all fields can be set.
 * packet: The packet object from the packetCb.
 * field: The string field name to set.
+  * etherOffset - Integer - Offset of ethernet header
+  * mProtocol - Integer - The Arkime mProtocol number
+  * outerEtherOffset - Integer - Offset of outer ethernet header for tunneled packets
+  * outerIpOffset - Integer - Offset of outer IP header for tunneled packets
+  * outerv6 - Integer - 1 if outer IP is IPv6, 0 if IPv4
+  * payloadLen - Integer - Length of the payload
+  * payloadOffset - Integer - Offset of the payload
+  * tunnel - Integer - bitflag of various tunnel protocols that were seen
+  * v6 - Integer - 1 if IP is IPv6, 0 if IPv4
+  * vlan - Integer - The first VLAN tag if present, 0 if not present
+  * vni - Integer - The VXLAN VNI if present, 0 if not present
 * value: The integer value to set
 
 ### set_ethernet_cb(type, packetCb)
