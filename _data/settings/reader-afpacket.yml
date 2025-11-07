@@ -33,3 +33,8 @@ settings:
     value: "8005"
     text: |
       (Since 2.0) The cluster id for use with PACKET_FANOUT. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
+
+  - key: tpacketv3OldVlan
+    value: false
+    text: |
+      (Since 6.0) Set to true to use the old VLAN handling method where AFPacket would strip the first VLAN tag and not save in the PCAP. The new default will add the VLAN tag back into the packet data before saving to PCAP.
