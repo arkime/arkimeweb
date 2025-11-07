@@ -86,3 +86,12 @@ settings:
   - key: keyFile
     value: EMPTY
     text: Private certificate to use for https, if not set then http will be used. certFile must also be set.
+
+  - key: defaultCluster
+    value: EMPTY
+    text: |
+      (Since 6.0.0) The default cluster(s) to use for searches if no clusters are specified in the URL.
+      This is useful for when you have many clusters and you want to default to specific clusters for better search performance.
+      <br>
+      This is a comma separated list of cluster names.
+      Example: "cluster1,cluster2" would default to cluster1 and cluster2 if no clusters are specified in the URL.
