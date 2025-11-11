@@ -3,11 +3,11 @@ before: |
   <ul>
     <li>
       We <b>strongly</b> suggest you try tpacketv3 (afpacketv3) first if available BEFORE
-      using PF_RING since Arkime supports afpacket better.
+      using PF_RING since Arkime supports AFPacket better.
       Note that Arkime only supports vanilla PF_RING and NOT PF_RING DNA nor PF_RING ZC.
-      Since vanilla PF_RING and afpacket are about the same, we recommend you use afpacket.
-      Usually the only time you should use PF_RING is when you have other tools on the
-      same machine also using vanilla PF_RING.
+      Since our AFPacket support is better than vanilla PF_RING, we recommend you use AFPacket.
+      The only time you should use PF_RING with Arkime is when you have other tools on the
+      same machine also using vanilla PF_RING, although usually those tools also support AFPacket.
 
     </li>
     <li>
