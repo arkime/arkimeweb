@@ -43,6 +43,7 @@ rules:
     fields:
       protocols:
       - tls
+      - quic
     ops:
       _maxPacketsToSave: 20
 ```
@@ -122,6 +123,7 @@ So for example you could do the following to get aol.com, google.com, and any su
     fields:
       protocols:
         - tls
+        - quic
       host.http:
         - aol.com
         - google.com
@@ -144,6 +146,7 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
     fields:
       protocols:
         - tls
+        - quic
       port.src
         - 1-1023
       port.dst
@@ -290,6 +293,7 @@ For example:
     fields:
       protocols:
       - tls
+      - quic
     ops:
       _maxPacketsToSave: ${maxPacketsToSave}
 ```
