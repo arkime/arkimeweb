@@ -28,6 +28,8 @@ mkdir /arkime/etc /arkime/pcap /esdata
 chown nobody /arkime/pcap /arkime/etc
 ```
 
+Now place your `GeoIP.conf` file from maxmind in the same directory as your `docker-compose.yml` file.
+
 Here is the `docker-compose.yml` file I used, this example is using the **unreleased Arkime v6** (help us test!):
 ```yaml
 services:
@@ -56,28 +58,38 @@ services:
     image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh capture --update-geo --init http://localhost:9200 --add-admin -- -o disablePython=true
-    user: nobody
     environment:
       - ARKIME__interface=ignore
       - ARKIME__pcapReadMethod=tzsp
+      - ARKIME__dropUser=nobody
+
       - ARKIME__plugins=ja4plus.amd64.so
+      - ARKIME__dnsOutputAnswers=true
+      - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
+      - ./GeoIP.conf:/etc/GeoIP.conf
     restart: unless-stopped
 
   viewer:
     container_name: viewer
     image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh viewer
-    user: nobody
+    command: /opt/arkime/bin/docker.sh viewer --update-geo
     environment:
       - ARKIME__viewPort=8005
       - ARKIME__cronQueries=auto
+      - ARKIME__dropUser=nobody
+      - ARKIME__uploadCommand=/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} {TAGS}
+
+      - ARKIME__plugins=ja4plus.amd64.so
+      - ARKIME__dnsOutputAnswers=true
+      - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
+      - ./GeoIP.conf:/etc/GeoIP.conf
     restart: unless-stopped
 ```
 
