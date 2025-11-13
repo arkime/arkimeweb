@@ -28,7 +28,9 @@ mkdir /arkime/etc /arkime/pcap /esdata
 chown nobody /arkime/pcap /arkime/etc
 ```
 
-Now place your `GeoIP.conf` file from maxmind in the same directory as your `docker-compose.yml` file.
+Now place your `GeoIP.conf` file from MaxMind in the same directory as your `docker-compose.yml` file.
+If you don't have MaxMind, this [**FAQ entry**](https://arkime.com/faq#maxmind) has instructions.
+In the example we will be using the City DB for more information.
 
 Here is the `docker-compose.yml` file I used, this example is using the **unreleased Arkime v6** (help us test!):
 ```yaml
