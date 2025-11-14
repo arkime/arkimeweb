@@ -51,6 +51,11 @@ For a test environment, running OpenSearch or Elasticsearch on the same machine 
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
 We currently support both OpenSearch and Elasticsearch equally.
 
+Both OpenSearch and Elasticsearch come with built-in security that requires a username and password to connect.
+During installation, you may be prompted to set one or one may be automatically generated.
+Please make note of this user/password as you'll need it later when configuring Arkime.
+Both the db.pl init command and the config.ini need the same OpenSearch/Elasticsearch user/password.
+
 ### Install and Configure OpenSearch
 {: .subsection }
 
@@ -58,7 +63,7 @@ Once you download OpenSearch, you can install it by running the following comman
 * Debian/Ubuntu: `apt install ./opensearch-*.deb`
 * EL: `yum install ./opensearch-*.rpm`
 
-You'll need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
+You may need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
 
 `nano /etc/opensearch/jvm.options`
 
@@ -84,7 +89,7 @@ Once you download Elasticsearch, you can install it by running the following com
 * Debian/Ubuntu: `apt install ./elasticsearch-*.deb`
 * EL: `yum install ./elasticsearch-*.rpm`
 
-You'll need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
+You may need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
 
 `nano /etc/elasticsearch/jvm.options`
 
@@ -194,6 +199,7 @@ These examples assume you are doing daily rollovers and keeping 30 days of data.
 We provide a simple Configuration script that will take a sample config.ini and create a new one with the correct settings.
 To use the Configuration script, run the following command: `/opt/arkime/bin/Configure`
 You can always edit the /opt/arkime/etc/config.ini file directly after running Configure.
+Make sure you provide the same OpenSearch/Elasticsearch user/password that you used when initializing the database above.
 
 ### Adding admin user
 {: .subsection }
