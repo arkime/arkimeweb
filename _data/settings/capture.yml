@@ -460,7 +460,7 @@ settings:
     text: (Since 2.3.1) How many times to retry OpenSearch/Elasticsearch operations
 
   - key: dnsOutputAnswers
-    value: "false"
+    value: "Since Arkime 6 true previously false"
     text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display in the session display.
 
   - key: disablePython
