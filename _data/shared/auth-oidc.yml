@@ -62,5 +62,9 @@ settings:
     value: openid
     text: The OIDC scope
 
+  - key: authJwsAlgorithm
+    value: RS256
+    text: (Since 6.0.0) The JWS algorithm to use, must match the provider settings.
+
 
 
