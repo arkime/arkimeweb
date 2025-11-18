@@ -52,8 +52,8 @@ settings:
       maxFileSizeG
 
   - key: maxFileSizeG
-    value: 12 (since 4.0.0)<br>4 (before 4.0)
+    value: 12.0 (since 4.0.0)<br>4.0 (before 4.0)
     text: |
-      The approximate max raw pcap file size in gigabytes.
-      The disk should have room for at least 10*maxFileSizeG files.
+      The approximate maximum raw pcap file size in gigabytes, which may be a decimal value (e.g., 5.5).
+      The disk must have sufficient space for at least <strong>10 times</strong> this maximum file size.
 
