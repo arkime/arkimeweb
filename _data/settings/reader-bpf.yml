@@ -1,0 +1,10 @@
+name: "Reader - BPF - Settings"
+before: |
+  <p>
+    Since version 6.0.0, Arkime supports the berkley packet filter (BPF) interface for reading raw packets on MacOS and FreeBSD systems.
+  </p>
+
+settings:
+  - key: bpfBufferSize
+    value: 2097152
+    text: The size in bytes of the BPF buffer used for capturing packets.

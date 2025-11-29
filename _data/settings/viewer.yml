@@ -241,5 +241,10 @@ settings:
       (Since 5.3.0) The maximum number of sessions that can be queried at once.
       This is to prevent users from accidentally querying too many sessions.
 
+  - key: clusterDefault
+    value: EMPTY
+    text: |
+      (Since 6.0.0) The default Arkime clusters to select for users.
+
 
 

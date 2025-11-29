@@ -28,6 +28,11 @@ settings:
       to save per filter by ending with a :num.
 
   - key: espTimeout
+    value: 60
+    text: |
+      (Since 6.0.0) For DHCP sessions, Arkime tracks DHCP session for this long.
+
+  - key: dhcpTimeout
     value: 600
     text: |
       For ESP sessions, Arkime writes a session record after this many
