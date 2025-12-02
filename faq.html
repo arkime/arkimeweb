@@ -1251,7 +1251,19 @@ title: FAQ
       </p>
       <h4>Breaking Changes</h4>
       <ul>
-        <li>TBD</li>
+        <li>The settings parseSMTP and parseSMB have been removed, use disableParsers instead</li>
+        <li>plugins must end with supported extension, e.g. .so, .lua</li>
+        <li>The setting luaFiles now defaults to no files</li>
+        <li>Capture now defaults to the --scheme method for reading offline pcaps, use --libpcap for previous behaviour</li>
+        <li>Ubuntu 20.04 is no longer supported</li>
+        <li>db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
+        <li>WISE now requires webBasePath be set if using one, please set in Arkime 5 before upgrading</li>
+        <li>Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
+        <li>Capture now adds first vlan back to packet, this will change previous bpf filters, tpacketv3OldVlan=true to disable</li>
+        <li>Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset</li>
+        <li>dnsOutputAnswers now defaults to TRUE</li>
+        <li>When talking to remote viewers only the viewUrl is used now and not webBasePath</li>
+        <li>Previously viewer didn't expire PCAPs if pcapDir wasn't set, now it defaults to /opt/arkime/raw and will expire them</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
