@@ -1252,17 +1252,18 @@ title: FAQ
       <h4>Breaking Changes</h4>
       <ul>
         <li>The settings parseSMTP and parseSMB have been removed, use disableParsers instead</li>
-        <li>plugins must end with supported extension, e.g. .so, .lua</li>
-        <li>The setting luaFiles now defaults to no files</li>
+        <li>Arkime plugins must end with supported extension, e.g. .so, .lua</li>
+        <li>The luaFiles setting now defaults to EMPTY</li>
+        <li>The lua plugin now auto loads any .lua files in the parsersDir directories</li>
         <li>Capture now defaults to the --scheme method for reading offline pcaps, use --libpcap for previous behaviour</li>
         <li>Ubuntu 20.04 is no longer supported</li>
         <li>db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
-        <li>WISE now requires webBasePath be set if using one, please set in Arkime 5 before upgrading</li>
+        <li>WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading</li>
         <li>Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
-        <li>Capture now adds first vlan back to packet, this will change previous bpf filters, tpacketv3OldVlan=true to disable</li>
-        <li>Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset</li>
+        <li>Capture now adds the first vlan back to the packet when saving to disk, this may break bpf filters, tpacketv3OldVlan=true to disable</li>
+        <li>Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
         <li>dnsOutputAnswers now defaults to TRUE</li>
-        <li>When talking to remote viewers only the viewUrl is used now and not webBasePath</li>
+        <li>When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
         <li>Previously viewer didn't expire PCAPs if pcapDir wasn't set, now it defaults to /opt/arkime/raw and will expire them</li>
       </ul>
       <h4>Instructions</h4>
@@ -1300,22 +1301,22 @@ title: FAQ
       <p>The answer, of course, is "it depends." Factors include:</p>
       <ul>
         <li>
-          How much memory each box has.
+          How much memory each node has; more memory allows for more caching.
         </li>
         <li>
-          For how many days you want to store metadata (SPI data).
+          How many days you want to store metadata (SPI data) for.
         </li>
         <li>
-          How fast the disks are.
+          The speed and type of disks; faster disks allow for faster indexing and searching.
         </li>
         <li>
-          What percentage of the traffic is HTTP/DNS; these session use more OpenSearch/Elasticsearch resources.
+          What percentage of sessions are HTTP/DNS; these session use more OpenSearch/Elasticsearch resources.
         </li>
         <li>
-          The average transfer rate of all the interfaces.
+          The average transfer rate of all the interfaces being monitored; more traffic means more/larger sessions.
         </li>
         <li>
-          Whether the sessions are long lived or short lived.
+          The average length of sessions. 
         </li>
         <li>
           How fast response times should be for operators.
@@ -1337,7 +1338,7 @@ title: FAQ
           For example, if the cluster has 7 TB of data, then 7*0.01 or 70 GB of OpenSearch/Elasticsearch heap memory is the minimum recommended.
         </li>
         <li>
-          Assign half the memory to OpenSearch/Elasticsearch (but no more then 30 G per node; read
+          Assign half the memory to OpenSearch/Elasticsearch (read
           <a href="https://www.elastic.co/blog/a-heap-of-trouble"
             rel="nofollow">
             https://www.elastic.co/blog/a-heap-of-trouble</a>)
