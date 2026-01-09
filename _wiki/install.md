@@ -16,6 +16,8 @@ copyLink: True
 # Installation Guide for Arkime
 {: .section-header .mt-1 }
 
+**Note:** Most of the commands in this guide require root privileges. Please ensure you are running as root or using `sudo`.
+
 This guide details the steps involved in installing Arkime 5.2 or later on a Linux machine.
 A basic Arkime cluster consists of a database (OpenSearch or Elasticsearch) and Arkime sensors.
 Arkime sensors run the capture and viewer tools and process the network traffic.
@@ -67,7 +69,7 @@ You may need to update the JVM heap size in the `/etc/opensearch/jvm.options` fi
 
 `nano /etc/opensearch/jvm.options`
 
-look for the following lines:
+Look for the following lines:
 ```
 -Xms1g
 -Xmx1g
@@ -93,7 +95,7 @@ You may need to update the JVM heap size in the `/etc/elasticsearch/jvm.options`
 
 `nano /etc/elasticsearch/jvm.options`
 
-look for the following lines:
+Look for the following lines:
 ```
 -Xms1g
 -Xmx1g
@@ -224,15 +226,16 @@ If there are issues, log files are located in the `/opt/arkime/logs` directory.
 Once the Arkime sensor is running, you can access the Arkime UI by navigating to `http://<hostname>:8005` in your web browser.
 Use the authentication information from above, username `admin` and the password is `changeme` in the example.
 
-### Single Machine Arkime Example on Ubuntu 22 LTS
+### Single Machine Arkime Example on Ubuntu 24 LTS
 {: .subsection }
 ```
 apt update
 apt install -y wget iproute2 ethtool
-#wget https://github.com/arkime/arkime/releases/download/v5.4.0/arkime_5.4.0-1.ubuntu2204_amd64.deb
-#apt install -y ./arkime_5.4.0-1.ubuntu2204_amd64.deb
-wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2204_amd64.deb
-apt install -y ./arkime-main_ubuntu2204_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
+# OR latest commit version
+#wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2404_amd64.deb
+#apt install -y ./arkime-main_ubuntu2404_amd64.deb
 
 # Configure Arkime
 /opt/arkime/bin/Configure
@@ -247,7 +250,7 @@ apt install -y ./arkime-main_ubuntu2204_amd64.deb
 # Initialize the database using cron expire, use the password from OpenSearch/Elasticsearch!!!
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
 
-# Create the admin user
+# Create the admin user - IMPORTANT: Change 'changeme' to a secure password!
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 
 # Start the Arkime Sensor
@@ -265,7 +268,7 @@ curl -u admin:changeme --digest http://localhost:8005/eshealth.json
 Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
 Cont3xt requires a database and can use the same OpenSearch/Elasticsearch database instance as Arkime, or it can use a separate instance.
 
-See the OpeningSearch/Elastic section [above](#download-and-install-opensearch-or-elasticsearch) for instructions on installing OpenSearch or Elasticsearch.
+See the OpenSearch/Elasticsearch section [above](#download-and-install-opensearch-or-elasticsearch) for instructions on installing OpenSearch or Elasticsearch.
 
 See the Arkime section [above](#download-arkime) for instructions on installing the Arkime package
 
@@ -278,15 +281,16 @@ We provide a simple Configuration script that will take a sample cont3xt.ini and
 To use the Configuration script, run the following command: `/opt/arkime/bin/Configure --cont3xt`
 You can always edit the /opt/arkime/etc/cont3xt.ini file directly after running Configure.
 
-### Single Machine Arkime Example on Ubuntu 22 LTS
+### Single Machine Cont3xt Example on Ubuntu 24 LTS
 {: .subsection }
 ```
 apt update
 apt install -y wget
-wget https://github.com/arkime/arkime/releases/download/v5.4.0/arkime_5.4.0-1.ubuntu2204_amd64.deb
-apt install -y ./arkime_5.4.0-1.ubuntu2204_amd64.deb
-#wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2204_amd64.deb
-#apt install -y ./arkime-main_ubuntu2204_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
+# OR latest commit version
+#wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2404_amd64.deb
+#apt install -y ./arkime-main_ubuntu2404_amd64.deb
 
 # Configure Cont3xt
 /opt/arkime/bin/Configure --cont3xt

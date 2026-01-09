@@ -29,7 +29,7 @@ If you already have joined Slack, you can find the web interface [here](https://
 # Reporting Security Issues
 
 The Arkime project takes security very seriously, but any complex software project is going to have some vulnerabilities.
-Please submit any security issues to [Intigriti](https://app.intigriti.com/programs/yahoo/yahoobugbounty/detail) or [security@arkime.com](mailto: security@arkime.com). Please use [GitHub Issues](https://github.com/arkime/arkime/issues), GitHub Discussions, or Slack for non security issues.
+Please submit any security issues to [Intigriti](https://app.intigriti.com/programs/yahoo/yahoobugbounty/detail) or [security@arkime.com](mailto: security@arkime.com). Please use [GitHub Issues](https://github.com/arkime/arkime/issues), GitHub Discussions, or Slack for non-security issues.
 {: .lead }
 
 </div>

@@ -26,7 +26,7 @@ To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime
 {: .subsection }
 
 We offer several tags to help you choose the right Arkime image for your needs.
-All of our releases are multi architecture, so you can use the same tag on both amd64 and arm64 systems.
+All of our releases are multi-architecture, so you can use the same tag on both amd64 and arm64 systems.
 We recommend using the v5-latest tag or v5.6.4 (or later) for the most stable experience.
 
 ### Stable Releases:
@@ -51,7 +51,7 @@ We recommend using the v5-latest tag or v5.6.4 (or later) for the most stable ex
 You can configure Arkime containers using three primary methods:
 
 1. Environment Variables:
-* Set environment variables to configure the container. (`ARKIME>__<config>=<value>` for default section or `ARKIME_<section>__<config>=<value>`)
+* Set environment variables to configure the container. (`ARKIME__<config>=<value>` for default section or `ARKIME_<section>__<config>=<value>`)
 * These variables take precedence over configuration file settings.
 2. Configuration File:
 * Create a local configuration file.
@@ -75,7 +75,7 @@ By strategically combining these methods, you can effectively tailor Arkime cont
 2. Initialize OpenSearch or Elasticsearch for Arkime
 * `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
 * This is a one time operation to create the Arkime indices in OpenSearch/Elasticsearch.
-* Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host.
+* Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host (Linux users may need to add `--add-host=host.docker.internal:host-gateway` to their `docker run` command).
 * You may need to specify a network mode for docker, such as `--network=host`.
 3. Setup directories
 * You'll need directories for your pcap and optionally configuration files to be mounted into the container.

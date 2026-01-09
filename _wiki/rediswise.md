@@ -19,9 +19,9 @@ permalink: "/rediswise"
 # WISE - With Intelligence See Everything
 {: .no_toc.section-header.mt-1 }
 
-Capture can query basically any supported Arkime fields from Wise. WISE can query Redis source and enrich Arkime with results. Logstash/other log shippers can ship different logs to Redis. This means, that given a proper "key", we can enrich Arkime sessions with pretty much any kind of logs. It is likely that using Kafka for doing it would be better, but Arkime Kafka output is not very well supported. Also, this method seems to work reasonably well and is simple to configure.
+Capture can query basically any supported Arkime fields from Wise. WISE can query Redis source and enrich Arkime with results. Logstash/other log shippers can ship different logs to Redis. This means that, given a proper "key", we can enrich Arkime sessions with pretty much any kind of logs. It is likely that using Kafka for doing it would be better, but Arkime Kafka output is not very well supported. Also, this method seems to work reasonably well and is simple to configure.
 
-Sample configuration uses logstash, but other log shippers should work as well. It is possibly that Redis can be replaced with Memcached (Memcached could be better), but I had Redis already installed and if you have a hammer, all screws look like nails.
+Sample configuration uses logstash, but other log shippers should work as well. It is possible that Redis can be replaced with Memcached (Memcached could be better), but I had Redis already installed and if you have a hammer, all screws look like nails.
 
 Do note that this requires Arkime/Moloch version 3.4.x+, as previously Redis source in Wise was broken.
 
@@ -31,7 +31,7 @@ Do note that this requires Arkime/Moloch version 3.4.x+, as previously Redis sou
 ### Logstash
 {: .subsection }
 
-Logstash configuration is rather simple, we just add a redis output and tell it to use "keyfield" (currently community_id) as redis key. The example conf also checks if the log actually has "keyfield" set, which is a good idea, because otherwise logstash would simply output events that don't have the field set to key "%{community_id}". You can use https://github.com/Cyb3rWard0g/HELK/blob/master/docker/helk-logstash/pipeline/8911-fingerprints-network_community_id-filter.conf to calculate network community id-s for logs that do not have it by default (that means most network logs :) ).
+Logstash configuration is rather simple, we just add a redis output and tell it to use "keyfield" (currently community_id) as redis key. The example conf also checks if the log actually has "keyfield" set, which is a good idea, because otherwise logstash would simply output events that don't have the field set to key "%{community_id}". You can use https://github.com/Cyb3rWard0g/HELK/blob/master/docker/helk-logstash/pipeline/8911-fingerprints-network_community_id-filter.conf to calculate network community ids for logs that do not have it by default (that means most network logs :) ).
 
 ```
 output {
