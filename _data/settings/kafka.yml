@@ -28,7 +28,7 @@ before: |
   <h4>Configuration:</h4>
   <ul>
     <li>Update the Arkime configuration file by adding <code>kafka.so</code> to the <code>plugins=</code> line to enable the Kafka plugin.</li>
-    <li>Add any of the following settings to the Arkime configuration file.
+    <li>Add any of the following settings to the Arkime configuration file.</li>
     <li> (Since 5.0.0) It is possible to have full control of the librdkafka configuration by creating a new <code>[kafka-config]</code> section in the Arkime configuration file.
     Each item is an entry from the <a href="https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md">Global Configuration</a> section and is applied AFTER the Arkime settings below.</li>
   </ul>
@@ -55,7 +55,7 @@ settings:
     value: EMPTY
 
   - key: kafkaSSLKeyLocation
-    text: Path where the SSL cilent key is located
+    text: Path where the SSL client key is located
     value: EMPTY
 
   - key: kafkaSSLKeyPassword
@@ -67,6 +67,6 @@ settings:
       Format of sessions data sent to Kafka: <ul>
         <li><strong>bulk</strong> - uses the OpenSearch/Elasticsearch bulk format and may contain multiple sessions</li>
         <li><strong>bulk1</strong> - same as bulk formatted, but always just 1 session</li>
-        <li><strong>doc</strong> - just the session, added "index" field with the OpenSearch/Elasticearch index to send to, you should delete index field before sending to DB</li>
+        <li><strong>doc</strong> - just the session, added "index" field with the OpenSearch/Elasticsearch index to send to, the consumer should delete the "index" field before sending to OS/ES</li>
       </ul>
     value: "bulk"
