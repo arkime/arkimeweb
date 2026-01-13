@@ -1,8 +1,9 @@
 name: Kafka
 before: |
   <p>
-    (Since 4.2.0) Arkime can be decoupled from directly sending sessions to OpenSearch/Elasticsearch by leveraging Kafka as a message queue.
+    Arkime can be decoupled from directly sending sessions to OpenSearch/Elasticsearch by leveraging Kafka as a message queue.
     This approach offers greater flexibility and scalability.
+    This plugin <strong>replaces</strong> writing sessions to OpenSearch/Elasticsearch, but does not replace any other Arkime functionality.
     Arkime will continue to interact directly with OpenSearch/Elasticsearch for other data storage needs and session retrieval.
   </p>
 
@@ -16,6 +17,10 @@ before: |
       <ul>
         <li><strong>Bulk Header:</strong> This can be used directly to index the data.</li>
         <li><strong>Document Field:</strong> Extract the index name from the <code>index</code> field within the session data.</li>
+      </ul>
+      Sample consumers:
+      <ul>
+        <li><a href="https://github.com/mcgillowen/arkime-kafka-indexer">https://github.com/mcgillowen/arkime-kafka-indexer</a></li>
       </ul>
     </li>
   </ol>
