@@ -16,7 +16,7 @@ title: Estimators
     gtag('config', 'UA-137788272-1');
   </script>
 
-  <title>Arkime FAQ</title>
+  <title>Arkime Estimators</title>
 
   <!-- Required meta tags always come first -->
   <meta charset="utf-8" />
@@ -85,7 +85,7 @@ title: Estimators
           <div class="card-body">
             <h5 class="card-title">
               Capture Machines
-              <small class="pull-right">
+              <small class="float-right">
                 <a href="faq#what-kind-of-capture-machines-should-we-buy"
                   class="card-link">More info in FAQ</a>
               </small>
@@ -94,12 +94,12 @@ title: Estimators
             <p class="card-text text-muted">
               Calculating the number of machines needed for capturing is relatively simple.
               It is based on the average traffic rate, the number of days of retention, how much space is available on each machine, and the avg amount of traffic each machine can handle.
-              If more then one machine is required, we highly recommend getting a <a href="faq#what-kind-of-network-packet-broker-should-we-buy"
+              If more than one machine is required, we highly recommend getting a <a href="faq#what-kind-of-network-packet-broker-should-we-buy"
                 class="card-link">NPB</a> to load balance the traffic across the cluster.
               We suggest RAID 5, RAID 50, RAID 6, RAID 10 for capture disks.
             </p>
             <p class="card-text text-muted">
-              Arkime makes it possible to not save encrypted packets, other then the session negotiation.
+              Arkime makes it possible to not save encrypted packets, other than the session negotiation.
               If you plan on using this feature select the percentage of TLS/QUIC traffic on the network.
               Most networks will see 10-40% of TLS traffic, resulting in huge disk space savings.
             </p>
@@ -233,27 +233,27 @@ title: Estimators
             <table class="table table-sm">
               <thead>
               <tr>
-                <th>Space Required</th>
-                <th>All disks for data<br>RAID 0</th>
-                <th>One disk extra<br>RAID 5</th>
-                <th>Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
+                <th class="text-center">Space Required</th>
+                <th class="text-center">All disks for data<br>RAID 0</th>
+                <th class="text-center">One disk extra<br>RAID 5</th>
+                <th class="text-center">Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="captureMachinesTB"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="captureMachines0"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="captureMachines1"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="captureMachines2"></label>
                 </td>
@@ -267,7 +267,7 @@ title: Estimators
           <div class="card-body">
             <h5 class="card-title">
               OpenSearch/Elasticsearch Machines
-              <small class="pull-right">
+              <small class="float-right">
                 <a href="faq#how-many-elasticsearch-nodes-or-machines-do-i-need"
                   class="card-link">More info in FAQ</a>
               </small>
@@ -278,7 +278,7 @@ title: Estimators
               It heavily depends on the type of traffic that Arkime will be seeing plus of course the traffic rate and number of days of retention.
               Each node requires 64GB - 128GB of memory: 30GB for OpenSearch/Elasticsearch, and 34-96GB for OS disk cache.
               For large machines plan on running multiple nodes per host.
-              You may want to read more recomendations from Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html">Reference</a>
+              You may want to read more recommendations from Elastic's <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html">Reference</a>
               and <a href="https://www.elastic.co/blog/a-heap-of-trouble">Blog</a>.
             </p>
             <p class="card-text text-muted">
@@ -321,7 +321,7 @@ title: Estimators
                   <option value=1000>1 TB</option>
                   <option value=1500>1.5 TB</option>
                   <option value=2000>2 TB</option>
-                  <option value=2000>3 TB</option>
+                  <option value=3000>3 TB</option>
                   <option value=4000>4 TB</option>
                   <option value=6000>6 TB</option>
                   <option value=8000>8 TB</option>
@@ -385,73 +385,73 @@ title: Estimators
             <table class="table table-sm">
               <thead>
               <tr>
-                <th class="text-xs-center">&nbsp;</th>
-                <th class="text-xs-center">Total Space Required</th>
-                <th class="text-xs-center">All disks for data<br>RAID 0</th>
-                <th class="text-xs-center">One disk extra<br> RAID 5</th>
-                <th class="text-xs-center">Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
+                <th class="text-center">&nbsp;</th>
+                <th class="text-center">Total Space Required</th>
+                <th class="text-center">All disks for data<br>RAID 0</th>
+                <th class="text-center">One disk extra<br> RAID 5</th>
+                <th class="text-center">Two disks extra<br>RAID 6 or RAID 5 + Hot Spare</th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td class="text-xs-center">
+                <td class="text-center">
                   Average traffic mix
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachinesTB"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines0"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines1"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines2"></label>
                 </td>
               </tr>
               <tr>
-                <td class="text-xs-center">
+                <td class="text-center">
                   High DNS/HTTP traffic
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachinesTB-dns"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines0-dns"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines1-dns"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines2-dns"></label>
                 </td>
               </tr>
               <tr>
-                <td class="text-xs-center">
+                <td class="text-center">
                   Pathological traffic mix
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachinesTB-worst"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines0-worst"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines1-worst"></label>
                 </td>
-                <td class="text-xs-center">
+                <td class="text-center">
                   <label class="label label-lg label-default"
                     id="esMachines2-worst"></label>
                 </td>
@@ -484,7 +484,7 @@ title: Estimators
         $(id).text(sStr("host", value) + " / " + Math.ceil((Math.ceil(value) * +$("#captureDiskInput").val() * 0.90 * (+$("#captureNumDisksInput").val() - raid))/1000) + " TB");
       }
 
-      // Asumptions
+      // Assumptions
       // * 0.90 of disk because of disk match (0.9313%) and reserved free space
       function recalculate() {
         let captureDay = +$("#captureCompressionInput").val() * +$("#captureTLSInput").val() * +$("#gbpsInput").val() * +$("#captureDaysInput").val() * 24 * 60 * 60/8;
