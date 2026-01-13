@@ -32,7 +32,7 @@ settings:
   - key: accessLogSuppressPaths
     value: EMPTY
     text: |
-      This is a semi-colon seperated list of URL paths which should <em>not</em> be logged.
+      This is a semi-colon separated list of URL paths which should <em>not</em> be logged.
       Setting this to /eshealth.json will suppress logging of all calls to that endpoint.
 
 after: |

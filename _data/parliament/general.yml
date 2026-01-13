@@ -10,7 +10,7 @@ before: |
     If you were passing in port/certFile/keyFile into the command line arguments when starting Parliament, you must also include those in this configuration file.
     It is recommended that you configure the Auth section in the Parliament UI on the Setting page before upgrading to 5.x.
     The upgrade will update the configuration with your authentication settings, otherwise you will need to input them manually as
-    basic passworth auth has been disabled for Parliament.
+    basic password auth has been disabled for Parliament.
   </p>
 
 after: |
@@ -49,5 +49,5 @@ settings:
       The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
       See the <code>host</code> section of
       <a class="no-decoration"
-        href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
-        rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
+        href="https://nodejs.org/docs/latest/api/net.html#serverlistenport-host-backlog-callback"
+        rel="nofollow">https://nodejs.org/docs/latest/api/net.html#serverlistenport-host-backlog-callback</a>

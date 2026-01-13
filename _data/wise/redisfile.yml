@@ -1,9 +1,9 @@
 name: File
 before: |
   <p>
-    Like the url source, use a single elasticsearch document as the file. The document can be periodically reloaded.
+    Like the URL source, use a single Redis key as the file. The document can be periodically reloaded.
     <br>
-    Create a <code>[elasticsearchfile:UNIQUENAME]</code> section to configure
+    Create a <code>[redisfile:UNIQUENAME]</code> section to configure
   </p>
 
 settings:

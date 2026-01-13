@@ -1,9 +1,9 @@
 name: URL API
 before: |
   <p>
-    (Since 6.0) The wiseService can fetch an URL for every request. Each urlapi needs to have its own section, with the section name starting with `urlapi:`.
+    (Since 6.0) The wiseService can fetch a URL for every request. Each urlapi needs to have its own section, with the section name starting with `urlapi:`.
     <br>
-    Create a <code>[urlapi:UNIQUENAME]</code> section to configure
+    Create a <code>[urlapi:NAME]</code> section to configure
   </p>
 
 settings:

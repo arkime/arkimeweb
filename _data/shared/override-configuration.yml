@@ -2,7 +2,7 @@ name: Overriding Configuration File
 
 before: |
   <p>
-    The Arkime configuration file can be overriden using two different methods, the command line or environment variables.
+    The Arkime configuration file can be overridden using two different methods, the command line or environment variables.
     The command line takes precedence over the environment variables, which in turn takes precedence over the configuration file.
     Both of these solutions replace the entire value of the variable, so if you want to append to a list you need to specify the entire list.
   </p>
@@ -15,7 +15,7 @@ before: |
     Since Arkime 5.6, environment variables can also be used to override configuration settings.
     Environment variables are specified in the format <code>ARKIME__variable=value</code> (for default section) or <code>ARKIME_section__variable=value</code>.
     If the section or variable needs a DOT, DASH, COLON, or SLASH character you can use those keywords since environment variables can't have those characters.
-    It is not possible to use an environment inside the configuration file for partial replacement.
+    It is not possible to use an environment variable inside the configuration file for partial replacement.
   </p>
   <h4>Examples</h4>
   <p>

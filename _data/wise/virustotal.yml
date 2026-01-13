@@ -1,8 +1,8 @@
-name: Virus Total
+name: VirusTotal
 
 before: |
   <p>
-    WISE can integration with Virus Total to provide additional threat intelligence.
+    WISE can integrate with VirusTotal to provide additional threat intelligence.
     <br>
     Create a <code>[virustotal]</code> section to configure.
   </p>
@@ -14,7 +14,7 @@ settings:
 
   - key: contentTypes
     value: "application/x-dosexec,application/vnd.ms-cab-compressed,application/pdf,application/x-shockwave-flash,application/x-java-applet,application/jar"
-    text: A comma separated list of content types to look up in Virus Total
+    text: A comma separated list of content types to look up in VirusTotal
 
   - key: queriesPerMinute
     value: 3
@@ -26,4 +26,4 @@ settings:
 
   - key: dataSources
     value: McAfee,Symantec,Microsoft,Kaspersky
-    text: A comma separated list of data sources to use in virus total responses
+    text: A comma separated list of data sources to use in VirusTotal responses

@@ -1,7 +1,7 @@
 name: File
 before: |
   <p>
-    Like the url source, use a single elasticsearch document as the file. The document can be periodically reloaded.
+    Like the URL source, use a single OpenSearch/Elasticsearch document as the file. The document can be periodically reloaded.
     <br>
     Create a <code>[elasticsearchfile:UNIQUENAME]</code> section to configure
   </p>
@@ -9,7 +9,7 @@ before: |
 settings:
   - key: url
     value: REQUIRED
-    text: The OpenSearch/Elasticsearch url Format is http[s]://[user:password@]host:port/<index>/_doc/<document>
+    text: The OpenSearch/Elasticsearch URL Format is http[s]://[user:password@]host:port/<index>/_doc/<document>
 
   - key: tags
     value: REQUIRED

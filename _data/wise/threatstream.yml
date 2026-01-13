@@ -2,7 +2,7 @@ name: ThreatStream
 
 before: |
   <p>
-    WISE can integration with Anomali Threatstream.
+    WISE can integrate with Anomali Threatstream.
     If doing a large amount of queries, one of the download methods is recommended.
     Requires that access be purchased and configured.
     <br>
@@ -24,8 +24,8 @@ settings:
       <ul>
         <li>api - use the API for each query</li>
         <li>zip - download the zip file daily</li>
-        <li>sqlite3 - use the database downloaded to machine</li>
-        <li>sqlite3-copy - use a copy of database downloaded to machine</li>
+        <li>sqlite3 - use the database downloaded to the machine</li>
+        <li>sqlite3-copy - use a copy of database downloaded to the machine</li>
       </ul>
 
   - key: dbFile

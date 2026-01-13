@@ -1,9 +1,9 @@
 name: URL
 before: |
   <p>
-    The wiseService can monitor and download URL. Each url needs to have its own section, with the section name starting with `url:`. The wiseService can automatically download and reload the files.
+    The wiseService can monitor and download from a URL. Each url needs to have its own section, with the section name starting with `url:`. The wiseService can automatically download and reload the files.
     <br>
-    Create a <code>[url:UNIQUENAME]</code> section to configure
+    Create a <code>[url:NAME]</code> section to configure
   </p>
 
 settings:
@@ -37,7 +37,7 @@ settings:
 
   - key: urlScrapeRedirect
     value: EMPTY
-    text: Search the results of the URL for this RE and redirect to the match for the actual data
+    text: Search the results of the URL content for this RE and redirect to the match for the actual data
 
   - key: urlScrapePrefix
     value: EMPTY

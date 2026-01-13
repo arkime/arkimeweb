@@ -32,7 +32,7 @@ settings:
 
   - key: arrayPath
     value: EMPTY
-    text: The path in the JSON document to find the array of values, if not set it is assume the JSON document is an array at the top level.
+    text: The path in the JSON document to find the array of values, if not set it is assumed the JSON document is an array at the top level.
 
   - key: keyPath
     value: REQUIRED

@@ -12,8 +12,8 @@ before: |
     To ensure immediate role changes, manually edit the user's roles on the Users tab, as automated updates require a user login.
   </p>
   <p>
-    Each line is of the format <code>rolename=javascript expression</code>.
-    The javascript expression can use two variable, <code>this</code> which allows you to reference any Arkime DB user fields and <code>vals</code> which allows you to access any of the request headers for header auth or the oidc info for oidc auth.
+    Each line is of the format <code>rolename=JavaScript expression</code>.
+    The JavaScript expression can use two variables, <code>this</code> which allows you to reference any Arkime DB user fields and <code>vals</code> which allows you to access any of the request headers for header auth or the oidc info for oidc auth.
   </p>
   <p>
     Depending on what IAM system you are using, you may need to enable the sending of userinfo to Arkime.
@@ -26,8 +26,8 @@ before: |
   <p>
     <strong>Important:</strong>
     <ul>
-      <li>Nodejs lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your javascript expressions. For example <code>vals['x-roles']</code> NOT <code>vals['X-Roles']</code>.</li>
-      <li>Javascript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-roles']</code> NOT <code>vals.x-roles</code>.</li>
+      <li>Node.js lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your JavaScript expressions. For example <code>vals['x-roles']</code> NOT <code>vals['X-Roles']</code>.</li>
+      <li>JavaScript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-roles']</code> NOT <code>vals.x-roles</code>.</li>
       <li>A role that isn't defined will be removed from the user.</li>
     </ul>
   </p>
@@ -55,4 +55,4 @@ after: |
 
 settings:
   - key: "[role]="
-    text: A javascript expression using this for user fields and vals for request headers or oidc info.
+    text: A JavaScript expression using this for user fields and vals for request headers or oidc info.

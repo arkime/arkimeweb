@@ -10,7 +10,7 @@ before: |
     <ol>
       <li>Setup Arkime with <a href="#authMode">authMode</a> set to <code>basic</code> or <code>digest</code>. Get this working.</li>
       <li>Setup Arkime with <strong>one</strong> node configured with <a href="#authMode">authMode</a> set to <code>oidc</code>. Do NOT use a load balancer. Get this working. This is the recommended setup, with the single node being what we call a "central viewer". It will proxy all requests to the other nodes.</li>
-      <li>If you must have multiple nodes, this is the next step. Make sure if using a load balancer you have stickiness enabled. We don't recommend more then a few nodes configured this way.</li>
+      <li>If you must have multiple nodes, this is the next step. Make sure if using a load balancer you have stickiness enabled. We don't recommend more than a few nodes configured this way.</li>
     </ol>
   </p>
   <p>
@@ -36,7 +36,7 @@ settings:
   - key: authDiscoverURL
     value: EMPTY
     text: |
-      The OIDC discover wellknown URL.
+      The OIDC discover well-known URL.
 
   - key: authClientId
     value: EMPTY

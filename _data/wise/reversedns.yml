@@ -13,11 +13,11 @@ settings:
 
   - key: ips
     value: REQUIRED
-    text: Semicolon separated list of IPs or CIDRs to lookups. Ips that don't match this list will NOT be reverse lookuped.
+    text: Semicolon separated list of IPs or CIDRs to lookups. IPs that don't match this list will NOT be reverse looked up.
 
   - key: servers
     value: EMPTY
-    text: Since 1.6.1, if set the reversedns source will use the semicolon separated list of ip addresses to reverse lookuped.
+    text: Since 1.6.1, if set the reversedns source will use the semicolon separated list of ip addresses to reverse looked up.
 
   - key: stripDomains
     value: EMPTY

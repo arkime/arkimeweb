@@ -25,7 +25,7 @@ settings:
 
   - key: userAgent
     value: cont3xt
-    text: The http user-agent header to use when talking to remote services, can by override per integration
+    text: The http user-agent header to use when talking to remote services, can be overridden per integration
 
   - key: geoLite2ASN
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"

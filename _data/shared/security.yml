@@ -63,7 +63,7 @@ settings:
     text: |
       If using Arkime 5 or later please use <a href="#authMode">authMode</a> to select the auth mode and only use userNameHeader in header auth mode.
       Arkime 6 will no longer support this setting, except for the header name.
-      Before Arkime 5 this setting controls what auth mode is used OR what header to user when using header auth.
+      Before Arkime 5 this setting controls what auth mode is used OR what header to use when using header auth.
       Possible values are:
       <ul>
         <li><strong>digest</strong> - Run in digest mode where browser based authentication is used.</li>
@@ -92,7 +92,7 @@ settings:
   - key: requiredAuthHeaderVal
     value: EMPTY
     text: |
-      A value (or comma seperated list of possible values since 5.3.0) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
+      A value (or comma separated list of possible values since 5.3.0) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
       If the header contains one of the values, the user is authorized to use the system otherwise they will be denied.
 
       For example
@@ -128,9 +128,9 @@ settings:
       </code>
       </p>
       <p>
-        <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since Javascript treats as subtraction.
-        For example with <code>"userId": "${this.user-id}"</code> Javascript sees as <code>this.user - id</code>.
-        Instead you will need to use <code>"userId": "${this["user-id"]}"</code> which Javascript parses how we want.
+        <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since JavaScript treats as subtraction.
+        For example with <code>"userId": "${this.user-id}"</code> JavaScript sees as <code>this.user - id</code>.
+        Instead you will need to use <code>"userId": "${this["user-id"]}"</code> which JavaScript parses how we want.
       </p>
 
   - key: caTrustFile
@@ -167,7 +167,7 @@ settings:
       For "form" authMode, Arkime provides a web page to logout.
       Since 6.0.0 "oidc" authMode will auto set IFF the oidc provider has an end session endpoint.
       All other authMode requires this setting to be set, or no logout button will be shown.
-      Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require an url from the OIDC provier.
+      Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require an url from the OIDC provider.
 
   - key: logoutUrlMethod
     value: 'POST'

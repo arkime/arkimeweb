@@ -35,8 +35,8 @@ after: |
       <li>To match a single digit `#` may be used</li>
       <li>To match a character with special meaning, you must precede it with "~". The "~" also serves as the escape character</li>
       <li>To match one of a specific list of characters, you may surround the character with square brackets</li>
-      <li>Globs are anchorced on both end, use `*` to unanchor</li>
-      <li>String case doesn't matter</li>
+      <li>Globs are anchored on both end, use `*` to unanchor</li>
+      <li>String case does not matter</li>
     </ul>
   </p>
 

@@ -27,4 +27,4 @@ settings:
 
   - key: cacheTimeout
     value: 24 hours
-    text: In seconds the MAX time to cache any item, used by redis/memcachd
+    text: In seconds the MAX time to cache any item, used by redis/memcached

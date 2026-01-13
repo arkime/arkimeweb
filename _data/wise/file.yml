@@ -41,7 +41,7 @@ after: |
     type=ip
     column=1
     format=csv
-    #Asset field already exist, use field 0 for value. extra field is new, use field 2 for value
+    #Asset field already exists, use field 0 for value. Extra field is new, use field 2 for value
     fields=field:asset;shortcut:0\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:2
   </pre>
   <p>The CSV File</p>

@@ -16,6 +16,6 @@ settings:
 
   - key: url
     value: empty
-    text: For cache engines this is the url to connect to. For redis the format is <code>[redis:]//[[user][:password@]]host:port[/db-number]</code>
+    text: For cache engines this is the URL to connect to. For Redis the format is <code>[redis:]//[[user][:password@]]host:port[/db-number]</code>
 
 

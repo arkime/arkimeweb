@@ -4,7 +4,7 @@ before: |
   <p>
     The Arkime applications store all the users in OpenSearch/Elasticsearch.
     Since you will have multiple Arkime clusters and applications, Arkime allows you to share the database to use.
-    When these settings aren't use Arkime will fallback to using a non shared Users Database for viewer/capture.
+    When these settings aren't used Arkime will fallback to using a non shared Users Database for viewer/capture.
   </p>
   <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
@@ -44,7 +44,7 @@ settings:
       A comma separated list of urls to use to connect to the users OpenSearch/Elasticsearch cluster is supported.
       If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#usersElasticsearchBasicAuth">usersElasticsearchBasicAuth</a>
       <br>
-      (Since 3.0) This setting applys to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
+      (Since 3.0) This setting applies to shortcuts too! Shortcuts will be saved in the usersElasticsearch.
       <strong>Note:</strong> <a href="#cronqueries">cronQueries</a> also has to be set in order for shortcuts to be saved to the usersElasticsearch and synced to each cluster.
 
   - key: passwordSecret

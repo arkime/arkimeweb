@@ -2,8 +2,8 @@ name: Redis
 before: |
   <p>
     Redis can be used as a wise data source.
-    If using redis as a wise cache you'll probably want to use a different redis "database" by specifying the database number in the url. Example: `url=redis://localhost/1`
-    Each redis source can only handle one type of data, although multiple redis sources can be configured and they can use the same redis database.
+    If using Redis as a wise cache you'll probably want to use a different Redis "database" by specifying the database number in the url. Example: `url=redis://localhost/1`
+    Each Redis source can only handle one type of data, although multiple Redis sources can be configured and they can use the same Redis database.
     <br>
     Create a <code>[redis:UNIQUENAME]</code> section to configure.
   </p>
@@ -15,7 +15,7 @@ settings:
 
   - key: redisMethod
     value: get
-    text: The lowercase redis method to retrieve values
+    text: The lowercase Redis method to retrieve values
 
   - key: tags
     value: REQUIRED

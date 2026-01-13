@@ -228,7 +228,7 @@ wiseService:
         </a>
         <a class="nav-link nested"
           href="#pcap-at-rest-encryption"
-          title="PCAP at Rest Encryptions">
+          title="PCAP at Rest Encryption">
           PCAP at Rest Encryption
         </a>
         <a href="#Plugins"
@@ -326,7 +326,7 @@ wiseService:
       </p>
       <p>
         The configuration file location can be specified using the <code>-c</code> command-line option.
-        Since Arkime 5 the configuration doesn't have to be local, it can also be an url, OpenSearch/Elasticsearch, or Valkey/Redis. Currently capture doesn't support Valkey/Redis.
+        Since Arkime 5 the configuration doesn't have to be local, it can also be a URL, OpenSearch/Elasticsearch, or Valkey/Redis. Currently capture doesn't support Valkey/Redis.
         Formats:
         <ul>
           <li> URL - https://[user:password@]example.com/config.ini</li>
@@ -398,7 +398,7 @@ wiseService:
         </span>
       </h1>
       <p>
-        The default confguration file for capture and viewer is <code>/opt/arkime/etc/config.ini</code>.
+        The default configuration file for capture and viewer is <code>/opt/arkime/etc/config.ini</code>.
         When searching for a setting, capture and viewer employ a tiered system for configuration variables.
         This tiered system enables a single configuration file to be used across multiple servers.
         The order of sections within the configuration file is not significant; however, the specific section in which a variable resides can be crucial.
@@ -486,7 +486,7 @@ wiseService:
       </h2>
       <p>
         Capture supports several different methods for reading and writing packets during a live capture.
-        These are selected by setting the <a href="#pcapReadMethod"<pcapReadMethod></a> and <a href="#pcapWriteMethod"<pcapWriteMethod></a> config settings..
+        These are selected by setting the <a href="#pcapReadMethod">pcapReadMethod</a> and <a href="#pcapWriteMethod">pcapWriteMethod</a> configuration settings.
         We suggest using <code>pcapReadMethod=tpacketv3</code> and the default <code>pcapWriteMethod=simple</code> for best performance.
       </p>
       <p>
@@ -494,7 +494,7 @@ wiseService:
       </p>
       {% for sectionId in page.readerswriters %}
         {% assign section = site.data.settings[sectionId] %}
-        <h3 id="{{sectionId}}" id="subsection">
+        <h3 id="{{sectionId}}" class="subsection">
           {{section.name}}
           <span class="fa fa-link small copy-link cursor-copy"
             onclick="copyLink(this, 'settings')">
@@ -602,12 +602,12 @@ wiseService:
       <!-- /Sections -->
 
       <!-- right-click -->
-      <h3 id="right-click" class="subsection-header">
+      <h3 id="right-click" class="subsection">
         Value Actions (previously right-click)
         <span class="fa fa-link small copy-link cursor-copy"
           onclick="copyLink(this, 'settings')">
         </span>
-      </h2>
+      </h3>
       <p>
         It is possible to configure right click actions on any SPI data fields.
         Right click actions can be added based on either the field name or the category of the data.
@@ -644,7 +644,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              The key must be unique and is also used as the right click menu
+              The key must be unique and is also used as the Value Action menu
               name if the name field is missing
             </td>
           </tr>
@@ -658,7 +658,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
             <td>
               Needs a url. Supported actionTypes:
               <ul class="mb-0">
-                <li>fetch: Information will be fetched and displayed in the rightclick menu for 5 seconds</li>
+                <li>fetch: Information will be fetched and displayed in the Value Action menu for 5 seconds</li>
                 <li>empty: Nothing is done on value action click</li>
               </ul>
             </td>
@@ -966,7 +966,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
         </thead>
         <tbody>
           <tr>
-            <td id="categories-ans">
+            <td id="categories-asn">
               asn
               <span class="fa fa-link small copy-link cursor-copy"
                 onclick="copyLink(this, 'settings')">
@@ -1084,7 +1084,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
         Configuration File Sample:
       </p>
       <pre><code>[field-actions]
-TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;category:ip;users:testuser
+TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELDNAME%/;category:ip;users:testuser
       </code></pre>
       <p class="mb-0">
         Each line in the fieldactions section contains possible actions:
@@ -1187,7 +1187,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
             </td>
           </tr>
           <tr>
-            <td id="right-click-notUsers">
+            <td id="field-actions-notUsers">
               notUsers
               <span class="fa fa-link small copy-link cursor-copy"
                 onclick="copyLink(this, 'settings')">
@@ -1338,7 +1338,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELNAME%/;catego
       <!-- PCAP at Rest Encryption -->
       <h3 id="pcap-at-rest-encryption" class="subsection">
         PCAP at Rest Encryption
-      </h2>
+      </h3>
       <p>
         Arkime provides support for PCAP at rest encodings. Two forms of encodings
         are currently supported: "aes-256-ctr" and "xor-2048". Please note that xor-2048
@@ -1428,7 +1428,7 @@ kekid2=Randomkekpassword2
       <p>
         Arkime supports several different plugins that can be added to the capture process.
         Plugins are enabled by setting the <a href="#plugins">plugins</a> variable in the configuration file.
-        For exmple, to enable the <code>ja4plus</code> plugin, you would add <code>plugins=ja4plus.amd64.so</code> to the configuration file.
+        For example, to enable the <code>ja4plus</code> plugin, you would add <code>plugins=ja4plus.amd64.so</code> to the configuration file.
       </p>
 
       {% for pluginId in page.plugins %}
@@ -1618,7 +1618,7 @@ maxESConns=2
         Cont3xt, by default, utilizes configuration files using INI format.
         The configuration file is located at <code>/opt/arkime/etc/cont3xt.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
         With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
-        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        These must have <code>json</code> or <code>yaml</code> extensions, respectively.
         When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
       </p>
       <p>
@@ -1750,11 +1750,11 @@ maxESConns=2
         WISE Service, by default, utilizes configuration files using INI format.
         The configuration file is located at <code>/opt/arkime/etc/wiseService.ini</code>, but its location can be altered using the <code>-c</code> command-line option.
         With the release of Arkime 5, support was introduced for configuration files in JSON and YAML formats.
-        These must be have <code>json</code> or <code>yaml</code> extensions, respectively.
+        These must have <code>json</code> or <code>yaml</code> extensions, respectively.
         When utilizing JSON or YAML, arrays can be specified either natively or using separators like INI.
       </p>
       <p>
-        The configuration file can contain sections for wiseService  itself and then sections for each WISE source.
+        The configuration file can contain sections for wiseService itself and then sections for each WISE source.
         WISE will not try and query sources until a section is created for them.
       </p>
 
@@ -1804,7 +1804,7 @@ maxESConns=2
         {% endif %}
         {{wiseService.after}}
       {% endfor %}
-      <!-- /Cont3xt -->
+      <!-- /wiseService -->
 
     </div> <!-- /settings content -->
 
