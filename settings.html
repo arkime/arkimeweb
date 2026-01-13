@@ -369,6 +369,7 @@ wiseService:
             <tbody>
               {% assign sorted = section.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -409,7 +410,7 @@ wiseService:
       </p>
       <ol>
         <li>
-          [optional] The section titled with the node name is given priority and used first.
+          [Optional] The section titled with the node name is given priority and used first.
           Arkime will always tag sessions with node: &lt;node name&gt;.
         </li>
         <li>
@@ -456,6 +457,7 @@ wiseService:
               {% assign sorted = section.settings | sort: "key" %}
               {% for item in sorted %}
               {% assign display_value = item.display | default: item.key %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{display_value}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -519,6 +521,7 @@ wiseService:
             <tbody>
               {% assign sorted = section.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -580,6 +583,7 @@ wiseService:
             <tbody>
               {% assign sorted = section.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -622,7 +626,7 @@ VTHOST=url:https://www.virustotal.com/en/domain/%HOST%/information/;name:Virus T
 VTURL=url:https://www.virustotal.com/latest-scan/%URL%;name:Virus Total URL;category:url
 KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:'%ISOSTART%',to:'%ISOSTOP%'))&_a=(columns:!(_source),index:'filebeat-*',interval:auto,query:(language:kuery,query:'network.community_id: "%URIEncodedText%"'));name:Discover communityId;fields:communityId</code></pre>
       <p class="mb-0">
-        Each line in the valueactions section contains possible actions:
+        Each line in the value-actions section contains possible actions:
       </p>
       <table class="table table-sm table-striped table-primary">
         <thead>
@@ -734,7 +738,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
             </td>
             <td>
               A comma separated list of field names. If the field that is right
-              clicked on has one the field expressions in the list then display
+              clicked on has one of the field expressions in the list then display
               this menu item. All right click entries must have either a
               category or fields variable defined.
             </td>
@@ -912,7 +916,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              The field name as it would be referenced in a Arkime search expression
+              The field name as it would be referenced in an Arkime search expression
             </td>
           </tr>
           <tr>
@@ -1006,7 +1010,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              An ip address
+              An IP address
             </td>
           </tr>
           <tr>
@@ -1017,7 +1021,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A md5 of a payload, such as for http body or smtp attachment
+              An md5 of a payload, such as for http body or smtp attachment
             </td>
           </tr>
           <tr>
@@ -1087,7 +1091,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
 TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELDNAME%/;category:ip;users:testuser
       </code></pre>
       <p class="mb-0">
-        Each line in the fieldactions section contains possible actions:
+        Each line in the field-actions section contains possible actions:
       </p>
       <table class="table table-sm table-striped table-primary">
         <thead>
@@ -1267,7 +1271,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELDNAME%/;categ
               </span>
             </td>
             <td>
-              The field name as it would be referenced in a Arkime search expression
+              The field name as it would be referenced in an Arkime search expression
             </td>
           </tr>
           <tr>
@@ -1317,7 +1321,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELDNAME%/;categ
               </span>
             </td>
             <td>
-              The field name as it would be referenced in a Arkime search expression
+              The field name as it would be referenced in an Arkime search expression
             </td>
           </tr>
           <tr>
@@ -1362,7 +1366,7 @@ TEST=url:https://www.test.com/?query=%EXPRESSION%:Test Action %FIELDNAME%/;categ
         The kek passwords that may be used should be placed in a
         <code>[keks]</code> section of the configuration file. There is one line for
         each kekid to kek mapping. An easy way to create kek passwords is
-        <code>openssl rand -base64 30</code>. Remember a kek is password used
+        <code>openssl rand -base64 30</code>. Remember a kek is a password used
         to encrypt the dek and NOT the password used to encrypt the files.
         The dek is what is used to encrypt the files, and is unique per file.
       </p>
@@ -1458,6 +1462,7 @@ kekid2=Randomkekpassword2
             <tbody>
               {% assign sorted = plugin.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -1543,7 +1548,7 @@ maxPacketsInQueue = 300000
       <pre><code>---
 version: 1
 rules:
-- name: "Dont write tls packets or check yara after 10 packets, still save SPI"
+- name: "Don't write tls packets or check yara after 10 packets, still save SPI"
   when: "fieldSet"
   fields:
     protocols:
@@ -1552,7 +1557,7 @@ rules:
     _dontCheckYara: 1
     _maxPacketsToSave: 10
 
-- name: "Dont save SPI sessions to ES with only 1 src packet"
+- name: "Don't save SPI sessions to ES with only 1 src packet"
   when: "beforeFinalSave"
   fields:
     packets.src: 1
@@ -1561,7 +1566,7 @@ rules:
   ops:
     _dontSaveSPI: 1
 
-- name: "Dont save SPI data for listed hostnames tracked by dst ip:port, use on cloud destinations"
+- name: "Don't save SPI data for listed hostnames tracked by dst ip:port, use on cloud destinations"
   when: "fieldSet"
   fields:
     host.http:
@@ -1654,6 +1659,7 @@ maxESConns=2
             <tbody>
               {% assign sorted = cont3xt.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="cont3xt-{{cont3xtId}}-{{item.key}}">
                   <span id="{{item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -1717,6 +1723,7 @@ maxESConns=2
             <tbody>
               {% assign sorted = parliament.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="{{ item.key }}">
                   <span id="{{ item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
@@ -1785,6 +1792,7 @@ maxESConns=2
             <tbody>
               {% assign sorted = wiseService.settings | sort: "key" %}
               {% for item in sorted %}
+              <tr>
                 <td id="wise-{{wiseServiceId}}-{{item.key}}">
                   <span id="{{item.key | downcase}}">{{item.key}}</span>
                   <span class="fa fa-link small copy-link cursor-copy"
