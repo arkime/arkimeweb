@@ -2,7 +2,7 @@ name: "Reader - Netmap - Settings"
 before: |
   <p>
     Since version 6.0.0, Arkime supports the netmap method for reading raw packets on FreeBSD systems.
-    Configure capture to use 'netmap' as the reader method with <code>pcapReadMethod=netmap</code> in your configuration
+    Configure capture to use <code>netmap</code> as the reader method with <code>pcapReadMethod=netmap</code> in your configuration.
   </p>
 
 settings:

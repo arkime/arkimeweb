@@ -1,11 +1,18 @@
 name: ScrubSPI
 before: |
   <p>
-    Allows you to scrub data before sending to OpenSearch/Elasticsearch.
-    To use add to <code>plugins</code> and create a configuration called <code>scrubspi</code>
-    with each entry being a field with regex replace statement.
+    Allows you to scrub data before sending it to OpenSearch/Elasticsearch.
+    To use, add <code>scrubspi.so</code> to the <code>plugins=</code> list and create a configuration section called <code>[scrubspi]</code>
+    with each entry being a field with a regex replace statement.
   </p>
+
+after: |
   <pre><code>[scrubspi]
   http.uri=/github/foohub/
   asn.dst=:FOO:BAR:
   </code></pre>
+
+settings:
+  - key: "[field]="
+    value: /regex/replacement/
+    text: The field to scrub and the regex replacement to apply

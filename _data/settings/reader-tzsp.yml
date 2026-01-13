@@ -1,14 +1,14 @@
 name: "Reader - TZSP - Settings"
 before: |
   <p>
-    Since version 4.1.0, Arkime supports listening for TZSP forwarded packets..
+    Since version 4.1.0, Arkime supports listening for TZSP forwarded packets.
     You can enable TZSP support by using <code>pcapReadMethod=tzsp</code>.
     The <code>interface</code> setting is ignored and should just be set to <code>dummy</code>.
   </p>
 
 settings:
   - key: tzspPort
-    value: "37008"
+    value: 37008
     text: |
-      What port should capture listen for TZSP traffic on.
+      The port capture should listen on for TZSP traffic.
 

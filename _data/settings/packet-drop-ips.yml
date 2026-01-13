@@ -1,19 +1,30 @@
 name: packet-drop-ips
 before: |
-  <p>This section allows you to specify ips or cidrs to drop
-    from being processed. This is different from a bpf filter since the
-    packets will actually reach capture (and counted) but won't be
-    fully processed. However if you have many ranges/ips to drop it can be
-    more efficient then bpfs. It is possible to also allow ranges inside of
+  <p>This section allows you to specify IPs or CIDRs to drop
+    from being processed. This is different from a BPF filter since the
+    packets will actually reach capture (and be counted) but won't be
+    fully processed. However if you have many ranges/IPs to drop it can be
+    more efficient than BPFs. It is possible to also allow ranges inside of
     dropped ranges using the "allow" keyword. Order added doesn't matter,
     searching always finds the best match.
   </p>
   <p>
     Since 5.0.0 you can now create secondary ini files that will auto reload on changes by setting the <a href="#packetDropIpsFiles">packetDropIpsFiles</a> setting.
   </p>
+
+after: |
   <pre><code>[packet-drop-ips]
   10.0.0.0/8=drop
   10.10.0.0/16=allow
   10.10.10.0/24=drop
   10.10.10.10=allow
   </code></pre>
+
+settings:
+  - key: "[cidr]="
+    value: drop
+    text: Drop packets from this CIDR
+
+  - key: "[cidr]="
+    value: allow
+    text: Allow packets from this CIDR (if previously dropped)

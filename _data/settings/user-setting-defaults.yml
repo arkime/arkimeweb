@@ -2,13 +2,13 @@ name: Arkime Default User Settings
 
 before: |
   <p>
-    (Since 5.0.2) Must be in the [user-setting-defaults] section in the viewer config.
+    (Since 5.0.2) The <code>[user-setting-defaults]</code> section must be in the viewer config.
     These options override the default Arkime user settings. They are used when a new user is created.
   </p>
 
 settings:
   - key: timezone
-    value: 'local'
+    value: "local"
     text: |
       The timezone to use for time values within Arkime.
       <ul class="mb-0">
@@ -18,18 +18,18 @@ settings:
       </ul>
 
   - key: detailFormat
-    value: 'last'
+    value: "last"
     text: |
       The format of the session PCAP.
       <ul class="mb-0">
         <li>'last' to use the last selected option</li>
         <li>'natural' to use natural format</li>
-        <li>'ascii' to use ascii format</li>
-        <li>'hex' to see hex format</li>
+        <li>'ascii' to use ASCII format</li>
+        <li>'hex' to see Hex format</li>
       </ul>
 
   - key: showTimestamps
-    value: 'last'
+    value: "last"
     text: |
       Display the timestamps in the session PCAP.
       <ul class="mb-0">
@@ -39,7 +39,7 @@ settings:
       </ul>
 
   - key: numPackets
-    value: 'last'
+    value: "last"
     text: |
       The number of packets to display in the session PCAP.
       <ul class="mb-0">
@@ -52,13 +52,13 @@ settings:
       </ul>
 
   - key: sortColumn
-    value: 'firstPacket'
+    value: "firstPacket"
     text: |
       The default sort column for the sessions page.
       This can be any database field name.
 
   - key: sortDirection
-    value: 'desc'
+    value: "desc"
     text: |
       The default sort direction for the sessions page.
       <ul class="mb-0">
@@ -67,25 +67,25 @@ settings:
       </ul>
 
   - key: spiGraph
-    value: 'node'
+    value: "node"
     text: |
       The default graph type for the SPI graph.
       This can be any database field name.
 
   - key: connSrcField
-    value: 'source.ip'
+    value: "source.ip"
     text: |
       The default connection page source node field.
       This can be any database field name.
 
   - key: connDstField
-    value: 'ip.dst:port'
+    value: "ip.dst:port"
     text: |
       The default connection page destination node field.
       This can be any database field name.
 
   - key: theme
-    value: 'default-theme'
+    value: "default-theme"
     text: |
       The default theme for the UI.
       <ul class="mb-0">
@@ -101,7 +101,7 @@ settings:
       </ul>
 
   - key: manualQuery
-    value: false
+    value: "false"
     text: |
       The default for the manual query mode.
       In manual query mode, you must press enter or click search to execute a query.
@@ -111,9 +111,9 @@ settings:
       </ul>
 
   - key: timelineDataFilters
-    value: 'network.packets;network.bytes;totDataBytes'
+    value: "network.packets;network.bytes;totDataBytes"
     text: |
-      A semicolon separated list of the visible data filter buttons for the sessions timeline.
+      A semicolon separated list of visible data filter buttons for the sessions timeline.
       Can have 0-3 values.
-      These can be any database field containing numerical data
+      These can be any database field containing numerical data.
 

@@ -2,25 +2,25 @@ name: "Reader - SNF - Settings"
 before: |
   <ul>
     <li>
-      install the snf package on all hosts that will run capture
+      Install the Myricom SNF package on all hosts that will run capture.
     </li>
     <li>
-      load the snf plugin by changing configuration file so it has
-      reader-snf.so as a rootPlugins <code>rootPlugins=reader-snf.so</code>
+      Load the SNF plugin by changing the configuration file so it has
+      <code>reader-snf.so</code> as a <code>rootPlugins</code>: <code>rootPlugins=reader-snf.so</code>.
     </li>
     <li>
-      Configure capture to use snf as the reader method with
-      <code>pcapReadMethod=snf</code> in your configuration file
+      Configure capture to use SNF as the reader method with
+      <code>pcapReadMethod=snf</code> in your configuration file.
     </li>
     <li>
-      optionally change <code>interface</code> to any special snf
-      interface value
+      Optionally change <code>interface</code> to any special SNF
+      interface value.
     </li>
   </ul>
 
 settings:
   - key: snfNumRings
-    value: "1"
+    value: 1
     text: |
       Number of rings per interface
 
@@ -30,16 +30,16 @@ settings:
       The data ring size to use, 0 means use the SNF default
 
   - key: snfFlags
-    value: "-1"
+    value: -1
     text: |
       Controls process-sharing (1), port aggregation (2), and packet duplication (3). (Default value uses SNF_FLAGS environment variable)
 
   - key: snfNumProcs
-    value: "1"
+    value: 1
     text: |
       (Since 2.0) The number of capture processes listening on the shared interface
 
   - key: snfProcNum
-    value: "0"
+    value: 0
     text: |
       (Since 2.0) Which capture process this is if using a shared interface

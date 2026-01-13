@@ -1,12 +1,12 @@
 name: WISE
 before: |
   <p>
-    The With Intelligence See Everyting (WISE) plugin is used to communitcate to the wiseService Arkime application.
+    The With Intelligence See Everything (WISE) plugin is used to communitcate with the wiseService Arkime application.
 
     <a href="/wise">Learn more</a> about the wiseServce.
   </p>
   <p>
-    Each capture node needs to have the wise plugin enabled.
+    Each capture node needs to have the WISE plugin enabled.
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
     <ol>
       <li> Add <code>wiseURL=http://WISEHOST:8081</code></li>
@@ -14,7 +14,7 @@ before: |
     </ol>
   </p>
   <p>
-    Each viewer node that a operator uses needs to have the wise plugin enabled.
+    Each viewer node that an operator uses needs to have the WISE plugin enabled.
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
     <ol>
       <li>Add <code>wiseURL=http://WISEHOST:8081</code></li>
@@ -52,11 +52,11 @@ settings:
     text: Port the wiseService is listening on, not used if wiseURL is set
 
   - key: wiseTcpTupleLookups
-    value: FALSE
+    value: "false"
     text: Should we send tcp tuple lookups to wise
 
   - key: wiseUdpTupleLookups
-    value: FALSE
+    value: "false"
     text: Should we send udp tuple lookups to wise
 
   - key: wiseURL
@@ -69,11 +69,11 @@ settings:
 
   - key: wiseExcludeDomains
     value: .in-addr.arpa;.ip6.arpa
-    text: A semicolon separate list of domain suffixes to not send to wise
+    text: A semicolon separated list of domain suffixes to not send to wise
 
 after: |
   <p>
-    WISE also lets you configure which fields are used for the standard wise types and you can add your own wise types.
+    WISE also lets you configure which fields are used for the standard WISE types and you can add your own WISE types.
     You do this by creating a <code>[wise-types]</code> section in the capture configuration file AND listing the fields using `{type}={expression};{db:dbfield}...`.
-    The type field must be less then 12 characters, and is the same type field you would use in the wise service.
+    The type field must be less than 12 characters, and is the same type field you would use in the WISE service.
   </p>

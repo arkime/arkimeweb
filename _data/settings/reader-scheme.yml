@@ -1,31 +1,31 @@
 name: "Reader - Offline Scheme"
 before: |
   <p>
-    Arkime 5 introduces the concept of reader schemes to process offline pcap files from multiple local and remote locations.
+    Arkime 5 introduces the concept of reader schemes to process offline PCAP files from multiple local and remote locations.
     Support for new schemes can be built into capture/viewer or added with a plugin.
-    When a scheme is used to process an offline pcap file, which scheme is used and information about the file is stored in Arkime files index for viewer to use.
-    The schemes run in a dedicated thread, which will make file processing faster then previous versions.
-    Switching to "scheme" mode vs libpcap-file mode is done either by using -r with any scheme OR the --scheme option.
-    It is all or nothing, once in scheme mode, non scheme supported command line options will be ignored with no warning.
+    When a scheme is used to process an offline PCAP file, the scheme used and information about the file is stored in the Arkime files index for viewer to use.
+    The schemes run in a dedicated thread, which will make file processing faster than previous versions.
+    Switching to "scheme" mode vs libpcap-file mode is done either by using <code>-r</code> with any scheme OR the <code>--scheme</code> option.
+    It is all or nothing; once in scheme mode, non-scheme-supported command-line options will be ignored with no warning.
   </p>
   <dl class="dl-horizontal">
-    <dt>file:///fullpath</dt>
+    <dt><code>file:///fullpath</code></dt>
     <dd>Process a file on the local disk</dd>
 
-    <dt>http(s)://host(:port)/path</dt>
-    <dd>Process a file using http range requests</dd>
+    <dt><code>http(s)://host(:port)/path</code></dt>
+    <dd>Process a file using HTTP range requests</dd>
 
-    <dt>s3://bucket/key</dt>
-    <dd>Process a file that lives in s3, <a href="#reader-scheme-s3">more info</a></dd>
+    <dt><code>s3://bucket/key</code></dt>
+    <dd>Process a file that lives in S3, <a href="#reader-scheme-s3">more info</a></dd>
 
-    <dt>s3http(s)://host(:port)/bucket/key</dt>
-    <dd>Process a file using s3 protocol but use a certain host, useful with MinIO/LocalStack for example, <a href="#reader-scheme-s3">more info</a></dd>
+    <dt><code>s3http(s)://host(:port)/bucket/key</code></dt>
+    <dd>Process a file using S3 protocol but use a certain host, useful with MinIO/LocalStack for example, <a href="#reader-scheme-s3">more info</a></dd>
 
-    <dt>sqs://host(:port)/account/queue</dt>
-    <dd>Process SQS queue of s3 pcap files <a href="#reader-scheme-sqs">more info</a></dd>
+    <dt><code>sqs://host(:port)/account/queue</code></dt>
+    <dd>Process SQS queue of S3 PCAP files <a href="#reader-scheme-sqs">more info</a></dd>
 
-    <dt title="sqshttp(s)://host(:port)/account/queue">sqshttp(s)://host(:port)/account/queue</dt>
-    <dd>Process SQS queue of s3 pcap files, useful with LocalStack <a href="#reader-scheme-sqs">more info</a></dd>
+    <dt title="sqshttp(s)://host(:port)/account/queue"><code>sqshttp(s)://host(:port)/account/queue</code></dt>
+    <dd>Process SQS queue of S3 PCAP files, useful with LocalStack <a href="#reader-scheme-sqs">more info</a></dd>
   </dl>
   <p>
     So for example <code>./capture -r http://hostname/foo.pcap -r s3://pcapbucket/file.pcap</code> will process 2 files.

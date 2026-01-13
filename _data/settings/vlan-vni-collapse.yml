@@ -1,14 +1,20 @@
 name: vlan-vni-collapse
 before: |
   <p>
-    (Since 5.2)When using the <a href="#sessionIdTracking">sessionIdTracking</a> setting this section allows you to collapse VLAN or VNI into a single value.
+    (Since 5.2) When using the <a href="#sessionIdTracking">sessionIdTracking</a> setting, this section allows you to collapse VLAN or VNI IDs into a single value.
     This is useful when multiple VLANs or VNIs might be used for the same session.
   </p>
 
+after: |
   <p>
-    In this example the values 50, 100, 300, 400, and 500 will be collapsed into a single value of 0 and the values 125 and 325 will be collapsed into a single value of 25.
+    In this example, the values 50, 100, 300, 400, and 500 will be collapsed into a single value of 0, and the values 125 and 325 will be collapsed into a single value of 25.
   </p>
   <pre><code>[vlan-vni-collapse]
   0=50,100,300,400,500
   25=125,325
   </code></pre>
+
+settings:
+  - key: "[newId]="
+    value: "list,of,oldIds"
+    text: The new ID to use and the comma separated list of old IDs to collapse into it.

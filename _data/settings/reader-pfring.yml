@@ -8,32 +8,31 @@ before: |
       Since our AFPacket support is better than vanilla PF_RING, we recommend you use AFPacket.
       The only time you should use PF_RING with Arkime is when you have other tools on the
       same machine also using vanilla PF_RING, although usually those tools also support AFPacket.
-
     </li>
     <li>
-      install the pfring package on all hosts that will run capture from
+      Install the PF_RING package on all hosts that will run capture from
       <a class="no-decoration"
         href="http://packages.ntop.org/"
-        rel="nofollow">http://packages.ntop.org/</a>
+        rel="nofollow">http://packages.ntop.org/</a>.
     </li>
     <li>
-      load the pfring plugin by changing configuration file so it has
-      reader-pfring.so as a rootPlugins
-      <code>rootPlugins=reader-pfring.so</code>
+      Load the PF_RING plugin by changing the configuration file so it has
+      <code>reader-pfring.so</code> as a <code>rootPlugins</code>:
+      <code>rootPlugins=reader-pfring.so</code>.
     </li>
     <li>
-      Configure capture to use pfring as the reader method with
-      <code>pcapReadMethod=pfring</code> in your configuration file
+      Configure capture to use PF_RING as the reader method with
+      <code>pcapReadMethod=pfring</code> in your configuration file.
     </li>
     <li>
-      optionally change <code>interface</code> to any special pfring
-      interface value
+      Optionally change <code>interface</code> to any special PF_RING
+      interface value.
     </li>
   </ul>
 
 settings:
 
   - key: pfringClusterId
-    value: "0"
+    value: 0
     text: |
       The pfring cluster id

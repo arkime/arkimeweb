@@ -21,4 +21,4 @@ settings:
 
   - key: netflowDestinations
     value: EMPTY
-    text: Semicolon ';' separated list of host:port destinations to send the netflow
+    text: Semicolon ';' separated list of <code>host:port</code> destinations to send the netflow data

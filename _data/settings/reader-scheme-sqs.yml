@@ -1,38 +1,39 @@
 name: "Reader - Scheme - SQS"
 before: |
   <p>
-    Arkime 5.3 added the ability to process a SQS queue for pcap files added to S3.
+    Arkime 5.3 added the ability to process an SQS queue for PCAP files added to S3.
     As files are added to S3, S3 will automatically add a message to the SQS queue.
     Arkime will monitor the SQS queue and process the S3 files.
-    By default Arkime will exit after all the messages are processed, use the <code>-m</code> option to keep running.
+    By default, Arkime will exit after all the messages are processed, use the <code>-m</code> option to keep running.
   </p>
-  <p>
+  <div>
     Two forms of the SQS URL are supported:
     <ul>
-      <li>sqs://sqs.REGION.amazonaws.com/ACCOUNT/QUEUE</li>
-      <li>sqshttp(s)://sqs.REGION.DOMAIN(:PORT)/ACCOUNT/QUEUE</dt>
+      <li><code>sqs://sqs.REGION.amazonaws.com/ACCOUNT/QUEUE</code></li>
+      <li><code>sqshttp(s)://sqs.REGION.DOMAIN(:PORT)/ACCOUNT/QUEUE</code></li>
     </ul>
-  </p>
+  </div>
+  <div>
     <dl>
       <dt>Process an AWS queue and exit</dt>
       <dd><code>capture -R sqs://sqs.us-east-1.amazonaws.com/00000000/testqueue</code></dd>
       <dt>Process a LocalStack queue forever</dt>
       <dd><code>capture -m -R sqshttp://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue</code></dd>
     </dl>
-  </p>
+  </div>
 
 settings:
   - key: sqsAccessKeyId
     value: EMPTY
     text: |
-      The awsAccessKeyId to use to access the SQS queue
+      The SQS Access Key ID to use to access the SQS queue
 
   - key: sqsSecretAccessKey
     value: EMPTY
     text: |
-      The awsSecretAccessKey to use to access the SQS queue
+      The SQS Secret Access Key to use to access the SQS queue
 
   - key: s3Host
     value: EMPTY
     text: |
-      The host to use to access the S3 bucket, if not set Arkime and sqshttp(s) was used, Arkime will use the same host as the SQS queue, otherwise it will use the s3:// scheme settings
+      The host to use to access the S3 bucket, if not set and <code>sqshttp(s)</code> was used, Arkime will use the same host as the SQS queue, otherwise it will use the <code>s3://</code> scheme settings

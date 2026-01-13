@@ -2,16 +2,16 @@ name: PCAP Storage Settings
 before: |
   <p>
     <span class="fa fa-exclamation-triangle mr-1"></span>
-    Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
+    Arkime does <strong>NOT</strong> support having <code>pcapDir</code> and the OpenSearch/Elasticsearch data directory on the same file system.
     Arkime will <strong>NOT</strong> work in this configuration.
-    It is strongly recommended running capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
+    It is strongly recommended to run capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
   </p>
 
 settings:
   - key: freeSpaceG
     value: "5%"
     text: |
-      Can be specified either as percentage (<code>freeSpaceG=2.5%</code>) or the number of gigabytes (<code>freeSpaceG=150.5</code>) that should be kept available on the <a href="#pcapDir">pcapDir</a> disk(s).
+      Can be specified either as a percentage (<code>freeSpaceG=2.5%</code>) or as a number of gigabytes (<code>freeSpaceG=150.5</code>) that should be kept available on the <a href="#pcapDir">pcapDir</a> disk(s).
       Viewer will delete PCAP files to try and maintain at least this much free space at all times.
       Viewer will NOT delete the corresponding session records in OpenSearch/Elasticsearch, instead that is done either by <code>db.pl expire</code> script or using ILM/ISM.
       See the <a href="faq#pcap-deletion">FAQ</a> if you are having issues with this setting.
@@ -19,23 +19,23 @@ settings:
   - key: pcapDir
     value: (Since 5.5.0) /opt/arkime/raw (before 5.5.0) EMPTY
     text: |
-      Semicolon separated list of directories to save pcap files to.
-      The directory to save pcap to is picked using round robin by default, see <a href="#pcapdiralgorithm">pcapDirAlgorithm</a> for more options.
-      It is <strong>important</strong> that ALL parent directories of the pcapDir have the execute bit set so that either the <a href="#dropUser">dropUser</a> or <a href="#dropGroup">dropGroup</a> can enter the directory.
-      The actual pcapDir should either be owned by the <a href="#dropUser">dropUser</a> or have the group <a href="#dropGroup">dropGroup</a> and have write permission.
+      Semicolon separated list of directories to save PCAP files to.
+      The directory to save PCAP to is picked using round robin by default, see <a href="#pcapdiralgorithm">pcapDirAlgorithm</a> for more options.
+      It is <strong>important</strong> that ALL parent directories of the <code>pcapDir</code> have the execute bit set so that either the <a href="#dropUser">dropUser</a> or <a href="#dropGroup">dropGroup</a> can enter the directory.
+      The actual <code>pcapDir</code> should either be owned by the <a href="#dropUser">dropUser</a> or have the group <a href="#dropGroup">dropGroup</a> and have write permission.
 
 
   - key: pcapDirTemplate
     value: EMPTY
     text: |
       When set, this strftime template is appended to
-      pcapDir and allows multiple directories to be created based on time.
+      <code>pcapDir</code> and allows multiple directories to be created based on time.
 
   - key: pcapDirAlgorithm
     value: "round-robin"
     text: |
       When <a href="#pcapDir">pcapDir</a> is a list of directories, this determines how Arkime
-      chooses which directory to use for each new pcap file.
+      chooses which directory to use for each new PCAP file.
       Possible values:
       <ul class="mb-0">
         <li>round-robin = rotate sequentially</li>
@@ -46,14 +46,14 @@ settings:
   - key: maxFileTimeM
     value: 0
     text: |
-      The max time in minutes between rotating pcap files. Useful if
+      The max time in minutes between rotating PCAP files. Useful if
       there is an external utility that needs to look for closed files
-      every so many minutes. Setting to 0 means only use
-      maxFileSizeG
+      regularly. Setting to 0 means only use
+      <code>maxFileSizeG</code>.
 
   - key: maxFileSizeG
     value: 12.0 (since 4.0.0)<br>4.0 (before 4.0)
     text: |
-      The approximate maximum raw pcap file size in gigabytes, which may be a decimal value (e.g., 5.5).
+      The approximate maximum raw PCAP file size in gigabytes, which may be a decimal value (e.g., 5.5).
       The disk must have sufficient space for at least <strong>10 times</strong> this maximum file size.
 

@@ -1,10 +1,10 @@
-name: "Reader - PCAP-Over-Ip - Settings"
+name: "Reader - PCAP-Over-IP - Settings"
 before: |
   <p>
-    Since version 2.7.0, Arkime supports processing PCAP-Over-Ip requests.
-    Two modes are support client and server.
-    Client mode will connect to a pcap-over-ip service, server will listen for pcap-over-ip connections.
-    <a href="https://netresec.com/?b=119B126">Read</a> more information about PCAP-Over-Ip.
+    Since version 2.7.0, Arkime supports processing PCAP-Over-IP requests.
+    Two modes are supported: client and server.
+    Client mode connects to a PCAP-Over-IP service, while server mode listens for PCAP-Over-IP connections.
+    <a href="https://netresec.com/?b=119B126">Read</a> more information about PCAP-Over-IP.
   </p>
   <p>
     Client mode is set by using <code>pcapReadMethod=pcap-over-ip-client</code>.
@@ -19,4 +19,4 @@ before: |
 settings:
   - key: pcapOverIpPort
     value: 57012
-    text: In server mode this is the port to listen on
+    text: In server mode, this is the port to listen on.

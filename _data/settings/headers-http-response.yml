@@ -29,9 +29,9 @@ settings:
       </ul>
 
   - key: unique
-    value: TRUE
+    value: "true"
     text: Only index unique values
 
   - key: count
-    value: FALSE
+    value: "false"
     text: Create a second field http.[HEADERNAME].cnt with the number of items

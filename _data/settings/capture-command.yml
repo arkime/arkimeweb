@@ -30,7 +30,7 @@ settings:
     key: option-r
     value: EMPTY
     text: |
-      The path to an offline pcap directory to find pca files in.
+      The path to an offline pcap directory to find pcap files in.
       There can be multiple -R options on the command line.
       Since Arkime 5 the directory can be a url to the pcap location, see <a href="#reader-scheme">Reader - Offline Scheme</a> for more information.
 
@@ -63,7 +63,7 @@ settings:
       Monitor the pcap directory for new files and read them as they appear.
 
   - display: --packetcnt {num}
-    key: option-packetcntr
+    key: option-packetcnt
     value: EMPTY
     text: |
       The max number of packets to process from each pcap file.
@@ -104,7 +104,7 @@ settings:
     value: [OS hostname]
     text: |
       Override the OS hostname for this capture instance.
-      The viewer will use this hostname when trying to find the packets for this node, see <a href="/faq#how-do-viewers-find-each-other">the FAQ</a> for more information on how nodes find each other..
+      The viewer will use this hostname when trying to find the packets for this node, see <a href="/faq#how-do-viewers-find-each-other">the FAQ</a> for more information on how nodes find each other.
       The hostname should be a FQDN to make life easier.
 
   - display: -t, --tag {tag}
@@ -119,7 +119,7 @@ settings:
     key: option-f
     value: EMPTY
     text: |
-      File that has alist of pcap file names to process, 1 per line.
+      File that has a list of pcap file names to process, 1 per line.
 
   - display: --op {FieldExpr=Value}
     key: option-op

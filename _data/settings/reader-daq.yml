@@ -1,21 +1,21 @@
 name: "Reader - DAQ - Settings"
 before: |
   <p class="mb-0">
-    To use daq:
+    To use DAQ:
   </p>
   <ul>
     <li>
-      load the daq plugin by changing configuration file so it has
-      reader-daq.so as a rootPlugins
-      <code>rootPlugins=reader-daq.so</code>
+      Load the DAQ plugin by changing the configuration file so it has
+      <code>reader-daq.so</code> as a <code>rootPlugins</code>:
+      <code>rootPlugins=reader-daq.so</code>.
     </li>
     <li>
-      tell capture to use daq as the reader method with
-      <code>pcapReadMethod=daq</code> in your configuration file
+      Tell capture to use DAQ as the reader method with
+      <code>pcapReadMethod=daq</code> in your configuration file.
     </li>
     <li>
-      optionally change <code>interface</code> to any special daq interface
-      value
+      Optionally change <code>interface</code> to any special DAQ interface
+      value.
     </li>
   </ul>
 

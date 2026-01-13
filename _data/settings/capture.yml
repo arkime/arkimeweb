@@ -10,7 +10,7 @@ settings:
     value: EMPTY
     text: |
       Semicolon ';' separated list of bpf filters which when matched
-      for a session causes the remaining pcap from being saved for the
+      for a session prevents the remaining pcap from being saved for the
       session. It is possible to specify the number of packets to save
       per filter by ending with a :num. For example
       dontSaveBPFs = port 22:5 will only save 5 packets for port
@@ -21,18 +21,18 @@ settings:
     value: EMPTY
     text: |
       Semicolon ';' separated list of tags which once capture sets for
-      a session causes the remaining pcap from being saved for the
+      a session prevents the remaining pcap from being saved for the
       session. It is likely that the initial packets WILL be
       saved for the session since tags usually aren't set until after
       several packets. It is possible to specify the number of packets
       to save per filter by ending with a :num.
 
-  - key: espTimeout
+  - key: dhcpTimeout
     value: 60
     text: |
       (Since 6.0.0) For DHCP sessions, Arkime tracks DHCP session for this long.
 
-  - key: dhcpTimeout
+  - key: espTimeout
     value: 600
     text: |
       For ESP sessions, Arkime writes a session record after this many
@@ -103,7 +103,7 @@ settings:
   - key: maxStreams
     value: 1500000
     text: |
-      An aproximiate maximum number of active sessions Arkime will try and monitor
+      An approximate maximum number of active sessions Arkime will try and monitor
 
   - key: minPacketsSaveBPFs
     value: EMPTY
@@ -113,7 +113,7 @@ settings:
       OpenSearch/Elasticsearch. PCAP data is still saved however. It is possible
       to specify the number of min packets required for SPI to be saved
       by ending with a :num. A use case is a scanning host inside the
-      network that you only want to capture if their is a conversation
+      network that you only want to capture if there is a conversation
       "tcp and host 10.10.10.10:1".
 
   - key: ouiFile
@@ -130,7 +130,7 @@ settings:
       Number of threads to use to process packets AFTER the reader has received the packets.
       This also controls how many packet queues there are, since each thread has its own queue.
       Basically how much CPU to dedicate to parsing the packets.
-      Increase this if you get errors about dropping packets or the packetQ is over flowing.
+      Increase this if you get errors about dropping packets or the packetQ is overflowing.
       If using the simple writer, this also controls how many pcap files are open for writing.
       We recommend about 2 x Gbps. Making this value too large may cause issues with Arkime.
 
@@ -176,7 +176,7 @@ settings:
   - key: parseHTTPHeaderResponseAll
     value: "false"
     text: |
-      Parse ALL HTTP request headers not already parsed
+      Parse ALL HTTP response headers not already parsed
       using the [headers-http-response] section
 
   - key: plugins
@@ -394,7 +394,7 @@ settings:
       the interface. This can be changed to fix the "Arkime requires
       full packet captures" error. It is recommend that instead of
       changing this value that all the card "offline" features are
-      turned off so that capture gets a picture of whats on the network
+      turned off so that capture gets a picture of what's on the network
       instead of what the capture card has reassembled. For VMs, those
       features must be turned off on the physical interface and not the
       virtual interface. This setting can be used when changing the

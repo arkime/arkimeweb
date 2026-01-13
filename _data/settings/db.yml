@@ -9,15 +9,15 @@ before: |
     <span class="fa fa-exclamation-triangle mr-1"></span>
     Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
     Arkime will <strong>NOT</strong> work in this configuration.
-    It is strongly recommended running capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
+    It is strongly recommended to run capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
   </p>
 
 settings:
   - key: elasticsearch
     value: http://localhost:9200
     text: |
-      A comma separated list of urls to use to connect to the OpenSearch/Elasticsearch cluster.
-      If OpenSearch/Elasticsearch requires a user/password those can be placed in the url also, http://user:pass@hostname:port or use <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
+      A comma separated list of URLs to use to connect to the OpenSearch/Elasticsearch cluster.
+      If OpenSearch/Elasticsearch requires a user/password those can be placed in the URL also, http://user:pass@hostname:port or use <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
       While not required, if not using a load balancer, a different OpenSearch/Elasticsearch node can be specified for each Arkime capture node.
 
   - key: elasticsearchTimeout
@@ -61,8 +61,8 @@ settings:
     value: EMPTY
     text: |
       (Since 3.1.0) Use basic auth with OpenSearch/Elasticsearch.
-      The value can either be the plain text "user:pass" or the base64 encoded version.
-      One way to generate base64 <code>echo -n "username:password" | base64</code> version.
+      The value can either be the plain text "user:pass" or the base64-encoded version.
+      One way to generate the base64-encoded version is <code>echo -n "username:password" | base64</code>.
       Notice the -n, you have to make sure you don't encode an extra newline.
       All Arkime versions also support http://user:pass@hostname:port in the elasticsearch setting.
 
@@ -122,13 +122,13 @@ settings:
     value: "1000000 (since 4.3.0)"
     text: |
       Approximate size of bulk indexing request to send to OpenSearch/Elasticsearch.
-      Since 4.3.0 the minumum value is 500000 and maximum value is 15000000.
+      Since 4.3.0 the minimum value is 500000 and maximum value is 15000000.
       If monitoring a high bandwidth network, increasing may help with performance, as long as OpenSearch/Elasticsearch can handle the load.
 
   - key: dbEsHealthCheck
     value: "true"
     text: |
-      Perform an OpenSearch/Elasticsearch health check every 30 seconds and report on slowness or if not green.  For big clusters this should be disabled.
+      Perform an OpenSearch/Elasticsearch health check every 30 seconds and report slowness or non-green status.  For big clusters this should be disabled.
 
   - key: dbFlushTimeout
     value: "5"

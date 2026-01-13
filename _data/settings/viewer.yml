@@ -19,7 +19,7 @@ settings:
     text: |
       Displays a colored background on the sessions timeline graph on
       only these days. businessDayStart and businessDayEnd must be set
-      for these to be of use. Values are comma separted list of days of
+      for these to be of use. Values are comma separated list of days of
       the week as numbers. The week starts at Sunday = 0 and ends on
       Saturday = 6. For example: Monday through Friday would be 1,2,3,4,5
 
@@ -34,7 +34,7 @@ settings:
       (Since 4.3.1) Add "auto" setting that will self select a node to be the primary Arkime viewer node, when that node dies another node will become the primary Arkime viewer node. Do not use when another node is using "true'.
 
   - key: spiDataMaxIndices
-    value: "1"
+    value: 1
     text: |
       Specify the max number of indices we calculate spidata for, or set to -1 to disable any max.
       OpenSearch/Elasticsearch MAY blow up if we allow the spiData to search too many indices.
@@ -93,16 +93,16 @@ settings:
   - key: viewHost
     value: EMPTY
     text: |
-      The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips.
+      The IP address used to listen, usually localhost for just the localhost or 0.0.0.0 for all IP addresses.
       See the <code>host</code> section of
       <a class="no-decoration"
         href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
         rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
 
   - key: viewPort
-    value: "8005"
+    value: 8005
     text: |
-      This is both the port that the viewer process listens on AND the port we try to connect to other viewer proceses on when proxing.
+      This is both the port that the viewer process listens on AND the port we try to connect to other viewer processes on when proxing.
       We recommend all viewers use the same port so it can be set in the [default] section.
       If viewers can't listen on the same ports then set the one in [default] to the common one, and the one in [NODE] to the special port.
 
@@ -137,21 +137,21 @@ settings:
       From viewer, return a hsts header on responses
 
   - key: huntWarn
-    value: "100000"
+    value: 100000
     text: |
-      (Since 1.6.0) Warn users when creating a hunt if more then this
+      (Since 1.6.0) Warn users when creating a hunt if more than this
       many sessions will be searched
 
   - key: huntLimit
-    value: "1000000"
+    value: 1000000
     text: |
       (Since 1.6.0) Do not create hunts for non admin users if more
-      then this many sessions will be searched
+      than this many sessions will be searched
 
   - key: huntAdminLimit
-    value: "10000000"
+    value: 10000000
     text: |
-      (Since 1.6.0) Do not create hunts for admin users if more then
+      (Since 1.6.0) Do not create hunts for admin users if more than
       this many sessions will be searched
 
   - key: iframe
@@ -164,7 +164,7 @@ settings:
   - key: uploadCommand
     value: EMPTY
     text: |
-      If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so its better to just run capture instead of using upload if you can.
+      If set uploads from the UI are allowed.  An upload saves the file and runs capture on it, so it's better to just run capture instead of using upload if you can.
       Example setting would be <code>/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} -c {CONFIG} {TAGS}</code>.  <br>
       The following templated values will be filled in for you:
       <ul>
@@ -182,7 +182,7 @@ settings:
   - key: uploadFileSizeLimit
     value: EMPTY
     text: |
-      (Since 2.0) If set, the max size of pcap files that can be uploaded from the UI
+      (Since 2.0) If set, the max size of PCAP files that can be uploaded from the UI
 
   - key: queryAllIndices
     value: "false for viewer, true for multiviewer"
@@ -202,7 +202,7 @@ settings:
 
   - key: turnOffGraphDays
     value: 30
-    text: (Since 4.0.0) Automatically turn off the graph if the query is more then this many days. This is to protect overloading OpenSearch/Elasticsarch.
+    text: (Since 4.0.0) Automatically turn off the graph if the query is more than this many days. This is to protect overloading OpenSearch/Elasticsearch.
 
   - key: elasticsearchScrollTimeout
     value: 300

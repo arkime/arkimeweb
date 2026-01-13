@@ -1,7 +1,7 @@
 name: custom-fields-remap
 before: |
   <p>
-    Starting with 5.0 it is now possible to remap results turned by wise or
+    Starting with Arkime 5.0 it is now possible to remap results returned by WISE or
     the tagger plugin to set different fields based on what field matched.
     For example instead of only being able to set the asset field based
     on if the ip.src or ip.dst field matched, it is now possible to
@@ -18,7 +18,7 @@ after: |
 
   [custom-fields]
   asset.src=kind:lotermfield;count:true;friendly:Asset Src;db:assetName.src;help:Asset Name Src
-  asset.dst=kind:lotermfield;count:true;friendly:Aseet Dst;db:assetName.dst;help:Asset Name Dst
+  asset.dst=kind:lotermfield;count:true;friendly:Asset Dst;db:assetName.dst;help:Asset Name Dst
   </code></pre>
 
 settings:
@@ -28,4 +28,4 @@ settings:
 
   - key: "matchField=newField"
     value: EMPTY
-    text: When the value we are matching against is 'match field' instead of setting 'oldFIeld' we set 'newField'
+    text: When the value we are matching against is 'match field' instead of setting 'oldField' we set 'newField'

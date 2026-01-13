@@ -1,26 +1,20 @@
 name: TCP Health Check
 before: |
   <p>
-    TCP Health Check plugin enables
-    the capture module to listen on
-    a specific TCP port and immediately
-    close accepted connections. This is useful
-    to keep load balancer health checks informed
-    about the capture module working properly.
+    The TCP Health Check plugin enables the capture module to listen on a specific TCP port and immediately close accepted connections.
+    This is useful to keep load balancer health checks informed about the capture module working properly.
     One specific use case is
     <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html">
       Health Checks for Target Groups
     </a>
-    in AWS
-    Network Load Balancer.
+    in AWS Network Load Balancer.
   </p>
   <p>
-    Add <code>tcphealthcheck.so</code> to the <code>plugins=</code> line in the
-    config file.
+    Add <code>tcphealthcheck.so</code> to the <code>plugins=</code> line in the config file.
   </p>
 
 settings:
   - key: tcpHealthCheckPort
     value: EMPTY
-    text: Make the capture module listen on this TCP port for health checks
+    text: Make the capture module listen on this TCP port for health checks.
 

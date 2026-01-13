@@ -11,12 +11,12 @@ settings:
   - key: s3Bucket
     value: EMPTY
     text: |
-      S3 Bucket to store pcap info
+      S3 Bucket to store PCAP files
 
   - key: s3AccessKeyId
     value: (Since 2.1) Obtained from the EC2 IAM Role.
     text: |
-      S3 Access Key Id
+      S3 Access Key ID
 
   - key: s3SecretAccessKey
     value: (Since 2.1) Obtained from the EC2 IAM Role.
@@ -26,7 +26,7 @@ settings:
   - key: s3Compress
     value: "false"
     text: |
-      Should http requests be compressed before sending, it is usually better to enable pcap compression instead.
+      Should HTTP requests be compressed before sending; it is usually better to enable PCAP compression instead.
 
   - key: s3WriteGzip
     value: "false"
@@ -38,22 +38,22 @@ settings:
   - key: s3StorageClass
     value: STANDARD
     text: |
-      (Since 2.1) The S3 storage class to use&emdash;this has pricing implications
+      (Since 2.1) The S3 storage class to use&emdash;this has pricing implications.
 
   - key: s3PathAccessStyle
     value: "true if there is a period in the bucket name"
     text: |
-      (Since 2.1) If true use s3.amazonaws.com/s3Bucket if false use s3Bucket.s3.amazonaws.com. For minio make sure you set to true.
+      (Since 2.1) If true use <code>s3.amazonaws.com/s3Bucket</code> if false use <code>s3Bucket.s3.amazonaws.com</code>. For MinIO, make sure you set to true.
 
   - key: s3MaxConns
     value: 20
     text: |
-      Max connections to S3
+      Max connections to S3.
 
   - key: s3MaxRequests
-    value: "500"
+    value: 500
     text: |
-      Max number of outstanding S3 requests
+      Max number of outstanding S3 requests.
 
   - key: s3ExpireDays
     value: EMPTY
@@ -77,7 +77,7 @@ settings:
     value: "true"
     text: |
       If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
-      token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1
+      token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1.
 
   - key: s3Compression
     value: zstd (>= 5.0) EMPTY (4.3 - 5.0)
@@ -96,11 +96,11 @@ settings:
       Do not change to values larger than 100000 if still using both older and newer versions of Arkime.
 
   - key: s3UseECSEnv
-    value: false
+    value: "false"
     text: |
-      (Since 4.3.0) Use the ECS_CONTAINER_METADATA_URI_V4 and AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variables to find the metadata service.
+      (Since 4.3.0) Use the <code>ECS_CONTAINER_METADATA_URI_V4</code> and <code>AWS_CONTAINER_CREDENTIALS_RELATIVE_URI</code> environment variables to find the metadata service.
 
   - key: s3GapPacketPos
     value: "true"
     text: |
-      (Since 5.0.0) encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
+      (Since 5.0.0) Encode <code>packetPos</code> using a simple gap encoding; this reduces storage in OpenSearch/Elasticsearch.

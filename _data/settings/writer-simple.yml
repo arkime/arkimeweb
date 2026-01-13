@@ -4,23 +4,23 @@ settings:
   - key: simpleEncoding
     value: EMPTY
     text: |
-      Arkime support <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
+      Arkime supports <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
 
   - key: simpleKEKId
     value: EMPTY
     text: |
-      Which kek to use, see <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
+      Which KEK to use, see <a href="#pcap-at-rest-encryption">PCAP at Rest Encryption</a>.
 
   - key: simpleCompression
     value: zstd (>= 5) gzip (4.2 - 5)
     text: |
-      (since 4.0.0) The type of seekable compression to use on pcap files.
-      Zstd (don't use before 4.5.1) will has better compression for less cpu than glib.
+      (since 4.0.0) The type of seekable compression to use on PCAP files.
+      Zstd (don't use before 4.5.1) has better compression for less CPU than gzip.
       Valid values are: none, gzip, zstd (>= 4.5.1)
 
 
   - key: simpleCompressionBlockSize
-    value: "32000"
+    value: 32000
     text: |
       (since 4.0.0)
       How many bytes of uncompressed data to attempt to compress at once.
@@ -28,37 +28,37 @@ settings:
       Recommend using values between 30000 and 120000.
 
   - key: simpleGzipBlockSize
-    value: "0"
+    value: 0
     text: |
       (3.3.0 - 3.4.2) This enables GZip on the packet data. The block size is how much uncompressed data to attempt to compress into a block.
       The larger the value the better the compression, but the slower the read.
       Recommend using values between 30000 and 120000.
 
   - key: simpleGzipLevel
-    value: "6"
+    value: 6
     text: |
       (since 3.3.0) When GZip is enabled using simpleCompression=gzip, this is the gzip compression level.
 
   - key: simpleZstdLevel
-    value: "3"
+    value: 3
     text: |
       (since 4.0.0, > 4.5.1 recommended) When zstd is enabled using simpleCompression=zstd, this is the compression level to use.
-      Increasing or decreasing this value will effect the CPU usage of capture, with the default value being a good balance between CPU and compression.
-      It is better to increase the <a href="#simpleCompressionBlockSize">simpleCompressionBlockSize setting</a> before increasing simpleZstdLevel.
+      Increasing or decreasing this value will affect the CPU usage of capture, with the default value being a good balance between CPU and compression.
+      It is better to increase the <a href="#simpleCompressionBlockSize"><code>simpleCompressionBlockSize</code> setting</a> before increasing simpleZstdLevel.
 
   - key: simpleMaxQ
-    value: "2000"
+    value: 2000
     text: |
       (since 2.0.1) The maximum number of disk queue entries per capture node.
       Once this limit is hit, packets will not be saved to disk until the disk queue falls below the threshold.
-      The packets will still be processed, so all meta data is still extracted.
+      The packets will still be processed, so all metadata is still extracted.
       Sessions that have packets not written to disk will be tagged with pcap-disk-overload.
       Increasing this value will use more memory when there is disk congestion.
 
   - key: simpleShortHeader
     value: "false"
     text: |
-      (since 3.3.0) When TRUE use a non standard pcap file format that uses small packet headers.
+      (since 3.3.0) When <code>true</code> use a non standard PCAP file format that uses small packet headers.
       Should only be set when monitoring an interface since it requires that the timestamp is in real time.
       Saves 10 bytes per packet!
 
@@ -69,7 +69,7 @@ settings:
 
 
   - key: simpleFreeOutputBuffers
-    value: "16"
+    value: 16
     text: |
       (Since 4.2.0) Max number of disk buffers Arkime keeps around to reduce the number of mmap/munmap.
 

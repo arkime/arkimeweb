@@ -3,10 +3,10 @@ before: |
   <p>
     The multi viewer is useful when you have multiple Arkime clusters that you want to search across.
     To use the multi viewer, an extra viewer process and a multies process must be started.
-    The viewer process works like a normal viewer process, except instead of talking to a OpenSearch/Elasticsearch server, it talks to a multies server.
+    The viewer process works like a normal viewer process, except instead of talking to an OpenSearch/Elasticsearch server, it talks to a multies server.
     The multies server proxies the queries to all the real OpenSearch/Elasticsearch servers.
     These two processes can share the same config file and node name section.
-    The viewer part uses the SAME configuration values as above if you need to set anything.
+    The viewer part uses the same configuration values as above if you need to set anything.
   </p>
 
 after: |
@@ -14,7 +14,7 @@ after: |
     A sample configuration for multi viewer (the elasticsearch variable points to the multies.js process):
   </p>
   <pre><code>[multi-viewer]
-  elasticsearch=127.0.0.1:8200
+  elasticsearch = 127.0.0.1:8200
   viewPort = 8009
   #viewHost = localhost
   multiES = true
@@ -32,7 +32,7 @@ after: |
 
 settings:
   - key: multiES
-    value: false
+    value: "false"
     text: This is the multiES node
 
   - key: multiESPort
@@ -54,8 +54,8 @@ settings:
       Components (comma separated):
       <ul>
         <li>
-          (required) the first part is the node <code>http[s]://[user:password@]host:port</code>.
-          If using 3.1 or later it is suggested to use elasticsearchBasicAuth or elasticsearchAPIKey is the user/pass isn't logged.
+          (required) The first part is the node <code>http[s]://[user:password@]host:port</code>.
+          If using 3.1 or later it is suggested to use elasticsearchBasicAuth or elasticsearchAPIKey so the user/pass isn't logged.
         </li>
         <li>
           (required since 2.7.0) <code>name:</code> element to name the OpenSearch/Elasticsearch node.
@@ -81,11 +81,11 @@ settings:
 
   - key: certFile
     value: EMPTY
-    text: Public certificate to use for https, if not set then http will be used. keyFile must also be set.
+    text: Public certificate file to use for https, if not set then http will be used. keyFile must also be set.
 
   - key: keyFile
     value: EMPTY
-    text: Private certificate to use for https, if not set then http will be used. certFile must also be set.
+    text: Private key file to use for https, if not set then http will be used. certFile must also be set.
 
   - key: defaultCluster
     value: EMPTY

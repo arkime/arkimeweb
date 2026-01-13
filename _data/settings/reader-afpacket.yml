@@ -1,21 +1,19 @@
 name: "Reader - AFPacket - Settings"
 before: |
   <p>
-    AFPacket v3 also known as Tpacketv3, is the preferred reader for Arkime and can be used on most
-    3.x or later kernels. Configure capture to use tpacketv3 as the reader
-    method with <code>pcapReadMethod=tpacketv3</code> in your configuration
-    file.
+    AFPacket v3, also known as TPacket v3, is the preferred reader for Arkime and can be used on most 3.x or later Linux kernels.
+    Configure capture to use AFPacket v3 as the reader method with <code>pcapReadMethod=tpacketv3</code> in your configuration file.
   </p>
 
 after: |
   <p class="mb-0">
     Example:
   </p>
-  <pre>[default]
-  pcapReadMethod=tpacketv3
-  tpacketv3BlockSize=2097152
-  interface=eth0
-  tpacketv3NumThreads=2</pre>
+  <pre><code>[default]
+  pcapReadMethod = tpacketv3
+  tpacketv3BlockSize = 2097152
+  interface = eth0
+  tpacketv3NumThreads = 2</code></pre>
 
 
 settings:
@@ -32,9 +30,9 @@ settings:
   - key: tpacketv3ClusterId
     value: "8005"
     text: |
-      (Since 2.0) The cluster id for use with PACKET_FANOUT. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
+      (Since 2.0) The cluster id for use with <code>PACKET_FANOUT</code>. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
 
   - key: tpacketv3OldVlan
-    value: false
+    value: "false"
     text: |
-      (Since 6.0) Set to true to use the old VLAN handling method where AFPacket would strip the first VLAN tag and not save in the PCAP. The new default will add the VLAN tag back into the packet data before saving to PCAP.
+      (Since 6.0) Set to true to use the old VLAN handling method where AFPacket would strip the first VLAN tag and not save it in the PCAP. The new default will add the VLAN tag back into the packet data before saving to PCAP.

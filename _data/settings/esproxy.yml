@@ -1,7 +1,7 @@
 settings:
   - key: elasticsearch
     value: http://localhost:9200
-    text: The OpenSearch/Elasticsearch URL to use, dbUrl overrides this setting
+    text: The OpenSearch/Elasticsearch URL to use, <code>dbUrl</code> overrides this setting
 
   - key: elasticsearchAPIKey
     value: EMPTY
@@ -41,8 +41,8 @@ settings:
 
   - key: esProxyHost
     value: EMPTY
-    text: The ip used to listen, usually localhost for just the localhost or 0.0.0.0 for all ips, see the host [host section](https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback)
+    text: The IP address used to listen, usually localhost for just localhost or 0.0.0.0 for all IP addresses, see the [host section](https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback)
 
   - key: esProxyPort
     value: 7200
-    text: Port that esProxy listens on
+    text: Port that <code>esProxy</code> listens on

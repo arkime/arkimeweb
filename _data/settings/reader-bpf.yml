@@ -1,11 +1,11 @@
 name: "Reader - BPF - Settings"
 before: |
   <p>
-    Since version 6.0.0, Arkime supports the berkley packet filter (BPF) interface for reading raw packets on MacOS and FreeBSD systems.
-    Configure capture to use 'bpf' as the reader method with <code>pcapReadMethod=bpf</code> in your configuration
+    Since version 6.0.0, Arkime supports the Berkeley Packet Filter (BPF) interface for reading raw packets on macOS and FreeBSD systems.
+    Configure capture to use <code>bpf</code> as the reader method with <code>pcapReadMethod=bpf</code> in your configuration.
   </p>
 
 settings:
   - key: bpfBufferSize
-    value: 2097152
+    value: "2097152"
     text: The size in bytes of the BPF buffer used for capturing packets.

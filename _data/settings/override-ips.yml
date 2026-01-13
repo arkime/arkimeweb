@@ -1,9 +1,9 @@
 name: override-ips
 before: |
   <p>
-    override-ips is a special section that overrides the MaxMind databases
-    for the fields set, but fields not set will still use MaxMind (example
-    if you set tags but not country it will use MaxMind for the country)
+    The <code>[override-ips]</code> section allows you to override the MaxMind databases
+    for the fields set, but fields not set will still use MaxMind (for example,
+    if you set tags but not country, it will use MaxMind for the country).
     Spaces and capitalization are very important.
   </p>
   <p>
@@ -24,16 +24,16 @@ settings:
     text: The CIDR the line applies to
 
   - key: tag
-    text: A single tag to set for matches
+    text: A single tag to set for matching sessions
 
   - key: country
-    text: A 3 character country code to set for matches
+    text: A 3-character country code to set for matching sessions
 
   - key: asn
-    text: An ASN value to set for matches
+    text: An ASN value to set for matching sessions
 
   - key: rir
-    text: A RIR value to set for matches
+    text: An RIR value to set for matching sessions
 
   - key: "[expression]:"
-    text: Since 5.0 any expression can be set, for example <code>asset:computer</code> will set the asset field to computer.
+    text: Since 5.0, any expression can be set. For example, <code>asset:computer</code> will set the asset field to computer.

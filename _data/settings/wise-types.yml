@@ -1,25 +1,27 @@
 name: wise-types
 before: |
   <p>
-    WISE also lets you configure which fields are used for the standard wise types and you can add your own wise types.
+    WISE also lets you configure which fields are used for the standard WISE types and you can add your own WISE types.
     You do this by creating a <code>[wise-types]</code> section in the capture configuration file AND listing the fields using `{type}={expression};{db:dbfield}...`.
-    The type field must be less then 12 characters, and is the same type field you would use in the wise service.
+    The type field must be less than 12 characters, and is the same type field you would use in the WISE service.
   </p>
 
 settings:
   - key: ip
     value: db:http.xffIp
-    text: srcIp and dstIp are always looked up for ip
+    text: Source and destination IPs are always looked up by default.
 
   - key: url
     value: db:http.uri
-    text:
+    text: Look up URLs in WISE
 
   - key: domain
     value: db:http.host;db:dns.host
+    text: Look up domains in WISE
 
   - key: md5
     value: db:http.md5;db:email.md5
+    text: Look up MD5 hashes in WISE
 
   - key: sha256
     value: db:http.sha256;db:email.sha256
@@ -27,8 +29,9 @@ settings:
 
   - key: email
     value: db:email.src;db:email.dst
+    text: Look up email addresses in WISE
 
-  - text:
-    key: ja3
+  - key: ja3
     value: db:tls.ja3
+    text: Look up JA3 hashes in WISE
 

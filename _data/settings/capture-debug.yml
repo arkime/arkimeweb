@@ -23,7 +23,7 @@ settings:
   - key: logHTTPConnections
     value: "true for online captures"
     text: |
-      Log http connection attempts and information
+      Write to stdout http connection attempts and information
 
   - key: logUnknownProtocols
     value: "false"
