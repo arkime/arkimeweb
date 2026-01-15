@@ -1330,7 +1330,7 @@ title: FAQ
       </p>
       <ul>
         <li>
-          SPI data is usually kept longer then PCAP data. For example, you may
+          SPI data is usually kept longer than PCAP data. For example, you may
           store PCAP data for a week but SPI data for a month.
         </li>
         <li>
@@ -1351,7 +1351,7 @@ title: FAQ
           A quick disk requirement estimate is 5% of the PCAP storage, if storing for the same amount of time.
         </li>
         <li>
-          If you have large machines, they you can run multiple nodes per MACHINE, although this complicates deployments.
+          If you have large machines, then you can run multiple nodes per MACHINE, although this complicates deployments.
         </li>
       </ul>
       <p>
@@ -1431,7 +1431,7 @@ title: FAQ
         </li>
         <li>
           Try increasing the <a href="settings#dbBulkSize">dbBulkSize</a> to a larger value.
-          Start with 4000000 (4MB), but we don't recommend larger then 20MB.
+          Start with 4000000 (4MB), but we don't recommend larger than 20MB.
         </li>
         <li>
           Try decreasing the <a href="settings#packetThreads">packetThreads</a> to a smaller value.
@@ -1658,7 +1658,7 @@ title: FAQ
           Make sure your Elasticsearch configuration files are ready for Elasticsearch 7. We do not provide sample Elasticsearch configurations, but here are some things to look out for:
           <ul>
             <li>You MUST add a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/discovery-settings.html#initial_master_nodes">cluster.initial_master_nodes</a>, and there may be other required discovery changes.</li>
-            <li>If you have more then 1,000 shards per node, you must set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/misc-cluster.html">cluster.max_shards_per_node</a>.</li>
+            <li>If you have more than 1,000 shards per node, you must set <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/misc-cluster.html">cluster.max_shards_per_node</a>.</li>
             <li>If you previously set <code>indices.breaker.total.limit</code>, you should unset it.</li>
             <li>You may want to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html">Elasticsearch 7.0 breaking changes</a>.</li>
           </ul>
@@ -2028,12 +2028,13 @@ logger.action.level = info</code></pre>
       <p>
         Once ILM/ISM is enabled, you no longer have to use the <code>db.pl expire</code> cron job but should occasionally run <code>db.pl optimize-admin</code>.
       </p>
+      <p>
         Arkime does NOT currently support the ILM/ISM auto rollover feature, for performance reasons when searching.
       </p>
       <p>
         These instructions assume you are using db.pl or Arkime UI to set up ILM/ISM and will use a special <code>molochtype</code> attribute name.
         You can also do this with Kibana to create the ILM/ISM config and not use the <code>molochtype</code> attribute name, but you will then need to do everything on your own.
-        In order for ILM/ISM work correctly with Arkime, follow these five important steps:
+        In order for ILM/ISM to work correctly with Arkime, follow these five important steps:
         <ol>
           <li>If you are using a hot/warm design or might in the future, for each Elasticsearch/OpenSearch node, add a line to your elasticsearch.yml file with <code>node.attr.molochtype: warm</code> or <code>node.attr.molochtype: hot</code></li>
           <li>Create the molochsessions and molochhistory ILM/ISM polices. This can be done easily with Kibana, or we recommend the <code>db.pl ilm</code> or <code>db.pl ism</code> command.</li>
@@ -2255,12 +2256,12 @@ logger.action.level = info</code></pre>
       <p>
         On modern commodity hardware, achieving throughput of 5 Gbps or more is easy, depending largely on the number of CPUs allocated to Arkime and the other tasks the machine is handling.
         The bottleneck in performance is almost always the speed of storing PCAP to disk!
-        If your disks or RAID can't keep up, you either need to not save as much PCAP using Arkime Rules and other options, select a faster RAID configuration and disks, or give Arkime dedicate disks.
+        If your disks or RAID can't keep up, you either need to not save as much PCAP using Arkime Rules and other options, select a faster RAID configuration and disks, or give Arkime dedicated disks.
         For further details, refer to the <a href="architecture">Architecture</a> and <a href="multihost">Multiple Host</a> sections.
         Arkime supports the utilization of multiple threads for both packet acquisition and packet processing.
       </p>
       <p>
-        A simple method to test a local RAID devicee:
+        A simple method to test a local RAID device:
         <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
         To test a NAS, leave off the oflag=direct and make sure you test with at least 3x the amount of memory so that cache isn't a factor:
         <pre><code>dd bs=256k count=150000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test</code></pre>
@@ -2376,7 +2377,7 @@ logger.action.level = info</code></pre>
           buf to max size and turning off most of the card's features. The features
           are not useful anyway, since we want to capture what is on the network
           instead of what the local OS sees. Example configuration:
-          <pre><code># Set ring buf size, see max with ethool -g eth0
+          <pre><code># Set ring buf size, see max with ethtool -g eth0
 ethtool -G eth0 rx 4096 tx 4096
 # Turn off feature, see available features with ethtool -k eth0
 ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
@@ -2392,7 +2393,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
         </h4>
         <p>
           Many network cards will drop packets if the packet MTU is larger than the interface MTU.
-          It is common when sniffing network taffic to have encapsulated packets that are larger than the default MTU of 1500.
+          It is common when sniffing network traffic to have encapsulated packets that are larger than the default MTU of 1500.
           Make sure the MTU of the capture interface is set to at least 1600 or 9216 if you are using jumbo frames.
         </p>
 
@@ -2442,7 +2443,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             <pre><code>dd bs=256k count=50000 if=/dev/zero of=/THE_ARKIME_PCAP_DIR/test oflag=direct</code></pre>
             This is the MAX disk performance. Run several times if desired and take
             the average. If you don't want to drop any packets, you shouldn't average
-            more then ~80% of the MAX disk performance. If using RAID and don't want
+            more than ~80% of the MAX disk performance. If using RAID and don't want
             drop packets during a future rebuild, ~60% is a better value. Remember
             that most network numbers will be in bits while the disk performance will
             be in bytes, so you'll need to adjust the values before comparing.
@@ -2500,11 +2501,11 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
             you expect?
           </li>
           <li>
-            <code>avgqu-sz</code> should be near or less then 1, otherwise linux is
+            <code>avgqu-sz</code> should be near or less than 1, otherwise linux is
             queueing instead of doing
           </li>
           <li>
-            await should be near or less then 10, otherwise the IO system is slow,
+            await should be near or less than 10, otherwise the IO system is slow,
             which will slow <code>capture</code> down.
           </li>
         </ul>
@@ -2618,7 +2619,7 @@ ethtool -K eth0 rx off tx off gs off tso off gso off</code></pre>
       <h4>Enable Arkime UI to upload</h4>
       <p>
         It is also possible to enable UI in Arkime to upload PCAP.
-        This is less efficient then just using <code>capture</code> directly, since it uploads the file and then runs <code>capture</code> for you.
+        This is less efficient than just using <code>capture</code> directly, since it uploads the file and then runs <code>capture</code> for you.
         Just uncomment the <a href="/settings#uploadcommand"><code>uploadCommand</code></a> in the config.ini file.
       </p>
 
@@ -2817,7 +2818,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           Arkime checks the <a href="/settings#packet-drop-ips"><code>packet-drop-ips</code></a> config section to see if
           the IPs involved are marked to be discarded. If there are only a few
           IPs to drop then <a href="/settings#bpf"><code>bpf=</code></a> should be used, otherwise this is
-          much more efficient then a huge bpf.
+          much more efficient than a huge bpf.
         </li>
         <li>
           For TCP packets, Arkime checks against previous matched against rules
@@ -2859,7 +2860,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           for the session the packet won't be saved.
         </li>
         <li>
-          If the number of packets for the session is greater then
+          If the number of packets for the session is greater than
           <a href="/settings#maxpackets">maxPackets</a> the session will be saved, a new linked session
           will be started for future packets. The beforeMiddleSave and
           beforeBothSave rules will be executed before saving.
@@ -2932,13 +2933,13 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </li>
         <li>
           Make sure the files in the file tab don't have <code>locked</code> set,
-          viewer won't deleted locked files
+          viewer won't delete locked files
         </li>
         <li>
           Try restarting viewer
         </li>
         <li>
-          If using seilnux (<code>sestatus</code>) temporarily disable it (<code>setenforce 0</code>) and see if that fixes the problem.
+          If using selinux (<code>sestatus</code>) temporarily disable it (<code>setenforce 0</code>) and see if that fixes the problem.
         </li>
       </ol>
 
@@ -3005,7 +3006,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         and send the data to another virtual NIC as the listening interface. In
         KVM, one issue is that it isn't possible to increase the buffer size past
         256 on the adapter using the Virtio network adapter (mentioned in another
-        part of the FAQ). Without Arkime capture will continuously crash. To
+        part of the FAQ). Without this, Arkime capture will continuously crash. To
         solve this in KVM, use the E1000 adapter, and configure the buffer size
         accordingly. Set up the SPAN port on Openvswitch to send traffic to it:
         <a href="https://www.rivy.org/2013/03/configure-a-mirror-port-on-open-vswitch/"
@@ -3482,11 +3483,11 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
         Since 4.2.0 MultiES supports the <code>caTrustFile</code> setting.
       </p>
       <p>
-        Priority to 4.2.0 you will need to create a file, for example <em>CAcerts.pem</em>, containing one or more
+        Prior to 4.2.0 you will need to create a file, for example <em>CAcerts.pem</em>, containing one or more
         trusted certificates in PEM format.
       </p>
       <p>
-        Then, you need start MutilES adding <strong>NODE_EXTRA_CA_CERTS</strong>
+        Then, you need start MultiES adding <strong>NODE_EXTRA_CA_CERTS</strong>
         environment variable specifying the path to file you just created, for
         example:
         <pre><code>NODE_EXTRA_CA_CERTS=./CAcerts.pem /opt/arkime/bin/node multies.js -c /opt/arkime/etc/config.ini -n allnode</pre></code>
@@ -3543,11 +3544,11 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
           </li>
           <li>
             Each <code>capture</code> writes a stats record every few
-            seconds that has the mapping from the nodename to the FDQN.
-            It is possible to override the FDQN with the <code>--host</code> option to capture.
+            seconds that has the mapping from the nodename to the FQDN.
+            It is possible to override the FQDN with the <code>--host</code> option to capture.
           </li>
           <li>
-            Each SPI (Session)record has a nodename in it, this NEVER changes for a session record and there is no way to update it.
+            Each SPI (Session) record has a nodename in it, this NEVER changes for a session record and there is no way to update it.
           </li>
         </ol>
         <p>
