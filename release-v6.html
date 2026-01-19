@@ -1,5 +1,5 @@
 ---
-title: V5!
+title: V6!
 ---
 
 <!DOCTYPE html>
@@ -71,29 +71,26 @@ title: V5!
               <a href="#sankey" class="no-decoration">Sankey</a>,
               <a href="#parliament" class="no-decoration">Parliament</a>,
               <a href="#users" class="no-decoration">Users</a>,
+              <a href="#spanning" class="no-decoration">Session Spanning</a>,
               Bug Fixes, and More
             </p>
 
             <p class="text-center mt-4">
               <a role="button"
                 class="bt btn-lg btn-primary no-decoration"
-                href="https://github.com/arkime/arkime/releases/tag/v6.0.0-RC1">
+                href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1">
                 ✨ Download Arkime 6 RC1 now! ✨
               </a>
             </p>
 
             <p class="lead text-justify mt-4">
-              The next evolution of network security is here!
-              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-RC1" class="no-decoration">release of Arkime 6 RC 1</a>!
-              Ge ready for ...
+              The next evolution of network visibility is here!
+              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">release of Arkime 6 RC 1</a>!
               This open-source network analysis and packet capture tool just got even better.
-              Our latest release offers new features, enhancements and bug fixes to speed up your incident response and empower your security and network teams to investigate and mitigate threats.
+              This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
             </p>
 
             <h3>Highlights of Arkime 6:</h3>
-            <p class="lead text-justify mt-4">
-
-            </p>
 
             <p class="lead text-justify mt-4">
               <strong>Performance, Performance, Performance:</strong>
@@ -101,23 +98,23 @@ title: V5!
               The three most noticeable improvements:
               <ul>
                 <li> <strong>Faster PCAP downloads</strong> - A top complaint from users was PCAP download speed, and we've addressed it head-on. In our tests we show at least 5x faster downloads compared to Arkime 5. </li>
-                <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster then with Arkime 5.
+                <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster than with Arkime 5. </li>
                 <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi threaded compression with OpenSearch/Elasticsearch and better memory allocation algorithms.</li>
               </ul>
             </p>
 
             <p class="lead text-justify mt-4">
               <strong>Code Modernization:</strong>
-              Much of the code used by the Arkime applications are 10+ years old or using old methodologies.
-              In Arkime 6 we've taken the opportunity to upgrade large pieces of the application to new methods so it is easier to maintain, has less security issues and easier to find folks to contribute to it.
+              Much of Arkime's codebase is over 10 years old.
+              In Arkime 6, we've modernized large portions of the application—making it easier to maintain, more secure, and more welcoming to new contributors.
               One of the largest tasks behind the scenes was upgrading all of the UI from the Vue2 to the Vue3 framework.
             </p>
 
             <p class="lead text-justify mt-4">
               <strong>Python:</strong>
               Capture can now use <a href="/python">Python</a> for its scripting engine!
-              This means you can write your own protocol decoders, classifiers and parsers in Python instead of C for capture!
-              We can't <strong>wait</strong> to see what the community builds with this new functionality.
+              Now you can write protocol decoders, classifiers, and parsers in Python instead of C!
+              We can't <strong>wait</strong> to see what the community creates with this new capability.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -148,7 +145,7 @@ title: V5!
                 <li> <strong>cont3xt:</strong>
                     <ul>
                       <li> UI Refresh </li>
-                      <li> Several new integrations: ThreadFox, Zetalytics, Domain Tools, crt.sh</li>
+                      <li> Several new integrations: ThreatFox, Zetalytics, Domain Tools, crt.sh</li>
                       <li> Improved search and highlighting </li>
                     </ul>
                 </li>
@@ -159,9 +156,10 @@ title: V5!
                     </ul>
                 </li>
               </ul>
+            </p>
 
             <p class="lead lead-lg text-justify text-center">
-              <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">
+              <a href="faq#how_do_i_upgrade_to_arkime_6" class="no-decoration">
                 Learn how to upgrade to Arkime 6 now!
               </a>
             </p>
@@ -175,7 +173,7 @@ title: V5!
                 <li class="list-group-item">You must be on v5.0.0 or later to upgrade to v6.x</li>
                 <li class="list-group-item">A db.pl upgrade is required when upgrading</li>
                 <li class="list-group-item">Arkime capture plugins must end with .so, .lua, or .py now</li>
-                <li class="list-group-item">The <a href="/settings#luaFiles>luaFiles"> setting now defaults to EMPTY</a></li>
+                <li class="list-group-item">The <a href="/settings#luaFiles">luaFiles</a> setting now defaults to EMPTY</li>
                 <li class="list-group-item">If the Lua plugin is enabled, any file ending in .lua in the parsers directories will be automatically loaded</li>
                 <li class="list-group-item">Capture now defaults to the <code>--scheme</code> method for reading offline pcaps, use <code>--libpcap</code> for previous behaviour</li>
                 <li class="list-group-item">Ubuntu 20.04 is no longer supported</li>
@@ -193,7 +191,7 @@ title: V5!
               </ul>
             </p>
             <p class="lead lead-lg text-center mt-4 pt-4">
-              <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-RC1" class="no-decoration">
+              <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">
                 View a detailed list of all the changes and download it now!
               </a>
             </p>
@@ -217,14 +215,14 @@ title: V5!
             </span>
           </h1>
           <img
-            alt="Arkime TabScreenshot"
+            alt="Arkime Tab Screenshot"
             class="screenshot-img"
             src="assets/v6-arkime-tab.png"
             style="border-radius: 10px;"
           />
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
-          We've added a name tab to Arkime's main interface to help users quickly identify top talkers, protocols, and other key metrics.
+          The new Arkime Tab gives you instant visibility into top talkers, protocols, and key metrics at a glance.
           This tab is totally customizable, allowing users to tailor which fields they want to save.
           Each metric can be displayed as a time graph, table, or pie chart, providing flexibility in data visualization.
         </div>
@@ -272,7 +270,7 @@ title: V5!
           />
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
-          Similiar to the SPI Graph treemap display, the Sankey diagram provides a visual representation of the connection between various pieces of data.
+          Like the SPI Graph treemap, Sankey diagrams visualize relationships between data points—making it easy to trace connections across your network traffic.
         </div>
       </div>
 
@@ -322,6 +320,29 @@ title: V5!
             This feature simplifies the process of managing user access and ensures consistency across different user groups.
             It is also now clear if a user configuration is overriding the role settings or not.
           </p>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="spanning">
+            Session Spanning
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          You can now view sessions spanning on Arkime graphs that will count a session in each bucket it occurred in.
+          Note: this feature requires the sessions to have been captured with Arkime 6.
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Session Spanning Screenshot"
+            class="screenshot-img"
+            src="assets/v6-spanning.png"
+            style="border-radius: 10px;"
+          />
         </div>
       </div>
 
