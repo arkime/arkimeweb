@@ -14,7 +14,7 @@ permalink: "/wise"
   </span>
 </div>
 
-<div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3" markdown="1">
+<div class="full-height-container with-footer pt-3 pe-2 ps-2 pb-3" markdown="1">
 
 # WISE - With Intelligence See Everything
 {: .no_toc.section-header.mt-1 }

@@ -5,7 +5,7 @@ permalink: "/roles"
 ---
 
 
-<div class="full-height-and-width-container with-footer pt-3 pr-5 pl-5 pb-3" markdown="1">
+<div class="full-height-and-width-container with-footer pt-3 pe-5 ps-5 pb-3" markdown="1">
 # Arkime Roles
 {: .section-header.mt-1 }
 

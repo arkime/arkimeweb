@@ -34,10 +34,13 @@ title: Home
   <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <meta name="twitter:url" value="http://arkime.com" />
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Bootstrap CSS https://getbootstrap.com/ -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/
+  <link rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  -->
   <!-- custom index page styles -->
   <link rel="stylesheet" type="text/css" href="index.css">
 
@@ -54,9 +57,8 @@ title: Home
 
     <!-- home -->
     <div id="home"
-      class="primary-theme-background p-nav-lg angle-background
-      angle-background-long">
-      <div class="row mb-2 mt-5">
+      class="primary-theme-background p-nav angle-background">
+      <div class="row mb-2">
         <div class="col-md-12">
           <h1 class="display-1 text-center">
             <img class="arkime-brand" />
@@ -66,21 +68,21 @@ title: Home
           <h1 class="display-4 text-center">
             Network Analysis & Packet Capture
           </h1>
-          <p class="lead lead-lg text-thin text-center mb-0">
+          <p class="lead lead-lg text-thin text-center mb-1">
             It's amazing what you discover when you start looking.
           </p>
         </div>
       </div>
-      <div class="row mb-3 mt-2">
+      <div class="row mt-2">
         <div class="col text-center">
-          <div class="btn-group mr-2 mb-2 dropdown">
+          <div class="btn-group me-2 mb-2 dropdown">
             <a type="button"
-              class="btn btn-primary btn-lg"
+              class="btn btn-primary btn-lg btn-interactive"
               href="https://github.com/arkime/arkime/releases/latest">
               Download
             </a>
-            <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only">Toggle Dropdown</span>
+            <button type="button" class="btn btn-lg btn-primary btn-interactive dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="https://github.com/arkime/arkime/releases/latest">
@@ -98,21 +100,20 @@ title: Home
             </div>
           </div>
           <a href="https://github.com/arkime/arkime"
-            class="btn btn-outline-info btn-lg mr-2 btn-fw mb-2">
+            class="btn btn-outline-info btn-lg me-2 mb-2 btn-interactive">
             GitHub
           </a>
           <a href="https://slackinvite.arkime.com/"
-            class="btn btn-outline-danger btn-lg mr-2 btn-fw mb-2">
+            class="btn btn-outline-danger btn-lg me-2 mb-2 btn-interactive">
             Slack Us
           </a>
           <a href="mini-arkimeetus"
-            class="btn btn-outline-warning btn-lg btn-fw mb-2">
+            class="btn btn-outline-warning btn-lg mb-2 btn-interactive">
             Office Hours
           </a>
         </div>
       </div>
-      <div class="shadow-lg p-3 mb-3 mr-5 ml-5 bg-white rounded">
-
+      <div class="p-3 me-5 ms-5 rounded">
         <!-- <div class="row">
           <div class="col-1 d-none d-lg-block">
             <h1 class="text-center primary-theme-text">
@@ -123,7 +124,7 @@ title: Home
             <div class="row">
               <div class="col">
                 <h4 class="display-4 text-center">
-                  <a href="arkimeet" class="no-decoration">
+                  <a href="arkimeet" class="no-decoration ">
                     2023 Arkimeet Conference
                   </a>
                 </h4>
@@ -146,45 +147,39 @@ title: Home
         </div>
         <hr> -->
         <div class="row align-items-center">
-          <div class="col-1 d-none d-lg-block">
-            <h1 class="text-center mb-0">✨</h1>
-          </div>
-          <div class="col-lg-10">
-            <h4 class="display-4 lead text-center mb-0">
-              <a href="release-v6" class="no-decoration">
-                Arkime 6 is HERE!
+          <div class="col">
+            <p class="text-center lead lead-lg mt-0 mb-0">
+              <a href="release-v6" class="special-link">
+                ✨ Arkime 6 RC1 is HERE! ✨
               </a>
-            </h4>
-          </div>
-          <div class="col-1 d-none d-lg-block">
-            <h1 class="text-center mb-0">✨</h1>
+            </p>
           </div>
         </div>
       </div>
-      <div class="jumbotron jumbotron-white mb-3 mt-3 ml-5 mr-5 pt-3 pb-3">
+      <div class="jumbotron rounded-5 jumbotron-white mb-0 mt-2 ms-5 me-5 pt-3 pb-3" style="border: 2px solid rgba(0,0,0,0.8);">
         <p class="lead text-center text-muted mb-2">
           Augment your current security infrastructure to store and index network traffic in standard PCAP format.
         </p>
         <div id="feature-carousel" class="text-center">
-          <div class="feature-item" data-index="0">
+          <div class="feature-item active" data-index="0">
             <span class="fa fa-eye fa-lg primary-theme-text"></span>
-            <strong class="primary-theme-text ml-2">Visibility</strong>
-            <span class="text-muted ml-2 small">— Gain the network data essential for investigating incidents and exposing the full attack scope.</span>
+            <strong class="primary-theme-text ms-2">Visibility</strong>
+            <span class="text-muted ms-2 small">— Gain the network data essential for investigating incidents and exposing the full attack scope.</span>
           </div>
-          <div class="feature-item d-none" data-index="1">
+          <div class="feature-item" data-index="1">
             <span class="fa fa-expand fa-lg primary-theme-text"></span>
-            <strong class="primary-theme-text ml-2">Scalability</strong>
-            <span class="text-muted ml-2 small">— Deploy across clustered systems, scaling to hundreds of gigabits per second.</span>
+            <strong class="primary-theme-text ms-2">Scalability</strong>
+            <span class="text-muted ms-2 small">— Deploy across clustered systems, scaling to hundreds of gigabits per second.</span>
           </div>
-          <div class="feature-item d-none" data-index="2">
+          <div class="feature-item" data-index="2">
             <span class="fa fa-hand-pointer-o fa-lg primary-theme-text"></span>
-            <strong class="primary-theme-text ml-2">Productivity</strong>
-            <span class="text-muted ml-2 small">— Respond, reconstruct, and investigate threats quickly and precisely.</span>
+            <strong class="primary-theme-text ms-2">Productivity</strong>
+            <span class="text-muted ms-2 small">— Respond, reconstruct, and investigate threats quickly and precisely.</span>
           </div>
-          <div class="feature-item d-none" data-index="3">
+          <div class="feature-item" data-index="3">
             <span class="fa fa-cloud-download fa-lg primary-theme-text"></span>
-            <strong class="primary-theme-text ml-2">Open Source</strong>
-            <span class="text-muted ml-2 small">— Transparency, cost-effectiveness, flexibility, and community support.</span>
+            <strong class="primary-theme-text ms-2">Open Source</strong>
+            <span class="text-muted ms-2 small">— Transparency, cost-effectiveness, flexibility, and community support.</span>
           </div>
         </div>
         <div class="text-center mt-2">
@@ -202,12 +197,12 @@ title: Home
       <h1 class="mb-5"
         style="font-weight:200;margin-top:-70px;position:relative;">Arkime
         Demo</h1>
-      <a class="btn btn-primary btn-lg"
+      <a class="btn btn-primary btn-lg btn-interactive btn-pulse"
         href="https://demo.arkime.com/sessions?date=-1">
         Check it out!
       </a>
       <p class="mb-0 mt-2 small">
-        <a href="/demo" rel="nofollow" class="no-decoration">
+        <a href="/demo" rel="nofollow" class="no-decoration ">
           More demos
         </a>
         of our latest commit builds.
@@ -485,7 +480,7 @@ title: Home
             </h1>
             <p class="lead mb-3">
               Parliament contains a grouped list of your Arkime clusters with links, ES health, and issues for each.
-              <a href="parliament" class="no-decoration">
+              <a href="parliament" class="no-decoration ">
                 Learn more about Parliament</a>!
             </p>
             <img
@@ -523,7 +518,7 @@ title: Home
             </h1>
             <p class="lead mb-3">
               Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
-              <a href="cont3xt" class="no-decoration">
+              <a href="cont3xt" class="no-decoration ">
                 Learn more about Cont3xt</a>!
             </p>
             <img
@@ -572,12 +567,12 @@ title: Home
         <h1 class="mb-5"
           style="font-weight:200;margin-top:-70px;position:relative;">Cont3xt
           Demo</h1>
-        <a class="btn btn-primary btn-lg"
+        <a class="btn btn-primary btn-lg btn-interactive btn-pulse"
           href="https://cont3xt.arkime.com">
           Check it out!
         </a>
         <p class="mb-0 mt-2 small">
-          <a href="/demo" rel="nofollow" class="no-decoration">
+          <a href="/demo" rel="nofollow" class="no-decoration ">
             More demos
           </a>
           of our latest commit builds.
@@ -591,7 +586,7 @@ title: Home
     <a id="help"
       class="anchor">
     </a>
-    <div class="pt-5 mr-5 ml-5 pb-5">
+    <div class="pt-5 me-5 ms-5 pb-5">
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-4 text-center mb-4">
@@ -661,11 +656,11 @@ title: Home
         </div>
         <div class="row">
           <div class="col text-center mt-4">
-            <span class="fa fa-question-circle mr-2"></span>
+            <span class="fa fa-question-circle me-2"></span>
             Still have questions? Join our
             <a href="mini-arkimeetus" class="no-decoration">
               Office Hours</a>!
-            <span class="fa fa-question-circle ml-2"></span>
+            <span class="fa fa-question-circle ms-2"></span>
           </div>
         </div>
       </div>
@@ -701,7 +696,8 @@ title: Home
   <script>
     // page loaded
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (el) { return new bootstrap.Tooltip(el); });
 
       function setupError () {
         $('.downloads-error').show();
@@ -715,10 +711,11 @@ title: Home
       // Feature carousel
       let currentFeature = 0;
       const totalFeatures = 4;
+      let carouselTimer;
 
       function showFeature(index) {
-        $('.feature-item').addClass('d-none');
-        $('.feature-item[data-index="' + index + '"]').removeClass('d-none');
+        $('.feature-item').removeClass('active');
+        $('.feature-item[data-index="' + index + '"]').addClass('active');
         $('.feature-dot').removeClass('active');
         $('.feature-dot[data-index="' + index + '"]').addClass('active');
       }
@@ -728,14 +725,20 @@ title: Home
         showFeature(currentFeature);
       }
 
+      function resetTimer() {
+        clearInterval(carouselTimer);
+        carouselTimer = setInterval(nextFeature, 10000);
+      }
+
       // Click on dots to navigate
       $('.feature-dot').on('click', function() {
         currentFeature = parseInt($(this).data('index'));
         showFeature(currentFeature);
+        resetTimer();
       });
 
       // Auto-cycle every 10 seconds
-      setInterval(nextFeature, 10000);
+      carouselTimer = setInterval(nextFeature, 10000);
     });
   </script>
 
