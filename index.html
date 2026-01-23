@@ -54,8 +54,9 @@ title: Home
 
     <!-- home -->
     <div id="home"
-      class="primary-theme-background p-nav-lg angle-background angle-background-long">
-      <div class="row mb-4">
+      class="primary-theme-background p-nav-lg angle-background
+      angle-background-long">
+      <div class="row mb-2 mt-5">
         <div class="col-md-12">
           <h1 class="display-1 text-center">
             <img class="arkime-brand" />
@@ -65,12 +66,12 @@ title: Home
           <h1 class="display-4 text-center">
             Network Analysis & Packet Capture
           </h1>
-          <p class="lead lead-lg text-thin text-center">
+          <p class="lead lead-lg text-thin text-center mb-0">
             It's amazing what you discover when you start looking.
           </p>
         </div>
       </div>
-      <div class="row mb-5 mt-3">
+      <div class="row mb-3 mt-2">
         <div class="col text-center">
           <div class="btn-group mr-2 mb-2 dropdown">
             <a type="button"
@@ -110,7 +111,7 @@ title: Home
           </a>
         </div>
       </div>
-      <div class="shadow-lg p-4 mb-5 mr-5 ml-5 bg-white rounded">
+      <div class="shadow-lg p-3 mb-3 mr-5 ml-5 bg-white rounded">
 
         <!-- <div class="row">
           <div class="col-1 d-none d-lg-block">
@@ -144,125 +145,74 @@ title: Home
           </div>
         </div>
         <hr> -->
-        <div class="row">
-          <div class="col-1 d-none d-lg-block mt-4">
-            <h1 class="text-center">
-              ✨
-            </h1>
+        <div class="row align-items-center">
+          <div class="col-1 d-none d-lg-block">
+            <h1 class="text-center mb-0">✨</h1>
           </div>
           <div class="col-lg-10">
-            <div class="row">
-              <div class="col">
-                <h4 class="display-3 lead text-center">
-                  <a href="release-v5" class="no-decoration">
-                    Arkime 5 is HERE!
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <!--
-            <div class="row mt-2">
-              <div class="col">
-                <h4 class="lead text-center">
-                  Meet the developers and other Arkimists at our
-                  <a href="mini-arkimeetus" class="no-decoration">
-                    Office Hours</a>.
-                </h4>
-              </div>
-            </div>
-            -->
+            <h4 class="display-4 lead text-center mb-0">
+              <a href="release-v6" class="no-decoration">
+                Arkime 6 is HERE!
+              </a>
+            </h4>
           </div>
-          <div class="col-1 d-none d-lg-block mt-4">
-            <h1 class="text-center">
-              ✨
-            </h1>
+          <div class="col-1 d-none d-lg-block">
+            <h1 class="text-center mb-0">✨</h1>
           </div>
         </div>
       </div>
-      <div class="jumbotron jumbotron-white mb-5 mt-5 ml-5 mr-5">
-        <p class="lead text-center text-muted">
-          Augment your current security infrastructure to store and
-          index network traffic in standard PCAP format.
-          <br>
-          <!-- Arkime offers full network visibility, speeding up incident response and empowering security teams to investigate and mitigate threats. -->
-          Arkime offers full network visibility, facilitating the swift identification and resolution of security and network issues.
+      <div class="jumbotron jumbotron-white mb-3 mt-3 ml-5 mr-5 pt-3 pb-3">
+        <p class="lead text-center text-muted mb-2">
+          Augment your current security infrastructure to store and index network traffic in standard PCAP format.
         </p>
-        <div class="row mt-5">
-          <div class="col-lg-3 col-md-6">
-            <span class="fa fa-eye fa-3x">
-            </span>
-            <h5 class="primary-theme-text mt-1">
-              Visibility
-            </h5>
-            <p>
-              Security teams gain access to the necessary network visibility data essential for responding to and investigating incidents to expose the full attack scope.
-            </p>
+        <div id="feature-carousel" class="text-center">
+          <div class="feature-item" data-index="0">
+            <span class="fa fa-eye fa-lg primary-theme-text"></span>
+            <strong class="primary-theme-text ml-2">Visibility</strong>
+            <span class="text-muted ml-2 small">— Gain the network data essential for investigating incidents and exposing the full attack scope.</span>
           </div>
-          <div class="col-lg-3 col-md-6">
-            <span class="fa fa-expand fa-3x">
-            </span>
-            <h5 class="primary-theme-text mt-1">
-              Scalability
-            </h5>
-            <p>
-              Designed to be deployed across multiple clustered systems, providing the ability to scale to hundreds of gigabits per second.
-            </p>
+          <div class="feature-item d-none" data-index="1">
+            <span class="fa fa-expand fa-lg primary-theme-text"></span>
+            <strong class="primary-theme-text ml-2">Scalability</strong>
+            <span class="text-muted ml-2 small">— Deploy across clustered systems, scaling to hundreds of gigabits per second.</span>
           </div>
-          <div class="col-lg-3 col-md-6">
-            <span class="fa fa-hand-pointer-o fa-3x cursor-pointer">
-            </span>
-            <h5 class="primary-theme-text mt-1">
-              Productivity
-            </h5>
-            <p>
-              Allows security analysts to respond, reconstruct, investigate and confirm information about the threats within your network and take the appropriate response quickly and precisely.
-            </p>
+          <div class="feature-item d-none" data-index="2">
+            <span class="fa fa-hand-pointer-o fa-lg primary-theme-text"></span>
+            <strong class="primary-theme-text ml-2">Productivity</strong>
+            <span class="text-muted ml-2 small">— Respond, reconstruct, and investigate threats quickly and precisely.</span>
           </div>
-          <div class="col-lg-3 col-md-6">
-            <span class="fa fa-cloud-download fa-3x">
-            </span>
-            <h5 class="primary-theme-text mt-1">
-              Open Source
-            </h5>
-            <p>
-              Provides users with the benefits of transparency, cost-effectiveness, flexibility, and community support.
-            </p>
+          <div class="feature-item d-none" data-index="3">
+            <span class="fa fa-cloud-download fa-lg primary-theme-text"></span>
+            <strong class="primary-theme-text ml-2">Open Source</strong>
+            <span class="text-muted ml-2 small">— Transparency, cost-effectiveness, flexibility, and community support.</span>
           </div>
         </div>
+        <div class="text-center mt-2">
+          <span class="feature-dot active" data-index="0"></span>
+          <span class="feature-dot" data-index="1"></span>
+          <span class="feature-dot" data-index="2"></span>
+          <span class="feature-dot" data-index="3"></span>
+        </div>
       </div>
-      <div class="mb-5">&nbsp;</div>
     </div> <!-- /home -->
-
+      
     <!-- demo -->
-    <a id="demo"
-      class="anchor anchor-offset-more">
-    </a>
-    <div class="demo">
-      <h1 class="display-4 text-center d-none d-sm-none d-md-block">
-        Arkime Demo
-      </h1>
-      <h1 class="display-4 text-center d-block d-md-none demo-small-screen">
-        Arkime<br>Demo
-      </h1>
-      <p class="text-center">
-        <a class="btn btn-primary btn-lg"
-          href="https://demo.arkime.com/sessions?date=-1">
-          Check it out!
+    <a id="demo" class="anchor"></a>
+    <div class="text-center pb-4">
+      <h1 class="mb-5"
+        style="font-weight:200;margin-top:-70px;position:relative;">Arkime
+        Demo</h1>
+      <a class="btn btn-primary btn-lg"
+        href="https://demo.arkime.com/sessions?date=-1">
+        Check it out!
+      </a>
+      <p class="mb-0 mt-2 small">
+        <a href="/demo" rel="nofollow" class="no-decoration">
+          More demos
         </a>
+        of our latest commit builds.
       </p>
-      <p class="lead text-center mb-0">
-        Want to see the latest and greatest?
-        <br>
-        <a href="/demo"
-          rel="nofollow"
-          class="no-decoration">
-          Check out our demo page
-        </a>
-        with demos of our latest commit builds.
-      </p>
-    </div> <!-- /demo -->
-
-    <hr>
+    </div>
 
     <!-- screenshots -->
     <a id="screenshots"
@@ -270,6 +220,7 @@ title: Home
     </a>
     <div class="mt-5">
       <!-- sessions -->
+      <hr>
       <div class="container-fluid mb-5">
         <div class="row d-flex align-items-end">
           <div class="col-lg-8 col-md-7 align-self-start">
@@ -344,7 +295,7 @@ title: Home
       </div> <!-- /sessions -->
       <!-- spiview -->
       <hr>
-      <div class="container-fluid mt-5 mb-5">
+      <div class="container-fluid mb-5">
         <div class="row d-flex align-items-end">
           <div class="col-lg-8 col-md-7 align-self-start">
             <h1 class="display-4 mb-3 dark-primary-theme-text">
@@ -563,7 +514,8 @@ title: Home
         </div>
       </div> <!-- /parliament -->
       <!-- context -->
-      <div class="container-fluid primary-theme-background angle-background angle-background-long pt-4 mb-4">
+      <div class="container-fluid primary-theme-background angle-background
+        angle-background-long pt-4">
         <div class="row d-flex align-items-end">
           <div class="col-lg-8 col-md-7 align-self-start">
             <h1 class="display-4 mb-3 dark-primary-theme-text">
@@ -615,30 +567,20 @@ title: Home
             </p>
           </div>
         </div>
-        <br><br><br>
       </div> <!-- /cont3xt -->
-      <div class="demo cont3xt-demo">
-        <h1 class="display-4 text-center d-none d-sm-none d-md-block">
-          Cont3xt Demo
-        </h1>
-        <h1 class="display-4 text-center d-block d-md-none demo-small-screen">
-          Cont3xt<br>Demo
-        </h1>
-        <p class="text-center">
-          <a class="btn btn-primary btn-lg"
-            href="https://cont3xt.arkime.com">
-            Check it out!
+      <div class="text-center pb-4">
+        <h1 class="mb-5"
+          style="font-weight:200;margin-top:-70px;position:relative;">Cont3xt
+          Demo</h1>
+        <a class="btn btn-primary btn-lg"
+          href="https://cont3xt.arkime.com">
+          Check it out!
+        </a>
+        <p class="mb-0 mt-2 small">
+          <a href="/demo" rel="nofollow" class="no-decoration">
+            More demos
           </a>
-        </p>
-        <p class="lead text-center mb-0">
-          Want to see the latest and greatest?
-          <br>
-          <a href="/demo"
-            rel="nofollow"
-            class="no-decoration">
-            Check out our demo page
-          </a>
-          with demos of our latest commit builds.
+          of our latest commit builds.
         </p>
       </div> <!-- /demo -->
     </div> <!-- /screenshots -->
@@ -769,6 +711,31 @@ title: Home
       function play () {
         document.getElementById('audio').play();
       }
+
+      // Feature carousel
+      let currentFeature = 0;
+      const totalFeatures = 4;
+
+      function showFeature(index) {
+        $('.feature-item').addClass('d-none');
+        $('.feature-item[data-index="' + index + '"]').removeClass('d-none');
+        $('.feature-dot').removeClass('active');
+        $('.feature-dot[data-index="' + index + '"]').addClass('active');
+      }
+
+      function nextFeature() {
+        currentFeature = (currentFeature + 1) % totalFeatures;
+        showFeature(currentFeature);
+      }
+
+      // Click on dots to navigate
+      $('.feature-dot').on('click', function() {
+        currentFeature = parseInt($(this).data('index'));
+        showFeature(currentFeature);
+      });
+
+      // Auto-cycle every 10 seconds
+      setInterval(nextFeature, 10000);
     });
   </script>
 

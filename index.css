@@ -2,7 +2,7 @@
 :root {
   --primary-theme-text-color: #66B689;
   --primary-theme-dark-text-color: #228C50;
-  --primary-theme-background-color: #EDF8FF;
+  --primary-theme-background-color: #E2EDF5;
   --secondary-theme-background-color: #66b68926;
   --primary-theme-color: #004C83;
   --primary-theme-light-color: #0084e4;
@@ -44,14 +44,9 @@
   content: url('assets/spiview.png');
 }
 
-div.demo {
-  top: -190px;
-  position: relative;
-  margin-bottom: -100px;
-}
 div.demo > h1 {
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 1rem;
 }
 div.demo > h1.demo-small-screen {
   margin-top: -20px;
@@ -1131,4 +1126,25 @@ ul.list-group.angle-list > li.list-group-item {
   font-family: monospace;
   border-left: 2px solid var(--primary-theme-color);
   clip-path: polygon(99% 0, 100% 50%, 99% 100%, 0 100%, 0 0);
+}
+
+/* feature carousel styles ---------- */
+.feature-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.feature-dot:hover {
+  background-color: #999;
+}
+.feature-dot.active {
+  background-color: var(--primary-theme-color);
+}
+.feature-item {
+  transition: opacity 0.3s ease;
 }
