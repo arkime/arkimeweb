@@ -173,7 +173,7 @@ The Python Arkime Session module has methods for dealing with sessions. The API 
 
 ## Methods
 
-### add_int(session, fieldPosOrExp, value, Returns, bool)
+### add_int(session, fieldPosOrExp, value)
 
 Add an integer value to a session field.
 
@@ -190,7 +190,7 @@ Optimized version of add_string(session, 'protocol', protocol).
 * session: The session object from the classifyCb or parserCb.
 * protocol: The protocol string to add to the session.
 
-### add_string(session, fieldPosOrExp, value, Returns, bool)
+### add_string(session, fieldPosOrExp, value)
 
 Add a string value to a session field.
 
@@ -214,7 +214,7 @@ The session may be freed when the reference count reaches zero.
 
 * session: The session object previously passed to incref.
 
-### get(session, fieldPosOrExp, Returns)
+### get(session, fieldPosOrExp)
 
 Retrieve the value of a session field.
 
@@ -223,7 +223,7 @@ Retrieve the value of a session field.
  The field value. Returns a list for multi-value fields, a single value for single-value
  fields, or None if the field is not set.
 
-### get_attr(session, key, Returns)
+### get_attr(session, key)
 
 Retrieve a Python object previously associated with the session via set_attr.
 
@@ -231,7 +231,7 @@ Retrieve a Python object previously associated with the session via set_attr.
 * key: The attribute key used in set_attr.
  The stored Python object, or None if the key does not exist.
 
-### has_protocol(session, protocol, Returns, bool)
+### has_protocol(session, protocol)
 
 Check if a protocol has been added to the session.
 
@@ -325,7 +325,7 @@ Retrieve the value of a packet field.
   - writerFileNum - Integer - The writer file number from files index
   - writerFilePos - Integer - The offset in the writer file
 
-### run_ethernet_cb(batch, packet, packetBytes, type, description, Returns, PacketRC)
+### run_ethernet_cb(batch, packet, packetBytes, type, description)
 
 Continue processing a packet at the Ethernet layer. Calls the registered callback for the ethertype.
 
@@ -337,7 +337,7 @@ Continue processing a packet at the Ethernet layer. Calls the registered callbac
 
 Returns PacketRC: The result from the ethertype handler, or UNKNOWN_ETHER if no handler registered.
 
-### run_ip_cb(batch, packet, packetBytes, type, description, Returns, PacketRC)
+### run_ip_cb(batch, packet, packetBytes, type, description)
 
 Continue processing a packet at the IP layer. Calls the registered callback for the IP protocol.
 

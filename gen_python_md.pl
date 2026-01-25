@@ -250,6 +250,7 @@ sub print_functions {
                 my $orig_line = $line;
                 $line =~ s/^\s*|\s*$//g;
                 if ($line =~ /^Args:/) { $in_a = 1; next; }
+                if ($line =~ /^Returns:/) { $in_a = 0; next; }
                 if ($in_a && $line =~ /^(\w+):/) {
                     my $arg_name = $1;
                     # Only treat as new arg if at arg indent level (8 spaces typically)
