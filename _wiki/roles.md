@@ -11,7 +11,8 @@ permalink: "/roles"
 
 In Arkime 4.0 the concept of Roles was introduced to Arkime.
 We will be moving our permission model over to use roles.
-Starting with Arkime 4.3 we have strengthed the roles and clearly outlined the rules.
+Starting with Arkime 4.3 we have strengthened the roles and clearly outlined the rules.
+Starting with Arkime 6, system roles and many user permissions now support inheritance. For each permission, you can either force a specific value or inherit it from the user's assigned roles.
 
 There are two classes of roles: System defined roles and User defined roles.
 
