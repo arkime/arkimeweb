@@ -179,15 +179,9 @@ if ($arkime_content =~ /API_VERSION: int/) {
 
 # PortKind
 print $out "\n### PortKind - The PortKind for register_port_classifier. Bitwise OR the values together to match multiple ports.\n";
-while ($arkime_content =~ /(PORT_\w+): PortKind/g) {
+while ($arkime_content =~ /^(PORT_\w+):\s*PortKind\s*#\s*(.*)$/gm) {
     my $name = $1;
-    my $desc = "";
-    $desc = "Match on udp src port" if $name =~ /UDP_SRC/;
-    $desc = "Match on udp dst port" if $name =~ /UDP_DST/;
-    $desc = "Match on tcp src port" if $name =~ /TCP_SRC/;
-    $desc = "Match on tcp dst port" if $name =~ /TCP_DST/;
-    $desc = "Match on sctp src port" if $name =~ /SCTP_SRC/;
-    $desc = "Match on sctp dst port" if $name =~ /SCTP_DST/;
+    my $desc = $2;
     print $out " * $name : Integer - $desc\n";
 }
 
@@ -251,11 +245,21 @@ sub print_functions {
             my $d_copy = $doc;
             $d_copy =~ s/^\s*"""\s*//; $d_copy =~ s/\s*"""\s*$//;
             my $in_a = 0;
+            my $arg_indent = 0;
             foreach my $line (split /\n/, $d_copy) {
-                $line =~ s/^\s*|\u005Cs*$//g;
+                my $orig_line = $line;
+                $line =~ s/^\s*|\s*$//g;
                 if ($line =~ /^Args:/) { $in_a = 1; next; }
+                if ($line =~ /^Returns:/) { $in_a = 0; next; }
                 if ($in_a && $line =~ /^(\w+):/) {
-                    push @doc_args, $1;
+                    my $arg_name = $1;
+                    # Only treat as new arg if at arg indent level (8 spaces typically)
+                    $orig_line =~ /^(\s*)/;
+                    my $indent = length($1);
+                    if ($arg_indent == 0) { $arg_indent = $indent; }
+                    if ($indent <= $arg_indent) {
+                        push @doc_args, $arg_name;
+                    }
                 }
             }
             
@@ -295,24 +299,47 @@ sub print_functions {
         print $out "\n### $func->{sig}\n";
         print $out "$func->{desc}\n";
         
-        # Args
+        # Args and Returns
         my $in_args = 0;
+        my $in_returns = 0;
         my $current_arg = undef;
+        my $arg_indent = 0;
         foreach my $line (split /\n/, $func->{d_copy}) {
-            $line =~ s/^\s*|\u005Cs*$//g;
-            if ($line =~ /^Args:/) { $in_args = 1; next; }
-                        if ($in_args) {
-                             if ($line =~ /^(\w+):\s*(.*)/) {
-                                 $current_arg = $1;
-                                 print $out "* $current_arg: $2\n";
-                             } elsif (defined $current_arg && $line ne "") {
-            
-                     if ($line =~ /^-\s*/) {
-                         print $out "  $line\n";
-                     } else {
-                         print $out " $line\n";
-                     }
-                 }
+            my $orig_line = $line;
+            $line =~ s/^\s*|\s*$//g;
+            if ($line =~ /^Args:/) { $in_args = 1; $in_returns = 0; next; }
+            if ($line =~ /^Returns:/) { $in_args = 0; $in_returns = 1; $arg_indent = 0; next; }
+            if ($in_args) {
+                $orig_line =~ /^(\s*)/;
+                my $indent = length($1);
+                if ($line =~ /^(\w+):\s*(.*)/) {
+                    if ($arg_indent == 0) { $arg_indent = $indent; }
+                    if ($indent <= $arg_indent) {
+                        $current_arg = $1;
+                        print $out "* $current_arg: $2\n";
+                    } elsif (defined $current_arg) {
+                        print $out "  $line\n";
+                    }
+                } elsif (defined $current_arg && $line ne "") {
+                    if ($line =~ /^-\s*/) {
+                        print $out "  $line\n";
+                    } else {
+                        print $out " $line\n";
+                    }
+                }
+            } elsif ($in_returns && $line ne "") {
+                $orig_line =~ /^(\s*)/;
+                my $indent = length($1);
+                if ($line =~ /^(\w+):\s*(.*)/) {
+                    if ($arg_indent == 0) { $arg_indent = $indent; }
+                    if ($indent <= $arg_indent) {
+                        print $out "\nReturns $1: $2\n";
+                    } else {
+                        print $out " $line\n";
+                    }
+                } else {
+                    print $out " $line\n";
+                }
             }
         }
     }
@@ -354,14 +381,9 @@ if ($packet_content =~ /"""(.*?)"""/s) {
 print $out "\n## Constants\n";
 print $out "\n### PacketRC\n";
 print $out "The return values for a packetCb callback.\n";
-while ($packet_content =~ /(\w+):\s*PacketRC/g) {
+while ($packet_content =~ /^(\w+):\s*PacketRC\s*#\s*(.*)$/gm) {
     my $name = $1;
-    my $desc = "";
-    $desc = "Process the packet normally" if $name eq "DO_PROCESS";
-    $desc = "The packet is corrupt" if $name eq "CORRUPT";
-    $desc = "The packet is unknown and can't be processed" if $name eq "UNKNOWN";
-    $desc = "The packet should not be processed but can be freed" if $name eq "DONT_PROCESS";
-    $desc = "The packet should not be processed and should not be freed" if $name eq "DONT_PROCESS_OR_FREE";
+    my $desc = $2;
     print $out " * $name : Integer - $desc\n";
 }
 

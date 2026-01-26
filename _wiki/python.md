@@ -28,54 +28,71 @@ The Python Arkime module has high level methods to register callbacks for packet
  * API_VERSION : Integer - The Arkime API version from arkime.h
 
 ### PortKind - The PortKind for register_port_classifier. Bitwise OR the values together to match multiple ports.
- * PORT_UDP_SRC : Integer - Match on udp src port
- * PORT_UDP_DST : Integer - Match on udp dst port
- * PORT_TCP_SRC : Integer - Match on tcp src port
- * PORT_TCP_DST : Integer - Match on tcp dst port
- * PORT_SCTP_SRC : Integer - Match on sctp src port
- * PORT_SCTP_DST : Integer - Match on sctp dst port
+ * PORT_UDP_SRC : Integer - Match UDP source port
+ * PORT_UDP_DST : Integer - Match UDP destination port
+ * PORT_TCP_SRC : Integer - Match TCP source port
+ * PORT_TCP_DST : Integer - Match TCP destination port
+ * PORT_SCTP_SRC : Integer - Match SCTP source port
+ * PORT_SCTP_DST : Integer - Match SCTP destination port
 
 ## Callbacks
 
 ### classifyCb(session, packetBytes, packetLen, direction)
 
-This callback is called for the first packet of a session in each direction that matches the tcp/udp/port registered classifiers. The callback should look at the bytes and see if it understand the protocol. If it does it will usually call the arkime_session.ad_protocol and/or arkime_session.register_parser methods.
+Classifier callback for identifying protocols. Called for the first packet in each direction
+that matches a registered tcp/udp/sctp/port classifier. The callback should look at the bytes
+and see if it understands the protocol. If it does it will usually call arkime_session.add_protocol()
+and/or arkime_session.register_parser().
 
-* session: The opaque session object, used with any arkime_session module methods.
-* packetBytes: The memory view of the packet bytes; only valid during the callback.
-* packetLen: The length of the packet.
-* direction: The direction of the packet; 0 for client to server, 1 for server to client.
+* session: Opaque session handle, use with arkime_session module methods.
+* packetBytes: Read-only memoryview of packet bytes; only valid during callback.
+* packetLen: Length of the packet in bytes.
+* which: For TCP/UDP: 0 = client to server, 1 = server to client.
+ For SCTP: direction in bit 0, stream ID in upper bits (use which & 1 for direction).
 
 ### long parserCb(session, packetBytes, packetLen, direction)
 
-This callback is called for the every packet of a session in each direction where the callback has been registered using arkime_session.register_parser. Return -1 to unregister the parser for the session, 0 is normal case or positive value for the number of bytes consume if this protocol wraps others (rare).
+Parser callback for protocol dissection. Called for every packet of a session in each direction
+after being registered with arkime_session.register_parser().
 
-* session: The opaque session object, used with any arkime_session module methods.
-* packetBytes: The memory view of the packet bytes; only valid during the callback.
-* packetLen: The length of the packet.
-* direction: The direction of the packet; 0 for client to server, 1 for server to client.
+* session: Opaque session handle, use with arkime_session module methods.
+* packetBytes: Read-only memoryview of packet bytes; only valid during callback.
+* packetLen: Length of the packet in bytes.
+* which: For TCP/UDP: 0 = client to server, 1 = server to client.
+ For SCTP: direction in bit 0, stream ID in upper bits (use which & 1 for direction).
+* Returns: 
+  -1: Unregister parser (no more callbacks for this session)
+* 0: Normal case, continue receiving packets
+ >0: Number of bytes consumed (used when this protocol wraps others)
 
 ### saveCb(session, final)
 
-This callback is used for both pre_save and save callbacks.
+Session save callback. Used for both pre_save and save callbacks.
 
-* session: The opaque session object, used with any arkime_session module methods.
-* final: True if this is the final session save callback, False if there are more linked sessions.
+* session: Opaque session handle, use with arkime_session module methods.
+* final: Non-zero if this is the final save for this session, 0 if more linked sessions follow.
 
 ## Methods
 
 ### fieldPos field_define(fieldExpression, fieldDefinition)
 
-Create a new field that can be used in sessions. This method returns a fieldPosition that can be used in other calls for faster field access.
+Create a new field that can be used in sessions. Must be called at startup, not from callbacks.
 
-* fieldExpression: The expression used in viewer to access the field.
-* fieldDefinition: The definition of the field from custom-fields.
+* fieldExpression: The expression used in viewer to access the field (e.g., "myproto.field").
+* fieldDefinition: The field definition in custom-fields format.
+  Format: "db:<esfield>;kind:<type>;friendly:<name>;count:<bool>;help:<text>"
+  Example: "db:myproto.field;kind:termfield;friendly:My Field;count:true;help:Description"
+  Types: termfield, integer, ip, lotermfield, uptermfield, seconds, textfield
+
+Returns int: The field position for use with add_string/add_int (faster than using expression string).
 
 ### fieldPos field_get(fieldExpression)
 
-Retrieve the field position for a field expression.
+Retrieve the field position for a previously defined field expression.
 
-* fieldExpression: The expression used in viewer to access the field.
+* fieldExpression: The expression used in viewer to access the field (e.g., "myproto.field").
+
+Returns int: The field position, or -1 if the field does not exist.
 
 ### register_port_classifier(name, port, portKind, classifyCb)
 
@@ -88,13 +105,17 @@ Register a classifier that matches on a specific port and protocol type. This us
 
 ### register_pre_save(saveCb)
 
-saveCb: The callback to call when the session is going to be saved to the database but before some housekeeping is done, such as running the save rules.
+Register a callback to be called before a session is saved to the database.
+Called before housekeeping such as running save rules, so fields added here can trigger rules.
 
+* saveCb: The callback function with signature (session, final) -> None.
 
 ### register_save(saveCb)
 
-saveCb: The callback to call when the session is being saved to the database.
+Register a callback to be called when a session is being saved to the database.
+This is the final opportunity to add fields or tags before the session is written.
 
+* saveCb: The callback function with signature (session, final) -> None.
 
 ### register_sctp_classifier(name, matchOffset, matchBytes, classifyCb)
 
@@ -157,8 +178,10 @@ The Python Arkime Session module has methods for dealing with sessions. The API 
 Add an integer value to a session field.
 
 * session: The session object from the classifyCb or parserCb.
-* fieldPosOrExp: The field position returned by field_define/field_get or the field expression
+* fieldPosOrExp: The field position returned by field_define/field_get or the field expression.
 * value: The integer value to add to the session field.
+
+Returns bool: True if the value was added, False if it was a duplicate or field doesn't exist.
 
 ### add_protocol(session, protocol)
 
@@ -172,8 +195,10 @@ Optimized version of add_string(session, 'protocol', protocol).
 Add a string value to a session field.
 
 * session: The session object from the classifyCb or parserCb.
-* fieldPosOrExp: The field position returned by field_define/field_get or the field expression
+* fieldPosOrExp: The field position returned by field_define/field_get or the field expression.
 * value: The string value to add to the session field.
+
+Returns bool: True if the value was added, False if it was a duplicate or field doesn't exist.
 
 ### add_tag(session, tag)
 
@@ -184,34 +209,41 @@ Optimized version of add_string(session, 'tags', tag).
 
 ### decref(session)
 
-Decrement the reference count of a session.
+Decrement the reference count of a session. Call after incref when done with async operations.
+The session may be freed when the reference count reaches zero.
 
-* session: The session object from the classifyCb or parserCb.
+* session: The session object previously passed to incref.
 
 ### get(session, fieldPosOrExp)
 
-Retrieve the value of a session field. Can be a list of values or a single value depending on the field.
+Retrieve the value of a session field.
 
 * session: The session object from the classifyCb or parserCb.
-* fieldPosOrExp: The field position returned by field_define/field_get or the field expression
+* fieldPosOrExp: The field position returned by field_define/field_get or the field expression.
+ The field value. Returns a list for multi-value fields, a single value for single-value
+ fields, or None if the field is not set.
 
 ### get_attr(session, key)
 
-Retrieve a Python object associated with the session.
+Retrieve a Python object previously associated with the session via set_attr.
 
 * session: The session object from the classifyCb or parserCb.
 * key: The attribute key used in set_attr.
+ The stored Python object, or None if the key does not exist.
 
 ### has_protocol(session, protocol)
 
-Optimized version of get(session, "protocol") and checking if the list contains the protocol.
+Check if a protocol has been added to the session.
 
 * session: The session object from the classifyCb or parserCb.
-* protocol: The protocol string to check for in the session.
+* protocol: The protocol string to check for.
+
+Returns bool: True if the protocol is present, False otherwise.
 
 ### incref(session)
 
-Increment the reference count of a session.
+Increment the reference count of a session. Use when storing a session handle for later use
+outside of the callback (e.g., async operations). Must call decref when done.
 
 * session: The session object from the classifyCb or parserCb.
 
@@ -243,7 +275,8 @@ The Python Arkime Packet module has methods for dealing with packets before they
 The return values for a packetCb callback.
  * DO_PROCESS : Integer - Process the packet normally
  * CORRUPT : Integer - The packet is corrupt
- * UNKNOWN : Integer - The packet is unknown and can't be processed
+ * UNKNOWN_ETHER : Integer - Unknown Ethernet type encountered
+ * UNKNOWN_IP : Integer - Unknown IP protocol encountered
  * DONT_PROCESS : Integer - The packet should not be processed but can be freed
  * DONT_PROCESS_OR_FREE : Integer - The packet should not be processed and should not be freed
 
@@ -251,12 +284,16 @@ The return values for a packetCb callback.
 
 ### PacketRC packetCb(batch, packet, packetBytes, packetLen)
 
-This callback is called for packets by the reader threads that the Python script has registered for. Usually some basic processing is done and then the run_ethernet_cb or run_ip_cb methods are called to process the packet. The callback should return the results from the run calls or one of the ARKIME_PACKET_* values.
+Low-level packet callback for handling custom Ethernet types or IP protocols.
+Called by reader threads for registered ethertypes/protocols. Usually strips headers
+and calls arkime_packet.run_ethernet_cb() or arkime_packet.run_ip_cb().
 
-* batch: The opaque batch object
-* packet: The opaque patch object
-* packetBytes: The memory view of the packet bytes; only valid during the callback.
-* packetLen: The length of the packet.
+* batch: Opaque batch handle, pass to run_ethernet_cb/run_ip_cb.
+* packet: Opaque packet handle, use with arkime_packet.get()/set().
+* packetBytes: Read-only memoryview of packet bytes; only valid during callback.
+* packetLen: Length of the packet in bytes.
+* Returns: 
+* PacketRC: Return result from run_*_cb(), or DO_PROCESS/CORRUPT/DONT_PROCESS/etc.
 
 ## Methods
 
@@ -268,19 +305,19 @@ Retrieve the value of a packet field.
 * field: The string field name to retrieve.
   - copied - Integer - 0 = not copied, 1 = copied
   - direction - Integer - 0 = client to server, 1 = server to client
-  - etherOffset - Integer - Offset of ethernet header
-  - ipOffset - Integer - Offset of IP header
-  - ipProtocol - Integer - If an ip packet, the IP protocol
+  - etherOffset - Integer - Offset of ethernet header in packet
+  - ipOffset - Integer - Offset of IP header in packet
+  - ipProtocol - Integer - IP protocol number (6=TCP, 17=UDP, 132=SCTP, etc.)
   - mProtocol - Integer - The Arkime mProtocol number
   - outerEtherOffset - Integer - Offset of outer ethernet header for tunneled packets
   - outerIpOffset - Integer - Offset of outer IP header for tunneled packets
   - outerv6 - Integer - 1 if outer IP is IPv6, 0 if IPv4
   - payloadLen - Integer - Length of the payload
-  - payloadOffset - Integer - Offset of the payload
+  - payloadOffset - Integer - Offset of the payload in packet
   - pktlen - Integer - The full packet length
   - readerFilePos - Integer - The file position of the packet in the pcap file
   - readerPos - Integer - Index of the reader internal data
-  - tunnel - Integer - bitflag of various tunnel protocols that were seen
+  - tunnel - Integer - Bitflags: 0x01=GRE, 0x02=PPPoE, 0x04=MPLS, 0x08=PPP, 0x10=GTP, 0x20=VXLAN, 0x40=VXLAN-GPE, 0x80=Geneve
   - v6 - Integer - 1 if IP is IPv6, 0 if IPv4
   - vlan - Integer - The first VLAN tag if present, 0 if not present
   - vni - Integer - The VXLAN VNI if present, 0 if not present
@@ -290,38 +327,42 @@ Retrieve the value of a packet field.
 
 ### run_ethernet_cb(batch, packet, packetBytes, type, description)
 
-Process a packet at the Ethernet layer by running the registered Ethernet callback.
+Continue processing a packet at the Ethernet layer. Calls the registered callback for the ethertype.
 
-* batch: The opaque batch object.
-* packet: The opaque packet object.
-* packetBytes: The memory view of the packet bytes
-* type: The Ethertype of the packet now
-* description: A string description of the packet now
+* batch: The opaque batch object from the packetCb.
+* packet: The opaque packet object from the packetCb.
+* packetBytes: The memoryview of packet bytes starting at the new ethernet header.
+* type: The Ethertype of the inner packet (e.g., 0x0800=IPv4, 0x86DD=IPv6).
+* description: A short description for logging/debugging (e.g., "myproto").
+
+Returns PacketRC: The result from the ethertype handler, or UNKNOWN_ETHER if no handler registered.
 
 ### run_ip_cb(batch, packet, packetBytes, type, description)
 
-Process a packet at the IP layer by running the registered IP callback.
+Continue processing a packet at the IP layer. Calls the registered callback for the IP protocol.
 
-* batch: The opaque batch object.
-* packet: The opaque packet object.
-* packetBytes: A memoryview of the packet bytes.
-* type: The ip protocol of the packet now
-* description: A string description of the packet now
+* batch: The opaque batch object from the packetCb.
+* packet: The opaque packet object from the packetCb.
+* packetBytes: The memoryview of packet bytes starting at the IP header.
+* type: The IP protocol number (e.g., 6=TCP, 17=UDP, 132=SCTP).
+* description: A short description for logging/debugging (e.g., "myproto").
+
+Returns PacketRC: The result from the IP protocol handler, or UNKNOWN_IP if no handler registered.
 
 ### set(packet, field, value)
 
-Set the value of a packet field. Not all fields can be set.
+Set the value of a packet field. Only certain fields can be set.
 
 * packet: The packet object from the packetCb.
 * field: The string field name to set.
-  - etherOffset - Integer - Offset of ethernet header
+  - etherOffset - Integer - Offset of ethernet header in packet
   - mProtocol - Integer - The Arkime mProtocol number
   - outerEtherOffset - Integer - Offset of outer ethernet header for tunneled packets
   - outerIpOffset - Integer - Offset of outer IP header for tunneled packets
   - outerv6 - Integer - 1 if outer IP is IPv6, 0 if IPv4
   - payloadLen - Integer - Length of the payload
-  - payloadOffset - Integer - Offset of the payload
-  - tunnel - Integer - bitflag of various tunnel protocols that were seen
+  - payloadOffset - Integer - Offset of the payload in packet
+  - tunnel - Integer - Bitflags: 0x01=GRE, 0x02=PPPoE, 0x04=MPLS, 0x08=PPP, 0x10=GTP, 0x20=VXLAN, 0x40=VXLAN-GPE, 0x80=Geneve
   - v6 - Integer - 1 if IP is IPv6, 0 if IPv4
   - vlan - Integer - The first VLAN tag if present, 0 if not present
   - vni - Integer - The VXLAN VNI if present, 0 if not present
@@ -329,16 +370,17 @@ Set the value of a packet field. Not all fields can be set.
 
 ### set_ethernet_cb(type, packetCb)
 
-Register an ethertype packet callback that will be called for packets of the given type. Usually this callback with just need to strip some headers and call either run_ip_cb or run_ethernet_cb.
+Register an ethertype packet callback. Called for packets of the given ethertype.
+Typically the callback strips headers and calls run_ip_cb or run_ethernet_cb.
 
-* type: The Ethertype to register the callback for.
+* type: The Ethertype to register for (e.g., 0x0800=IPv4, 0x86DD=IPv6, 0x8100=VLAN).
 * packetCb: The callback to call for packets of the given ethertype.
 
 ### set_ip_cb(type, ipCb)
 
-Register an IP protocol packet callback that will be called for packets of the given protocol.
+Register an IP protocol packet callback. Called for packets of the given IP protocol.
 
-* type: The IP protocol to register the callback for.
+* type: The IP protocol number to register for (e.g., 6=TCP, 17=UDP, 47=GRE, 132=SCTP).
 * ipCb: The callback to call for packets of the given protocol.
 ## Example
 

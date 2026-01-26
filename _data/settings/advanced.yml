@@ -61,4 +61,8 @@ settings:
     text: |
       (Since 5.2) If set to a non-zero value, then this is the vlan or vni that will be used for http connections from capture to OpenSearch/Elasticsearch that we will try and ignore.
 
+  - key: disableIp4Defrag
+    value: "false"
+    text: |
+      (Since 6.0.0) When true disables IPv4 defragmentation in the capture process.
 

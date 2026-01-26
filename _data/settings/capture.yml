@@ -408,21 +408,21 @@ settings:
   - key: saveUnknownPackets
     value: EMPTY
     text: |
-      (Since 1.5.2) Save unknown ether, ip, or corrupt packets into separate files.
-      The files will be created in the first entry of the <a href="#pcapDir">pcapDir</a> list and
-      named starting with unknown.ether, unknown.ip, or corrupt depending on the packet issue.
-      The files are NOT automatically deleted, so you will need to monitor and delete them.
+      (Since 6.0.0) Save unknown ether, ip, or corrupt packets as first-class Arkime sessions and the pcap data.
+
       This variable takes a semicolon separated list of the following values (applied in order):
       <ul class="mb-0">
         <li> all = save all unknown ip and ether packets, but not corrupt packets </li>
         <li> ip:all = save all unknown ip packets </li>
         <li> ether:all = save all unknown ether packets </li>
-        <li> ip:N = save all unknown ip packets with type of N </li>
-        <li> -ip:N = don't save all unknown ip packets with type of N </li>
-        <li> ether:N = save all unknown ether packets with type of N </li>
-        <li> -ether:N = don't save all unknown ether packets with type of N </li>
+        <li> ip:NameOrNumber = save all unknown ip packets with type of NameOrNumber </li>
+        <li> -ip:NameOrNumber = don't save all unknown ip packets with type of NameOrNumber </li>
+        <li> ether:NameOrNumber = save all unknown ether packets with type of NameOrNumber </li>
+        <li> -ether:NameOrNumber = don't save all unknown ether packets with type of NameOrNumber </li>
         <li> corrupt = save all corrupt packets (Since 1.5.3) </li>
       </ul>
+
+      Prior to Arkime 6.0.0, this setting saved unknown and corrupt packets into separate files in the first entry of <a href="#pcapDir">pcapDir</a>, named unknown.ether, unknown.ip, or corrupt. This behavior has been replaced-packets are now saved as full Arkime sessions.
 
   - key: disableParsers
     value: "arp.so"
