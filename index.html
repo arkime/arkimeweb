@@ -61,7 +61,7 @@ title: Home
       <div class="row mb-2">
         <div class="col-md-12">
           <h1 class="display-1 text-center">
-            <img class="arkime-brand" />
+            <img class="arkime-brand" id="main-owl" />
             <audio id="audio"><source src="assets/arkime_short.m4a" type="audio/mpeg" /></audio>
             <span class="fa fa-volume-up arkime-pronunciation" onclick="play()"></span>
           </h1>
@@ -741,6 +741,51 @@ title: Home
 
       // Auto-cycle every 10 seconds
       carouselTimer = setInterval(nextFeature, 10000);
+
+      // Owl easter egg - click 3 times for confetti!
+      let owlClicks = 0;
+      let owlClickTimer;
+      const confettiColors = ['#6662ff', '#00b4ff', '#ff66a1', '#ffcc00', '#44dd88', '#ff6b35'];
+
+      $('#main-owl').on('click', function(e) {
+        e.preventDefault();
+        owlClicks++;
+        clearTimeout(owlClickTimer);
+
+        owlClickTimer = setTimeout(() => { owlClicks = 0; }, 1000);
+
+        if (owlClicks >= 3) {
+          owlClicks = 0;
+          const owl = $(this);
+          owl.addClass('spinning');
+
+          setTimeout(() => owl.removeClass('spinning'), 500);
+
+          // Drop confetti!
+          for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+              const confetti = $('<div class="confetti"></div>');
+              const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+              const left = Math.random() * window.innerWidth;
+              const size = Math.random() * 8 + 6;
+              const duration = Math.random() * 2 + 2;
+
+              confetti.css({
+                left: left + 'px',
+                width: size + 'px',
+                height: size + 'px',
+                backgroundColor: color,
+                borderRadius: Math.random() > 0.5 ? '50%' : '2px',
+                animationDuration: duration + 's'
+              });
+
+              $('body').append(confetti);
+
+              setTimeout(() => confetti.remove(), duration * 1000);
+            }, i * 30);
+          }
+        }
+      });
     });
   </script>
 
