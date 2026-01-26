@@ -14,7 +14,7 @@ permalink: "/commonapi"
   </span>
 </div>
 
-<div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3 api-container" markdown="1">
+<div class="full-height-container with-footer pt-3 pe-2 ps-2 pb-3 api-container" markdown="1">
 
 # Common v4.x-v5.x API
 

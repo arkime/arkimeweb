@@ -1,0 +1,382 @@
+---
+title: V6!
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag () { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-137788272-1');
+  </script>
+
+  <title>Arkime</title>
+
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <!-- facebook open graph tags -->
+  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <!-- twitter card tags additive with the og: tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:domain" value="arkime.com" />
+  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="http://arkime.com" />
+
+  <!-- fontawesome http://fontawesome.io/ -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap CSS https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <!-- custom index page styles -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+
+  <!-- page functions -->
+  <script src="index.js"></script>
+
+</head>
+
+<body id="viewport">
+
+  <div class="v6-content">
+    <!-- navbar -->
+    {%- include navbar.html -%}
+
+    <!-- container -->
+    <div class="container">
+
+      <div class="primary-theme-background ps-4 pe-4 p-nav-lg angle-background angle-background-long">
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h1 class="display-3 text-center">
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="me-4 arkime-logo" />
+              Arkime 6
+              <img src="assets/Arkime_Logo_Mark_Black@2x.png" height="80px" class="ms-4 arkime-logo" />
+            </h1>
+            <hr>
+
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              <a href="#arkime-tab" class="no-decoration">Arkime Tab</a>,
+              <a href="#i18n" class="no-decoration">Internationalization</a>,
+              <a href="#sankey" class="no-decoration">Sankey</a>,
+              <a href="#parliament" class="no-decoration">Parliament</a>,
+              <a href="#users" class="no-decoration">Users</a>,
+              <a href="#spanning" class="no-decoration">Session Spanning</a>,
+              Bug Fixes, and More
+            </p>
+
+            <p class="text-center mt-4">
+              <a role="button"
+                class="btn btn-lg btn-primary no-decoration"
+                href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1">
+                ✨ Download Arkime 6 RC1 now! ✨
+              </a>
+            </p>
+            <p class="text-center text-muted mt-2">
+              <em>This is a Release Candidate: stable enough for testing, but not yet recommended for production. Your feedback helps us ship a solid final release!</em>
+            </p>
+
+            <p class="lead text-justify mt-4">
+              Arkime 6: Faster. Smarter. Ready for your network.
+              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">release of Arkime 6 RC 1</a>!
+              This open-source network analysis and packet capture tool just got even better.
+              This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
+            </p>
+
+            <h3>Highlights of Arkime 6:</h3>
+
+            <p class="lead text-justify mt-4">
+              <strong>Performance, Performance, Performance:</strong>
+              We've focused heavily on improving the performance of both the capture and viewer applications.
+              The three most noticeable improvements:
+              <ul>
+                <li> <strong>Faster PCAP downloads</strong> - A top complaint from users was PCAP download speed, and we've addressed it head-on. In our tests we show at least 5x faster downloads compared to Arkime 5. </li>
+                <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster than with Arkime 5. </li>
+                <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi-threaded compression with OpenSearch/Elasticsearch and better memory allocation algorithms.</li>
+              </ul>
+            </p>
+
+            <p class="lead text-justify mt-4">
+              <strong>Code Modernization:</strong>
+              Much of Arkime's codebase is over 10 years old.
+              In Arkime 6, we've modernized large portions of the application—making it easier to maintain, more secure, and more welcoming to new contributors.
+              One of the largest tasks behind the scenes was upgrading all of the UI from Vue 2 to Vue 3.
+              Arkime 6 also requires Node.js 22, keeping the platform on the latest LTS release.
+            </p>
+
+            <p class="lead text-justify mt-4">
+              <strong>Python:</strong>
+              Capture can now use <a href="/python">Python</a> for its scripting engine!
+              Now you can write protocol decoders, classifiers, and parsers in Python instead of C!
+              No more wrestling with C code—build custom parsers in Python and contribute back to the community.
+            </p>
+
+            <p class="lead text-justify mt-4">
+              Smaller but notable features:
+              <ul> 
+                <li> <strong>capture:</strong>
+                    <ul>
+                      <li>Point <a href="/settings#geoLite2Country">geoLite2Country</a> to a City database to get region and city fields in addition to country</li>
+                      <li>When in AFPacket mode we add the first vlan back to the packet when saving to disk</li>
+                      <li>Initial FreeBSD support with official builds, including netmap and bpf capture methods</li>
+                      <li>Much improved SCTP support</li>
+                      <li>The <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves corrupt and unknown packets as first-class Arkime sessions, replacing the need for the unkEthernet/unkIpProtocol plugins</li>
+                    </ul>
+                </li>
+                <li> <strong>viewer:</strong>
+                    <ul>
+                      <li> Expanded search expression editor for those complex expressions</li>
+                      <li> Better node tracking: see which OpenSearch/Elasticsearch host disappeared, not just the node ID</li>
+                      <li> Periodic Queries and Hunts can now notify on multiple notifiers</li>
+                      <li> IP OR array queries should be more efficient now </li>
+                    </ul>
+                </li>
+                <li> <strong>docker:</strong>
+                    <ul>
+                      <li> We've moved to Debian 13 for our base image </li>
+                      <li> Improvements for new users getting started with docker-compose </li>
+                    </ul>
+                </li>
+                <li> <strong>cont3xt:</strong>
+                    <ul>
+                      <li> UI Refresh </li>
+                      <li> Several new integrations: ThreatFox, Zetalytics, Domain Tools, crt.sh, Greynoise</li>
+                      <li> Keyword/regex highlighting in integration and overview cards </li>
+                    </ul>
+                </li>
+                <li> <strong>parliament:</strong>
+                    <ul>
+                      <li> Refresh of the UI </li>
+                      <li> Monitors low OpenSearch/Elasticsearch disk space and notifies when low </li>
+                    </ul>
+                </li>
+              </ul>
+            </p>
+
+            <p class="lead lead-lg text-justify text-center">
+              <a href="faq#how_do_i_upgrade_to_arkime_6" class="no-decoration">
+                Learn how to upgrade to Arkime 6 now!
+              </a>
+            </p>
+
+            <hr>
+            <p class="lead lead-lg text-justify mt-4 text-center">
+              Breaking Changes
+            </p>
+            <p class="lead text-justify">
+              <ul class="list-group list-group-sm angle-list">
+                <li class="list-group-item">Node.js 22 is now required (>= 22.15.0)</li>
+                <li class="list-group-item">You must be on v5.0.0 or later to upgrade to v6.x</li>
+                <li class="list-group-item">A db.pl upgrade is required</li>
+                <li class="list-group-item">Arkime capture plugins must end with .so, .lua, or .py now</li>
+                <li class="list-group-item">The <a href="/settings#luaFiles">luaFiles</a> setting now defaults to EMPTY</li>
+                <li class="list-group-item">If the Lua plugin is enabled, any file ending in .lua in the parsers directories will be automatically loaded</li>
+                <li class="list-group-item">Capture now defaults to the <code>--scheme</code> method for reading offline pcaps, use <code>--libpcap</code> for previous behaviour</li>
+                <li class="list-group-item">Ubuntu 20.04 is no longer supported</li>
+                <li class="list-group-item">db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
+                <li class="list-group-item">WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading to Arkime 6</li>
+                <li class="list-group-item">Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
+                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code>tpacketv3OldVlan=true</code> to disable.</li>
+                <li class="list-group-item">Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
+                <li class="list-group-item">The setting <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> now defaults to TRUE</li>
+                <li class="list-group-item">When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
+                <li class="list-group-item">Viewer now always expires PCAPs (using /opt/arkime/raw if pcapDir is unset) — previously it would not expire if pcapDir was missing</li>
+                <li class="list-group-item">IPv4 sessions with the same src/dst IP could have had an incorrect community_id, this has been fixed but old sessions will be incorrect</li>
+                <li class="list-group-item">geoLite2Country setting now looks for City file first by default</li>
+                <li class="list-group-item">The <code>parseSMTP</code> and <code>parseSMB</code> settings have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
+                <li class="list-group-item">The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
+                <li class="list-group-item">New <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting, defaults to RS256</li>
+
+              </ul>
+            </p>
+            <p class="lead lead-lg text-center mt-4 pt-4">
+              <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">
+                View a detailed list of all the changes and download it now!
+              </a>
+            </p>
+            <div class="text-center black-arkime">
+              <img class="arkime-logo" style="height:150px" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="arkime-tab">
+            Arkime Tab
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          <img
+            alt="Arkime Tab Screenshot"
+            class="screenshot-img"
+            src="assets/v6-arkime-tab.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          The new Arkime Tab gives you instant visibility into top talkers, protocols, and key metrics at a glance.
+          This tab is totally customizable, allowing users to tailor which fields they want to save.
+          Each metric can be displayed as a time graph, table, or pie chart, providing flexibility in data visualization.
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-5 col-md-6 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset align-self-start"
+            id="i18n">
+            Internationalization
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          Arkime 6 now supports multiple languages!
+          We've taken the first step by adding support to the UI for all text that lives in the browser, for example menus, buttons, labels, etc.
+          Currently any server errors or messages are still in English, but we plan to add support for those in future releases if there is interest.
+          Translations were AI-assisted—please help us refine them!
+        </div>
+        <div class="col-lg-7 col-md-6 align-self-start">
+          <img
+            alt="I18n Screenshot"
+            class="screenshot-img"
+            src="assets/v6-i18n.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-8 col-md-7 align-self-start">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="sankey">
+            Spigraph sankey diagram
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          <img
+            alt="Sankey Screenshot"
+            class="screenshot-img"
+            src="assets/v6-sankey.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-4 col-md-5 lead text-justify">
+          Sankey diagrams show the flow of network traffic across multiple dimensions, helping you spot patterns and pivot between related data points.
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="parliament">
+            Parliament UI
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          We've optimized and colorized the Parliament UI to make it easier to monitor the health of your Arkime deployment at a glance.
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Parliament Screenshot"
+            class="screenshot-img"
+            src="assets/v6-parliament.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Users Screenshot"
+            class="screenshot-img pull-right"
+            src="assets/v6-users.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+        <div class="col-lg-8 col-md-8 ">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+          id="users">
+            Users and Roles inheritance
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          <p class="lead text-justify">
+            We've enhanced the user management system by introducing role inheritance.
+            This allows for more flexible and efficient permission management, enabling administrators to create roles that inherit permissions from other roles.
+            This feature simplifies the process of managing user access and ensures consistency across different user groups.
+            It is also now clear if a user configuration is overriding the role settings or not.
+          </p>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
+            id="spanning">
+            Session Spanning
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v6')">
+            </span>
+          </h1>
+          Session spanning shows long-running sessions in every time interval they were active—giving you accurate visibility into connections that span hours or days.
+          Note: this feature requires the sessions to have been captured with Arkime 6.
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <img
+            alt="Session Spanning Screenshot"
+            class="screenshot-img"
+            src="assets/v6-spanning.png"
+            style="border-radius: 10px;"
+          />
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- footer -->
+    <div>
+      {%- include footer.html -%}
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    confetti();
+    setTimeout(() => { confetti(); }, 200);
+    setTimeout(() => { confetti(); }, 300);
+
+    $(document).ready(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        window.location.hash = '';
+        window.location.hash = hash;
+      }
+    });
+  </script>
+</body>

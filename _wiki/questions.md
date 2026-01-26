@@ -5,12 +5,12 @@ permalink: "/questions"
 ---
 
 <div class="container with-footer">
-<div class="primary-theme-background pl-4 pr-4 p-nav-lg angle-background angle-background-long">
+<div class="primary-theme-background ps-4 pe-4 p-nav-lg angle-background angle-background-long">
 <div class="row mb-4">
 <div class="col-md-12" markdown="1">
 
 Questions
-<a href="https://slackinvite.arkime.com" class="btn btn-primary pull-right ml-2 mt-2">Join Arkime Slack</a>
+<a href="https://slackinvite.arkime.com" class="btn btn-primary pull-right ms-2 mt-2">Join Arkime Slack</a>
 <a href="https://github.com/arkime/arkime/discussions" class="btn btn-secondary pull-right mt-2">GitHub Discussions</a>
 {: .h1 }
 

@@ -37,7 +37,7 @@ title: Estimators
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap CSS https://getbootstrap.com/ -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <!-- custom index page styles -->
   <link rel="stylesheet" type="text/css" href="index.css">
 
@@ -62,17 +62,16 @@ title: Estimators
           number of machines needed for capture and OpenSearch/Elasticsearch nodes.
         </p>
         <p>
-        <div class="form-inline">
+        <div class="d-flex flex-wrap align-items-center">
           <div class="form-group">
-            <label for="gbpsInput" class="sr-only">
+            <label for="gbpsInput" class="visually-hidden">
               Average gigabits per second
             </label>
             <div class="input-group">
-              <div class="input-group-prepend">
+              
                 <span class="input-group-text">
                   Average gigabits per second
                 </span>
-              </div>
               <input type="number" id="gbpsInput" value=1 min=0 step=0.01
                 class="form-control">
             </div>
@@ -85,7 +84,7 @@ title: Estimators
           <div class="card-body">
             <h5 class="card-title">
               Capture Machines
-              <small class="float-right">
+              <small class="float-end">
                 <a href="faq#what-kind-of-capture-machines-should-we-buy"
                   class="card-link">More info in FAQ</a>
               </small>
@@ -111,29 +110,27 @@ title: Estimators
 
             <hr>
 
-            <div class="form-inline mb-4">
-              <label class="sr-only" for="captureDaysInput">
+            <div class="d-flex flex-wrap align-items-center mb-4">
+              <label class="visually-hidden" for="captureDaysInput">
                 PCAP Retention Days
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     PCAP Days
                   </span>
-                </div>
-                <input type="number" id="captureDaysInput" value=14 min=1
+              <input type="number" id="captureDaysInput" value=14 min=1
                   class="form-control">
               </div>
-              <label for="captureDiskInput" class="sr-only">
+              <label for="captureDiskInput" class="visually-hidden">
                 Disk Size
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Disk Size
                   </span>
-                </div>
-                <select id="captureDiskInput" class="form-control custom-select">
+                <select id="captureDiskInput" class="form-control form-select">
                   <option value=1000>1 TB</option>
                   <option value=2000>2 TB</option>
                   <option value=3000>3 TB</option>
@@ -153,28 +150,26 @@ title: Estimators
                   <option value=30000>30 TB</option>
                 </select>
               </div>
-              <label for="captureNumDisksInput" class="sr-only">
+              <label for="captureNumDisksInput" class="visually-hidden">
                 Disks per machine
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Disks per machine
                   </span>
-                </div>
-                <input type="number" id="captureNumDisksInput" value=20 min=1
+              <input type="number" id="captureNumDisksInput" value=20 min=1
                   class="form-control">
               </div>
-              <label for="captureTLSInput" class="sr-only">
+              <label for="captureTLSInput" class="visually-hidden">
                 TLS Percentage
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     TLS %
                   </span>
-                </div>
-                <select id="captureTLSInput" class="form-control custom-select">
+                <select id="captureTLSInput" class="form-control form-select">
                   <option value=1.00 selected>0%</option>
                   <option value=0.90>10%</option>
                   <option value=0.80>20%</option>
@@ -184,16 +179,15 @@ title: Estimators
                   <option value=0.50>50%</option>
                 </select>
               </div>
-              <label for="captureCompressionInput" class="sr-only">
+              <label for="captureCompressionInput" class="visually-hidden">
                 Compression Percentage
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Compression %
                   </span>
-                </div>
-                <select id="captureCompressionInput" class="form-control custom-select">
+                <select id="captureCompressionInput" class="form-control form-select">
                   <option value=1.00>0%</option>
                   <option value=0.90>10%</option>
                   <option value=0.80 selected>20%</option>
@@ -202,16 +196,15 @@ title: Estimators
                   <option value=0.60>40%</option>
                 </select>
               </div>
-              <label for="maxGbps" class="sr-only">
+              <label for="maxGbps" class="visually-hidden">
                 Max per host
               </label>
               <div class="input-group input-group-sm mb-1">
-                <div class="input-group-prepend">
+                
                   <span class="input-group-text">
                     Max per machine
                   </span>
-                </div>
-                <select id="maxGbps" class="form-control custom-select">
+                <select id="maxGbps" class="form-control form-select">
                   <option value=1> 1 Gbps</option>
                   <option value=2> 2 Gbps</option>
                   <option value=3 >3 Gbps</option>
@@ -267,7 +260,7 @@ title: Estimators
           <div class="card-body">
             <h5 class="card-title">
               OpenSearch/Elasticsearch Machines
-              <small class="float-right">
+              <small class="float-end">
                 <a href="faq#how-many-elasticsearch-nodes-or-machines-do-i-need"
                   class="card-link">More info in FAQ</a>
               </small>
@@ -292,29 +285,27 @@ title: Estimators
 
             <hr>
 
-            <div class="form-inline mb-4">
-              <label class="sr-only" for="esDaysInput">
+            <div class="d-flex flex-wrap align-items-center mb-4">
+              <label class="visually-hidden" for="esDaysInput">
                 Retention Days
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Retention Days
                   </span>
-                </div>
-                <input type="number" id="esDaysInput" value=30 min=1
+              <input type="number" id="esDaysInput" value=30 min=1
                   class="form-control">
               </div>
-              <label for="esDiskInput" class="sr-only">
+              <label for="esDiskInput" class="visually-hidden">
                 Disk Size
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Disk Size
                   </span>
-                </div>
-                <select id="esDiskInput" class="form-control custom-select">
+                <select id="esDiskInput" class="form-control form-select">
                   <option value=200>200 GB</option>
                   <option value=400>400 GB</option>
                   <option value=800>800 GB</option>
@@ -339,42 +330,39 @@ title: Estimators
                 </select>
               </div>
 
-              <label for="esNumDisksInput" class="sr-only">
+              <label for="esNumDisksInput" class="visually-hidden">
                 Disks per machine
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Disks per machine
                   </span>
-                </div>
-                <input type="number" id="esNumDisksInput" value=4 min=1
+              <input type="number" id="esNumDisksInput" value=4 min=1
                   class="form-control">
               </div>
 
-              <label for="esNumNodesInput" class="sr-only">
+              <label for="esNumNodesInput" class="visually-hidden">
                 Nodes per machine
               </label>
-              <div class="input-group input-group-sm mb-1 mr-1">
-                <div class="input-group-prepend">
+              <div class="input-group input-group-sm mb-1 me-1">
+                
                   <span class="input-group-text">
                     Nodes per machine
                   </span>
-                </div>
-                <input type="number" id="esNumNodesInput" value=1 min=1
+              <input type="number" id="esNumNodesInput" value=1 min=1
                   class="form-control">
               </div>
 
-              <label for="esReplication" class="sr-only">
+              <label for="esReplication" class="visually-hidden">
                 Replication
               </label>
               <div class="input-group input-group-sm mb-1">
-                <div class="input-group-prepend">
+                
                   <span class="input-group-text">
                     Replication
                   </span>
-                </div>
-                <select id="esReplication" class="form-control custom-select">
+                <select id="esReplication" class="form-control form-select">
                   <option value=1>0 Replicas</option>
                   <option value=2>1 Replica</option>
                   <option value=3>2 Replicas</option>

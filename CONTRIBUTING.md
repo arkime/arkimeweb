@@ -170,7 +170,7 @@ permalink: "/awesomepage"
   </span>
 </div>
 
-<div class="full-height-container with-footer pt-3 pr-2 pl-2 pb-3" markdown="1">
+<div class="full-height-container with-footer pt-3 pe-2 ps-2 pb-3" markdown="1">
   content goes here
 </div>
 ```
@@ -252,7 +252,7 @@ If a question has multiple sections, wrap the additonal sections in another div 
 <p>
   Main question text that tells the reader to read the other sections:
 </p>
-<div class="ml-5 mr-5">
+<div class="ms-5 me-5">
  <h4>
    First section
  </h4>
