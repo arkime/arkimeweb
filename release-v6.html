@@ -82,9 +82,12 @@ title: V6!
                 ✨ Download Arkime 6 RC1 now! ✨
               </a>
             </p>
+            <p class="text-center text-muted mt-2">
+              <em>This is a Release Candidate: stable enough for testing, but not yet recommended for production. Your feedback helps us ship a solid final release!</em>
+            </p>
 
             <p class="lead text-justify mt-4">
-              The next evolution of network visibility is here!
+              Arkime 6: Faster. Smarter. Ready for your network.
               We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">release of Arkime 6 RC 1</a>!
               This open-source network analysis and packet capture tool just got even better.
               This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
@@ -115,7 +118,7 @@ title: V6!
               <strong>Python:</strong>
               Capture can now use <a href="/python">Python</a> for its scripting engine!
               Now you can write protocol decoders, classifiers, and parsers in Python instead of C!
-              We can't <strong>wait</strong> to see what the community creates with this new capability.
+              No more wrestling with C code—build custom parsers in Python and contribute back to the community.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -123,17 +126,18 @@ title: V6!
               <ul> 
                 <li> <strong>capture:</strong>
                     <ul>
-                      <li>Setting <a href="/settings#geoLite2Country">geoLite2Country</a> to the City mmdb will now also populate the region and city fields</li>
+                      <li>Point <a href="/settings#geoLite2Country">geoLite2Country</a> to a City database to get region and city fields in addition to country</li>
                       <li>When in AFPacket mode we add the first vlan back to the packet when saving to disk</li>
                       <li>Initial FreeBSD support with official builds, including netmap and bpf capture methods</li>
                       <li>Much improved SCTP support</li>
+                      <li>The <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves corrupt and unknown packets as first-class Arkime sessions, replacing the need for the unkEthernet/unkIpProtocol plugins</li>
                     </ul>
                 </li>
                 <li> <strong>viewer:</strong>
                     <ul>
-                      <li> Big search expression UI </li>
-                      <li> Now track ES node ids to host mapping so when a node disappears we can let you know which one</li>
-                      <li> Periodic Queries and Hunts can now notify on multiple notifiers </li>
+                      <li> Expanded search expression editor for those complex expressions</li>
+                      <li> Better node tracking: see which OpenSearch/Elasticsearch host disappeared, not just the node ID</li>
+                      <li> Periodic Queries and Hunts can now notify on multiple notifiers</li>
                       <li> IP OR array queries should be more efficient now </li>
                     </ul>
                 </li>
@@ -182,11 +186,11 @@ title: V6!
                 <li class="list-group-item">db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
                 <li class="list-group-item">WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading to Arkime 6</li>
                 <li class="list-group-item">Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
-                <li class="list-group-item">Capture now adds the first vlan back to the packet when saving to disk, this may break bpf filters, <code>tpacketv3OldVlan=true</code> to disable</li>
+                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code>tpacketv3OldVlan=true</code> to disable.</li>
                 <li class="list-group-item">Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
                 <li class="list-group-item">The setting <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> now defaults to TRUE</li>
                 <li class="list-group-item">When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
-                <li class="list-group-item">Previously viewer didn't expire PCAPs if pcapDir wasn't set, now it defaults to /opt/arkime/raw and will expire them</li>
+                <li class="list-group-item">Viewer now always expires PCAPs (using /opt/arkime/raw if pcapDir is unset) — previously it would not expire if pcapDir was missing</li>
                 <li class="list-group-item">IPv4 sessions with the same src/dst IP could have had an incorrect community_id, this has been fixed but old sessions will be incorrect</li>
                 <li class="list-group-item">geoLite2Country setting now looks for City file first by default</li>
                 <li class="list-group-item">The <code>parseSMTP</code> and <code>parseSMB</code> settings have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
@@ -246,7 +250,7 @@ title: V6!
           Arkime 6 now supports multiple languages!
           We've taken the first step by adding support to the UI for all text that lives in the browser, for example menus, buttons, labels, etc.
           Currently any server errors or messages are still in English, but we plan to add support for those in future releases if there is interest.
-          Most translations were contributed by Claude—so they could be terribly wrong, please help us improve them!
+          Translations were AI-assisted—please help us refine them!
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
           <img
@@ -276,7 +280,7 @@ title: V6!
           />
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
-          Like the SPI Graph treemap, Sankey diagrams visualize relationships between data points—making it easy to trace connections across your network traffic.
+          Sankey diagrams show the flow of network traffic across multiple dimensions, helping you spot patterns and pivot between related data points.
         </div>
       </div>
 
@@ -339,7 +343,7 @@ title: V6!
               onclick="copyLink(this, 'release-v6')">
             </span>
           </h1>
-          You can now view sessions spanning on Arkime graphs that will count a session in each bucket it occurred in.
+          Session spanning shows long-running sessions in every time interval they were active—giving you accurate visibility into connections that span hours or days.
           Note: this feature requires the sessions to have been captured with Arkime 6.
         </div>
         <div class="col-lg-4 col-md-4">
