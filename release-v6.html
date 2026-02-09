@@ -78,8 +78,8 @@ title: V6!
             <p class="text-center mt-4">
               <a role="button"
                 class="btn btn-lg btn-primary no-decoration"
-                href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1">
-                ✨ Download Arkime 6 RC1 now! ✨
+                href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc2">
+                ✨ Download Arkime 6 RC2 now! ✨
               </a>
             </p>
             <p class="text-center text-muted mt-2">
@@ -88,7 +88,7 @@ title: V6!
 
             <p class="lead text-justify mt-4">
               Arkime 6: Faster. Smarter. Ready for your network.
-              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">release of Arkime 6 RC 1</a>!
+              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc2" class="no-decoration">release of Arkime 6 RC 1</a>!
               This open-source network analysis and packet capture tool just got even better.
               This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
             </p>
@@ -102,7 +102,7 @@ title: V6!
               <ul>
                 <li> <strong>Faster PCAP downloads</strong> - A top complaint from users was PCAP download speed, and we've addressed it head-on. In our tests we show at least 5x faster downloads compared to Arkime 5. </li>
                 <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster than with Arkime 5. </li>
-                <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi-threaded compression with OpenSearch/Elasticsearch and better memory allocation algorithms.</li>
+                <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi-threaded compression with OpenSearch/Elasticsearch, improved memory allocation algorithms, and removed several <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a> usage patterns.</li>
               </ul>
             </p>
 
@@ -119,6 +119,13 @@ title: V6!
               Capture can now use <a href="/python">Python</a> for its scripting engine!
               Now you can write protocol decoders, classifiers, and parsers in Python instead of C!
               No more wrestling with C code—build custom parsers in Python and contribute back to the community.
+            </p>
+
+            <p class="lead text-justify mt-4">
+              <strong>Parsing:</strong>
+              More than 30 new protocol parsers and classifiers have been added to capture, and we improved several of the existing ones.
+              Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly in future releases 
+              as the community contributes new ones.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -196,11 +203,11 @@ title: V6!
                 <li class="list-group-item">The <code>parseSMTP</code> and <code>parseSMB</code> settings have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
                 <li class="list-group-item">The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
                 <li class="list-group-item">New <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting, defaults to RS256</li>
-
+                <li class="list-group-item">arkime_packet_log no longer prints exactly logEveryXPackets, instead that is just the minimum; it also only prints TCP info now.</li>
               </ul>
             </p>
             <p class="lead lead-lg text-center mt-4 pt-4">
-              <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc1" class="no-decoration">
+              <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc2" class="no-decoration">
                 View a detailed list of all the changes and download it now!
               </a>
             </p>
