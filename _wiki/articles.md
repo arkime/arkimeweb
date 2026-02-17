@@ -90,7 +90,7 @@ copyLink: True
 * [Recent Changes & Upcoming Features](/assets/ArkimeON2018RecentChanges.pdf)
   * [Presentation Recording](https://youtu.be/yxS9f4j-SKI)
 * [WISE 2018](/assets/ArkimeON2018WISE.pdf)
-  * [Presentation Recording](hhttps://youtu.be/d2CYlOISOmI)
+  * [Presentation Recording](https://youtu.be/d2CYlOISOmI)
 * [Oath Deployments](/assets/ArkimeON2018OathDeployment.pdf)
   * [Presentation Recording](https://youtu.be/-wH_OWR2g9I)
 * [Moloch on KVM and AWS Environments](/assets/ArkimeOn2018VirtualizedAndAWS.pdf)

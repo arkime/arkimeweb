@@ -30,7 +30,7 @@ To get started you will need to `uncomment` `tagger.so`  plugin in config file.
 
 Each tagger file is a simple text file with one item per line.
 The tagger plugin will look for matches in the content and assign the tags accordingly.
-All items in a single tagger file will only match against the same field type, so you will need multiple tagger files to maatch all 5 types of data.
+All items in a single tagger file will only match against the same field type, so you will need multiple tagger files to match all 5 types of data.
 The filename used will also be added as a tag to matching sessions.
 
 So for example:

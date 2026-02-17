@@ -210,7 +210,7 @@ settings:
     text: |
       A semicolon separated list of files that contain Arkime rules.
       These rules match against fields set and can set other fields or meta data about the sessions.
-      See <a class="no-decoration" href="rulesformat"> RulesFormat</a> for the format of the files.
+      See <a class="no-decoration" href="/rulesformat"> RulesFormat</a> for the format of the files.
       Since 1.5.0 rules files are auto reloaded, so no need to restart capture.
 
   - key: sctpTimeout

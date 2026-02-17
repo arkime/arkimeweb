@@ -132,15 +132,15 @@ wiseService:
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="description" content="Arkime settings" />
   <!-- facebook open graph tags -->
-  <meta property="og:url" content="http://arkime.com/settings" />
+  <meta property="og:url" content="https://arkime.com/settings" />
   <meta property="og:description" content="Arkime settings" />
-  <meta property="og:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="Frequently asked Arkime questions" />
-  <meta name="twitter:image" content="http://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="http://arkime.com/settings" />
+  <meta name="twitter:description" value="Arkime settings" />
+  <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="https://arkime.com/settings" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -613,8 +613,8 @@ wiseService:
         </span>
       </h3>
       <p>
-        It is possible to configure right click actions on any SPI data fields.
-        Right click actions can be added based on either the field name or the category of the data.
+        It is possible to configure value actions on any SPI data fields.
+        Value actions can be added based on either the field name or the category of the data.
         They can be added either in the configuration file or by enabled WISE data sources.
       </p>
       <p class="mb-0">
@@ -686,7 +686,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A javascript function body (feeds into new Function()) that returns a right click action formatted as an object.
+              A javascript function body (feeds into new Function()) that returns a value action formatted as an object.
               This is the recommended way if you need to omit the url from an action and can be used
               to place plain text in the menu.
               Value is not calculated so one of the keys in the returned action object must be "value" if you want to show name:value pair in the menu (but not req).
@@ -724,8 +724,8 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              If the field that is right clicked on has this category then
-              display this menu item. All right click entries must have either
+              If the field that is selected has this category then
+              display this menu item. All value action entries must have either
               a category or fields variable defined.
             </td>
           </tr>
@@ -737,9 +737,9 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A comma separated list of field names. If the field that is right
-              clicked on has one of the field expressions in the list then display
-              this menu item. All right click entries must have either a
+              A comma separated list of field names. If the field that is
+              selected has one of the field expressions in the list then display
+              this menu item. All value action entries must have either a
               category or fields variable defined.
             </td>
           </tr>
@@ -751,7 +751,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A regex to use on the right clicked text to extract a piece for
+              A regex to use on the selected text to extract a piece for
               the URL. The first matching group is substituted for %REGEX% in
               the url. If the regex doesn't match at all then the menu isn't
               displayed.
@@ -765,8 +765,8 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A comma separated list of user names that can see the right click
-              item. If not set then all users can see the right click item.
+              A comma separated list of user names that can see the value action
+              item. If not set then all users can see the value action item.
             </td>
           </tr>
           <tr>
@@ -777,7 +777,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              (Since 3.0) A comma separated list of user names that can NOT see the right click item.
+              (Since 3.0) A comma separated list of user names that can NOT see the value action item.
               This setting is applied before the users setting above.
             </td>
           </tr>
@@ -988,7 +988,7 @@ KBN=url:https://localhost:5601/app/discover#/?_g=(refreshInterval:(display:Off,p
               </span>
             </td>
             <td>
-              A three letter country code
+              A two letter country code
             </td>
           </tr>
           <tr>
@@ -1495,7 +1495,7 @@ kekid2=Randomkekpassword2
         Sample config items for max performance. Most of
         the defaults are fine. Reading
         <a class="no-decoration"
-          href="faq#why-am-i-dropping-packets">
+          href="/faq#why-am-i-dropping-packets">
           Arkime FAQ - Why am I dropping packets</a>
         and
         <a class="no-decoration"
@@ -1692,7 +1692,7 @@ maxESConns=2
       <p>
         Parliament contains a grouped list of your Arkime clusters with links, Elasticsearch/OpenSearch health, and issues for each.
         You can use Parliament as a landing page for all of your Arkime clusters and as a status page to monitor the health of your clusters.
-        See <a href="parliament" class="no-decoration">Parliament</a> for more information.
+        See <a href="/parliament" class="no-decoration">Parliament</a> for more information.
       </p>
 
 

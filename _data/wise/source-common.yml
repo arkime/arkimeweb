@@ -22,7 +22,7 @@ settings:
     text: If set, only ips that match the semicolon separated list of IPs or CIDRs will be looked up
   - key: fields
     value: EMPTY
-    text: A "\n" separated list of fields that this source will add. Some wise sources automatically set for you. See [Tagger Format](taggerformat) for more information on the parts of a field entry.
+    text: A "\n" separated list of fields that this source will add. Some wise sources automatically set for you. See <a href="/taggerformat">Tagger Format</a> for more information on the parts of a field entry.
   - key: view
     value: EMPTY
     text: The view to show in session detail when opening up a session with unique fields. The value for view can either be written in simplified format or in more powerful jade format. For the jade format see <a href="/taggerformat">Tagger Format</a> for more information except everything has to be on one line, so replace newlines with \n. Simple format looks like <code>require:[toplevel db name];title:[title string];fields:[field1],[field2],[fieldN]</code>

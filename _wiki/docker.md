@@ -10,13 +10,10 @@ copyLink: True
 # Docker
 {: .section-header.mt-1 }
 
-Great news for containerized deployments!
-Starting with version 5.5.0 Arkime offers official images for a simplified setup.
-We've adopted a user-friendly approach: a single image handles all Arkime tools, with specific commands determining which tool launches.
+Starting with version 5.5.0, Arkime provides official Docker images.
+A single image contains all Arkime tools, and the command you pass determines which tool launches.
 
-We provide a docker.sh script (optional) to initiate different tools using the image.
-However you don't have to use it, you can run the tools directly from the container.
-This gives you control over how you interact with Arkime within your container environment.
+An optional `docker.sh` helper script is included to simplify launching different tools, but you can also run them directly from the container.
 
 To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/bin/docker.sh help`
 
@@ -42,7 +39,7 @@ We recommend using the v5-latest tag or v5.6.4 (or later) for the most stable ex
 
 ### Development Snapshots:
 
-* snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Currently not recommended for anyone.
+* snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Use for testing upcoming v6 features.
 * snapshot-v6-ja4-latest: Same as snapshot-v6-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
 * snapshot-v5*: Use the v5-latest or v5-ja4-latest tags instead.
 
@@ -60,13 +57,11 @@ You can configure Arkime containers using three primary methods:
 * Some complex config file sections may require this method.
 3. Command-Line Options:
 * Use the `-o` command-line option to specify additional configuration options. (`-o <section>.<config>=<value>`)
-* This method provides flexibility for one-time or specific configuration changes, but not recommended.
+* This method provides flexibility for one-time or specific configuration changes, but is not recommended for regular use.
 
 For comprehensive configuration, consider combining these methods:
-* Base Configuration: Use a configuration file for general settings.
-* Overrides: Employ environment variables for specific overrides.
-
-By strategically combining these methods, you can effectively tailor Arkime containers to your specific requirements.
+* Use a configuration file for general settings.
+* Use environment variables for specific overrides.
 
 ## Setting up an Arkime environment
 {: .subsection }
@@ -75,14 +70,14 @@ By strategically combining these methods, you can effectively tailor Arkime cont
 * You can use either containerized or a standalone installation.
 2. Initialize OpenSearch or Elasticsearch for Arkime
 * `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
-* This is a one time operation to create the Arkime indices in OpenSearch/Elasticsearch.
+* This is a one-time operation to create the Arkime indices in OpenSearch/Elasticsearch.
 * Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host (Linux users may need to add `--add-host=host.docker.internal:host-gateway` to their `docker run` command).
 * You may need to specify a network mode for docker, such as `--network=host`.
 3. Setup directories
 * You'll need directories for your pcap and optionally configuration files to be mounted into the container.
 * The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
-* We don't recommend using /home based directories since you may run into permission issues.
-4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini` see [Arkime Settings](/settings).
+* We don't recommend using `/home` based directories since you may run into permission issues.
+4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini`. See [Arkime Settings](/settings) for details.
 5. Start your Arkime containers.
 
 ## Common issues
@@ -133,8 +128,6 @@ In this example we are starting cont3xt and using a local cont3xt.ini file and o
 Environment variables are of the format `ARKIME_<section>__<config>=<value>`.
 
 ```
-version: '3'
-
 services:
   cont3xt:
     image: ghcr.io/arkime/arkime/arkime:v5-latest
@@ -148,12 +141,11 @@ services:
 ```
 
 ### Capture and Viewer
+{: .subsubsection }
 
-For capture and viewer you'll need to mount a directory for the pcap data and we recommend mounting a etc directory for the configuration and all the extra GEO files. Make sure the directories are writable by the container.
+For capture and viewer you'll need to mount a directory for the pcap data and we recommend mounting an etc directory for the configuration and all the extra GEO files. Make sure the directories are writable by the container.
 
 ```
-version: '3'
-
 services:
   capture:
     image: ghcr.io/arkime/arkime/arkime:v5-latest

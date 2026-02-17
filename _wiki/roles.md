@@ -50,7 +50,7 @@ doesn't have the arkimeUser/cont3xtUser directly assigned.
 {: .subsection }
 
 Behind the scenes, user defined roles are stored in the users database with a leading role: prefix.
-You can use the arkime_add_user script to creat a user defined role.
+You can use the arkime_add_user script to create a user defined role.
 <code>/opt/arkime/bin/arkime_add_user.sh role:role-name "Role Name" passwordignored [other-options]</code>
 
 

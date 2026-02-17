@@ -24,15 +24,15 @@ title: V5!
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
   <!-- facebook open graph tags -->
-  <meta property="og:url" content="http://arkime.com" />
+  <meta property="og:url" content="https://arkime.com" />
   <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
-  <meta property="og:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" value="arkime.com" />
   <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
-  <meta name="twitter:image" content="assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="http://arkime.com" />
+  <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta name="twitter:url" value="https://arkime.com" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -116,7 +116,7 @@ title: V5!
               Thank you for your continued support!
             </p>
             <p class="lead lead-lg text-justify text-center">
-              <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">
+              <a href="/faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">
                 Learn how to upgrade to Arkime 5 now!
               </a>
             </p>
@@ -137,7 +137,7 @@ title: V5!
                 <li class="list-group-item">Removed old v1 APIs</li>
                 <li class="list-group-item">
                   The Parliament password has been removed. You must create a parliament.ini file or [parliament] section in your arkime config.ini before upgrading.
-                  See <a href="https://arkime.com/settings#parliamen" class="no-decoration">Parliament</a> and  <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">how do I upgrade to 5</a>.
+                  See <a href="https://arkime.com/settings#parliament" class="no-decoration">Parliament</a> and  <a href="/faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">how do I upgrade to 5</a>.
                   You can configure common auth via the Parliament settings UI before upgrading or manually in the config file.
                 </li>
                 <li class="list-group-item">WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
@@ -177,7 +177,7 @@ title: V5!
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
           Cont3xt was integrated into the Arkime ecosystem with the release of version 4.0.
-          For detailed information, please refer the <a href="cont3xt" class="no-decoration">Cont3xt documentation</a>.
+          For detailed information, please refer the <a href="/cont3xt" class="no-decoration">Cont3xt documentation</a>.
           In version 5, we have introduced a bulk search feature, enabling you to enrich multiple indicators simultaneously.
           The user interface has undergone a full rewrite, incorporating multiple columns to minimize empty space and present all data on a single, streamlined page.
           As part of our user-centric enhancements, we now offer a severity emoji map, facilitating the quick identification of crucial indicators.
@@ -281,15 +281,15 @@ title: V5!
           <p class="lead text-justify">
             A noteworthy change is the removal of anonymous mode as the default authorization, which has been replaced by digest.
             Furthermore, a range of new authorization modes can be configured, including basic, form, basic+form, basic+oidc, headerOnly, header+digest (equivalent to header), and header+basic.
-            Detailed information on these modes can be found in the <a href="settings#authMode" class="no-decoration">Settings Documentation</a>.
+            Detailed information on these modes can be found in the <a href="/settings#authMode" class="no-decoration">Settings Documentation</a>.
           </p>
           <p class="lead text-justify">
             It's important to note that Parliament has deprecated the previous JWT authorization model, replacing it with Arkime common authorization.
             This change was alluded to in Arkime 4.0, encouraging users to configure common authorization within the Parliament Settings page.
             In Arkime version 5, this configuration is now mandatory.
             Users can implement common authentication through the Parliament Settings Page prior to upgrading to version 5 or manually in the configuration file.
-            For details, please refer to the <a href="settings#parliament" class="no-decoration">Parliament documentation</a> and the
-            <a href="faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">upgrade guide for version 5</a>.
+            For details, please refer to the <a href="/settings#parliament" class="no-decoration">Parliament documentation</a> and the
+            <a href="/faq#how_do_i_upgrade_to_arkime_5" class="no-decoration">upgrade guide for version 5</a>.
           </p>
         </div>
       </div>
@@ -309,7 +309,7 @@ title: V5!
           This enables the straightforward addition of new file formats, such as json and yaml.
           Arkime further supports the retrieval of configuration files from various sources, including local files, http(s), and OpenSearch/Elasticsearch.
           Notably, the introduction of json and yaml file formats enhances the native format of lists, eliminating the need for comma-separated strings.
-          For details on all configuration settings, we invite you to explore the <a href="settings" class="no-decoration">Settings Documentation</a>.
+          For details on all configuration settings, we invite you to explore the <a href="/settings" class="no-decoration">Settings Documentation</a>.
         </div>
       </div>
       <hr>
@@ -326,7 +326,7 @@ title: V5!
         <div class="col-12 lead text-justify">
           Arkime has advanced its capabilities to directly import PCAP files from S3 or http(s) URLs, eliminating the need for prior file downloads.
             Capture now accommodates URLs on the command line, providing specifications on how to retrieve the files.
-            For in-depth information, explore the <a href="settings#reader-scheme" class="no-decoration">detailed resource</a> on how to leverage this functionality.
+            For in-depth information, explore the <a href="/settings#reader-scheme" class="no-decoration">detailed resource</a> on how to leverage this functionality.
         </div>
       </div>
       <hr>

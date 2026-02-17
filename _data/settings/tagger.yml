@@ -3,10 +3,10 @@ before: |
   <p>
     See the
     <a class="no-decoration"
-      href="tagger">
+      href="/tagger">
       Tagger page</a>
     and the
     <a class="no-decoration"
-      href="taggerformat">
+      href="/taggerformat">
       Tagger Format page</a>
   </p>

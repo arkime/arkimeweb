@@ -2,7 +2,7 @@ name: Field Actions
 
 before: |
   <p>
-    Not really a WISE data source, this source monitors configured files, redis urls, or OpenSearch/Elasticsearch urls for field actions to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `fieldactions:`. The format of the monitored files is the same as [WISE](settings#wise). It will auto reload the fieldactions files if they change.
+    Not really a WISE data source, this source monitors configured files, redis urls, or OpenSearch/Elasticsearch urls for field actions to send to all the viewer instances that connect to this WISE Server. Each file needs to have its own section, with the section name starting with `fieldactions:`. The format of the monitored files is the same as <a href="/settings#wise">WISE</a>. It will auto reload the fieldactions files if they change.
     <br>
     Create a <code>[fieldactions:UNIQUENAME]</code> section to configure
   </p>

@@ -9,7 +9,7 @@ before: |
   <h4>Command Line</h4>
   <p>
     Arkime applications support overriding configuration files via a command line option using either <code>-o variable=value</code> or <code>-o section.variable=value</code>.
-  <p>
+  </p>
   <h4>Environment Variables</h4>
   <p>
     Since Arkime 5.6, environment variables can also be used to override configuration settings.

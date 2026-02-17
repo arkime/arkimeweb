@@ -30,7 +30,7 @@ In both cases the results will need to be converted from whatever form they are 
 ### Memory data
 {: .subsection }
 
-For memory data, sources should use javsscript `Map` to store the data which is loaded into memory.  An interval should be setup to occasionally reload the data.  The `cacheTimeout` variable should be set to -1 so the wiseService doesn't actually cache the data as it is already loaded into memory inside your source.
+For memory data, sources should use javascript `Map` to store the data which is loaded into memory.  An interval should be setup to occasionally reload the data.  The `cacheTimeout` variable should be set to -1 so the wiseService doesn't actually cache the data as it is already loaded into memory inside your source.
 
 ### API Data
 {: .subsection }

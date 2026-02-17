@@ -1,9 +1,9 @@
 name: WISE
 before: |
   <p>
-    The With Intelligence See Everything (WISE) plugin is used to communitcate with the wiseService Arkime application.
+    The With Intelligence See Everything (WISE) plugin is used to communicate with the wiseService Arkime application.
 
-    <a href="/wise">Learn more</a> about the wiseServce.
+    <a href="/wise">Learn more</a> about the wiseService.
   </p>
   <p>
     Each capture node needs to have the WISE plugin enabled.

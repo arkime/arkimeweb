@@ -12,8 +12,8 @@ before: |
     <li>
       Install the PF_RING package on all hosts that will run capture from
       <a class="no-decoration"
-        href="http://packages.ntop.org/"
-        rel="nofollow">http://packages.ntop.org/</a>.
+        href="https://packages.ntop.org/"
+        rel="nofollow">https://packages.ntop.org/</a>.
     </li>
     <li>
       Load the PF_RING plugin by changing the configuration file so it has

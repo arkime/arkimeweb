@@ -23,7 +23,7 @@ Capture can query basically any supported Arkime fields from Wise. WISE can quer
 
 Sample configuration uses logstash, but other log shippers should work as well. It is possible that Redis can be replaced with Memcached (Memcached could be better), but I had Redis already installed and if you have a hammer, all screws look like nails.
 
-Do note that this requires Arkime/Moloch version 3.4.x+, as previously Redis source in Wise was broken.
+Do note that this requires Arkime version 3.4.x+, as previously Redis source in Wise was broken.
 
 ## Configuration
 {: .subsection-header }

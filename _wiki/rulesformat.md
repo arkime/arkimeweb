@@ -48,7 +48,7 @@ rules:
       _maxPacketsToSave: 20
 ```
 
-If you want to add several rules, then the synatax is as follows. Make sure to have only one "rules:" per file.
+If you want to add several rules, then the syntax is as follows. Make sure to have only one "rules:" per file.
 
 ```
 ---

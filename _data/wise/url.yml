@@ -21,7 +21,7 @@ settings:
 
   - key: format
     value: csv
-    text: csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
+    text: csv,<a href="/taggerformat">tagger</a>,json,jsonl - The format of data file
 
   - key: column
     value: 0

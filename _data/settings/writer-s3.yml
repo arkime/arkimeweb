@@ -1,6 +1,6 @@
 name: "Writer - S3 - Settings"
 before: |
-  See <a href="s3">S3</a> document for more information about using S3 for PCAP storage.
+  See <a href="/s3">S3</a> document for more information about using S3 for PCAP storage.
 
 settings:
   - key: s3Region
@@ -65,8 +65,7 @@ settings:
     text: |
       Override the default endpoint URL for the specified Bucket and Region. This is only
       used if you want to use a third party s3 server, like a
-      <a href="https://min.io/">MinIO</a> or <a href="http://pithos.io/">pithos</a>
-      instance.
+      <a href="https://min.io/">MinIO</a> instance.
 
   - key: s3UseHttp
     value: "false"

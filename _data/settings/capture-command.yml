@@ -12,7 +12,7 @@ settings:
       The configuration file to use, in ini format before 5.0. 
       Since 5.0 the configuration can be in ini, json, or yaml format and can be on:
       <ul class="mb-0">
-        <li>disk /opt/arkime/etc/config.ini)</li>
+        <li>disk (/opt/arkime/etc/config.ini)</li>
         <li>an url (https://example.com/config.ini)</li>
         <li>OpenSearch (opensearchs://example.com/INDEX/_doc/DOC)</li>
         <li>Elasticsearch (elasticsearch://example.com:9200/INDEX/_doc/DOC)</li>
@@ -27,7 +27,7 @@ settings:
       Since Arkime 5 the file can be a url to the pcap location, see <a href="#reader-scheme">Reader - Offline Scheme</a> for more information.
 
   - display: -R, --pcapdir {directory}
-    key: option-r
+    key: option-R
     value: EMPTY
     text: |
       The path to an offline pcap directory to find pcap files in.

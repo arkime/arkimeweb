@@ -21,7 +21,7 @@ settings:
 
   - key: format
     value: csv
-    text: csv,[Tagger Format](taggerformat),json,jsonl - The format of data file
+    text: csv,<a href="/taggerformat">tagger</a>,json,jsonl - The format of data file
 
   - key: keyColumn
     value: 0
@@ -83,7 +83,7 @@ after: |
     [{"asset": "blah", "theip": "10.0.0.3"},
      {"asset": "blah2", "theip": "10.0.0.2", "extra": "foo"}]
   </pre>
-  <p>**Note:** you use shortcut to match between fields in the JSON dictionary and the properties in OpenSearch/Elasticsearch.</p>
+  <p><strong>Note:</strong> you use shortcut to match between fields in the JSON dictionary and the properties in OpenSearch/Elasticsearch.</p>
 
   <h4>JSONL Example</h4>
   <p>Added in 5.0, WISE now supports jsonl files with one full json object per line.</p>
@@ -103,7 +103,7 @@ after: |
     {"asset": "blah", "theip": "10.0.0.3"}
     {"asset": "blah2", "theip": "10.0.0.2", "extra": "foo"}
   </pre>
-  <p>**Note:** you use shortcut to match between fields in the JSONL dictionary and the properties in OpenSearch/Elasticsearch.</p>
+  <p><strong>Note:</strong> you use shortcut to match between fields in the JSONL dictionary and the properties in OpenSearch/Elasticsearch.</p>
 
   <h4>Subnets Example</h4>
   <p>More complex example of the above where you want to create a new section</p>
