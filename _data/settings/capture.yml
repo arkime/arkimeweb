@@ -333,6 +333,12 @@ settings:
       (Since 1.5.0) Max number of tcp packets to track while trying to
       reassemble the TCP stream
 
+  - key: maxSctpOutOfOrderPackets
+    value: 256
+    text: |
+      (Since 6.0.0) Max number of tcp packets to track while trying to
+      reassemble the SCTP stream
+
   - key: offlineDispatchAfter
     value: |
       pre 2.1 - 5000 (unchangeable)<br>
