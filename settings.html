@@ -1505,9 +1505,11 @@ kekid2=Randomkekpassword2
         <a class="no-decoration"
           href="https://github.com/pevma/SEPTun-Mark-II">
           https://github.com/pevma/SEPTun-Mark-II</a>
-        may be helpful.
+        may be helpful. 
+        The capture process will alert you with WARNING messages in the capture.log, make sure you look for them.
       </p>
-      <pre><code># MOST IMPORTANT, use basic magicMode, libfile kills performance
+      <pre><code>
+# Use basic magicMode, libfile kills performance
 magicMode=basic
 
 # Optionally disable compression, this will use more disk space but less CPU.
@@ -1519,7 +1521,7 @@ pcapReadMethod=tpacketv3
 tpacketv3BlockSize=8388608
 
 # Increase by 1 if still getting Input Drops
-tpacketv3NumThreads=2
+tpacketv3NumThreads=3
 
 pcapWriteMethod=simple
 pcapWriteSize=4194304
@@ -1535,8 +1537,8 @@ dbEsHealthCheck=false
 # Approximate max streams that will be monitored
 maxStreams=2000000
 
-# Set to number of packets a second, if still overflowing try 400k
-maxPacketsInQueue = 300000
+# Set to number of packets a second, if still overflowing try 400k, do NOT set to huge numbers
+maxPacketsInQueue=300000
 
 # Uncomment to disable features you don't need
 # parseQSValue=false
@@ -1577,6 +1579,22 @@ rules:
     _dontSaveSPI: 1
     _maxPacketsToSave: 1
     _dropByDst: 10</code></pre>
+
+      <p class="mt-3">
+        Using <b>jemalloc2</b> will reduce memory allocation slowness compared to the default system allocator at the cost of about 2% extra memory usage.
+        To install on Ubuntu:
+      </p>
+      <pre><code>sudo apt-get install libjemalloc2
+
+# To use jemalloc2 with Arkime's systemd service, override the environment by running:
+sudo systemctl edit arkimecapture
+
+# Then add the following line to the [Service] section:
+Environment=LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+
+# After saving, reload and restart the service:
+sudo systemctl daemon-reload
+sudo systemctl restart arkimecapture</code></pre>
       <!-- /High Performance Settings -->
 
       <!-- Lab Settings -->
