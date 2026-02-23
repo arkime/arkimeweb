@@ -14,7 +14,7 @@ copyLink: True
 Starting with version 6, Arkime now support Python scripting for custom processing of packets and sessions.
 This allows you to write custom classifiers and parsers in Python.
 The Python support in Arkime requires Python 3.12 or newer, so it may not be available with older linux distributions.
-Use the setting <code>disablePython=true</code> to disable Python support in Arkime.
+Use the setting <code>disablePython=false</code> to enable Python support in Arkime.
 
 <strong>Currently Python support is unavailable in the AL2023, Ubuntu 22, and Debian 12 Arkime packages.</strong>
 
