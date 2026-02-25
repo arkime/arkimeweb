@@ -21,7 +21,7 @@ permalink: "/commonapi"
 **_This API is not final and is subject to change._**
 {: .primary-theme-text }
 
-**Note:** These endpoints are used across Arkime apps, including Viewer, WISE, Cont3xt, and Parliament.
+**Note:** These endpoints are used across Arkime applications, including Viewer, WISE, Cont3xt, and Parliament.
 
 ---
 

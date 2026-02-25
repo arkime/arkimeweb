@@ -77,9 +77,9 @@ Create a new periodic query.
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 | query | [<code>ArkimeQuery</code>](#ArkimeQuery)| The new query |
 
-<a name="/user/_key"></a>
+<a name="/cron/_key"></a>
 
-## /user/:key API
+## /cron/:key API
 
 POST - /api/cron/:key
 
@@ -122,8 +122,8 @@ Retrieves a list of histories, or user client requests to the APIs.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | date | <code>number</code> | <code>1</code> | The number of hours of data to return (-1 means all data). Defaults to 1. |
-| startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOC. |
-| stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
+| startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOCH. |
+| stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOCH. |
 | searchTerm | <code>string</code> |  | The search text to filter the history list by. |
 | length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 1,000. |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
@@ -183,7 +183,7 @@ Creates a new hunt.
 | type | <code>string</code> | Whether to search raw or reassembled packets. |
 | search | <code>string</code> | The search text to search for within packets. |
 | searchType | <code>string</code> | What type of search the text is. Options include:      ascii - search for case insensitive ascii text.      asciicase - search for case sensitive ascii text.      hex - search for hex text.      regex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe regex</a>.      hexregex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe hex regex</a>. |
-| notifier | <code>string</code> | The optional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
+| notifier | <code>string</code> | A comma separated list of notifier IDs to alert when there is an error or when the hunt is complete. |
 | users | <code>string</code> | The comma separated list of users to be added to the hunt so they can view the results. |
 
 **Returns**:
@@ -192,7 +192,7 @@ Creates a new hunt.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the creation of the hunt was successful. |
 | hunt | [<code>Hunt</code>](#Hunt)| The newly created hunt object. |
-| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexitent. |
+| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexistent. |
 
 <a name="/hunts"></a>
 
@@ -341,7 +341,7 @@ Add user(s) to a hunt.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the add users operation was successful. |
 | users | <code>array</code>| The list of users that were added to the hunt. |
-| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexitent. |
+| invalidUsers | <code>array</code>| The list of users that could not be added to the hunt because they were invalid or nonexistent. |
 
 <a name="/hunt/_id/user/_user"></a>
 
@@ -357,7 +357,7 @@ Remove user(s) from a hunt.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the remove users operation was successful. |
 | users | <code>array</code>| The list of users who have access to the hunt. |
-| invalidUsers | <code>array</code>| The list of users that could not be removed from the hunt because they were invalid or nonexitent. |
+| invalidUsers | <code>array</code>| The list of users that could not be removed from the hunt because they were invalid or nonexistent. |
 
 <a name="/fields"></a>
 
@@ -410,13 +410,13 @@ Gets a list of PCAP files that Arkime knows about.
 
 GET - /api/valueactions
 
-Retrives the actions that can be preformed on meta data values.
+Retrieves the actions that can be performed on meta data values.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>object</code>| The list of actions that can be preformed on data values. |
+|  | <code>object</code>| The list of actions that can be performed on data values. |
 
 <a name="/fieldactions"></a>
 
@@ -424,13 +424,13 @@ Retrives the actions that can be preformed on meta data values.
 
 GET - /api/fieldactions
 
-Retrives the actions that can be preformed on fields.
+Retrieves the actions that can be performed on fields.
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>object</code>| The list of actions that can be preformed on fields. |
+|  | <code>object</code>| The list of actions that can be performed on fields. |
 
 <a name="/reversedns"></a>
 
@@ -438,7 +438,7 @@ Retrives the actions that can be preformed on fields.
 
 GET - /api/reversedns
 
-Retrives the domain names associated with an IP address.
+Retrieves the domain names associated with an IP address.
 
 
 **Parameters**:
@@ -477,7 +477,7 @@ efficient and not duplicate the PCAP. See https://arkime.com/faq#how-do-i-import
 GET - /api/clusters
 
 Retrieves a list of known configured Arkime clusters (if in
-<a href="https://arkime.com/settings#multi-viewer-settings">Mulit Viewer mode</a>).
+<a href="https://arkime.com/settings#multi-viewer-settings">Multi Viewer mode</a>).
 
 **Returns**:
 
@@ -517,7 +517,7 @@ eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, field
 | currentuser | [<code>ArkimeUser</code>](#ArkimeUser)| The currently logged in user |
 | views | [<code>Array.&lt;ArkimeView&gt;</code>](#ArkimeView)| A list of views accessible to the logged in user |
 | remoteclusters | <code>Object</code>| A list of known remote Arkime clusters |
-| clusters | <code>Array</code>| A list of known configured Arkime clusters (if in Mulit Viewer mode) |
+| clusters | <code>Array</code>| A list of known configured Arkime clusters (if in Multi Viewer mode) |
 | fields | <code>Array</code>| Available database field objects pertaining to sessions |
 | fieldsmap | <code>Array</code>| Available database field objects pertaining to sessions |
 | fieldshistory | <code>Object</code>| The user's field history for the search expression input |
@@ -680,7 +680,7 @@ Builds an elasticsearch session query. Gets a list of values for each field with
 | --- | --- | --- | --- |
 | See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
 | exp | <code>string</code> |  | Comma separated list of db fields to populate the graph/table. |
-| strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bonding to 'both' |
+| strictly | <code>boolean</code> | <code>false</code> | When set the entire session must be inside the date range to be observed, otherwise if it overlaps it is displayed. Overwrites the bounding parameter, sets bounding to 'both' |
 
 **Returns**:
 
@@ -703,7 +703,7 @@ Builds an elasticsearch session query. Gets a list of unique field values (with 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
-| counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
+| counts | <code>number</code> | <code>0</code> | Whether to return counts with the list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
 | exp | <code>string</code> |  | The expression field to return unique data for. Either exp or field is required, field is given priority if both are present. |
 | field | <code>string</code> |  | The database field to return unique data for. Either exp or field is required, field is given priority if both are present. |
 
@@ -727,7 +727,7 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | See_List | [<code>SessionsQuery</code>](#SessionsQuery) |  | This API supports a common set of parameters documented in the SessionsQuery section |
-| counts | <code>number</code> | <code>0</code> | Whether to return counts with he list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
+| counts | <code>number</code> | <code>0</code> | Whether to return counts with the list of unique field values. Defaults to 0. 0 = no counts, 1 - counts. |
 | exp | <code>string</code> |  | Comma separated list of expression fields to return unique data for. |
 
 **Returns**:
@@ -735,6 +735,27 @@ Builds an elasticsearch session query. Gets an intersection of unique field valu
 | Name | Type | Description |
 | --- | --- | --- |
 |  | <code>string</code>| The list of an intersection of unique fields (with counts if requested) |
+
+<a name="/session/_id"></a>
+
+## /session/:id API
+
+GET - /api/session/:id
+
+Gets all the fields for a session as JSON.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | The ID of the session to retrieve |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| The session fields as a JSON object |
 
 <a name="/session/_nodeName/_id/detail"></a>
 
@@ -813,6 +834,27 @@ Removes tag(s) from individual session(s) by id or by query.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the remove tags operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/sessions/summary"></a>
+
+## /sessions/summary API
+
+GET - /api/sessions/summary
+
+Get summary info by id or by query.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| See_List | [<code>SessionsQuery</code>](#SessionsQuery) | This API supports a common set of parameters documented in the SessionsQuery section |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| summary | <code>object</code>| An object containing summary statistics for the selected sessions, including fields such as IP addresses, ports, protocols, tags, DNS queries, HTTP hosts, byte and packet counts, and time ranges. |
 
 <a name="/session/_nodeName/_id/body/_bodyType/_bodyNum/_bodyName"></a>
 
@@ -920,7 +962,7 @@ Retrieve a bitmap image representation of packets in a session given the session
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (desintation) packets bitmap image. Defaults to src. |
+| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (destination) packets bitmap image. Defaults to src. |
 
 **Returns**:
 
@@ -941,7 +983,7 @@ Retrieve raw packets for a session given the session id and node name.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (desintation) raw packets. Defaults to src. |
+| type | <code>string</code> | <code>&quot;src&quot;</code> | Whether to retrieve the src (source) or dst (destination) raw packets. Defaults to src. |
 
 **Returns**:
 
@@ -997,7 +1039,7 @@ Retrieve a file from a specific node given a hash of that file.
 
 GET - /api/delete
 
-Delete SPI and/or scrub PCAP data (remove persmission required).
+Delete SPI and/or scrub PCAP data (remove permission required).
 
 
 **Parameters**:
@@ -1015,6 +1057,86 @@ Delete SPI and/or scrub PCAP data (remove persmission required).
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the operation was successful |
 | text | <code>string</code>| The success/error message to (optionally) display to the user |
+
+<a name="/shareable"></a>
+
+## /shareable API
+
+POST - /api/shareable
+
+Creates a shareable item.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the create operation was successful. |
+| text | <code>string</code>| The success/error message. |
+| id | <code>string</code>| The ID of the new shareable item. |
+| shareable | <code>object</code>| The new shareable item. |
+
+<a name="/shareable/_id"></a>
+
+## /shareable/:id API
+
+GET - /api/shareable/:id
+
+Gets a shareable item by ID. User must have view permission.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the get operation was successful. |
+| shareable | <code>object</code>| The shareable item. |
+
+<a name="/shareable/_id"></a>
+
+## /shareable/:id API
+
+PUT - /api/shareable/:id
+
+Updates a shareable item. Only creator or editUsers/editRoles can update.
+Creator and created date are not changed. Updated date is set to now.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the update operation was successful. |
+| text | <code>string</code>| The success/error message. |
+| shareable | <code>object</code>| The updated shareable item. |
+
+<a name="/shareable/_id"></a>
+
+## /shareable/:id API
+
+DELETE - /api/shareable/:id
+
+Deletes a shareable item. Only creator or arkimeAdmin can delete.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the delete operation was successful. |
+| text | <code>string</code>| The success/error message. |
+
+<a name="/shareables"></a>
+
+## /shareables API
+
+GET - /api/shareables
+
+Lists shareable items. Returns items user has permission to view/edit.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| data | <code>array</code>| Array of shareable items with { id, type, name, data, canEdit, canDelete } |
+| recordsTotal | <code>number</code>| Total records matching query |
+| recordsFiltered | <code>number</code>| Total records after filtering |
 
 <a name="/shortcuts"></a>
 
@@ -1176,8 +1298,8 @@ Fetches a list of detailed stats for different fields pertaining to a node to po
 | --- | --- | --- | --- |
 | nodeName | <code>string</code> |  | The name of the node to get the detailed stats for. |
 | name | <code>string</code> |  | The name of the field to get the detailed stats for. |
-| start | <code>number</code> |  | The start time of data to return. Format is seconds since Unix EPOC. |
-| stop | <code>number</code> |  | The stop time of data to return. Format is seconds since Unix EPOC. |
+| start | <code>number</code> |  | The start time of data to return. Format is seconds since Unix EPOCH. |
+| stop | <code>number</code> |  | The stop time of data to return. Format is seconds since Unix EPOCH. |
 | step | <code>number</code> |  | The context step of the cubism graph in milliseconds. |
 | interval | <code>number</code> | <code>60</code> | The time interval to search for. |
 | size | <code>number</code> | <code>1440</code> | The size of the cubism graph. Defaults to 1440. |
@@ -1481,6 +1603,30 @@ Try and clear the cache for all indices (es admin only - set in config with <a h
 | success | <code>boolean</code>| Whether clearing the cache was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/esadmin/allocation"></a>
+
+## /esadmin/allocation API
+
+GET - /api/esadmin/allocation
+
+Provides an explanation for shard allocation in the cluster (es admin only - set in config with <a href="settings#esadminusers">esAdminUsers</a>).
+Returns details about why shards are assigned or unassigned.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>string</code> | Optional specific index name to explain |
+| shard | <code>number</code> | Optional specific shard number to explain |
+| primary | <code>boolean</code> | Optional whether the shard is primary (true) or replica (false) |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| allocation | <code>object</code>| The cluster allocation explanation including node decisions and shard state |
+
 <a name="/esshards"></a>
 
 ## /esshards API
@@ -1767,7 +1913,7 @@ Fetches the configuration/layout information for a UI page for a user.
 
 GET - /api/views
 
-Retrieves an Arkime views that a user can view.
+Retrieves Arkime views that a user can view.
 
 **Returns**:
 
@@ -1835,20 +1981,20 @@ A query to be run periodically that can perform actions on sessions that match t
 | --- | --- | --- | --- |
 | name | <code>string</code> |  | The name of the query |
 | enabled | <code>boolean</code> |  | Whether the query is enabled. If enabled, the query will run every 90 seconds. |
-| lpValue | <code>number</code> |  | The last packet timestamp that was searched. Used to query for the next group of sessions to search. Format is seconds since Unix EPOC. |
-| lastRun | <code>number</code> |  | The time that the query was last run. Format is seconds since Unix EPOC. |
+| lpValue | <code>number</code> |  | The last packet timestamp that was searched. Used to query for the next group of sessions to search. Format is seconds since Unix EPOCH. |
+| lastRun | <code>number</code> |  | The time that the query was last run. Format is seconds since Unix EPOCH. |
 | count | <code>number</code> |  | The count of total sessions that have matched this query. |
 | lastCount | <code>number</code> |  | The count of sessions that have matched this query during its last run. |
 | query | <code>string</code> |  | The search expression to apply when searching for sessions. |
 | action | <code>string</code> | <code>&quot;tag&quot;</code> | The action to perform when sessions have matched. "tag" or "forward:clusterName". |
 | creator | <code>string</code> |  | The id of the user that created this query. |
 | tags | <code>string</code> |  | A comma separated list of tags to add to each session that matches this query. |
-| notifier | <code>string</code> |  | The name of the notifier to alert when there are matches for this query. |
-| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifier. Only notifies every 10 minutes. Format is seconds since Unix EPOC. |
+| notifier | <code>string</code> |  | A comma separated list of notifier IDs to alert when there are matches for this query. |
+| lastNotified | <code>number</code> |  | The time that this query last sent a notification to the notifiers. Only notifies every 10 minutes. Format is seconds since Unix EPOCH. |
 | lastNotifiedCount | <code>number</code> |  | The count of sessions that matched since the last notification was sent. |
 | description | <code>string</code> |  | The description of this query. |
-| created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOC. |
-| lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOC. |
+| created | <code>number</code> |  | The time that this query was created. Format is seconds since Unix EPOCH. |
+| lastToggled | <code>number</code> |  | The time that this query was enabled or disabled. Format is seconds since Unix EPOCH. |
 | lastToggledBy | <code>string</code> |  | The user who last enabled or disabled this query. |
 | users | <code>string</code> |  | The list of userIds who have access to use this query. |
 | roles | <code>string</code> |  | The list of roles who have access to use this query. |
@@ -1871,7 +2017,7 @@ The history object to describe user client requests.
 | api | <code>string</code> | The API endpoint of the request. |
 | expression | <code>string</code> | The sessions search expression used in the request. |
 | view | [<code>ArkimeView</code>](#ArkimeView) | The view applied to the request. |
-| timestamp | <code>number</code> | The time that the request was made. Format is seconds since Unix EPOC. |
+| timestamp | <code>number</code> | The time that the request was made. Format is seconds since Unix EPOCH. |
 | range | <code>number</code> | The date range of the request. Range is described in hours, -1 means all. |
 | query | <code>string</code> | The query parameters of the request. |
 | queryTime | <code>number</code> | The time it took for the response to be returned after the request was issued. |
@@ -1879,7 +2025,7 @@ The history object to describe user client requests.
 | recordsFiltered | <code>number</code> | The number of items returned from searching the dataset (before paging). |
 | recordsReturned | <code>number</code> | The number of items returned in the response (after paging). |
 | body | <code>object</code> | The request body. |
-| forcedExpression | <code>string</code> | The expression applied to the search as a result of a users forced expression. Only visible to admins, normal users cannot see their forced expressions. |
+| forcedExpression | <code>string</code> | The expression applied to the search as a result of a user's forced expression. Only visible to admins, normal users cannot see their forced expressions. |
 
 <a name="Hunt"></a>
 
@@ -1910,12 +2056,12 @@ A packet search job that allows users to search within session packets for text.
 | matchedSessions | <code>number</code> | How many sessions contain packets that match the search text. |
 | searchedSessions | <code>number</code> | How many sessions have had their packets searched. |
 | totalSessions | <code>number</code> | The number of sessions to search. |
-| lastPacketTime | <code>number</code> | The date of the first packet of the last searched session. Used to query for the next chunk of sessions to search. Format is seconds since Unix EPOC. |
-| created | <code>number</code> | The time that the hunt was created. Format is seconds since Unix EPOC. |
-| lastUpdated | <code>number</code> | The time that the hunt was last updated in the DB. Used to only update every 2 seconds. Format is seconds since Unix EPOC. |
-| started | <code>number</code> | The time that the hunt was started (put into running state). Format is seconds since Unix EPOC. |
+| lastPacketTime | <code>number</code> | The date of the first packet of the last searched session. Used to query for the next chunk of sessions to search. Format is seconds since Unix EPOCH. |
+| created | <code>number</code> | The time that the hunt was created. Format is seconds since Unix EPOCH. |
+| lastUpdated | <code>number</code> | The time that the hunt was last updated in the DB. Used to only update every 2 seconds. Format is seconds since Unix EPOCH. |
+| started | <code>number</code> | The time that the hunt was started (put into running state). Format is seconds since Unix EPOCH. |
 | errors | <code>array</code> | The list of errors that a hunt encountered. A hunt error includes:      value - The error text to display to the user.      time - The time the error was encountered.      node - The Arkime node that the hunt was searching sessions for when the error occurred. |
-| notifier | <code>string</code> | The otional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
+| notifier | <code>string</code> | The optional notifier name to fire when there is an error, or there are matches (every 10 minutes), or when the hunt is complete. |
 | unrunnable | <code>boolean</code> | Whether an error has rendered the hunt unrunnable. |
 | failedSessionIds | <code>array</code> | The list of sessions that have failed to be searched. Used to run the search against them again once the rest of the hunt is complete. |
 | users | <code>array</code> | The list of users to be added to the hunt so they can view the results. |
@@ -1940,8 +2086,8 @@ Ensure parameters with special characters are URL encoded when placed in the URL
 | facets | <code>number</code> | <code>0</code> | 1 = include the aggregation information for maps and timeline graphs. |
 | length | <code>number</code> | <code>100</code> | The number of items to return, beginning at start parameter, max is 2,000,000 |
 | start | <code>number</code> | <code>0</code> | The entry to start at for pagination purposes. |
-| startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOC. |
-| stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOC. |
+| startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOCH. |
+| stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOCH. |
 | view | <code>string</code> |  | The Arkime view name to apply before the expression. |
 | order | <code>string</code> |  | Comma separated list of db field names to sort on. Data is sorted in order of the list supplied. Optionally can be followed by :asc or :desc for ascending or descending sorting. |
 | fields | <code>string</code> |  | Comma separated list of db field names to return.      Default is ipProtocol, rootId, totDataBytes, client.bytes, server.bytes, firstPacket, lastPacket, source.ip, source.port, destination.ip, destination.port, network.packets, source.packets, destination.packets, network.bytes, source.bytes, destination.bytes, node, http.uri, source.geo.country_iso_code, destination.geo.country_iso_code, email.subject, email.src, email.dst, email.filename, dns.host, cert, irc.channel, http.xffGEO |
@@ -1997,7 +2143,7 @@ The OpenSearch/Elasticsearch cluster health status and information.
 | timed_out | <code>boolean</code> | If false the response returned within the period of time that is specified by the timeout parameter (30s by default). |
 | unassigned_shards | <code>number</code> | The number of shards that are not allocated. |
 | version | <code>string</code> | the elasticsearch version number |
-| _timeStamp | <code>number</code> | timestamps in ms from unix epoc |
+| _timeStamp | <code>number</code> | timestamps in ms from unix epoch |
 
 <a name="ArkimeRole"></a>
 
@@ -2042,13 +2188,13 @@ The user object.
 | hidePcap | <code>boolean</code> | <code>false</code> | Hide PCAP (and only show metadata/session detail) for this user when they open a Session. |
 | disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
 | expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
-| settings | [<code>ArkimeSettings</code>](#ArkimeSettings) |  | The Arkime app settings. |
+| settings | [<code>ArkimeSettings</code>](#ArkimeSettings) |  | The Arkime application settings. |
 | notifiers | <code>object</code> |  | A list of notifiers that the user can use. |
 | columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
 | spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
 | tableStates | <code>object</code> |  | A list of table states used to render Arkime tables as the user has configured them. |
 | welcomeMsgNum | <code>number</code> | <code>0</code> | The message number that a user is on. Gets incremented when a user dismisses a message. |
-| lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
+| lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOCH. |
 | timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
 | roles | <code>array</code> |  | The list of Arkime roles assigned to this user. |
 | roleAssigners | <code>array</code> |  | The list of userIds that can manage who has this (ROLE) |

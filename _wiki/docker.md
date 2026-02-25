@@ -11,7 +11,7 @@ copyLink: True
 {: .section-header.mt-1 }
 
 Starting with version 5.5.0, Arkime provides official Docker images.
-A single image contains all Arkime tools, and the command you pass determines which tool launches.
+A single image contains all Arkime applications, and the command you pass determines which tool launches.
 
 An optional `docker.sh` helper script is included to simplify launching different tools, but you can also run them directly from the container.
 

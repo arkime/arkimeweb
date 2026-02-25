@@ -265,8 +265,8 @@ When sources are created they get an api object to interact with the wise servic
         * [.addView(viewName, view)](#WISESourceAPI+addView)
         * [.addSource(section, src, types)](#WISESourceAPI+addSource)
         * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
-        * [.addValueAction()](#WISESourceAPI+addValueAction)
-        * [.addFieldAction()](#WISESourceAPI+addFieldAction)
+        * [.addValueAction(actionName, action)](#WISESourceAPI+addValueAction)
+        * [.addFieldAction(actionName, action)](#WISESourceAPI+addFieldAction)
     * _inner_
         * [~SourceConfigField](#WISESourceAPI..SourceConfigField) : <code>Object</code>
         * [~SourceConfig](#WISESourceAPI..SourceConfig) : <code>Object</code>
@@ -395,20 +395,32 @@ Add for each source config definition for the UI to use.
 
 <a name="WISESourceAPI+addValueAction"></a>
 
-### wiseSourceAPI.addValueAction() (function)
+### wiseSourceAPI.addValueAction(actionName, action) (function)
 
 Add a value action set
 
-**Params**: <code>string</code> actionName - The globally unique name of this action, not shown to user  
-**Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| actionName | <code>string</code> | The globally unique name of this action, not shown to user |
+| action | [<code>ValueAction</code>](#WISESourceAPI..ValueAction) | The action |
+
 <a name="WISESourceAPI+addFieldAction"></a>
 
-### wiseSourceAPI.addFieldAction() (function)
+### wiseSourceAPI.addFieldAction(actionName, action) (function)
 
 Add a field action set
 
-**Params**: <code>string</code> actionName - The globally unique name of this action, not shown to user  
-**Params**: [<code>ValueAction</code>](#WISESourceAPI..ValueAction) action - The action  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| actionName | <code>string</code> | The globally unique name of this action, not shown to user |
+| action | [<code>ValueAction</code>](#WISESourceAPI..ValueAction) | The action |
+
 <a name="WISESourceAPI..SourceConfigField"></a>
 
 ### WISESourceAPI~SourceConfigField Type
@@ -458,7 +470,7 @@ Define all configuration for a field for a source
 | --- | --- | --- |
 | key | <code>string</code> | The key must be unique and is also used as the right click menu name if the name field is missing |
 | name | <code>string</code> | The name of the value action to show the user |
-| [url] | <code>string</code> | The url to send the user, supports special subsitutions, must set url or func |
+| [url] | <code>string</code> | The url to send the user, supports special substitutions, must set url or func |
 | [func] | <code>string</code> | A javascript function body to call, will be passed the name and value and must return the value, must set url or func |
 | [actionType] | <code>string</code> | If set to 'fetch' this will replace the menu option with the results of url or func |
 | [category] | <code>string</code> | Which category of fields should the value action be shown for, must set fields or category. <a href="settings#right-click">View available categories</a> |
@@ -514,7 +526,7 @@ Should only be created by super(api, section, options) call
 | section | <code>string</code> |  | the section name |
 | options | <code>object</code> |  | All the options |
 | [options.dontCache] | <code>boolean</code> | <code>false</code> | do not cache this source, the source handles itself |
-| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as dont |
+| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as don't |
 | [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
 | [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
 | [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting with default the provided value if not false |
@@ -705,13 +717,13 @@ This method tags a variable number of arguments, each in a pair of field id and 
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>buffer</code>| the endcoded results |
+|  | <code>buffer</code>| the encoded results |
 
 <a name="WISESource.combineResults"></a>
 
 ### WISESource.combineResults(results) (function)
 
-Combine a array of encoded results into one encoded result
+Combine an array of encoded results into one encoded result
 
 
 **Parameters**:
@@ -874,7 +886,7 @@ POST - Used by capture to lookup all the wise items
 
 ## /sources API
 
-GET - Used by wise UI to retrieve all the sources (unathenticated).
+GET - Used by wise UI to retrieve all the sources (unauthenticated).
 
 **Returns**:
 
@@ -894,11 +906,23 @@ GET - Used by wise UI to retrieve all the configuration definitions for the vari
 | --- | --- | --- |
 | object | <code>object</code>|  |
 
+<a name="/api/locales"></a>
+
+## /api/locales API
+
+GET - Retrieve all available locale files for internationalization
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>object</code>| Object containing all locale data |
+
 <a name="/types"></a>
 
 ## /types API
 
-GET - Used by the wise UI to all the types known (unathenticated).
+GET - Used by the wise UI to all the types known (unauthenticated).
 
 **Returns**:
 
