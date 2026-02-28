@@ -124,8 +124,17 @@ title: V6!
             <p class="lead text-justify mt-4">
               <strong>Parsing:</strong>
               More than 30 new protocol parsers and classifiers have been added to capture, and we improved several of the existing ones.
-              Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly in future releases 
+              Claude Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly in future releases 
               as the community contributes new ones.
+            </p>
+
+            <p class="lead text-justify mt-4">
+              <strong>New ways to install and use Arkime:</strong>
+              <ul>
+                <li><strong><a href="https://github.com/arkime/alkeme" class="no-decoration">Alkeme</a></strong> — A brand new terminal UI (TUI) for Arkime, giving you a powerful interactive experience right from your terminal.</li>
+                <li><strong><a href="https://github.com/arkime/homebrew-arkime" class="no-decoration">Homebrew TAP</a></strong> — macOS and Linux users can now install Arkime with <code>brew install arkime/arkime/arkime</code>.</li>
+                <li><strong>FreeBSD packages</strong> — Initial FreeBSD builds are now available, with netmap and bpf capture support.</li>
+              </ul>
             </p>
 
             <p class="lead text-justify mt-4">
@@ -135,7 +144,6 @@ title: V6!
                     <ul>
                       <li>Point <a href="/settings#geoLite2Country">geoLite2Country</a> to a City database to get region and city fields in addition to country</li>
                       <li>When in AFPacket mode we add the first vlan back to the packet when saving to disk</li>
-                      <li>Initial FreeBSD support with official builds, including netmap and bpf capture methods</li>
                       <li>Much improved SCTP support</li>
                       <li>The <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves corrupt and unknown packets as first-class Arkime sessions, replacing the need for the unkEthernet/unkIpProtocol plugins</li>
                     </ul>
@@ -143,6 +151,9 @@ title: V6!
                 <li> <strong>viewer:</strong>
                     <ul>
                       <li> Expanded search expression editor for those complex expressions</li>
+                      <li> Expression autocomplete supported in more places</li>
+                      <li> New 15 and 30 minute query time ranges</li>
+                      <li> Hunts allow updating of fields while running</li>
                       <li> Better node tracking: see which OpenSearch/Elasticsearch host disappeared, not just the node ID</li>
                       <li> Periodic Queries and Hunts can now notify on multiple notifiers</li>
                       <li> IP OR array queries should be more efficient now </li>
@@ -151,6 +162,9 @@ title: V6!
                 <li> <strong>docker:</strong>
                     <ul>
                       <li> We've moved to Debian 13 for our base image </li>
+                      <li> Container now includes geoipupdate for easy GeoIP database updates </li>
+                      <li> docker.sh supports <code>--wait-for-db</code> to wait for OpenSearch/Elasticsearch to be ready </li>
+                      <li> docker.sh supports <code>--ilm</code> and <code>--ism</code> options for index lifecycle management </li>
                       <li> Improvements for new users getting started with docker-compose </li>
                     </ul>
                 </li>
@@ -284,7 +298,7 @@ title: V6!
         <div class="col-lg-4 col-md-5 lead text-justify">
           <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
             id="sankey">
-            Spigraph sankey diagram
+            SPI Graph Sankey Diagram
             <span class="fa fa-link small copy-link cursor-copy"
               onclick="copyLink(this, 'release-v6')">
             </span>
@@ -303,7 +317,12 @@ title: V6!
               onclick="copyLink(this, 'release-v6')">
             </span>
           </h1>
-          We've optimized and colorized the Parliament UI to make it easier to monitor the health of your Arkime deployment at a glance.
+          We've refreshed the Parliament UI to make it easier to monitor the health of your Arkime deployment at a glance.
+          New features include low disk space monitoring for capture and OpenSearch/Elasticsearch hosts,
+          clickable issue rows that navigate directly to node stats,
+          issue filters that persist in URL parameters,
+          ES version display in cluster tooltips,
+          and a navbar status indicator that cycles through clusters with issues.
         </div>
         <div class="col-lg-4 col-md-4">
           <img
