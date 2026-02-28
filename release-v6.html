@@ -190,20 +190,22 @@ title: V6!
                 <li class="list-group-item">If the Lua plugin is enabled, any file ending in .lua in the parsers directories will be automatically loaded</li>
                 <li class="list-group-item">Capture now defaults to the <code>--scheme</code> method for reading offline pcaps, use <code>--libpcap</code> for previous behaviour</li>
                 <li class="list-group-item">Ubuntu 20.04 is no longer supported</li>
-                <li class="list-group-item">db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
-                <li class="list-group-item">WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading to Arkime 6</li>
-                <li class="list-group-item">Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
-                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code>tpacketv3OldVlan=true</code> to disable.</li>
-                <li class="list-group-item">Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
+                <li class="list-group-item">db.pl now requires a leading http:// or https:// in OpenSearch/Elasticsearch URLs</li>
+                <li class="list-group-item">WISE now requires <a href="/settings#webBasePath">webBasePath</a> to be set if you use a non-default base path — set it in Arkime 5 before upgrading</li>
+                <li class="list-group-item">Cont3xt ThreatFox integration now requires an API key (free at https://auth.abuse.ch/)</li>
+                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code><a href="/settings#tpacketv3OldVlan">tpacketv3OldVlan</a>=true</code> to disable.</li>
+                <li class="list-group-item">Digest/Form users who haven't changed their password since Dec 2019 will not be able to log in. A userAdmin can reset their passwords.</li>
                 <li class="list-group-item">The setting <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> now defaults to TRUE</li>
-                <li class="list-group-item">When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
-                <li class="list-group-item">Viewer now always expires PCAPs (using /opt/arkime/raw if pcapDir is unset) — previously it would not expire if pcapDir was missing</li>
-                <li class="list-group-item">IPv4 sessions with the same src/dst IP could have had an incorrect community_id, this has been fixed but old sessions will be incorrect</li>
-                <li class="list-group-item">geoLite2Country setting now looks for City file first by default</li>
+                <li class="list-group-item">When talking to remote viewers, only <a href="/settings#viewUrl">viewUrl</a> is used now — <a href="/settings#webBasePath">webBasePath</a> is no longer used</li>
+                <li class="list-group-item">Viewer now expires PCAPs even if <a href="/settings#pcapDir">pcapDir</a> is not set, defaulting to /opt/arkime/raw. Previously, PCAPs were not expired when pcapDir was unset.</li>
+                <li class="list-group-item">Fixed: IPv4 sessions with identical src and dst IP addresses may have had an incorrect community_id. Old sessions will retain the incorrect value.</li>
+                <li class="list-group-item">The <a href="/settings#geoLite2Country">geoLite2Country</a> setting now looks for a City database file first by default</li>
                 <li class="list-group-item">The <code>parseSMTP</code> and <code>parseSMB</code> settings have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
                 <li class="list-group-item">The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
-                <li class="list-group-item">New <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting, defaults to RS256</li>
-                <li class="list-group-item">arkime_packet_log no longer prints exactly logEveryXPackets, instead that is just the minimum; it also only prints TCP info now.</li>
+                <li class="list-group-item">The new <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting defaults to RS256</li>
+                <li class="list-group-item">arkime_packet_log now treats <a href="/settings#logEveryXPackets">logEveryXPackets</a> as a minimum rather than an exact interval, and only prints TCP info</li>
+                <li class="list-group-item">Users now inherit the 7 extra settings from their Roles unless explicitly overridden</li>
+                <li class="list-group-item">The <a href="/settings#disablePython">disablePython</a> setting now defaults to true</li>
               </ul>
             </p>
             <p class="lead lead-lg text-center mt-4 pt-4">

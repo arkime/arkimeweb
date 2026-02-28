@@ -1263,20 +1263,27 @@ title: FAQ
       </p>
       <h4>Breaking Changes</h4>
       <ul>
-        <li>The settings parseSMTP and parseSMB have been removed, use disableParsers instead</li>
-        <li>Arkime plugins must end with supported extension, e.g. .so, .lua, .py</li>
-        <li>The luaFiles setting now defaults to EMPTY</li>
-        <li>The lua plugin now auto loads any .lua files in the parsersDir directories</li>
+        <li>The settings <code>parseSMTP</code> and <code>parseSMB</code> have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
+        <li>Arkime plugins must end with a supported extension, e.g. .so, .lua, .py</li>
+        <li>The <a href="/settings#luaFiles">luaFiles</a> setting now defaults to EMPTY</li>
+        <li>The Lua plugin now auto-loads any .lua files in the <a href="/settings#parsersDir">parsersDir</a> directories</li>
         <li>Capture now defaults to the --scheme method for reading offline pcaps, use --libpcap for previous behaviour</li>
         <li>Ubuntu 20.04 is no longer supported</li>
-        <li>db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
-        <li>WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading</li>
-        <li>Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
-        <li>Capture now adds the first vlan back to the packet when saving to disk, this may break bpf filters, tpacketv3OldVlan=true to disable</li>
-        <li>Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
-        <li>dnsOutputAnswers now defaults to TRUE</li>
-        <li>When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
-        <li>Previously viewer didn't expire PCAPs if pcapDir wasn't set, now it defaults to /opt/arkime/raw and will expire them</li>
+        <li>db.pl now requires a leading http:// or https:// in OpenSearch/Elasticsearch URLs</li>
+        <li>WISE now requires <a href="/settings#webBasePath">webBasePath</a> to be set if you use a non-default base path — set it in Arkime 5 before upgrading</li>
+        <li>Cont3xt ThreatFox integration now requires an API key (free at https://auth.abuse.ch/)</li>
+        <li>Capture now adds the first VLAN tag back to packets when saving to disk. This may affect existing BPF filters — set <a href="/settings#tpacketv3OldVlan">tpacketv3OldVlan</a>=true to disable.</li>
+        <li>Digest/Form users who haven't changed their password since Dec 2019 will not be able to log in. A userAdmin can reset their passwords.</li>
+        <li>The <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> setting now defaults to TRUE</li>
+        <li>When talking to remote viewers, only <a href="/settings#viewUrl">viewUrl</a> is used now — <a href="/settings#webBasePath">webBasePath</a> is no longer used</li>
+        <li>Viewer now expires PCAPs even if <a href="/settings#pcapDir">pcapDir</a> is not set, defaulting to /opt/arkime/raw. Previously, PCAPs were not expired when pcapDir was unset.</li>
+        <li>Users now inherit the 7 extra settings from their Roles unless explicitly overridden</li>
+        <li>Fixed: IPv4 sessions with identical src and dst IP addresses may have had an incorrect community_id. Old sessions will retain the incorrect value.</li>
+        <li>The <a href="/settings#geoLite2Country">geoLite2Country</a> setting now looks for a City database file first by default</li>
+        <li>The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
+        <li>The new <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting defaults to RS256</li>
+        <li>arkime_packet_log now treats <a href="/settings#logEveryXPackets">logEveryXPackets</a> as a minimum rather than an exact interval, and only prints TCP info</li>
+        <li>The <a href="/settings#disablePython">disablePython</a> setting now defaults to true</li>
       </ul>
       <h4>Instructions</h4>
       <ul>
