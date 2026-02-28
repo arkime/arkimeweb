@@ -1277,7 +1277,7 @@ title: FAQ
         <li>The <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> setting now defaults to TRUE</li>
         <li>When talking to remote viewers, only <a href="/settings#viewUrl">viewUrl</a> is used now — <a href="/settings#webBasePath">webBasePath</a> is no longer used</li>
         <li>Viewer now expires PCAPs even if <a href="/settings#pcapDir">pcapDir</a> is not set, defaulting to /opt/arkime/raw. Previously, PCAPs were not expired when pcapDir was unset.</li>
-        <li>Users now inherit the 7 extra settings from their Roles unless explicitly overridden</li>
+        <li>Users now inherit the 7 extra permissions from their Roles unless explicitly overridden</li>
         <li>Fixed: IPv4 sessions with identical src and dst IP addresses may have had an incorrect community_id. Old sessions will retain the incorrect value.</li>
         <li>The <a href="/settings#geoLite2Country">geoLite2Country</a> setting now looks for a City database file first by default</li>
         <li>The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
