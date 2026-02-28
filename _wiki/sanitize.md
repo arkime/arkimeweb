@@ -9,7 +9,7 @@ permalink: "/sanitize"
 # Sanitize Builds
 {: .section-header.mt-1 }
 
-We provide Address Sanitizer (ASAN) builds of the [latest commit releases](https://github.com/arkime/arkime/releases/tag/last-commit) of Arkime.
+We provide Address Sanitizer (ASAN) builds of the [latest commit releases](https://github.com/arkime/arkime/releases/tag/last-commit6) of Arkime.
 These builds are designed to help folks identify memory issues in Arkime.
 They can be tricky to get working, so here are some tips.
 
