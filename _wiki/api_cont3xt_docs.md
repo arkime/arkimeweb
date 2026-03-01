@@ -31,8 +31,8 @@ Returns list of audit logs that the requesting user is allowed to view.
 | Param | Type | Description |
 | --- | --- | --- |
 | searchTerm | <code>string</code> | an optional query parameter to filter on indicator, iType, and tags |
-| startMs | <code>string</code> | an optional query parameter to specify the start of results (milliseconds since Unix EPOC) |
-| stopMs | <code>string</code> | an optional query parameter to specify the end of results (milliseconds since Unix EPOC) |
+| startMs | <code>string</code> | an optional query parameter to specify the start of results (milliseconds since Unix EPOCH) |
+| stopMs | <code>string</code> | an optional query parameter to specify the end of results (milliseconds since Unix EPOCH) |
 | seeAll | <code>string</code> | an optional query parameter to request viewing all history (only works for admin users) |
 | sortBy | <code>string</code> | an optional query parameter to specify the field to sort by |
 | sortOrder | <code>string</code> | an optional query parameter to specify the order to sort by |
@@ -386,7 +386,7 @@ Creates a new view
 
 | Param | Type | Description |
 | --- | --- | --- |
-| views | [<code>Cont3xtView</code>](#Cont3xtView) | The view to create |
+| view | [<code>Cont3xtView</code>](#Cont3xtView) | The view to create |
 
 **Returns**:
 
@@ -408,7 +408,7 @@ Updates a view
 
 | Param | Type | Description |
 | --- | --- | --- |
-| views | [<code>Cont3xtView</code>](#Cont3xtView) | The view to update |
+| view | [<code>Cont3xtView</code>](#Cont3xtView) | The view to update |
 
 **Returns**:
 
@@ -430,7 +430,7 @@ Deletes a view
 
 | Param | Type | Description |
 | --- | --- | --- |
-| views | [<code>Cont3xtView</code>](#Cont3xtView) | The view to delete |
+| view | [<code>Cont3xtView</code>](#Cont3xtView) | The view to delete |
 
 **Returns**:
 
@@ -665,7 +665,7 @@ The settings for an integration for the logged in user
 
 | Param | Type | Description |
 | --- | --- | --- |
-| globalConfiged | <code>boolean</code> | Whether integration is configured globally across cont3xt users or by this user (if a user has changed the settings for an integration, this if false) |
+| globalConfiged | <code>boolean</code> | Whether integration is configured globally across cont3xt users or by this user (if a user has changed the settings for an integration, this is false) |
 | locked | <code>boolean</code> | Whether integration is locked. Locked integrations use the globally configured settings. Users cannot update locked integrations. Any previously configured settings for locked integrations will be ignored in favor of the global configuration. |
 | homePage | <code>string</code> | The link to the home page for this integration so a user can learn more |
 | settings | <code>object</code> | The setting field definitions for this integration |
@@ -693,7 +693,7 @@ The statistic data for an integration
 | directGood | <code>number</code> | The number of valid entries queried directly from the integration |
 | directLookup | <code>number</code> | The number of entries queried directly from the integration |
 | directRecentAvgMS | <code>number</code> | How long it takes to look up directly from the integration |
-| name | <code>number</code> | The name of the integration |
+| name | <code>string</code> | The name of the integration |
 | total | <code>number</code> | The number of times the integration was asked for a result |
 
 <a name="Link"></a>

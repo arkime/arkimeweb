@@ -85,7 +85,7 @@ title: V6!
 
             <p class="lead text-justify mt-4">
               Arkime 6: Faster. Smarter. Ready for your network.
-              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0" class="no-decoration">release of Arkime 6 RC 2</a>!
+              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0" class="no-decoration">release of Arkime 6</a>!
               This open-source network analysis and packet capture tool just got even better.
               This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
             </p>
@@ -97,9 +97,9 @@ title: V6!
               We've focused heavily on improving the performance of both the capture and viewer applications.
               The three most noticeable improvements:
               <ul>
-                <li> <strong>Faster PCAP downloads</strong> - A top complaint from users was PCAP download speed, and we've addressed it head-on. In our tests we show at least 5x faster downloads compared to Arkime 5. </li>
+                <li> <strong>Faster PCAP Downloads</strong> - We've addressed a top user request by overhauling PCAP downloads. Our tests show speeds at least 5x faster than Arkime 5. </li>
                 <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster than with Arkime 5. </li>
-                <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi-threaded compression with OpenSearch/Elasticsearch, improved memory allocation algorithms, and removed several <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a> usage patterns.</li>
+                <li> <strong>Enhanced Capture Capacity</strong> - Environments monitoring high-traffic networks will benefit from multi-threaded compression with OpenSearch/Elasticsearch, improved algorithms, and the elimination of several <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a> patterns.</li>
               </ul>
             </p>
 
@@ -108,7 +108,7 @@ title: V6!
               Much of Arkime's codebase is over 10 years old.
               In Arkime 6, we've modernized large portions of the application—making it easier to maintain, more secure, and more welcoming to new contributors.
               One of the largest tasks behind the scenes was upgrading all of the UI from Vue 2 to Vue 3.
-              Arkime 6 also requires Node.js 22, keeping the platform on the latest LTS release.
+              Arkime 6 also requires Node.js 22.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -119,10 +119,18 @@ title: V6!
             </p>
 
             <p class="lead text-justify mt-4">
-              <strong>Parsing:</strong>
-              More than 30 new protocol parsers and classifiers have been added to capture, and we improved several of the existing ones.
-              Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly in future releases 
-              as the community contributes new ones.
+              <strong>Extensive Parsing:</strong>
+              Arkime 6 introduces over 30 new protocol parsers and classifiers, along with improvements to many existing ones.
+              Claude Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly as the community continues to contribute.
+            </p>
+
+            <p class="lead text-justify mt-4">
+              <strong>New ways to install and use Arkime:</strong>
+              <ul>
+                <li><strong><a href="https://github.com/arkime/alkeme" class="no-decoration">Alkeme</a></strong> — A brand new terminal UI (TUI) for Arkime, giving you a powerful interactive experience right from your terminal.</li>
+                <li><strong><a href="https://github.com/arkime/homebrew-arkime" class="no-decoration">Homebrew TAP</a></strong> — macOS and Linux users can now install Arkime with <code>brew install arkime/arkime/arkime</code>.</li>
+                <li><strong>FreeBSD packages</strong> — Initial FreeBSD builds are now available, with netmap and bpf capture support.</li>
+              </ul>
             </p>
 
             <p class="lead text-justify mt-4">
@@ -132,7 +140,6 @@ title: V6!
                     <ul>
                       <li>Point <a href="/settings#geoLite2Country">geoLite2Country</a> to a City database to get region and city fields in addition to country</li>
                       <li>When in AFPacket mode we add the first vlan back to the packet when saving to disk</li>
-                      <li>Initial FreeBSD support with official builds, including netmap and bpf capture methods</li>
                       <li>Much improved SCTP support</li>
                       <li>The <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves corrupt and unknown packets as first-class Arkime sessions, replacing the need for the unkEthernet/unkIpProtocol plugins</li>
                     </ul>
@@ -140,15 +147,21 @@ title: V6!
                 <li> <strong>viewer:</strong>
                     <ul>
                       <li> Expanded search expression editor for those complex expressions</li>
+                      <li> Expression autocomplete supported in more places</li>
+                      <li> New 15 and 30 minute query time ranges</li>
+                      <li> Hunts allow updating of fields while running</li>
                       <li> Better node tracking: see which OpenSearch/Elasticsearch host disappeared, not just the node ID</li>
                       <li> Periodic Queries and Hunts can now notify on multiple notifiers</li>
-                      <li> IP OR array queries should be more efficient now </li>
+                      <li> Improved efficiency for IP OR array queries </li>
                     </ul>
                 </li>
-                <li> <strong>docker:</strong>
+                <li> <strong><a href="/docker" class="no-decoration">docker:</a></strong>
                     <ul>
                       <li> We've moved to Debian 13 for our base image </li>
-                      <li> Improvements for new users getting started with docker-compose </li>
+                      <li> Container now includes geoipupdate for easy GeoIP database updates </li>
+                      <li> docker.sh supports <code>--wait-for-db</code> to wait for OpenSearch/Elasticsearch to be ready </li>
+                      <li> docker.sh supports <code>--ilm</code> and <code>--ism</code> options for index lifecycle management </li>
+                      <li> Streamlined experience for new users getting started with docker-compose </li>
                     </ul>
                 </li>
                 <li> <strong>cont3xt:</strong>
@@ -187,20 +200,22 @@ title: V6!
                 <li class="list-group-item">If the Lua plugin is enabled, any file ending in .lua in the parsers directories will be automatically loaded</li>
                 <li class="list-group-item">Capture now defaults to the <code>--scheme</code> method for reading offline pcaps, use <code>--libpcap</code> for previous behaviour</li>
                 <li class="list-group-item">Ubuntu 20.04 is no longer supported</li>
-                <li class="list-group-item">db.pl requires leading http/https for OpenSearch/Elasticsearch URLs</li>
-                <li class="list-group-item">WISE now requires webBasePath be set when using one, please set in Arkime 5 before upgrading to Arkime 6</li>
-                <li class="list-group-item">Cont3xt ThreatFox integration requires api key (free on site https://auth.abuse.ch/)</li>
-                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code>tpacketv3OldVlan=true</code> to disable.</li>
-                <li class="list-group-item">Digest/Form Users that haven't changed their password since Dec 2019 will not be able to login, userAdmin can reset their passwords</li>
+                <li class="list-group-item">db.pl now requires a leading http:// or https:// in OpenSearch/Elasticsearch URLs</li>
+                <li class="list-group-item">WISE now requires <a href="/settings#webBasePath">webBasePath</a> to be set if you use a non-default base path — set it in Arkime 5 before upgrading</li>
+                <li class="list-group-item">Cont3xt ThreatFox integration now requires an API key (free at https://auth.abuse.ch/)</li>
+                <li class="list-group-item">AFPacket mode now restores the first VLAN tag when saving packets. This may affect BPF filters—use <code><a href="/settings#tpacketv3OldVlan">tpacketv3OldVlan</a>=true</code> to disable.</li>
+                <li class="list-group-item">Digest/Form users who haven't changed their password since Dec 2019 will not be able to log in. A userAdmin can reset their passwords.</li>
                 <li class="list-group-item">The setting <a href="/settings#dnsOutputAnswers">dnsOutputAnswers</a> now defaults to TRUE</li>
-                <li class="list-group-item">When talking to remote viewers, only the viewUrl is used, and not webBasePath</li>
-                <li class="list-group-item">Viewer now always expires PCAPs (using /opt/arkime/raw if pcapDir is unset) — previously it would not expire if pcapDir was missing</li>
-                <li class="list-group-item">IPv4 sessions with the same src/dst IP could have had an incorrect community_id, this has been fixed but old sessions will be incorrect</li>
-                <li class="list-group-item">geoLite2Country setting now looks for City file first by default</li>
+                <li class="list-group-item">When talking to remote viewers, only <a href="/settings#viewUrl">viewUrl</a> is used now — <a href="/settings#webBasePath">webBasePath</a> is no longer used</li>
+                <li class="list-group-item">Viewer now expires PCAPs even if <a href="/settings#pcapDir">pcapDir</a> is not set, defaulting to /opt/arkime/raw. Previously, PCAPs were not expired when pcapDir was unset.</li>
+                <li class="list-group-item">Fixed: IPv4 sessions with identical src and dst IP addresses may have had an incorrect community_id. Old sessions will retain the incorrect value.</li>
+                <li class="list-group-item">The <a href="/settings#geoLite2Country">geoLite2Country</a> setting now looks for a City database file first by default</li>
                 <li class="list-group-item">The <code>parseSMTP</code> and <code>parseSMB</code> settings have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
                 <li class="list-group-item">The <code>unkEthernet</code> and <code>unkIpProtocol</code> plugins have been removed; the <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> setting now saves unknown/corrupt packets as real Arkime sessions</li>
-                <li class="list-group-item">New <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting, defaults to RS256</li>
-                <li class="list-group-item">arkime_packet_log no longer prints exactly logEveryXPackets, instead that is just the minimum; it also only prints TCP info now.</li>
+                <li class="list-group-item">The new <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting defaults to RS256</li>
+                <li class="list-group-item">arkime_packet_log now treats <a href="/settings#logEveryXPackets">logEveryXPackets</a> as a minimum rather than an exact interval, and only prints TCP info</li>
+                <li class="list-group-item">Users now inherit the 7 extra permissions from their Roles unless explicitly overridden</li>
+                <li class="list-group-item">The <a href="/settings#disablePython">disablePython</a> setting now defaults to true</li>
               </ul>
             </p>
             <p class="lead lead-lg text-center mt-4 pt-4">
@@ -254,7 +269,7 @@ title: V6!
           Arkime 6 now supports multiple languages!
           We've taken the first step by adding support to the UI for all text that lives in the browser, for example menus, buttons, labels, etc.
           Currently any server errors or messages are still in English, but we plan to add support for those in future releases if there is interest.
-          Translations were AI-assisted—please help us refine them!
+          Initial translations were AI-assisted; your feedback is invaluable in helping us refine them!
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
           <img
@@ -279,7 +294,7 @@ title: V6!
         <div class="col-lg-4 col-md-5 lead text-justify">
           <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset"
             id="sankey">
-            Spigraph sankey diagram
+            SPI Graph Sankey Diagram
             <span class="fa fa-link small copy-link cursor-copy"
               onclick="copyLink(this, 'release-v6')">
             </span>
@@ -298,7 +313,12 @@ title: V6!
               onclick="copyLink(this, 'release-v6')">
             </span>
           </h1>
-          We've optimized and colorized the Parliament UI to make it easier to monitor the health of your Arkime deployment at a glance.
+          We've refreshed the Parliament UI to make it easier to monitor the health of your Arkime deployment at a glance.
+          New features include low disk space monitoring for capture and OpenSearch/Elasticsearch hosts,
+          clickable issue rows that navigate directly to node stats,
+          issue filters that persist in URL parameters,
+          ES version display in cluster tooltips,
+          and a navbar status indicator that cycles through clusters with issues.
         </div>
         <div class="col-lg-4 col-md-4">
           <img
@@ -332,7 +352,7 @@ title: V6!
             We've enhanced the user management system by introducing role inheritance.
             This allows for more flexible and efficient permission management, enabling administrators to create roles that inherit permissions from other roles.
             This feature simplifies the process of managing user access and ensures consistency across different user groups.
-            It is also now clear if a user configuration is overriding the role settings or not.
+            The UI now clearly indicates whether a user configuration overrides role-based settings.
           </p>
         </div>
       </div>

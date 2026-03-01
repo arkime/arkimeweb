@@ -40,7 +40,7 @@ Creates a new notifier (admin only).
 | Param | Type | Description |
 | --- | --- | --- |
 | name | <code>string</code> | The name of the new notifier. |
-| type | <code>type</code> | The type of notifier. |
+| type | <code>string</code> | The type of notifier. |
 | fields | <code>array</code> | The fields to configure the notifier. |
 
 **Returns**:
@@ -64,8 +64,8 @@ Updates an existing notifier (admin only).
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>string</code> | The new id of the notifier. |
-| type | <code>type</code> | The new type of notifier. |
+| id | <code>string</code> | The id of the notifier to update. |
+| type | <code>string</code> | The new type of notifier. |
 | fields | <code>array</code> | The new field values to configure the notifier. |
 
 **Returns**:
@@ -258,6 +258,20 @@ NOTE: currentPassword is not required so that a usersAdmin can update anyone use
 | success | <code>boolean</code>| Whether the update password operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="getLocales"></a>
+
+## getLocales(req, res) (function)
+
+Handler for loading and serving locale files
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| req | <code>Object</code> | Express request object |
+| res | <code>Object</code> | Express response object |
+
 <a name="Notifier"></a>
 
 ## Notifier Type
@@ -271,10 +285,10 @@ A service that can be sent a notification.
 | name | <code>string</code> | The human readable name of the notifier. Must be unique. |
 | type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
 | fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
-| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOC. |
-| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOC. |
+| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOCH. |
+| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOCH. |
 | user | <code>string</code> | The ID of the user that created the notifier. |
-| users | <code>Arrray</code> | The list of userIds who have access to use this notifier. |
+| users | <code>Array</code> | The list of userIds who have access to use this notifier. |
 | roles | <code>Array</code> | The list of roles who have access to use this notifier. |
 
 <a name="ArkimeRole"></a>
@@ -320,12 +334,12 @@ The Arkime user object.
 | hidePcap | <code>boolean</code> | <code>false</code> | Hide PCAP (and only show metadata/session detail) for this user when they open a Session. |
 | disablePcapDownload | <code>boolean</code> | <code>false</code> | Do not allow this user to download PCAP files. |
 | expression | <code>string</code> |  | An Arkime search expression that is silently added to all queries. Useful to limit what data a user can access (e.g. which nodes or IPs). |
-| settings | <code>ArkimeSettings</code> |  | The Arkime app settings. |
+| settings | <code>ArkimeSettings</code> |  | The Arkime application settings. |
 | columnConfigs | <code>object</code> |  | A list of sessions table column configurations that a user has created. |
 | spiviewFieldConfigs | <code>object</code> |  | A list of SPIView page field configurations that a user has created. |
 | tableStates | <code>object</code> |  | A list of table states used to render Arkime tables as the user has configured them. |
 | welcomeMsgNum | <code>number</code> | <code>0</code> | The message number that a user is on. Gets incremented when a user dismisses a message. |
-| lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOC. |
+| lastUsed | <code>number</code> |  | The date that the user last used Arkime. Format is milliseconds since Unix EPOCH. |
 | timeLimit | <code>number</code> |  | Limits the time range a user can query for. |
 | roles | <code>array</code> |  | The list of Arkime roles assigned to this user. |
 | roleAssigners | <code>array</code> |  | The list of userIds that can manage who has this (ROLE) |

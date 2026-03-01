@@ -151,7 +151,7 @@ Once you have a working OpenSearch/Elasticsearch cluster you can install the Ark
 ### Download Arkime
 {: .subsection }
 
-If new to Arkime we recommend starting with the latest [stable version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit) that is rebuilt after every commit to github.
+If new to Arkime we recommend starting with the latest [stable version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit6) that is rebuilt after every commit to github.
 
 The download page for each release contains multiple Arkime packages.
 When choosing an Arkime package, please select a version that corresponds to the Linux distribution, version, and the architecture of your system.
@@ -234,7 +234,7 @@ apt install -y wget iproute2 ethtool
 wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
 apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
 # OR latest commit version
-#wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2404_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
 #apt install -y ./arkime-main_ubuntu2404_amd64.deb
 
 # Configure Arkime
@@ -289,7 +289,7 @@ apt install -y wget
 wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
 apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
 # OR latest commit version
-#wget https://github.com/arkime/arkime/releases/download/last-commit/arkime-main_ubuntu2404_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
 #apt install -y ./arkime-main_ubuntu2404_amd64.deb
 
 # Configure Cont3xt

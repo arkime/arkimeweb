@@ -53,7 +53,10 @@ settings:
         rel="nofollow">Download free version</a>
 
   - key: geoLite2Country
-    value: "/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb"
+    value: |
+      /usr/share/GeoIP/GeoLite2-City.mmdb;/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-CIty.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb
+      <br><br>
+      (Arkime < 6) /usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmd
     text: |
       Where to find the Maxmind Country or City database, either can be used since a City database is a superset of the Country database.
       Starting with Arkime 6 the region and city names are also saved if a City database is used.
@@ -333,6 +336,12 @@ settings:
       (Since 1.5.0) Max number of tcp packets to track while trying to
       reassemble the TCP stream
 
+  - key: maxSctpOutOfOrderPackets
+    value: 256
+    text: |
+      (Since 6.0.0) Max number of tcp packets to track while trying to
+      reassemble the SCTP stream
+
   - key: offlineDispatchAfter
     value: |
       pre 2.1 - 5000 (unchangeable)<br>
@@ -469,7 +478,7 @@ settings:
     text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display in the session display.
 
   - key: disablePython
-    value: "false"
-    text: (Since 6.0.0) When true disable the embedded python support. See <a href="/python">Python</a> for more information.
+    value: "true"
+    text: (Since 6.0.0) When false enable the embedded python support. See <a href="/python">Python</a> for more information.
 
 
