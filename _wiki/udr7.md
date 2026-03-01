@@ -37,7 +37,7 @@ Here is the `docker-compose.yml` file I used, this example is using the **unrele
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: elasticsearch:8.19.6
+    image: elasticsearch:8.19.7
     network_mode: "host"
     environment:
       - discovery.type=single-node
@@ -59,18 +59,23 @@ services:
     container_name: capture
     image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh capture --update-geo --init http://localhost:9200 --add-admin -- -o disablePython=true
+    command: /opt/arkime/bin/docker.sh capture --wait-for-db http://localhost:9200 --update-geo --upgrade http://localhost:9200 --ilm 26h 90d
     environment:
       - ARKIME__interface=ignore
       - ARKIME__pcapReadMethod=tzsp
       - ARKIME__dropUser=nobody
+      - ARKIME__elasticsearch=http://localhost:9200
 
       - ARKIME__plugins=ja4plus.amd64.so
-      - ARKIME__dnsOutputAnswers=true
       - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
+      - ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
+      - ARKIME__outFile=/opt/arkime/etc/oui.txt
+      - ARKIME__saveUnknownPackets=all;corrupt
+      - ARKIME__disableParsers=
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
+      - /arkime/maxmind:/var/lib/GeoIP
       - ./GeoIP.conf:/etc/GeoIP.conf
     restart: unless-stopped
 
@@ -78,19 +83,25 @@ services:
     container_name: viewer
     image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh viewer --update-geo
+    command: /opt/arkime/bin/docker.sh viewer --wait-for-db http://localhost:9200
     environment:
       - ARKIME__viewPort=8005
       - ARKIME__cronQueries=auto
+      - ARKIME__webBasePath=/arkime/
       - ARKIME__dropUser=nobody
       - ARKIME__uploadCommand=/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} {TAGS}
+      - ARKIME__elasticsearch=http://localhost:9200
 
       - ARKIME__plugins=ja4plus.amd64.so
-      - ARKIME__dnsOutputAnswers=true
       - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
+      - ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
+      - ARKIME__outFile=/opt/arkime/etc/oui.txt
+      - ARKIME__saveUnknownPackets=all;corrupt
+      - ARKIME__disableParsers=
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
+      - /arkime/maxmind:/var/lib/GeoIP
       - ./GeoIP.conf:/etc/GeoIP.conf
     restart: unless-stopped
 ```
