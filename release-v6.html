@@ -87,10 +87,9 @@ title: V6!
             </p>
 
             <p class="lead text-justify mt-4">
-              Arkime 6: Faster. Smarter. Ready for your network.
-              We are pleased to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc4" class="no-decoration">release of Arkime 6 RC 4</a>!
-              This open-source network analysis and packet capture tool just got even better.
-              This release delivers significant performance gains, modern code architecture, and powerful new features to accelerate your incident response and threat investigation.
+              <strong>Arkime 6: Faster. Smarter. Ready for your network.</strong>
+              We are excited to announce the <a href="https://github.com/arkime/arkime/releases/tag/v6.0.0-rc4" class="no-decoration">release of Arkime 6 RC 4</a>!
+              This version brings significant performance improvements, a modernized codebase, and powerful new features designed to streamline incident response and threat investigation.
             </p>
 
             <h3>Highlights of Arkime 6:</h3>
@@ -100,9 +99,9 @@ title: V6!
               We've focused heavily on improving the performance of both the capture and viewer applications.
               The three most noticeable improvements:
               <ul>
-                <li> <strong>Faster PCAP downloads</strong> - A top complaint from users was PCAP download speed, and we've addressed it head-on. In our tests we show at least 5x faster downloads compared to Arkime 5. </li>
+                <li> <strong>Faster PCAP Downloads</strong> - We've addressed a top user request by overhauling PCAP downloads. Our tests show speeds at least 5x faster than Arkime 5. </li>
                 <li> <strong>Faster hunts</strong> - Hunts should now run at least 2x faster than with Arkime 5. </li>
-                <li> <strong>Capture speed</strong> - Folks who are monitoring busy networks with lots of sessions per second will see an increased capacity as we now support multi-threaded compression with OpenSearch/Elasticsearch, improved memory allocation algorithms, and removed several <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a> usage patterns.</li>
+                <li> <strong>Enhanced Capture Capacity</strong> - Environments monitoring high-traffic networks will benefit from multi-threaded compression with OpenSearch/Elasticsearch, improved algorithms, and the elimination of several <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a> patterns.</li>
               </ul>
             </p>
 
@@ -111,7 +110,7 @@ title: V6!
               Much of Arkime's codebase is over 10 years old.
               In Arkime 6, we've modernized large portions of the application—making it easier to maintain, more secure, and more welcoming to new contributors.
               One of the largest tasks behind the scenes was upgrading all of the UI from Vue 2 to Vue 3.
-              Arkime 6 also requires Node.js 22, keeping the platform on the latest LTS release.
+              Arkime 6 also requires Node.js 22.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -122,10 +121,9 @@ title: V6!
             </p>
 
             <p class="lead text-justify mt-4">
-              <strong>Parsing:</strong>
-              More than 30 new protocol parsers and classifiers have been added to capture, and we improved several of the existing ones.
-              Claude Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly in future releases 
-              as the community contributes new ones.
+              <strong>Extensive Parsing:</strong>
+              Arkime 6 introduces over 30 new protocol parsers and classifiers, along with improvements to many existing ones.
+              Claude Opus has made it easier than ever to add new parsers and classifiers, so we expect this number to grow rapidly as the community continues to contribute.
             </p>
 
             <p class="lead text-justify mt-4">
@@ -156,16 +154,16 @@ title: V6!
                       <li> Hunts allow updating of fields while running</li>
                       <li> Better node tracking: see which OpenSearch/Elasticsearch host disappeared, not just the node ID</li>
                       <li> Periodic Queries and Hunts can now notify on multiple notifiers</li>
-                      <li> IP OR array queries should be more efficient now </li>
+                      <li> Improved efficiency for IP OR array queries </li>
                     </ul>
                 </li>
-                <li> <strong>docker:</strong>
+                <li> <strong><a href="/docker" class="no-decoration">docker:</a></strong>
                     <ul>
                       <li> We've moved to Debian 13 for our base image </li>
                       <li> Container now includes geoipupdate for easy GeoIP database updates </li>
                       <li> docker.sh supports <code>--wait-for-db</code> to wait for OpenSearch/Elasticsearch to be ready </li>
                       <li> docker.sh supports <code>--ilm</code> and <code>--ism</code> options for index lifecycle management </li>
-                      <li> Improvements for new users getting started with docker-compose </li>
+                      <li> Streamlined experience for new users getting started with docker-compose </li>
                     </ul>
                 </li>
                 <li> <strong>cont3xt:</strong>
@@ -273,7 +271,7 @@ title: V6!
           Arkime 6 now supports multiple languages!
           We've taken the first step by adding support to the UI for all text that lives in the browser, for example menus, buttons, labels, etc.
           Currently any server errors or messages are still in English, but we plan to add support for those in future releases if there is interest.
-          Translations were AI-assisted—please help us refine them!
+          Initial translations were AI-assisted; your feedback is invaluable in helping us refine them!
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
           <img
@@ -356,7 +354,7 @@ title: V6!
             We've enhanced the user management system by introducing role inheritance.
             This allows for more flexible and efficient permission management, enabling administrators to create roles that inherit permissions from other roles.
             This feature simplifies the process of managing user access and ensures consistency across different user groups.
-            It is also now clear if a user configuration is overriding the role settings or not.
+            The UI now clearly indicates whether a user configuration overrides role-based settings.
           </p>
         </div>
       </div>
