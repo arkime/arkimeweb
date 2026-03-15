@@ -87,13 +87,14 @@ settings:
       to verify that the user is in the appropriate group (ie. "ArkimeUsers").  If
       so, the user is authorized to use the system, and if an account does not
       already exist for them in the Arkime user store,
-      it is created (see <code>userAutoCreateTmpl</code>)
+      it is created (see <a href="#user-auto-create">[user-auto-create]</a>).
 
   - key: requiredAuthHeaderVal
     value: EMPTY
     text: |
       A value (or comma separated list of possible values since 5.3.0) that the header <a href="#requiredAuthHeader">requiredAuthHeader</a> is matched against.
       If the header contains one of the values, the user is authorized to use the system otherwise they will be denied.
+      If an account does not already exist for the user, it can be automatically created using the <a href="#user-auto-create">[user-auto-create]</a> section.
 
       For example
       <pre>requiredAuthHeader=company-x-role

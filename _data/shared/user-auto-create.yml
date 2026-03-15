@@ -5,6 +5,11 @@ before: |
     This is done by adding a <code>[user-auto-create]</code> section to the configuration file.
     When a user authenticates and doesn't exist in the database, a new user will be created using the configured field values.
   </p>
+  <p>
+    When using header auth with an external system like LDAP or Active Directory, you can use
+    <a href="#requiredAuthHeader">requiredAuthHeader</a> and <a href="#requiredAuthHeaderVal">requiredAuthHeaderVal</a>
+    to verify that the user is in the appropriate group before allowing access and auto-creation.
+  </p>
   <p class="alert alert-warning">
     <span class="fa fa-exclamation-triangle">
     </span>
