@@ -105,6 +105,10 @@ settings:
   - key: userAutoCreateTmpl
     value: EMPTY
     text: |
+      <p class="alert alert-warning">
+        <span class="fa fa-exclamation-triangle"></span>
+        <strong>Deprecated in 6.1.0:</strong> Use the <a href="#user-auto-create">[user-auto-create]</a> section instead. This setting will be removed in a future release.
+      </p>
       <p>
       When using <code>requiredAuthHeader</code> to externalize provisioning
       of users to a system like LDAP/AD, this configuration parameter is used

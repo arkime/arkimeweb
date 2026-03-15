@@ -1,0 +1,73 @@
+name: user-auto-create
+before: |
+  <p>
+    Starting with 6.1.0 it is now possible to dynamically create users when using header or oidc authMode.
+    This is done by adding a <code>[user-auto-create]</code> section to the configuration file.
+    When a user authenticates and doesn't exist in the database, a new user will be created using the configured field values.
+  </p>
+  <p class="alert alert-warning">
+    <span class="fa fa-exclamation-triangle">
+    </span>
+    The <code>[user-auto-create]</code> section should be used instead of the deprecated <code>userAutoCreateTmpl</code> setting, which will be removed in a future release.
+    The two settings cannot be used together and are mutually exclusive.
+  </p>
+  <p>
+    Each line is of the format <code>fieldname=JavaScript expression</code>.
+    The JavaScript expression receives <code>vals</code> which contains the request headers for header auth or the oidc userinfo for oidc auth.
+    The expression should return the value to set for that user field.
+  </p>
+  <p>
+    Depending on what IAM system you are using, you may need to enable the sending of userinfo to Arkime.
+  </p>
+  <p>
+    <strong>Allowed fields:</strong>
+    <code>userId</code>, <code>userName</code>, <code>passStore</code>, <code>enabled</code>, <code>webEnabled</code>, <code>headerAuthEnabled</code>,
+    <code>emailSearch</code>, <code>createEnabled</code>, <code>removeEnabled</code>, <code>packetSearch</code>,
+    <code>hideStats</code>, <code>hideFiles</code>, <code>hidePcap</code>, <code>disablePcapDownload</code>,
+    <code>expression</code>, <code>settings</code>, <code>timeLimit</code>, <code>roles</code>
+  </p>
+  <p>
+    <strong>Important:</strong>
+    <ul>
+      <li>Node.js lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your JavaScript expressions. For example <code>vals['x-user']</code> NOT <code>vals['X-User']</code>.</li>
+      <li>JavaScript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-user']</code> NOT <code>vals.x-user</code>.</li>
+      <li>If <code>userId</code> is not set or differs from the authenticated user, it will be overwritten with the authenticated userId.</li>
+      <li>If <code>userName</code> is not set, it will default to the userId.</li>
+      <li>If <code>passStore</code> is not set, a random password will be generated.</li>
+      <li>Syntax errors in expressions are caught at startup and will prevent the application from starting.</li>
+      <li>Runtime errors in expressions will prevent the user from being created.</li>
+    </ul>
+  </p>
+
+
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[user-auto-create]
+  # Set userName from header, fallback to email
+  userName=vals.arkime_user_name || vals.email || vals.sub
+  # Enable the user
+  enabled=true
+  # Enable web access
+  webEnabled=true
+  # Enable header auth for this user
+  headerAuthEnabled=true
+  # Allow email/id searching
+  emailSearch=true
+  # Don't allow creating new users
+  createEnabled=false
+  # Don't allow removing data
+  removeEnabled=false
+  # Allow packet searching
+  packetSearch=true
+  # Assign roles based on group membership
+  roles=vals.groups && vals.groups.includes('admin') ? ['arkimeAdmin'] : ['arkimeUser']
+  # Set a forced expression based on department
+  expression=vals.department === 'security' ? '' : 'tags == corp'
+  </code></pre>
+
+settings:
+  - key: "[field]="
+    text: A JavaScript expression using vals for request headers or oidc info. The expression returns the value to set for that user field.
