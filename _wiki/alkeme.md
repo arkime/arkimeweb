@@ -7,12 +7,10 @@ copyLink: True
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
-# Alkeme — A Terminal UI for the Arkime Ecosystem
-{: .section-header.mt-1 }
+<audio id="alkeme-audio"><source src="/assets/alkeme.mp3" type="audio/mpeg"></audio>
 
-<audio controls>
-  <source src="/assets/alkeme.mp3" type="audio/mpeg">
-</audio>
+# Alkeme <span class="fa fa-volume-up" style="cursor:pointer;font-size:0.6em;vertical-align:middle" onclick="document.getElementById('alkeme-audio').play()"></span> — A Terminal UI for the Arkime Ecosystem
+{: .section-header.mt-1 }
 
 **Alkeme** is a fast, keyboard-driven terminal user interface (TUI) for [Arkime](https://arkime.com), built with Rust and [ratatui](https://github.com/ratatui/ratatui).
 It brings the full power of the Arkime ecosystem — Viewer, Cont3xt, WISE, and Parliament — right into your terminal, no browser required.
