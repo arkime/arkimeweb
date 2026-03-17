@@ -22,6 +22,7 @@ permalink: "/learn"
 - [Roles](roles)
 - [JA4](ja4)
 - [Arkime with a UDR7](udr7)
+- [Alkeme — Terminal UI for Arkime](alkeme)
 
 ## Capture
 {: .subsection-header.mt-1 }
