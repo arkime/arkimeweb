@@ -192,6 +192,12 @@ title: V6!
             </p>
             <p class="lead text-justify">
               <ul class="list-group list-group-sm angle-list">
+                <li class="list-group-item">(6.1.0) Previous redis user databases will be ignored</li>
+                <li class="list-group-item">(6.1.0) Dedup packets now include VLAN/VNI by default, set <a href="/settings#dedupVlanVni">dedupVlanVni</a>=false to disable</li>
+                <li class="list-group-item">(6.1.0) The setting <a href="/settings#uploadFileSizeLimit">uploadFileSizeLimit</a> now defaults to 2G instead of unlimited</li>
+                <li class="list-group-item">(6.1.0) Link group URLs in Cont3xt must start with http:// or https:// now</li>
+                <li class="list-group-item">(6.1.0) Previously the <a href="/settings#bpf">bpf</a> filter setting was reversed for scheme, pcapoverip, and tzsp readers (now fixed)</li>
+                <li class="list-group-item">(6.1.0) Cluster URLs in Parliament must start with http:// or / now</li>
                 <li class="list-group-item">Node.js 22 is now required (>= 22.15.0)</li>
                 <li class="list-group-item">You must be on v5.2.0 or later to upgrade to v6.x</li>
                 <li class="list-group-item">A db.pl upgrade is required</li>

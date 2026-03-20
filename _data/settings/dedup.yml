@@ -28,3 +28,9 @@ settings:
     text: |
       The approximate number of packets to keep information for per second.
       Set this number to the max number of packets per second you expect.
+
+  - key: dedupVlanVni
+    value: "true"
+    text: |
+      (Since 6.1.0) Include the VLAN tag and VNI in packet deduplication.
+      Set to false to restore pre-6.1.0 behavior.

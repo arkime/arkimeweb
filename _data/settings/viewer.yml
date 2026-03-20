@@ -180,9 +180,9 @@ settings:
     text: (Since 5.0) A user must have this role to be able to upload, the uploadCommand also needs to be set to enable.
 
   - key: uploadFileSizeLimit
-    value: EMPTY
+    value: "2G (since 6.1.0, previously EMPTY)"
     text: |
-      (Since 2.0) If set, the max size of PCAP files that can be uploaded from the UI
+      (Since 2.0) The max size of PCAP files that can be uploaded from the UI
 
   - key: queryAllIndices
     value: "false for viewer, true for multiviewer"

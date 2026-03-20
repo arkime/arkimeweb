@@ -46,3 +46,43 @@ settings:
   - key: esProxyPort
     value: 7200
     text: Port that <code>esProxy</code> listens on
+
+  - key: esProxySigV4
+    value: "false"
+    text: (Since 6.1.0) Enable AWS SigV4 signing for requests to managed OpenSearch
+
+  - key: esProxySigV4Region
+    value: EMPTY
+    text: (Since 6.1.0) AWS region for SigV4 signing (required when esProxySigV4 is true)
+
+  - key: esProxySigV4Service
+    value: es
+    text: (Since 6.1.0) AWS service name for SigV4 signing
+
+  - key: esProxySigV4AccessKeyId
+    value: EMPTY
+    text: (Since 6.1.0) AWS access key ID for SigV4 signing
+
+  - key: esProxySigV4SecretAccessKey
+    value: EMPTY
+    text: (Since 6.1.0) AWS secret access key for SigV4 signing
+
+  - key: esProxySigV4SessionToken
+    value: EMPTY
+    text: (Since 6.1.0) AWS session token for SigV4 signing (for temporary credentials)
+
+  - key: esProxySigV4RoleArn
+    value: EMPTY
+    text: (Since 6.1.0) AWS IAM role ARN to assume for SigV4 signing
+
+  - key: esProxySigV4CredentialUrl
+    value: EMPTY
+    text: (Since 6.1.0) URL to fetch AWS credentials from for SigV4 signing
+
+  - key: esProxySigV4CredentialCert
+    value: EMPTY
+    text: (Since 6.1.0) Client certificate for fetching AWS credentials
+
+  - key: esProxySigV4CredentialKey
+    value: EMPTY
+    text: (Since 6.1.0) Client key for fetching AWS credentials

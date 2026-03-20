@@ -1260,6 +1260,12 @@ title: FAQ
       </p>
       <h4>Breaking Changes</h4>
       <ul>
+        <li>(6.1.0) Previous redis user databases will be ignored</li>
+        <li>(6.1.0) Dedup packets now include VLAN/VNI by default, set <a href="/settings#dedupVlanVni">dedupVlanVni</a>=false to disable</li>
+        <li>(6.1.0) The setting <a href="/settings#uploadFileSizeLimit">uploadFileSizeLimit</a> now defaults to 2G instead of unlimited</li>
+        <li>(6.1.0) Link group URLs in Cont3xt must start with http:// or https:// now</li>
+        <li>(6.1.0) Previously the <a href="/settings#bpf">bpf</a> filter setting was reversed for scheme, pcapoverip, and tzsp readers (now fixed)</li>
+        <li>(6.1.0) Cluster URLs in Parliament must start with http:// or / now</li>
         <li>The settings <code>parseSMTP</code> and <code>parseSMB</code> have been removed, use <a href="/settings#disableParsers">disableParsers</a> instead</li>
         <li>Arkime plugins must end with a supported extension, e.g. .so, .lua, .py</li>
         <li>The <a href="/settings#luaFiles">luaFiles</a> setting now defaults to EMPTY</li>

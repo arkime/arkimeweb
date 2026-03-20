@@ -86,6 +86,7 @@ The tee section supports the following settings:
 <a href="settings#elasticsearch">elasticsearch</a>
 <a href="settings#elasticsearchAPIKey">elasticsearchAPIKey</a>
 <a href="settings#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
+and all the <code>esProxySigV4*</code> settings (since 6.1.0).
 So for example with the following example configuration any incoming requests, like a bulk insert or update will be sent to both oldes cluster and newes cluster, however the results from newes cluster will be ignored.
 Only the results from the oldes cluster will be sent back to viewer.
 <pre>
