@@ -48,6 +48,8 @@ The official matrix of supported versions of OpenSearch and Elasticsearch is ava
 ### Download and Install OpenSearch or Elasticsearch
 {: .subsection }
 
+**Note:** Avoid OpenSearch 2.19.0 — it has a [known bug](https://github.com/opensearch-project/OpenSearch/issues/17339) that causes HTTP responses to hang when the client supports zstd compression (curl 8.5.0+, the default on Debian 13 and Ubuntu 24.04). Use OpenSearch 2.18.0 or 3.x instead, or set `http.compression: false` in `opensearch.yml` as a workaround. See the [FAQ](https://arkime.com/faq#http-compression) for details.
+
 There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your Linux distribution when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
