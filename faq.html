@@ -526,7 +526,7 @@ title: FAQ
               5.2.0+
             </td>
             <td>
-              1.x, 2.x, 3.x (2.10+ or 3.x recommended), 2.19.0 broken, 3.x requires Arkime 5.7.0+
+              1.x, 2.x, 3.x (2.10+ or 3.x recommended), <a href="#http-compression">2.19.0 broken</a>, 3.x requires Arkime 5.7.0+
             </td>
             <td>
               7.10+, 8.x, 9.x (8.10+ or 9.x recommended)
@@ -552,7 +552,7 @@ title: FAQ
               4.3.2+ (4.6.0 recommended)
             </td>
             <td>
-              1.x, 2.x, 3.x (2.10+ or 3.x recommended), 2.19.0 broken, 3.x requires Arkime 5.7.0+
+              1.x, 2.x, 3.x (2.10+ or 3.x recommended), <a href="#http-compression">2.19.0 broken</a>, 3.x requires Arkime 5.7.0+
             </td>
             <td>
               7.10+, 8+, 9.x (7.17+, 8.10+ recommended), 9.x requires Arkime 5.7.0+
@@ -574,7 +574,7 @@ title: FAQ
               3.3.0+ (3.4.0+ recommended)
             </td>
             <td>
-              1.x, 2.x (2.3+ recommended), 2.19.0 broken
+              1.x, 2.x (2.3+ recommended), <a href="#http-compression">2.19.0 broken</a>
             </td>
             <td>
               7.10+, 8+
@@ -596,7 +596,7 @@ title: FAQ
               2.4.0
             </td>
             <td>
-              1.x, 2.x (2.3+ recommended), 2.19.0 broken
+              1.x, 2.x (2.3+ recommended), <a href="#http-compression">2.19.0 broken</a>
             </td>
             <td>
               7.10+, not 8.x
@@ -1999,6 +1999,17 @@ cluster.routing.allocation.disk.watermark.flood_stage: 100gb</code></pre>
           </a>
         </p>
         <pre><code>http.compression: true</code></pre>
+        <div class="alert alert-warning">
+          <b>Warning:</b> OpenSearch 2.19.0 has a
+          <a href="https://github.com/opensearch-project/OpenSearch/issues/17339" rel="nofollow">known bug</a>
+          where HTTP responses hang when the client sends <code>Accept-Encoding: zstd</code>.
+          Since Arkime's <code>.deb</code> packages link against system libcurl, and curl 8.5.0+
+          (the default on Debian 13 and Ubuntu 24.04) sends <code>Accept-Encoding: zstd</code>
+          automatically, Arkime capture will hang when talking to OpenSearch 2.19.0 with
+          compression enabled. This was fixed in OpenSearch 3.x but never backported to 2.x.
+          <b>Workarounds:</b> set <code>http.compression: false</code> in
+          <code>opensearch.yml</code>, or upgrade to OpenSearch 3.x.
+        </div>
 
         <h4 id="recovery-time">
           Recovery Time
