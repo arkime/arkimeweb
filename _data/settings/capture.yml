@@ -214,7 +214,7 @@ settings:
       A semicolon separated list of files that contain Arkime rules.
       These rules match against fields set and can set other fields or meta data about the sessions.
       See <a class="no-decoration" href="/rulesformat"> RulesFormat</a> for the format of the files.
-      Since 1.5.0 rules files are auto reloaded, so no need to restart capture.
+      rules files are auto reloaded, so no need to restart capture.
 
   - key: sctpTimeout
     value: "60"
@@ -273,13 +273,13 @@ settings:
   - key: enablePacketLen
     value: "false"
     text: |
-      (Since 2.0) Index all the packet lengths in OpenSearch/Elasticsearch
+      Index all the packet lengths in OpenSearch/Elasticsearch
       (Before 2.0) always saved packet lengths.
 
   - key: filenameOps
     value: EMPTY
     text: |
-      (Since 1.5.0) A semicolon separated list of operations that use
+      A semicolon separated list of operations that use
       the filename. Format is <code>fieldexpr=match%value</code> so if
       you wanted to set a tag based on part of filenames that start
       with gre use <code>tags=/gre-(.*)\\.pcap%gretest-\\1</code>.
@@ -294,12 +294,12 @@ settings:
   - key: gapPacketPos
     value: "true"
     text: |
-      (Since 2.4.0) encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
+      encode packetPos using a simple gap encoding, this reduces storage in OpenSearch/Elasticsearch
 
   - key: interfaceOps
     value: EMPTY
     text: |
-      (Since 1.5.0) A semicolon separated list of a comma separted list of operations to set for each interface.
+      A semicolon separated list of a comma separted list of operations to set for each interface.
       The semicolon list must have the same number of elements as the interface setting.
       The format is <code>fieldexp=value</code>.
       So for example if you have <code>interface=eth1;eth2</code> you could set a tag with <code>interfaceOps=tags=eth1;tags=eth2</code>.
@@ -307,7 +307,7 @@ settings:
   - key: ja3Strings
     value: "false"
     text: |
-      (Since 2.0) Index the raw JA3 strings before hashing them
+      Index the raw JA3 strings before hashing them
 
   - key: maxFrags
     value: "10000"
@@ -333,7 +333,7 @@ settings:
   - key: maxTcpOutOfOrderPackets
     value: 256
     text: |
-      (Since 1.5.0) Max number of tcp packets to track while trying to
+      Max number of tcp packets to track while trying to
       reassemble the TCP stream
 
   - key: maxSctpOutOfOrderPackets
@@ -412,7 +412,7 @@ settings:
   - key: trackESP
     value: "false"
     text: |
-      (Since 1.5.0) Add ESP sessions to Arkime, no decoding
+      Add ESP sessions to Arkime, no decoding
 
   - key: saveUnknownPackets
     value: EMPTY
@@ -428,7 +428,7 @@ settings:
         <li> -ip:NameOrNumber = don't save all unknown ip packets with type of NameOrNumber </li>
         <li> ether:NameOrNumber = save all unknown ether packets with type of NameOrNumber </li>
         <li> -ether:NameOrNumber = don't save all unknown ether packets with type of NameOrNumber </li>
-        <li> corrupt = save all corrupt packets (Since 1.5.3) </li>
+        <li> corrupt = save all corrupt packets </li>
       </ul>
 
       Prior to Arkime 6.0.0, this setting saved unknown and corrupt packets into separate files in the first entry of <a href="#pcapDir">pcapDir</a>, named unknown.ether, unknown.ip, or corrupt. This behavior has been replaced-packets are now saved as full Arkime sessions.
@@ -459,7 +459,7 @@ settings:
 
   - key: esBulkQuery
     value: /_bulk
-    text: (Since 2.3.0) The path to send session bulk queries to.
+    text: The path to send session bulk queries to.
 
   - key: ecsEventDataset
     value: EMPTY
@@ -471,7 +471,7 @@ settings:
 
   - key: esMaxRetries
     value: 2
-    text: (Since 2.3.1) How many times to retry OpenSearch/Elasticsearch operations
+    text: How many times to retry OpenSearch/Elasticsearch operations
 
   - key: dnsOutputAnswers
     value: "Since Arkime 6 true previously false"

@@ -37,9 +37,9 @@ settings:
   - key: snfNumProcs
     value: 1
     text: |
-      (Since 2.0) The number of capture processes listening on the shared interface
+      The number of capture processes listening on the shared interface
 
   - key: snfProcNum
     value: 0
     text: |
-      (Since 2.0) Which capture process this is if using a shared interface
+      Which capture process this is if using a shared interface

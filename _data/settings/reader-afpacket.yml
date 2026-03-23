@@ -30,7 +30,7 @@ settings:
   - key: tpacketv3ClusterId
     value: "8005"
     text: |
-      (Since 2.0) The cluster id for use with <code>PACKET_FANOUT</code>. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
+      The cluster id for use with <code>PACKET_FANOUT</code>. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
 
   - key: tpacketv3OldVlan
     value: "false"

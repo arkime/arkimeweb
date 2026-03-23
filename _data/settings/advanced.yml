@@ -37,7 +37,7 @@ settings:
   - key: isLocalViewRegExp
     value: EMPTY
     text: |
-      (Since 1.6.1) If the node matches the supplied regexp, then the node is considered local.
+      If the node matches the supplied regexp, then the node is considered local.
 
   - key: nodeClass
     value: EMPTY

@@ -59,11 +59,11 @@ settings:
 
   - key: nolinked
     value: false
-    text: (Since 2.1.0) Set to true for linked sessions to have independent values for this field
+    text: Set to true for linked sessions to have independent values for this field
 
   - key: noutf8
     value: false
-    text: (Since 2.1.1) Set to true for the field to be 8 bit instead of utf8
+    text: Set to true for the field to be 8 bit instead of utf8
 
   - key: help
     value: "[fieldname]"

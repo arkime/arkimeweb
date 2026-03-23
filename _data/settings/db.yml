@@ -35,17 +35,17 @@ settings:
   - key: esClientCert
     value: EMPTY
     text: |
-      (Since 2.0) The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
+      The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
 
   - key: esClientKey
     value: EMPTY
     text: |
-      (Since 2.0) The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
+      The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
 
   - key: esClientKeyPass
     value: EMPTY
     text: |
-      (Since 2.0) The password for the esClientKey setting.
+      The password for the esClientKey setting.
 
   - key: elasticsearchAPIKey
     value: EMPTY
@@ -108,7 +108,7 @@ settings:
   - key: autoGenerateId
     value: "false"
     text: |
-      (Since 1.6) Use OpenSearch/Elasticsearch auto generated ids
+      Use OpenSearch/Elasticsearch auto generated ids
 
   - key: compressES
     value: |

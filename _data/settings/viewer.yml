@@ -128,7 +128,7 @@ settings:
       true (since 2.4.0)<br>
       false (before 2.4.0)
     text: |
-      (Since 2.2.0) Use better encryption when talking between viewer nodes
+      Use better encryption when talking between viewer nodes
 
 
   - key: hstsHeader
@@ -139,19 +139,19 @@ settings:
   - key: huntWarn
     value: 100000
     text: |
-      (Since 1.6.0) Warn users when creating a hunt if more than this
+      Warn users when creating a hunt if more than this
       many sessions will be searched
 
   - key: huntLimit
     value: 1000000
     text: |
-      (Since 1.6.0) Do not create hunts for non admin users if more
+      Do not create hunts for non admin users if more
       than this many sessions will be searched
 
   - key: huntAdminLimit
     value: 10000000
     text: |
-      (Since 1.6.0) Do not create hunts for admin users if more than
+      Do not create hunts for admin users if more than
       this many sessions will be searched
 
   - key: iframe
@@ -182,12 +182,12 @@ settings:
   - key: uploadFileSizeLimit
     value: "2G (since 6.1.0, previously EMPTY)"
     text: |
-      (Since 2.0) The max size of PCAP files that can be uploaded from the UI
+      The max size of PCAP files that can be uploaded from the UI
 
   - key: queryAllIndices
     value: "false for viewer, true for multiviewer"
     text: |
-      (Since 1.5.0) Always query all indices instead of trying to
+      Always query all indices instead of trying to
       calculate which ones. Use this if searching across that use
       different rotateIndex values.
 

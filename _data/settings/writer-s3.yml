@@ -14,12 +14,12 @@ settings:
       S3 Bucket to store PCAP files
 
   - key: s3AccessKeyId
-    value: (Since 2.1) Obtained from the EC2 IAM Role.
+    value: Obtained from the EC2 IAM Role.
     text: |
       S3 Access Key ID
 
   - key: s3SecretAccessKey
-    value: (Since 2.1) Obtained from the EC2 IAM Role.
+    value: Obtained from the EC2 IAM Role.
     text: |
       S3 Secret Access Key
 
@@ -31,19 +31,19 @@ settings:
   - key: s3WriteGzip
     value: "false"
     text: |
-      (Since 2.1) Should the PCAP files be stored on S3 in gzipped form.
+      Should the PCAP files be stored on S3 in gzipped form.
       Since 4.3.0 if <a href="#s3Compression">s3Compression</a> is set this setting is ignored.
       Since 5.0.0 this setting has been removed.
 
   - key: s3StorageClass
     value: STANDARD
     text: |
-      (Since 2.1) The S3 storage class to use&emdash;this has pricing implications.
+      The S3 storage class to use&emdash;this has pricing implications.
 
   - key: s3PathAccessStyle
     value: "true if there is a period in the bucket name"
     text: |
-      (Since 2.1) If true use <code>s3.amazonaws.com/s3Bucket</code> if false use <code>s3Bucket.s3.amazonaws.com</code>. For MinIO, make sure you set to true.
+      If true use <code>s3.amazonaws.com/s3Bucket</code> if false use <code>s3Bucket.s3.amazonaws.com</code>. For MinIO, make sure you set to true.
 
   - key: s3MaxConns
     value: 20
