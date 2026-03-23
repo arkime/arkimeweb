@@ -1,0 +1,58 @@
+name: Cisco ISE pxGrid
+
+before: |
+  <p>
+    WISE can integrate with <a href="https://developer.cisco.com/docs/pxgrid/">Cisco ISE pxGrid 2.0</a> to enrich IP addresses with identity and endpoint data from active ISE sessions.
+    Uses mutual TLS authentication with a certificate-based pxGrid account.
+    Maintains a persistent STOMP-over-WebSocket subscription to ISE session events and keeps an in-memory cache of active sessions.
+    All active sessions are bulk-loaded on startup via getSessions, then kept current by real-time STOMP events.
+    <br>
+    Create a <code>[isepxgrid]</code> section to configure.
+  </p>
+  <p>
+    <strong>Important:</strong> The CN of the client certificate must be DNS-resolvable by ISE to the source IP of the server running WISE.
+    ISE performs a reverse-lookup on the CN during the mTLS handshake to verify the connecting host.
+  </p>
+  <p>
+    Fields added per IP:
+    <ul>
+      <li><code>ise.user</code> - Active directory user or username</li>
+      <li><code>ise.mac</code> - Endpoint MAC address</li>
+      <li><code>ise.os</code> - Endpoint OS or profile</li>
+      <li><code>ise.posture</code> - Posture compliance status</li>
+      <li><code>ise.nasip</code> - Network node IP (switch/AP) the endpoint authenticated through</li>
+    </ul>
+  </p>
+
+settings:
+  - key: host
+    value: REQUIRED
+    text: ISE pxGrid node hostname
+
+  - key: port
+    value: 8910
+    text: pxGrid port
+
+  - key: certFile
+    value: REQUIRED
+    text: Path to mTLS client certificate PEM file
+
+  - key: keyFile
+    value: REQUIRED
+    text: Path to mTLS client key PEM file
+
+  - key: caFile
+    value: EMPTY
+    text: Path to ISE CA certificate for server verification
+
+  - key: nodeName
+    value: REQUIRED
+    text: pxGrid account name (typically the CN of the client certificate)
+
+  - key: cacheAgeMin
+    value: 1440
+    text: How often (minutes) to fully refresh the session cache from ISE getSessions. Default is 1440 (24 hours).
+
+  - key: logEvents
+    value: false
+    text: Set to true to log each STOMP session ADD/UPDATE/REMOVE event to the WISE log

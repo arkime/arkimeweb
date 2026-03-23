@@ -1,0 +1,55 @@
+name: phpIPAM
+
+before: |
+  <p>
+    WISE can integrate with <a href="https://phpipam.net/">phpIPAM</a> to enrich IP addresses with hostname, subnet, VLAN, and VRF data.
+    By default all subnets, VLANs, VRFs, and registered addresses are bulk-loaded into memory on startup and refreshed hourly;
+    IP lookups are then 100% in-memory with zero per-session phpIPAM API calls.
+    <br>
+    Create a <code>[phpipam]</code> section to configure. Multiple instances can be created using <code>[phpipam:name]</code> sections.
+  </p>
+
+settings:
+  - key: url
+    value: REQUIRED
+    text: phpIPAM base URL, e.g. https://ipam.example.com
+
+  - key: appId
+    value: REQUIRED
+    text: phpIPAM API Application ID
+
+  - key: appCode
+    value: REQUIRED
+    text: phpIPAM Application Security Code (used as static token for App Code auth)
+
+  - key: verifyTLS
+    value: true
+    text: Set to false to disable TLS certificate verification (for self-signed/internal certs)
+
+  - key: useSessionAuth
+    value: false
+    text: Set to true to use user-token auth (POST /user/ to get session token) instead of App Code auth
+
+  - key: username
+    value: EMPTY
+    text: Username for session auth (only used when useSessionAuth=true). Defaults to appId.
+
+  - key: password
+    value: EMPTY
+    text: Password for session auth (only used when useSessionAuth=true). Defaults to appCode.
+
+  - key: preloadAddresses
+    value: true
+    text: Bulk-load all registered addresses per subnet at startup/reload. Set to false to do live per-IP lookups instead.
+
+  - key: addrConcurrency
+    value: 10
+    text: Maximum parallel subnet address-fetch requests during preload
+
+  - key: reload
+    value: 60
+    text: Minutes between full cache refresh
+
+  - key: cacheAgeMin
+    value: 60
+    text: Minutes to cache per-IP WISE results
