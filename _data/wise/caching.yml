@@ -4,18 +4,34 @@ before: |
   <p>
     The wiseService caches all results returned by external sources.
     An external source is something like OpenDNS or Reverse DNS, where it is impossible to load the entire data set into memory and WISE needs to make a external query to obtain results.
-    All caching is done in memory, however Redis can be used for a larger shared cache.
+    All caching is done in memory, however Redis, Memcached, LMDB, or SQLite can be used for a larger shared cache.
     <br>
-    Create a <code>[cache]</code> section
+    Create a <code>[cache]</code> section to configure.
   </p>
 
 settings:
   - key: type
     value: memory
-    text: <code>memory</code> or <code>redis</code> are supported
+    text: Cache type - <code>memory</code>, <code>redis</code>, <code>memcached</code>, <code>lmdb</code>, or <code>sqlite</code>
 
-  - key: url
-    value: empty
-    text: For cache engines this is the URL to connect to. For Redis the format is <code>[redis:]//[[user][:password@]]host:port[/db-number]</code>
+  - key: cacheSize
+    value: 100000
+    text: Maximum number of entries in the cache (for memory and LRU-based caches)
+
+  - key: cacheTimeout
+    value: 86400
+    text: Time in seconds before cached entries expire. Default is 24 hours (86400 seconds). Supports time strings like "1h", "30m".
+
+  - key: redisURL
+    value: EMPTY
+    text: For Redis cache, the URL to connect to. Format is <code>[redis:]//[[user][:password@]]host:port[/db-number]</code>
+
+  - key: memcachedURL
+    value: EMPTY
+    text: For Memcached cache, the URL to connect to
+
+  - key: lmdbDir
+    value: EMPTY
+    text: For LMDB cache, the directory to store the database files
 
 

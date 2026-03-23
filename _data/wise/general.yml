@@ -16,3 +16,19 @@ settings:
   - key: sourcePath
     value: "/opt/arkime/wiseService"
     text: Directory to look for wise source files
+
+  - key: webBasePath
+    value: "/"
+    text: The base path for the WISE web interface. Must match any reverse proxy configuration.
+
+  - key: userNameHeader
+    value: EMPTY
+    text: The HTTP header containing the authenticated username (for reverse proxy auth)
+
+  - key: updateTime
+    value: 0
+    text: When non-zero, update cached items after this many seconds
+
+  - key: footerTemplate
+    value: "_version_ | <a href=\"https://arkime.com/wise\">arkime.com/wise</a>"
+    text: HTML template for the footer displayed in the WISE UI

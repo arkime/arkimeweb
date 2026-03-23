@@ -17,11 +17,11 @@ settings:
 
   - key: servers
     value: EMPTY
-    text: Since 1.6.1, if set the reversedns source will use the semicolon separated list of ip addresses to reverse looked up.
+    text: If set, the reversedns source will use the semicolon separated list of IP addresses for reverse lookups.
 
   - key: stripDomains
     value: EMPTY
-    text: If EMPTY then all domains are stripped after the FIRST period. When set ONLY domains that match the semicolon separated list of domain names are modified, and only the matching part is removed. Those that don't match will be saved in full. The list is checked in order. A leading dot is recommended. For example `stripDomains=.foo.example.com;.example.com` will convert `test1.foo.example.com` to `test1`, `test2.bar.example.com` to `test2.bar` and finally `test3.bar.com` to `test3.bar.com` - Added in 0.11.4
+    text: If EMPTY then all domains are stripped after the FIRST period. When set ONLY domains that match the semicolon separated list of domain names are modified, and only the matching part is removed. Those that don't match will be saved in full. The list is checked in order. A leading dot is recommended. For example `stripDomains=.foo.example.com;.example.com` will convert `test1.foo.example.com` to `test1`, `test2.bar.example.com` to `test2.bar` and finally `test3.bar.com` to `test3.bar.com`
 
   - key: cacheSize
     value: 200000
