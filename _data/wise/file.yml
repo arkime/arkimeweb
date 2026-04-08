@@ -1,7 +1,7 @@
 name: File
 before: |
   <p>
-    The wiseService can monitor multiple files. Each file needs to have its own section, with the section name starting with `file:`. The wiseService automatically notices if the file changes and reloads it.
+    The wiseService can monitor multiple files. Each file needs to have its own section, with the section name starting with <code>file:</code>. The wiseService automatically notices if the file changes and reloads it.
     <br>
     Create a <code>[file:UNIQUENAME]</code> section to configure
   </p>
@@ -17,7 +17,7 @@ settings:
 
   - key: type
     value: REQUIRED
-    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
+    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in <code>[wise-types]</code>
 
   - key: format
     value: csv

@@ -1,7 +1,7 @@
 name: URL
 before: |
   <p>
-    The wiseService can monitor and download from a URL. Each url needs to have its own section, with the section name starting with `url:`. The wiseService can automatically download and reload the files.
+    The wiseService can monitor and download from a URL. Each url needs to have its own section, with the section name starting with <code>url:</code>. The wiseService can automatically download and reload the files.
     <br>
     Create a <code>[url:NAME]</code> section to configure
   </p>
@@ -17,7 +17,7 @@ settings:
 
   - key: type
     value: REQUIRED
-    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
+    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in <code>[wise-types]</code>
 
   - key: format
     value: csv

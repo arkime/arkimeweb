@@ -2,9 +2,19 @@ name: wise-types
 before: |
   <p>
     WISE also lets you configure which fields are used for the standard WISE types and you can add your own WISE types.
-    You do this by creating a <code>[wise-types]</code> section in the capture configuration file AND listing the fields using `{type}={expression};{db:dbfield}...`.
+    You do this by creating a <code>[wise-types]</code> section in the capture configuration file AND listing the fields using <code>{type}={expression};{db:dbfield}...</code>.
     The type field must be less than 12 characters, and is the same type field you would use in the WISE service.
   </p>
+
+after: |
+  <p>
+    In this example we send over both source and destination MAC addresses as the WISE type <code>mac</code>.
+    This example uses both the <code>db</code> and expression forms to illustrate both options.
+  </p>
+  <pre>
+  [wise-types]
+  mac=db:source.mac;mac.dst
+  </pre>
 
 settings:
   - key: ip

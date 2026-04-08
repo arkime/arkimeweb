@@ -17,7 +17,7 @@ settings:
 
   - key: type
     value: REQUIRED
-    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in `[wise-types]`
+    text: The type of data in the file, such as ip,domain,md5,ja3,email, or something defined in <code>[wise-types]</code>
 
   - key: keyPath
     value: REQUIRED

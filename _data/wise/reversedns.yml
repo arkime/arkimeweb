@@ -21,7 +21,7 @@ settings:
 
   - key: stripDomains
     value: EMPTY
-    text: If EMPTY then all domains are stripped after the FIRST period. When set ONLY domains that match the semicolon separated list of domain names are modified, and only the matching part is removed. Those that don't match will be saved in full. The list is checked in order. A leading dot is recommended. For example `stripDomains=.foo.example.com;.example.com` will convert `test1.foo.example.com` to `test1`, `test2.bar.example.com` to `test2.bar` and finally `test3.bar.com` to `test3.bar.com`
+    text: If EMPTY then all domains are stripped after the FIRST period. When set ONLY domains that match the semicolon separated list of domain names are modified, and only the matching part is removed. Those that don't match will be saved in full. The list is checked in order. A leading dot is recommended. For example <code>stripDomains=.foo.example.com;.example.com</code> will convert <code>test1.foo.example.com</code> to <code>test1</code>, <code>test2.bar.example.com</code> to <code>test2.bar</code> and finally <code>test3.bar.com</code> to <code>test3.bar.com</code>
 
   - key: cacheSize
     value: 200000
