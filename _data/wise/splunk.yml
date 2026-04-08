@@ -14,6 +14,10 @@ settings:
     value: REQUIRED
     text: The type of data in the file
 
+  - key: tags
+    value: EMPTY
+    text: Comma separated list of tags to set for matches
+
   - key: host
     value: REQUIRED
     text: The Splunk hostname
@@ -49,10 +53,6 @@ settings:
   - key: password
     value: REQUIRED
     text: The Splunk password
-
-  - key: arrayPath
-    value: EMPTY
-    text: The path of where to find the array, if the json result isn't an array
 
 after: |
   <p>

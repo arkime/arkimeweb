@@ -14,6 +14,9 @@ settings:
   - key: excludeEmails
     value: EMPTY
     text: Semicolon separated list of modified glob patterns to exclude in lookups
+  - key: excludeURLs
+    value: EMPTY
+    text: Semicolon separated list of modified glob patterns to exclude in lookups
   - key: cacheAgeMin
     value: 60
     text: Number of minutes items in the cache for this source are valid for. Ignored for sources that use internal data, such as file sources.
