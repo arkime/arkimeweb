@@ -54,3 +54,8 @@ settings:
   - key: urlScrapeSuffix
     value: EMPTY
     text: (Since 5.0) Append to the urlScrapeRedirect results
+
+after: |
+  <p>
+    The <a href="/settings#wise-file">File</a> source examples may also be helpful, as the URL source supports the same formats. The main difference is specifying a URL instead of a file path and optionally configuring reload and headers.
+  </p>

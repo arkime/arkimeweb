@@ -30,3 +30,8 @@ settings:
   - key: reload
     value: EMPTY
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
+
+after: |
+  <p>
+    The <a href="/settings#wise-file">File</a> source examples may also be helpful, as the OpenSearch/Elasticsearch File source supports the same formats. The main difference is specifying an OpenSearch/Elasticsearch URL, arrayPath, and keyPath.
+  </p>

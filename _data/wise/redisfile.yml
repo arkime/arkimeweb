@@ -1,4 +1,4 @@
-name: File
+name: Redis File
 before: |
   <p>
     Like the URL source, use a single Redis key as the file. The document can be periodically reloaded.
@@ -42,3 +42,8 @@ settings:
   - key: reload
     value: EMPTY
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
+
+after: |
+  <p>
+    The <a href="/settings#wise-file">File</a> source examples may also be helpful, as the Redis File source supports the same formats. The main difference is specifying a Redis URL and key.
+  </p>
