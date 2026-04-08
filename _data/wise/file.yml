@@ -23,9 +23,13 @@ settings:
     value: csv
     text: csv,<a href="/taggerformat">tagger</a>,json,jsonl - The format of data file
 
-  - key: keyColumn
+  - key: keyPath
     value: 0
-    text: For json formatted files, which json field is the key
+    text: For json/jsonl formatted files, which json field is the key. The old name keyColumn also works
+
+  - key: arrayPath
+    value: EMPTY
+    text: The path of where to find the array, if the json result isn't an array
 
   - key: column
     value: 0
@@ -73,7 +77,7 @@ after: |
     file=./ip.wise.json
     tags=ipwisejson
     type=ip
-    keyColumn=theip
+    keyPath=theip
     format=json
     #Asset field already exist, use field asset for value. extra field is new, use field extra for value
     fields=field:asset;shortcut:asset\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:extra\n
@@ -93,7 +97,7 @@ after: |
     file=./ip.wise.jsonl
     tags=ipwisejsonl
     type=ip
-    keyColumn=theip
+    keyPath=theip
     format=jsonl
     #Asset field already exist, use field asset for value. extra field is new, use field extra for value
     fields=field:asset;shortcut:asset\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:extra\n
@@ -112,7 +116,7 @@ after: |
     type=ip
     format=json
     file=subnets.json
-    keyColumn=ip
+    keyPath=ip
     fields=field:subnets.description;kind:termfield;count:true;friendly:Description;db:subnets.description;help:Description;shortcut:description\nfield:subnets.securityzone;kind:termfield;count:true;friendly:Security Zone;db:subnets.securityzone;help:Security Zone;shortcut:securityZone\nfield:subnets.vlan;kind:integer;count:true;friendly:Vlan;db:subnets.vlan;help:Vlan;shortcut:vlan\nfield:subnets.site;kind:termfield;count:true;friendly:Site;db:subnets.site;help:Site;shortcut:site
     # Jade view method
     view=if (session.subnets)\n    +arrayList(session.subnets, 'description', 'Description', 'subnets.description')\n    +arrayList(session.subnets, 'label', 'Label', 'subnets.label')\n    +arrayList(session.subnets, 'securityzone', 'Security Zone', 'subnets.securityzone')\n    +arrayList(session.subnets, 'vlan', 'Vlan', 'subnets.vlan')\n    +arrayList(session.subnets, 'site', 'Site', 'subnets.site')

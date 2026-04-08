@@ -27,9 +27,17 @@ settings:
     value: 0
     text: For csv formatted files, which column is the data
 
-  - key: refresh
+  - key: keyPath
+    value: 0
+    text: For json/jsonl formatted files, which json field is the key. The old name keyColumn also works
+
+  - key: arrayPath
+    value: EMPTY
+    text: The path of where to find the array, if the json result isn't an array
+
+  - key: reload
     value: -1
-    text: How often in minutes to refresh the file, or -1 to never refresh it
+    text: How often in minutes to refresh the file, or -1 (default) to never refresh it
 
   - key: headers
     value:

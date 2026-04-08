@@ -68,6 +68,6 @@ after: |
     password=thepassword
     periodic=60
     query=search index="THEINDEX" sourcetype="vpn" assigned earliest=-24h | rex "User <(?<user>[^>]+)>.*IPv4 Address <(?<vpn_ip>[^>]+)>" | dedup vpn_ip | table user, vpn_ip
-    keyColumn=vpn_ip
+    keyPath=vpn_ip
     fields=field:user;shortcut:user
   </pre>
