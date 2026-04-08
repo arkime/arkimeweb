@@ -20,6 +20,7 @@ permalink: "/learn"
 - [Why Arkime name?](arkimeetus)
 - [Common API](commonapi)
 - [Roles](roles)
+- [Supported Protocols](protocols)
 - [JA4](ja4)
 - [Arkime with a UDR7](udr7)
 - [Alkeme — Terminal UI for Arkime](alkeme)
