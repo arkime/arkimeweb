@@ -1,4 +1,4 @@
-name: File
+name: OpenSearch/Elasticsearch File
 before: |
   <p>
     Like the URL source, use a single OpenSearch/Elasticsearch document as the file. The document can be periodically reloaded.
