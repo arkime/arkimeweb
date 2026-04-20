@@ -258,6 +258,70 @@ NOTE: currentPassword is not required so that a usersAdmin can update anyone use
 | success | <code>boolean</code>| Whether the update password operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
+<a name="/user/totp/status"></a>
+
+## /user/totp/status API
+
+GET - /api/user/totp/status
+
+Check if TOTP is enabled for the current user
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the request was successful. |
+| enabled | <code>boolean</code>| Whether TOTP is enabled for this user. |
+
+<a name="/user/totp/setup"></a>
+
+## /user/totp/setup API
+
+POST - /api/user/totp/setup
+
+Start TOTP enrollment - generates a new secret and returns the QR code URI.
+The secret is not saved until confirmed with a valid code.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the setup initiation was successful. |
+| secret | <code>string</code>| The TOTP secret (Base32 encoded) for manual entry. |
+| qrCodeDataUrl | <code>string</code>| The QR code as a data URL for display. |
+
+<a name="/user/totp/confirm"></a>
+
+## /user/totp/confirm API
+
+POST - /api/user/totp/confirm
+
+Confirm TOTP enrollment by verifying a code from the authenticator app.
+If valid, the secret is encrypted and saved to the user record.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the confirmation was successful. |
+| text | <code>string</code>| The success/error message to display to the user. |
+
+<a name="/user/totp/disable"></a>
+
+## /user/totp/disable API
+
+POST - /api/user/totp/disable
+
+Disable TOTP for a user. Admins (usersAdmin) can disable anyone's TOTP.
+Regular users must provide a valid TOTP code to disable their own.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | <code>boolean</code>| Whether the disable operation was successful. |
+| text | <code>string</code>| The success/error message to display to the user. |
+
 <a name="getLocales"></a>
 
 ## getLocales(req, res) (function)
@@ -271,6 +335,12 @@ Handler for loading and serving locale files
 | --- | --- | --- |
 | req | <code>Object</code> | Express request object |
 | res | <code>Object</code> | Express response object |
+
+<a name="buildSyslogMessage"></a>
+
+## buildSyslogMessage() (function)
+
+Build an RFC 5424 syslog message
 
 <a name="Notifier"></a>
 

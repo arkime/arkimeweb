@@ -4,7 +4,7 @@
 
 POST/GET - /api/connections
 
-Builds an elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
+Builds an Elasticsearch connections query. Gets a list of nodes and links and returns them to the client.
 
 
 **Parameters**:
@@ -30,7 +30,7 @@ Builds an elasticsearch connections query. Gets a list of nodes and links and re
 
 POST/GET - /api/connections/csv OR /api/connections.csv
 
-Builds an elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
+Builds an Elasticsearch connections query. Gets a list of nodes and links in csv format and returns them to the client.
 
 
 **Parameters**:
@@ -125,7 +125,7 @@ Retrieves a list of histories, or user client requests to the APIs.
 | startTime | <code>number</code> |  | If the date parameter is not set, this is the start time of data to return. Format is seconds since Unix EPOCH. |
 | stopTime | <code>number</code> |  | If the date parameter is not set, this is the stop time of data to return. Format is seconds since Unix EPOCH. |
 | searchTerm | <code>string</code> |  | The search text to filter the history list by. |
-| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 1,000. |
+| length | <code>number</code> | <code>1000</code> | The number of items to return. Defaults to 1,000. |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0. |
 | sortField | <code>string</code> | <code>&quot;timestamp&quot;</code> | The field to sort the results by. |
 | desc | <code>string</code> | <code>true</code> | Whether to sort the results descending or ascending. Default is descending. |
@@ -393,7 +393,7 @@ Gets a list of PCAP files that Arkime knows about.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| length | <code>number</code> | <code>100</code> | The number of items to return. Defaults to 500, Max is 10,000 |
+| length | <code>number</code> | <code>10</code> | The number of items to return. Defaults to 10, Max is 10,000 |
 | start | <code>number</code> | <code>0</code> | The entry to start at. Defaults to 0 |
 
 **Returns**:
@@ -585,7 +585,7 @@ Returns all the sessions with the source IP of 1.2.3.4
 
 POST/GET - /api/sessions/csv OR /sessions.csv
 
-Return all the JSON formatted session data based on the query parameters.
+Return all the CSV formatted session data based on the query parameters.
 
 
 **Parameters**:
