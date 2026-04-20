@@ -44,6 +44,7 @@ settings:
         <li><strong>digest</strong> or EMPTY - Use digest auth where browser based digest authentication is used.</li>
         <li><strong>form</strong> - Use a html form to enter the user/password. Using over http is insecure.</li>
         <li><strong>header</strong> - Use a http header containing the user id for authentication, see <a href="#userNameHeader">userNameHeader</a>.</li>
+        <li><strong>header-jwt</strong> - (Since 6.2.0) Use a http header containing a JWT for authentication. The JWT is assumed to have already been verified by an upstream proxy (e.g. ALB, Cloudflare Access) and is only decoded, not verified. See <a href="#auth-header-jwt">Auth Header-JWT Settings</a>.</li>
         <li><strong>oidc</strong> -  Use OIDC authentication.</li>
         <li><strong>anonymous</strong> - Use anonymous authentication, not recommended.</li>
         <li><strong>s2s</strong> -  Only server to server authentication is allowed</li>

@@ -1,0 +1,53 @@
+name: Auth Header-JWT Settings
+before: |
+  <p>
+    (Since 6.2.0) Arkime supports header based JWT authentication when setting <a href="#authMode">authMode</a> to <code>header-jwt</code>.
+    Make sure that each user has the "Web Auth Header" checkbox selected.
+  </p>
+  <p>
+    In this mode an upstream proxy (e.g. AWS ALB, Cloudflare Access, oauth2-proxy, etc.) is expected to
+    authenticate the user, verify the JWT signature, and then forward the JWT in a HTTP header
+    configured via <a href="#userNameHeader">userNameHeader</a>.
+    Arkime only <strong>decodes</strong> the JWT payload to extract the user id &mdash; it does
+    <strong>not</strong> verify the signature. Because of this, Arkime <strong>must not</strong> be
+    reachable directly; all traffic must go through the upstream proxy that performs the JWT verification.
+  </p>
+  <p>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>authMode=header-jwt
+  userNameHeader=x-amzn-oidc-data
+  authUserIdField=preferred_username
+
+  # Auto create users using the [user-auto-create] section.
+  # The vals object contains the decoded JWT payload.
+  [user-auto-create]
+  userName=vals.name || vals.preferred_username
+  enabled=true
+  webEnabled=true
+  headerAuthEnabled=true
+  emailSearch=true
+  createEnabled=false
+  removeEnabled=false
+  packetSearch=true
+  roles=['arkimeUser', 'cont3xtUser']
+  </code></pre>
+  <p>
+    See <a href="#user-auto-create"><code>[user-auto-create]</code></a> for more details.
+  </p>
+
+settings:
+  - key: userNameHeader
+    value: REQUIRED
+    text: |
+      The HTTP header that contains the JWT forwarded by the upstream proxy. See <a href="#userNameHeader">userNameHeader</a>.
+
+  - key: authUserIdField
+    value: REQUIRED
+    text: |
+      The field in the decoded JWT payload that contains the userId.
