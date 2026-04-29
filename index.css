@@ -574,6 +574,33 @@ pre {
   background-color: #f6f8fa;
 }
 
+pre.code-copy-wrap {
+  position: relative;
+}
+pre.code-copy-wrap .code-copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: #555;
+  background-color: #ffffffcc;
+  border: 1px solid #d0d7de;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+pre.code-copy-wrap:hover .code-copy-btn,
+pre.code-copy-wrap .code-copy-btn:focus {
+  opacity: 1;
+}
+pre.code-copy-wrap .code-copy-btn:hover {
+  color: #000;
+  background-color: #ffffff;
+}
+
 /* dark dropdown menu */
 .dropdown-menu {
   border-color: #242426;
