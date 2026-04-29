@@ -46,10 +46,11 @@ settings:
   - key: maxFileTimeM
     value: 0
     text: |
-      The max time in minutes between rotating PCAP files. Useful if
-      there is an external utility that needs to look for closed files
-      regularly. Setting to 0 means only use
-      <code>maxFileSizeG</code>.
+      The approximate max time in minutes between rotating PCAP files.
+      Useful if there is an external utility that needs to look for closed files regularly.
+      Setting to 0 means only use <code>maxFileSizeG</code>.
+      NOTE: The lower the value the more likely there will be a delay in rotating the files because of compression and buffering.
+      In a low traffic environment, turning off compression and setting packetThreads=1 may help with this.
 
   - key: maxFileSizeG
     value: 12.0 (since 4.0.0)<br>4.0 (before 4.0)
