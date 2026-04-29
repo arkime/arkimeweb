@@ -32,7 +32,7 @@ Now place your `GeoIP.conf` file from MaxMind in the same directory as your `doc
 If you don't have MaxMind, this [**FAQ entry**](https://arkime.com/faq#maxmind) has instructions.
 In the example we will be using the City DB for more information.
 
-Here is the `docker-compose.yml` file I used, this example is using the **unreleased Arkime v6** (help us test!):
+Here is the `docker-compose.yml` file I used, this example is using **Arkime v6**:
 ```yaml
 services:
   elasticsearch:
@@ -57,9 +57,10 @@ services:
 
   capture:
     container_name: capture
-    image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
+    image: ghcr.io/arkime/arkime/arkime:v6-ja4-latest
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh capture --wait-for-db http://localhost:9200 --update-geo --upgrade http://localhost:9200 --ilm 26h 90d
+    user: root
     environment:
       - ARKIME__interface=ignore
       - ARKIME__pcapReadMethod=tzsp
@@ -81,9 +82,10 @@ services:
 
   viewer:
     container_name: viewer
-    image: ghcr.io/arkime/arkime/arkime:snapshot-v6-amd64-ja4-latest
+    image: ghcr.io/arkime/arkime/arkime:v6-ja4-latest
     network_mode: "host"
     command: /opt/arkime/bin/docker.sh viewer --wait-for-db http://localhost:9200
+    user: root
     environment:
       - ARKIME__viewPort=8005
       - ARKIME__cronQueries=auto
@@ -117,15 +119,19 @@ Start the services in this specific order to ensure the backend is ready before 
     # Verify ES is healthy before proceeding
     curl http://localhost:9200
     ```
-2.  **Start Capture and Viewer:** The Capture container will initialize the Arkime configuration files based on the environment variables set above.
+2.  **Initialize the Arkime database (first time only):** A fresh Elasticsearch needs `db.pl init` before Arkime will start.
+    ```bash
+    docker compose run --rm capture /opt/arkime/db/db.pl --insecure http://localhost:9200 init
+    ```
+3.  **Start Capture and Viewer:** The Capture container will initialize the Arkime configuration files based on the environment variables set above.
     ```bash
     docker compose up -d capture
     docker compose up -d viewer
     ```
 
-3. **Visit the Arkime Web Interface:** Access the Arkime viewer by navigating to `http://<arkime_host>:8005` in your browser. Log in with the default **admin/admin** credentials and **change the password immediately** by navigating to the **Settings -> Password**.
+4. **Visit the Arkime Web Interface:** Access the Arkime viewer by navigating to `http://<arkime_host>:8005` in your browser. Log in with the default **admin/admin** credentials and **change the password immediately** by navigating to the **Settings -> Password**.
 
-4. **Future Updating:** By using a snapshot tag you can update the Arkime containers in the future by simply running:
+5. **Future Updating:** By using a snapshot tag you can update the Arkime containers in the future by simply running:
     ```bash
     docker compose pull
     docker compose up -d

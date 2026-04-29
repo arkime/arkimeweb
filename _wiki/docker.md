@@ -15,7 +15,7 @@ A single image contains all Arkime applications, and the command you pass determ
 
 An optional `docker.sh` helper script is included to simplify launching different tools, but you can also run them directly from the container.
 
-To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/bin/docker.sh help`
+To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime/arkime:v6-latest /opt/arkime/bin/docker.sh help`
 
 [Github Arkime Container Registry](https://github.com/arkime/arkime/pkgs/container/arkime%2Farkime)
 
@@ -24,24 +24,23 @@ To see the options that docker.sh supports use `docker run ghcr.io/arkime/arkime
 
 We offer several tags to help you choose the right Arkime image for your needs.
 All of our releases are multi-architecture, so you can use the same tag on both amd64 and arm64 systems.
-We recommend using the v5-latest tag or v5.6.4 (or later) for the most stable experience.
+We recommend using the v6-latest tag or v6.2.0 (or later) for the most stable experience.
 
 ### Stable Releases:
 
-* v6-latest: This tag points to the most recent stable release within the 6.x series. Use this if you want to stay on a specific major version.
+* v6-latest: This tag points to the most recent stable release within the 6.x series. Use this if you want to stay on a specific major version. (recommended)
 * v6-ja4-latest: Same as v6-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
-* v5-latest: This tag points to the most recent stable release within the 5.x series. Use this if you want to stay on a specific major version. (recommended)
-* v5-ja4-latest: Same as v5-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
-* latest: This tag points to the most recent stable release.
+* v5-latest: This tag points to the most recent stable release within the 5.x series. Use this if you want to stay on a specific major version. (v5 no longer recommended)
+* v5-ja4-latest: Same as v5-latest but with the [ja4 plugin](https://arkime.com/ja4) included. (v5 no longer recommended)
+* latest: This tag points to the most recent stable release. (not recommended)
 * ja4-latest: Same as latest but with the [ja4 plugin](https://arkime.com/ja4) included.
-* vM.M.B: This tag points to a specific release version (e.g., v5.5.0). Use this if you need a particular version for compatibility or other reasons.
+* vM.M.B: This tag points to a specific release version (e.g., v6.2.0). Use this if you need a particular version for compatibility or other reasons.
 * vM.M.B-ja4: Same as vM.M.B but with the [ja4 plugin](https://arkime.com/ja4) included.
 
 ### Development Snapshots:
 
-* snapshot-v6-latest: This tag points to the latest development snapshot for the upcoming 6.x release. Use for testing upcoming v6 features.
+* snapshot-v6-latest: This tag points to the latest development snapshot for the next 6.x release. Use for testing upcoming v6 features.
 * snapshot-v6-ja4-latest: Same as snapshot-v6-latest but with the [ja4 plugin](https://arkime.com/ja4) included.
-* snapshot-v5*: Use the v5-latest or v5-ja4-latest tags instead.
 
 ## Configuring Arkime Containers
 {: .subsection }
@@ -67,12 +66,13 @@ For comprehensive configuration, consider combining these methods:
 {: .subsection }
 
 1. Install OpenSearch or Elasticsearch
-* You can use either containerized or a standalone installation.
-2. Initialize OpenSearch or Elasticsearch for Arkime
-* `docker run ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure https://ESHOST:9200 init`
-* This is a one-time operation to create the Arkime indices in OpenSearch/Elasticsearch.
+* You can use either a containerized or a standalone installation.
+2. Initialize OpenSearch or Elasticsearch for Arkime (one-time operation)
+* `docker run ghcr.io/arkime/arkime/arkime:v6-latest /opt/arkime/db/db.pl --insecure http://ESHOST:9200 init`
+* This creates the Arkime indices in OpenSearch/Elasticsearch.
 * Use the special hostname `host.docker.internal` for ESHOST if OpenSearch/Elasticsearch is running on the same host (Linux users may need to add `--add-host=host.docker.internal:host-gateway` to their `docker run` command).
 * You may need to specify a network mode for docker, such as `--network=host`.
+* The compose examples below use `--wait-for-db` and `--upgrade --ifneeded`, which means after the first manual init you can let the containers handle future schema upgrades automatically.
 3. Setup directories
 * You'll need directories for your pcap and optionally configuration files to be mounted into the container.
 * The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
@@ -121,6 +121,11 @@ dropGroup=daemon
 ## Docker Compose Examples
 {: .subsection }
 
+These examples use `docker.sh` flags that make day-2 operations easier:
+* `--wait-for-db <url>` - block startup until OpenSearch/Elasticsearch is reachable.
+* `--upgrade <url>` - run `db.pl upgradenoprompt --ifneeded` so schema upgrades happen automatically when you pull a newer image. (You still need to run `db.pl init` manually the first time on a brand new Elasticsearch cluster.)
+* `--update-geo` - refresh the GeoIP/RIR/OUI files on container start.
+
 ### Cont3xt
 {: .subsubsection }
 
@@ -130,11 +135,12 @@ Environment variables are of the format `ARKIME_<section>__<config>=<value>`.
 ```
 services:
   cont3xt:
-    image: ghcr.io/arkime/arkime/arkime:v5-latest
+    image: ghcr.io/arkime/arkime/arkime:v6-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh cont3xt
+    command: /opt/arkime/bin/docker.sh cont3xt --wait-for-db https://example.com:9200
     environment:
       - ARKIME_cont3xt__port=3220
+      - ARKIME__elasticsearch=https://example.com:9200
     volumes:
       - ./cont3xt.ini:/opt/arkime/etc/cont3xt.ini
     restart: always
@@ -145,12 +151,14 @@ services:
 
 For capture and viewer you'll need to mount a directory for the pcap data and we recommend mounting an etc directory for the configuration and all the extra GEO files. Make sure the directories are writable by the container.
 
+The first time you bring this up, run `db.pl init` against a fresh OpenSearch/Elasticsearch cluster (see "Setting up an Arkime environment" above). After that, `--upgrade ... --ifneeded` will keep the schema in sync as you upgrade Arkime.
+
 ```
 services:
   capture:
-    image: ghcr.io/arkime/arkime/arkime:v5-latest
+    image: ghcr.io/arkime/arkime/arkime:v6-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh capture --update-geo
+    command: /opt/arkime/bin/docker.sh capture --wait-for-db https://example.com:9200 --upgrade https://example.com:9200 --update-geo
     environment:
       - ARKIME__elasticsearch=https://example.com:9200
     volumes:
@@ -158,9 +166,9 @@ services:
       - /opt/arkime/etc:/opt/arkime/etc
     restart: always
   viewer:
-    image: ghcr.io/arkime/arkime/arkime:v5-latest
+    image: ghcr.io/arkime/arkime/arkime:v6-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh viewer
+    command: /opt/arkime/bin/docker.sh viewer --wait-for-db https://example.com:9200
     environment:
       - ARKIME__elasticsearch=https://example.com:9200
     volumes:
@@ -168,5 +176,7 @@ services:
       - /opt/arkime/etc:/opt/arkime/etc
     restart: always
 ```
+
+For a more complete real-world example (including a colocated Elasticsearch container, ILM, ja4 plugin, and TZSP capture), see the [UDR7 guide](/udr7).
 
 </div>
