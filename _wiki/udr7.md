@@ -209,4 +209,73 @@ systemctl start tzsp-forwarder
 
 # Step 3: Profit!!!
 You should now have a reliable, persistent forwarding mechanism sending your UDR7 traffic to your Arkime analysis server!
+
+---
+
+# Step 4: Caddy Bonus
+
+If you want to expose your Arkime to the internet over HTTPS, we suggest proxying with [Caddy](https://caddyserver.com/). Caddy will automatically provision and renew TLS certificates via Let's Encrypt.
+
+### A. Create the Caddy directories
+
+These will be bind-mounted into the Caddy container.
+
+```bash
+mkdir -p /caddy/conf /caddy/site /caddy/data /caddy/config
+```
+
+### B. Create `/caddy/conf/Caddyfile`
+
+Replace `FQDN` with the public hostname pointing at this server. Optionally uncomment the `email` line and set `EMAIL_ADDRESS` to receive Let's Encrypt expiration notices.
+
+```
+{
+        cert_issuer acme
+       #  email EMAIL_ADDRESS
+}
+
+https://FQDN {
+        handle_path /arkime/* {
+                reverse_proxy 127.0.0.1:8005
+        }
+}
+```
+
+### C. Add the Caddy service to your `docker-compose.yml`
+
+```yaml
+  caddy:
+    container_name: caddy
+    image: caddy:latest
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - "443:443"
+      - "8443:8443"
+    volumes:
+      - /caddy/conf:/etc/caddy
+      - /caddy/site:/srv
+      - /caddy/data:/data
+      - /caddy/config:/config
+```
+
+Then `docker compose up -d caddy` and browse to `https://FQDN/arkime/`.
+
+### D. Forward ports on the UDR7
+
+For Caddy to receive traffic from the internet, the UDR7 needs to forward inbound `443` (and/or `8443`) to the machine running Caddy.
+
+In the UniFi Network UI:
+
+1. Go to **Settings → Security → Port Forwarding**.
+2. Create a new rule:
+   * **Name:** `arkime-https`
+   * **From:** Any (or restrict to specific source IPs/regions)
+   * **Port:** `443` (and/or `8443`)
+   * **Forward IP:** the LAN IP of the Arkime/Caddy host
+   * **Forward Port:** `443` (and/or `8443`)
+   * **Protocol:** TCP
+3. Save and apply.
+
+Make sure your DNS `FQDN` record points at the UDR7's public WAN IP so Let's Encrypt can validate the certificate.
 </div>
