@@ -22,9 +22,9 @@ We will deploy Arkime and Elasticsearch using Docker Compose on the monitoring m
 
 First, set up the required local directories that will be mounted into the Arkime containers:
 ```bash
-# /arkime will hold the raw pcap and extra configuration files, it should be its own partition
+# /arkime will hold the raw pcap and extra configuration files
 # /esdata will hold the Elasticsearch data
-mkdir /arkime/etc /arkime/pcap /esdata
+mkdir /arkime/etc /arkime/pcap /arkime/maxmind /esdata
 chown nobody /arkime/pcap /arkime/etc
 ```
 
