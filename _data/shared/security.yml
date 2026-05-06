@@ -52,11 +52,14 @@ settings:
       If using central viewers for maximum security set all viewers to use s2s except the central viewer.
       Each user must have Web Auth Header checkbox set to support other methods besides basic or digest.
       <br><br>
-      For authentication modes that require cookies (form, oidc, saml) you may need to also change:
-      <ul>
-        <li> <a href="#authCookieSecure">authCookieSecure</a> - Set to <b>false</b> if using http WITHOUT a reverse proxy. This is insecure.</li>
-        <li> <a href="#authTrustProxy">authTrustProxy</a> - Set to <b>true</b> if using http WITH a https reverse proxy.</li>
-      </ul>
+      <div class="alert alert-warning">
+        <span class="fa fa-exclamation-triangle"></span>
+        For authentication modes that require cookies (form, oidc, saml) you may need to also change:
+        <ul>
+          <li> <a href="#authCookieSecure">authCookieSecure</a> - Set to <b>false</b> if using http WITHOUT a reverse proxy. This is insecure.</li>
+          <li> <a href="#authTrustProxy">authTrustProxy</a> - Set to <b>true</b> if using http WITH a https reverse proxy.</li>
+        </ul>
+      </div>
       See the <a href="#logoutUrl">logoutUrl</a> setting for how to configure a logout button in the UI.
 
   - key: userNameHeader
@@ -154,6 +157,10 @@ settings:
     text: |
       (Since 5.0.0) Used to set the express "trust proxy" setting that might be needed if viewer is running in http mode and a reverse proxy is being used in https mode.
       Please <a href="https://expressjs.com/en/guide/behind-proxies.html">read more</a> about the setting and possible values.
+      <p class="alert alert-warning">
+        <span class="fa fa-exclamation-triangle"></span>
+        When using nginx as a https reverse proxy in front of a http Arkime application, you must also set <code>proxy_set_header X-Forwarded-Proto $scheme;</code> in the nginx config so that Arkime application knows the original request was https. Without this, cookie based auth (form, oidc, saml) will not work correctly.
+      </p>
 
   - key: authCookieSecure
     value: true
