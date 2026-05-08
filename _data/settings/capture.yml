@@ -246,6 +246,16 @@ settings:
       For TCP sessions, Arkime writes a session record after this many
       seconds of inactivity since the last session save.
 
+  - key: trimEthernetPadding
+    value: "false"
+    text: |
+      (Since 6.3.2) When true, capture trims trailing Ethernet padding
+      and/or FCS bytes at the outermost IPv4/IPv6 layer so the saved pcap
+      frames and session byte counters match the on-wire IP datagram
+      length. Useful when comparing Arkime sessions to upstream security
+      devices that report sizes without NIC/driver padding. Default is
+      false to preserve the original captured frame.
+
   - key: udpTimeout
     value: "60"
     text: |
