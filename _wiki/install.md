@@ -34,7 +34,7 @@ If you want to use an Arkime container instead of installing on a Linux machine,
 
 We recommend using a stable version of Debian or Long-Term Support (LTS) version of Ubuntu.
 Both of these distributions are well supported, receive regular updates, and are easy to upgrade.
-Users of other distributions may need to modify the installation commands or run into library compatibility issues.
+Users of other distributions may need to modify the installation commands to avoid library compatibility issues.
 
 # Installing OpenSearch or Elasticsearch
 {: .section-header }
@@ -53,12 +53,12 @@ The official matrix of supported versions of OpenSearch and Elasticsearch is ava
 There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your Linux distribution when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
 In a production environment, we recommend having at least three machines for OpenSearch/Elasticsearch to provide redundancy, and they work best with three leader/master nodes.
-We currently support both OpenSearch and Elasticsearch equally.
+You only need one of OpenSearch or Elasticsearch — not both. We support either equally well; pick whichever fits your environment and follow only that section below.
 
-Both OpenSearch and Elasticsearch come with built-in security that requires a username and password to connect.
-During installation, you may be prompted to set one or one may be automatically generated.
+Both products come with built-in security that requires a username and password to connect.
+During installation, you may be prompted to set a password, or one may be automatically generated.
 Please make note of this user/password as you'll need it later when configuring Arkime.
-Both the db.pl init command and the config.ini need the same OpenSearch/Elasticsearch user/password.
+Both the `db.pl` init command and the `config.ini` need the same OpenSearch/Elasticsearch user/password.
 
 ### Install and Configure OpenSearch
 {: .subsection }
@@ -83,7 +83,7 @@ Change them based on how much memory you have available, the minimum recommended
 -Xmx12g
 ```
 
-You'll need to enable OpenSearch to start now and on boot with the following commands:
+You'll need to enable OpenSearch to start now and on boot with the following command:
 `systemctl enable --now opensearch`
 
 ### Install and Configure Elasticsearch
@@ -109,21 +109,23 @@ Change them based on how much memory you have available, the minimum recommended
 -Xmx12g
 ```
 
-You'll need to enable Elasticsearch to start now and on boot with the following commands:
+You'll need to enable Elasticsearch to start now and on boot with the following command:
 `systemctl enable --now elasticsearch`
 
 ### Single Machine OpenSearch Example on Ubuntu or Debian
 {: .subsection }
+
+**Note:** The version below is just an example — check the [OpenSearch downloads page](https://opensearch.org/downloads.html) for the latest supported version and adjust the URL accordingly.
 ```
 apt update
 apt install -y wget curl
-wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.13.0/opensearch-2.13.0-linux-x64.deb
+wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.18.0/opensearch-2.18.0-linux-x64.deb
 
 # You should change this password, if it isn't strong enough install will fail. :(
 # Minimum 10 character password and must contain at least one uppercase letter, one lowercase letter, one digit, and one special character
 export OPENSEARCH_INITIAL_ADMIN_PASSWORD="PleaseChangeM3!"
 
-apt install -y ./opensearch-2.13.0-linux-x64.deb
+apt install -y ./opensearch-2.18.0-linux-x64.deb
 systemctl enable --now opensearch
 
 # Verify that OpenSearch is running
@@ -158,7 +160,7 @@ If new to Arkime we recommend starting with the latest [stable version](https://
 The download page for each release contains multiple Arkime packages.
 When choosing an Arkime package, please select a version that corresponds to the Linux distribution, version, and the architecture of your system.
 
-NOTE: A clear indication of an incorrect download are libssl or libyaml errors when trying to run capture.
+NOTE: A clear indication of an incorrect download is libssl or libyaml errors when trying to run capture.
 
 ### Installing Arkime Package
 {: .subsection }
@@ -173,7 +175,7 @@ After downloading the Arkime package, you can install it by running the followin
 Once the Arkime package is installed, you need to initialize the OpenSearch/Elasticsearch database.
 Most database operations are completed using the `db.pl` script located in the `/opt/arkime/db` directory.
 You'll need to provide the URL of the OpenSearch/Elasticsearch database and the password you set during the OpenSearch/Elasticsearch installation.
-If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add a --insecure option if not on the same server.
+If using the builtin OpenSearch/Elasticsearch certificates, you'll need to add the `--insecure` option when not running on the same server as the database.
 You will also need to decide how you want to delete old sessions, either by ILM/ISM or by using the `db.pl` script in a cron job.
 We suggest using ILM/ISM.
 
@@ -190,10 +192,16 @@ These examples assume you are doing daily rollovers and keeping 30 days of data.
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 ism 1d 30d
 ```
 #### Cron Job Example
+If you don't want to use ISM/ILM to manage your OpenSearch/Elasticsearch storage, you can use a cron job that cleans up the indices instead. Note that the password is included in the URL because cron jobs can't prompt interactively. The job should be run once per day, ideally during off-peak hours.
+
+First initialize the database (run once):
 ```
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
-### In a cron job during off peak hours
-/opt/arkime/db/db.pl --esuser admin:password https://localhost:9200 expire daily 30
+```
+
+Then add the following line to a user's crontab (`crontab -e`) to expire old data daily at 3:00 AM:
+```
+0 3 * * * /opt/arkime/db/db.pl --esuser admin:password https://localhost:9200 expire daily 30
 ```
 
 
@@ -213,13 +221,13 @@ Before you can use the Arkime UI, you must add the first user.
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 ```
 You can change the password or other settings later in the Arkime UI under the Users tab.
-NOTE: This isn't the same as the admin user for OpenSearch/Elasticsearch, this is the admin user the Arkime UI.
+NOTE: This isn't the same as the admin user for OpenSearch/Elasticsearch, this is the admin user for the Arkime UI.
 Please use a different password than the OpenSearch/Elasticsearch password.
 
 ### Start the Arkime Sensor
 {: .subsection }
 
-To start the Arkime sensor, run the following command: `systemctl enable --now arkimecapture` and `systemctl enable --now arkimeviewer` which will start the capture and viewer services now and on boot.
+To start the Arkime sensor, run `systemctl enable --now arkimecapture` and `systemctl enable --now arkimeviewer`, which will start the capture and viewer services now and on boot.
 If there are issues, log files are located in the `/opt/arkime/logs` directory.
 
 ### Accessing the Arkime UI
@@ -230,11 +238,13 @@ Use the authentication information from above, username `admin` and the password
 
 ### Single Machine Arkime Example on Ubuntu 24 LTS
 {: .subsection }
+
+**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly.
 ```
 apt update
 apt install -y wget iproute2 ethtool
-wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
-apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
 # OR latest commit version
 #wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
 #apt install -y ./arkime-main_ubuntu2404_amd64.deb
@@ -272,7 +282,7 @@ Cont3xt requires a database and can use the same OpenSearch/Elasticsearch databa
 
 See the OpenSearch/Elasticsearch section [above](#download-and-install-opensearch-or-elasticsearch) for instructions on installing OpenSearch or Elasticsearch.
 
-See the Arkime section [above](#download-arkime) for instructions on installing the Arkime package
+See the Arkime section [above](#download-arkime) for instructions on installing the Arkime package.
 
 We answer many Cont3xt questions in the Cont3xt section of the [FAQ](https://arkime.com/faq#cont3xt).
 
@@ -285,11 +295,13 @@ You can always edit the /opt/arkime/etc/cont3xt.ini file directly after running 
 
 ### Single Machine Cont3xt Example on Ubuntu 24 LTS
 {: .subsection }
+
+**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly.
 ```
 apt update
 apt install -y wget
-wget https://github.com/arkime/arkime/releases/download/v5.8.2/arkime_5.8.2-1.ubuntu2404_amd64.deb
-apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
 # OR latest commit version
 #wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
 #apt install -y ./arkime-main_ubuntu2404_amd64.deb
@@ -307,7 +319,7 @@ apt install -y ./arkime_5.8.2-1.ubuntu2404_amd64.deb
 # Create the admin user if not done previously
 /opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
 
-# Start the Arkime Sensor
+# Start Cont3xt
 systemctl enable --now arkimecont3xt
 
 sleep 1
