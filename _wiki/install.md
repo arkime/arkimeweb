@@ -29,14 +29,17 @@ If you are interested in how many and types of machines you need for your enviro
 
 If you want to use an Arkime container instead of installing on a Linux machine, please see our [docker guide](https://arkime.com/docker).
 
-# Linux Distribution
+If you just want to get a single-machine evaluation install up and running as quickly as possible, jump to the [Single Machine Quick Start](#single-machine-quick-start) at the bottom of this page. For a production deployment, read through the full guide instead.
+{: .alert.alert-info }
+
+## Linux Distribution
 {: .section-header }
 
 We recommend using a stable version of Debian or Long-Term Support (LTS) version of Ubuntu.
 Both of these distributions are well supported, receive regular updates, and are easy to upgrade.
 Users of other distributions may need to modify the installation commands to avoid library compatibility issues.
 
-# Installing OpenSearch or Elasticsearch
+## Installing OpenSearch or Elasticsearch
 {: .section-header }
 
 Arkime requires a database to store the metadata associated with the network sessions that are processed.
@@ -147,7 +150,7 @@ This causes OpenSearch/Elasticsearch to listen on all interfaces, not just local
 We also have a list of some common settings you may need to change in the [FAQ](https://arkime.com/faq#recommended-elasticsearch-settings), many of these can also be changed in the Arkime UI.
 
 
-# Installing Arkime Sensors
+## Installing Arkime Sensors
 {: .section-header }
 
 Once you have a working OpenSearch/Elasticsearch cluster you can install the Arkime sensor.
@@ -274,7 +277,7 @@ sleep 1
 tail /opt/arkime/logs/*.log
 curl -u admin:changeme --digest http://localhost:8005/eshealth.json
 ```
-# Installing Cont3xt
+## Installing Cont3xt
 {: .section-header }
 
 Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations.
@@ -326,7 +329,64 @@ sleep 1
 tail /opt/arkime/logs/cont3xt.log
 ```
 
-# Arkime isn't working
+## Single Machine Quick Start
+{: .section-header }
+
+This is a copy-paste-friendly walkthrough that installs OpenSearch and Arkime on a single Ubuntu 24 LTS machine for **evaluation or testing**. It is not a production setup — for production, read the full guide above (separate database and sensor machines, ILM/ISM, hardened passwords, TLS certs, etc.).
+
+**Note:** The versions below are examples — check the [OpenSearch downloads page](https://opensearch.org/downloads.html) and the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest versions and adjust the URLs accordingly. Run everything as root (or with `sudo`).
+
+```
+# --- Install OpenSearch ---
+apt update
+apt install -y wget curl iproute2 ethtool
+
+wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.18.0/opensearch-2.18.0-linux-x64.deb
+
+# Must be 10+ chars with upper, lower, digit, and special character. CHANGE THIS.
+export OPENSEARCH_INITIAL_ADMIN_PASSWORD="PleaseChangeM3!"
+
+apt install -y ./opensearch-2.18.0-linux-x64.deb
+systemctl enable --now opensearch
+
+# Verify OpenSearch is up
+sleep 5
+curl -k --user "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200/_cat/health
+
+# --- Install Arkime ---
+wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
+
+# Configure Arkime (interactive). Answer:
+#   Interface:                         the interface to monitor
+#   Install Elasticsearch:             no
+#   OpenSearch/Elasticsearch URL:      https://localhost:9200
+#   OpenSearch/Elasticsearch User:     admin
+#   OpenSearch/Elasticsearch Password: same as $OPENSEARCH_INITIAL_ADMIN_PASSWORD above
+#   Password (Arkime store):           a NEW password, not the OpenSearch one
+#   Download GeoIP:                    yes
+/opt/arkime/bin/Configure
+
+# Initialize the OpenSesarch Arkime database with ISM and 30 day retention.
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 init --ism
+/opt/arkime/db/db.pl --esuser admin https://localhost:9200 ism 1d 30d
+
+# Create the Arkime UI admin user - CHANGE 'changeme' to a secure password
+/opt/arkime/bin/arkime_add_user.sh admin "Admin User" changeme --admin
+
+# Start capture and viewer
+systemctl enable --now arkimecapture
+systemctl enable --now arkimeviewer
+
+# Verify
+sleep 2
+tail /opt/arkime/logs/*.log
+curl -u admin:changeme --digest http://localhost:8005/eshealth.json
+```
+
+Then open `http://<hostname>:8005` in a browser and log in as `admin` with the password you set above.
+
+## Arkime isn't working
 {: .section-header }
 
 If you are having issues with Arkime, please see our [FAQ](https://arkime.com/faq#arkime-is-not-working) for common issues and solutions.
