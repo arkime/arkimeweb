@@ -2722,61 +2722,149 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         </span>
       </h3>
       <p>
-        Please file an
+        If <code>arkime-capture</code> is crashing, the Arkime team needs a
+        <strong>stack trace (backtrace)</strong> to diagnose the problem. Please
+        file an
         <a href="https://github.com/arkime/arkime/issues/new"
           rel="nofollow">
-          issue on github
+          issue on GitHub
         </a>
-        with the stack trace.
+        and include the backtrace, the Arkime version
+        (<code>/opt/arkime/bin/capture --version</code>), your OS/distribution,
+        and anything you know about how to reproduce the crash.
       </p>
-      <ul>
+      <p>
+        There are two common ways to get a backtrace, depending on whether
+        Arkime is running live in production or whether you can reproduce the
+        crash on demand. Try Method 1 first if Arkime is already running as a
+        service; use Method 2 if the crash is easy to reproduce or you are
+        debugging in a lab/test environment.
+      </p>
+
+      <h4>Method 1: Live capture &mdash; collect a core dump after the crash</h4>
+      <p>
+        Use this method when <code>arkime-capture</code> is running as a normal
+        service (for example, started by <code>systemd</code> via
+        <code>arkimecapture.service</code>) and is crashing on its own. The idea
+        is to let the OS write a core dump when the process crashes, then load
+        that core file into <code>gdb</code> afterward to extract a backtrace.
+      </p>
+      <ol>
         <li>
-          You'll need to allow suid or user changing programs to save core dumps.
-          Use <code>sysctl</code> to change until the next reboot. Setting it to
-          0 will change it back to the default.
+          <strong>Allow setuid/privilege-changing programs to dump core.</strong>
+          Because <code>capture</code> usually starts as root and then drops
+          privileges to <a href="/settings#dropuser"><code>dropUser</code></a>,
+          the kernel by default refuses to write a core file for it. Enable
+          dumping with <code>sysctl</code> (this setting is reset on reboot;
+          setting the value back to <code>0</code> restores the default):
           <pre><code>sysctl -w fs.suid_dumpable=2</code></pre>
         </li>
         <li>
-          The user that Arkime switches to must be able to write to the directory
-          that <code>capture</code> is running in.
+          <strong>Make sure core dumps are actually enabled and large enough.</strong>
+          Verify that the core size limit is not zero, for example by adding
+          <code>LimitCORE=infinity</code> to the systemd unit, or running
+          <code>ulimit -c unlimited</code> in the shell that launches capture.
+          Also check where your system writes core files
+          (<code>cat /proc/sys/kernel/core_pattern</code>) &mdash; on many modern
+          distributions cores are handled by <code>systemd-coredump</code> and
+          can be listed with <code>coredumpctl list</code>.
         </li>
         <li>
-          Run <code>capture</code> and get it to crash.
+          <strong>Ensure the dropUser can write the core file.</strong>
+          The user that Arkime switches to must have write permission to the
+          working directory that <code>capture</code> is running in (or to the
+          directory configured in <code>core_pattern</code>), otherwise the
+          kernel will silently fail to create the core file.
         </li>
         <li>
-          Look for the most recent core file.
+          <strong>Restart capture and wait for it to crash again.</strong>
         </li>
         <li>
-          Run <code>gdb</code> (you may need to install the gdb package first)
-          <pre><code>gdb /opt/arkime/bin/capture corefilename</code></pre>
+          <strong>Locate the most recent core file.</strong>
+          It is typically named <code>core</code> or <code>core.PID</code> in
+          the capture working directory. If your system uses
+          <code>systemd-coredump</code>, use
+          <code>coredumpctl list</code> and
+          <code>coredumpctl dump capture &gt; /tmp/capture.core</code>.
         </li>
         <li>
-          Get the back trace using the <code>bt</code> command
+          <strong>Load the core file into <code>gdb</code></strong> (install the
+          <code>gdb</code> package if it is not already present):
+          <pre><code>gdb /opt/arkime/bin/capture /path/to/corefile</code></pre>
         </li>
-      </ul>
+        <li>
+          <strong>Print the backtrace</strong> at the <code>(gdb)</code> prompt:
+          <pre><code>(gdb) bt
+(gdb) bt full      # more detail, including local variables
+(gdb) thread apply all bt   # backtrace from every thread</code></pre>
+          Copy the full output into your GitHub issue.
+        </li>
+      </ol>
+
+      <h4>Method 2: Run capture manually under gdb</h4>
       <p>
-        If it is easy to reproduce, sometimes it's easier to just run
-        <code>gdb</code> as root:
+        If the crash is easy to reproduce, it is usually faster and more
+        reliable to launch <code>capture</code> directly inside <code>gdb</code>
+        instead of dealing with core dumps. This also lets you set breakpoints
+        and inspect state interactively.
       </p>
-      <ul>
+      <p>
+        First, stop the running Arkime capture service so the two instances do
+        not fight over the same interface, e.g.:
+        <pre><code>systemctl stop arkimecapture</code></pre>
+        Then, as <strong>root</strong> (capture needs root to open network
+        interfaces):
+      </p>
+      <ol>
         <li>
-          Run <code>gdb capture</code> as root.
+          <strong>Start <code>gdb</code> on the capture binary:</strong>
+          <pre><code>gdb /opt/arkime/bin/capture</code></pre>
         </li>
         <li>
-          Start Arkime in <code>gdb</code> with
-          <code>run ALL_THE_ARGS_USED_FOR_ARKIME-CAPTURE_GO_HERE</code>.
+          <strong>(Optional) Set a breakpoint on <code>g_log</code>.</strong>
+          Arkime uses GLib's logging, and fatal errors (assertions, critical
+          messages, etc.) go through <code>g_log</code>. Breaking there lets
+          you see the backtrace at the moment the error is logged, before the
+          process exits &mdash; which often gives a more useful stack than the
+          crash itself. At the <code>(gdb)</code> prompt run:
+          <pre><code>(gdb) b g_log</code></pre>
+          You can also break on <code>g_logv</code> or
+          <code>g_assertion_message</code> for GLib assertions. If gdb warns
+          that the symbol is not yet loaded and asks to make it a pending
+          breakpoint, answer <code>y</code>.
         </li>
         <li>
-          Wait for crash.
+          <strong>Run capture inside gdb</strong> with the exact same arguments
+          your service uses (you can find them with
+          <code>systemctl cat arkimecapture</code> or
+          <code>ps -ef | grep capture</code>):
+          <pre><code>(gdb) run -c /opt/arkime/etc/config.ini -n NODENAME --insecure</code></pre>
         </li>
         <li>
-          Get the backtrace using <code>bt</code> command.
+          <strong>Reproduce the crash</strong> (replay the offending PCAP, wait
+          for the traffic pattern that triggers it, etc.).
         </li>
         <li>
-          Sometimes, you need to put a break point in <code>g_log</code>
-          <code>b g_log</code>
+          <strong>When gdb stops</strong> &mdash; either at a breakpoint or
+          because the process crashed (<code>SIGSEGV</code>,
+          <code>SIGABRT</code>, &hellip;) &mdash; collect the backtrace:
+          <pre><code>(gdb) bt
+(gdb) bt full
+(gdb) thread apply all bt</code></pre>
+          Paste the output into your GitHub issue.
         </li>
-      </ul>
+        <li>
+          <strong>Continue or quit:</strong> use <code>continue</code> (or
+          <code>c</code>) to let capture keep running past a breakpoint, or
+          <code>quit</code> to exit gdb when you are done.
+        </li>
+      </ol>
+      <p>
+        Tip: for the most useful stack traces, install the debug symbols package
+        for Arkime (and for the system libraries it uses) if your distribution
+        provides one. Without symbols you will only see addresses and
+        <code>??</code> entries in the backtrace.
+      </p>
 
       <h3 class="subsection" id="error-pcap-open-failed">
         ERROR - pcap open failed
