@@ -2813,7 +2813,8 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         not fight over the same interface, e.g.:
         <pre><code>systemctl stop arkimecapture</code></pre>
         Then, as <strong>root</strong> (capture needs root to open network
-        interfaces):
+        interfaces; you can skip running as root if you are only reading an
+        offline PCAP file:
       </p>
       <ol>
         <li>
