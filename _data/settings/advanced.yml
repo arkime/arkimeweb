@@ -66,3 +66,8 @@ settings:
     text: |
       (Since 6.0.0) When true disables IPv4 defragmentation in the capture process.
 
+  - key: stateDir
+    value: /tmp
+    text: |
+      (Since 6.4.0) The directory to write capture state information between runs.
+

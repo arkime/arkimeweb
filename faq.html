@@ -1257,6 +1257,9 @@ title: FAQ
       </p>
       <h4>Breaking Changes</h4>
       <ul>
+        <li>(6.4.0) All header* auth modes (header, header-jwt, headerOnly, header+digest, header+basic) now default <a href="/settings#userAuthIps">userAuthIps</a> to localhost-only when not explicitly configured</li>
+        <li>(6.4.0) docker.sh: TLS verification is now enforced by default for Elasticsearch/OpenSearch connections, use <code>--insecure</code> to skip verification</li>
+        <li>(6.4.0) multies now defaults <a href="/settings#multiESHost">multiESHost</a> to <code>127.0.0.1</code> instead of binding to all interfaces</li>
         <li>(6.2.0) Command sockets now chmod(0660) and remove Other access</li>
         <li>(6.1.1) The user-auto-create and user-role-mappings sections now limit what Javascript can be used for security</li>
         <li>(6.1.0) Previous redis user databases will be ignored</li>

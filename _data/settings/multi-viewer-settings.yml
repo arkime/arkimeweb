@@ -40,8 +40,14 @@ settings:
     text: Port that multies.js should listen on
 
   - key: multiESHost
-    value: EMPTY
+    value: "127.0.0.1 (since 6.4.0, previously EMPTY)"
     text: Host interface that multies.js should listen on
+
+  - key: multiESBasicAuth
+    value: EMPTY
+    text: |
+      (Since 6.4.0) Basic Auth credentials that clients (such as viewer) must provide when connecting to multies.
+      See <a href="#elasticsearchBasicAuth">elasticsearchBasicAuth</a> for more information on how to encode Basic Auth settings, you MUST use the base64 version with multies.
 
   - key: multiESNodes
     value: EMPTY
