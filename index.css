@@ -1062,8 +1062,23 @@ body.wiki-body.dark-theme footer.footer {
 }
 
 .dark-theme .list-group-item {
+  color: #EEEEEE;
   background-color: #333333;
   border: 1px solid rgba(0,0,0,.5);
+}
+.dark-theme .list-group-item.list-group-item-primary {
+  color: #cfe2ff;
+  background-color: #0b3a5e;
+  border-color: rgba(0,0,0,.5);
+}
+.dark-theme .list-group-item .btn-outline-primary {
+  color: #6ea8fe;
+  border-color: #6ea8fe;
+}
+.dark-theme .list-group-item .btn-outline-primary:hover {
+  color: #FFF;
+  background-color: #6ea8fe;
+  border-color: #6ea8fe;
 }
 .dark-theme ul.list-group.list-group-striped > li.list-group-item:nth-of-type(even) {
   background-color: #1d1d1d;

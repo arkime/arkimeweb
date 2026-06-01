@@ -1,5 +1,8 @@
 ---
 title: Open Office Hours!
+redirect_from:
+  - /officehours
+  - /office-hours
 ---
 
 <!DOCTYPE html>
@@ -59,62 +62,24 @@ title: Open Office Hours!
             </h1>
             <hr>
             <p class="lead text-justify mt-4">
-              Calling all Arkimists!
-              Join us twice a month for <strong>open office hours</strong>,
-              where you can chat and ask questions with the Arkime developers
-              and other Arkime  folks. These mini meetups will be informal.
-              The current plan is to have some meetups with no set agenda,
-              just come and chat, while others will have planned demos and
-              presentations.
+              Calling all Arkimists! Join us twice a month for
+              <strong style="color: var(--primary-theme-color); font-size: 1.3em; white-space: nowrap;">&#9749; open office hours</strong>, a relaxed, informal space to
+              connect with the Arkime developers and the wider Arkime community.
+              Whether you're brand new to Arkime or a seasoned packet wrangler,
+              you're welcome to drop in. Before each session we post a topic to
+              <a class="no-decoration" href="https://slack.arkime.com">Slack</a>,
+              but you're always free to bring your own questions or just hang out
+              and chat.
             </p>
             <p class="lead text-justify alert alert-info">
-              We will be hosting them on the <strong>first and third Wednesdays
-              of each month at 2pm US/Eastern</strong>
-              <br>
-              We will be using Google Meet.
-              <!--
-              <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">
-                The link is always the same!
-              </a>
-              -->
+              Sessions are held on the <strong>first and third Wednesdays
+              of each month at 2pm US/Eastern</strong>, hosted over
+              <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">Google Meet</a>.
             </p>
             <p class="lead mt-4">
-              <ul class="list-group">
+              <ul class="list-group" id="meetup-list">
                 <li class="list-group-item">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Wednesday Jun 3, 2026</h5>
-                    <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">
-                      Join
-                    </a>
-                  </div>
-                  2pm - 3pm US/Eastern
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Wednesday Jun 17, 2026</h5>
-                    <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">
-                      Join
-                    </a>
-                  </div>
-                  2pm - 3pm US/Eastern
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Wednesday Jul 1, 2026</h5>
-                    <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">
-                      Join
-                    </a>
-                  </div>
-                  2pm - 3pm US/Eastern
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Wednesday Jul 15, 2026</h5>
-                    <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">
-                      Join
-                    </a>
-                  </div>
-                  2pm - 3pm US/Eastern
+                  See you on the first and third Wednesdays of each month at 2pm US/Eastern.
                 </li>
               </ul>
             </p>
@@ -137,6 +102,94 @@ title: Open Office Hours!
     </div>
 
   </div>
+
+  <script>
+    (function () {
+      var MEET_URL = 'https://meet.google.com/eor-swdw-gqs';
+      var NUM_SESSIONS = 4;
+      var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      // Today's date in US/Eastern as a comparable YYYYMMDD number.
+      function easternToday () {
+        var parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/New_York',
+          year: 'numeric', month: '2-digit', day: '2-digit'
+        }).formatToParts(new Date());
+        var get = function (t) { return parseInt(parts.find(function (p) { return p.type === t; }).value, 10); };
+        return get('year') * 10000 + get('month') * 100 + get('day');
+      }
+
+      // Day of month of the nth (1-based) Wednesday of a given year/month (0-based month).
+      function nthWednesday (year, month, n) {
+        var firstDow = new Date(Date.UTC(year, month, 1)).getUTCDay();
+        var firstWed = 1 + ((3 - firstDow + 7) % 7);
+        return firstWed + (n - 1) * 7;
+      }
+
+      function nextSessions (count) {
+        var today = easternToday();
+        var sessions = [];
+        var probe = new Date();
+        var year = parseInt(new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric' }).format(probe), 10);
+        var month = parseInt(new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', month: 'numeric' }).format(probe), 10) - 1;
+
+        while (sessions.length < count) {
+          [1, 3].forEach(function (nth) {
+            if (sessions.length >= count) { return; }
+            var day = nthWednesday(year, month, nth);
+            var key = year * 10000 + (month + 1) * 100 + day;
+            if (key >= today) {
+              sessions.push(new Date(Date.UTC(year, month, day)));
+            }
+          });
+          month += 1;
+          if (month > 11) { month = 0; year += 1; }
+        }
+        return sessions;
+      }
+
+      function render () {
+        var list = document.getElementById('meetup-list');
+        if (!list) { return; }
+        list.innerHTML = '';
+        nextSessions(NUM_SESSIONS).forEach(function (date, i) {
+          var label = WEEKDAYS[date.getUTCDay()] + ' ' + MONTHS[date.getUTCMonth()] + ' ' +
+            date.getUTCDate() + ', ' + date.getUTCFullYear();
+          var isNext = i === 0;
+
+          var li = document.createElement('li');
+          li.className = 'list-group-item' + (isNext ? ' list-group-item-primary' : '');
+
+          var row = document.createElement('div');
+          row.className = 'd-flex w-100 justify-content-between align-items-center';
+
+          var heading = document.createElement('h5');
+          heading.className = 'mb-1';
+          heading.textContent = label;
+          if (isNext) {
+            var badge = document.createElement('span');
+            badge.className = 'badge bg-primary ms-2';
+            badge.textContent = 'Next session';
+            heading.appendChild(badge);
+          }
+
+          var join = document.createElement('a');
+          join.className = 'btn btn-sm no-decoration ' + (isNext ? 'btn-primary' : 'btn-outline-primary');
+          join.href = MEET_URL;
+          join.textContent = 'Join';
+
+          row.appendChild(heading);
+          row.appendChild(join);
+          li.appendChild(row);
+          li.appendChild(document.createTextNode('2pm - 3pm US/Eastern'));
+          list.appendChild(li);
+        });
+      }
+
+      render();
+    })();
+  </script>
 
 </body>
 
