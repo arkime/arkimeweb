@@ -150,7 +150,15 @@ settings:
   - key: userAuthIps
     value: "For header auth 127.0.0.0/8 and ::1, otherwise all ips"
     text: |
-      (Since 3.4.0) A comma separated list of ips allowed to be used for authenticated calls, no error checking is done on the ips.
+      <p>
+        (Since 3.4.0) A comma separated list of IPs or CIDRs allowed to make authenticated calls; other IPs are rejected with a 403 before auth. Header auth defaults to localhost only (<code>127.0.0.0/8</code> and <code>::1</code>); set this if your reverse proxy runs on another machine.
+      </p>
+      <p>
+        <b>Since 6.4.1:</b> the IP checked is the machine actually connecting to Arkime (usually your reverse proxy), <b>not</b> the original client IP. Even when <a href="#authTrustProxy">authTrustProxy</a> and <code>X-Forwarded-For</code> are used, list your <b>proxy's</b> IP/subnet here, not your end users'.
+      </p>
+      <p>
+        <b>3.4.0 - 6.4.0:</b> the IP checked was the request's apparent IP, which when <a href="#authTrustProxy">authTrustProxy</a> was enabled came from the <code>X-Forwarded-For</code> header. In that case you had to list the end user / client IPs, and a spoofed <code>X-Forwarded-For</code> could bypass the restriction - so upgrading to 6.4.1+ is recommended.
+      </p>
 
   - key: authTrustProxy
     value: EMPTY

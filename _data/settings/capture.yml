@@ -491,4 +491,8 @@ settings:
     value: "true"
     text: (Since 6.0.0) When false enable the embedded python support. See <a href="/python">Python</a> for more information.
 
+  - key: websocketTextSampleCnt
+    value: 4
+    text: (Since 6.4.0) The number of WebSocket text frames per session to sample for protocol detection and parsing. Can be set between 0 and 1024.
+
 

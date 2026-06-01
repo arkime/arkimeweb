@@ -172,7 +172,8 @@ settings:
         <li>TMPFILE - The tmp file name uploaded to</li>
         <li>CONFIG - The config file path used to start viewer</li>
         <li>TAGS - The tags set with the upload</li>
-        <li>INSECURE-ORIGINALNAME - DO NOT USE!!! The full original name of the uploaded file, using this will make it EASY to take over your host. DO NOT USE!!!</li>
+        <li>ORIGINALNAME - (Since 6.5.0) The original name of the uploaded file, sanitized to only contain the characters <code>-a-zA-Z0-9._</code> so it is safe to use</li>
+        <li>INSECURE-ORIGINALNAME - DO NOT USE!!! The full original name of the uploaded file, using this will make it EASY to take over your host. Use ORIGINALNAME instead. DO NOT USE!!!</li>
       </ul>
 
   - key: uploadRoles
