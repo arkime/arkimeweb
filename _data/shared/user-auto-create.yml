@@ -13,7 +13,7 @@ before: |
   <p class="alert alert-warning">
     <span class="fa fa-exclamation-triangle">
     </span>
-    The <code>[user-auto-create]</code> section should be used instead of the deprecated <code>userAutoCreateTmpl</code> setting, which will be removed in a future release.
+    The <code>[user-auto-create]</code> section should be used instead of the deprecated <code>userAutoCreateTmpl</code> setting, which will be removed in Arkime 7!
     The two settings cannot be used together and are mutually exclusive.
   </p>
   <p>

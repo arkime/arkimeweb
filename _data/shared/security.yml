@@ -112,7 +112,7 @@ settings:
     text: |
       <p class="alert alert-warning">
         <span class="fa fa-exclamation-triangle"></span>
-        <strong>Deprecated in 6.1.0:</strong> Use the <a href="#user-auto-create">[user-auto-create]</a> section instead. This setting will be removed in a future release.
+        <strong>Deprecated in 6.1.0:</strong> Use the <a href="#user-auto-create">[user-auto-create]</a> section instead. This setting will be removed in Arkime 7!
       </p>
       <p>
       When using <code>requiredAuthHeader</code> to externalize provisioning
