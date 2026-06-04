@@ -1,0 +1,60 @@
+name: Entropy
+before: |
+  <p>
+    (Since 6.5.0) The entropy plugin calculates the
+    <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">Shannon entropy</a>
+    of the TCP and UDP data bytes of a session, separately for each direction
+    (source and destination). The value is stored, multiplied by 100, in the
+    <code>entropy.src</code> and <code>entropy.dst</code> fields. High entropy
+    usually indicates compressed or encrypted data, while low entropy usually
+    indicates plain text or structured data.
+  </p>
+  <p>
+    Add <code>entropy.so</code> to the <code>plugins=</code> line in the config file.
+  </p>
+  <p>
+    <b>Note:</b> Most of these settings are <b>Session Segment</b> based. Arkime
+    saves long lived sessions in segments (mid saves), and the entropy
+    histograms are reset at the start of each new segment. This means by default
+    you get one entropy value per direction per session segment. Use
+    <code>entropyChunkSize</code> to instead emit a value every N bytes within a
+    segment.
+  </p>
+
+settings:
+  - key: entropyChunkSize
+    value: "4294967295"
+    text: |
+      The number of data bytes (per direction) to accumulate before calculating
+      an entropy value, adding it to the field, and resetting the histogram.
+      The default is the max uint32 value, so by default a single value is
+      calculated per direction per Session Segment. When this is less than or
+      equal to 65535 a smaller uint16 histogram is used to halve the per session
+      memory.
+
+  - key: entropyMaxUniqueValues
+    value: "10"
+    text: |
+      The maximum number of unique entropy values to record per direction.
+      Once this many unique values have been added for a direction the plugin
+      stops calculating and adding new values for that direction. This is most
+      useful when combined with a small <code>entropyChunkSize</code>.
+
+after: |
+  <p>
+    Example: only calculate the entropy of the first 64k of data in each
+    direction. Set the chunk size to 64k so a value is emitted after 65535
+    bytes, and limit it to a single unique value so nothing further is recorded.
+  </p>
+  <pre><code>[default]
+  plugins=entropy.so
+  entropyChunkSize=65535
+  entropyMaxUniqueValues=1</code></pre>
+  <p>
+    Example: track how entropy changes over a session by calculating a new value
+    every 4k of data in each direction, keeping up to the default 10 unique
+    values.
+  </p>
+  <pre><code>[default]
+  plugins=entropy.so
+  entropyChunkSize=4096</code></pre>
