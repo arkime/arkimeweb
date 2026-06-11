@@ -13,7 +13,9 @@ function copyLink (event, page) {
   let copyText;
   if (typeof event === 'string') {
     copyText = event;
-    $(page).attr('data-original-title', "COPIED!").tooltip('show');
+    const tooltip = bootstrap.Tooltip.getOrCreateInstance(page);
+    tooltip.setContent({ '.tooltip-inner': 'COPIED!' });
+    tooltip.show();
   } else {
     copyText = `https://arkime.com/${page}#${event.parentNode.id}`;
   }
