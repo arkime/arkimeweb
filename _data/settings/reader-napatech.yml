@@ -1,0 +1,57 @@
+name: "Reader - Napatech - Settings"
+before: |
+  <p>
+    Since version 6.5.0, Arkime supports capturing packets from
+    <a href="https://www.napatech.com">Napatech</a> SmartNICs using the
+    NTAPI (<code>libntapi</code>) SDK. Tested on an NT200A02 with Napatech
+    Link-Capture Software 12.x.
+  </p>
+  <ul>
+    <li>
+      Install the Napatech Link-Capture Software, including
+      <code>libntapi</code>, on every host that will run capture. The
+      <code>nt3gd</code> kernel module must be loaded and
+      <code>ntservice</code> must be running before Arkime starts.
+    </li>
+    <li>
+      Set <code>TimestampFormat = UNIX_NS</code> in
+      <code>ntservice.ini</code>; the plugin reads the hardware nanosecond
+      ingress timestamp from each packet descriptor.
+    </li>
+    <li>
+      Load the Napatech plugin by changing the configuration file so it has
+      <code>reader-napatech.so</code> as a <code>rootPlugins</code>:
+      <code>rootPlugins=reader-napatech.so</code>.
+    </li>
+    <li>
+      Configure capture to use Napatech as the reader method with
+      <code>pcapReadMethod=napatech</code> and set <code>interface=none</code>
+      in your configuration file.
+    </li>
+    <li>
+      Apply your NTPL stream-assignment rules before Arkime starts with the
+      <code>ntpl</code> tool, or set <code>ntplFile</code> below to have the
+      plugin apply them automatically at startup.
+    </li>
+  </ul>
+
+settings:
+  - key: ntStreamIds
+    value: "(auto)"
+    text: |
+      Comma-separated list of stream IDs or ranges to open, for example <code>0-7</code> or <code>0-3,5,8-10</code>. If not set, the plugin queries the driver and opens every stream ID that has host buffers allocated.
+
+  - key: ntplFile
+    value: "(none)"
+    text: |
+      Path to an NTPL file the plugin applies at startup, after <code>NT_Init()</code> and before the streams are opened. If not set, NTPL rules must be applied manually with the <code>ntpl</code> tool before Arkime starts.
+
+after: |
+  <p class="mb-0">
+    Example:
+  </p>
+  <pre><code>[default]
+  interface = none
+  pcapReadMethod = napatech
+  rootPlugins = reader-napatech.so
+  ntplFile = /opt/arkime/etc/arkime-streams.ntpl</code></pre>

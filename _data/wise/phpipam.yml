@@ -53,3 +53,7 @@ settings:
   - key: cacheAgeMin
     value: 60
     text: Minutes to cache per-IP WISE results
+
+  - key: searchUrl
+    value: EMPTY
+    text: "(Since 6.5.0) Override the base URL for the right-click search actions. Defaults to the phpIPAM base URL followed by <code>/tools/search/</code>. Example: <code>https://arkime.example.com/?tab=ipam&amp;goto=/ipam/tools/search/</code>"
