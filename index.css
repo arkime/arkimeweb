@@ -352,6 +352,21 @@ div.cont3xt-demo > h1 {
   animation-play-state: paused;
 }
 
+/* festive color variant for event announcements */
+.special-link-event {
+  background: linear-gradient(
+    90deg,
+    var(--danger-theme-color) 0%,
+    var(--warning-theme-color) 25%,
+    var(--danger-theme-color) 50%,
+    var(--warning-theme-color) 75%,
+    var(--danger-theme-color) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
 /* pulse animation for CTA buttons */
 @keyframes pulse-shadow {
   0%, 100% {
