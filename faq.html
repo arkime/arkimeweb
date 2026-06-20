@@ -125,6 +125,11 @@ title: FAQ
         title="How do I upgrade to Arkime 6.x">
         How do I upgrade to Arkime 6.x?
       </a>
+      <a class="nav-link nested"
+        href="#how_do_i_upgrade_to_arkime_7"
+        title="How do I upgrade to Arkime 7.x">
+        How do I upgrade to Arkime 7.x?
+      </a>
       <a href="#elasticsearch"
         class="nav-link"
         title="OpenSearch/Elasticsearch">
@@ -515,6 +520,29 @@ title: FAQ
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <th>
+              Arkime
+            </th>
+            <td>
+              7.0+
+            </td>
+            <td>
+              6.5.0+
+            </td>
+            <td>
+              1.x, 2.x, 3.x (3.x recommended), <a href="#http-compression">2.19.0 broken</a>, 3.x
+            </td>
+            <td>
+              8.x, 9.x (8.10+ or 9.x recommended)
+            </td>
+            <td>
+              <a href="#how_do_i_upgrade_to_arkime_7"> Arkime 7.x instructions </a>
+            </td>
+            <td>
+            </td>
+          </tr>
+
           <tr>
             <th>
               Arkime
@@ -1289,6 +1317,33 @@ title: FAQ
         <li>The new <a href="/settings#authJwsAlgorithm">authJwsAlgorithm</a> setting defaults to RS256</li>
         <li>arkime_packet_log now treats <a href="/settings#logEveryXPackets">logEveryXPackets</a> as a minimum rather than an exact interval, and only prints TCP info</li>
         <li>The <a href="/settings#disablePython">disablePython</a> setting now defaults to true</li>
+      </ul>
+      <h4>Instructions</h4>
+      <ul>
+        <li>Install new Arkime rpm/deb.</li>
+        <li>It is recommended but not required to shut down ALL captures, multies, and viewers.</li>
+        <li>Run <code>/opt/arkime/db/db.pl http://ESHOST:9200 upgrade [other options]</code>, replace ESHOST and don't forget to include any other options you usually use, like --replicas or --ilm.</li>
+        <li>Restart all captures, multies, and viewers (including both standalone viewers and those running with captures).</li>
+        <li>Verify that everything is working.</li>
+      </ul>
+
+      <h3 class="subsection" id="how_do_i_upgrade_to_arkime_7">
+        How do I upgrade to Arkime 7.x?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+
+      <div class="alert alert-warning">
+        <span class="fa fa-exclamation-triangle"></span>
+        Arkime 7 has NOT been released yet!
+      </div>
+
+      <p>
+        Upgrading to Arkime 7 requires that you are already using Arkime 6.5.0 or later.
+      </p>
+      <h4>Breaking Changes</h4>
+      <ul>
       </ul>
       <h4>Instructions</h4>
       <ul>
