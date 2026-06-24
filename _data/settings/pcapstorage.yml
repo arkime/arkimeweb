@@ -30,6 +30,12 @@ settings:
     text: |
       When set, this strftime template is appended to
       <code>pcapDir</code> and allows multiple directories to be created based on time.
+      The template MUST start with a <code>/</code> and uses the standard
+      <a href="https://man7.org/linux/man-pages/man3/strftime.3.html">strftime</a>
+      format codes, expanded using the local time of the first packet in each file.
+      For example, with <code>pcapDir=/opt/arkime/raw</code> and
+      <code>pcapDirTemplate=/%Y/%m/%d</code>, a PCAP captured on June 24, 2026
+      would be written to <code>/opt/arkime/raw/2026/06/24/</code>.
 
   - key: pcapDirAlgorithm
     value: "round-robin"
