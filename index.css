@@ -999,10 +999,12 @@ dl.dl-horizontal dd {
 .dark-theme .jumbotron,
 .dark-theme .jumbotron-white {
   background-color: #333333 !important;
+  color: #EEEEEE;
 }
 
 .dark-theme .card-body {
   background-color: #3f3f3f;
+  color: #EEEEEE;
 }
 
 .dark-theme input,
