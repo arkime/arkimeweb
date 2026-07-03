@@ -37,7 +37,7 @@ For memory data, sources should use javascript `Map` to store the data which is 
 
 API data sources only need to have routines to fetch the data from the API when requests come in.
 
-## Creating Views
+## Creating a Source
 {: .subsection-header }
 
 ##### Template

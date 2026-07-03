@@ -158,7 +158,7 @@ Once you have a working OpenSearch/Elasticsearch cluster you can install the Ark
 ### Download Arkime
 {: .subsection }
 
-If new to Arkime we recommend starting with the latest [stable version](https://github.com/arkime/arkime/releases/latest), however if you like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit6) that is rebuilt after every commit to github.
+If new to Arkime we recommend starting with the latest [stable version](https://github.com/arkime/arkime/releases/latest), however if you'd like to use the latest and greatest we have a [latest commit version](https://github.com/arkime/arkime/releases/last-commit6) that is rebuilt after every commit to GitHub.
 
 The download page for each release contains multiple Arkime packages.
 When choosing an Arkime package, please select a version that corresponds to the Linux distribution, version, and the architecture of your system.
@@ -262,7 +262,8 @@ apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
 #### Password: A new password, not the ES password
 #### Download GeoIP: yes
 
-# Initialize the database using cron expire, use the password from OpenSearch/Elasticsearch!!!
+# Initialize the database, use the password from OpenSearch/Elasticsearch!!!
+# (this only creates the indices; add a crontab entry with "db.pl ... expire daily 30" separately to prune old data)
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init
 
 # Create the admin user - IMPORTANT: Change 'changeme' to a secure password!
@@ -367,7 +368,7 @@ apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
 #   Download GeoIP:                    yes
 /opt/arkime/bin/Configure
 
-# Initialize the OpenSesarch Arkime database with ISM and 30 day retention.
+# Initialize the OpenSearch Arkime database with ISM and 30 day retention.
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 init --ism
 /opt/arkime/db/db.pl --esuser admin https://localhost:9200 ism 1d 30d
 

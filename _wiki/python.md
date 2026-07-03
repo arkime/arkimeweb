@@ -11,7 +11,7 @@ copyLink: True
 # Python
 {: .section-header.mt-1 }
 
-Starting with version 6, Arkime now support Python scripting for custom processing of packets and sessions.
+Starting with version 6, Arkime now supports Python scripting for custom processing of packets and sessions.
 This allows you to write custom classifiers and parsers in Python.
 The Python support in Arkime requires Python 3.12 or newer, so it may not be available with older linux distributions.
 Use the setting <code>disablePython=false</code> to enable Python support in Arkime.
@@ -247,12 +247,42 @@ outside of the callback (e.g., async operations). Must call decref when done.
 
 * session: The session object from the classifyCb or parserCb.
 
+### parser_buf_del(pb, which, length)
+
+Delete bytes from the front of the parser buffer after processing them.
+Call this after successfully parsing a complete message to remove consumed bytes.
+
+* pb: The parser buffer handle from the parserBufCb callback.
+* which: Direction: 0 = client to server, 1 = server to client.
+* length: Number of bytes to delete from the front of the buffer.
+
+### parser_buf_skip(pb, which, skip)
+
+Skip bytes in the parser buffer. If skip is less than or equal to current buffer length,
+acts like parser_buf_del. If skip is greater than current buffer length, also skips
+that many bytes from future incoming data.
+
+* pb: The parser buffer handle from the parserBufCb callback.
+* which: Direction: 0 = client to server, 1 = server to client.
+* skip: Number of bytes to skip.
+
 ### register_parser(session, parserCb)
 
 Register a parser callback for every packet of the session.
 
 * session: The session object from the classifyCb or parserCb.
 * parserCb: The callback to call for every packet of the session in each direction.
+
+### register_parser_buf(session, parserBufCb)
+
+Register a buffered parser callback for every packet of the session.
+Data is automatically accumulated in a per-direction buffer (up to 8KB per direction)
+and passed as a memoryview of the accumulated data. Use parser_buf_del or parser_buf_skip
+to consume processed bytes from the buffer.
+
+* session: The session object from the classifyCb or parserCb.
+* parserBufCb: The callback to call for every packet of the session in each direction.
+ Receives (session, pb, buf, which) where buf is accumulated data.
 
 ### set_attr(session, key, value)
 
@@ -418,7 +448,7 @@ def my_save_callback(session, final):
     print("SAVE:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "final", final)
 
 def my_ethernet_cb(batch, packet, bytes, len):
-    print("ETHERNET:", "batch", batch, "packet", "packet", "bytes", bytes, "len", len, "pktlen", arkime_packet.get(packet, "pktlen"))
+    print("ETHERNET:", "batch", batch, "packet", packet, "bytes", bytes, "len", len, "pktlen", arkime_packet.get(packet, "pktlen"))
 
     # Remove first 18 bytes of ethernet header and run ethernet callback again
     bytes = bytes[18:]

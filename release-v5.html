@@ -29,10 +29,10 @@ title: V5!
   <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:domain" content="arkime.com" />
+  <meta name="twitter:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
   <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="https://arkime.com" />
+  <meta name="twitter:url" content="https://arkime.com" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,7 +76,7 @@ title: V5!
             </p>
             <p class="text-center mt-4">
               <a role="button"
-                class="bt btn-lg btn-primary no-decoration"
+                class="btn btn-lg btn-primary no-decoration"
                 href="https://github.com/arkime/arkime/releases/latest">
                 ✨ Download Arkime 5 now! ✨
               </a>
@@ -124,7 +124,7 @@ title: V5!
             <p class="lead lead-lg text-justify mt-4 text-center">
               Breaking Changes
             </p>
-            <p class="lead text-justify">
+            <div class="lead text-justify">
               <ul class="list-group list-group-sm angle-list">
                 <li class="list-group-item">You must be on v4.3.2 or later to upgrade to v5.x</li>
                 <li class="list-group-item">A db.pl upgrade is required when upgrading</li>
@@ -141,12 +141,12 @@ title: V5!
                   You can configure common auth via the Parliament settings UI before upgrading or manually in the config file.
                 </li>
                 <li class="list-group-item">WISE/tagger must now use http.request.FIELD/http.response.FIELD when referencing header defined with headers-http-request/headers-http-response</li>
-                <li class="list-group-item">Centos 7 build no longers supports pfring</li>
+                <li class="list-group-item">Centos 7 build no longer supports pfring</li>
                 <li class="list-group-item">simpleCompressionBlockSize defaults to 64000</li>
                 <li class="list-group-item">simpleGzipBlockSize defaults to 32000</li>
                 <li class="list-group-item">right-click changed to value-actions in config</li>
               </ul>
-            </p>
+            </div>
             <p class="lead lead-lg text-center mt-4 pt-4">
               <a href="https://github.com/arkime/arkime/releases/latest" class="no-decoration">
                 View a detailed list of all the changes and download it now!
@@ -177,7 +177,7 @@ title: V5!
         </div>
         <div class="col-lg-4 col-md-5 lead text-justify">
           Cont3xt was integrated into the Arkime ecosystem with the release of version 4.0.
-          For detailed information, please refer the <a href="/cont3xt" class="no-decoration">Cont3xt documentation</a>.
+          For detailed information, please refer to the <a href="/cont3xt" class="no-decoration">Cont3xt documentation</a>.
           In version 5, we have introduced a bulk search feature, enabling you to enrich multiple indicators simultaneously.
           The user interface has undergone a full rewrite, incorporating multiple columns to minimize empty space and present all data on a single, streamlined page.
           As part of our user-centric enhancements, we now offer a severity emoji map, facilitating the quick identification of crucial indicators.
@@ -193,7 +193,7 @@ title: V5!
               onclick="copyLink(this, 'release-v5')">
             </span>
           </h1>
-          Arkime now features JA4 support, with JA4 values accessible through the http.ja4 field, allowing for convenient viewing and searching.
+          Arkime now features JA4 support, with JA4 values accessible through the tls.ja4 field, allowing for convenient viewing and searching.
           For enhanced JA4+ support, a downloadable plugin is required.
           To learn more and install the plugin, refer to the provided resource to <a href="ja4" class="no-decoration">learn more</a>.
         </div>
@@ -383,3 +383,5 @@ title: V5!
     });
   </script>
 </body>
+
+</html>

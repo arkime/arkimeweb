@@ -49,7 +49,7 @@ A single host deployment should usually only be used for demos and extremely low
 
 * Using a Network Packet Broker (NPB) allows traffic to be load balanced and recombined. This is especially useful in HA or asymmetric routing cases
 * By using a NPB, other security devices can see the same traffic arkime sees
-* When running multiple arkime-captures on the same host make sure the IO doesn't over whelm the disk and other subsystems.
+* When running multiple arkime-captures on the same host make sure the IO doesn't overwhelm the disk and other subsystems.
 * Use a TAP with high traffic networks since many mirror ports drop traffic under heavy load
 * Operators use an apache fronted viewer (central viewer) and don't hit the other viewers directly. The apache provides authentication.
 * Lock down ES and arkime viewer with iptables
@@ -69,7 +69,7 @@ A single host deployment should usually only be used for demos and extremely low
 ## Remote Device capture
 {: .subsection-header }
 
-In some cases, it’s not practical or possible to physical co-locate a capture server near a device we want to instrument. If the device is reachable via ssh, we can use ssh to login to the remote device, initiate a capture and stream the raw pcap data back to a arkime server. This streaming pcap data is written into a UNIX pipe.  One starts a arkime capture process using the pipe as the capture interface, resulting in real-time capture instrumentation of a remote device.
+In some cases, it’s not practical or possible to physically co-locate a capture server near a device we want to instrument. If the device is reachable via ssh, we can use ssh to login to the remote device, initiate a capture and stream the raw pcap data back to an Arkime server. This streaming pcap data is written into a UNIX pipe.  One starts an Arkime capture process using the pipe as the capture interface, resulting in real-time capture instrumentation of a remote device.
 
 ### Diagram with Steps to implement:
 {: .subsection }
@@ -78,7 +78,7 @@ In some cases, it’s not practical or possible to physical co-locate a capture 
 
 Steps:
 1. Create named pipe on the local capture machine, you can name whatever you want: <br><code>mkfifo /tmp/10.1.2.3-ens3</code>
-1. Start capture on on the local capture machine: <br><code>/opt/arkime/bin/capture --copy -r /tmp/10.1.2.3-ens3</code>
+1. Start capture on the local capture machine: <br><code>/opt/arkime/bin/capture --copy -r /tmp/10.1.2.3-ens3</code>
 1. Use ssh to copy the data from remote to localhost machine, exclude capturing the traffic we are sending over ssh: <br><code>ssh user@10.1.2.3 sudo /usr/sbin/tcpdump -s0 -i ens3 -w - not host 192.168.10.5 > /tmp/10.1.2.3-ens3</code><br>(The sudo and full path to tcpdump might not be required, remember to update the ips.)
 
 This is NOT the recommended way to use Arkime.

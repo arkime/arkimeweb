@@ -21,10 +21,10 @@ copyLink: True
 # Python
 {: .section-header.mt-1 }
 
-Starting with version 6, Arkime now support Python scripting for custom processing of packets and sessions.
+Starting with version 6, Arkime now supports Python scripting for custom processing of packets and sessions.
 This allows you to write custom classifiers and parsers in Python.
 The Python support in Arkime requires Python 3.12 or newer, so it may not be available with older linux distributions.
-Use the setting <code>disablePython=true</code> to disable Python support in Arkime.
+Use the setting <code>disablePython=false</code> to enable Python support in Arkime.
 
 <strong>Currently Python support is unavailable in the AL2023, Ubuntu 22, and Debian 12 Arkime packages.</strong>
 END_HEADER
@@ -66,7 +66,7 @@ def my_save_callback(session, final):
     print("SAVE:", arkime_session.get(session, "ip.src"), ":", arkime_session.get(session, "port.src"), "->", arkime_session.get(session, "ip.dst"), ":", arkime_session.get(session, "port.dst"), "final", final)
 
 def my_ethernet_cb(batch, packet, bytes, len):
-    print("ETHERNET:", "batch", batch, "packet", "packet", "bytes", bytes, "len", len, "pktlen", arkime_packet.get(packet, "pktlen"))
+    print("ETHERNET:", "batch", batch, "packet", packet, "bytes", bytes, "len", len, "pktlen", arkime_packet.get(packet, "pktlen"))
 
     # Remove first 18 bytes of ethernet header and run ethernet callback again
     bytes = bytes[18:]
@@ -330,7 +330,7 @@ sub print_functions {
             } elsif ($in_returns && $line ne "") {
                 $orig_line =~ /^(\s*)/;
                 my $indent = length($1);
-                if ($line =~ /^(\w+):\s*(.*)/) {
+                if ($line =~ /^(-?\d+|>\d+|\w+):\s*(.*)/) {
                     if ($arg_indent == 0) { $arg_indent = $indent; }
                     if ($indent <= $arg_indent) {
                         print $out "\nReturns $1: $2\n";

@@ -23,7 +23,7 @@ If you want to be able to have complex matching logic look at [Arkime Rules](rul
 * email (fields)
 * uri (fields).
 
-To get started you will need to `uncomment` `tagger.so`  plugin in config file.
+To get started, uncomment the `tagger.so` plugin on the `plugins=` line in the config file.
 
 ### Next, prepare your tagger files.
 {: .subsection}

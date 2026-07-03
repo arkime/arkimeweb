@@ -21,7 +21,7 @@ permalink: "/wiseapi"
 **_This API is not final and is subject to change._**
 {: .primary-theme-text }
 
-This is the documentation for version 3.x & 5.x.
+This is the documentation for versions 3.x - 5.x.
 
 ---
 

@@ -24,13 +24,13 @@ First, set up the required local directories that will be mounted into the Arkim
 ```bash
 # /arkime will hold the raw pcap and extra configuration files
 # /esdata will hold the Elasticsearch data
-mkdir /arkime/etc /arkime/pcap /arkime/maxmind /esdata
+mkdir -p /arkime/etc /arkime/pcap /arkime/maxmind /esdata
 chown nobody /arkime/pcap /arkime/etc
 ```
 
 Now place your `GeoIP.conf` file from MaxMind in the same directory as your `docker-compose.yml` file.
 If you don't have MaxMind, this [**FAQ entry**](https://arkime.com/faq#maxmind) has instructions.
-In the example we will be using the City DB for more information.
+In this example we use the GeoLite2 City DB, which provides more detailed location information.
 
 Here is the `docker-compose.yml` file I used, this example is using **Arkime v6**:
 ```yaml
@@ -70,7 +70,7 @@ services:
       - ARKIME__plugins=ja4plus.amd64.so
       - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
       - ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
-      - ARKIME__outFile=/opt/arkime/etc/oui.txt
+      - ARKIME__ouiFile=/opt/arkime/etc/oui.txt
       - ARKIME__saveUnknownPackets=all;corrupt
       - ARKIME__disableParsers=
     volumes:
@@ -97,7 +97,7 @@ services:
       - ARKIME__plugins=ja4plus.amd64.so
       - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
       - ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
-      - ARKIME__outFile=/opt/arkime/etc/oui.txt
+      - ARKIME__ouiFile=/opt/arkime/etc/oui.txt
       - ARKIME__saveUnknownPackets=all;corrupt
       - ARKIME__disableParsers=
     volumes:
@@ -176,7 +176,7 @@ Verify in the Arkime web interface that traffic is now appearing. If it works, s
 
 To ensure the forwarder runs on every reboot, create a systemd service file.
 
-Create the file `/etc/systemd/system/tzsp-forwarder.service`, **replace `<arkime_host>`** with the machine running the Arkime Docker containers.:
+Create the file `/etc/systemd/system/tzsp-forwarder.service`, **replace `<arkime_host>`** with the machine running the Arkime Docker containers:
 
 ```ini
 [Unit]
@@ -249,9 +249,6 @@ https://FQDN {
     image: caddy:latest
     restart: unless-stopped
     network_mode: "host"
-    ports:
-      - "443:443"
-      - "8443:8443"
     volumes:
       - /caddy/conf:/etc/caddy
       - /caddy/site:/srv

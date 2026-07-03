@@ -24,9 +24,9 @@ There are two classes of roles: System defined roles and User defined roles.
 * <strong>arkimeUser</strong> - Can use Arkime application, also known as viewer
 * <strong>arkimeAdmin</strong> - An arkimeAdmin is automatically assigned arkimeUser. An arkimeAdmin has extra ability to change Arkime configurations, view data for all Arkime Users (including superAdmins), and has different query limitations.
 * <strong>cont3xtUser</strong> - Can use Cont3xt application
-* <strong>cont3xtAdmin</strong> - An cont3xtAdmin is automatically assigned cont3xtUser. An cont3xtAdmin has extra ability to change Cont3xt configurations and view data for all Cont3xt Users (including superAdmins).
+* <strong>cont3xtAdmin</strong> - A cont3xtAdmin is automatically assigned cont3xtUser. A cont3xtAdmin has extra ability to change Cont3xt configurations and view data for all Cont3xt Users (including superAdmins).
 * <strong>parliamentUser</strong> - Can use the issues feature of parliament
-* <strong>parliamentAdmin</strong> - A parliamentAmdmin is automatically a parliamentUser. A parliamentAdmin can configure the clusters and settings in parliament.
+* <strong>parliamentAdmin</strong> - A parliamentAdmin is automatically a parliamentUser. A parliamentAdmin can configure the clusters and settings in parliament.
 * <strong>wiseUser</strong> - View raw data for a WISE source and get all configurations.
 * <strong>wiseAdmin</strong> - A wiseAdmin is automatically a wiseUser. A wiseAdmin can setup new wise sources and edit the source data.
 
@@ -41,7 +41,7 @@ doesn't have the arkimeUser/cont3xtUser directly assigned.
 ### High level Role Rules:
 {: .subsection }
 * Only a user with the superAdmin role can create/modify/delete other users with the superAdmin role.
-* Only a user with the superAdmin role can assign another user the arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
+* Only a user with the superAdmin role can assign another user the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
 * The application Admin users can view application data for all users, including other Admin and superAdmins users
 * webEnabled and headerAuthEnabled values are not inherited from roles. They must be set on each user individually.

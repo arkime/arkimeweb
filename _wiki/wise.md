@@ -43,7 +43,7 @@ WISE uses multiple caches to speed up queries.
 The wise.so plugin caches all results returned by wiseService, documented [here](/settings#wise).
 This cache will have all recent results, no matter the wise data source, so that the capture process doesn't need to communicate with wiseService for reoccurring traffic.
 
-The wiseService also caches all results returned by external sources, documented [here](/settings#caching-wise)
+The wiseService also caches all results returned by external sources, documented [here](/settings#wisemaxcache)
 
 ## WISE UI
 {: .subsection-header }
@@ -62,7 +62,7 @@ View the [WISE Config Gallery](wise-configs) to browse for ideas or contribute y
 
 WISE is http query-able so you can verify what it knows.
 
-Type
+The supported types are:
 
 * ip
 * email

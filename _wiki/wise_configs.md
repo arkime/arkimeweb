@@ -20,7 +20,7 @@ This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribu
 {% for file in site.posts %}
   {% if file.path contains 'wiseconfigs' %}
   <div class="gallery-item">
-    <h3 class="search-title subsection" id="{{file.title | slugify}}>{{file.title}}</h3>
+    <h3 class="search-title subsection" id="{{file.title | slugify}}">{{file.title}}</h3>
     {% if file.description %}
     <p class="lead mb-1">{{file.description}}</p>
     {% endif %}

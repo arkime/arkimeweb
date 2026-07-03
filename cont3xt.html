@@ -24,15 +24,15 @@ title: Cont3xt
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="description" content="Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations." />
   <!-- facebook open graph tags -->
-  <meta property="og:url" content="https://arkime.com" />
+  <meta property="og:url" content="https://arkime.com/cont3xt" />
   <meta property="og:description" content="Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations." />
   <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations." />
+  <meta name="twitter:domain" content="arkime.com" />
+  <meta name="twitter:description" content="Cont3xt centralizes and simplifies a structured approach to gathering contextual intelligence in support of technical investigations." />
   <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="https://arkime.com" />
+  <meta name="twitter:url" content="https://arkime.com/cont3xt" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,6 +76,7 @@ title: Cont3xt
             href="https://cont3xt.arkime.com">
             Cont3xt Demo
           </a>
+          </p>
           <p class="lead text-thin text-center">
             <img class="arkime-logo black-arkime d-none d-sm-none d-md-none d-lg-inline me-2" height="50px" />
             Cont3xt was first available in the Arkime 4.0 release.
@@ -174,10 +175,10 @@ title: Cont3xt
         </div>
         <div class="row">
           <div class="col">
-            <h4 class="display-4 mb-3 dark-primary-theme-text mt-3">Domains/Hostnames</h4>
+            <h3 class="display-4 mb-3 dark-primary-theme-text mt-3">Domains/Hostnames</h3>
             <ul class="list-group">
               <li class="list-group-item">
-                Use of Cloudflare DNS over HTTPS to perform resolution of records types including A, AAAA, NS, MX, TXT, SPF/DMARC, CAA and SOA. Any explicit IPs resolved will have the IP iType enrichment performed.
+                Use of Cloudflare DNS over HTTPS to perform resolution of record types including A, AAAA, NS, MX, TXT, SPF/DMARC, CAA and SOA. Any explicit IPs resolved will have the IP iType enrichment performed.
               </li>
               <li class="list-group-item">
                 Direct/Public Whois request. This can be valuable over other third party commercial services which will offer results, but may be cached or not current when dealing with freshly registered domains.
@@ -346,7 +347,7 @@ title: Cont3xt
                 Run <code>systemctl restart arkimecont3xt</code>
               </li>
               <li>
-                If Cont3xt isn't working, look at <code>/opt/arkime/log/cont3xt.log</code>
+                If Cont3xt isn't working, look at <code>/opt/arkime/logs/cont3xt.log</code>
               </li>
             </ol>
             <h1 class="display-4">

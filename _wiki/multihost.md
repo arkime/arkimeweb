@@ -11,7 +11,7 @@ permalink: /multihost
 
 Going from a single host to a multiple host deployment isn't too difficult. Basically, you just install the Arkime deb/rpm on each machine and point to the same OpenSearch/Elasticsearch cluster. The biggest issues include opening up OpenSearch/Elasticsearch to more than just localhost and getting the OpenSearch/Elasticsearch configuration right.
 
-**Note:** these instructions assume you've installed from the prebuilt deb/rpm and everything is in `/data/arkime`.
+**Note:** these instructions assume you've installed from the prebuilt deb/rpm and everything is in `/opt/arkime`.
 
 ### Expanding OpenSearch/Elasticsearch
 {: .subsection }

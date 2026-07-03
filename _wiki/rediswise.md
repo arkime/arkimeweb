@@ -31,7 +31,7 @@ Do note that this requires Arkime version 3.4.x+, as previously Redis source in 
 ### Logstash
 {: .subsection }
 
-Logstash configuration is rather simple, we just add a redis output and tell it to use "keyfield" (currently community_id) as redis key. The example conf also checks if the log actually has "keyfield" set, which is a good idea, because otherwise logstash would simply output events that don't have the field set to key "%{community_id}". You can use https://github.com/Cyb3rWard0g/HELK/blob/master/docker/helk-logstash/pipeline/8911-fingerprints-network_community_id-filter.conf to calculate network community ids for logs that do not have it by default (that means most network logs :) ).
+Logstash configuration is rather simple, we just add a redis output and tell it to use "keyfield" (currently community_id) as redis key. The example conf also checks if the log actually has "keyfield" set, which is a good idea, because otherwise logstash would simply output events that don't have the field set to key "%{community_id}". You can use [this HELK filter config](https://github.com/Cyb3rWard0g/HELK/blob/master/docker/helk-logstash/pipeline/8911-fingerprints-network_community_id-filter.conf) to calculate network community ids for logs that do not have it by default (that means most network logs :) ).
 
 ```
 output {
@@ -45,6 +45,7 @@ output {
       key => "%{community_id}"
       db => 0
     }
+  }
 }
 
 ```
@@ -74,7 +75,7 @@ communityid=communityId
 As some logs might not get hits, Redis should be configured to automatically remove older data.
 
 ```
-#some arbitary memory count limit, should be enough to contain at least 20 min of source logs
+#some arbitrary memory count limit, should be enough to contain at least 20 min of source logs
 maxmemory 8gb
 #evict least recently used keys
 maxmemory-policy allkeys-lru

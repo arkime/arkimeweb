@@ -57,7 +57,7 @@ esProxyPort=9999
 ### [esproxy-sensors] section
 {: .subsection}
 
-The [esproxy-sensors] section has a line for each sensor, with a list of semicolon seperated parameters.
+The [esproxy-sensors] section has a line for each sensor, with a list of semicolon separated parameters.
 The key for the line should be the nodename of the sensor, and it will be the username used in `config.ini` for the remote capture/viewer OpenSearch/Elasticsearch configuration.
 
 <pre>
@@ -87,8 +87,8 @@ The tee section supports the following settings:
 <a href="settings#elasticsearchAPIKey">elasticsearchAPIKey</a>
 <a href="settings#elasticsearchBasicAuth">elasticsearchBasicAuth</a>
 and all the <code>esProxySigV4*</code> settings (since 6.1.0).
-So for example with the following example configuration any incoming requests, like a bulk insert or update will be sent to both oldes cluster and newes cluster, however the results from newes cluster will be ignored.
-Only the results from the oldes cluster will be sent back to viewer.
+So for example with the following configuration, any incoming requests, like a bulk insert or update, will be sent to both the old cluster and the new cluster, however the results from the new cluster will be ignored.
+Only the results from the old cluster will be sent back to viewer.
 <pre>
 [default]
 elasticsearch=http://oldes:9200

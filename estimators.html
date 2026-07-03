@@ -29,10 +29,10 @@ title: Estimators
   <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="Estimate Arkime capture and OpenSearch/Elasticsearch machines" />
+  <meta name="twitter:domain" content="arkime.com" />
+  <meta name="twitter:description" content="Estimate Arkime capture and OpenSearch/Elasticsearch machines" />
   <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="https://arkime.com/estimators" />
+  <meta name="twitter:url" content="https://arkime.com/estimators" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -61,7 +61,6 @@ title: Estimators
           Use these estimators as a starting point for deciding on the
           number of machines needed for capture and OpenSearch/Elasticsearch nodes.
         </p>
-        <p>
         <div class="d-flex flex-wrap align-items-center">
           <div class="form-group">
             <label for="gbpsInput" class="visually-hidden">
@@ -473,7 +472,7 @@ title: Estimators
       }
 
       // Assumptions
-      // * 0.90 of disk because of disk match (0.9313%) and reserved free space
+      // * 0.90 of disk because of disk math (93.13%) and reserved free space
       function recalculate() {
         let captureDay = +$("#captureCompressionInput").val() * +$("#captureTLSInput").val() * +$("#gbpsInput").val() * +$("#captureDaysInput").val() * 24 * 60 * 60/8;
         let captureDiskInput = +$("#captureDiskInput").val() * 0.90;

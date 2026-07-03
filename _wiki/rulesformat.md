@@ -12,9 +12,9 @@ copyLink: True
 
 Rules files allow you to specify actions to perform when criteria are met with certain fields or state.
 The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting.
-There can be multiple files using a semicolon separated listed.
+There can be multiple files using a semicolon separated list.
 Each file can have multiple rules.
-The files will automatically reloaded when they are changed, you do NOT need to restart capture.
+The files will automatically be reloaded when they are changed, you do NOT need to restart capture.
 
 Check out the [rules gallery](rules) for inspiration, or add your rule file to help out others!
 
@@ -31,7 +31,7 @@ Check out the [rules gallery](rules) for inspiration, or add your rule file to h
 * fields - what fields to check
 * bpf - A bpf expression
 
-Sample rule that will drop all tls packets after the first 20 packets
+Sample rule that will drop all tls and quic packets after the first 20 packets
 {: .mb-0 }
 
 ```
@@ -137,7 +137,7 @@ So for example you could do the following to get aol.com, google.com, and any su
 ### Numeric ranges
 {: .subsection }
 
-Since Akrime 3.4.1 you can also specify numeric ranges for integer fields.
+Since Arkime 3.4.1 you can also specify numeric ranges for integer fields.
 Use the format of MIN-MAX.
 For example this rule requires the src port to be < 1024 and dst port be > 1024
 ```
@@ -147,9 +147,9 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
       protocols:
         - tls
         - quic
-      port.src
+      port.src:
         - 1-1023
-      port.dst
+      port.dst:
         - 1024-65535
     ops:
       "protocols": "lowsrcport"
@@ -158,9 +158,9 @@ For example this rule requires the src port to be < 1024 and dst port be > 1024
 ### NOT fields
 {: .subsection }
 
-Since Arkime 5.1.1 you can also speciy fields that match when a value is NOT in the list for string and integer fields.
+Since Arkime 5.1.1 you can also specify fields that match when a value is NOT in the list for string and integer fields.
 These fields can not be used with the fieldSet when attribute.
-To special a NOT field use a exclamtion mark before the field name.
+To specify a NOT field, use an exclamation mark before the field name.
 ```
 - name: "NOT example"
   when: "beforeFinalSave"
@@ -184,7 +184,7 @@ The operations are a map of the fields to set in the session. There are some spe
 
 * `_dontSaveSPI: 1`                 - Don't save SPI data for session, either 0 or 1
 * `_maxPacketsToSave: 20`           - Try to save at most 20 packets, max value is 65535. Arkime will sometimes save more packets if it couldn't determine to stop saving packets until later.
-* `_minPacketsBeforeSavingSPI: 33`  - Don't save SPI data unless 33 many packets have been sent/received, max value is 255
+* `_minPacketsBeforeSavingSPI: 33`  - Don't save SPI data unless at least 33 packets have been sent/received, max value is 255
 * `_dropByDst: 5`                   - (Since 1.5) drop all traffic to dst ip:port for 5 minutes. This is good for dropping traffic that is going to the cloud and has shifting ips.
 * `_dropBySrc: 10`                  - (Since 1.5) drop all traffic from src ip:port for 10 minutes. You probably almost never want to use this.
 * `_dontCheckYara: 1`               - (Since 1.6) don't check yara for remaining packets of session, either 0 or 1
@@ -271,7 +271,7 @@ Since 3.0.0 you can log when a rule is matched using the optional log element.
 ### Special Fields
 {: .subsection }
 
-Capture rules supports some special fields that don't aren't actually written to OpenSearch/Elasticsearch.
+Capture rules supports some special fields that aren't actually written to OpenSearch/Elasticsearch.
 
 Field | Description
 ------|------------
