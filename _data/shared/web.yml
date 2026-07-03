@@ -28,6 +28,6 @@ settings:
   - key: keyFile
     value: EMPTY
     text: |
-      Private certificate to use for https, if not set then http will be used.
+      Private key file to use for https, if not set then http will be used.
       The <a href="#certFile">certFile</a> setting must also be set.
 

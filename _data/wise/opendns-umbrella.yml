@@ -3,7 +3,7 @@ before: |
   <p>
     The OpenDNS source currently uses the bulk query API and does live queries. Requires that access be purchased and configured.
     <br>
-    Create a <code>[opendns]</code> section to configure
+    Create an <code>[opendns]</code> section to configure
   </p>
 
 settings:

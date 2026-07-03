@@ -24,6 +24,6 @@ after: |
   viewPort=8009
   </code></pre>
 
-  You can start manually or
+  You can start it manually with:
   <pre><code>cd /opt/arkime/viewer
   /opt/arkime/bin/node viewer.js -n central-viewer</code></pre>

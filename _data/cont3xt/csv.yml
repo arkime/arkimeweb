@@ -2,7 +2,7 @@ name: "CSV Integration"
 before: |
   Since 5.0 Cont3xt can query CSV files or urls for results.
 
-  Create a <code>[csv:NAME]</code> section where NAME is a unique name for all integrations
+  Create a <code>[csv:NAME]</code> section where NAME is a name that is unique across all integrations
 
 settings:
   - key: name
@@ -32,4 +32,4 @@ settings:
 
   - key: keyColumn
     value: REQUIRED
-    text: Which column, by name, contains the value to lookup against.
+    text: Which column, by name, contains the value to look up against.

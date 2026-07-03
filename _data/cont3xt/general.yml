@@ -9,7 +9,7 @@ settings:
 
   - key: cachePolicy
     value: shared
-    text: Can be <code>shared</code> or <code>user</code>, if set to user then the cache is per user, can be overriden per integration
+    text: Can be <code>shared</code> or <code>user</code>, if set to user then the cache is per user, can be overridden per integration
 
   - key: port
     value: 3218
@@ -31,7 +31,7 @@ settings:
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
     text: |
       A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
-       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+       Semicolon ';' separated list of maxmind geoip ASN files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
       <a class="no-decoration"
         href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-ASN"
         rel="nofollow">Download free version</a>

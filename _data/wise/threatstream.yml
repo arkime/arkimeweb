@@ -25,7 +25,7 @@ settings:
         <li>api - use the API for each query</li>
         <li>zip - download the zip file daily</li>
         <li>sqlite3 - use the database downloaded to the machine</li>
-        <li>sqlite3-copy - use a copy of database downloaded to the machine</li>
+        <li>sqlite3-copy - use a copy of the database downloaded to the machine</li>
       </ul>
 
   - key: dbFile

@@ -49,4 +49,4 @@ settings:
   - key: s3PathAccessStyle
     value: "false"
     text: |
-      In <code>s3://</code> mode if true use <code>s3.amazonaws.com/s3Bucket</code> if false use <code>s3Bucket.s3.amazonaws.com</code>.
+      In <code>s3://</code> mode: if true use <code>s3.amazonaws.com/s3Bucket</code>; if false use <code>s3Bucket.s3.amazonaws.com</code>.

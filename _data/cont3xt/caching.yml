@@ -7,7 +7,7 @@ before: |
 settings:
   - key: type
     value: memory
-    text: "<code>memory</code>, <code>redis</code>, <code>memcached</code>, <code>lmdb</code> are supported. <code>lmdb</code> is recommend for a local disk cache and <code>redis</code> for a shared cache."
+    text: "<code>memory</code>, <code>redis</code>, <code>memcached</code>, <code>lmdb</code> are supported. <code>lmdb</code> is recommended for a local disk cache and <code>redis</code> for a shared cache."
 
   - key: redisURL
     value: EMPTY

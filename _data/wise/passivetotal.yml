@@ -4,7 +4,7 @@ before: |
   <p>
     WISE can integrate with Passive Total to provide additional threat intelligence.
     <br>
-    Create a <code>[passive]</code> section to configure.
+    Create a <code>[passivetotal]</code> section to configure.
   </p>
 
 settings:

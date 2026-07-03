@@ -5,7 +5,7 @@ before: |
     Make sure that each user has the "Web Auth Header" checkbox selected.
   </p>
   <p>
-    OIDC is <strong>very tricky</strong> to get setup correctly, you will <strong>not</strong> make it work on the first try.
+    OIDC is <strong>very tricky</strong> to get set up correctly, you will <strong>not</strong> make it work on the first try.
     If you are new to Arkime we recommend following these steps:
     <ol>
       <li>Setup Arkime with <a href="#authMode">authMode</a> set to <code>basic</code> or <code>digest</code>. Get this working.</li>
@@ -68,7 +68,7 @@ settings:
   - key: authRedirectURIs
     value: EMPTY
     text: |
-      Comma separated list of redirect URLs. Maybe should end with <code>/auth/login/callback</code>
+      Comma separated list of redirect URLs. Each URL should usually end with <code>/auth/login/callback</code>
 
   - key: authOIDCScope
     value: openid

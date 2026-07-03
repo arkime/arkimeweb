@@ -13,4 +13,4 @@ settings:
 
   - key: host
     value: REQUIRED
-    text: Server hostname location
+    text: The ThreatQ server hostname

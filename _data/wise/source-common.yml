@@ -1,7 +1,7 @@
 name: Common Source Settings
 
 before: |
-  All sources support some common settings such excluding IPs, Domains and Email addresses from lookups.
+  All sources support some common settings such as excluding IPs, Domains and Email addresses from lookups.
   It is also possible to exclude across all sources by placing the exclude config in the <code>[wiseService]</code> section.
 
 settings:
@@ -22,10 +22,10 @@ settings:
     text: Number of minutes items in the cache for this source are valid for. Ignored for sources that use internal data, such as file sources.
   - key: onlyIPs
     value: EMPTY
-    text: If set, only ips that match the semicolon separated list of IPs or CIDRs will be looked up
+    text: If set, only IPs that match the semicolon separated list of IPs or CIDRs will be looked up
   - key: fields
     value: EMPTY
-    text: A "\n" separated list of fields that this source will add. Some wise sources automatically set for you. See <a href="/taggerformat">Tagger Format</a> for more information on the parts of a field entry.
+    text: A "\n" separated list of fields that this source will add. Some wise sources automatically set this for you. See <a href="/taggerformat">Tagger Format</a> for more information on the parts of a field entry.
   - key: view
     value: EMPTY
     text: The view to show in session detail when opening up a session with unique fields. The value for view can either be written in simplified format or in more powerful jade format. For the jade format see <a href="/taggerformat">Tagger Format</a> for more information except everything has to be on one line, so replace newlines with \n. Simple format looks like <code>require:[toplevel db name];title:[title string];fields:[field1],[field2],[fieldN]</code>
@@ -38,7 +38,7 @@ after: |
       <li>To match a single digit <code>#</code> may be used</li>
       <li>To match a character with special meaning, you must precede it with "~". The "~" also serves as the escape character</li>
       <li>To match one of a specific list of characters, you may surround the character with square brackets</li>
-      <li>Globs are anchored on both end, use <code>*</code> to unanchor</li>
+      <li>Globs are anchored on both ends, use <code>*</code> to unanchor</li>
       <li>String case does not matter</li>
     </ul>
   </p>

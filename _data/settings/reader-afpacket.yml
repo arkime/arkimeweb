@@ -20,7 +20,7 @@ settings:
   - key: tpacketv3BlockSize
     value: "2097152"
     text: |
-      The block size in bytes used for reads from each interface. There are 120 blocks per interface.
+      The block size in bytes used for reads from each interface. There are 64 blocks per thread.
 
   - key: tpacketv3NumThreads
     value: "2"

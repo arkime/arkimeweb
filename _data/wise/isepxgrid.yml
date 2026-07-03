@@ -11,12 +11,12 @@ before: |
   </p>
   <p>
     <strong>Important:</strong> The CN of the client certificate must be DNS-resolvable by ISE to the source IP of the server running WISE.
-    ISE performs a reverse-lookup on the CN during the mTLS handshake to verify the connecting host.
+    ISE performs a DNS lookup of the CN during the mTLS handshake to verify the connecting host.
   </p>
   <p>
     Fields added per IP:
     <ul>
-      <li><code>ise.user</code> - Active directory user or username</li>
+      <li><code>ise.user</code> - Active Directory user or username</li>
       <li><code>ise.mac</code> - Endpoint MAC address</li>
       <li><code>ise.os</code> - Endpoint OS or profile</li>
       <li><code>ise.posture</code> - Posture compliance status</li>

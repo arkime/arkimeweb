@@ -11,7 +11,7 @@ settings:
 
   - key: chadHTTPItems
     value: default
-    text: Headers that are calculated in chad value
+    text: Headers that are included when calculating the CHAD value
 
   - key: chadSMTPIgnores
     value: x-freebsd-cvs-branch;x-beenthere;x-mailman-version;list-unsubscribe;list-subscribe;list-id;list-archive;list-post;list-help;x-return-path-hint;x-roving-id;x-lumos-senderid;x-roving-campaignid;x-roving-streamid;x-server-id;x-antiabuse;x-aol-ip;x-originalarrivaltime
@@ -19,4 +19,4 @@ settings:
 
   - key: chadSMTPItems
     value: default
-    text: Headers that are calculated in chad value
+    text: Headers that are included when calculating the CHAD value

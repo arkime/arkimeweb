@@ -13,7 +13,7 @@ settings:
       Since 5.0 the configuration can be in ini, json, or yaml format and can be on:
       <ul class="mb-0">
         <li>disk (/opt/arkime/etc/config.ini)</li>
-        <li>an url (https://example.com/config.ini)</li>
+        <li>a URL (https://example.com/config.ini)</li>
         <li>OpenSearch (opensearchs://example.com/INDEX/_doc/DOC)</li>
         <li>Elasticsearch (elasticsearch://example.com:9200/INDEX/_doc/DOC)</li>
       </ul>
@@ -40,7 +40,7 @@ settings:
     text: |
       The path to a unix domain socket to listen for commands on.
       For example: <pre>/opt/arkime/bin/capture --scheme --command-socket /var/run/arkime.socket --command-wait
-      nc -U /var/run/arkime/socket
+      nc -U /var/run/arkime.socket
       help
       exit</pre>
 
@@ -94,14 +94,14 @@ settings:
 
   - display: -n, --node {node name}
     key: option-n
-    value: [hostname before first dot]
+    value: "[hostname before first dot]"
     text: |
       The node name of this capture instance.
       This node name will be used in stats and with any pcap files that are processed.
 
   - display: --host {hostname}
     key: option-host
-    value: [OS hostname]
+    value: "[OS hostname]"
     text: |
       Override the OS hostname for this capture instance.
       The viewer will use this hostname when trying to find the packets for this node, see <a href="/faq#how-do-viewers-find-each-other">the FAQ</a> for more information on how nodes find each other.
@@ -116,7 +116,7 @@ settings:
       Equivalent to <pre>--op tags={tag}</pre>
 
   - display: -F, --filelist {file | -}
-    key: option-f
+    key: option-F
     value: EMPTY
     text: |
       File that has a list of pcap file names to process, 1 per line.
@@ -138,7 +138,7 @@ settings:
     key: option-v
     value: N/A
     text: |
-      Provide the version of Arkime, build information, and exit.
+      Print the version of Arkime and build information, then exit.
 
   - display: -d, --debug
     key: option-d
@@ -162,7 +162,7 @@ settings:
     key: option-flush
     value: N/A
     text: |
-      When processing offline pcap files, flush all the data between each files.
+      When processing offline pcap files, flush all the data between each file.
       This is important when the pcap files are not related to each other and you don't want them to be accidentally stitched together.
 
   - display: --insecure
@@ -192,7 +192,7 @@ settings:
 
   - display: --profile {file}
     key: option-profile
-    value: N/A
+    value: EMPTY
     text: |
       A cloud profile file to use for this capture instance.
 

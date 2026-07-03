@@ -21,7 +21,7 @@ settings:
 
   - key: format
     value: csv
-    text: csv,<a href="/taggerformat">tagger</a>,json,jsonl - The format of data file
+    text: csv,<a href="/taggerformat">tagger</a>,json,jsonl - The format of the data file
 
   - key: keyPath
     value: 0
@@ -73,13 +73,13 @@ after: |
   <h4>JSON Example</h4>
   <p>Config File</p>
   <pre>
-    [file:ipcsv]
+    [file:ipjson]
     file=./ip.wise.json
     tags=ipwisejson
     type=ip
     keyPath=theip
     format=json
-    #Asset field already exist, use field asset for value. extra field is new, use field extra for value
+    #Asset field already exists, use field asset for value. extra field is new, use field extra for value
     fields=field:asset;shortcut:asset\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:extra\n
   </pre>
   <p>The JSON File</p>
@@ -93,16 +93,16 @@ after: |
   <p>Added in 5.0, WISE now supports jsonl files with one full json object per line.</p>
   <p>Config File</p>
   <pre>
-    [file:ipcsv]
+    [file:ipjsonl]
     file=./ip.wise.jsonl
     tags=ipwisejsonl
     type=ip
     keyPath=theip
     format=jsonl
-    #Asset field already exist, use field asset for value. extra field is new, use field extra for value
+    #Asset field already exists, use field asset for value. extra field is new, use field extra for value
     fields=field:asset;shortcut:asset\nfield:extra;kind:lotermfield;count:true;friendly:extra;db:extra;help:Help for Extra;shortcut:extra\n
   </pre>
-  <p>The JSON File</p>
+  <p>The JSONL File</p>
   <pre>
     {"asset": "blah", "theip": "10.0.0.3"}
     {"asset": "blah2", "theip": "10.0.0.2", "extra": "foo"}
@@ -117,11 +117,11 @@ after: |
     format=json
     file=subnets.json
     keyPath=ip
-    fields=field:subnets.description;kind:termfield;count:true;friendly:Description;db:subnets.description;help:Description;shortcut:description\nfield:subnets.securityzone;kind:termfield;count:true;friendly:Security Zone;db:subnets.securityzone;help:Security Zone;shortcut:securityZone\nfield:subnets.vlan;kind:integer;count:true;friendly:Vlan;db:subnets.vlan;help:Vlan;shortcut:vlan\nfield:subnets.site;kind:termfield;count:true;friendly:Site;db:subnets.site;help:Site;shortcut:site
+    fields=field:subnets.description;kind:termfield;count:true;friendly:Description;db:subnets.description;help:Description;shortcut:description\nfield:subnets.label;kind:termfield;count:true;friendly:Label;db:subnets.label;help:Label;shortcut:label\nfield:subnets.securityzone;kind:termfield;count:true;friendly:Security Zone;db:subnets.securityzone;help:Security Zone;shortcut:securityzone\nfield:subnets.vlan;kind:integer;count:true;friendly:Vlan;db:subnets.vlan;help:Vlan;shortcut:vlan\nfield:subnets.site;kind:termfield;count:true;friendly:Site;db:subnets.site;help:Site;shortcut:site
     # Jade view method
     view=if (session.subnets)\n    +arrayList(session.subnets, 'description', 'Description', 'subnets.description')\n    +arrayList(session.subnets, 'label', 'Label', 'subnets.label')\n    +arrayList(session.subnets, 'securityzone', 'Security Zone', 'subnets.securityzone')\n    +arrayList(session.subnets, 'vlan', 'Vlan', 'subnets.vlan')\n    +arrayList(session.subnets, 'site', 'Site', 'subnets.site')
     # Simple view method
-    #view=require:subnets;title:Subnets;fields:subnets.description,subnets.label,subnets:securityzone,subnets.vlan,subnets.site
+    #view=require:subnets;title:Subnets;fields:subnets.description,subnets.label,subnets.securityzone,subnets.vlan,subnets.site
   </pre>
   <p>The JSON File</p>
   <pre>

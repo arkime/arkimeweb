@@ -30,7 +30,7 @@ settings:
   - key: dhcpTimeout
     value: 60
     text: |
-      (Since 6.0.0) For DHCP sessions, Arkime tracks DHCP session for this long.
+      (Since 6.0.0) For DHCP sessions, Arkime tracks the DHCP session for this many seconds.
 
   - key: espTimeout
     value: 600
@@ -47,7 +47,7 @@ settings:
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
     text: |
       A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
-       Semicolon ';' separated list of maxmind geoip country files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
+       Semicolon ';' separated list of maxmind geoip ASN files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
       <a class="no-decoration"
         href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-ASN"
         rel="nofollow">Download free version</a>
@@ -86,7 +86,7 @@ settings:
         <li>libmagicnotext - libmagic, but turns off text checks</li>
         <li>molochmagic - (removed in 1.5.0) subset of libmagic input files, and less accurate</li>
         <li>both - (since 1.5.0) try basic and then libmagic</li>
-        <li>basic - 50+ of most common headers</li>
+        <li>basic - 50+ of the most common file headers</li>
         <li>none - no libmagic or basic calls</li>
       </ul>
 
@@ -100,7 +100,7 @@ settings:
   - key: maxPacketsInQueue
     value: 200000
     text: |
-      How many packets per packet thread that can be waiting to be processed.
+      How many packets per packet thread can be waiting to be processed.
       Arkime will start dropping packets if the queue fills up.
 
   - key: maxStreams
@@ -122,7 +122,7 @@ settings:
   - key: ouiFile
     value: EMPTY
     text: |
-      The mac address lookup for manufactures file
+      The MAC address manufacturer lookup file
       <a class="no-decoration"
         href="https://raw.githubusercontent.com/wireshark/wireshark/master/manuf"
         rel="nofollow">Download free version</a>
@@ -231,7 +231,7 @@ settings:
   - key: supportSha256
     value: "false"
     text: |
-      Generate Sha256 hashes along side of md5 hashes content.
+      Generate SHA256 hashes alongside MD5 hashes of content.
 
   - key: tcpSaveTimeout
     value: "400"
@@ -272,7 +272,7 @@ settings:
     value: "true"
     text: |
       When true yara is applied to every tcp/udp packet, otherwise only the first tcp/udp packet in a session is used.
-      Yara is run after the classification Arkime step.
+      Yara is run after the Arkime classification step.
       Looking at every packet can be resource intensive.
 
   - key: yaraFastMode
@@ -299,7 +299,7 @@ settings:
   - key: fragsTimeout
     value: "480"
     text: |
-      Number of seconds to keep around an ip fragment and try an reassemble it
+      Number of seconds to keep around an ip fragment and try and reassemble it
 
   - key: gapPacketPos
     value: "true"
@@ -309,7 +309,7 @@ settings:
   - key: interfaceOps
     value: EMPTY
     text: |
-      A semicolon separated list of a comma separted list of operations to set for each interface.
+      A semicolon separated list of a comma separated list of operations to set for each interface.
       The semicolon list must have the same number of elements as the interface setting.
       The format is <code>fieldexp=value</code>.
       So for example if you have <code>interface=eth1;eth2</code> you could set a tag with <code>interfaceOps=tags=eth1;tags=eth2</code>.
@@ -349,7 +349,7 @@ settings:
   - key: maxSctpOutOfOrderPackets
     value: 256
     text: |
-      (Since 6.0.0) Max number of tcp packets to track while trying to
+      (Since 6.0.0) Max number of sctp packets to track while trying to
       reassemble the SCTP stream
 
   - key: offlineDispatchAfter
@@ -404,15 +404,15 @@ settings:
     text: |
       Buffer size when writing pcap files. Should be a multiple of the
       raid 5/xfs stripe size and multiple of 4096 if using
-      direct/thread-direct pcapWriteMethod
+      the simple (direct I/O) pcapWriteMethod
 
   - key: snapLen
     value: "16384"
     text: |
       The maximum size of a packet Arkime will read off
       the interface. This can be changed to fix the "Arkime requires
-      full packet captures" error. It is recommend that instead of
-      changing this value that all the card "offline" features are
+      full packet captures" error. It is recommended that instead of
+      changing this value that all the card "offload" features are
       turned off so that capture gets a picture of what's on the network
       instead of what the capture card has reassembled. For VMs, those
       features must be turned off on the physical interface and not the
@@ -441,7 +441,7 @@ settings:
         <li> corrupt = save all corrupt packets </li>
       </ul>
 
-      Prior to Arkime 6.0.0, this setting saved unknown and corrupt packets into separate files in the first entry of <a href="#pcapDir">pcapDir</a>, named unknown.ether, unknown.ip, or corrupt. This behavior has been replaced-packets are now saved as full Arkime sessions.
+      Prior to Arkime 6.0.0, this setting saved unknown and corrupt packets into separate files in the first entry of <a href="#pcapDir">pcapDir</a>, named unknown.ether, unknown.ip, or corrupt. This behavior has been replaced &mdash; packets are now saved as full Arkime sessions.
 
   - key: disableParsers
     value: "arp.so"
@@ -484,12 +484,12 @@ settings:
     text: How many times to retry OpenSearch/Elasticsearch operations
 
   - key: dnsOutputAnswers
-    value: "Since Arkime 6 true previously false"
-    text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display in the session display.
+    value: "true (since Arkime 6), previously false"
+    text: (Since 5.1.0) When enabled Arkime will keep track of all the DNS answers separately and display them in the session detail.
 
   - key: disablePython
     value: "true"
-    text: (Since 6.0.0) When false enable the embedded python support. See <a href="/python">Python</a> for more information.
+    text: (Since 6.0.0) When false, enables the embedded Python support. See <a href="/python">Python</a> for more information.
 
   - key: websocketTextSampleCnt
     value: 4

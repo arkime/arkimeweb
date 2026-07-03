@@ -5,14 +5,14 @@ settings:
     text: |
       If both businessDayStart and businessDayEnd are set, it displays a
       colored background on the sessions timeline graph during business hours.
-      Values are in hours from midnight UTC. For example: 9am EST would be 13.
+      Values are in hours from midnight UTC. For example: 9am EST would be 14.
 
   - key: businessDayEnd
     value: EMPTY
     text: |
       If both businessDayStart and businessDayEnd are set, it displays a
       colored background on the sessions timeline graph during business hours.
-      Values are in hours from midnight UTC. For example: 5pm EST would be 21.
+      Values are in hours from midnight UTC. For example: 5pm EST would be 22.
 
   - key: businessDays
     value: "1,2,3,4,5"
@@ -31,10 +31,10 @@ settings:
       <br>
       (Since 3.0) If <a href="#userselasticsearch">usersElasticsearch</a> is set, this viewer node will sync shortcuts from the usersElasticsearch to the local OpenSearch/Elasticsearch.
       <br>
-      (Since 4.3.1) Add "auto" setting that will self select a node to be the primary Arkime viewer node, when that node dies another node will become the primary Arkime viewer node. Do not use when another node is using "true'.
+      (Since 4.3.1) Add "auto" setting that will self select a node to be the primary Arkime viewer node, when that node dies another node will become the primary Arkime viewer node. Do not use when another node is using "true".
 
   - key: spiDataMaxIndices
-    value: 1
+    value: 4
     text: |
       Specify the max number of indices we calculate spidata for, or set to -1 to disable any max.
       OpenSearch/Elasticsearch MAY blow up if we allow the spiData to search too many indices.
@@ -102,15 +102,15 @@ settings:
   - key: viewPort
     value: 8005
     text: |
-      This is both the port that the viewer process listens on AND the port we try to connect to other viewer processes on when proxing.
+      This is both the port that the viewer process listens on AND the port we try to connect to other viewer processes on when proxying.
       We recommend all viewers use the same port so it can be set in the [default] section.
       If viewers can't listen on the same ports then set the one in [default] to the common one, and the one in [NODE] to the special port.
 
   - key: viewUrl
     value: "http[s]://hostname:[viewport]"
     text: |
-      This shouldn't be needed anymore, but it allows you to over load both the host and port for talking to a remote node.
-      See <a href="/faq#error-couldn-t-connect-to-remote-viewer-only-displaying-spi-data">How do viewers find each other</a>.
+      This shouldn't be needed anymore, but it allows you to override both the host and port for talking to a remote node.
+      See <a href="/faq#how-do-viewers-find-each-other">How do viewers find each other</a>.
       It is much better to use FQDNs on capture nodes, or start capture with the --host option.
 
   - key: arkimeWebURL
@@ -134,7 +134,7 @@ settings:
   - key: hstsHeader
     value: "false"
     text: |
-      From viewer, return a hsts header on responses
+      From viewer, return an hsts header on responses
 
   - key: huntWarn
     value: 100000
@@ -158,7 +158,7 @@ settings:
     value: deny
     text: |
       Used to set the <code>X-Frame-Options</code> header for putting
-      Arkime in an iFrame. Options include "deny", "notallowed", or a
+      Arkime in an iFrame. Options include "allow", "sameorigin", "deny", or a
       URL to allow from.
 
   - key: uploadCommand
@@ -189,7 +189,7 @@ settings:
     value: "false for viewer, true for multiviewer"
     text: |
       Always query all indices instead of trying to
-      calculate which ones. Use this if searching across that use
+      calculate which ones. Use this if searching across clusters that use
       different rotateIndex values.
 
   - key: valueAutoComplete
@@ -199,7 +199,7 @@ settings:
 
   - key: maxAggSize
     value: 10000
-    text: Max number of items in an aggregations to request for unique and export intersection
+    text: Max number of items in an aggregation to request for unique and export intersection
 
   - key: turnOffGraphDays
     value: 30

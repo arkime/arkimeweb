@@ -15,7 +15,7 @@ after: |
     Example:
   </p>
   <pre><code>[override-ips]
-  10.1.0.0/16=tag:ny-office;country:USA;asn:AS0000 This is neat
+  10.1.0.0/16=tag:ny-office;country:US;asn:AS0000 This is neat
   </code></pre>
 
 settings:

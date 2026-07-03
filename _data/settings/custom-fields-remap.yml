@@ -28,4 +28,4 @@ settings:
 
   - key: "matchField=newField"
     value: EMPTY
-    text: When the value we are matching against is 'match field' instead of setting 'oldField' we set 'newField'
+    text: When the field that matched is 'matchField', instead of setting 'oldField' we set 'newField'

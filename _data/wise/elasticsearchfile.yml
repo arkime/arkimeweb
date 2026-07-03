@@ -3,13 +3,13 @@ before: |
   <p>
     Like the URL source, use a single OpenSearch/Elasticsearch document as the file. The document can be periodically reloaded.
     <br>
-    Create a <code>[elasticsearchfile:UNIQUENAME]</code> section to configure
+    Create an <code>[elasticsearchfile:UNIQUENAME]</code> section to configure
   </p>
 
 settings:
   - key: url
     value: REQUIRED
-    text: The OpenSearch/Elasticsearch URL Format is http[s]://[user:password@]host:port/<index>/_doc/<document>
+    text: The OpenSearch/Elasticsearch URL. The format is http[s]://[user:password@]host:port/&lt;index&gt;/_doc/&lt;document&gt;
 
   - key: tags
     value: REQUIRED
@@ -21,14 +21,14 @@ settings:
 
   - key: keyPath
     value: REQUIRED
-    text: The column to use from the returned data to use as the key
+    text: The column from the returned data to use as the key
 
   - key: arrayPath
     value: EMPTY
     text: The path of where to find the array, if the json result isn't an array
 
   - key: reload
-    value: EMPTY
+    value: -1
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
 
 after: |

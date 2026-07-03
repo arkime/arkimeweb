@@ -19,19 +19,19 @@ settings:
 
   - key: prefix
     value: arkime
-    text: The prefix used for the OpenSearch/Elasticsearch indices, see [settings](settings#prefix)
+    text: The prefix used for the OpenSearch/Elasticsearch indices, see <a href="settings#prefix">settings</a>
 
   - key: elasticsearch
     value: http://localhost:9200
-    text: The OpenSearch/Elasticsearch url, see [settings](settings#elasticsearch)
+    text: The OpenSearch/Elasticsearch url, see <a href="settings#elasticsearch">settings</a>
 
   - key: elasticsearchAPIKey
     value: EMPTY
-    text: The Elasticsearch API key, see [settings](settings#elasticsearchAPIKey)
+    text: The Elasticsearch API key, see <a href="settings#elasticsearchAPIKey">settings</a>
 
   - key: elasticsearchBasicAuth
     value: EMPTY
-    text: The OpenSearch/Elasticsearch basic auth information, see [settings](settings#elasticsearchBasicAuth)
+    text: The OpenSearch/Elasticsearch basic auth information, see <a href="settings#elasticsearchBasicAuth">settings</a>
 
   - key: maxResults
     value: 20

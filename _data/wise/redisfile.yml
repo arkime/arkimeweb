@@ -32,15 +32,15 @@ settings:
     text: For csv formatted files, which column is the data
 
   - key: keyPath
-    value: REQUIRED
-    text: The column to use from the returned data to use as the key
+    value: 0
+    text: For json/jsonl formatted files, which json field is the key
 
   - key: arrayPath
     value: EMPTY
     text: The path of where to find the array, if the json result isn't an array
 
   - key: reload
-    value: EMPTY
+    value: -1
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
 
 after: |

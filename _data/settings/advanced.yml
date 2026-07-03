@@ -59,7 +59,7 @@ settings:
   - key: httpVLanVNI
     value: 0
     text: |
-      (Since 5.2) If set to a non-zero value, then this is the vlan or vni that will be used for http connections from capture to OpenSearch/Elasticsearch that we will try and ignore.
+      (Since 5.2) If set to a non-zero value, this is the VLAN or VNI assigned when tracking capture's own HTTP connections to OpenSearch/Elasticsearch, so Arkime can ignore them.
 
   - key: disableIp4Defrag
     value: "false"

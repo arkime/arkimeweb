@@ -27,7 +27,7 @@ settings:
 
   - key: updateTime
     value: 0
-    text: When non-zero, update cached items after this many seconds
+    text: A timestamp automatically updated when the WISE config is saved via the WISE UI; other wiseService instances poll this value and restart when it increases. You should not usually set this by hand.
 
   - key: footerTemplate
     value: "_version_ | <a href=\"https://arkime.com/wise\">arkime.com/wise</a>"

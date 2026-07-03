@@ -19,7 +19,7 @@ settings:
       Valid values are <code>aes-192-cbc</code> and <code>aes-256-gcm</code>.
 
   - key: simpleCompression
-    value: zstd (>= 5) gzip (4.2 - 5)
+    value: zstd (>= 5) gzip (4.0 - 5)
     text: |
       (since 4.0.0) The type of seekable compression to use on PCAP files.
       Zstd (don't use before 4.5.1) has better compression for less CPU than gzip.
@@ -27,7 +27,7 @@ settings:
 
 
   - key: simpleCompressionBlockSize
-    value: 32000
+    value: 64000 (since 5.0.0), 32000 (4.x)
     text: |
       (since 4.0.0)
       How many bytes of uncompressed data to attempt to compress at once.
@@ -42,7 +42,7 @@ settings:
       Recommend using values between 30000 and 120000.
 
   - key: simpleGzipLevel
-    value: 6
+    value: 3
     text: |
       (since 3.3.0) When GZip is enabled using simpleCompression=gzip, this is the gzip compression level.
 

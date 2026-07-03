@@ -96,8 +96,8 @@ settings:
         <li>'blue-theme' for the blue theme</li>
         <li>'green-theme' for the green theme</li>
         <li>'cotton-candy-theme' for the cotton candy theme</li>
-        <li>'dark-2-theme' for green on black theme</li>
-        <li>'dark-3-theme' for dark blue theme</li>
+        <li>'dark-2-theme' for the green on black theme</li>
+        <li>'dark-3-theme' for the dark blue theme</li>
       </ul>
 
   - key: manualQuery

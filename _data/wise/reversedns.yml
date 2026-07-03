@@ -13,7 +13,7 @@ settings:
 
   - key: ips
     value: REQUIRED
-    text: Semicolon separated list of IPs or CIDRs to lookups. IPs that don't match this list will NOT be reverse looked up.
+    text: Semicolon separated list of IPs or CIDRs to look up. IPs that don't match this list will NOT be reverse looked up.
 
   - key: servers
     value: EMPTY

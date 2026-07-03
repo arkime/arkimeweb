@@ -45,7 +45,7 @@ settings:
 
   - key: wiseMaxRequests
     value: 100
-    text: Number of oustanding requests to the wiseService
+    text: Number of outstanding requests to the wiseService
 
   - key: wisePort
     value: 8081

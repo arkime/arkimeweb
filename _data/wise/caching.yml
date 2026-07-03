@@ -3,7 +3,7 @@ name: Caching
 before: |
   <p>
     The wiseService caches all results returned by external sources.
-    An external source is something like OpenDNS or Reverse DNS, where it is impossible to load the entire data set into memory and WISE needs to make a external query to obtain results.
+    An external source is something like OpenDNS or Reverse DNS, where it is impossible to load the entire data set into memory and WISE needs to make an external query to obtain results.
     All caching is done in memory, however Redis, Memcached, LMDB, or SQLite can be used for a larger shared cache.
     <br>
     Create a <code>[cache]</code> section to configure.

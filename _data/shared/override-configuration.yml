@@ -3,7 +3,7 @@ name: Overriding Configuration File
 before: |
   <p>
     The Arkime configuration file can be overridden using two different methods, the command line or environment variables.
-    The command line takes precedence over the environment variables, which in turn takes precedence over the configuration file.
+    The command line takes precedence over the environment variables, which in turn take precedence over the configuration file.
     Both of these solutions replace the entire value of the variable, so if you want to append to a list you need to specify the entire list.
   </p>
   <h4>Command Line</h4>

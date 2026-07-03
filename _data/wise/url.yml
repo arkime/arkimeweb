@@ -40,7 +40,7 @@ settings:
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
 
   - key: headers
-    value:
+    value: EMPTY
     text: Semicolon separated list of headers to send in the URL request
 
   - key: urlScrapeRedirect

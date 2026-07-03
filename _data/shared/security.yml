@@ -12,13 +12,13 @@ settings:
     value: EMPTY
     text: |
       Group to drop privileges to. The <a href="#pcapDir">pcapDir</a> must be writable by this
-      group or to the user specified by dropUser
+      group or by the user specified by dropUser
 
   - key: dropUser
     value: EMPTY
     text: |
       User to drop privileges to. The <a href="#pcapDir">pcapDir</a> must be writable by this
-      user or to the group specified by dropGroup
+      user or by the group specified by dropGroup
 
   - key: httpRealm
     value: Moloch
@@ -54,7 +54,7 @@ settings:
       <br><br>
       <div class="alert alert-warning">
         <span class="fa fa-exclamation-triangle"></span>
-        For authentication modes that require cookies (form, oidc, saml) you may need to also change:
+        For authentication modes that require cookies (form, oidc) you may need to also change:
         <ul>
           <li> <a href="#authCookieSecure">authCookieSecure</a> - Set to <b>false</b> if using http WITHOUT a reverse proxy. This is insecure.</li>
           <li> <a href="#authTrustProxy">authTrustProxy</a> - Set to <b>true</b> if using http WITH a https reverse proxy.</li>
@@ -117,7 +117,7 @@ settings:
       <p>
       When using <code>requiredAuthHeader</code> to externalize provisioning
       of users to a system like LDAP/AD, this configuration parameter is used
-      to define the JSON structure used to automatically create a Arkime user
+      to define the JSON structure used to automatically create an Arkime user
       in the Arkime users database if one does not exist.  The user will only
       be created if the <code>requiredAuthHeader</code> includes the expected
       value in <code>requiredAuthHeaderVal</code>, and is not automatically deleted
@@ -137,8 +137,8 @@ settings:
       </code>
       </p>
       <p>
-        <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since JavaScript treats as subtraction.
-        For example with <code>"userId": "${this.user-id}"</code> JavaScript sees as <code>this.user - id</code>.
+        <strong>Note:</strong> Using a dash (<code>-</code>) in the header name requires special care since JavaScript treats it as subtraction.
+        For example with <code>"userId": "${this.user-id}"</code> JavaScript sees it as <code>this.user - id</code>.
         Instead you will need to use <code>"userId": "${this["user-id"]}"</code> which JavaScript parses how we want.
       </p>
 
@@ -167,19 +167,19 @@ settings:
       Please <a href="https://expressjs.com/en/guide/behind-proxies.html">read more</a> about the setting and possible values.
       <p class="alert alert-warning">
         <span class="fa fa-exclamation-triangle"></span>
-        When using nginx as a https reverse proxy in front of a http Arkime application, you must also set <code>proxy_set_header X-Forwarded-Proto $scheme;</code> in the nginx config so that Arkime application knows the original request was https. Without this, cookie based auth (form, oidc, saml) will not work correctly.
+        When using nginx as a https reverse proxy in front of a http Arkime application, you must also set <code>proxy_set_header X-Forwarded-Proto $scheme;</code> in the nginx config so that Arkime application knows the original request was https. Without this, cookie based auth (form, oidc) will not work correctly.
       </p>
 
   - key: authCookieSecure
     value: true
     text: |
       (Since 5.0.0) This setting controls if authentication cookies are marked as "secure".
-      If using cookie based auth (form, oidc, saml) over http change this to false.
+      If using cookie based auth (form, oidc) over http change this to false.
 
   - key: authCookieSameSite
     value: 'Lax'
     text: |
-      (Since 5.0.0) For auth cookies (form, oidc, saml) what value is used for sameSite.
+      (Since 5.0.0) For auth cookies (form, oidc) what value is used for sameSite.
 
   - key: logoutUrl
     value: Only set for form/oidc authMode
@@ -187,8 +187,8 @@ settings:
       (Since 5.0.0) When set Arkime will show a logout button in the UI that will redirect to this url.
       For "form" authMode, Arkime provides a web page to logout.
       Since 6.0.0 "oidc" authMode will auto set IFF the oidc provider has an end session endpoint.
-      All other authMode requires this setting to be set, or no logout button will be shown.
-      Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require an url from the OIDC provider.
+      All other authModes require this setting to be set, or no logout button will be shown.
+      Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require a url from the OIDC provider.
 
   - key: logoutUrlMethod
     value: 'POST'

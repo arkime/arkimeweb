@@ -20,7 +20,7 @@ settings:
     text: The type of data such as ip,domain,md5,ja3,email, or something defined in <code>[wise-types]</code>
 
   - key: headers
-    value:
+    value: EMPTY
     text: Semicolon separated list of headers to send in the URL request
 
   - key: resultField
