@@ -6,10 +6,10 @@ copyLink: True
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
-# WISE 3.x - 5.x Configurations
+# WISE 3.x - 6.x Configurations
 {: .section-header.mt-1 }
 
-This is a gallery WISE 3.x - 5.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
+This is a gallery WISE 3.x - 6.x configurations to browse. Learn how to contribute one [here](https://github.com/arkime/arkimeweb/blob/main/CONTRIBUTING.md#wise-configs).
 
 <input type="text"
   id="wiseSearch"

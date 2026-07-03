@@ -39,7 +39,7 @@ permalink: "/learn"
 ## Viewer
 {: .subsection-header.mt-1 }
 
-- [Viewer v3.x - v5.x API](apiv3)
+- [Viewer v3.x - v6.x API](apiv3)
 - [Viewer v0.x - v2.x API](api)
 
 ## Parliament
