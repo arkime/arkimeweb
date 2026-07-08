@@ -1,6 +1,13 @@
 name: Capture Settings
 
 settings:
+  - key: awsUseTokenForMetadata
+    value: "false"
+    text: |
+      <strong>(Since 6.6.0)</strong>
+      If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
+      token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1.
+
   - key: bpf
     value: EMPTY
     text: |

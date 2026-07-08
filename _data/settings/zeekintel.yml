@@ -1,0 +1,64 @@
+name: ZeekIntel
+before: |
+  <p>
+    <strong>(Since 6.6.0)</strong>
+    The ZeekIntel plugin reads one or more files in the
+    <a class="no-decoration" href="https://docs.zeek.org/en/master/frameworks/intel.html">
+      Zeek (Bro) Intel framework</a>
+    TSV format &mdash; the same format consumed by Zeek's <code>Intel::read_files</code> &mdash;
+    and marks and tags any session whose IPs, hosts, URLs, emails, or hashes match a loaded indicator.
+  </p>
+  <p>
+    The standard Zeek log directives (<code>#separator</code>, <code>#fields</code>,
+    <code>#unset_field</code>, <code>#empty_field</code>, <code>#set_separator</code>) are honored, and
+    bare files that simply list <code>indicator&lt;TAB&gt;indicator_type&lt;TAB&gt;meta.source...</code>
+    with no <code>#fields</code> header are also accepted using the default column order.
+    Supported indicator types are
+    <code>Intel::ADDR</code>, <code>Intel::SUBNET</code>, <code>Intel::DOMAIN</code>,
+    <code>Intel::URL</code>, <code>Intel::EMAIL</code>, <code>Intel::FILE_HASH</code>,
+    <code>Intel::CERT_HASH</code>, and <code>Intel::PUBKEY_HASH</code>.
+  </p>
+  <p>
+    On every session save the plugin matches the session against the loaded indicators and, on a hit,
+    adds the configured tag plus an entry in the <code>zeekintel</code> object field. Each entry mirrors
+    the Zeek intel framework &mdash; <code>indicator</code>, <code>indicator_type</code>,
+    <code>where</code> (the Arkime field expression the indicator matched in, eg <code>ip.dst</code>),
+    and <code>source</code> &mdash; plus the optional <code>meta.desc</code> and <code>meta.url</code>
+    metadata. The match objects are built and serialized at save time, so the subfields are not
+    individually searchable.
+  </p>
+  <p>
+    The fields to match are discovered from Arkime's field registry at startup: every IP-typed field is
+    matched against ADDR/SUBNET indicators, and host/url/email/hash fields from all parsers and plugins
+    are matched against the DOMAIN/URL/EMAIL/hash indicators automatically.
+  </p>
+  <p>
+    The intel files are registered with Arkime's standard config file monitor, so they are loaded at
+    startup and reloaded automatically whenever they change. Add <code>zeekintel.so</code> to the
+    <code>plugins=</code> line in the config file.
+  </p>
+
+after: |
+  <p class="mb-0">
+    Sample Config:
+  </p>
+  <pre><code># Add zeekintel.so to your plugins line, or add a new plugins line
+  plugins = zeekintel.so
+
+  # Semicolon ';' separated list of Zeek Intel framework files
+  zeekIntelFiles = /path/one.intel;/path/two.intel
+
+  # Tag added to sessions that match an indicator
+  zeekIntelTag = zeek:intel</code></pre>
+
+settings:
+  - key: zeekIntelFiles
+    value: REQUIRED
+    text: |
+      A semicolon <code>;</code> separated list of Zeek Intel framework files to load. The plugin will
+      exit at startup if this is not set. The files are reloaded automatically whenever they change.
+
+  - key: zeekIntelTag
+    value: zeek:intel
+    text: |
+      The tag to add to any session that matches a loaded indicator.
