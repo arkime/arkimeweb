@@ -26,6 +26,10 @@ settings:
     value: REQUIRED
     text: The column to use from the returned data to use as the key
 
+  - key: arrayPath
+    value: EMPTY
+    text: The path of where to find the array, if the json result isn't an array
+
   - key: periodic
     value: EMPTY
     text: If set, the number of seconds between periodic full queries; if not set, an individual query is done per key
