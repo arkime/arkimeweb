@@ -92,6 +92,13 @@ settings:
     text: |
       When processing a directory, process all subdirectories.
 
+  - display: --sorted
+    key: option-sorted
+    value: N/A
+    text: |
+      (Since 6.6.1) When processing an offline pcap directory (-R), sort the files alphabetically before processing them.
+      Cannot be used with --monitor.
+
   - display: -n, --node {node name}
     key: option-n
     value: "[hostname before first dot]"
@@ -157,6 +164,12 @@ settings:
     value: N/A
     text: |
       As offline pcap files are processed, process the packets as if a live capture and write them back out to pcapDir.
+
+  - display: --dryrun
+    key: option-dryrun
+    value: N/A
+    text: |
+      Dry run mode, nothing is written to the databases or filesystem.
 
   - display: --flush
     key: option-flush
