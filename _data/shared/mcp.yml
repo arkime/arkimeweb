@@ -1,0 +1,175 @@
+name: MCP Settings
+
+before: |
+  <p>
+    (Since 6.7.0) Arkime can expose a <a href="https://modelcontextprotocol.io/">MCP (Model Context Protocol)</a>
+    endpoint at <code>POST /mcp</code>, so an AI assistant can search sessions, run aggregations,
+    and pull cont3xt integration results. It is <strong>off by default</strong>, set
+    <a href="#mcpEnabled">mcpEnabled</a> to <code>true</code> to turn it on.
+  </p>
+  <p>
+    Every MCP tool runs the same permission checks as the equivalent web API, including the per user
+    forced search expression, so an MCP caller can never see more than that user could see in the UI.
+  </p>
+  <p>
+    Access is also <strong>per user</strong>: on top of the application's own role the caller needs the
+    <a href="roles"><code>mcpUser</code></a> role.
+    <code>superAdmin</code> includes it, but <code>arkimeAdmin</code> and <code>cont3xtAdmin</code>
+    deliberately do not, so turning <a href="#mcpEnabled">mcpEnabled</a> on never silently exposes data to
+    an AI assistant. Nobody can use MCP until you grant the role. To grant it to existing users in bulk:
+  </p>
+  <pre><code># see what would change first
+  db.pl &lt;host:port&gt; users-update '*' --addRole mcpUser --dryrun
+  db.pl &lt;host:port&gt; users-update '*' --addRole mcpUser
+  # or just some of them
+  db.pl &lt;host:port&gt; users-update 'soc-*' --addRole mcpUser
+  </code></pre>
+  <p>
+    A failed <code>/mcp</code> request always answers <code>401</code> with a <code>WWW-Authenticate</code>
+    header and never redirects, because MCP clients do not follow redirects. This is why <code>/mcp</code>
+    must be its own <code>&lt;Location&gt;</code> when fronting it with apache, see the example below.
+  </p>
+  <p>
+    These settings should live in the <code>[cont3xt]</code> or <code>[default]</code> section
+    depending on the Arkime application.
+  </p>
+
+settings:
+  - key: mcpEnabled
+    value: false
+    text: |
+      (Since 6.7.0) When true the <code>POST /mcp</code> endpoint is enabled. Checked per request,
+      so it can be toggled without restarting.
+
+  - key: mcpAuthMode
+    value: header
+    text: |
+      (Since 6.7.0) Ordered, comma separated list of ways to authenticate a <code>/mcp</code> request,
+      the first one that resolves a user wins.
+      <ul>
+        <li><code>header</code> &mdash; trust the <a href="#userNameHeader">userNameHeader</a> set by a proxy
+          that has already authenticated the caller. Use this when apache/nginx in front of Arkime verifies
+          the token, see the example below.</li>
+        <li><code>jwt</code> &mdash; verify a Bearer JWT against a remote JWKS using the
+          <a href="#authJwtIssuer">authJwt*</a> settings below.</li>
+      </ul>
+
+  - key: mcpMaxQueryDays
+    value: 7
+    text: |
+      (Since 6.7.0) The largest time range, in days, an MCP session query may <em>span</em>. Floating point,
+      so <code>0.5</code> is 12 hours. Use <code>-1</code> for no limit, which also lets an assistant ask for
+      all data and can be expensive on a large cluster.
+      <p>
+      This limits the width of the window, not how far back it reaches, so a one day query about last year is
+      fine but a ninety day one is not. Queries that exceed it fail with an explanatory error rather than
+      being silently narrowed, so the assistant can correct itself instead of reporting partial results as
+      the whole picture.
+      </p>
+      <p>
+      This is a deployment wide cap on top of, not instead of, the per user
+      <code>timeLimit</code> setting, which is in hours. Only used by Arkime.
+      </p>
+
+  - key: mcpAllowedIps
+    value: EMPTY
+    text: |
+      (Since 6.7.0) Optional comma separated list of IPs/CIDRs allowed to reach <code>/mcp</code>.
+      Empty means any source. A gateway presents no client certificate, so source IP is usually the only
+      network level control available.
+
+  - key: mcpCont3xtTimeout
+    value: 60000
+    text: |
+      (Since 6.7.0) How long to wait, in ms, for cont3xt integrations to finish before returning a
+      partial MCP result. Only used by cont3xt.
+
+  - key: authJwtIssuer
+    value: REQUIRED for jwt
+    text: |
+      (Since 6.7.0) The expected <code>iss</code> claim. Arkime refuses to verify tokens unless both
+      <code>authJwtIssuer</code> and <a href="#authJwtAudience">authJwtAudience</a> are set, without them a
+      token minted for a different service would be accepted. Only used when
+      <a href="#mcpAuthMode">mcpAuthMode</a> includes <code>jwt</code>.
+
+  - key: authJwtJwksUrl
+    value: REQUIRED for jwt
+    text: |
+      (Since 6.7.0) The remote JWKS URL used to fetch the signing keys.
+
+  - key: authJwtAudience
+    value: REQUIRED for jwt
+    text: |
+      (Since 6.7.0) The expected <code>aud</code> claim, usually the client or service id the token was
+      minted for.
+
+  - key: authJwtAlgorithms
+    value: RS256
+    text: |
+      (Since 6.7.0) Comma separated list of signature algorithms the token may use. Pinning this is what
+      stops an attacker downgrading to <code>none</code> or swapping <code>RS256</code> for <code>HS256</code>.
+      This is separate from <a href="#authJwsAlgorithm">authJwsAlgorithm</a>, which is only the OIDC login
+      id_token algorithm, so a site can log users in with Okta RS256 while its gateway sends Athenz ES256 tokens.
+
+  - key: authJwtUserIdPrefix
+    value: EMPTY
+    text: |
+      (Since 6.7.0) When set, the user id claim must start with this string and it is stripped off.
+      For example Athenz subjects look like <code>user.SHORT_ID</code>, so setting this to <code>user.</code>
+      yields <code>SHORT_ID</code>.
+
+  - key: authJwtRequiredScopes
+    value: EMPTY
+    text: |
+      (Since 6.7.0) Comma separated scopes the token must carry, checked against the <code>scp</code> or
+      <code>scope</code> claim.
+
+  - key: authJwtClockSkew
+    value: 60
+    text: |
+      (Since 6.7.0) Allowed clock drift, in seconds, when checking the <code>exp</code> and
+      <code>nbf</code> claims.
+
+after: |
+  <p>
+    The claim holding the user id comes from <a href="#authUserIdField">authUserIdField</a>, the same setting
+    <a href="#authMode">authMode</a><code>=header-jwt</code> uses, defaulting to <code>sub</code>.
+  </p>
+  <p>
+    Example &mdash; Okta:
+  </p>
+  <pre><code>mcpEnabled=true
+  mcpAuthMode=jwt
+  authJwtIssuer=https://example.okta.com/oauth2/aus12z8jynfqwKFhI698
+  authJwtJwksUrl=https://example.okta.com/oauth2/aus12z8jynfqwKFhI698/v1/keys
+  authJwtAlgorithms=RS256
+  authJwtAudience=0oa14gtl02sR47kw8698
+  authUserIdField=short_id
+  </code></pre>
+  <p>
+    Example &mdash; Athenz ZTS, where the subject looks like <code>user.SHORT_ID</code>:
+  </p>
+  <pre><code>mcpEnabled=true
+  mcpAuthMode=jwt
+  authJwtIssuer=https://zts.athenz.example.com:4443/zts/v1
+  authJwtJwksUrl=https://zts.athenz.example.com:4443/zts/v1/oauth2/keys?rfc=true
+  authJwtAlgorithms=ES256
+  authJwtAudience=your.athenz.service.principal
+  authUserIdField=sub
+  authJwtUserIdPrefix=user.
+  </code></pre>
+  <p>
+    Example &mdash; fronting <code>/mcp</code> with apache doing the token verification, using
+    <a href="#mcpAuthMode">mcpAuthMode</a><code>=header</code>. Note <code>/mcp</code>
+    <strong>must</strong> be its own <code>&lt;Location&gt;</code> using OAuth bearer validation. If it
+    inherits an interactive <code>AuthType openid-connect</code> block, a bad token gets a <code>302</code>
+    to the IdP, which MCP clients will not follow.
+  </p>
+  <pre><code>&lt;Location /mcp&gt;
+    AuthType oauth20
+    Require valid-user
+    OIDCOAuthVerifyJwksUri "https://example.okta.com/oauth2/aus.../v1/keys"
+    OIDCOAuthRemoteUserClaim short_id
+    RequestHeader set ARKIME_USER "%{REMOTE_USER}s"
+  &lt;/Location&gt;
+  </code></pre>

@@ -19,7 +19,7 @@ There are two classes of roles: System defined roles and User defined roles.
 ### The system defined roles include:
 {: .subsection }
 
-* <strong>superAdmin</strong> - Has all system roles assigned. Only superAdmin can create or edit other superAdmin users. Only superAdmin can assign the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, and wiseAdmin role to another user.
+* <strong>superAdmin</strong> - Has all system roles assigned. Only superAdmin can create or edit other superAdmin users. Only superAdmin can assign the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin, and dbAdmin role to another user.
 * <strong>usersAdmin</strong> - Can create, update, and delete users (except for superAdmin users). Can assign and unassign non Admin roles to users. Can unassign Admin roles from users.
 * <strong>arkimeUser</strong> - Can use Arkime application, also known as viewer
 * <strong>arkimeAdmin</strong> - An arkimeAdmin is automatically assigned arkimeUser. An arkimeAdmin has extra ability to change Arkime configurations, view data for all Arkime Users (including superAdmins), and has different query limitations.
@@ -29,6 +29,8 @@ There are two classes of roles: System defined roles and User defined roles.
 * <strong>parliamentAdmin</strong> - A parliamentAdmin is automatically a parliamentUser. A parliamentAdmin can configure the clusters and settings in parliament.
 * <strong>wiseUser</strong> - View raw data for a WISE source and get all configurations.
 * <strong>wiseAdmin</strong> - A wiseAdmin is automatically a wiseUser. A wiseAdmin can setup new wise sources and edit the source data.
+* <strong>dbAdmin</strong> - (Added in 6.7.0) Can perform Elasticsearch/OpenSearch database administration tasks, such as managing cluster settings, shards, and indices from the ES Admin UI. This role replaces the deprecated esAdminUsers setting, which will be removed in Arkime 7.
+* <strong>mcpUser</strong> - (Added in 6.7.0) Can use the <a href="settings#mcp">MCP</a> endpoint of any application that has it enabled. This is required <em>in addition</em> to the application's own role, so a user needs both arkimeUser and mcpUser to use Arkime's MCP endpoint. Only superAdmin is automatically assigned mcpUser, arkimeAdmin and cont3xtAdmin deliberately are not, so turning MCP on never silently exposes data to an AI assistant. To grant it to existing users in bulk use <code>db.pl &lt;host:port&gt; users-update '*' --addRole mcpUser</code>.
 
 
 User defined roles can be created and can reference system roles and some permissions.
@@ -41,7 +43,7 @@ doesn't have the arkimeUser/cont3xtUser directly assigned.
 ### High level Role Rules:
 {: .subsection }
 * Only a user with the superAdmin role can create/modify/delete other users with the superAdmin role.
-* Only a user with the superAdmin role can assign another user the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
+* Only a user with the superAdmin role can assign another user the usersAdmin, arkimeAdmin, cont3xtAdmin, parliamentAdmin, wiseAdmin, dbAdmin roles. However a usersAdmin can still modify everything else about non superAdmins.
 * A user with the usersAdmin role but without the superAdmin role can add/modify/delete any user but a user with the superAdmin role. They can unassign Admin roles from non superAdmin users, but they can not assign Admin roles.
 * The application Admin users can view application data for all users, including other Admin and superAdmins users
 * webEnabled and headerAuthEnabled values are not inherited from roles. They must be set on each user individually.

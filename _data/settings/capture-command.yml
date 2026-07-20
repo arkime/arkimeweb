@@ -96,7 +96,7 @@ settings:
     key: option-sorted
     value: N/A
     text: |
-      (Since 6.6.1) When processing an offline pcap directory (-R), sort the files alphabetically before processing them.
+      (Since 6.7.0) When processing an offline pcap directory (-R), sort the files alphabetically before processing them.
       Cannot be used with --monitor.
 
   - display: -n, --node {node name}

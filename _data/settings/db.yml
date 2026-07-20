@@ -31,6 +31,10 @@ settings:
     text: |
       A comma separated list of users that are allowed to use the ES Admin stats tab.
       This tab allows the user to change several of the OpenSearch/Elasticsearch settings from the UI.
+      <br>
+      <span class="fa fa-exclamation-triangle mr-1"></span>
+      <strong>Deprecated:</strong> this setting will be removed in Arkime 7.
+      Assign the <a href="/roles">dbAdmin</a> role to those users instead.
 
   - key: esClientCert
     value: EMPTY
