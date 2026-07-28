@@ -22,14 +22,26 @@ before: |
   </p>
   <p>
     Portals reuse the existing <a href="#serverSecret">serverSecret</a>/<code>x-arkime-auth</code>
-    server&#8209;to&#8209;server authentication: the Sensor proves its identity when the portal is
-    established, and every request carried over the portal is still individually S2S
-    authenticated. As with all S2S auth, viewer clocks must be within 2 minutes of each other.
-    Requests arriving over a portal are authenticated by the S2S token <em>only</em> &mdash; the
-    loopback address they appear to originate from and any <code>userNameHeader</code> they carry
-    are not trusted, so header/IP authentication cannot be spoofed through a portal. Once a Sensor
-    has connected via a portal it is treated as reachable <em>only</em> over that portal (it is behind
-    NAT), so the Central Viewer never falls back to a direct connection for it.
+    server&#8209;to&#8209;server authentication: every request carried over the portal is
+    individually S2S authenticated. As with all S2S auth, viewer clocks must be within 2 minutes of
+    each other. Requests arriving over a portal are authenticated by the S2S token <em>only</em>
+    &mdash; the loopback address they appear to originate from and any <code>userNameHeader</code>
+    they carry are not trusted, so header/IP authentication cannot be spoofed through a portal.
+  </p>
+  <p>
+    <code>serverSecret</code> is shared by every node in the cluster, so on its own it only proves
+    the caller is <em>some</em> node, not <em>which</em> node. Because a Sensor names itself when it
+    opens a portal, the Central Viewer authenticates that claim separately using the
+    <a href="#packetportal-nodes">[packetportal-nodes]</a> section (a per node password and/or
+    source IP, falling back to <a href="/esproxy#esproxy-sensors-section">[esproxy-sensors]</a>), so one compromised
+    Sensor cannot claim another Sensor's node name and take over its traffic. When neither section
+    is configured, each node is pinned to the source IP it first connects from.
+  </p>
+  <p>
+    While a Sensor is using a portal it is treated as reachable <em>only</em> over that portal (it
+    is behind NAT), so the Central Viewer never falls back to a direct connection for it. If it
+    stops using portals altogether that stops applying after
+    <code>packetPortalReverseTTLMinutes</code>, and the Central Viewer dials it directly again.
   </p>
   <p>
     On the Central Viewer, pick <strong>one</strong> way to accept portals: a dedicated
@@ -67,16 +79,6 @@ settings:
       <strong>Central Viewer.</strong> TLS certificate for the dedicated portal port. See
       <code>packetPortalKeyFile</code>.
 
-  - key: packetPortalAllowedNodes
-    value: "not set"
-    text: |
-      <strong>Central Viewer.</strong> Optional semicolon separated allowlist of node names
-      permitted to establish a portal. When set, a Sensor presenting a valid <code>serverSecret</code>
-      token is still rejected unless its node name is listed &mdash; this prevents any
-      secret&#8209;holder from claiming (and thereby hijacking or denying) an arbitrary node's
-      traffic. When unset, any node with a valid token is accepted; setting an allowlist is
-      recommended.
-
   - key: packetPortalListen
     value: "false"
     text: |
@@ -90,7 +92,13 @@ settings:
       an outbound portal open to. A portal is maintained to each (so multiple Central Viewers can
       reach this Sensor) and reconnects automatically with backoff. Point these at each Central
       Viewer's <code>packetPortalPort</code>, e.g.
-      <code>https://central-1:8006;https://central-2:8006</code>.
+      <code>https://central-1:8006;https://central-2:8006</code>. Include
+      <code>user:pass@</code> when the Central Viewer has a <code>pass</code> for this node in
+      <a href="#packetportal-nodes">[packetportal-nodes]</a>, where the user must be this Sensor's
+      node name, e.g. <code>https://sensor1:sensor1rules@central-1:8006</code>. The node name
+      itself is always sent automatically and does not need to be configured. Because the list is
+      split on <code>;</code> and <code>,</code>, a password containing either must be percent
+      encoded (<code>%3B</code>, <code>%2C</code>).
 
   - key: packetPortalCATrustFile
     value: "not set"
@@ -113,21 +121,54 @@ settings:
       this many seconds for it to reconnect before failing with a clear error (instead of
       attempting a doomed direct connection).
 
+  - key: packetPortalReverseTTLMinutes
+    value: "60"
+    text: |
+      <strong>Central Viewer.</strong> How long after a Sensor's last portal the Central Viewer
+      keeps treating it as reachable only by portal. Until this expires, requests for that Sensor
+      wait for a portal (see <code>packetPortalWaitSeconds</code>) rather than being dialed
+      directly. After it expires the Sensor is dialed directly again, so a node that is
+      reconfigured to stop using portals recovers on its own instead of needing a Central Viewer
+      restart.
+
 after: |
   <p class="mb-0">
-    Example: a Central Viewer accepting portals on a dedicated TLS port, and a remote Sensor
-    (behind NAT) that connects out to it.
+    Minimal example: a Central Viewer accepting portals on a dedicated TLS port, and a remote
+    Sensor (behind NAT) that connects out to it. There is no
+    <a href="#packetportal-nodes">[packetportal-nodes]</a> section, so each Sensor is pinned to the
+    source IP it first connects from.
   </p>
   <pre><code># On the Central Viewer - reachable by the Sensors
   [central-viewer]
   packetPortalPort=8006
   packetPortalKeyFile=/opt/arkime/etc/packetPortal.key
   packetPortalCertFile=/opt/arkime/etc/packetPortal.crt
-  packetPortalAllowedNodes=sensor1;sensor2
 
   # On each Sensor - behind NAT, cannot be reached directly
   [sensor1]
   packetPortalConnect=https://central.example.com:8006
+  packetPortalCATrustFile=/opt/arkime/etc/central-ca.pem
+  </code></pre>
+  <p class="mb-0">
+    Recommended: the same, but with each Sensor authenticated by a per node password and source IP,
+    so one Sensor cannot claim another's node name.
+  </p>
+  <pre><code># On the Central Viewer
+  [central-viewer]
+  packetPortalPort=8006
+  packetPortalKeyFile=/opt/arkime/etc/packetPortal.key
+  packetPortalCertFile=/opt/arkime/etc/packetPortal.crt
+
+  # Who may open a portal, and as which node.
+  # Falls back to [esproxy-sensors] when this section is not present.
+  [packetportal-nodes]
+  sensor1=pass:sensor1rules;ip:10.10.10.10
+  sensor2=pass:sensor2rules
+
+  # On each Sensor - the user is this Sensor's node name,
+  # the pass is its [packetportal-nodes] pass.
+  [sensor1]
+  packetPortalConnect=https://sensor1:sensor1rules@central.example.com:8006
   packetPortalCATrustFile=/opt/arkime/etc/central-ca.pem
   </code></pre>
   <p>

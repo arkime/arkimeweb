@@ -1,0 +1,76 @@
+name: packetportal-nodes
+before: |
+  <p>
+    <strong>Experimental &mdash; added in Arkime 6.7.0.</strong>
+  </p>
+  <p>
+    <strong>This section is optional.</strong> Packet portals work without it &mdash; each Sensor is
+    then pinned to the source IP it first connects from (see below) &mdash; so nothing has to be
+    configured here to try the feature. Setting it up is recommended for anything beyond that.
+  </p>
+  <p>
+    The <code>[packetportal-nodes]</code> section controls <em>which</em> Sensor may open a
+    <a href="#packetPortal">packet portal</a> as a given node name, and lives on the
+    <strong>Central Viewer</strong>. A Sensor names itself when it opens a portal, and
+    <a href="#serverSecret">serverSecret</a> is shared by every node in the cluster &mdash; so on
+    its own it only proves the caller is <em>some</em> node, not <em>which</em> node. This section
+    is what binds that claim to the peer, so one compromised Sensor cannot claim another Sensor's
+    node name and take over (or deny) its traffic.
+  </p>
+  <p>
+    There is one line per Sensor. The key is the Sensor's node name, and the value is a list of
+    semicolon separated parameters &mdash; the same format as
+    <a href="/esproxy#esproxy-sensors-section">[esproxy-sensors]</a>. If this section is not present, Arkime falls
+    back to the <code>[esproxy-sensors]</code> section, so a cluster that already authenticates its
+    Sensors to <a href="/esproxy">ES Proxy</a> gets the same per node identity for portals with no
+    new configuration.
+  </p>
+  <p>
+    When either section is present it acts as an <strong>allow list</strong>: a Sensor whose node
+    name is not listed is rejected, even with a valid <code>serverSecret</code> token. When neither
+    section is present, each node is instead pinned to the source IP it first opens a portal from,
+    and later portals for that node must come from the same IP (trust on first use). Pinning is
+    held in memory only, so it is re&#8209;learned when the Central Viewer restarts &mdash;
+    configuring a <code>pass</code> is strongly preferred.
+  </p>
+  <p>
+    The password is supplied by the Sensor in its
+    <a href="#packetPortalConnect">packetPortalConnect</a> URL as <code>user:pass</code>. As with
+    ES Proxy, the user <strong>must</strong> be the node name of the Sensor's viewer, since it is
+    what the Central Viewer uses to decide whose traffic that portal serves.
+  </p>
+
+after: |
+  <p>
+    Example:
+  </p>
+  <pre><code>[packetportal-nodes]
+  THE_NODE=pass:THE_PASSWORD;ip:THE_IP
+  sensor1=pass:sensor1rules;ip:10.10.10.10
+  sensor2=pass:sensor2rules
+  sensor3=ip:10.11.11.11
+  </code></pre>
+  <p>
+    In the <code>sensor1</code> <code>config.ini</code> you would use
+    <code>packetPortalConnect=https://sensor1:sensor1rules@central.example.com:8006</code>, and its
+    source IP would be checked as well, so another machine could not pretend to be
+    <code>sensor1</code> even if it had the password. <code>sensor3</code> has no password and is
+    authenticated by source IP alone, so it would use
+    <code>packetPortalConnect=https://central.example.com:8006</code>.
+  </p>
+  <div class="alert alert-info">
+    Note: this user/pass is unrelated to any Arkime user account and to the ES Proxy password;
+    it only authenticates a Sensor's viewer to the Central Viewer when opening a portal.
+    There should be a unique line for each Sensor.
+  </div>
+
+settings:
+  - key: "[nodename]="
+    value: Sensor node name
+    text: The node name of the Sensor the line applies to, which must match the user in that Sensor's <a href="#packetPortalConnect">packetPortalConnect</a> URL
+
+  - key: pass
+    text: Password the Sensor must present to open a portal as this node. Omit to authenticate by <code>ip</code> alone
+
+  - key: ip
+    text: Comma separated list of source IP addresses this node may open a portal from. Omit to authenticate by <code>pass</code> alone
