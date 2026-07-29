@@ -29,6 +29,7 @@ Here are some sample deployments of Arkime for different network architectures. 
 .arch-fig { margin:2rem auto; text-align:center; }
 .arch-fig svg { width:100%; height:auto; display:block; margin:0 auto; }
 .arch-fig figcaption { color:var(--muted); font-size:.85rem; margin-top:.35rem; }
+.arch-scope hr.arch-rule { border:0; border-top:2px solid var(--ink); opacity:.7; margin:2.75rem 0 1.25rem; }
 .arch-scope svg text { font-family:inherit; text-anchor:middle; dominant-baseline:central; fill:var(--ink); }
 
 .arch-scope .machine { fill:var(--machine-bg); stroke:var(--machine-stroke); stroke-width:1.5; }
@@ -154,7 +155,7 @@ Here are some sample deployments of Arkime for different network architectures. 
   <text class="m-sub" x="583" y="62">OpenSearch / ES</text>
   <line class="flow-traffic" x1="30" y1="82" x2="70" y2="82" marker-end="url(#mo)"/>
   <text class="m-sub" x="150" y="82" text-anchor="start" style="text-anchor:start">mirrored packets</text>
-  <line class="flow" x1="300" y1="82" x2="340" y2="82" marker-start="url(#mn)" marker-end="url(#mn)"/>
+  <line class="flow" x1="300" y1="82" x2="340" y2="82"/>
   <text class="m-sub" x="420" y="82">node&#8209;to&#8209;node</text>
   <line class="flow-mgmt" x1="500" y1="82" x2="540" y2="82" marker-end="url(#mb)"/>
   <text class="m-sub" x="600" y="82">operator access</text>
@@ -191,7 +192,7 @@ Here are some sample deployments of Arkime for different network architectures. 
   <use href="#s-pcap" x="82"  y="252" width="54" height="52"/>
   <use href="#s-es"   x="164" y="252" width="54" height="52"/>
 
-  <line class="flow" x1="150" y1="312" x2="150" y2="366" marker-start="url(#mn)"/>
+  <line class="flow" x1="150" y1="312" x2="150" y2="366"/>
   <use href="#s-cloud" x="75" y="330" width="150" height="70"/>
 </svg>
 <figcaption>Capture, viewer, WISE and both data stores all live on one machine.</figcaption>
@@ -232,13 +233,13 @@ A single host deployment should usually only be used for demos and extremely low
   </g>
 
   <!-- machines to cloud (head only at the node end; cloud is drawn last, over the stubs) -->
-  <path class="flow" d="M110 268 C110 315 250 340 300 352" marker-start="url(#mn)"/>
-  <line class="flow" x1="320" y1="268" x2="320" y2="352" marker-start="url(#mn)"/>
-  <path class="flow" d="M530 268 C530 315 390 340 340 352" marker-start="url(#mn)"/>
+  <path class="flow" d="M110 268 C110 315 250 340 300 352"/>
+  <line class="flow" x1="320" y1="268" x2="320" y2="352"/>
+  <path class="flow" d="M530 268 C530 315 390 340 340 352"/>
 
   <!-- WISE -->
   <rect class="chip chip-wise" x="512" y="340" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="358">WISE</text>
-  <line class="flow" x1="368" y1="359" x2="512" y2="358" marker-end="url(#mn)"/>
+  <line class="flow" x1="368" y1="359" x2="512" y2="358"/>
 
   <!-- ES clusters -->
   <rect class="box" x="30" y="470" width="220" height="104" rx="12"/>
@@ -252,15 +253,15 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-es" x="290" y="500" width="54" height="56"/>
   <use href="#s-es" x="348" y="500" width="54" height="56"/>
 
-  <path class="flow" d="M300 368 C250 405 185 445 150 470" marker-end="url(#mn)"/>
-  <path class="flow" d="M324 372 C332 410 340 450 345 470" marker-end="url(#mn)"/>
+  <path class="flow" d="M300 368 C250 405 185 445 150 470"/>
+  <path class="flow" d="M324 372 C332 410 340 450 345 470"/>
 
   <!-- central viewer + reverse proxy -->
   <rect class="machine" x="450" y="452" width="170" height="122" rx="12"/>
   <text class="m-title" x="535" y="468">Central Viewer</text>
   <use href="#s-viewer" x="475" y="480" width="120" height="30"/>
   <rect class="chip chip-proxy" x="475" y="522" width="120" height="34" rx="12"/><text class="chip-t" x="535" y="539" style="font-size:11px">reverse proxy</text>
-  <path class="flow" d="M352 366 C400 398 452 428 484 452" marker-end="url(#mn)"/>
+  <path class="flow" d="M352 366 C400 398 452 428 484 452"/>
 
   <!-- operators (below the box, so nothing crosses it) -->
   <rect class="op" x="470" y="584" width="150" height="28" rx="14"/><text class="op-t" x="545" y="598">Operators</text>
@@ -271,6 +272,8 @@ A single host deployment should usually only be used for demos and extremely low
 </svg>
 <figcaption>Each segment gets its own capture node; operators reach every cluster through a single reverse&#8209;proxied central viewer.</figcaption>
 </figure>
+
+<hr class="arch-rule"/>
 
 ### Multiple Hosts Monitoring High Traffic Networks
 {: .subsection-header }
@@ -310,12 +313,12 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-viewer" x="465" y="292" width="130" height="32"/>
 
   <!-- cloud -->
-  <path class="flow" d="M110 338 C110 385 250 410 300 422" marker-start="url(#mn)"/>
-  <line class="flow" x1="320" y1="338" x2="320" y2="422" marker-start="url(#mn)"/>
-  <path class="flow" d="M530 338 C530 385 390 410 340 422" marker-start="url(#mn)"/>
+  <path class="flow" d="M110 338 C110 385 250 410 300 422"/>
+  <line class="flow" x1="320" y1="338" x2="320" y2="422"/>
+  <path class="flow" d="M530 338 C530 385 390 410 340 422"/>
 
   <rect class="chip chip-wise" x="512" y="410" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="428">WISE</text>
-  <line class="flow" x1="368" y1="429" x2="512" y2="428" marker-end="url(#mn)"/>
+  <line class="flow" x1="368" y1="429" x2="512" y2="428"/>
 
   <!-- ES + central viewer -->
   <rect class="box" x="30" y="540" width="220" height="104" rx="12"/>
@@ -329,14 +332,14 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-es" x="290" y="570" width="54" height="56"/>
   <use href="#s-es" x="348" y="570" width="54" height="56"/>
 
-  <path class="flow" d="M300 438 C250 475 185 515 150 540" marker-end="url(#mn)"/>
-  <path class="flow" d="M324 442 C332 480 340 515 345 540" marker-end="url(#mn)"/>
+  <path class="flow" d="M300 438 C250 475 185 515 150 540"/>
+  <path class="flow" d="M324 442 C332 480 340 515 345 540"/>
 
   <rect class="machine" x="450" y="522" width="170" height="122" rx="12"/>
   <text class="m-title" x="535" y="538">Central Viewer</text>
   <use href="#s-viewer" x="475" y="550" width="120" height="30"/>
   <rect class="chip chip-proxy" x="475" y="592" width="120" height="34" rx="12"/><text class="chip-t" x="535" y="609" style="font-size:11px">reverse proxy</text>
-  <path class="flow" d="M352 436 C400 468 452 498 484 522" marker-end="url(#mn)"/>
+  <path class="flow" d="M352 436 C400 468 452 498 484 522"/>
   <rect class="op" x="470" y="654" width="150" height="28" rx="14"/><text class="op-t" x="545" y="668">Operators</text>
   <line class="flow-mgmt" x1="545" y1="654" x2="545" y2="628" marker-end="url(#mb)"/>
 
@@ -362,12 +365,12 @@ A single host deployment should usually only be used for demos and extremely low
 <figure class="arch-fig" style="max-width:640px">
 <svg viewBox="0 0 640 560" role="img" aria-label="Multiple Arkime clusters served through central viewers">
   <!-- spokes (head only at the node end); the cloud is drawn AFTER them, over the stubs -->
-  <path class="flow" d="M194 140 C242 180 265 240 300 268" marker-start="url(#mn)"/>
-  <path class="flow" d="M446 110 C400 165 380 240 342 268" marker-start="url(#mn)"/>
-  <path class="flow" d="M194 430 C236 395 258 322 300 290" marker-start="url(#mn)"/>
-  <path class="flow" d="M446 440 C405 400 384 322 342 290" marker-start="url(#mn)"/>
-  <line class="flow" x1="320" y1="190" x2="320" y2="266" marker-start="url(#mn)"/>
-  <line class="flow" x1="320" y1="356" x2="320" y2="290" marker-start="url(#mn)"/>
+  <path class="flow" d="M194 140 C242 180 265 240 300 268"/>
+  <path class="flow" d="M446 110 C400 165 380 240 342 268"/>
+  <path class="flow" d="M194 430 C236 395 258 322 300 290"/>
+  <path class="flow" d="M446 440 C405 400 384 322 342 290"/>
+  <line class="flow" x1="320" y1="190" x2="320" y2="266"/>
+  <line class="flow" x1="320" y1="356" x2="320" y2="290"/>
 
   <!-- central network cloud, drawn last so the spoke stubs tuck underneath it -->
   <use href="#s-cloud" x="250" y="244" width="140" height="68"/>
@@ -486,40 +489,81 @@ Normally the Central Viewer opens short-lived outbound connections *to* each Sen
 * Because a Sensor names itself when it opens a portal, the Central Viewer authenticates that claim with the [`[packetportal-nodes]`](settings#packetportal-nodes) section (per&#8209;node password and/or source IP, falling back to `[esproxy-sensors]`), so one compromised Sensor cannot claim another's node name.
 * See the [Packet Portal settings](settings#packetPortal) for the full list of options.
 
-## Remote Device capture
+## Remote Device Capture
 {: .subsection-header }
 
-In some cases, it’s not practical or possible to physically co-locate a capture server near a device we want to instrument. If the device is reachable via ssh, we can use ssh to login to the remote device, initiate a capture and stream the raw pcap data back to an Arkime server. This streaming pcap data is written into a UNIX pipe.  One starts an Arkime capture process using the pipe as the capture interface, resulting in real-time capture instrumentation of a remote device.
+In some cases, it’s not practical or possible to physically co-locate a capture server near a device we want to instrument — for example a small router or appliance that can see the traffic but can't run a full Arkime install. There are two common ways to get that remote traffic to Arkime.
 
-### Diagram with Steps to implement:
+### Option 1 — TZSP forwarding (recommended)
 {: .subsection }
 
+The remote device captures on one of its interfaces and forwards each packet, encapsulated in [TZSP](https://en.wikipedia.org/wiki/TZSP), over UDP to an Arkime capture process configured with <code>pcapReadMethod=tzsp</code>. Nothing is stored on the device, so this works well for small appliances and routers — Arkime even ships a tiny <code>tzsp_forwarder</code> helper for exactly this.
+
 <figure class="arch-fig" style="max-width:640px">
-<svg viewBox="0 0 640 250" role="img" aria-label="Remote device capture over ssh into a named pipe">
+<svg viewBox="0 0 640 300" role="img" aria-label="Remote device capture forwarding TZSP packets to an Arkime capture server">
+  <!-- remote device -->
+  <rect class="chip chip-tap" x="79" y="40" width="80" height="26" rx="8"/><text class="tap-t" x="119" y="53">br0</text>
+  <rect class="machine" x="24" y="70" width="190" height="168" rx="12"/>
+  <text class="m-title" x="119" y="92">Remote device</text>
+  <text class="m-sub" x="119" y="107">router / small appliance</text>
+  <rect class="chip chip-proxy" x="44" y="126" width="150" height="30" rx="15"/><text class="chip-t" x="119" y="141" style="font-size:11px">tzsp_forwarder</text>
+  <text class="m-sub" x="119" y="178">captures br0 &#8594; TZSP</text>
+
+  <!-- transport cloud -->
+  <use href="#s-cloud" x="248" y="108" width="150" height="72"/>
+
+  <!-- Arkime capture server: full capture / pcap / viewer stack -->
+  <rect class="machine" x="426" y="44" width="190" height="216" rx="12"/>
+  <text class="m-title" x="521" y="64">Arkime capture server</text>
+  <use href="#s-capture" x="446" y="82" width="150" height="30"/>
+  <use href="#s-pcap" x="496" y="122" width="50" height="48"/>
+  <use href="#s-viewer" x="446" y="178" width="150" height="30"/>
+  <text class="m-sub" x="521" y="226">pcapReadMethod=tzsp</text>
+  <text class="m-sub" x="521" y="242">listens on UDP :37008</text>
+
+  <!-- TZSP stream into capture -->
+  <path class="flow-traffic" d="M214 140 C234 142 248 144 264 145" marker-end="url(#mo)"/>
+  <path class="flow-traffic" d="M380 144 C408 128 418 104 446 98" marker-end="url(#mo)"/>
+  <rect class="badge" x="290" y="190" width="66" height="26" rx="8"/><text class="badge-t" x="323" y="203" style="font-weight:700">TZSP</text>
+  <text class="lbl" x="323" y="284" style="fill:var(--orange)">packets forwarded over the network as TZSP (UDP :37008)</text>
+</svg>
+</figure>
+
+* On the **remote device**, run the <code>tzsp_forwarder</code> helper (build it from <code>contrib/tzsp_forwarder.c</code>) pointed at the interface to monitor and the Arkime host: <br><code>./tzsp_forwarder br0 &lt;arkime_host&gt; [&lt;bpf_filter&gt;]</code>
+* On the **Arkime capture** side, set <code>pcapReadMethod=tzsp</code> (the <code>interface</code> setting is ignored — set it to <code>dummy</code>) and capture will listen on [`tzspPort`](settings#reader-tzsp) (UDP 37008).
+* For a full, worked end-to-end example — forwarding from a Ubiquiti **UDR7** router into a Dockerized Arkime, plus optional HTTPS with Caddy — see [Arkime on the UDR7](/udr7).
+
+### Option 2 — SSH pcap streaming (not recommended)
+{: .subsection }
+
+If the device is reachable via ssh, we can log in to the remote device, start a capture, and stream the raw pcap back to an Arkime server through a UNIX pipe. One starts an Arkime capture process using the pipe as the capture interface, giving real-time capture of the remote device.
+
+<figure class="arch-fig" style="max-width:640px">
+<svg viewBox="0 0 640 300" role="img" aria-label="Remote device capture over ssh into a named pipe">
   <!-- remote device -->
   <rect class="chip chip-tap" x="72" y="40" width="76" height="28" rx="9"/><text class="tap-t" x="110" y="54">ens3</text>
-  <rect class="machine" x="30" y="74" width="180" height="120" rx="12"/>
+  <rect class="machine" x="30" y="72" width="180" height="166" rx="12"/>
   <text class="m-title" x="120" y="118">Remote device</text>
   <text class="m-sub" x="120" y="136">10.1.2.3</text>
-  <text class="m-sub" x="120" y="152">tcpdump &#8594; stdout</text>
+  <text class="m-sub" x="120" y="154">tcpdump &#8594; stdout</text>
 
-  <!-- internet cloud -->
-  <use href="#s-cloud" x="245" y="96" width="150" height="72"/>
-  <text class="m-sub" x="320" y="152">internet</text>
+  <!-- transport cloud -->
+  <use href="#s-cloud" x="245" y="108" width="150" height="72"/>
 
-  <!-- capture server -->
-  <rect class="machine" x="430" y="60" width="182" height="150" rx="12"/>
-  <text class="m-title" x="521" y="78">Arkime capture server</text>
-  <text class="m-sub" x="521" y="94">192.168.10.5</text>
-  <rect class="chip chip-proxy" x="460" y="108" width="122" height="32" rx="12"/><text class="chip-t" x="521" y="124" style="font-size:11px">named pipe (fifo)</text>
-  <line class="flow" x1="521" y1="140" x2="521" y2="152" marker-end="url(#mn)"/>
-  <use href="#s-capture" x="456" y="156" width="130" height="30"/>
+  <!-- Arkime capture server: pipe -> capture / pcap / viewer stack -->
+  <rect class="machine" x="426" y="44" width="190" height="216" rx="12"/>
+  <text class="m-title" x="521" y="62">Arkime capture server</text>
+  <rect class="chip chip-proxy" x="452" y="78" width="138" height="26" rx="12"/><text class="chip-t" x="521" y="91" style="font-size:11px">named pipe (fifo)</text>
+  <line class="flow" x1="521" y1="104" x2="521" y2="116" marker-end="url(#mn)"/>
+  <use href="#s-capture" x="446" y="118" width="150" height="30"/>
+  <use href="#s-pcap" x="496" y="158" width="50" height="46"/>
+  <use href="#s-viewer" x="446" y="212" width="150" height="30"/>
 
-  <!-- ssh pcap stream -->
-  <path class="flow-traffic" d="M210 132 C240 132 250 132 262 132" marker-end="url(#mo)"/>
-  <path class="flow-traffic" d="M378 132 C410 132 420 122 458 118" marker-end="url(#mo)"/>
-  <rect class="badge" x="286" y="176" width="68" height="26" rx="8"/><text class="badge-t" x="320" y="189" style="font-weight:700">ssh</text>
-  <text class="lbl lbl-out" x="320" y="216" style="fill:var(--orange)">raw pcap streamed over ssh</text>
+  <!-- ssh pcap stream into the pipe -->
+  <path class="flow-traffic" d="M210 144 C234 146 246 148 264 149" marker-end="url(#mo)"/>
+  <path class="flow-traffic" d="M378 148 C408 122 418 96 452 90" marker-end="url(#mo)"/>
+  <rect class="badge" x="288" y="192" width="66" height="26" rx="8"/><text class="badge-t" x="320" y="205" style="font-weight:700">ssh</text>
+  <text class="lbl" x="320" y="284" style="fill:var(--orange)">raw pcap streamed over ssh</text>
 </svg>
 </figure>
 
