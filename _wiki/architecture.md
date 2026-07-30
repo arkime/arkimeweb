@@ -489,6 +489,64 @@ Normally the Central Viewer opens short-lived outbound connections *to* each Sen
 * Because a Sensor names itself when it opens a portal, the Central Viewer authenticates that claim with the [`[packetportal-nodes]`](settings#packetportal-nodes) section (per&#8209;node password and/or source IP, falling back to `[esproxy-sensors]`), so one compromised Sensor cannot claim another's node name.
 * See the [Packet Portal settings](settings#packetPortal) for the full list of options.
 
+## Decrypting TLS Traffic with PolarProxy
+{: .subsection-header }
+
+Arkime stores and indexes whatever packets it captures, but TLS&#8209;encrypted sessions show up as opaque ciphertext. [PolarProxy](https://www.netresec.com/?page=PolarProxy) (from Netresec) is a transparent TLS&#8209;inspection proxy that sits between your users and the servers they reach: it terminates and decrypts each TLS session, re&#8209;encrypts it on to the real server, and streams a copy of the **decrypted** traffic to Arkime over PCAP&#8209;over&#8209;IP. Arkime then indexes the plaintext just like any other capture.
+
+<figure class="arch-fig" style="max-width:680px">
+<svg viewBox="0 0 680 330" role="img" aria-label="PolarProxy decrypts a user's TLS session and streams the decrypted traffic to Arkime over PCAP-over-IP">
+  <!-- onward network / real server -->
+  <use href="#s-cloud" x="270" y="6" width="150" height="72"/>
+
+  <!-- User / client -->
+  <rect class="machine" x="20" y="150" width="150" height="140" rx="12"/>
+  <text class="m-title" x="95" y="170">User / Client</text>
+  <text class="m-sub" x="95" y="185">HTTPS client</text>
+  <rect class="chip chip-proxy" x="38" y="200" width="114" height="30" rx="15"/><text class="chip-t" x="95" y="215" style="font-size:11px">browser / app</text>
+  <text class="m-sub" x="95" y="255">trusts PolarProxy CA</text>
+
+  <!-- PolarProxy -->
+  <rect class="machine" x="255" y="120" width="160" height="170" rx="12"/>
+  <text class="m-title" x="335" y="140">PolarProxy</text>
+  <text class="m-sub" x="335" y="155">transparent TLS proxy</text>
+  <rect class="chip chip-proxy" x="275" y="172" width="120" height="32" rx="15"/><text class="chip-t" x="335" y="188" style="font-size:11px">decrypt TLS</text>
+  <text class="m-sub" x="335" y="228">listens :10443</text>
+  <text class="m-sub" x="335" y="244">re-encrypts upstream</text>
+
+  <!-- Arkime capture server -->
+  <rect class="machine" x="505" y="108" width="155" height="192" rx="12"/>
+  <text class="m-title" x="582" y="126">Arkime server</text>
+  <use href="#s-capture" x="520" y="140" width="124" height="28"/>
+  <use href="#s-pcap" x="557" y="176" width="50" height="46"/>
+  <use href="#s-viewer" x="520" y="230" width="124" height="28"/>
+  <text class="m-sub" x="582" y="276">pcap-over-ip-server</text>
+  <text class="m-sub" x="582" y="290">TCP :57012</text>
+
+  <!-- flow: user -> proxy (redirected https) -->
+  <line class="flow-traffic" x1="170" y1="212" x2="253" y2="204" marker-end="url(#mo)"/>
+  <rect class="badge" x="178" y="176" width="66" height="22" rx="8"/><text class="badge-t" x="211" y="187">HTTPS</text>
+
+  <!-- flow: proxy -> onward network (re-encrypted) -->
+  <line class="flow-traffic" x1="345" y1="120" x2="345" y2="80" marker-end="url(#mo)"/>
+  <text class="m-sub" x="300" y="100" style="text-anchor:end">re-encrypted</text>
+
+  <!-- flow: proxy -> arkime (decrypted pcap-over-ip) -->
+  <line class="flow-traffic" x1="415" y1="198" x2="503" y2="184" marker-end="url(#mo)"/>
+  <rect class="badge" x="424" y="158" width="76" height="22" rx="8"/><text class="badge-t" x="462" y="169">decrypted</text>
+
+  <text class="lbl" x="340" y="320" style="fill:var(--orange)">PolarProxy decrypts the client's TLS and streams a copy to Arkime as PCAP&#8209;over&#8209;IP (TCP :57012)</text>
+</svg>
+<figcaption>The user's HTTPS is transparently redirected through PolarProxy, which decrypts it and streams the plaintext to Arkime over PCAP&#8209;over&#8209;IP; the session is re&#8209;encrypted on to the real server.</figcaption>
+</figure>
+
+How it works:
+1. **Send client traffic through PolarProxy.** Either transparently — a gateway iptables/ufw DNAT rule redirects outbound 443 to PolarProxy's <code>:10443</code> — or by pointing clients at it explicitly: <br><code>iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to &lt;polarproxy_host&gt;:10443</code><br>Because PolarProxy is a MITM, clients must **trust PolarProxy's root CA** or they will see certificate warnings.
+1. **Have PolarProxy stream decrypted packets to Arkime.** Start PolarProxy with the PCAP&#8209;over&#8209;IP connect flag so it dials the Arkime host and sends a copy of everything it decrypts: <br><code>--pcapoveripconnect &lt;arkime_host&gt;:57012</code>
+1. **Listen for the stream on Arkime.** Set <code>pcapReadMethod=pcap-over-ip-server</code> in <code>config.ini</code> so capture accepts the PCAP&#8209;over&#8209;IP connection on TCP 57012 (the <code>interface</code> setting is ignored — set it to <code>dummy</code>).
+
+For a full, worked walk&#8209;through see Netresec's [Capturing Decrypted TLS Traffic with Arkime](https://www.netresec.com/?page=Blog&month=2020-12&post=Capturing-Decrypted-TLS-Traffic-with-Arkime).
+
 ## Remote Device Capture
 {: .subsection-header }
 
