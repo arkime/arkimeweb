@@ -51,6 +51,10 @@ settings:
     value: 8081
     text: Port the wiseService is listening on, not used if wiseURL is set
 
+  - key: wiseRequestTimeout
+    value: 30
+    text: Number of seconds to wait for a wiseService response before failing the request, previous versions used 120. (Since 6.7.0)
+
   - key: wiseTcpTupleLookups
     value: "false"
     text: Should we send tcp tuple lookups to wise
