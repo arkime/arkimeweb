@@ -49,7 +49,9 @@ settings:
       <ul>
         <li><code>header</code> &mdash; trust the <a href="#userNameHeader">userNameHeader</a> set by a proxy
           that has already authenticated the caller. Use this when apache/nginx in front of Arkime verifies
-          the token, see the example below.</li>
+          the token, see the example below. Only localhost may use this until
+          <a href="#mcpAllowedIps">mcpAllowedIps</a> is set, since the header can be sent by anyone who can
+          reach the port.</li>
         <li><code>jwt</code> &mdash; verify a Bearer JWT against a remote JWKS using the
           <a href="#authJwtIssuer">authJwt*</a> settings below.</li>
       </ul>
@@ -72,11 +74,31 @@ settings:
       </p>
 
   - key: mcpAllowedIps
-    value: EMPTY
+    value: "For header auth 127.0.0.0/8 and ::1, otherwise all ips"
     text: |
-      (Since 6.7.0) Optional comma separated list of IPs/CIDRs allowed to reach <code>/mcp</code>.
-      Empty means any source. A gateway presents no client certificate, so source IP is usually the only
-      network level control available.
+      <p>
+        (Since 6.7.0) A comma separated list of IPs/CIDRs allowed to reach <code>/mcp</code>; other IPs are
+        rejected with a 403 before auth. A gateway presents no client certificate, so source IP is usually
+        the only network level control available.
+      </p>
+      <p>
+        When <a href="#mcpAuthMode">mcpAuthMode</a> includes <code>header</code> this defaults to localhost
+        only (<code>127.0.0.0/8</code> and <code>::1</code>), the same way
+        <a href="#userAuthIps">userAuthIps</a> does for the rest of the site. A username header is only worth
+        as much as the proxy that set it, so anyone able to reach <code>/mcp</code> directly could send that
+        header themselves and be treated as that user. <b>Set this if your reverse proxy runs on another
+        machine</b>, otherwise it gets a 403. Setting it replaces the localhost default, so include
+        <code>127.0.0.0/8,::1</code> yourself if you still want it.
+      </p>
+      <p>
+        With <a href="#mcpAuthMode">mcpAuthMode</a><code>=jwt</code> and this not set any source is allowed,
+        because Arkime verifies the token itself and does not have to trust where the request came from.
+      </p>
+      <p>
+        Like <a href="#userAuthIps">userAuthIps</a>, the IP checked is the machine actually connecting to
+        Arkime (usually your reverse proxy), <b>not</b> the original client IP, even when
+        <a href="#authTrustProxy">authTrustProxy</a> and <code>X-Forwarded-For</code> are used.
+      </p>
 
   - key: mcpCont3xtTimeout
     value: 60000
@@ -164,6 +186,11 @@ after: |
     <strong>must</strong> be its own <code>&lt;Location&gt;</code> using OAuth bearer validation. If it
     inherits an interactive <code>AuthType openid-connect</code> block, a bad token gets a <code>302</code>
     to the IdP, which MCP clients will not follow.
+  </p>
+  <p>
+    This example assumes apache is on the same machine as Arkime. If it is not, add
+    <a href="#mcpAllowedIps">mcpAllowedIps</a> with the apache address, otherwise every request is
+    answered with a <code>403</code>.
   </p>
   <pre><code>&lt;Location /mcp&gt;
     AuthType oauth20
