@@ -115,7 +115,8 @@ settings:
       Controls how the OpenSearch/Elasticsearch document _id is generated for each session:<br>
       <strong>false</strong> - Arkime generates the id from the time based index prefix plus the capture node's pid and a random uuid. (default)<br>
       <strong>true</strong> - Let OpenSearch/Elasticsearch auto generate the ids.<br>
-      <strong>consistent</strong> - Arkime generates a deterministic id from the index prefix, node name, capture file number, and file position, so reprocessing the same pcap produces the same id and avoids duplicates when re-indexing.
+      <strong>consistent</strong> - Arkime generates a deterministic id from the index prefix, node name, capture file number, and file position, so reprocessing the same pcap produces the same id and avoids duplicates when re-indexing.<br>
+      <strong>sequential</strong> - Arkime draws one random uuid per packet thread at startup and increments it per session, replacing the per session locked uuid generation. Much faster on session heavy traffic, and the ids of one node's sessions are close together. (since 6.7.0)
 
   - key: compressES
     value: |

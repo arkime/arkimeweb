@@ -45,6 +45,10 @@ settings:
         href="https://updates.maxmind.com/app/update_secure?edition_id=GeoLite2-Country"
         rel="nofollow">Download free version</a>
 
+  - key: maxBulkIndicators
+    value: 500
+    text: The most indicators one search can query at once (since 6.7.0)
+
   - key: expireHistoryDays
     value: 180
     text: How long to store the cont3xt history
