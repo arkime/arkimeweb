@@ -1,0 +1,113 @@
+name: "Reader - XDP - Settings"
+before: |
+  <p>
+    Since version 7.0.0, Arkime can read packets with <code>AF_XDP</code> sockets on Linux.
+    Configure capture to use AF_XDP as the reader method with <code>pcapReadMethod=xdp</code> in your configuration file.
+    Capture must have been built on a machine with <code>libxdp</code> installed, otherwise the reader exits at startup.
+  </p>
+  <p>
+    One AF_XDP socket and one thread is created per NIC receive queue. The queue count is read from the NIC,
+    so different interfaces automatically get different numbers of threads and there is normally nothing to tune.
+  </p>
+  <h4>Should you use AF_XDP or AFPacket?</h4>
+  <p>
+    AF_XDP is only faster when the NIC driver has <b>native</b> XDP support. In that case the packet is DMAed
+    straight into Arkime's memory and no <code>sk_buff</code> is ever allocated, which is where the gain comes
+    from at high packet rates with small packets. Without native driver support the socket falls back to
+    generic/SKB mode, which does everything AFPacket does <i>plus</i> run an XDP program, so it is slower than
+    <code>tpacketv3</code>. Capture logs
+    <code>WARNING - Zero copy not available on &lt;interface&gt; queue N, falling back to copy mode</code>
+    when that happens, which is the easiest way to tell which mode you got.
+  </p>
+  <p>
+    Prefer <a href="#reader-afpacket">AFPacket</a> when you need any of these:
+  </p>
+  <ul>
+    <li>Per packet kernel timestamps. AF_XDP descriptors carry no timestamp, so a whole read burst shares the time it was collected.</li>
+    <li>Jumbo frames. A UMEM chunk is at most 4096 bytes, leaving about 3840 bytes for the packet.</li>
+    <li>In kernel BPF filtering. The <code>bpf</code> setting is applied in userspace with AF_XDP, after the packet has already crossed the ring, so a filter that drops most traffic saves much less.</li>
+    <li>An interface the host still uses. XDP redirect consumes the packet, so management traffic and tools like tcpdump stop seeing it. Use a dedicated capture port.</li>
+  </ul>
+  <p>
+    Note that Arkime copies each packet out of the ring when it is queued to a packet thread, so AF_XDP's zero
+    copy removes the receive side copy only, not every copy in the pipeline.
+  </p>
+  <p>
+    When capture is run with <code>dropUser</code> or <code>dropGroup</code> it can no longer remove the XDP
+    program from the NIC on exit. Use <code>ip link set dev &lt;interface&gt; xdp off</code> to clean up.
+  </p>
+
+after: |
+  <p class="mb-0">
+    Example:
+  </p>
+  <pre><code>[default]
+  pcapReadMethod = xdp
+  interface = eth0</code></pre>
+  <p class="mb-0">
+    Example splitting the 8 queues of one interface across two capture processes:
+  </p>
+  <pre><code>[node1]
+  pcapReadMethod = xdp
+  interface = eth0
+  xdpNumThreads = 4
+  xdpQueueStart = 0
+  xdpIgnoreQueueMismatch = true
+
+  [node2]
+  pcapReadMethod = xdp
+  interface = eth0
+  xdpNumThreads = 4
+  xdpQueueStart = 4
+  xdpIgnoreQueueMismatch = true</code></pre>
+
+
+settings:
+  - key: xdpNumThreads
+    value: "0"
+    text: |
+      The number of threads, and therefore AF_XDP sockets, used to read packets from each interface.
+      The default of <code>0</code> uses the receive queue count reported by the NIC, which is the only setting that
+      captures every packet, so leave this unset unless you are splitting the queues of one interface across several
+      capture processes. Capture exits at startup if this doesn't cover every queue, see <code>xdpIgnoreQueueMismatch</code>.
+      Arkime allows at most 12 threads per interface, so a NIC with more queues than that needs
+      <code>ethtool -L &lt;interface&gt; combined 12</code> or the queues split across processes.
+
+  - key: xdpQueueStart
+    value: "0"
+    text: |
+      The first NIC receive queue to bind to, only useful when splitting the queues of one interface across several
+      capture processes. Requires <code>xdpNumThreads</code> to be set.
+
+  - key: xdpFrameSize
+    value: "4096"
+    text: |
+      The size in bytes of each UMEM chunk. Must be <code>2048</code> or <code>4096</code>, the only values the kernel accepts
+      for aligned chunks. The kernel reserves 256 bytes of each chunk, so 4096 leaves 3840 bytes for the packet.
+      Capture exits at startup if the interface MTU doesn't fit, since the kernel would silently drop the larger packets.
+
+  - key: xdpRingSize
+    value: "2048"
+    text: |
+      The number of descriptors in the receive ring, must be a power of 2. Each socket owns twice this many frames,
+      so the memory used per interface is <code>xdpNumThreads * xdpRingSize * 2 * xdpFrameSize</code>.
+
+  - key: xdpZeroCopy
+    value: "true"
+    text: |
+      Ask the driver for zero copy mode. When the driver doesn't support it capture logs a warning and falls back to
+      copy mode. Set to false to always use copy mode.
+
+  - key: xdpMode
+    value: "auto"
+    text: |
+      How the XDP program is attached. <code>auto</code> lets the kernel pick native mode when the driver supports it,
+      <code>drv</code> requires native driver mode and fails if it isn't available, <code>skb</code> forces the slower
+      generic mode.
+
+  - key: xdpIgnoreQueueMismatch
+    value: "false"
+    text: |
+      Set to true to start even though <code>xdpNumThreads</code> and <code>xdpQueueStart</code> don't cover every
+      receive queue on the interface. Only do this when another capture process is reading the rest of the queues,
+      otherwise the traffic arriving on the uncovered queues goes to the kernel instead of Arkime.
