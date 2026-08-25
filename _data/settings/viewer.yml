@@ -247,5 +247,62 @@ settings:
     text: |
       (Since 6.0.0) The default Arkime clusters to select for users.
 
+  - key: tsharkPath
+    value: "/opt/arkime/bin/tshark;/usr/bin/tshark;/usr/local/bin/tshark;/opt/homebrew/bin/tshark;/Applications/Wireshark.app/Contents/MacOS/tshark"
+    text: |
+      (Since 7.0.0) Semicolon separated list of paths to search for a tshark binary, used by the
+      session <strong>tshark</strong> tab to dissect a session's pcap. The first binary that is new
+      enough wins. If none is found the tshark tab is hidden and the API returns 503.
 
+  - key: tsharkMaxPackets
+    value: 10000
+    text: |
+      (Since 7.0.0) The most packets tshark will dissect for a single request. Requests asking for
+      more are clamped to this value.
+
+  - key: tsharkTimeoutMs
+    value: 30000
+    text: |
+      (Since 7.0.0) How long a single tshark run may take before it is killed and the request
+      fails with a 504.
+
+  - key: tsharkMaxConcurrent
+    value: 3
+    text: |
+      (Since 7.0.0) How many tshark processes may run at once. Every request forks a dissector, so
+      without a ceiling a single user can exhaust the viewer host. Requests over the limit get a
+      503 with a <code>Retry-After</code> header rather than being queued. Runs are short, so keep
+      this small.
+
+  - key: tsharkMemoryLimitMB
+    value: 1024
+    text: |
+      (Since 7.0.0) Caps the address space of each tshark process, 0 to disable. "Large memory
+      allocation" is a recurring Wireshark crash class, and a dissector can claim many GB in a
+      second or two &mdash; long before <a href="#tsharktimeoutms">tsharkTimeoutMs</a> would kill
+      it &mdash; so without this the OOM killer may pick viewer instead of tshark. Applied with
+      <code>ulimit -v</code>; platforms whose shell cannot set it (macOS) silently skip it.
+
+  - key: tsharkWrapper
+    value: EMPTY
+    text: |
+      (Since 7.0.0) Optional semicolon separated argv prefixed to tshark, so that a dissector bug
+      lands inside a sandbox instead of the viewer's own context.
+      <br>
+      Wireshark publishes on the order of 90 dissector security advisories a year, nearly all of
+      them crashes reachable from attacker controlled packet bytes. Viewer already limits the
+      damage: tshark is spawned with a scrubbed environment, so no <code>ARKIME__*</code> config
+      overrides (and therefore no OpenSearch/Elasticsearch credentials or passwordSecret) are
+      passed to it, and every <code>WIRESHARK_*</code> path points at an empty directory so no
+      personal profile, plugin or <code>init.lua</code> is ever loaded. It is also always run with
+      <code>-n</code>, so it needs no network access at all.
+      <br>
+      A wrapper closes the rest. <code>{tsharkDir}</code> expands to the private directory holding
+      the fifo tshark reads from, and <strong>must</strong> be bind mounted into the sandbox.
+      <br>
+      Using bubblewrap (<code>apt install bubblewrap</code>):
+      <pre><code>tsharkWrapper=bwrap;--unshare-all;--die-with-parent;--new-session;--cap-drop;ALL;--ro-bind;/usr;/usr;--ro-bind-try;/lib;/lib;--ro-bind-try;/lib64;/lib64;--ro-bind-try;/opt/arkime;/opt/arkime;--proc;/proc;--dev;/dev;--bind;{tsharkDir};{tsharkDir};--</code></pre>
+      Using systemd-run instead:
+      <pre><code>tsharkWrapper=systemd-run;--quiet;--scope;--collect;-p;PrivateNetwork=yes;-p;NoNewPrivileges=yes;-p;MemoryMax=1G;--</code></pre>
+      Note that each token is a separate argv entry, so no token may contain a space.
 
