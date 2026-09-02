@@ -283,14 +283,22 @@ title: Arkimeet
                 <div class="me-auto dark-primary-theme-text">13:30</div>
                 <div class="ps-3 flex-fill">
                   <div class="agenda-title">
-                    TBD
+                    What Broke: Moving Arkime&rsquo;s Database to AWS Managed OpenSearch
                   </div>
                   <span class="agenda-description">
-                    TBD
+                    We moved Arkime&rsquo;s database off self-managed Elasticsearch and onto
+                    AWS Managed OpenSearch. Most of what went wrong was not storage &mdash; it
+                    was Arkime assuming the far end of a connection was something it owned.
+                    Three issues, and the merged upstream PRs each one produced: esProxy
+                    signing its own requests, the viewer decoding a JWT handed to it by an
+                    identity proxy, and PCAP retrieval across clusters that do not share a
+                    secret. Plus Packet Portal, the general case of the last one, and five
+                    operational pitfalls with no PR attached.
                   </span>
                 </div>
                 <div class="ps-3 flex-fill text-end">
                   <strong>
+                    <a href="#" class="no-decoration" data-bs-toggle="modal" data-bs-target="#elysebio">Elyse</a>
                   </strong>
                 </div>
               </div>
