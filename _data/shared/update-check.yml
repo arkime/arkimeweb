@@ -1,0 +1,63 @@
+name: Update Check Settings
+
+before: |
+  <p>
+    (Since 7.0.0) The version menu in viewer, cont3xt, parliament and wise can tell you when a newer
+    Arkime release is available. It is a check the <strong>browser</strong> makes, not the server, and
+    the only thing it sends is your major version, as part of the name of the file it asks for. The
+    menu says so before you use it.
+  </p>
+  <p>
+    The client requests <code>&lt;updateCheckUrl&gt;/releases-v&lt;major&gt;.json</code>, so an Arkime 7
+    install asks for <code>releases-v7.json</code>, and compares the versions in that file locally.
+    Nothing about your cluster, nodes, users or queries is sent.
+  </p>
+  <p>
+    These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>,
+    <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
+  </p>
+
+settings:
+  - key: checkForUpdates
+    value: manual
+    text: |
+      Controls whether the browser checks for newer Arkime releases.
+      <ul class="mb-0">
+        <li>
+          <strong>off</strong> - no check and no UI. The update host is also left out of the
+          <code>connect-src</code> Content Security Policy directive, so the browser refuses the
+          request even if something asks for it. Use this if you do not want your users' browsers
+          contacting an outside host at all.
+        </li>
+        <li>
+          <strong>manual</strong> - (default) the version menu gets a "Check for updates" button.
+          Nothing is sent until a user clicks it.
+        </li>
+        <li>
+          <strong>auto</strong> - as manual, and the browser also checks once a day on its own,
+          without the user asking. Use this if you want people told about new releases without
+          having to go looking.
+        </li>
+      </ul>
+
+  - key: updateCheckUrl
+    value: https://versions.arkime.com
+    text: |
+      Where the update check fetches release information from. Point this at an internal host if your
+      browsers cannot reach the internet, and mirror the upstream
+      <code>releases-v&lt;major&gt;.json</code> files onto it.
+      <br><br>
+      <strong>A mirror must send an <code>Access-Control-Allow-Origin</code> header.</strong> This is
+      a cross origin request from the Arkime web interface, so the browser will refuse to read the
+      response without it, even though the server returned the file correctly. The failure is easy to
+      miss: the access log shows <code>200</code>, <code>curl</code> shows the right JSON, and the
+      only symptom is "Update check failed" in the menu. The browser console says what actually
+      happened.
+      <br><br>
+      To check a mirror, ask it for a file the way a browser would and confirm the header comes back:
+      <br>
+      <code>curl -s -D- -o /dev/null -H "Origin: https://your-viewer.example.com" https://mirror.example.com/releases-v7.json | grep -i access-control-allow-origin</code>
+      <br><br>
+      For nginx that is <code>add_header Access-Control-Allow-Origin *;</code>, for Apache
+      <code>Header set Access-Control-Allow-Origin "*"</code>, and for S3 it is a bucket CORS rule.
+      These files are public release information, so <code>*</code> is fine.

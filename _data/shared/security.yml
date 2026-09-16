@@ -195,6 +195,34 @@ settings:
     text: |
       (Since 6.0.0) When using <a href="#logoutUrl">logoutUrl</a> does the browser do a GET or POST to the url.
 
+  - key: viewConfigMode
+    value: superAdmin
+    text: |
+      (Since 7.0.0) Who the admin menu's <strong>View Config</strong> page is shown to. The page is
+      read only and shows the config the application is actually running with, in ini form, plus the
+      command line <code>-o</code> overrides, which settings came from <code>ARKIME_</code>
+      environment variables, and where the config was loaded from. In viewer it can also fetch
+      another node's config and highlight the differences; that node applies its own
+      <code>viewConfigMode</code>.
+      <br><br>
+      The server hides settings that hold a credential: names containing secret, password, token,
+      apikey, basicauth or a pass word, the fields wise sources and cont3xt integrations declare as
+      passwords, everything in the keks section, the password half of any url, and credentials
+      packed inside a value. <strong>Treat that as best effort</strong> - it is a denylist, so a
+      credential in a setting nobody thought of can slip through, and even fully redacted the page
+      describes your deployment. That is why the default is the narrowest useful value. A user with
+      TOTP set must enter a code first, good for that browser session only.
+      Possible values are:
+      <ul class="mb-0">
+        <li><strong>off</strong> - no page and no apis, requests answer 404, and other nodes cannot
+          fetch this node's config either</li>
+        <li><strong>superAdmin</strong> - (default) only users with the superAdmin role</li>
+        <li><strong>appAdmin</strong> - the application's own admin role: arkimeAdmin, cont3xtAdmin,
+          parliamentAdmin or wiseAdmin</li>
+      </ul>
+      Anything else warns and falls back to superAdmin. Set it in a node's own section to vary it per
+      viewer node.
+
   - key: loginMessage
     value: EMPTY
     text: An optional login message to present on the login page when using authMode=form
