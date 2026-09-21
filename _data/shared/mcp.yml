@@ -106,6 +106,39 @@ settings:
       (Since 6.7.0) How long to wait, in ms, for cont3xt integrations to finish before returning a
       partial MCP result. Only used by cont3xt.
 
+  - key: mcpMaxResultBytes
+    value: 100000
+    text: |
+      <p>
+        (Since 6.7.1) The largest MCP tool result, in bytes, cont3xt will hand back. Use <code>-1</code>
+        for no limit. Only used by cont3xt.
+      </p>
+      <p>
+        An assistant can only read so much in one go, and a single indicator across every integration
+        can be far more than that. By default <code>cont3xt_search</code> answers with the same overview
+        the web UI shows for each indicator plus the list of integrations that had data, which is small;
+        the raw data only comes back when the assistant asks for <code>detail=full</code>. Either way, a
+        result over this size has its largest entries emptied and marked <code>omitted</code>, with a
+        <code>truncated</code> note saying how big it was, so the assistant knows to fetch one integration
+        at a time with <code>cont3xt_integration_search</code> instead of reporting a partial answer as the
+        whole picture.
+      </p>
+
+  - key: mcpDefaultView
+    value: EMPTY
+    text: |
+      <p>
+        (Since 6.7.1) The id or name of a cont3xt view (Settings, Views in the web UI) an MCP search uses when the
+        assistant names neither a view nor a list of integrations. Only used by cont3xt.
+      </p>
+      <p>
+        Without it a bare search queries every integration the user has enabled, which is slow, can burn
+        through paid API quotas, and is decided by the model rather than by you. Set this to a view holding
+        the integrations a routine lookup should hit; the assistant can still pick another view it is
+        allowed to see. The view must be visible to the calling user, otherwise the search fails with an
+        error naming this setting rather than quietly running everything.
+      </p>
+
   - key: authJwtIssuer
     value: REQUIRED for jwt
     text: |
