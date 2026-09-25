@@ -1,0 +1,63 @@
+name: "MISP Integration"
+before: |
+  <p>
+    Since 7.0 Cont3xt can query <a href="https://www.misp-project.org/">MISP</a> servers for attributes that exactly match the indicator.
+    Each result shows the attribute, its event, threat level, org, tags, and a link to the event in MISP.
+    <br>
+    This integration must be enabled in the configuration file and not the UI.
+    To enable, create a <code>[misp:NAME]</code> section where NAME is unique across all integrations.
+    Multiple sections can be created to query multiple MISP servers.
+  </p>
+
+settings:
+  - key: url
+    value: REQUIRED
+    text: The MISP server url, for example https://misp.example.com
+
+  - key: key
+    value: REQUIRED
+    text: The MISP auth key, all Cont3xt users share this key so it controls what MISP data they can see
+
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: MISP icon
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 51000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: ip,domain,url,email,hash,phone
+    text: Comma separated list of itypes this integration supports
+
+  - key: maxResults
+    value: 50
+    text: The maximum number of attributes to return
+
+  - key: toIds
+    value: false
+    text: If true only return attributes with the IDS flag set
+
+  - key: enforceWarninglist
+    value: true
+    text: If true MISP won't return attributes that match a MISP warninglist
+
+  - key: insecure
+    value: false
+    text: If true certificate verification will be disabled for https calls, useful for self signed certificates
+
+after: |
+  <p>
+    Redirects are not followed so the url must be the final location of the MISP server.
+    Values containing <code>%</code> or starting with <code>!</code> are not looked up since MISP treats them as wildcards and negation.
+  </p>
+  <pre>
+  [misp:corp]
+  name=Corp MISP
+  url=https://misp.example.com
+  key=YOUR_MISP_AUTH_KEY
+  </pre>

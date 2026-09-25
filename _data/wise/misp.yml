@@ -1,0 +1,108 @@
+name: MISP
+
+before: |
+  <p>
+    Since 7.0 WISE can look up values in <a href="https://www.misp-project.org/">MISP</a> servers.
+    It supports ip, domain, email, md5, sha256, url, and ja3 lookups, with composite MISP types like <code>domain|ip</code> and <code>filename|md5</code> split into their parts.
+    <br>
+    The MISP source can run in two different modes.
+    In <strong>bulk</strong> mode, the default, WISE periodically loads all matching attributes into memory and never queries MISP per lookup.
+    In <strong>api</strong> mode, WISE queries MISP for every value not already in the WISE cache, which searches all of MISP but adds load to the MISP server.
+    When using api mode you should use <a href="#wise-source-common">onlyIPs or excludeIPs</a> to limit which IPs are looked up.
+    <br>
+    Create a <code>[misp:UNIQUENAME]</code> section to configure, multiple sections can be created to use multiple MISP servers.
+  </p>
+  <p>
+    Fields added:
+    <code>misp.server</code>, <code>misp.event-id</code>, <code>misp.event</code>, <code>misp.threat-level</code>,
+    <code>misp.category</code>, <code>misp.org</code>, and <code>misp.tag</code>.
+    A right click action is added to <code>misp.event-id</code> to open the event in MISP.
+  </p>
+
+settings:
+  - key: url
+    value: REQUIRED
+    text: The MISP server url, for example https://misp.example.com
+
+  - key: key
+    value: REQUIRED
+    text: The MISP auth key
+
+  - key: mode
+    value: bulk
+    text: Either bulk to periodically load attributes into memory, or api to query MISP for each value not in the WISE cache
+
+  - key: name
+    value: "section name after misp:"
+    text: The value stored in misp.server
+
+  - key: tags
+    value: EMPTY
+    text: Comma separated list of tags to set for matches
+
+  - key: last
+    value: 30d for bulk, EMPTY for api
+    text: Only use attributes from events published within this window, empty for all
+
+  - key: toIds
+    value: true
+    text: Only use attributes with the IDS flag set
+
+  - key: published
+    value: true
+    text: Only use attributes from published events
+
+  - key: enforceWarninglist
+    value: true
+    text: Skip attributes that match a MISP warninglist, this removes common benign values
+
+  - key: mispTags
+    value: EMPTY
+    text: Comma separated list of MISP tags to filter on, for example tlp:white,tlp:green
+
+  - key: reload
+    value: 60
+    text: bulk mode - Minutes between reloads, minimum 5, 0 to only load at startup
+
+  - key: pageSize
+    value: 10000
+    text: bulk mode - Attributes to request from MISP per call
+
+  - key: maxAttributes
+    value: 2000000
+    text: bulk mode - Stop loading after this many attributes
+
+  - key: maxResults
+    value: 50
+    text: api mode - Max attributes to use per lookup
+
+  - key: maxConns
+    value: 20
+    text: api mode - Max outstanding MISP requests, lookups past this are dropped
+
+  - key: cacheAgeMin
+    value: 60
+    text: api mode - Minutes to cache results, including misses
+
+  - key: insecure
+    value: false
+    text: If true certificate verification will be disabled for https calls, useful for self signed certificates
+
+after: |
+  <p>
+    Redirects are not followed so the url must be the final location of the MISP server.
+    Example configs, one bulk loading a MISP server and one querying another MISP server per item for external IPs only.
+  </p>
+  <pre>
+  [misp:corp]
+  url=https://misp.example.com
+  key=YOUR_MISP_AUTH_KEY
+  tags=misp
+
+  [misp:community]
+  url=https://misp.community.example.org
+  key=YOUR_MISP_AUTH_KEY
+  mode=api
+  excludeIPs=10.0.0.0/8;172.16.0.0/12;192.168.0.0/16
+  cacheAgeMin=240
+  </pre>
