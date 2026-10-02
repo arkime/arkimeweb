@@ -110,7 +110,7 @@ settings:
     value: 100000
     text: |
       <p>
-        (Since 6.7.1) The largest MCP tool result, in bytes, cont3xt will hand back. Use <code>-1</code>
+        (Since 6.8.0) The largest MCP tool result, in bytes, cont3xt will hand back. Use <code>-1</code>
         for no limit. Only used by cont3xt.
       </p>
       <p>
@@ -128,7 +128,7 @@ settings:
     value: EMPTY
     text: |
       <p>
-        (Since 6.7.1) The id or name of a cont3xt view (Settings, Views in the web UI) an MCP search uses when the
+        (Since 6.8.0) The id or name of a cont3xt view (Settings, Views in the web UI) an MCP search uses when the
         assistant names neither a view nor a list of integrations. Only used by cont3xt.
       </p>
       <p>

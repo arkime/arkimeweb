@@ -9,7 +9,7 @@ before: |
 settings:
   - key: url
     value: REQUIRED
-    text: "The URL to load data from. In the url <code>{value}</code> is replaced with the url encoded request value, <code>{valueBase64}</code> (Since 6.7.1) with the base64 encoded value (then url encoded, since base64 has / + and =), and <code>{valueBase64Url}</code> (Since 6.7.1) with the base64url encoded value without padding, which is what apis such as VirusTotal expect for url lookups."
+    text: "The URL to load data from. In the url <code>{value}</code> is replaced with the url encoded request value, <code>{valueBase64}</code> (Since 6.8.0) with the base64 encoded value (then url encoded, since base64 has / + and =), and <code>{valueBase64Url}</code> (Since 6.8.0) with the base64url encoded value without padding, which is what apis such as VirusTotal expect for url lookups."
 
   - key: tags
     value: EMPTY
