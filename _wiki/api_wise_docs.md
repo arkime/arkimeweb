@@ -26,11 +26,12 @@ Sources need to
     * [.load()](#SimpleSource+load)
     * *[.simpleSourceLoad(cb)](#SimpleSource+simpleSourceLoad)*
     * [.parseFieldDef(line)](#WISESource+parseFieldDef)
-    * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
-    * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
-    * [.parseJSONArray(body, setCb, endCB)](#WISESource+parseJSONArray)
-    * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
-    * [.parseJSONL(body, setCb, endCB)](#WISESource+parseJSONL)
+    * [.parseCSV(body, setCb, endCb)](#WISESource+parseCSV)
+    * [.parseTagger(body, setCb, endCb)](#WISESource+parseTagger)
+    * [.parseJSONArray(json, setCb, endCb)](#WISESource+parseJSONArray)
+    * [.parseJSONElement(json)](#WISESource+parseJSONElement) ⇒ <code>Array</code>
+    * [.parseJSON(body, setCb, endCb)](#WISESource+parseJSON)
+    * [.parseJSONL(body, setCb, endCb)](#WISESource+parseJSONL)
     * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
     * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
 
@@ -48,7 +49,7 @@ Create a simple source. The options dontCache, formatSetting, tagsSetting, typeS
 | api | [<code>WISESourceAPI</code>](#WISESourceAPI) | the api when source created passed to initSource |
 | section | <code>string</code> | the section name |
 | options | <code>object</code> | see WISESource constructor for common options |
-| options.reload | <code>integer</code> | If greater to zero, call simpleSourceLoad every options.reload minutes |
+| options.reload | <code>integer</code> | If greater than zero, call simpleSourceLoad every options.reload minutes |
 
 <a name="WISESource+tagsResult"></a>
 
@@ -138,7 +139,7 @@ Parse a field definition line and call the addField or addView as needed
 
 <a name="WISESource+parseCSV"></a>
 
-### simpleSource.parseCSV(body, setCb, endCB) (function)
+### simpleSource.parseCSV(body, setCb, endCb) (function)
 
 Util function to parse CSV formatted data
 
@@ -150,11 +151,11 @@ Util function to parse CSV formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw CSV data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseTagger"></a>
 
-### simpleSource.parseTagger(body, setCb, endCB) (function)
+### simpleSource.parseTagger(body, setCb, endCb) (function)
 
 Util function to parse tagger formatted data
 
@@ -164,13 +165,13 @@ Util function to parse tagger formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw CSV data |
+| body | <code>string</code> | the raw tagger data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseJSONArray"></a>
 
-### simpleSource.parseJSONArray(body, setCb, endCB) (function)
+### simpleSource.parseJSONArray(json, setCb, endCb) (function)
 
 Util function to parse JSON formatted data
 
@@ -180,13 +181,41 @@ Util function to parse JSON formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw JSON data |
+| json | <code>array</code> | the parsed JSON array |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSONElement"></a>
+
+### simpleSource.parseJSONElement(json) (function)
+
+Util function to walk a JSON object using the configured shortcuts and
+build an args array suitable for [encodeResult](#WISESource.encodeResult).
+
+Each shortcut path may traverse intermediate arrays as well as a final
+array value: e.g. with shortcut `a.b.c`, the input
+  `{ a: [ { b: { c: "v1" } }, { b: { c: "v2" } } ] }`
+yields both `v1` and `v2`. With shortcut `d.e`, the input
+  `{ d: { e: ["v3", "v4"] } }`
+yields both `v3` and `v4`.
+
+**Overrides**: [<code>parseJSONElement</code>](#WISESource+parseJSONElement)  
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>object</code> | the JSON object (single element) to extract from |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>Array</code>| alternating pos/value entries for encodeResult |
 
 <a name="WISESource+parseJSON"></a>
 
-### simpleSource.parseJSON(body, setCb, endCB) (function)
+### simpleSource.parseJSON(body, setCb, endCb) (function)
 
 Util function to parse JSON formatted data
 
@@ -198,11 +227,11 @@ Util function to parse JSON formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSON data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseJSONL"></a>
 
-### simpleSource.parseJSONL(body, setCb, endCB) (function)
+### simpleSource.parseJSONL(body, setCb, endCb) (function)
 
 Util function to parse JSONL formatted data
 
@@ -214,7 +243,7 @@ Util function to parse JSONL formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSONL data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+getSourceRaw"></a>
 
@@ -264,7 +293,7 @@ When sources are created they get an api object to interact with the wise servic
         * [.addField(field)](#WISESourceAPI+addField)
         * [.addView(viewName, view)](#WISESourceAPI+addView)
         * [.addSource(section, src, types)](#WISESourceAPI+addSource)
-        * [.addSourceConfigDef(sourceName, config)](#WISESourceAPI+addSourceConfigDef)
+        * [.addSourceConfigDef(sourceName, configDef)](#WISESourceAPI+addSourceConfigDef)
         * [.addValueAction(actionName, action)](#WISESourceAPI+addValueAction)
         * [.addFieldAction(actionName, action)](#WISESourceAPI+addFieldAction)
     * _inner_
@@ -334,7 +363,7 @@ Get the full config for a section
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>object</code>| A list of all the sections in the config file |
+|  | <code>object</code>| The full config for the section |
 
 <a name="WISESourceAPI+addField"></a>
 
@@ -377,11 +406,11 @@ A section is an instance of a source, some sources can have multiple sections.
 | --- | --- | --- |
 | section | <code>string</code> | The section name |
 | src | [<code>WISESource</code>](#WISESource) | A WISESource object |
-| types | <code>string</code> \| <code>Array</code> | An array of the types that this source supports |
+| types | <code>Array</code> | An array of the types that this source supports |
 
 <a name="WISESourceAPI+addSourceConfigDef"></a>
 
-### wiseSourceAPI.addSourceConfigDef(sourceName, config) (function)
+### wiseSourceAPI.addSourceConfigDef(sourceName, configDef) (function)
 
 Add for each source config definition for the UI to use.
 
@@ -391,7 +420,7 @@ Add for each source config definition for the UI to use.
 | Param | Type | Description |
 | --- | --- | --- |
 | sourceName | <code>string</code> | The source name |
-| config | [<code>SourceConfig</code>](#WISESourceAPI..SourceConfig) | The configuration of this source type |
+| configDef | [<code>SourceConfig</code>](#WISESourceAPI..SourceConfig) | The configuration of this source type |
 
 <a name="WISESourceAPI+addValueAction"></a>
 
@@ -436,7 +465,7 @@ Define all configuration for a field for a source
 | [password] | <code>boolean</code> | <code>false</code> | Is it a password type field that should be hidden |
 | [multiline] | <code>string</code> |  | If set this should be split using the value and shown in the UI as a text area |
 | help | <code>string</code> |  | The help text to show the user about the field |
-| [ifField] | <code>string</code> |  | Only show the field if the 'ifValue' field is set and is equal to 'ifValue' |
+| [ifField] | <code>string</code> |  | Only show the field if the 'ifField' field is set and is equal to 'ifValue' |
 | [ifValue] | <code>string</code> |  | Only show the field if the 'ifValue' field is set and is equal to 'ifValue' |
 | [regex] | <code>string</code> |  | The value must match the regex to be considered valid |
 
@@ -452,9 +481,9 @@ This is used by the UI to generate what to display to the admin.
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | name | <code>string</code> |  | The name of the source |
-| singleton | <code>boolean</code> |  | Can there multiple instances of this source |
+| singleton | <code>boolean</code> |  | Only one instance of this source can be configured |
 | description | <code>string</code> |  | Friendly text about the source |
-| types | <code>string</code> \| <code>Array</code> |  | List of WISE types the source supports |
+| types | <code>Array</code> |  | List of WISE types the source supports |
 | [cacheable] | <code>boolean</code> | <code>true</code> | Can the source be cached by WISE |
 | fields | [<code>SourceConfigField</code>](#WISESourceAPI..SourceConfigField) \| <code>Array</code> |  | The fields for the source |
 
@@ -462,7 +491,7 @@ This is used by the UI to generate what to display to the admin.
 
 ### WISESourceAPI~ValueAction Type
 
-Define all configuration for a field for a source
+Define a value action (right click menu item)
 
 **Properties**
 
@@ -495,11 +524,12 @@ All sources need to have the WISESource as their top base class.
         * [.type](#WISESource+type)
         * [.emptyResult](#WISESource+emptyResult)
         * [.parseFieldDef(line)](#WISESource+parseFieldDef)
-        * [.parseCSV(body, setCb, endCB)](#WISESource+parseCSV)
-        * [.parseTagger(body, setCb, endCB)](#WISESource+parseTagger)
-        * [.parseJSONArray(body, setCb, endCB)](#WISESource+parseJSONArray)
-        * [.parseJSON(body, setCb, endCB)](#WISESource+parseJSON)
-        * [.parseJSONL(body, setCb, endCB)](#WISESource+parseJSONL)
+        * [.parseCSV(body, setCb, endCb)](#WISESource+parseCSV)
+        * [.parseTagger(body, setCb, endCb)](#WISESource+parseTagger)
+        * [.parseJSONArray(json, setCb, endCb)](#WISESource+parseJSONArray)
+        * [.parseJSONElement(json)](#WISESource+parseJSONElement) ⇒ <code>Array</code>
+        * [.parseJSON(body, setCb, endCb)](#WISESource+parseJSON)
+        * [.parseJSONL(body, setCb, endCb)](#WISESource+parseJSONL)
         * [.itemCount()](#WISESource+itemCount) ⇒ <code>integer</code>
         * *[.getSourceRaw(cb)](#WISESource+getSourceRaw)*
         * *[.putSourceRaw(data, cb)](#WISESource+putSourceRaw)*
@@ -508,6 +538,7 @@ All sources need to have the WISESource as their top base class.
         * [.encodeResult()](#WISESource.encodeResult) ⇒ <code>buffer</code>
         * [.combineResults(results)](#WISESource.combineResults) ⇒ <code>Buffer</code>
         * [.result2JSON(results)](#WISESource.result2JSON) ⇒ <code>string</code>
+        * [.isSafeFile(file)](#WISESource.isSafeFile) ⇒ <code>boolean</code>
         * [.request(url, file, cb)](#WISESource.request)
         * *[.initSource(api)](#WISESource.initSource)*
 
@@ -526,7 +557,7 @@ Should only be created by super(api, section, options) call
 | section | <code>string</code> |  | the section name |
 | options | <code>object</code> |  | All the options |
 | [options.dontCache] | <code>boolean</code> | <code>false</code> | do not cache this source, the source handles itself |
-| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as don't |
+| [options.cacheTimeout] | <code>integer</code> | <code>cacheAgeMin*60 or 60</code> | override the cacheAgeMin setting, -1 same as dontCache |
 | [options.tagsSetting] | <code>boolean</code> | <code>false</code> | load the optional tags setting |
 | [options.typeSetting] | <code>boolean</code> | <code>false</code> | load the required type setting |
 | [options.formatSetting] | <code>boolean</code> | <code>false</code> | load the format setting with default the provided value if not false |
@@ -577,7 +608,7 @@ Parse a field definition line and call the addField or addView as needed
 
 <a name="WISESource+parseCSV"></a>
 
-### wiseSource.parseCSV(body, setCb, endCB) (function)
+### wiseSource.parseCSV(body, setCb, endCb) (function)
 
 Util function to parse CSV formatted data
 
@@ -588,11 +619,11 @@ Util function to parse CSV formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw CSV data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseTagger"></a>
 
-### wiseSource.parseTagger(body, setCb, endCB) (function)
+### wiseSource.parseTagger(body, setCb, endCb) (function)
 
 Util function to parse tagger formatted data
 
@@ -601,13 +632,13 @@ Util function to parse tagger formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw CSV data |
+| body | <code>string</code> | the raw tagger data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseJSONArray"></a>
 
-### wiseSource.parseJSONArray(body, setCb, endCB) (function)
+### wiseSource.parseJSONArray(json, setCb, endCb) (function)
 
 Util function to parse JSON formatted data
 
@@ -616,13 +647,40 @@ Util function to parse JSON formatted data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| body | <code>string</code> | the raw JSON data |
+| json | <code>array</code> | the parsed JSON array |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
+
+<a name="WISESource+parseJSONElement"></a>
+
+### wiseSource.parseJSONElement(json) (function)
+
+Util function to walk a JSON object using the configured shortcuts and
+build an args array suitable for [encodeResult](#WISESource.encodeResult).
+
+Each shortcut path may traverse intermediate arrays as well as a final
+array value: e.g. with shortcut `a.b.c`, the input
+  `{ a: [ { b: { c: "v1" } }, { b: { c: "v2" } } ] }`
+yields both `v1` and `v2`. With shortcut `d.e`, the input
+  `{ d: { e: ["v3", "v4"] } }`
+yields both `v3` and `v4`.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>object</code> | the JSON object (single element) to extract from |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>Array</code>| alternating pos/value entries for encodeResult |
 
 <a name="WISESource+parseJSON"></a>
 
-### wiseSource.parseJSON(body, setCb, endCB) (function)
+### wiseSource.parseJSON(body, setCb, endCb) (function)
 
 Util function to parse JSON formatted data
 
@@ -633,11 +691,11 @@ Util function to parse JSON formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSON data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+parseJSONL"></a>
 
-### wiseSource.parseJSONL(body, setCb, endCB) (function)
+### wiseSource.parseJSONL(body, setCb, endCb) (function)
 
 Util function to parse JSONL formatted data
 
@@ -648,7 +706,7 @@ Util function to parse JSONL formatted data
 | --- | --- | --- |
 | body | <code>string</code> | the raw JSONL data |
 | setCb | <code>function</code> | the function to call for each row found |
-| endCB | <code>function</code> | all done parsing |
+| endCb | <code>function</code> | all done parsing |
 
 <a name="WISESource+itemCount"></a>
 
@@ -711,7 +769,7 @@ Source should implement this method if they want to support displaying the curre
 
 Convert field ids and string values into the encoded form used in WISE.
 
-This method tags a variable number of arguments, each in a pair of field id and string value.
+This method takes a variable number of arguments, each in a pair of field id and string value.
 
 **Returns**:
 
@@ -757,6 +815,25 @@ Convert an encoded combined results binary buffer into JSON string
 | --- | --- | --- |
 |  | <code>string</code>| The JSON string |
 
+<a name="WISESource.isSafeFile"></a>
+
+### WISESource.isSafeFile(file) (function)
+
+Is the file a plain file that we own, so safe to use in a shared directory.
+
+
+**Parameters**:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| file | <code>string</code> | The file to check |
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| boolean | <code>boolean</code>|  |
+
 <a name="WISESource.request"></a>
 
 ### WISESource.request(url, file, cb) (function)
@@ -770,14 +847,14 @@ Download a url and save to a file, if we already have the file and less than a m
 | --- | --- | --- |
 | url | <code>string</code> | The URL to download |
 | file | <code>string</code> | The file to save the results to |
-| cb | <code>function</code> | (statusCode) The stats code result from the download |
+| cb | <code>function</code> | (statusCode) The status code result from the download |
 
 <a name="WISESource.initSource"></a>
 
 ### *WISESource.initSource(api)* (function)
 
-Every source needs to implement this method. If a singleton it will just create the source object direction.
-If not it should loop thru all keys that start with sourcekind:
+Every source needs to implement this method. If a singleton it will just create the source object directly.
+If not it should loop through all keys that start with sourcekind:
 
 
 **Parameters**:
@@ -922,7 +999,7 @@ GET - Retrieve all available locale files for internationalization
 
 ## /types API
 
-GET - Used by the wise UI to all the types known (unauthenticated).
+GET - Used by the wise UI to retrieve all the types known (unauthenticated).
 
 **Returns**:
 
@@ -1003,6 +1080,21 @@ GET - Query for the stats
 | --- | --- | --- |
 |  | <code>object</code>| Object with array of stats per type and array of stats per source |
 
+<a name="/api/user"></a>
+
+## /api/user API
+
+GET - /api/user
+
+Fetches the currently logged in user, so the UI can gate admin-only actions.
+      This is an authenticated API and requires wiseService to be started with --webconfig.
+
+**Returns**:
+
+| Name | Type | Description |
+| --- | --- | --- |
+|  | <code>ArkimeUser</code>| The currently logged in user. |
+
 <a name="/source/_source/get"></a>
 
 ## /source/:source/get API
@@ -1021,7 +1113,7 @@ GET - Used by wise UI to retrieve the raw file being used by the section.
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>object</code>| All the views |
+| {success, raw} | <code>object</code>| The raw source data |
 
 <a name="/source/_source/put"></a>
 
@@ -1041,7 +1133,7 @@ PUT - Used by wise UI to save the raw file being used by the source.
 
 | Name | Type | Description |
 | --- | --- | --- |
-|  | <code>object</code>| All the views |
+| {success, text} | <code>object</code>| The result of saving the raw source data |
 
 <a name="/config/get"></a>
 

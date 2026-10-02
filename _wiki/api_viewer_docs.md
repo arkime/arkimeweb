@@ -137,7 +137,7 @@ Retrieves a list of histories, or user client requests to the APIs.
 | --- | --- | --- |
 | data | [<code>Array.&lt;History&gt;</code>](#History)| The list of history results. |
 | recordsTotal | <code>number</code>| The total number of history results stored. |
-| recordsFiltered | <code>number</code>| The number of history items returned in this result. |
+| recordsFiltered | <code>number</code>| The number of history items matching query. |
 
 <a name="/history/_id"></a>
 
@@ -183,7 +183,7 @@ Creates a new hunt.
 | type | <code>string</code> | Whether to search raw or reassembled packets. |
 | search | <code>string</code> | The search text to search for within packets. |
 | searchType | <code>string</code> | What type of search the text is. Options include:      ascii - search for case insensitive ascii text.      asciicase - search for case sensitive ascii text.      hex - search for hex text.      regex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe regex</a>.      hexregex - search for text using <a href="https://github.com/google/re2/wiki/Syntax">safe hex regex</a>. |
-| notifier | <code>string</code> | A comma separated list of notifier IDs to alert when there is an error or when the hunt is complete. |
+| notifier | <code>Array.&lt;string&gt;</code> | An array of notifier IDs to alert when there is an error or when the hunt is complete. |
 | users | <code>string</code> | The comma separated list of users to be added to the hunt so they can view the results. |
 
 **Returns**:
@@ -507,7 +507,7 @@ Retrieves a list of known configured remote Arkime clusters.
 GET - /api/appinfo
 
 Retrieves information that the app uses on every page:
-eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, fieldshistory
+eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, fieldhistory
 
 **Returns**:
 
@@ -520,7 +520,7 @@ eshealth, currentuser, views, remoteclusters, clusters, fields, fieldsmap, field
 | clusters | <code>Array</code>| A list of known configured Arkime clusters (if in Multi Viewer mode) |
 | fields | <code>Array</code>| Available database field objects pertaining to sessions |
 | fieldsmap | <code>Array</code>| Available database field objects pertaining to sessions |
-| fieldshistory | <code>Object</code>| The user's field history for the search expression input |
+| fieldhistory | <code>Object</code>| The user's field history for the search expression input |
 
 <a name="/buildquery"></a>
 
@@ -1300,7 +1300,7 @@ Fetches a list of detailed stats for different fields pertaining to a node to po
 | name | <code>string</code> |  | The name of the field to get the detailed stats for. |
 | start | <code>number</code> |  | The start time of data to return. Format is seconds since Unix EPOCH. |
 | stop | <code>number</code> |  | The stop time of data to return. Format is seconds since Unix EPOCH. |
-| step | <code>number</code> |  | The context step of the cubism graph in milliseconds. |
+| step | <code>number</code> |  | The context step of the cubism graph in seconds. |
 | interval | <code>number</code> | <code>60</code> | The time interval to search for. |
 | size | <code>number</code> | <code>1440</code> | The size of the cubism graph. Defaults to 1440. |
 
@@ -1438,7 +1438,7 @@ Shrinks an OpenSearch/Elasticsearch index (admin only).
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether the close shrink operation was successful. |
+| success | <code>boolean</code>| Whether the shrink operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/estasks"></a>
@@ -1689,13 +1689,13 @@ Include OpenSearch/Elasticsearch node by ip or name (admin only).
 
 POST - /api/esshards/:index/:shard/delete
 
-Delete OpenSearch/Elasticsearch (admin only).
+Deletes an OpenSearch/Elasticsearch shard (admin only).
 
 **Returns**:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | <code>boolean</code>| Whether include node operation was successful. |
+| success | <code>boolean</code>| Whether the delete shard operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
 
 <a name="/esrecovery"></a>
@@ -1814,7 +1814,7 @@ Valid layouts are: sessionstable, sessionsinfofields, spiview
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| layout | <code>object</code>| The new layout configuration. |
+| name | <code>string</code>| The name of the new layout. |
 
 <a name="/user/layouts/_type"></a>
 
@@ -1935,7 +1935,6 @@ Creates an Arkime view.
 | --- | --- | --- |
 | success | <code>boolean</code>| Whether the create view operation was successful. |
 | text | <code>string</code>| The success/error message to (optionally) display to the user. |
-| viewName | <code>string</code>| The name of the new view. |
 | view | [<code>ArkimeView</code>](#ArkimeView)| The new view data. |
 
 <a name="/view/_id"></a>
@@ -2056,7 +2055,7 @@ A packet search job that allows users to search within session packets for text.
 | matchedSessions | <code>number</code> | How many sessions contain packets that match the search text. |
 | searchedSessions | <code>number</code> | How many sessions have had their packets searched. |
 | totalSessions | <code>number</code> | The number of sessions to search. |
-| lastPacketTime | <code>number</code> | The date of the first packet of the last searched session. Used to query for the next chunk of sessions to search. Format is seconds since Unix EPOCH. |
+| lastPacketTime | <code>number</code> | The date of the last packet of the last searched session. Used to query for the next chunk of sessions to search. Format is milliseconds since Unix EPOCH. |
 | created | <code>number</code> | The time that the hunt was created. Format is seconds since Unix EPOCH. |
 | lastUpdated | <code>number</code> | The time that the hunt was last updated in the DB. Used to only update every 2 seconds. Format is seconds since Unix EPOCH. |
 | started | <code>number</code> | The time that the hunt was started (put into running state). Format is seconds since Unix EPOCH. |

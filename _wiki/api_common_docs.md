@@ -249,7 +249,7 @@ Updates whether a user has a certain role (admin & roleAssigners only).
 POST - /api/user/password
 
 Update user password.
-NOTE: currentPassword is not required so that a usersAdmin can update anyone user's password.
+NOTE: currentPassword is not required so that a usersAdmin can update any user's password.
 
 **Returns**:
 
@@ -322,26 +322,6 @@ Regular users must provide a valid TOTP code to disable their own.
 | success | <code>boolean</code>| Whether the disable operation was successful. |
 | text | <code>string</code>| The success/error message to display to the user. |
 
-<a name="getLocales"></a>
-
-## getLocales(req, res) (function)
-
-Handler for loading and serving locale files
-
-
-**Parameters**:
-
-| Param | Type | Description |
-| --- | --- | --- |
-| req | <code>Object</code> | Express request object |
-| res | <code>Object</code> | Express response object |
-
-<a name="buildSyslogMessage"></a>
-
-## buildSyslogMessage() (function)
-
-Build an RFC 5424 syslog message
-
 <a name="Notifier"></a>
 
 ## Notifier Type
@@ -355,8 +335,8 @@ A service that can be sent a notification.
 | name | <code>string</code> | The human readable name of the notifier. Must be unique. |
 | type | <code>string</code> | The type of notifier (e.g. email, slack, twilio). |
 | fields | <code>array</code> | The list of fields that need to be configured to use the notifier. |
-| created | <code>number</code> | The time the notifier was created. Format is seconds since Unix EPOCH. |
-| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since Unix EPOCH. |
+| created | <code>number</code> | The time the notifier was created. Format is seconds since the Unix epoch. |
+| updated | <code>number</code> | The time the notifier was last updated. Format is seconds since the Unix epoch. |
 | user | <code>string</code> | The ID of the user that created the notifier. |
 | users | <code>Array</code> | The list of userIds who have access to use this notifier. |
 | roles | <code>Array</code> | The list of roles who have access to use this notifier. |
@@ -378,7 +358,8 @@ parliamentUser - has access to Parliament (can view and interact with Parliament
 superAdmin - has access to all the applications and can configure anything<br>
 usersAdmin - has access to configure users<br>
 wiseAdmin - has administrative access to WISE (can configure and update WISE)<br>
-wiseUser - has access to WISE
+wiseUser - has access to WISE<br>
+dbAdmin - has access to perform database administration tasks
 
 <a name="ArkimeUser"></a>
 

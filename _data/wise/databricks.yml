@@ -18,6 +18,10 @@ settings:
     value: REQUIRED
     text: The Databricks hostname (usually something like *******.databricks.com)
 
+  - key: port
+    value: EMPTY
+    text: The Databricks port, defaults to 443
+
   - key: token
     value: REQUIRED
     text: The Databricks token (usually starts with "dapi")

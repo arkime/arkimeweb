@@ -13,8 +13,8 @@ permalink: "/allapis"
 {: .alert.alert-info }
 
 ### [Common APIs](commonapi){:.no-decoration}
-### [Viewer v3-5 APIs](apiv3){:.no-decoration}
-### [Viewer v0-2 APIs](api){:.no-decoration}
+### [Viewer v3-v6 APIs](apiv3){:.no-decoration}
+### [Viewer v0-v2 APIs](api){:.no-decoration}
 ### [WISE APIs](wiseapi){:.no-decoration}
 ### [Cont3xt APIs](cont3xtapi){:.no-decoration}
 

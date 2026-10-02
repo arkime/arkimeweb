@@ -112,7 +112,7 @@ List out all the integrations. Integrations without any itypes are skipped.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| integrations | <code>Array.&lt;Integrations&gt;</code>| A map of integrations that the logged in user has configured |
+| integrations | <code>Object.&lt;string, Integration&gt;</code>| A map of integrations that the logged in user has configured |
 | success | <code>boolean</code>| True if the request was successful, false otherwise |
 
 <a name="/integration/search"></a>
@@ -139,7 +139,7 @@ Fetches integration data
 
 | Name | Type | Description |
 | --- | --- | --- |
-| results | [<code>Array.&lt;IntegrationChunk&gt;</code>](#IntegrationChunk)| An array data chunks with the data |
+| results | [<code>Array.&lt;IntegrationChunk&gt;</code>](#IntegrationChunk)| An array of data chunks with the data |
 
 <a name="/integration/_itype/_integration/search"></a>
 
@@ -565,7 +565,7 @@ Integrations are the configured data sources for Cont3xt.
 | Param | Type | Description |
 | --- | --- | --- |
 | cachePolicy | <code>string</code> | Who can access the cached results of this integration's data ("shared") |
-| cacheTimeout | <code>number</code> | How long results will be cached, -1 not cached |
+| cacheTimeout | <code>number</code> \| <code>string</code> | How long results will be cached, as a time string (e.g. '1h', '1w') or a number of seconds, -1 not cached |
 | doable | <code>boolean</code> | Whether the user has access to execute this integration |
 | icon | <code>string</code> | The relative url to the integrations icon |
 | order | <code>number</code> | The order in which this integration displays in the UI |
@@ -605,7 +605,7 @@ Register an integration implementation
 | --- | --- | --- | --- |
 | integration.name | <code>string</code> |  | The name of the integration |
 | integration.itypes | <code>object</code> |  | An object of itypes to functions to call |
-| integration.cacheable | <code>boolean</code> | <code>true</code> | Should results be cache |
+| integration.cacheable | <code>boolean</code> | <code>true</code> | Should results be cached |
 | integration.noStats | <code>boolean</code> | <code>false</code> | Should we not save stats |
 | integration.order | <code>number</code> | <code>10000</code> | What order should this integration be shown |
 
@@ -634,7 +634,7 @@ The classification of the data chunk
 
 Integration Data Chunk object
 
-An chunk of data returned from searching integrations
+A chunk of data returned from searching integrations
 
 
 **Parameters**:
@@ -733,7 +733,7 @@ Link Groups are used to list links to external sources.
 | _id | <code>string</code> | The id of the link group |
 | name | <code>string</code> | The name of the link group |
 | creator | <code>string</code> | The creator of the link group |
-| links | <code>Array.&lt;Links&gt;</code> | The array of links in this link group |
+| links | [<code>Array.&lt;Link&gt;</code>](#Link) | The array of links in this link group |
 | editRoles | <code>array</code> | The Arkime roles that can edit this link group |
 | viewRoles | <code>array</code> | The Arkime roles that can view this link group |
 | _editable | <code>boolean</code> | Whether the logged in user is allowed to edit this link group |
