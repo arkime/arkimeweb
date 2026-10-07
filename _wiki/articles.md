@@ -16,10 +16,13 @@ copyLink: True
 ### Arkimeet 2026
 {: .subsection }
 
-* [Keynote](/assets/arkimeet-2026.pptx)
-* [Arkime 7 Preview](/assets/arkimeet-2026-arkime7.pptx)
+* [Keynote](/assets/arkimeet-2026.pptx) - Andy Wick & Elyse Rinne
+* [Arkime 7 Preview](/assets/arkimeet-2026-arkime7.pptx) - Andy Wick & Elyse Rinne
 * [What Broke: On Prem Elasticsearch to AWS Managed OpenSearch](/assets/arkimeet-2026-what-broke.pptx) - Elyse Rinne
 * [Hunting APTs at Domain Zero](/assets/arkimeet-2026-Hunting_APTs_at_Domain_Zero.pdf) - Shane Strack
+* [Cont3xt is the Context](/assets/arkimeet-2026-Cont3xt-is-the-context.pdf) - Liam Salusky
+* [Lightning talk on Arkime at home](/udr7) - Andy Wick
+* [Lightning talk on Arkime K8s Operator](https://github.com/bwagner5/arkime-k8s-operator) - Brandon Wagner
 
 ## 2025
 {: .subsection-header }
