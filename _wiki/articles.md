@@ -10,8 +10,19 @@ copyLink: True
 # Articles and Presentations About Arkime [Arkime YouTube<span class="fa fa-youtube-play ms-2 me-1"></span>](https://www.youtube.com/channel/UCCtFDN7jSW_Np6i0Z_B6t8Q/videos){: .no-decoration.pull-right.primary-theme-text }
 {: .section-header.mt-1 }
 
-## 2025
+## 2026
 {: .subsection-header.mt-0 }
+
+### Arkimeet 2026
+{: .subsection }
+
+* [Keynote](/assets/arkimeet-2026.pptx)
+* [Arkime 7 Preview](/assets/arkimeet-2026-arkime7.pptx)
+* [What Broke: On Prem Elasticsearch to AWS Managed OpenSearch](/assets/arkimeet-2026-what-broke.pptx) - Elyse Rinne
+* [Hunting APTs at Domain Zero](/assets/arkimeet-2026-Hunting_APTs_at_Domain_Zero.pdf) - Shane Strack
+
+## 2025
+{: .subsection-header }
 * [Arkime on Kubernetes](https://youtu.be/JDfNFf79-9k)
 
 ## 2024

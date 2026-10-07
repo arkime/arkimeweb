@@ -77,6 +77,7 @@ redirect_from:
               <a class="no-decoration" href="https://meet.google.com/eor-swdw-gqs">Google Meet</a>.
             </p>
             <div class="lead mt-4">
+              <div class="alert alert-warning d-none" id="meetup-cancelled"></div>
               <ul class="list-group" id="meetup-list">
                 <li class="list-group-item">
                   See you on the first and third Wednesdays of each month at 2pm US/Eastern.
@@ -107,6 +108,11 @@ redirect_from:
     (function () {
       var MEET_URL = 'https://meet.google.com/eor-swdw-gqs';
       var NUM_SESSIONS = 4;
+      // Sessions to cancel, as YYYY-MM-DD in US/Eastern. A cancelled date still
+      // shows in the list, marked cancelled, and drops off once it has passed.
+      var CANCELLED = [
+        '2026-10-07'
+      ];
       var WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -140,7 +146,11 @@ redirect_from:
             var day = nthWednesday(year, month, nth);
             var key = year * 10000 + (month + 1) * 100 + day;
             if (key >= today) {
-              sessions.push(new Date(Date.UTC(year, month, day)));
+              var iso = year + '-' + ('0' + (month + 1)).slice(-2) + '-' + ('0' + day).slice(-2);
+              sessions.push({
+                date: new Date(Date.UTC(year, month, day)),
+                cancelled: CANCELLED.indexOf(iso) !== -1
+              });
             }
           });
           month += 1;
@@ -153,38 +163,67 @@ redirect_from:
         var list = document.getElementById('meetup-list');
         if (!list) { return; }
         list.innerHTML = '';
-        nextSessions(NUM_SESSIONS).forEach(function (date, i) {
+        var sessions = nextSessions(NUM_SESSIONS);
+        var nextIndex = sessions.findIndex(function (s) { return !s.cancelled; });
+        var cancelledLabels = [];
+
+        sessions.forEach(function (session, i) {
+          var date = session.date;
           var label = WEEKDAYS[date.getUTCDay()] + ' ' + MONTHS[date.getUTCMonth()] + ' ' +
             date.getUTCDate() + ', ' + date.getUTCFullYear();
-          var isNext = i === 0;
+          var isNext = i === nextIndex;
+          if (session.cancelled) { cancelledLabels.push(label); }
 
           var li = document.createElement('li');
-          li.className = 'list-group-item' + (isNext ? ' list-group-item-primary' : '');
+          li.className = 'list-group-item' +
+            (session.cancelled ? ' list-group-item-secondary' : (isNext ? ' list-group-item-primary' : ''));
 
           var row = document.createElement('div');
           row.className = 'd-flex w-100 justify-content-between align-items-center';
 
           var heading = document.createElement('h5');
           heading.className = 'mb-1';
-          heading.textContent = label;
-          if (isNext) {
-            var badge = document.createElement('span');
-            badge.className = 'badge bg-primary ms-2';
-            badge.textContent = 'Next session';
-            heading.appendChild(badge);
+          if (session.cancelled) {
+            var struck = document.createElement('s');
+            struck.textContent = label;
+            heading.appendChild(struck);
+            var cancelledBadge = document.createElement('span');
+            cancelledBadge.className = 'badge bg-secondary ms-2';
+            cancelledBadge.textContent = 'Cancelled';
+            heading.appendChild(cancelledBadge);
+          } else {
+            heading.textContent = label;
+            if (isNext) {
+              var badge = document.createElement('span');
+              badge.className = 'badge bg-primary ms-2';
+              badge.textContent = 'Next session';
+              heading.appendChild(badge);
+            }
           }
 
-          var join = document.createElement('a');
-          join.className = 'btn btn-sm no-decoration ' + (isNext ? 'btn-primary' : 'btn-outline-primary');
-          join.href = MEET_URL;
-          join.textContent = 'Join';
-
           row.appendChild(heading);
-          row.appendChild(join);
+          if (!session.cancelled) {
+            var join = document.createElement('a');
+            join.className = 'btn btn-sm no-decoration ' + (isNext ? 'btn-primary' : 'btn-outline-primary');
+            join.href = MEET_URL;
+            join.textContent = 'Join';
+            row.appendChild(join);
+          }
           li.appendChild(row);
-          li.appendChild(document.createTextNode('2pm - 3pm US/Eastern'));
+          li.appendChild(document.createTextNode(session.cancelled ? 'No session this time' : '2pm - 3pm US/Eastern'));
           list.appendChild(li);
         });
+
+        var notice = document.getElementById('meetup-cancelled');
+        if (notice && cancelledLabels.length) {
+          var nextLabel = '';
+          if (nextIndex !== -1) {
+            var d = sessions[nextIndex].date;
+            nextLabel = ' See you ' + WEEKDAYS[d.getUTCDay()] + ' ' + MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + '.';
+          }
+          notice.textContent = 'No office hours on ' + cancelledLabels.join(' or ') + '.' + nextLabel;
+          notice.classList.remove('d-none');
+        }
       }
 
       render();
