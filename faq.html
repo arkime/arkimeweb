@@ -1029,8 +1029,7 @@ title: FAQ
       <p>
         This usually comes up with <a href="/settings#auth-oidc">OIDC</a>, when viewer can only reach the identity provider through a proxy.
         Node.js applications (viewer, wise, cont3xt) ignore the standard <code>HTTP_PROXY</code>/<code>HTTPS_PROXY</code> environment variables unless you also set <code>NODE_USE_ENV_PROXY=1</code>.
-        This requires Node.js 22.21.0 or later; older versions silently ignore it.
-        Check the version Arkime is using with <code>/opt/arkime/bin/node --version</code>, and upgrade Arkime if it is too old.
+        This requires Node.js 22.21.0 or later, which Arkime ships starting with 6.0.0; older releases silently ignore it.
         See the Node.js <a href="https://nodejs.org/learn/http/enterprise-network-configuration">enterprise network configuration</a> docs for details.
       </p>
       <p>
