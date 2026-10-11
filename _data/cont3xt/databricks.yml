@@ -25,6 +25,10 @@ settings:
     value: REQUIRED
     text: The Databricks token (usually starts with "dapi")
 
+  - key: insecure
+    value: false
+    text: (Since 6.8.1) If true certificate verification will be disabled for the Databricks connection, useful for self signed certificates
+
   - key: path
     value: REQUIRED
     text: The Databricks path (usually something like /sql/1.0/warehouses/******)
