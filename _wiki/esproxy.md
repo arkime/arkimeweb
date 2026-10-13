@@ -65,11 +65,19 @@ The key for the line should be the nodename of the sensor, and it will be the us
 THE_NODE=pass:THE_PASSWORD;ip:THE_IP
 toronto01=pass:torontorules;ip:10.10.10.10
 singapore01=ip:10.11.11.11
+newyork01=pass:nyrules;ip:10.12.12.12;host:ny01.example.com
 </pre>
 
 In the Toronto `config.ini` you would use <code>elasticsearch=http://toronto01:torontorules@the.esproxyhost:9999</code>.
 In the Singapore `config.ini` you would use <code>elasticsearch=http://singapore01:@the.esproxyhost:9999</code> (notice it does not have a password).
 For both of these the source IP address would be checked, so that another machine couldn't pretend it was toronto01 even if it had the user/password.
+
+Since 6.8.1 a sensor can also set `host`, the hostname capture reports for that node, which is the output of `hostname` unless capture is run with `--host`.
+Viewers use that hostname to decide which nodes are on their machine, so when it is set ES Proxy won't let the sensor report any other hostname.
+If several sensors run on the same machine, set the same `host` on all of them, otherwise the viewer on that machine can't expire their pcap files.
+
+Since 6.8.1 capture can add new fields through ES Proxy, but it can only change the category, friendlyName, help and aliases of an existing field.
+To change anything else, such as the transform of a custom field, use db.pl or OpenSearch/Elasticsearch directly.
 <div class="alert alert-info">
 Note: this user/pass is NOT your OpenSearch/Elasticsearch user pass, this is from capture/viewer to esproxy.
 The user MUST be the nodename of the capture/viewer process since it will be used to limit data.

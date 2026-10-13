@@ -21,6 +21,7 @@ copyLink: True
 * [What Broke: On Prem Elasticsearch to AWS Managed OpenSearch](/assets/arkimeet-2026-what-broke.pptx) - Elyse Rinne
 * [Hunting APTs at Domain Zero](/assets/arkimeet-2026-Hunting_APTs_at_Domain_Zero.pdf) - Shane Strack
 * [Cont3xt is the Context](/assets/arkimeet-2026-Cont3xt-is-the-context.pdf) - Liam Salusky
+* [The Sessions of Theseus](/assets/Arkimeet2026-The-Sessions-of-Theseus.pdf) - Owen McGill
 * [Lightning talk on Arkime at home](/udr7) - Andy Wick
 * [Lightning talk on Arkime K8s Operator](https://github.com/bwagner5/arkime-k8s-operator) - Brandon Wagner
 
