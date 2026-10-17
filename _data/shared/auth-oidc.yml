@@ -14,6 +14,9 @@ before: |
     </ol>
   </p>
   <p>
+    If viewer must go through an HTTP proxy to reach the OIDC provider, see the <a href="/faq#outbound-http-proxy">outbound HTTP proxy FAQ</a>.
+  </p>
+  <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 
