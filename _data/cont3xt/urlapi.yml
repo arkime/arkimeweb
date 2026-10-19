@@ -1,0 +1,59 @@
+name: "URL API Integration"
+before: |
+  (Since 6.8.1) Cont3xt can call a JSON api once for each indicator looked up.
+  Use the CSV or JSON integrations instead if the api can return the whole data set at once.
+
+  Create a <code>[urlapi:NAME]</code> section where NAME is a name that is unique across all integrations
+
+settings:
+  - key: name
+    value: section name
+    text: The friendly name to show the user in the UI
+
+  - key: icon
+    value: icon for integration in UI
+    text: Path to icon to use in UI
+
+  - key: order
+    value: 50000
+    text: The sort order for the integration
+
+  - key: itypes
+    value: REQUIRED
+    text: Comma separated list of itypes this integration supports
+
+  - key: url
+    value: REQUIRED
+    text: "The http(s) url to call. In the url <code>{value}</code> is replaced with the url encoded indicator, <code>{valueBase64}</code> with the base64 encoded indicator (then url encoded, since base64 has / + and =), and <code>{valueBase64Url}</code> with the base64url encoded indicator without padding. A 404 response means no result."
+
+  - key: headers
+    value: EMPTY
+    text: 'Semicolon separated list of headers to send, for example <code>Accept: application/json;X-Org: 123</code>'
+
+  - key: keyHeader
+    value: EMPTY
+    text: If set, each user can set their own api key in the integration settings and it is sent in this header. Results fetched with a user's own key are only cached for that user.
+
+  - key: key
+    value: EMPTY
+    text: The api key sent in the <code>keyHeader</code> header for users who haven't set their own
+
+  - key: resultField
+    value: EMPTY
+    text: If set, this field must be in the JSON response for it to be a result
+
+  - key: timeout
+    value: 30
+    text: Seconds to wait for the api to respond
+
+  - key: maxSize
+    value: 10485760
+    text: Largest response in bytes to accept
+
+  - key: maxRedirects
+    value: 0
+    text: How many redirects to follow
+
+  - key: insecure
+    value: false
+    text: If true certificate verification will be disabled for https calls, useful for self signed certificates
