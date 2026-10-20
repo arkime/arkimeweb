@@ -30,6 +30,7 @@ Check out the [rules gallery](rules) for inspiration, or add your rule file to h
 
 * fields - what fields to check
 * bpf - A bpf expression
+* expression - (Since 7.0.0) A search expression with `&&`, `||`, `!`, wildcards, regex, math and functions, see [Expressions](#expressions)
 
 Sample rule that will drop all tls and quic packets after the first 20 packets
 {: .mb-0 }
@@ -73,7 +74,7 @@ rules:
 ### When
 {: .subsection }
 
-**Possible values for the when field, only available when using a field check:**
+**Possible values for the when field, only available when using a field or expression check:**
 {: .mb-0 }
 
 * sessionSetup     - Check just during the first few packets of a session.
@@ -93,6 +94,7 @@ rules:
 {: .subsection }
 A map of field expressions and values for each field, one value from each field expression must be set.
 Currently not all field expressions are supported, but will be added over time.
+Since 7.0.0 fields rules are compiled onto the same engine as [expressions](#expressions), with the same meaning as before, and they match faster.
 
 The following example would require that the protocols field is set to tls and that host.http was set to one of the 3 values.
 If those two fields are set, then it will add tlsrulestest to the protocols field.
@@ -114,7 +116,7 @@ If those two fields are set, then it will add tlsrulestest to the protocols fiel
 ### String Fields Modifier
 {: .subsection }
 
-While we don't support wildcards in strings fields, we do support 3 different modifiers that allow you to perform some of the same actions.
+While fields rules don't support wildcards or regex in string fields (use an [expression](#expressions) for those), we do support 3 different modifiers that allow you to perform some of the same actions.
 Rules support endsWith, startsWith, or contains modifiers which are placed after the field name separated by a comma.
 So for example you could do the following to get aol.com, google.com, and any sub hostnames of those two domains.
 ```
@@ -173,6 +175,139 @@ To specify a NOT field, use an exclamation mark before the field name.
   ops:
     "tags": "nottcpdnshttp"
 ```
+
+### Expressions
+{: .subsection }
+
+Since Arkime 7.0.0 a rule can use an `expression` instead of `fields` or `bpf`.
+Expressions use a syntax similar to the Sessions search bar, plus math and functions, so a rule can use `&&`, `||`, `!` and parentheses, wildcards, regex and comparisons.
+See the [differences](#differences-from-the-sessions-search-bar) below.
+Expressions are compiled when the rules file loads, and mistakes are reported with the rule name, line and column.
+They work with every `when` except everyPacket, and `fields`, `bpf` and `expression` rules can be mixed in the same file, which still uses `version: 1`.
+{: .mb-0 }
+
+```
+  - name: "Odd TLS"
+    when: "afterClassify"
+    log: true
+    expression: >
+      protocols == tls
+      && port.dst != [443, 8443]
+      && !(ip.dst == [10.0.0.0/8, 192.168.0.0/16])
+    ops:
+      tags: "odd-tls"
+```
+
+**Operators**
+{: .mb-0 }
+
+* `a && b` or `a & b` - and
+* `a || b` or `a | b` - or, `&&` binds tighter than `||`
+* `!a` - not
+* `( )` - grouping
+* `==`, `=` and `!=` - match a field against values
+* `<`, `<=`, `>` and `>=` - compare numbers
+* `+`, `-`, `*`, `/` and `%` - math, put spaces around the operator since field names and values can contain `-`, `*` and `/`
+
+**Values on the right of `==` and `!=`**
+{: .mb-0 }
+
+Form | Example
+-----|--------
+exact | `host.http == www.example.com`, `http.method == "GET"`
+any of a list | `port.dst == [80, 8080, 8000-8100]`
+all of a list | `http.method == ]GET,HEAD[`
+wildcard | `host.http == *.example.com`, `foo*`, `*bar*`, `a?c*`
+regex | `http.uri == /\/admin\/.*\.php/`, matches the whole value, same as the viewer
+range | `port.dst == 1000-2000`
+cidr | `ip.src == 10.0.0.0/8`, `ip.dst == 2001:db8::/32`, `ip.dst == ipv4`
+exists | `http.uri == EXISTS!`, `http.uri != EXISTS!`
+
+A `]` ends a `[...]` list, so put a regex that uses brackets outside of a list, for example `host.http == *.example.ru || host.http == /.*[0-9]{6,}\..*/`.
+A bare word on the right is a value for string fields, same as the viewer; for other types it is a field if it isn't a valid value, so `port.src == port.dst` compares two fields.
+Values for fields that capture keeps in lowercase are lowercased too, so `host.http == WWW.Example.com` works.
+{: .mb-0 }
+
+**Differences from the Sessions search bar**
+{: .mb-0 #differences-from-the-sessions-search-bar }
+
+* Use a specific field, the `ip`, `host` and `port` groups aren't supported, for example use `ip.src` or `host.http`.
+* IPs must be full addresses or cidrs, use `1.2.3.0/24` instead of `1.2.3`, and `ip.dst == 1.2.3.4 && port.dst == 80` instead of `ip.dst == 1.2.3.4:80`.
+* Shortcuts (`$name`) aren't supported.
+* Only fields capture has can be used, fields only the viewer has, such as `starttime` or `ip.protocol`, aren't available.
+* Regex uses PCRE instead of the OpenSearch/Elasticsearch regex syntax, simple patterns work the same.
+* Math, comparing two fields and functions are only in rules.
+
+**How fields are matched**
+{: .mb-0 }
+
+* A field with several values matches if any of the values match, `http.method == GET` is true when one of the methods is GET.
+* `!=` means no value matches, it is the same as `!(a == b)`. A field that isn't set matches `!=` and doesn't match `==`.
+* A comparison or function that needs a field that isn't set is false, so under `!` it is true.
+* `all()` is false when the field has no values.
+
+**Functions**
+{: .mb-0 }
+
+Function | Description
+---------|------------
+`count(field)` | number of values, same as the `.cnt` fields
+`has(field)` | the field has a value
+`len(s)` | string length
+`lower(s)`, `upper(s)` | change case
+`startsWith(s, x)`, `endsWith(s, x)`, `contains(s, x)` | substring tests
+`icontains(s, x)` | case insensitive contains
+`isPrivate(ip)` | 10/8, 172.16/12, 192.168/16, 100.64/10, 127/8, 169.254/16, fc00::/7, fe80::/10 or ::1
+`isMulticast(ip)`, `isV4(ip)`, `isV6(ip)` |
+`min(a, b)`, `max(a, b)`, `abs(a)` | numbers
+`any(field, condition)` | condition is true for some value of the field, `_` is the value
+`all(field, condition)` | condition is true for every value of the field
+`bpf("filter")` | the packet matches a bpf filter, sessionSetup rules only
+
+```
+  - name: "Scripted clients"
+    when: "beforeFinalSave"
+    expression: >
+      count(host.http) > 5
+      || any(http.user-agent, icontains(_, curl) || icontains(_, python))
+    ops:
+      tags: "scripted"
+
+  - name: "Big uploads"
+    when: "beforeFinalSave"
+    expression: "databytes.src > 10 * databytes.dst && databytes.src >= 100000000"
+    ops:
+      tags: "big-upload"
+```
+
+**fieldSet expressions**
+{: .mb-0 }
+
+A fieldSet expression is checked each time a field it uses without a `!` gets a new value, so the order fields are set in doesn't matter.
+Only fields set while capture parses can trigger the check: any field that is saved in the session, `ip.src`, `ip.dst`, `port.src`, `port.dst`, `cert.alt` and the `dns.*` and `host.dns.*` fields.
+A fieldSet expression with nothing to trigger on, such as only negations or only fields like `packets.src`, fails to load; use a stage like beforeFinalSave for those.
+Matches directly on a field, such as `host.http == [a, *.b]`, only check the rule when one of those values is set.
+
+```
+  - name: "Truncate external encrypted"
+    when: "fieldSet"
+    expression: "protocols == [tls, quic, ssh] && !isPrivate(ip.dst)"
+    ops:
+      _maxPacketsToSave: 20
+```
+
+**Debugging and limits**
+{: .mb-0 }
+
+* With `debug=2` capture logs each expression rule's parsed form, its optimized form, the bytecode and, for fieldSet rules, what triggers it.
+* Capture logs a warning for an expression that is always true or always false.
+* Parentheses, `!` and `-` can be nested 256 deep, and `any()`/`all()` 6 deep.
+* Lists can be large, 50,000 values load in well under a second.
+
+**Plugin functions**
+{: .mb-0 }
+
+Capture plugins can add their own functions with `arkime_rulesv2_register_function()`, see [capture/RULES.md](https://github.com/arkime/arkime/blob/main/capture/RULES.md) for the details.
 
 ### Ops
 {: .subsection }
@@ -256,6 +391,8 @@ Think of it as doing a `min(current value, 200)` or `min(20, 200)` which would b
 {: .subsection }
 
 Since 3.0.0 you can log when a rule is matched using the optional log element.
+Since 7.0.0 the log lists each condition that matched and the value it matched, for example `Odd TLS - 10.0.0.1:52925 => 10.0.2.9:8000 - port.dst != [443, 8443], !(ip.dst == [10.0.0.0/8, 192.168.0.0/16]), protocols == tls (tls)`.
+Fields rules log `field (value)` for each field that matched, before 7.0.0 they logged `field: value`.
 {: .mb-0 }
 
 ```
@@ -273,6 +410,7 @@ Since 3.0.0 you can log when a rule is matched using the optional log element.
 {: .subsection }
 
 Capture rules supports some special fields that aren't actually written to OpenSearch/Elasticsearch.
+They can be used in fields and expression rules.
 
 Field | Description
 ------|------------
@@ -285,6 +423,7 @@ tcp.synSet | (since 5.6.0) For the session and all linked session if a syn/syn-a
 
 Starting with 5.6.0 rules values can come from the config file or environment variables.
 Use the new "${varname}" syntax will allow you to have either the config file value of `varname=value` or the environment variable value of `ARKIME_varname=value`.
+A whole expression can come from the config file the same way, `expression: "${myRuleExpression}"`.
 {: .mb-0 }
 
 For example:
