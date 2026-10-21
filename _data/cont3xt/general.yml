@@ -51,7 +51,7 @@ settings:
 
   - key: searchTimeout
     value: 2m
-    text: How long a search waits for integrations before finishing without them, so it is still saved in the history (since 6.8.1)
+    text: How long a search waits for integrations before finishing without them, so it is still saved in the history (since 6.9.0)
 
   - key: expireHistoryDays
     value: 180

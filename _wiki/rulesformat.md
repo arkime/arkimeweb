@@ -325,7 +325,7 @@ The operations are a map of the fields to set in the session. There are some spe
 * `_dontCheckYara: 1`               - (Since 1.6) don't check yara for remaining packets of session, either 0 or 1
 * `_closeNow: 1`                    - (Since 5.4.1) mark the session to be closed now
 * `_flipSrcDst: 1`                  - (Since 5.6.0) flip the src and dst ip/port for the session
-* `_maxPackets: 500`                - (Since 6.8.1) override the maxPackets setting for the session, the session is saved and a new one started every 500 packets, max value is 65535
+* `_maxPackets: 500`                - (Since 6.9.0) override the maxPackets setting for the session, the session is saved and a new one started every 500 packets, max value is 65535
 
 
 **The following example would not save syn scans, it requires all 3 fields to be set**

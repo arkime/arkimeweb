@@ -1,6 +1,6 @@
 name: "URL API Integration"
 before: |
-  (Since 6.8.1) Cont3xt can call a JSON api once for each indicator looked up.
+  (Since 6.9.0) Cont3xt can call a JSON api once for each indicator looked up.
   Use the CSV or JSON integrations instead if the api can return the whole data set at once.
 
   Create a <code>[urlapi:NAME]</code> section where NAME is a name that is unique across all integrations

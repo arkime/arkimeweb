@@ -25,7 +25,7 @@ settings:
 
   - key: insecure
     value: false
-    text: (Since 6.8.1) If true certificate verification will be disabled for https calls, useful for self signed certificates
+    text: (Since 6.9.0) If true certificate verification will be disabled for https calls, useful for self signed certificates
 
   - key: resultField
     value: REQUIRED
