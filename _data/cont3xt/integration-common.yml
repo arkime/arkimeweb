@@ -25,3 +25,10 @@ settings:
   - key: userAgent
     value: "[cont3xt].userAgent"
     text: (Since 5.0) The http userAgent to use for any requests this integration makes
+
+after: |
+  <p>
+    (Since 7.0) The integrations that call a configured url, arkime, csv, elasticsearch, json, misp and urlapi,
+    also take <code>insecure</code>, <code>caTrustFile</code>, <code>clientKey</code>, <code>clientCert</code> and <code>clientKeyPass</code>
+    settings in their section to verify a server with a private CA or present a client certificate (mTLS). See each integration below.
+  </p>

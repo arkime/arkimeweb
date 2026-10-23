@@ -17,11 +17,13 @@ settings:
     value: EMPTY
     text: |
       The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
+      (Since 7.0) Used for both the cont3xt data connection and the users connection, before 7.0 only the users connection.
 
   - key: esClientKey
     value: EMPTY
     text: |
       The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
+      (Since 7.0) Used for both the cont3xt data connection and the users connection, before 7.0 only the users connection.
 
   - key: esClientKeyPass
     value: EMPTY

@@ -25,7 +25,23 @@ settings:
 
   - key: insecure
     value: false
-    text: (Since 6.9.0) If true certificate verification will be disabled for https calls, useful for self signed certificates
+    text: (Since 6.9.0) If true certificate verification will be disabled for https calls to <code>url</code>, useful for self signed certificates. (Since 7.0) The <code>--insecure</code> command line option also disables it, and an https url on localhost skips verification unless this is set to false, like the OpenSearch/Elasticsearch connections.
+
+  - key: caTrustFile
+    value: EMPTY
+    text: (Since 7.0) File with PEM encoded CA certificates to trust for https calls to <code>url</code>, which replaces the system CAs. It does not fall back to the <code>[wiseService]</code> caTrustFile.
+
+  - key: clientKey
+    value: EMPTY
+    text: (Since 7.0) PEM encoded private key file presented to the server for client certificate (mTLS) authentication. Must also set clientCert.
+
+  - key: clientCert
+    value: EMPTY
+    text: (Since 7.0) PEM encoded certificate file presented to the server for client certificate (mTLS) authentication. Must also set clientKey.
+
+  - key: clientKeyPass
+    value: EMPTY
+    text: (Since 7.0) The passphrase for clientKey, if it has one.
 
   - key: resultField
     value: REQUIRED

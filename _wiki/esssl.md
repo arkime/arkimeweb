@@ -86,6 +86,7 @@ searchguard.ssl.http.pemtrustedcas_filepath: es.cert
 {: .subsection }
 
 * Arkime supports using client auth with Elasticsearch SSL.  You will need to set the <a href="/settings#esclientkey">esClientKey</a> and <a href="/settings#esclientcert">esClientCert</a> settings.
+* Since 7.0 cont3xt and WISE use the same esClientKey/esClientCert/esClientKeyPass settings for their OpenSearch/Elasticsearch connections, and their integrations and sources that call a url take per section <a href="/settings#cont3xt-integration-common">clientKey/clientCert/caTrustFile</a> settings for other servers that require client certificates.
 * When using curl you may need to add the ```--tlsv1.1``` option on older machines
 * On any host where db.pl runs you'll need to install the ```perl-Crypt-SSLeay``` and/or ```perl-LWP-Protocol-https``` packages depending on OS
 * **You should still use iptables!**

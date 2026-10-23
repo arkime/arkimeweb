@@ -146,6 +146,7 @@ settings:
     value: EMPTY
     text: |
       Optional file with PEM encoded certificates to use when validating certs. Make sure to read this <a href="/faq#self-signed-ssl-tls-certificates">FAQ entry.</a>
+      Since 7.0 a file with no PEM certificates in it is a startup error instead of being silently ignored.
 
   - key: userAuthIps
     value: "For header auth 127.0.0.0/8 and ::1, otherwise all ips"

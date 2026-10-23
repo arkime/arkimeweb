@@ -39,12 +39,12 @@ settings:
   - key: esClientCert
     value: EMPTY
     text: |
-      The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey.
+      The public key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientKey, since 7.0 setting only one of the two is a startup error.
 
   - key: esClientKey
     value: EMPTY
     text: |
-      The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert.
+      The private key file to use for tls client authentication with OpenSearch/Elasticsearch.  Must also set esClientCert, since 7.0 setting only one of the two is a startup error.
 
   - key: esClientKeyPass
     value: EMPTY

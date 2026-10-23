@@ -25,6 +25,18 @@ settings:
     value: EMPTY
     text: The HTTP header containing the authenticated username (for reverse proxy auth)
 
+  - key: esClientCert
+    value: EMPTY
+    text: (Since 7.0) The public key file to use for tls client authentication with the users OpenSearch/Elasticsearch. Must also set esClientKey.
+
+  - key: esClientKey
+    value: EMPTY
+    text: (Since 7.0) The private key file to use for tls client authentication with the users OpenSearch/Elasticsearch. Must also set esClientCert.
+
+  - key: esClientKeyPass
+    value: EMPTY
+    text: (Since 7.0) The password for the esClientKey setting.
+
   - key: updateTime
     value: 0
     text: A timestamp automatically updated when the WISE config is saved via the WISE UI; other wiseService instances poll this value and restart when it increases. You should not usually set this by hand.

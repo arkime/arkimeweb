@@ -31,6 +31,26 @@ settings:
     value: -1
     text: How often in minutes to refresh the file, or -1 (default) to never refresh it
 
+  - key: insecure
+    value: false
+    text: (Since 7.0) If true certificate verification will be disabled for https calls to <code>url</code>, useful for self signed certificates. (Since 7.0) The <code>--insecure</code> command line option also disables it, and an https url on localhost skips verification unless this is set to false, like the OpenSearch/Elasticsearch connections.
+
+  - key: caTrustFile
+    value: EMPTY
+    text: (Since 7.0) File with PEM encoded CA certificates to trust for https calls to <code>url</code>, which replaces the system CAs. It does not fall back to the <code>[wiseService]</code> caTrustFile.
+
+  - key: clientKey
+    value: EMPTY
+    text: (Since 7.0) PEM encoded private key file presented to the server for client certificate (mTLS) authentication. Must also set clientCert.
+
+  - key: clientCert
+    value: EMPTY
+    text: (Since 7.0) PEM encoded certificate file presented to the server for client certificate (mTLS) authentication. Must also set clientKey.
+
+  - key: clientKeyPass
+    value: EMPTY
+    text: (Since 7.0) The passphrase for clientKey, if it has one.
+
 after: |
   <p>
     The <a href="/settings#wise-file">File</a> source examples may also be helpful, as the OpenSearch/Elasticsearch File source supports the same formats. The main difference is specifying an OpenSearch/Elasticsearch URL, arrayPath, and keyPath.

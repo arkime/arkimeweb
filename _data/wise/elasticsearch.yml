@@ -36,6 +36,26 @@ settings:
     value: REQUIRED
     text: The field in each document that is being queried
 
+  - key: insecure
+    value: false
+    text: (Since 7.0) If true certificate verification will be disabled for https calls to <code>elasticsearch</code>, useful for self signed certificates. (Since 7.0) The <code>--insecure</code> command line option also disables it, and an https url on localhost skips verification unless this is set to false, like the OpenSearch/Elasticsearch connections.
+
+  - key: caTrustFile
+    value: EMPTY
+    text: (Since 7.0) File with PEM encoded CA certificates to trust for https calls to <code>elasticsearch</code>, which replaces the system CAs. It does not fall back to the <code>[wiseService]</code> caTrustFile.
+
+  - key: clientKey
+    value: EMPTY
+    text: (Since 7.0) PEM encoded private key file presented to the server for client certificate (mTLS) authentication. Must also set clientCert.
+
+  - key: clientCert
+    value: EMPTY
+    text: (Since 7.0) PEM encoded certificate file presented to the server for client certificate (mTLS) authentication. Must also set clientKey.
+
+  - key: clientKeyPass
+    value: EMPTY
+    text: (Since 7.0) The passphrase for clientKey, if it has one.
+
 after: |
   <p>
     Example config that will query OpenSearch/Elasticsearch for an ip that is in the 10.172/16 space, in the index TheIndex-*, only looking at records that have a @timestamp field newer than 86400000ms. It looks at the <code>cef_ext.src</code> field and only looks at records that have a cef_ext.suser field set. Once it has a result it sets the user field in arkime to whatever the <code>cef_ext.suser</code> field is in the document.
