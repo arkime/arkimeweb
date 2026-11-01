@@ -216,12 +216,21 @@ settings:
         rel="nofollow">Download</a>
 
   - key: rulesFiles
-    value: EMPTY
+    value: "/opt/arkime/etc;/opt/arkime/share"
     text: |
-      A semicolon separated list of files that contain Arkime rules.
+      Semicolon separated list of files and directories that contain Arkime rules.
       These rules match against fields set and can set other fields or meta data about the sessions.
       See <a class="no-decoration" href="/rulesformat"> RulesFormat</a> for the format of the files.
-      rules files are auto reloaded, so no need to restart capture.
+      <br>
+      (Since 7.0.0) An entry can be a directory, every <code>*.rules.yml</code> and <code>*.rules.yaml</code>
+      file in it is loaded, sorted by name, ignoring hidden files and sub directories. The default is
+      <code>/opt/arkime/etc;/opt/arkime/share</code>. Arkime installs <code>default.rules.yml</code> in
+      <code>/opt/arkime/share</code> and replaces it on every upgrade, so do not edit it. Put your own rules
+      in a file in <code>/opt/arkime/etc</code>, for example <code>/opt/arkime/etc/local.rules.yml</code>.
+      <code>default.*</code> files always load first and a rule in a later file with the same
+      <code>name:</code> replaces it, or with just the name and <code>disabled: true</code> turns it off. Setting <code>rulesFiles=</code> to nothing turns rules off.
+      <br>
+      Rules files are auto reloaded when a file is edited, added or removed, so no need to restart capture.
 
   - key: sctpTimeout
     value: "60"

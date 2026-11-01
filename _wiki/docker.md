@@ -76,6 +76,7 @@ For comprehensive configuration, consider combining these methods:
 3. Setup directories
 * You'll need directories for your pcap and optionally configuration files to be mounted into the container.
 * The examples use `/opt/arkime/raw` and `/opt/arkime/etc`
+* Since Arkime 7, the files Arkime ships and replaces on upgrade (default rules, featherprint rules and dashboards) are in `/opt/arkime/share`, so mounting over `/opt/arkime/etc` doesn't hide them. Put your own rules and dashboards in the mounted etc directory.
 * We don't recommend using `/home` based directories since you may run into permission issues.
 4. Create configuration files - You can use the default configuration or create your own at `/opt/arkime/etc/config.ini`. See [Arkime Settings](/settings) for details.
 5. Start your Arkime containers.
@@ -111,7 +112,7 @@ pcapDir=/opt/arkime/raw
 packetThreads=1
 rirFile=/opt/arkime/etc/ipv4-address-space.csv
 ouiFile=/opt/arkime/etc/oui.txt
-#rulesFiles=/opt/arkime/etc/default.rules
+#rulesFiles=/opt/arkime/etc;/opt/arkime/share
 
 ### User/Group to drop privileges to, pcapDir must be writable by this user or group
 dropUser=nobody

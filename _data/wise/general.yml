@@ -23,7 +23,7 @@ settings:
 
   - key: userNameHeader
     value: EMPTY
-    text: The HTTP header containing the authenticated username (for reverse proxy auth)
+    text: The HTTP header containing the authenticated username (for reverse proxy auth). (Since 7.0) Requires authMode=header, otherwise digest auth is used.
 
   - key: esClientCert
     value: EMPTY

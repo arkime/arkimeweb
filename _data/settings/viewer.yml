@@ -306,3 +306,25 @@ settings:
       <pre><code>tsharkWrapper=systemd-run;--quiet;--scope;--collect;-p;PrivateNetwork=yes;-p;NoNewPrivileges=yes;-p;MemoryMax=1G;--</code></pre>
       Note that each token is a separate argv entry, so no token may contain a space.
 
+  - key: featherprintRulesFiles
+    value: "/opt/arkime/etc;/opt/arkime/share"
+    text: |
+      (Since 7.0.0) Semicolon separated list of files and directories holding the Featherprint device
+      classifier rules. Every <code>*.featherprint.yml</code> and <code>*.featherprint.yaml</code> file in a
+      directory is loaded, sorted by name, ignoring hidden files and sub directories. Arkime installs
+      <code>default.featherprint.yml</code> in <code>/opt/arkime/share</code> and replaces it on every upgrade,
+      so do not edit it. Put your own rules in a file in <code>/opt/arkime/etc</code>, for example
+      <code>/opt/arkime/etc/local.featherprint.yml</code>: classify rules are first match wins and every
+      other file is consulted before <code>default.*</code>, so a rule in your file for a device wins over
+      the default one, and a <code>macSourceRank</code> entry in your file replaces the default one.
+      Setting <code>featherprintRulesFiles=</code> to nothing disables the classifier.
+
+  - key: dashboardsDir
+    value: "/opt/arkime/etc/dashboards;/opt/arkime/share/dashboards;/opt/arkime/plugins"
+    text: |
+      (Since 7.0.0) Semicolon separated list of directories the viewer loads system dashboards
+      (<code>*.dashboard.json</code> files) from. Arkime installs its own in
+      <code>/opt/arkime/share/dashboards</code> and replaces them on every upgrade, so do not edit them, and
+      a plugin can ship one in <code>/opt/arkime/plugins</code>. To add a dashboard, or override one of
+      Arkime's, export it from the dashboards menu and drop the file in <code>/opt/arkime/etc/dashboards</code>.
+      The first directory with a file name wins, and new or changed files show up without a restart.

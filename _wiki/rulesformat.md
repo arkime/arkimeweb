@@ -11,10 +11,22 @@ copyLink: True
 {: .section-header.mt-1 }
 
 Rules files allow you to specify actions to perform when criteria are met with certain fields or state.
-The rules files are in yaml format and are specified in the config.ini using `rulesFiles=` setting.
-There can be multiple files using a semicolon separated list.
+The rules files are in yaml format and are specified in the config.ini using the `rulesFiles=` setting, a semicolon separated list of files and directories that defaults to `/opt/arkime/etc;/opt/arkime/share`.
+A directory loads every `*.rules.yml` and `*.rules.yaml` file in it, sorted by name.
 Each file can have multiple rules.
-The files will automatically be reloaded when they are changed, you do NOT need to restart capture.
+The files are automatically reloaded when they are edited, added or removed, you do NOT need to restart capture.
+
+Arkime installs `default.rules.yml` in `/opt/arkime/share` and replaces it on every upgrade, so do not edit it.
+Put your own rules in a file in `/opt/arkime/etc`, for example `/opt/arkime/etc/local.rules.yml`.
+`default.*` files always load first, and a rule in a later file with the same `name:` replaces it.
+A rule with just the name and `disabled: true` turns the earlier one off:
+
+```
+version: 1
+rules:
+  - name: "some default rule"
+    disabled: true
+```
 
 Check out the [rules gallery](rules) for inspiration, or add your rule file to help out others!
 
