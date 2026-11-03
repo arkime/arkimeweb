@@ -328,3 +328,12 @@ settings:
       a plugin can ship one in <code>/opt/arkime/plugins</code>. To add a dashboard, or override one of
       Arkime's, export it from the dashboards menu and drop the file in <code>/opt/arkime/etc/dashboards</code>.
       The first directory with a file name wins, and new or changed files show up without a restart.
+
+  - key: dashboardMaxQueryDays
+    value: 7
+    text: |
+      (Since 7.0.0) The largest time range, in days, a dashboard may search. Floating point, so
+      <code>0.5</code> is 12 hours. Use <code>-1</code> for no limit, which also allows the All time range.
+      A dashboard runs many aggregations on every load and auto refresh, so a wide range can be expensive
+      on a large cluster. When the time range is wider the dashboard shows why and searches nothing until a
+      shorter one is picked. This is only checked by the dashboard page, not by the APIs its widgets call.
