@@ -70,7 +70,7 @@ title: V7!
               <a href="#shark" class="no-decoration">Shark</a>,
               <a href="#featherprint" class="no-decoration">Featherprint</a>,
               <a href="#shareables" class="no-decoration">Shareable Layouts</a>,
-              <a href="#multidb" class="no-decoration">Multiple Databases (Experimental)</a>,
+              <a href="#databases" class="no-decoration">Choose Your Database (Experimental)</a>,
               <a href="#pcapng" class="no-decoration">PCAPNG</a>,
               <a href="#rules" class="no-decoration">Expression Rules</a>,
               <a href="#capture" class="no-decoration">Capture</a>,
@@ -254,15 +254,15 @@ title: V7!
       <hr>
       <div class="row d-flex align-items-start">
         <div class="col-lg-8 col-md-8 lead text-justify">
-          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="multidb">
-            Multiple Databases <span class="badge bg-warning text-dark align-middle fs-5">Experimental</span>
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="databases">
+            Choose Your Database <span class="badge bg-warning text-dark align-middle fs-5">Experimental</span>
             <span class="fa fa-link small copy-link cursor-copy"
               onclick="copyLink(this, 'release-v7')">
             </span>
           </h1>
           <div class="alert alert-warning">
             <span class="fa fa-exclamation-triangle me-1"></span>
-            Multiple database support is <strong>experimental</strong> in Arkime 7, try it out but expect changes, and keep OpenSearch/Elasticsearch for production.
+            Using databases other than OpenSearch/Elasticsearch is <strong>experimental</strong> in Arkime 7, try it out but expect changes, and keep OpenSearch/Elasticsearch for production.
           </div>
           OpenSearch/Elasticsearch is no longer required.
           Arkime 7 splits its data into four databases and each can live where it fits best:
@@ -344,7 +344,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li>The new <a href="settings#protocol-settings">[protocol-settings]</a> section sets the idle, save, closing, packet and stream limits per protocol, eg <code>tcp=idle:600;closing:5</code></li>
             <li>GeoIP from MaxMind GeoLite2/GeoIP2, GeoOpen, ipinfo or db-ip, set with <a href="settings#geoFile">geoFile</a> and <a href="settings#geoASNFile">geoASNFile</a></li>
             <li><a href="settings#rulesFiles">rulesFiles</a> can be directories that are watched for new and removed files, and a <code>default.rules.yml</code> is now installed and kept up to date for you</li>
-            <li>Writes sessions directly to ClickHouse and the cluster data to Postgres, see <a href="#multidb">Multiple Databases</a></li>
+            <li>Writes sessions directly to ClickHouse and the cluster data to Postgres, see <a href="#databases">Choose Your Database</a></li>
             <li>Faster session hash lookups and <a href="settings#dedup">dedup</a>, and session and dedup hashing now use a random key so traffic can't be crafted to overload one packet thread</li>
             <li>A new <code>perf-stats</code> command socket command dumps queue depths, hash usage and outstanding requests for performance debugging</li>
             <li>The <a href="settings#writer-s3">s3 writer</a> and <a href="settings#reader-scheme-s3">s3/sqs readers</a> support EKS IRSA and Pod Identity credentials, so EKS pods no longer need instance metadata access</li>
@@ -388,7 +388,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
           One multi viewer can now search OpenSearch/Elasticsearch and ClickHouse clusters at the same time.
           Each <a href="settings#multiESNodes">multiESNodes</a> entry can set its own <code>sessionsDbUrl</code>, <code>sessionsDbPrefix</code>, <code>dbUrl</code> and <code>dbPrefix</code>,
           and the results from every cluster are merged together in Sessions, SPI View, SPI Graph and the dashboards, no matter where each cluster keeps its sessions.
-          Bring up a ClickHouse cluster next to your existing OpenSearch/Elasticsearch one and your users see both in one place (mixing in ClickHouse is <a href="#multidb">experimental</a>).
+          Bring up a ClickHouse cluster next to your existing OpenSearch/Elasticsearch one and your users see both in one place (mixing in ClickHouse is <a href="#databases">experimental</a>).
           A cluster with both its sessions and cluster databases off OpenSearch/Elasticsearch needs none, so a multi viewer can run with no OpenSearch/Elasticsearch at all.
 <pre class="mt-3"><code>[multi-viewer]
 multiESNodes=https://es1.example.com:9200,name:es1,prefix:arkime;https://es2.example.com:9200,name:ch1,prefix:arkime,sessionsDbUrl:clickhouse://ch.example.com:8123</code></pre>
