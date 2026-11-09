@@ -83,6 +83,13 @@ settings:
           <a href="#elasticsearchBasicAuth">See elasticsearchBasicAuth settings</a>
           for more information on how to encode Basic Auth settings, you MUST use the base64 version with multies.
         </li>
+        <li>
+          (optional since 7.0.0) <code>sessionsDbUrl:</code>, <code>sessionsDbPrefix:</code>, <code>dbUrl:</code> and <code>dbPrefix:</code> elements
+          set where that cluster keeps its sessions and its cluster database, see <a href="#sessionsDbUrl">sessionsDbUrl</a> and <a href="#dbUrl">dbUrl</a>.
+          This lets one multi viewer merge OpenSearch/Elasticsearch and ClickHouse clusters, for example
+          <code>https://es2.example.com:9200,name:ch1,prefix:arkime,sessionsDbUrl:clickhouse://ch.example.com:8123</code>.
+          A cluster with both off OpenSearch/Elasticsearch doesn't use the first part's url.
+        </li>
       </ul>
 
   - key: certFile

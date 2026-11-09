@@ -75,6 +75,8 @@ title: V7!
               <a href="#rules" class="no-decoration">Expression Rules</a>,
               <a href="#capture" class="no-decoration">Capture</a>,
               <a href="#viewer" class="no-decoration">Viewer</a>,
+              <a href="#multiviewer" class="no-decoration">Multi Viewer</a>,
+              <a href="#esproxy" class="no-decoration">esProxy</a>,
               <a href="#wise" class="no-decoration">WISE</a>,
               <a href="#parliament" class="no-decoration">Parliament</a>,
               <a href="#cont3xt" class="no-decoration">Cont3xt</a>,
@@ -271,7 +273,7 @@ title: V7!
             <li><strong>Cont3xt</strong>: OpenSearch/Elasticsearch, Postgres or SQLite, set with cont3xt's <a href="settings#cont3xt-db-dbUrl">dbUrl</a></li>
           </ul>
           Capture writes ClickHouse and Postgres directly, and the viewer, multi viewer, hunts, tagging and the <a href="settings#tagger">tagger</a> plugin all work with no OpenSearch/Elasticsearch at all.
-          Want to try ClickHouse with the sensors you already have? esProxy's <a href="esproxy#tee-section"><code>[tee]</code></a> can copy every session into ClickHouse while your viewers keep reading OpenSearch/Elasticsearch.
+          Want to try ClickHouse with the sensors you already have? <a href="#esproxy">esProxy</a>'s <a href="esproxy#tee-section"><code>[tee]</code></a> can copy every session into ClickHouse while your viewers keep reading OpenSearch/Elasticsearch.
           The new <a href="settings#dbPlugins">dbPlugins</a> setting lets anyone add more, the source includes MongoDB and MySQL plugins in <code>capture/plugins</code>.
           Existing installs change nothing, with none of the new settings everything stays in OpenSearch/Elasticsearch.
 <pre class="mt-3"><code>[default]
@@ -370,11 +372,52 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li>The time controls now live in the search row, and help notes and per page tips replace the welcome message</li>
             <li>New <a href="settings#startPage">Start Page</a> and <a href="settings#sessionDetailTab">Session Detail Tab</a> settings pick where the viewer opens and which session detail tab shows first</li>
             <li>Two-factor setup has its own settings tab, so it works when the password page is disabled</li>
-            <li>Many multi viewer fixes for timelines, top lists, SPI Graph hierarchies and node retention</li>
           </ul>
         </div>
       </div>
 
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="multiviewer">
+            Multi Viewer
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v7')">
+            </span>
+          </h1>
+          One multi viewer can now search OpenSearch/Elasticsearch and ClickHouse clusters at the same time.
+          Each <a href="settings#multiESNodes">multiESNodes</a> entry can set its own <code>sessionsDbUrl</code>, <code>sessionsDbPrefix</code>, <code>dbUrl</code> and <code>dbPrefix</code>,
+          and the results from every cluster are merged together in Sessions, SPI View, SPI Graph and the dashboards, no matter where each cluster keeps its sessions.
+          Bring up a ClickHouse cluster next to your existing OpenSearch/Elasticsearch one and your users see both in one place (mixing in ClickHouse is <a href="#multidb">experimental</a>).
+          A cluster with both its sessions and cluster databases off OpenSearch/Elasticsearch needs none, so a multi viewer can run with no OpenSearch/Elasticsearch at all.
+<pre class="mt-3"><code>[multi-viewer]
+multiESNodes=https://es1.example.com:9200,name:es1,prefix:arkime;https://es2.example.com:9200,name:ch1,prefix:arkime,sessionsDbUrl:clickhouse://ch.example.com:8123</code></pre>
+          The multi viewer also got many fixes: the Sessions timeline now shows every cluster's bytes and packets, top 10/20/50 lists sort by bytes and packets correctly, SPI Graph pie, treemap and sankey hierarchies keep every cluster's inner levels, and Nodes page retention is right when clusters share a node name.
+        </div>
+      </div>
+
+      <hr>
+      <div class="row d-flex align-items-start">
+        <div class="col-lg-8 col-md-8 lead text-justify">
+          <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="esproxy">
+            esProxy
+            <span class="fa fa-link small copy-link cursor-copy"
+              onclick="copyLink(this, 'release-v7')">
+            </span>
+          </h1>
+          esProxy can now write your sessions to OpenSearch/Elasticsearch and ClickHouse at the same time.
+          Set <code>sessionsDbUrl</code> in its <a href="esproxy#tee-section">[tee]</a> section and every session the sensors send through esProxy is also written to ClickHouse (or a <a href="settings#dbPlugins">dbPlugins</a> sessions database), the same way capture writes them there, and hunt updates from sensor viewers are copied too.
+          Your sensors and viewers keep using OpenSearch/Elasticsearch while ClickHouse fills up beside it, so you can try ClickHouse with real traffic, compare the two, and then point a viewer or a <a href="#multiviewer">multi viewer</a> cluster at it.
+          Sessions are batched, and a batch that fails is retried one sensor at a time so one sensor's bad data can't drop everyone else's.
+<pre class="mt-3"><code>[default]
+elasticsearch=https://es.example.com:9200
+
+[tee]
+sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123</code></pre>
+          Create the ClickHouse table first with <code>/opt/arkime/db/ch.pl &lt;url&gt; init</code>.
+          The original <code>[tee]</code> <code>elasticsearch</code> setting still copies everything to a second OpenSearch/Elasticsearch cluster.
+        </div>
+      </div>
       <hr>
       <div class="row d-flex align-items-start">
         <div class="col-lg-8 col-md-8 lead text-justify">
