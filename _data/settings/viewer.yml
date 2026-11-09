@@ -319,6 +319,60 @@ settings:
       the default one, and a <code>macSourceRank</code> entry in your file replaces the default one.
       Setting <code>featherprintRulesFiles=</code> to nothing disables the classifier.
 
+  - key: featherprintMonitorEnabled
+    value: "true"
+    text: |
+      (Since 7.0.0) When true the Featherprint monitor builds device records and alerts for the ranges in
+      <a href="#featherprint-subnet">[featherprint-subnet]</a>. It only runs on the
+      <a href="#cronQueries">cronQueries</a> viewer. When false only on demand lookups from the Featherprint page work.
+
+  - key: featherprintAckRoles
+    value: arkimeAdmin
+    text: |
+      (Since 7.0.0) Comma separated list of roles allowed to acknowledge or unacknowledge Featherprint alerts.
+      The ack state is shared by everyone.
+
+  - key: featherprintNotifier
+    value: EMPTY
+    text: |
+      (Since 7.0.0) The id of a notifier to send Featherprint alerts to, only alerts enabled for the subnet are sent.
+
+  - key: featherprintInterval
+    value: 300
+    text: |
+      (Since 7.0.0) How often, in seconds, the Featherprint monitor checks for new sessions, minimum 30.
+
+  - key: featherprintInitialLookbackDays
+    value: 7
+    text: |
+      (Since 7.0.0) How many days of existing sessions the Featherprint monitor processes the first time it runs,
+      0 for only new sessions or -1 for all data.
+
+  - key: featherprintChunkSec
+    value: "featherprintInterval"
+    text: |
+      (Since 7.0.0) How many seconds of sessions the Featherprint monitor searches at a time.
+
+  - key: featherprintMaxChunksPerTick
+    value: 12
+    text: |
+      (Since 7.0.0) The most chunks the Featherprint monitor searches each interval when catching up.
+
+  - key: featherprintSafetyLag
+    value: "dbFlushTimeout + 80"
+    text: |
+      (Since 7.0.0) How many seconds behind now the Featherprint monitor stays, so sessions still being saved aren't missed.
+
+  - key: featherprintLookupLimit
+    value: 10000
+    text: |
+      (Since 7.0.0) The most sessions Featherprint reads for one lookup or one monitor chunk.
+
+  - key: featherprintHistoryLimit
+    value: 50
+    text: |
+      (Since 7.0.0) The most MAC and IP history entries Featherprint keeps per device.
+
   - key: dashboardsDir
     value: "/opt/arkime/etc/dashboards;/opt/arkime/share/dashboards;/opt/arkime/plugins"
     text: |

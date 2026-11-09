@@ -17,6 +17,13 @@ before: |
     If the section or variable needs a DOT, DASH, COLON, or SLASH character you can use those keywords since environment variables can't have those characters.
     It is not possible to use an environment variable inside the configuration file for partial replacement.
   </p>
+  <h4>Validation</h4>
+  <p>
+    Since Arkime 7.0.0 more settings are checked at startup, wherever they come from, and a bad value refuses to start
+    instead of being silently ignored. Booleans must be <code>true</code> or <code>false</code> (not 0, 1 or False),
+    <a href="#rotateIndex">rotateIndex</a> must be a value capture accepts, <a href="#freeSpaceG">freeSpaceG</a> must be a
+    number or a percentage, and limits, timeouts and ports must be numbers in range.
+  </p>
   <h4>Examples</h4>
   <p>
   To replace this entire configuration file

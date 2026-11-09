@@ -14,6 +14,8 @@ settings:
   - key: demoMode
     value: "false"
     text: |
+      <strong>Removed in 7.0.0:</strong> setting it only logs a warning, roles do not replace it, so put a shared instance
+      behind an external identity provider instead.<br>
       Enables demo mode which disables most Settings, Users, Cron, and History UI/APIs.
       This is what https://demo.arkime.com uses.
       Demo mode applies to the entire application, and not just a single user.

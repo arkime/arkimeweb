@@ -2,16 +2,31 @@ name: Users Database
 
 before: |
   <p>
-    The Arkime applications store all the users in OpenSearch/Elasticsearch.
-    Since you will have multiple Arkime clusters and applications, Arkime allows you to share the database to use.
-    When these settings aren't used Arkime will fall back to using a non-shared Users Database for viewer/capture.
+    The users database holds the users, roles, views, shortcuts, shareables, notifiers and parliament.
+    Since you will have multiple Arkime clusters and applications, Arkime allows you to share one users database between them.
+    When these settings aren't used each app uses its own database, see <a href="#dbUrl">dbUrl</a>.
+  </p>
+  <p>
+    Since 7.0.0 the users database can be OpenSearch/Elasticsearch, Postgres or SQLite, or a <a href="#dbPlugins">dbPlugins</a> scheme.
+    lmdb:// and redis:// users databases were removed in 7.0.0 and there is no migration, use sqlite:// or postgres:// instead.
   </p>
   <p>
     These settings should live in the <code>[cont3xt]</code>, <code>[parliament]</code>, <code>[wiseService]</code> or <code>[default]</code> sections depending on the Arkime application.
   </p>
 
-
 settings:
+  - key: usersDbUrl
+    value: usersUrl, then usersElasticsearch, then <a href="#dbUrl">dbUrl</a>
+    text: |
+      (Since 7.0.0) The shared users database url, an OpenSearch/Elasticsearch, <code>postgres://</code> or <code>sqlite://</code> url.
+      Replaces usersUrl and <a href="#usersElasticsearch">usersElasticsearch</a>, which still work.
+      For example <code>usersDbUrl=postgres://arkime:password@pg.example.com/arkime</code> or <code>usersDbUrl=sqlite:///opt/arkime/db/users.sqlite</code>.
+
+  - key: usersDbPrefix
+    value: prefix with a users url, else <a href="#dbPrefix">dbPrefix</a>
+    text: |
+      (Since 7.0.0) The prefix for the users tables or indices, <a href="#usersPrefix">usersPrefix</a> is the older name and still works.
+
   - key: usersElasticsearchAPIKey
     value: EMPTY
     text: |

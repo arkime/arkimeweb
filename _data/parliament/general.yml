@@ -3,7 +3,7 @@ name: Parliament Settings
 before: |
   <p>
     (Since 5.0.0) These settings must be in the [parliament] section, either in their own file or in a shared configuration file.
-    The issues <code>file</code> setting must exist and be set to your Parliament JSON file.
+    Since 7.0.0 the issues are stored in the database like the rest of the parliament, the <code>file</code> setting is only used to import issues from an older issues file.
   </p>
   <p>
     When upgrading to 5.x of Parliament there are some important changes.
@@ -18,8 +18,8 @@ after: |
     Sample configuration:
     <pre>
   [parliament]
-  # Where to store issues
-  file=../etc/parliament.issues.json
+  # Only used to import issues from ../etc/parliament.issues.json
+  file=../etc/parliament.json
 
   # Port to listen on
   #port=8008
@@ -36,8 +36,12 @@ after: |
 
 settings:
   - key: file
-    value: REQUIRED
-    text: The location of your Parliament json file.
+    value: "EMPTY (REQUIRED before 7.0.0)"
+    text: |
+      The location of your Parliament json file.
+      (Since 7.0.0) Only used to name the issues file, <code>parliament.json</code> means <code>parliament.issues.json</code>,
+      whose issues are imported once when the database has none.
+      A parliament file from before Arkime 5 is no longer upgraded, upgrade with Arkime 6.x first.
 
   - key: port
     value: "8008"

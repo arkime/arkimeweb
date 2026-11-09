@@ -2,11 +2,15 @@ name: Capture Settings
 
 settings:
   - key: awsUseTokenForMetadata
-    value: "false"
+    value: "true (since 7.0.0, previously false)"
     text: |
       <strong>(Since 6.6.0)</strong>
       If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
       token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1.
+      <br>
+      (Since 7.0.0) Defaults to true and is used by the s3 writer and the s3/sqs readers.
+      The older <a href="#s3UseTokenForMetadata">s3UseTokenForMetadata</a> name is still accepted.
+      Set to false to skip the token request on hosts without IMDSv2.
 
   - key: bpf
     value: EMPTY
@@ -50,9 +54,31 @@ settings:
     text: |
       Save ESP packets to pcap files.
 
+  - key: geoASNFile
+    value: "/var/lib/GeoIP/GeoLite2-ASN.mmdb;/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
+    text: |
+      (Since 7.0.0) Replaces <a href="#geoLite2ASN">geoLite2ASN</a>.
+      Semicolon ';' separated list of mmdb ASN files, the first file found is used.
+      If no files are found a warning is issued, set to a blank string to disable the warning.
+      MaxMind GeoLite2/GeoIP2 and db-ip ASN files are supported.
+      Not needed when <a href="#geoFile">geoFile</a> is an ipinfo or GeoOpen Country-ASN file, since those include the ASN data.
+      The file is reloaded when it changes.
+
+  - key: geoFile
+    value: "/var/lib/GeoIP/GeoLite2-City.mmdb;/var/lib/GeoIP/GeoLite2-Country.mmdb;/usr/share/GeoIP/GeoLite2-City.mmdb;/usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-City.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb"
+    text: |
+      (Since 7.0.0) Replaces <a href="#geoLite2Country">geoLite2Country</a>.
+      Semicolon ';' separated list of mmdb country or city files, the first file found is used.
+      If no files are found a warning is issued, set to a blank string to disable the warning.
+      The vendor is detected from the file, supported are MaxMind GeoLite2/GeoIP2 Country or City, db-ip,
+      ipinfo (location and ASN in one file) and GeoOpen (Country or Country-ASN).
+      The region and city names are saved when a city database is used.
+      The file is reloaded when it changes.
+
   - key: geoLite2ASN
     value: "/usr/share/GeoIP/GeoLite2-ASN.mmdb;/opt/arkime/etc/GeoLite2-ASN.mmdb"
     text: |
+      <strong>Renamed in 7.0.0:</strong> use <a href="#geoASNFile">geoASNFile</a>, this name is still accepted when geoASNFile is not set.<br>
       A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
        Semicolon ';' separated list of maxmind geoip ASN files.  The first file found will be used.  If no files are found a warning will be issued.  To disable warning set to a blank string.<br>
       <a class="no-decoration"
@@ -65,6 +91,7 @@ settings:
       <br><br>
       (Arkime < 6) /usr/share/GeoIP/GeoLite2-Country.mmdb;/opt/arkime/etc/GeoLite2-Country.mmdb
     text: |
+      <strong>Renamed in 7.0.0:</strong> use <a href="#geoFile">geoFile</a>, this name is still accepted when geoFile is not set.<br>
       Where to find the Maxmind Country or City database, either can be used since a City database is a superset of the Country database.
       Starting with Arkime 6 the region and city names are also saved if a City database is used.
       A Maxmind account is required to use this feature.  We recommend installing and setting up the geoipupdate program included with most Linux releases.<br>
@@ -103,6 +130,7 @@ settings:
       Arkime writes a session record after this many packets since the
       last save. Arkime is only tested at 10k, anything above is not
       recommended.
+      (Since 7.0.0) Can be set per protocol with <code>packets:</code> in <a href="#protocol-settings">[protocol-settings]</a>.
 
   - key: maxPacketsInQueue
     value: 200000
@@ -113,7 +141,8 @@ settings:
   - key: maxStreams
     value: 1500000
     text: |
-      An approximate maximum number of active sessions Arkime will try and monitor
+      An approximate maximum number of active sessions Arkime will try and monitor.
+      (Since 7.0.0) Can be set per protocol with <code>streams:</code> in <a href="#protocol-settings">[protocol-settings]</a>.
 
   - key: minPacketsSaveBPFs
     value: EMPTY
@@ -250,11 +279,12 @@ settings:
       Generate SHA256 hashes alongside MD5 hashes of content.
 
   - key: tcpSaveTimeout
-    value: "400"
+    value: "480"
     text: |
       For TCP sessions, Arkime writes a session record after this many
       seconds since the last session save, no matter if active or
       inactive.
+      (Since 7.0.0) Only applies to tcp, use <code>save:</code> in <a href="#protocol-settings">[protocol-settings]</a> for other protocols.
 
   - key: tcpTimeout
     value: "480"
@@ -378,7 +408,9 @@ settings:
 
   - key: offlineFilenameRegex
     value: |
-      (?i)\.(pcap|cap)$
+      (?i)\.(pcap|pcapng|cap)$ (since 7.0.0)
+      <br><br>
+      (Arkime < 7) (?i)\.(pcap|cap)$
     text: |
       Regexp to control which filenames are processed when using the -R
       option to capture.
@@ -467,7 +499,9 @@ settings:
   - key: tcpClosingTimeout
     value: "5"
     text: |
-     (Since 4.3.0) Delay before saving tcp sessions after close
+     (Since 4.3.0) Delay before saving tcp sessions after close.
+     (Since 7.0.0) Only applies to tcp, before 7.0.0 it also applied to sctp and to sessions closed by the closeNow rule action.
+     Use <code>closing:</code> in <a href="#protocol-settings">[protocol-settings]</a> for other protocols, for example <code>sctp=closing:5</code>.
 
   - key: overrideIpsFiles
     value: EMPTY

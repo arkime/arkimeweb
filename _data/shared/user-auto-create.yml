@@ -13,8 +13,8 @@ before: |
   <p class="alert alert-warning">
     <span class="fa fa-exclamation-triangle">
     </span>
-    The <code>[user-auto-create]</code> section should be used instead of the deprecated <code>userAutoCreateTmpl</code> setting, which will be removed in Arkime 7!
-    The two settings cannot be used together and are mutually exclusive.
+    The <code>[user-auto-create]</code> section replaces the <code>userAutoCreateTmpl</code> setting, which was removed in Arkime 7.0.0.
+    Arkime refuses to start if userAutoCreateTmpl is still set.
   </p>
   <p>
     Each line is of the format <code>fieldname=JavaScript expression</code>.

@@ -5,7 +5,11 @@ before: |
 settings:
   - key: dbUrl
     value: EMPTY
-    text: Use this setting to override the elasticsearch setting, useful if running cont3xt standalone with no OpenSearch/Elasticsearch. Either lmdb:DIRECTORY or an OpenSearch/Elasticsearch URL for storing cont3xt data.
+    text: |
+      The database for the cont3xt data (link groups, views, overviews and audit history), overrides the elasticsearch setting.
+      Since 7.0.0 a <code>postgres://</code>, <code>sqlite://</code> or OpenSearch/Elasticsearch url, or a <a href="#dbPlugins">dbPlugins</a> scheme.
+      Before 7.0.0 an OpenSearch/Elasticsearch dbUrl was ignored in favor of elasticsearch, now it is used.
+      lmdb: was removed in 7.0.0, there is no migration.
 
   - key: elasticsearch
     value: http://localhost:9200
@@ -57,4 +61,7 @@ settings:
 
   - key: usersUrl
     value: EMPTY
-    text: Use this setting to override the usersElasticsearch setting, useful if running cont3xt standalone with no OpenSearch/Elasticsearch. Can be lmdb:DIRECTORY, redis:URL  or an OpenSearch/Elasticsearch URL.
+    text: |
+      The users database, see <a href="#usersDbUrl">usersDbUrl</a> which replaces it in 7.0.0.
+      Without a users url cont3xt uses dbUrl, then elasticsearch.
+      lmdb: and redis: were removed in 7.0.0, use <code>sqlite://</code> or <code>postgres://</code>.

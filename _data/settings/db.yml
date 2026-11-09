@@ -1,18 +1,136 @@
-name: OpenSearch/Elasticsearch Settings
+name: Database Settings
 before: |
   <p>
-    Arkime leverages OpenSearch/Elasticsearch both as a database and as time-based storage for all saved sessions.
-    The settings pertain to the communication between Arkime and OpenSearch/Elasticsearch.
-    Although the terms "elasticsearch" and "es" appear in the variable names, both OpenSearch and Elasticsearch are compatible with most settings.
+    Arkime keeps its data in four databases.
+    Before 7.0.0 all of them had to be OpenSearch/Elasticsearch, since 7.0.0 each can live somewhere else, and Arkime can run with no OpenSearch/Elasticsearch at all.
+    <strong>Using anything other than OpenSearch/Elasticsearch is experimental in 7.0.0</strong>, expect changes.
+    With none of the settings below everything stays in the <a href="#elasticsearch">elasticsearch</a> cluster, so existing installs change nothing.
+  </p>
+  <table class="table table-sm table-bordered">
+    <thead><tr><th>Database</th><th>Holds</th><th>Setting, then fallbacks</th><th>Supports</th></tr></thead>
+    <tbody>
+      <tr><td>Sessions</td><td>The session metadata (SPI) capture writes</td><td><a href="#sessionsDbUrl">sessionsDbUrl</a>, dbUrl, elasticsearch</td><td>OpenSearch/Elasticsearch, ClickHouse 26.3+</td></tr>
+      <tr><td>Cluster</td><td>stats, dstats, files, fields, sequence, hunts, periodic queries, history and Featherprint</td><td><a href="#dbUrl">dbUrl</a>, elasticsearch</td><td>OpenSearch/Elasticsearch, Postgres</td></tr>
+      <tr><td>Users</td><td>Users, roles, views, shortcuts, shareables, notifiers and parliament</td><td><a href="#usersDbUrl">usersDbUrl</a>, usersUrl, usersElasticsearch, dbUrl, elasticsearch</td><td>OpenSearch/Elasticsearch, Postgres, SQLite</td></tr>
+      <tr><td>Cont3xt</td><td>Cont3xt link groups, views, overviews and audit history</td><td>cont3xt <a href="#cont3xt-db-dbUrl">dbUrl</a>, elasticsearch</td><td>OpenSearch/Elasticsearch, Postgres, SQLite</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Url schemes: <code>http(s)://</code>, <code>elasticsearch(s)://</code> or <code>opensearch(s)://</code> for OpenSearch/Elasticsearch,
+    <code>clickhouse(s)://</code> or <code>chttp(s)://</code> for ClickHouse, <code>postgres(ql)://</code> for Postgres and <code>sqlite://</code> for SQLite.
+    <a href="#dbPlugins">dbPlugins</a> can add more, the MongoDB and MySQL plugins in <code>capture/plugins/mongodb</code> and <code>capture/plugins/mysqldb</code> are examples.
+    Capture, viewer, multies and the tools all read these settings, so set them in <code>[default]</code>.
   </p>
   <p>
+    A ClickHouse sessions table is created with <code>/opt/arkime/db/ch.pl &lt;url&gt; init</code> and upgraded with <code>ch.pl &lt;url&gt; upgrade</code>.
+    Postgres and SQLite tables are created by the apps the first time they start.
+    The ES Admin page and the ES health and stats tabs are only shown when OpenSearch/Elasticsearch is used.
+  </p>
+  <p>Some examples:</p>
+  <pre>
+  # Sessions in ClickHouse, everything else in Postgres, no OpenSearch/Elasticsearch
+  [default]
+  sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123
+  dbUrl=postgres://arkime:password@pg.example.com/arkime
+
+  # Keep sessions in OpenSearch/Elasticsearch, move the users to Postgres
+  [default]
+  elasticsearch=https://es.example.com:9200
+  usersDbUrl=postgres://arkime:password@pg.example.com/arkime
+  </pre>
+  <p>
     <span class="fa fa-exclamation-triangle mr-1"></span>
-    Arkime does <strong>NOT</strong> support having pcapDir and the OpenSearch/Elasticsearch data directory on the same file system.
-    Arkime will <strong>NOT</strong> work in this configuration.
-    It is strongly recommended to run capture and OpenSearch/Elasticsearch on different hosts, if that is not possible, use different disks or file systems.
+    Arkime does <strong>NOT</strong> support having pcapDir and the database data directory on the same file system.
+    It is strongly recommended to run capture and the databases on different hosts, if that is not possible, use different disks or file systems.
   </p>
 
 settings:
+  - key: dbUrl
+    value: the <a href="#elasticsearch">elasticsearch</a> setting
+    text: |
+      (Since 7.0.0) The cluster database: stats, dstats, files, fields, sequence, hunts, periodic queries, history and Featherprint.
+      It is also the default for the sessions and users databases when <a href="#sessionsDbUrl">sessionsDbUrl</a> and <a href="#usersDbUrl">usersDbUrl</a> aren't set.
+      An OpenSearch/Elasticsearch or Postgres url, or a <a href="#dbPlugins">dbPlugins</a> scheme that can hold the cluster database.
+      A comma separated list of urls is allowed for OpenSearch/Elasticsearch.
+
+  - key: sessionsDbUrl
+    value: the <a href="#dbUrl">dbUrl</a> setting
+    text: |
+      (Since 7.0.0) The sessions database capture writes and viewer searches.
+      An OpenSearch/Elasticsearch url, a ClickHouse 26.3 or later url, or a <a href="#dbPlugins">dbPlugins</a> sessions scheme.
+      Requires <a href="#dbUrl">dbUrl</a> or <a href="#elasticsearch">elasticsearch</a> to also be set for the cluster database.
+      A ClickHouse table must be created first with <code>/opt/arkime/db/ch.pl &lt;url&gt; init</code>.
+
+  - key: dbPrefix
+    value: the <a href="#prefix">prefix</a> setting
+    text: |
+      (Since 7.0.0) The prefix for the tables or indices in the cluster database, and for the sessions and users when they also live in <a href="#dbUrl">dbUrl</a>.
+
+  - key: sessionsDbPrefix
+    value: prefix with a sessionsDbUrl, else dbPrefix
+    text: |
+      (Since 7.0.0) The prefix for the sessions tables or indices.
+      With its own <a href="#sessionsDbUrl">sessionsDbUrl</a> the sessions use sessionsDbPrefix then <a href="#prefix">prefix</a>,
+      when the sessions live in <a href="#dbUrl">dbUrl</a> they use sessionsDbPrefix then <a href="#dbPrefix">dbPrefix</a> then prefix.
+
+  - key: dbPlugins
+    value: EMPTY
+    text: |
+      (Since 7.0.0) A semicolon separated list of node modules, found in <a href="#pluginsDir">pluginsDir</a>, that add more database url schemes.
+      Set it in each app's section, viewer, cont3xt, parliament and wiseService all load them.
+      Use a path relative to pluginsDir, for example <code>dbPlugins=mongodb/mongodb.js</code>.
+      A plugin that holds the sessions or cluster database also needs a capture <a href="#rootPlugins">rootPlugins</a> writer, see the plugin's README.
+
+  - key: clickhouseDatabase
+    value: the url's path, else arkime
+    text: |
+      (Since 7.0.0) The ClickHouse database that holds the sessions table, when the <a href="#sessionsDbUrl">sessionsDbUrl</a> has no path.
+
+  - key: clickhouseUser
+    value: the url's user
+    text: |
+      (Since 7.0.0) The ClickHouse user, instead of putting it in the url.
+
+  - key: clickhousePassword
+    value: the url's password
+    text: |
+      (Since 7.0.0) The ClickHouse password, instead of putting it in the url.
+
+  - key: clickhouseSessionsTable
+    value: sessions3
+    text: |
+      (Since 7.0.0) The ClickHouse sessions table name, after the sessions prefix.
+
+  - key: clickhouseMaxBatchDocs
+    value: "200"
+    text: |
+      (Since 7.0.0) Capture only. The most sessions capture sends to ClickHouse in one insert.
+
+  - key: clickhouseMaxBatchBytes
+    value: "4194304"
+    text: |
+      (Since 7.0.0) Capture only. The most bytes capture sends to ClickHouse in one insert, it replaces <a href="#dbBulkSize">dbBulkSize</a> for ClickHouse.
+
+  - key: postgresPatternTimeout
+    value: "60"
+    text: |
+      (Since 7.0.0) Seconds a regex or wildcard search of a Postgres database from the UI can run before it is cancelled.
+
+  - key: mongodbPatternTimeout
+    value: "60"
+    text: |
+      (Since 7.0.0) Seconds a regex or wildcard search from the UI can run with the MongoDB <a href="#dbPlugins">dbPlugins</a> module, only two run at once for each connection.
+
+  - key: mongodbSessionsTimeout
+    value: "300"
+    text: |
+      (Since 7.0.0) Seconds a MongoDB sessions search or aggregation can run.
+
+  - key: mysqlPatternTimeout
+    value: "60"
+    text: |
+      (Since 7.0.0) Seconds a regex or wildcard search from the UI can run with the MySQL <a href="#dbPlugins">dbPlugins</a> module.
+
   - key: elasticsearch
     value: http://localhost:9200
     text: |
@@ -29,12 +147,9 @@ settings:
   - key: esAdminUsers
     value: EMPTY
     text: |
-      A comma separated list of users that are allowed to use the ES Admin stats tab.
-      This tab allows the user to change several of the OpenSearch/Elasticsearch settings from the UI.
-      <br>
-      <span class="fa fa-exclamation-triangle mr-1"></span>
-      <strong>Deprecated:</strong> this setting will be removed in Arkime 7.
-      Assign the <a href="/roles">dbAdmin</a> role to those users instead.
+      <strong>Removed in 7.0.0</strong>, assign the <a href="/roles">dbAdmin</a> role to those users instead,
+      eg <code>db.pl &lt;host:port&gt; users-update '&lt;userId glob&gt;' --addRole dbAdmin</code>.
+      Before 7.0.0 this was a comma separated list of users allowed to use the ES Admin page.
 
   - key: esClientCert
     value: EMPTY

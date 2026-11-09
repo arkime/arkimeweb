@@ -17,6 +17,26 @@ settings:
         <li>'gmt' to use GMT/UTC</li>
       </ul>
 
+  - key: startPage
+    value: "sessions"
+    text: |
+      (Since 7.0.0) The page the viewer opens when no page is given.
+      <ul class="mb-0">
+        <li>'sessions' for the Sessions page</li>
+        <li>'arkime' for the Arkime dashboard page</li>
+      </ul>
+
+  - key: sessionDetailTab
+    value: "details"
+    text: |
+      (Since 7.0.0) Which tab an opened session shows.
+      <ul class="mb-0">
+        <li>'details' for the Details tab</li>
+        <li>'packets' for the Packets tab</li>
+        <li>'tshark' for the Shark tab</li>
+        <li>'last' to use the last selected tab</li>
+      </ul>
+
   - key: detailFormat
     value: "last"
     text: |
@@ -98,6 +118,8 @@ settings:
         <li>'cotton-candy-theme' for the cotton candy theme</li>
         <li>'dark-2-theme' for the green on black theme</li>
         <li>'dark-3-theme' for the dark blue theme</li>
+        <li>'v7-modern-light-theme' (since 7.0.0) for the modern light theme</li>
+        <li>'v7-modern-dark-theme' (since 7.0.0) for the modern dark theme</li>
       </ul>
 
   - key: manualQuery

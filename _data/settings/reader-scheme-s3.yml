@@ -20,6 +20,14 @@ before: |
     </dl>
   </div>
 
+  <p>
+    (Since 7.0.0) AWS credentials are found in this order: the <a href="#s3AccessKeyId">s3AccessKeyId</a> setting, the <code>AWS_ACCESS_KEY_ID</code>
+    environment variables, the <code>~/.aws</code> credentials and config files (use <code>--profile</code> to pick a profile),
+    EKS IRSA (<code>AWS_ROLE_ARN</code> + <code>AWS_WEB_IDENTITY_TOKEN_FILE</code>), EKS Pod Identity
+    (<code>AWS_CONTAINER_CREDENTIALS_FULL_URI</code> + <code>AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE</code>), ECS, and finally the
+    EC2 instance metadata, see <a href="#awsUseTokenForMetadata">awsUseTokenForMetadata</a>. An empty <a href="#s3AccessKeyId">s3AccessKeyId</a> is the same as not set.
+  </p>
+
 settings:
   - key: s3Region
     value: us-east-1
@@ -40,6 +48,12 @@ settings:
     value: EMPTY
     text: |
       In <code>s3://</code> mode the host to use for the S3 bucket, otherwise the amazonaws.com host will be used.
+
+  - key: s3UseHttp
+    value: "false"
+    text: |
+      (Since 7.0.0) In <code>s3://</code> mode use HTTP instead of HTTPS, normally only useful with <a href="#s3Host">s3Host</a>.
+      The SQS reader also uses it for the S3 files when s3Host is set.
 
   - key: s3GapPacketPos
     value: "true"

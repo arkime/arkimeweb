@@ -1,0 +1,60 @@
+name: ZeekLog
+before: |
+  <p>
+    <strong>(Since 7.0.0)</strong>
+    The ZeekLog plugin writes Zeek style log files (<code>conn.log</code>, <code>dns.log</code>, <code>http.log</code>,
+    <code>ssl.log</code>, <code>x509.log</code>, <code>files.log</code>, ...) from Arkime sessions, using the same column
+    names and either Zeek's TSV or JSON layout, so tools that already read Zeek logs can read them.
+    Every time Arkime saves a session a row is written to each enabled log for the protocols the session has.
+    Long sessions that Arkime saves in several pieces produce several rows with the same <code>uid</code>, like Zeek
+    does for long connections. Most logs have one row per session, with multi valued fields joined by <code>,</code>.
+  </p>
+  <p>
+    Add <code>zeeklog.so</code> to the end of the <code>plugins=</code> line in the config file, so fields set by other
+    plugins are logged too.
+  </p>
+  <p>
+    Each log can be customized with a <code>[zeeklog-&lt;log&gt;]</code> section to add, replace or remove columns,
+    turn the log off with <code>enabled=false</code>, or change which sessions produce rows with <code>protocols=</code>.
+    A section whose name isn't a builtin log defines a new log, which must also be listed in <code>zeekLogs</code>.
+    See the <a href="https://github.com/arkime/arkime/blob/main/capture/plugins/zeeklog/README.md">zeeklog README</a>
+    for the column syntax, the default schemas and the differences from Zeek.
+  </p>
+
+after: |
+  <pre><code>[default]
+  plugins=zeeklog.so
+  zeekLogDir=/opt/arkime/logs/zeek
+  zeekLogRotateSeconds=3600
+
+  [zeeklog-conn]
+  vlan=vlan
+  community_id=communityId
+  exclude=local_orig,local_resp,tunnel_parents
+  </code></pre>
+
+settings:
+  - key: zeekLogDir
+    value: "."
+    text: The directory to write the log files to, created if missing.
+
+  - key: zeekLogFormat
+    value: ascii
+    text: Either <code>ascii</code> for Zeek's TSV format or <code>json</code> for one JSON object per line.
+
+  - key: zeekLogs
+    value: "*"
+    text: |
+      Semicolon separated list of logs to write, <code>*</code> is every builtin log.
+      For example <code>zeekLogs=conn;dns;http</code> writes only those three and <code>zeekLogs=*;mylog</code>
+      adds a custom log defined in a <code>[zeeklog-mylog]</code> section.
+
+  - key: zeekLogRotateSeconds
+    value: 0
+    text: |
+      Rotate the logs this often, 0 never rotates. Rotation renames <code>conn.log</code> to
+      <code>conn.&lt;open-timestamp&gt;.log</code> like Zeek does. A non empty log found at startup is renamed the same way.
+
+  - key: zeekLogUtf8
+    value: "true"
+    text: When false every byte >= 0x80 is escaped as <code>\xHH</code>.

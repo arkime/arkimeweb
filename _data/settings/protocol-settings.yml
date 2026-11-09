@@ -1,0 +1,49 @@
+name: protocol-settings
+before: |
+  <p>
+    (Since 7.0.0) The <code>[protocol-settings]</code> section sets the session timeouts and limits per protocol.
+    Each line is a protocol name, or <code>default</code> for every protocol, followed by a semicolon separated list of
+    <code>name:value</code> settings. The <code>default</code> line is applied first so a protocol's own line wins.
+    These override the older settings like <a href="#tcpTimeout">tcpTimeout</a>, <a href="#udpTimeout">udpTimeout</a>,
+    <a href="#tcpSaveTimeout">tcpSaveTimeout</a>, <a href="#tcpClosingTimeout">tcpClosingTimeout</a>,
+    <a href="#maxPackets">maxPackets</a> and <a href="#maxStreams">maxStreams</a>, which are still used as the defaults.
+  </p>
+  <p>
+    The protocol names are
+    <code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>, <code>sctp</code>, <code>esp</code>,
+    <code>dhcp</code>, <code>dhcpv6</code>, <code>arp</code>, <code>lldp</code>, <code>xid</code>, <code>isis</code>,
+    <code>esis</code>, <code>igmp</code>, <code>pim</code>, <code>ospf</code>, <code>unknown-ether</code>,
+    <code>unknown-ip</code>, <code>corrupt-ether</code> and <code>corrupt-ip</code>.
+    A line for a protocol that isn't loaded logs a warning, and a bad setting or value refuses to start.
+    Run capture with <code>--debug</code> to log the final values for every protocol.
+  </p>
+
+after: |
+  <pre><code>[protocol-settings]
+  default=packets:10000
+  tcp=idle:600;closing:5
+  udp=idle:30
+  sctp=closing:5
+  lldp=idle:600;save:0;streams:1280
+  </code></pre>
+
+settings:
+  - key: idle
+    value: "tcpTimeout, udpTimeout, ... or 600 for the layer 2 protocols"
+    text: Seconds of inactivity before the session is saved and closed, 1 to 65535.
+
+  - key: save
+    value: "tcpSaveTimeout for tcp, otherwise 0"
+    text: Seconds since the last save before an active session is saved again, 0 to disable or 10 to 7200.
+
+  - key: closing
+    value: "5"
+    text: Seconds to wait after a session is closed, for example a tcp FIN or RST, before it is saved, 1 to 255.
+
+  - key: packets
+    value: "maxPackets"
+    text: Save the session after this many packets since the last save, 1 to 65535.
+
+  - key: streams
+    value: "Based on maxStreams"
+    text: The approximate maximum number of active sessions of this protocol across all packet threads, 64 to 16777215.

@@ -1,6 +1,19 @@
 name: "Writer - S3 - Settings"
 before: |
-  See <a href="/s3">S3</a> document for more information about using S3 for PCAP storage.
+  <p>
+    See <a href="/s3">S3</a> document for more information about using S3 for PCAP storage.
+  </p>
+  <p>
+    (Since 7.0.0) AWS credentials are found in this order: the <a href="#s3AccessKeyId">s3AccessKeyId</a> setting, the <code>AWS_ACCESS_KEY_ID</code>
+    environment variables, the <code>~/.aws</code> credentials and config files (use <code>--profile</code> to pick a profile),
+    EKS IRSA (<code>AWS_ROLE_ARN</code> + <code>AWS_WEB_IDENTITY_TOKEN_FILE</code>), EKS Pod Identity
+    (<code>AWS_CONTAINER_CREDENTIALS_FULL_URI</code> + <code>AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE</code>), ECS, and finally the
+    EC2 instance metadata, see <a href="#awsUseTokenForMetadata">awsUseTokenForMetadata</a>. An empty <a href="#s3AccessKeyId">s3AccessKeyId</a> is the same as not set.
+  </p>
+  <p>
+    (Since 7.0.0) Before 7.0.0 the s3 writer used the instance role ahead of the AWS environment variables and <code>~/.aws</code> files,
+    so a host with both now uses the environment variables or files instead.
+  </p>
 
 settings:
   - key: s3Region
@@ -14,12 +27,12 @@ settings:
       S3 Bucket to store PCAP files
 
   - key: s3AccessKeyId
-    value: Obtained from the EC2 IAM Role.
+    value: EMPTY
     text: |
-      S3 Access Key ID
+      S3 Access Key ID, when not set the credentials are found as described above.
 
   - key: s3SecretAccessKey
-    value: Obtained from the EC2 IAM Role.
+    value: EMPTY
     text: |
       S3 Secret Access Key
 
@@ -71,10 +84,12 @@ settings:
     value: "false"
     text: |
       Use HTTP instead of HTTPS to connect to S3 host.
+      (Since 7.0.0) Also used by the s3/sqs readers when <a href="#s3Host">s3Host</a> is set.
 
   - key: s3UseTokenForMetadata
     value: "true"
     text: |
+      (Since 7.0.0) The older name for <a href="#awsUseTokenForMetadata">awsUseTokenForMetadata</a>, which is used if both are set.
       If true then use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a>
       token to retrieve instance metadata and IAM credentials when running on EC2; if false then use IMDSv1.
 
@@ -97,6 +112,7 @@ settings:
   - key: s3UseECSEnv
     value: "false"
     text: |
+      <strong>No longer needed in 7.0.0:</strong> ECS container credentials are found automatically and setting this only logs a warning.<br>
       (Since 4.3.0) Use the <code>ECS_CONTAINER_METADATA_URI_V4</code> and <code>AWS_CONTAINER_CREDENTIALS_RELATIVE_URI</code> environment variables to find the metadata service.
 
   - key: s3GapPacketPos

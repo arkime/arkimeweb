@@ -1,0 +1,18 @@
+name: featherprint-defaults
+before: |
+  <p>
+    (Since 7.0.0) The <code>[featherprint-defaults]</code> section, in the viewer config, sets the starting value of
+    each <a href="#featherprint-subnet">[featherprint-subnet]</a> flag. Each line is a flag name and true or false.
+    Every alert flag and <code>ignore</code> default to false, <code>dhcp</code> defaults to true.
+  </p>
+
+after: |
+  <pre><code>[featherprint-defaults]
+  alertOnNewIp=true
+  dhcp=false
+  </code></pre>
+
+settings:
+  - key: "[flag]="
+    value: "false"
+    text: The default for this flag, one of the <a href="#featherprint-subnet">[featherprint-subnet]</a> flags except alertAll.

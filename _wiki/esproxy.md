@@ -104,4 +104,16 @@ elasticsearch=http://oldes:9200
 elasticsearch=http://newes:9200
 </pre>
 
+Since 7.0.0 the tee section can also set <code>sessionsDbUrl</code> to copy the sessions the sensors send into a ClickHouse or <a href="settings#dbPlugins">dbPlugins</a> sessions database, the same way capture writes them there.
+This lets you fill a new ClickHouse sessions database from existing sensors while viewers keep reading OpenSearch/Elasticsearch.
+Create the ClickHouse table first with <code>/opt/arkime/db/ch.pl &lt;url&gt; init</code>.
+The tee section also takes <code>prefix</code> (defaults to the main prefix), <code>maxBatchBytes</code> (defaults to 4MB) and the database's own settings, like <a href="settings#clickhouseDatabase">clickhouseDatabase</a> or <a href="settings#clickhouseUser">clickhouseUser</a>.
+Hunt updates from sensor viewers are copied too.
+<pre>
+[default]
+elasticsearch=http://es:9200
+[tee]
+sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123
+</pre>
+
 </div>

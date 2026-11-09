@@ -1,0 +1,36 @@
+name: featherprint-subnet
+before: |
+  <p>
+    (Since 7.0.0) The <code>[featherprint-subnet]</code> section, in the viewer config, lists the IP ranges the
+    Featherprint monitor watches and which alerts each range raises. Each line is a CIDR and a comma separated list of flags.
+    A flag can start with <code>-</code> to turn it off, <code>+</code> or nothing turns it on.
+    Without any entries the monitor idles, on demand lookups from the Featherprint page still work.
+    See <a href="#featherprintMonitorEnabled">featherprintMonitorEnabled</a> and the other featherprint viewer settings.
+  </p>
+  <p>
+    The flags start from <a href="#featherprint-defaults">[featherprint-defaults]</a>, then each matching range from
+    the shortest to the longest prefix overrides the flags it sets. A longer range that doesn't set <code>ignore</code>
+    is watched even inside an ignored range.
+  </p>
+  <p>
+    Flags:
+  </p>
+  <ul>
+    <li><code>alertOnNewIp</code>, <code>alertOnNewMac</code>, <code>alertOnNewName</code>, <code>alertOnNewService</code> - alert when a new IP, MAC, hostname or service is seen</li>
+    <li><code>alertOnChangeIp</code>, <code>alertOnChangeMac</code>, <code>alertOnChangeName</code>, <code>alertOnChangeDevice</code> - alert when a device's IP, MAC, hostname or classification changes</li>
+    <li><code>alertAll</code> - all of the alert flags</li>
+    <li><code>dhcp</code> - use DHCP signals, on by default</li>
+    <li><code>ignore</code> - don't watch this range</li>
+  </ul>
+
+after: |
+  <pre><code>[featherprint-subnet]
+  10.0.0.0/8=ignore
+  10.1.0.0/16=alertOnNewIp,alertOnNewMac
+  192.168.0.0/16=alertAll,-alertOnChangeName
+  </code></pre>
+
+settings:
+  - key: "[CIDR]="
+    value: "list,of,flags"
+    text: The range to watch and the comma separated flags for it.
