@@ -30,6 +30,7 @@ before: |
       <li>Copy the downloaded plugin to the <code>/opt/arkime/plugins</code> directory on every machine that runs capture.</li>
       <li>Edit <code>/opt/arkime/etc/config.ini</code> and add the plugin filename to the <code>plugins=</code> line, for example: <code>plugins=ja4plus.amd64.so</code> (use the filename that matches the plugin you downloaded).</li>
       <li>Restart capture. The new JA4+ fields will be created and populated automatically on new sessions.</li>
+      <li>(Since 7.0.0) Download <code>ja4plus.dashboard.json</code> from the same release and copy it to the <code>/opt/arkime/etc/dashboards</code> directory (see <a href="#dashboardsDir">dashboardsDir</a>) on every machine that runs viewer. The JA4+ dashboard then shows up in the Arkime tab, no restart needed.</li>
     </ul>
   </div>
 

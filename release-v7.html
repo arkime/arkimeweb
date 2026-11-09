@@ -163,13 +163,13 @@ title: V7!
           </h1>
           The Arkime tab is now a full dashboard builder, and Arkime 7 ships with <strong>56 built-in dashboards</strong>, up from none in Arkime 6.
           There is an Overview and a Connections dashboard, one for nearly every protocol from ADB to WebSocket, and Analysis dashboards for Certificates, Databases, Files, Hosts, Multicast, OT, Routing, Security, Software and Tunnels.
-          The suricata and zeekintel plugins each add their own.
+          The <a href="settings#suricata">suricata</a> and <a href="settings#zeekintel">zeekintel</a> plugins each add their own, and the <a href="settings#ja4plus">JA4+</a> plugin comes with one too.
           <br><br>
           Dashboards are made from more than 25 widget types: timelines, area, bar, combo, scatter, pie, treemap, sankey, mosaic, waffle, matrix, heatmap, time of day, tag cloud, maps, gauges, metrics with trend lines, connection graphs and trees, session lists, Markdown notes and more.
           Filter controls and <code>${variables}</code> let one dashboard answer many questions, widgets can compare to the day or week before, show percentiles, and turn amber or red at warning and critical levels.
           <br><br>
           Dashboards can be organized into folders, shared with users and roles, set as your default, opened by url, refreshed on a timer and saved as a PDF.
-          Drop your own exported dashboards into <code>/opt/arkime/etc/dashboards</code> and they show up for everyone, no restart needed.
+          Drop your own exported dashboards into <code>/opt/arkime/etc/dashboards</code> (<a href="settings#dashboardsDir">dashboardsDir</a>) and they show up for everyone, no restart needed, and <a href="settings#dashboardMaxQueryDays">dashboardMaxQueryDays</a> limits how much time a dashboard may search.
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
           <img alt="Overview dashboard" class="screenshot-img" src="assets/v7-dashboard-overview.png" style="border-radius: 10px;" />
@@ -202,7 +202,7 @@ title: V7!
           Wireshark style dissection, without leaving Arkime.
           Session detail is now three tabs, Details, Packets and the new Shark tab, which runs tshark on the session and shows the packet list, the full protocol tree and the bytes side by side.
           Filter packets, color them by protocol, expand or collapse the tree, and jump between matches.
-          Session detail also gained find in content, and a setting picks which tab opens first.
+          Session detail also gained find in content, and the <a href="settings#sessionDetailTab">Session Detail Tab</a> setting picks which tab opens first.
           Requires tshark 4.6.4 or later, see <a href="settings#tsharkPath">tsharkPath</a>.
         </div>
       </div>
@@ -219,9 +219,9 @@ title: V7!
           Know every device on your network.
           Featherprint passively fingerprints devices from the sessions Arkime already saves, using ARP, DHCP, DNS/mDNS, NBNS and SSDP, no extra sensors or scanning.
           For each subnet you watch it keeps a record per device: MAC and its history, hostnames, services, DHCP and SSDP attributes, and a rule-based classification like printer, smart TV or Raspberry Pi.
-          It records a change history and raises alerts when a new device appears or an existing one changes, and alerts can be acknowledged by the whole team.
+          It records a change history and raises alerts when a new device appears or an existing one changes, and alerts can be acknowledged by the whole team, controlled by <a href="settings#featherprintAckRoles">featherprintAckRoles</a>.
           Any IP can also be fingerprinted on demand.
-          Configure the ranges to watch in <a href="settings#featherprint-subnet">[featherprint-subnet]</a> and add your own classifier rules in <code>/opt/arkime/etc</code>.
+          Configure the ranges to watch in <a href="settings#featherprint-subnet">[featherprint-subnet]</a> and add your own classifier rules in <code>/opt/arkime/etc</code>, see <a href="settings#featherprintRulesFiles">featherprintRulesFiles</a>.
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
           <img alt="Featherprint device" class="screenshot-img" src="assets/v7-featherprint.png" style="border-radius: 10px;" />
@@ -270,8 +270,8 @@ title: V7!
             <li><strong>Users</strong>: OpenSearch/Elasticsearch, Postgres or SQLite, set with <a href="settings#usersDbUrl">usersDbUrl</a></li>
             <li><strong>Cont3xt</strong>: OpenSearch/Elasticsearch, Postgres or SQLite, set with cont3xt's <a href="settings#cont3xt-db-dbUrl">dbUrl</a></li>
           </ul>
-          Capture writes ClickHouse and Postgres directly, and the viewer, multi viewer, hunts, tagging and the tagger plugin all work with no OpenSearch/Elasticsearch at all.
-          Want to try ClickHouse with the sensors you already have? esProxy's <code>[tee]</code> can copy every session into ClickHouse while your viewers keep reading OpenSearch/Elasticsearch.
+          Capture writes ClickHouse and Postgres directly, and the viewer, multi viewer, hunts, tagging and the <a href="settings#tagger">tagger</a> plugin all work with no OpenSearch/Elasticsearch at all.
+          Want to try ClickHouse with the sensors you already have? esProxy's <a href="esproxy#tee-section"><code>[tee]</code></a> can copy every session into ClickHouse while your viewers keep reading OpenSearch/Elasticsearch.
           The new <a href="settings#dbPlugins">dbPlugins</a> setting lets anyone add more, the source includes MongoDB and MySQL plugins in <code>capture/plugins</code>.
           Existing installs change nothing, with none of the new settings everything stays in OpenSearch/Elasticsearch.
 <pre class="mt-3"><code>[default]
@@ -337,15 +337,15 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
           <ul>
             <li><strong>55 new fields</strong>, including TLS ALPN, groups and alerts, certificate SHA256, key length and signature algorithm, the SSH key exchange, host key, cipher and MAC, NTLM computer and domain names, HTTP body lengths, Kerberos message types, LDAP operations and results, SOCKS status and bound address, and the full NTP header</li>
             <li>SMB session setup responses are decoded so the NTLM challenge is seen, SIP is classified on every request method, and sessions carried in AH, ERSPAN, UDP encapsulated ESP and TCAP are tagged</li>
-            <li>New zeeklog plugin writes Zeek style conn, dns, http, ssl, x509, files and more log files from the sessions Arkime sees</li>
-            <li>New xdp <a href="settings#pcapReadMethod">pcapReadMethod</a> reads packets with AF_XDP sockets, one socket and thread per nic receive queue</li>
+            <li>New <a href="settings#zeeklog">zeeklog</a> plugin writes Zeek style conn, dns, http, ssl, x509, files and more log files from the sessions Arkime sees</li>
+            <li>New xdp <a href="settings#pcapReadMethod">pcapReadMethod</a> reads packets with AF_XDP sockets, one socket and thread per nic receive queue, see <a href="settings#reader-xdp">xdp settings</a></li>
             <li>The new <a href="settings#protocol-settings">[protocol-settings]</a> section sets the idle, save, closing, packet and stream limits per protocol, eg <code>tcp=idle:600;closing:5</code></li>
             <li>GeoIP from MaxMind GeoLite2/GeoIP2, GeoOpen, ipinfo or db-ip, set with <a href="settings#geoFile">geoFile</a> and <a href="settings#geoASNFile">geoASNFile</a></li>
             <li><a href="settings#rulesFiles">rulesFiles</a> can be directories that are watched for new and removed files, and a <code>default.rules.yml</code> is now installed and kept up to date for you</li>
             <li>Writes sessions directly to ClickHouse and the cluster data to Postgres, see <a href="#multidb">Multiple Databases</a></li>
-            <li>Faster session hash lookups and dedup, and session and dedup hashing now use a random key so traffic can't be crafted to overload one packet thread</li>
+            <li>Faster session hash lookups and <a href="settings#dedup">dedup</a>, and session and dedup hashing now use a random key so traffic can't be crafted to overload one packet thread</li>
             <li>A new <code>perf-stats</code> command socket command dumps queue depths, hash usage and outstanding requests for performance debugging</li>
-            <li>The s3 writer and s3/sqs readers support EKS IRSA and Pod Identity credentials, so EKS pods no longer need instance metadata access</li>
+            <li>The <a href="settings#writer-s3">s3 writer</a> and <a href="settings#reader-scheme-s3">s3/sqs readers</a> support EKS IRSA and Pod Identity credentials, so EKS pods no longer need instance metadata access</li>
             <li>Capture shuts down cleanly, the offline and scheme readers stop mid file on SIGINT and log what was skipped</li>
           </ul>
         </div>
@@ -368,7 +368,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li>A prettier Stats page with resource meters and a capture centric node dashboard</li>
             <li>Faster charts: the timeline uses uPlot and the world map uses D3</li>
             <li>The time controls now live in the search row, and help notes and per page tips replace the welcome message</li>
-            <li>New Start Page and Session Detail Tab settings pick where the viewer opens and which session detail tab shows first</li>
+            <li>New <a href="settings#startPage">Start Page</a> and <a href="settings#sessionDetailTab">Session Detail Tab</a> settings pick where the viewer opens and which session detail tab shows first</li>
             <li>Two-factor setup has its own settings tab, so it works when the password page is disabled</li>
             <li>Many multi viewer fixes for timelines, top lists, SPI Graph hierarchies and node retention</li>
           </ul>
@@ -385,9 +385,9 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             </span>
           </h1>
           <ul>
-            <li>New MISP source that either bulk loads attributes on a schedule or looks up each item, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
-            <li>The urlapi, url, elasticsearch, elasticsearchfile and misp sources can verify servers with a private CA and present a client certificate (mTLS)</li>
-            <li>The users OpenSearch/Elasticsearch connection supports client certificates with esClientKey/esClientCert</li>
+            <li>New <a href="settings#wise-misp">MISP source</a> that either bulk loads attributes on a schedule or looks up each item, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
+            <li>The <a href="settings#wise-urlapi">urlapi</a>, <a href="settings#wise-url">url</a>, <a href="settings#wise-elasticsearch">elasticsearch</a>, <a href="settings#wise-elasticsearchfile">elasticsearchfile</a> and <a href="settings#wise-misp">misp</a> sources can verify servers with a private CA and present a client certificate (mTLS)</li>
+            <li>The users OpenSearch/Elasticsearch connection supports client certificates with <a href="settings#esClientKey">esClientKey</a>/<a href="settings#esClientCert">esClientCert</a></li>
             <li>The config page no longer uses a random pin code, use <code>--webcode</code> or your own TOTP code</li>
           </ul>
         </div>
@@ -420,10 +420,10 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             </span>
           </h1>
           <ul>
-            <li>New MISP integration, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
+            <li>New <a href="settings#cont3xt-misp">MISP integration</a>, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
             <li>A redesigned integrations settings tab, and integration secrets are always masked</li>
-            <li>The urlapi, elasticsearch, arkime, misp, csv and json integrations can verify servers with a private CA and present a client certificate (mTLS)</li>
-            <li>The cont3xt data can live in Postgres or SQLite</li>
+            <li>The urlapi, elasticsearch, arkime, misp, csv and json integrations can verify servers with a private CA and present a client certificate (mTLS), see <a href="settings#cont3xt-integration-common">the common integration settings</a></li>
+            <li>The cont3xt data can live in Postgres or SQLite, see <a href="settings#cont3xt-db-dbUrl">dbUrl</a></li>
           </ul>
         </div>
       </div>
@@ -440,7 +440,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
           <ul>
             <li>All four apps have a new look built on Vuetify, with ten built in themes plus a shareable custom theme, and your choice follows you between the apps</li>
             <li>Icons switched to Material Design Icons</li>
-            <li>A new admin only View Config page in every app shows the config it is really running with, including command line overrides and environment settings</li>
+            <li>A new admin only View Config page in every app, controlled by <a href="settings#viewConfigMode">viewConfigMode</a>, shows the config it is really running with, including command line overrides and environment settings</li>
             <li>A "newer release available" check in every app's version menu, controlled by <a href="settings#checkForUpdates">checkForUpdates</a>, which only ever sends the major version</li>
             <li>Releases include a CycloneDX SBOM, and there are new Alpine 3.24, Amazon Linux 2027 and Fedora 45 packages</li>
             <li>The rpm and deb packages use the OS libraries instead of bundling static copies</li>
