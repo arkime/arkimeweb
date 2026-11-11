@@ -83,9 +83,11 @@ title: V7!
               and More
             </p>
 
-            <p class="lead text-justify mt-4">
-              <em>DRAFT: Arkime 7 has not been released yet, this page is a work in progress.</em>
-            </p>
+            <div class="alert alert-warning lead text-center mt-4">
+              <span class="fa fa-exclamation-triangle me-1"></span>
+              <strong>This is Arkime 7 RC1, a release candidate.</strong>
+              Please try it out, but don't use it for important data yet, and expect possible breaking changes before the final 7.0 release.
+            </div>
 
             <h3>Arkime 7 is our biggest release ever!</h3>
             <p class="lead text-justify mt-4">
@@ -110,35 +112,55 @@ title: V7!
             </p>
 
             <hr>
-            <p class="lead lead-lg text-justify mt-4 text-center">
+            <h1 class="display-4 mb-3 dark-primary-theme-text hash-link-offset" id="breaking">
               Breaking Changes
-            </p>
-            <p class="lead text-justify">
-              <ul class="list-group list-group-sm angle-list">
-                <li class="list-group-item">Node.js 24 or later is required (>= 24.0.0 and < 27)</li>
-                <li class="list-group-item">You must be on v6.5.0 or later to upgrade to v7.x</li>
-                <li class="list-group-item">A db.pl upgrade is required</li>
-                <li class="list-group-item">Session columns, info field config and spiview layouts moved from the user record to the shareables index so they can be shared. The <code>db.pl upgrade</code> copies existing ones over for you, or run <code>db.pl &lt;host:port&gt; shareables-import all</code> by hand; the originals are left in place so Arkime 6 keeps working, and either can be re-run</li>
-                <li class="list-group-item">wiseService no longer generates a random config pin code, use <code>--webcode &lt;code&gt;</code> or each user's own TOTP code</li>
-                <li class="list-group-item">Removed the <code>esAdminUsers</code> setting; the ES admin page and the ES index/shard/task actions now require the <code>dbAdmin</code> role (superAdmin includes it, arkimeAdmin no longer grants it), eg <code>db.pl &lt;host:port&gt; users-update '&lt;userId glob&gt;' --addRole dbAdmin</code>. dbAdmin implies no other role, so pair it with arkimeUser, which viewer requires for any access</li>
-                <li class="list-group-item">The packet threads used maxPackets instead of maxPacketsInQueue when deciding the packet queue was 75% full, so session command processing was throttled once a thread had 7500 packets queued rather than 150000. Busy sensors that sat above the old threshold will now do more work per packet</li>
-                <li class="list-group-item">Removed the <code>simpleDEKEncoding</code> setting, the DEK is now always encrypted with aes-256-gcm</li>
-                <li class="list-group-item">Removed the <code>userAutoCreateTmpl</code> setting, use the <code>[user-auto-create]</code> section instead</li>
-                <li class="list-group-item">The <code>offlineFilenameRegex</code> default now also matches .pcapng files (previously .pcap/.cap only)</li>
-                <li class="list-group-item">lldp, xid, isis, esis, igmp and pim used to record all their traffic as a single session per capture node, they now create a session per talker pair like every other protocol - by src/dst mac for the ethernet protocols and by src/dst ip for igmp and pim. Expect more, smaller sessions for these</li>
-                <li class="list-group-item"><code>userNameHeader</code> no longer selects the auth mode, <code>authMode</code> must be set or it defaults to digest. Header auth now needs <code>authMode=header</code>, and a userNameHeader that is an auth mode name (digest, basic, oidc, ...) is ignored, so replace <code>userNameHeader=digest</code> from older cont3xt and wise sample configs with <code>authMode=digest</code></li>
-                <li class="list-group-item">Viewer no longer reads sessions2 indices (Arkime 2 and earlier), run <code>db.pl &lt;host:port&gt; reindex-sessions2</code> before upgrading to keep that data. 2@ session ids, which only sessions2 used, are no longer accepted. esProxy still accepts the sessions2 requests Arkime 6 sensor viewers send</li>
-                <li class="list-group-item">Viewer no longer reads the unprefixed history_v1-* indices from before Arkime 3, only &lt;prefix&gt;history_v1-*</li>
-                <li class="list-group-item">Removed the <code>demoMode</code> setting; roles do not replace it, so put a shared instance behind an external identity provider</li>
-                <li class="list-group-item">The <code>_flipSrcDst</code> rule op used to only swap the ips and ports, leaving the rest of the session pointing the old way. It now also swaps the per-direction data: packets, bytes, databytes, payload8, mac, oui, dscp, ttl, tcp seq/state tracking and zero window counts, so flipped sessions are saved self consistent</li>
-                <li class="list-group-item">More settings are validated at startup, so a value that used to be silently ignored now refuses to start. Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt/tshark limits, timeouts and ports must be numbers in range</li>
-                <li class="list-group-item">Parliament no longer upgrades pre Arkime 5 parliament.json files into the DB, upgrade with Arkime 6.x first. The file setting is now only used to name the parliament.issues.json file</li>
-                <li class="list-group-item">lmdb:// and redis:// are no longer supported for usersUrl, cont3xt dbUrl, parliament or notifiers, there is no migration, use sqlite:// or postgres://. Redis and LMDB are still supported for caches and config</li>
-                <li class="list-group-item">The s3 writer now finds AWS credentials the same way as the s3/sqs readers: s3AccessKeyId, then AWS_ACCESS_KEY_ID, ~/.aws credentials/config (--profile), EKS, ECS and finally instance metadata. A host with an instance role and AWS env variables or ~/.aws files now uses those instead. s3UseECSEnv is no longer needed</li>
-                <li class="list-group-item"><code>awsUseTokenForMetadata</code> now defaults to true, so the s3/sqs readers use IMDSv2 like the s3 writer did (s3UseTokenForMetadata is still accepted). Set it to false to skip the token request on hosts without IMDSv2</li>
-                <li class="list-group-item"><code>s3UseHttp</code> now also applies to the s3/sqs readers when s3Host is set, they always used https before</li>
-              </ul>
-            </p>
+              <span class="fa fa-link small copy-link cursor-copy"
+                onclick="copyLink(this, 'release-v7')">
+              </span>
+            </h1>
+
+            <div class="alert alert-warning mt-3">
+              <strong>Before you upgrade, every install must:</strong>
+              <ol class="mb-0 mt-2">
+                <li class="mb-1">Be on Arkime <strong>6.5.0 or later</strong></li>
+                <li class="mb-1">If you still have Moloch 2.x or earlier sessions2 indices, run <code>db.pl &lt;host:port&gt; reindex-sessions2</code> first, the viewer no longer reads them</li>
+                <li class="mb-1">Run <code>db.pl &lt;host:port&gt; upgrade</code></li>
+                <li>Check your config: more settings are validated at startup, so a value that used to be silently ignored now stops Arkime from starting</li>
+              </ol>
+            </div>
+
+            <h5 class="mt-4">Authentication and access</h5>
+            <ul>
+              <li class="mb-2"><strong>Set <a href="settings#authMode">authMode</a>.</strong> The <code>userNameHeader</code> setting no longer picks the auth mode, and without <code>authMode</code> defaults to digest. Header auth needs <code>authMode=header</code>.</li>
+              <li class="mb-2"><strong>The dbAdmin role replaces the <code>esAdminUsers</code> setting.</strong> Grant it with <code>db.pl &lt;host:port&gt; users-update '&lt;userId glob&gt;' --addRole dbAdmin</code>, and pair it with arkimeUser, which the viewer needs for any access.</li>
+              <li class="mb-2">The <strong><code>userAutoCreateTmpl</code> setting is removed.</strong> Use the <a href="settings#user-auto-create">[user-auto-create]</a> section.</li>
+              <li class="mb-2">The <strong>wiseService no longer makes a random config pin code.</strong> Use <code>--webcode &lt;code&gt;</code> or each user's own TOTP code.</li>
+            </ul>
+
+            <h5 class="mt-4">Data and storage</h5>
+            <ul>
+              <li class="mb-2"><strong>Layouts moved to shareables.</strong> Session columns, info field config and SPI View layouts moved from the user record to the shareables index so they can be shared. <code>db.pl upgrade</code> copies them for you (or run <code>db.pl &lt;host:port&gt; shareables-import all</code>); the originals stay, so Arkime 6 keeps working.</li>
+              <li class="mb-2"><strong>No lmdb:// or redis:// for users, cont3xt, Parliament or notifiers.</strong> Use sqlite:// or postgres://, there is no migration. Redis and LMDB still work for caches and config.</li>
+              <li class="mb-2"><strong>Old indices are no longer read.</strong> sessions2 from before Moloch 3. </li>
+              <li class="mb-2"><strong>Parliament no longer imports pre Arkime 5 parliament.json files.</strong> Upgrade with Arkime 6.x first</li>
+              <li class="mb-2"><strong><code>simpleDEKEncoding</code> is removed.</strong> The DEK is always encrypted with aes-256-gcm.</li>
+            </ul>
+
+            <h5 class="mt-4">Capture</h5>
+            <ul>
+              <li class="mb-2"><strong>More, smaller sessions for lldp, xid, isis, esis, igmp and pim.</strong> They used to record all their traffic as one session per capture node, now there is a session per talker pair: by src/dst mac for the ethernet protocols and by src/dst ip for igmp and pim.</li>
+              <li class="mb-2"><strong><code>_flipSrcDst</code> flips the whole session.</strong> It used to swap only the ips and ports; now packets, bytes, databytes, payload8, mac, oui, dscp, ttl, tcp seq/state and zero window counts swap too.</li>
+              <li class="mb-2"><strong><code>offlineFilenameRegex</code> matches .pcapng.</strong> The default used to match only .pcap and .cap.</li>
+              <li class="mb-2"><strong>Stricter settings.</strong> Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt and tshark limits, timeouts and ports must be numbers in range.</li>
+            </ul>
+
+            <h5 class="mt-4">AWS and S3</h5>
+            <ul>
+              <li class="mb-2"><strong>The s3 writer finds credentials like the readers.</strong> s3AccessKeyId, then AWS_ACCESS_KEY_ID, ~/.aws credentials/config (--profile), EKS, ECS and finally instance metadata, so a host with an instance role and AWS env variables or ~/.aws files now uses those. s3UseECSEnv is no longer needed.</li>
+              <li class="mb-2"><strong><code>awsUseTokenForMetadata</code> defaults to true.</strong> The s3/sqs readers use IMDSv2 like the writer (s3UseTokenForMetadata still works); set it to false on hosts without IMDSv2.</li>
+              <li class="mb-2"><strong><code>s3UseHttp</code> applies to the s3/sqs readers</strong> when s3Host is set, they always used https before.</li>
+            </ul>
+
             <p class="lead lead-lg text-center mt-4 pt-4">
               <a href="https://github.com/arkime/arkime/releases/latest" class="no-decoration">
                 View a detailed list of all the changes and download it now!
@@ -170,7 +192,7 @@ title: V7!
           Dashboards are made from more than 25 widget types: timelines, area, bar, combo, scatter, pie, treemap, sankey, mosaic, waffle, matrix, heatmap, time of day, tag cloud, maps, gauges, metrics with trend lines, connection graphs and trees, session lists, Markdown notes and more.
           Filter controls and <code>${variables}</code> let one dashboard answer many questions, widgets can compare to the day or week before, show percentiles, and turn amber or red at warning and critical levels.
           <br><br>
-          Dashboards can be organized into folders, shared with users and roles, set as your default, opened by url, refreshed on a timer and saved as a PDF.
+          Dashboards can be organized into folders, shared with users and roles, set as your default, opened by url, refreshed on a timer and saved as a PDF, and every widget can be downloaded as a PNG, or as a CSV for tables.
           Drop your own exported dashboards into <code>/opt/arkime/etc/dashboards</code> (<a href="settings#dashboardsDir">dashboardsDir</a>) and they show up for everyone, no restart needed, and <a href="settings#dashboardMaxQueryDays">dashboardMaxQueryDays</a> limits how much time a dashboard may search.
         </div>
         <div class="col-lg-7 col-md-6 align-self-start">
@@ -273,6 +295,7 @@ title: V7!
             <li><strong>Cont3xt</strong>: OpenSearch/Elasticsearch, Postgres or SQLite, set with cont3xt's <a href="settings#cont3xt-db-dbUrl">dbUrl</a></li>
           </ul>
           Capture writes ClickHouse and Postgres directly, and the viewer, multi viewer, hunts, tagging and the <a href="settings#tagger">tagger</a> plugin all work with no OpenSearch/Elasticsearch at all.
+          The Stats page gets ClickHouse and Postgres tabs showing partitions, tables, sizes and running queries, and the health icon and Parliament report ClickHouse, Postgres and SQLite clusters instead of showing ES Down.
           Want to try ClickHouse with the sensors you already have? <a href="#esproxy">esProxy</a>'s <a href="esproxy#tee-section"><code>[tee]</code></a> can copy every session into ClickHouse while your viewers keep reading OpenSearch/Elasticsearch.
           The new <a href="settings#dbPlugins">dbPlugins</a> setting lets anyone add more, the source includes MongoDB and MySQL plugins in <code>capture/plugins</code>.
           Existing installs change nothing, with none of the new settings everything stays in OpenSearch/Elasticsearch.
@@ -364,7 +387,8 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
           </h1>
           <ul>
             <li>SPI Graph gained bar, area, combo, scatter, matrix, matrix heatmap, mosaic, waffle, tag cloud, time of day and connection tree graphs, and Connections is now an SPI Graph graph type</li>
-            <li>Saved graphs: save, share and load an SPI Graph graph, or add it to a dashboard as a widget</li>
+            <li>SPI Graph has a settings dialog with every option a dashboard widget has: metrics and aggregations, percentiles, warning and critical levels, bucket ranges, sort and refresh</li>
+            <li>Saved graphs: save, share and load an SPI Graph graph, add it to a dashboard as a widget, or save any dashboard widget as a graph</li>
             <li>New Admin menu for Users, Roles, Banner and ES Admin, which moved to <code>/esadmin</code> and now needs the dbAdmin role</li>
             <li>Admins can set a banner for each app, with an optional expiry</li>
             <li>A prettier Stats page with resource meters and a capture centric node dashboard</li>
@@ -448,6 +472,7 @@ sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123</code></pre>
           <ul>
             <li>The new look and themes, shared with the other apps</li>
             <li>Parliament and its issues are stored in the users database, which can now be Postgres or SQLite as well as OpenSearch/Elasticsearch</li>
+            <li>Clusters without OpenSearch/Elasticsearch show their ClickHouse, Postgres or SQLite health</li>
             <li>New Pushover notifier with priorities, including emergency alerts that repeat until acknowledged, sounds, devices and optional end-to-end encryption</li>
           </ul>
         </div>
