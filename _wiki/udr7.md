@@ -32,12 +32,13 @@ Now place your `GeoIP.conf` file from MaxMind in the same directory as your `doc
 If you don't have MaxMind, this [**FAQ entry**](https://arkime.com/faq#maxmind) has instructions.
 In this example we use the GeoLite2 City DB, which provides more detailed location information.
 
-Here is the `docker-compose.yml` file I used, this example is using **Arkime v6**:
+Here is the `docker-compose.yml` file I used, this example requires **Arkime 6.7.0 or later**:
+
 ```yaml
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: elasticsearch:8.19.7
+    image: elasticsearch:8.19.25
     network_mode: "host"
     environment:
       - discovery.type=single-node
@@ -55,12 +56,28 @@ services:
       - /esdata:/usr/share/elasticsearch/data
     restart: unless-stopped
 
+  # Creates the Arkime indices on a fresh database, and upgrades them after an
+  # Arkime update. Runs on every "docker compose up" and then exits; --ifneeded
+  # makes it a no-op once the database is already current.
+  db-init:
+    container_name: db-init
+    image: ghcr.io/arkime/arkime/arkime:v6-ja4-latest
+    network_mode: "host"
+    command: /opt/arkime/bin/docker.sh db.pl --wait-for-db http://localhost:9200 --db "http://localhost:9200 initorupgradenoprompt --ifneeded --ilm" -- http://localhost:9200 ilm 26h 90d
+    user: root
+    depends_on:
+      - elasticsearch
+    restart: "no"
+
   capture:
     container_name: capture
     image: ghcr.io/arkime/arkime/arkime:v6-ja4-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh capture --wait-for-db http://localhost:9200 --update-geo --upgrade http://localhost:9200 --ilm 26h 90d
+    command: /opt/arkime/bin/docker.sh capture --wait-for-db http://localhost:9200 --update-geo
     user: root
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
     environment:
       - ARKIME__interface=ignore
       - ARKIME__pcapReadMethod=tzsp
@@ -84,54 +101,53 @@ services:
     container_name: viewer
     image: ghcr.io/arkime/arkime/arkime:v6-ja4-latest
     network_mode: "host"
-    command: /opt/arkime/bin/docker.sh viewer --wait-for-db http://localhost:9200
+    command: /opt/arkime/bin/docker.sh viewer --wait-for-db http://localhost:9200 --add-admin
     user: root
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
     environment:
       - ARKIME__viewPort=8005
       - ARKIME__cronQueries=auto
-      - ARKIME__webBasePath=/arkime/
       - ARKIME__dropUser=nobody
-      - ARKIME__uploadCommand=/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} {TAGS}
       - ARKIME__elasticsearch=http://localhost:9200
 
       - ARKIME__plugins=ja4plus.amd64.so
-      - ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
-      - ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
-      - ARKIME__ouiFile=/opt/arkime/etc/oui.txt
-      - ARKIME__saveUnknownPackets=all;corrupt
-      - ARKIME__disableParsers=
+
+      # Uncomment this group to allow uploading pcap through the viewer UI
+      #- ARKIME__uploadCommand=/opt/arkime/bin/capture --copy -n {NODE} -r {TMPFILE} {TAGS}
+      #- ARKIME__geoLite2Country=/var/lib/GeoIP/GeoLite2-City.mmdb
+      #- ARKIME__rirFile=/opt/arkime/etc/ipv4-address-space.csv
+      #- ARKIME__ouiFile=/opt/arkime/etc/oui.txt
+      #- ARKIME__saveUnknownPackets=all;corrupt
+      #- ARKIME__disableParsers=
     volumes:
       - /arkime/etc:/opt/arkime/etc
       - /arkime/pcap:/opt/arkime/raw
-      - /arkime/maxmind:/var/lib/GeoIP
-      - ./GeoIP.conf:/etc/GeoIP.conf
+      # Uncomment these two as well
+      #- /arkime/maxmind:/var/lib/GeoIP
+      #- ./GeoIP.conf:/etc/GeoIP.conf
     restart: unless-stopped
 ```
 
+*Note: The viewer doesn't do any GeoIP, OUI, or RIR lookups of its own &mdash; that all happens in capture. Those settings and the MaxMind volume are only needed alongside [**uploadCommand**](/settings#uploadCommand), which runs `capture` inside the viewer container to process pcap uploaded through the UI, and that capture has to enrich sessions the same way the sensor does. Uncomment the whole group together, or leave it commented out if you don't want pcap uploads.*
+
 ### Initial Startup Sequence
 
-Start the services in this specific order to ensure the backend is ready before the Arkime containers try to connect.
+1.  **Start everything:**
+    ```bash
+    docker compose up -d
+    ```
+    Compose pulls the images, starts Elasticsearch, waits for it to go healthy, then initializes or upgrades the Arkime database before capture and the viewer start.
 
-1.  **Pull Images and Start Elasticsearch:**
+2.  **Visit the Arkime Web Interface:** Browse to `http://<arkime_host>:8005`. The `--add-admin` flag creates an **admin/admin** user if one doesn't exist, so log in with those credentials and **change the password immediately** under **Settings -> Password**.
+
+    To add more users later, use the UI **OR** to manually add:
     ```bash
-    docker compose pull
-    docker compose up -d elasticsearch
-    # Verify ES is healthy before proceeding
-    curl http://localhost:9200
-    ```
-2.  **Initialize the Arkime database (first time only):** A fresh Elasticsearch needs `db.pl init` before Arkime will start.
-    ```bash
-    docker compose run --rm capture /opt/arkime/db/db.pl --insecure http://localhost:9200 init
-    ```
-3.  **Start Capture and Viewer:** The Capture container will initialize the Arkime configuration files based on the environment variables set above.
-    ```bash
-    docker compose up -d capture
-    docker compose up -d viewer
+    docker compose exec viewer /opt/arkime/bin/arkime_add_user.sh <user> "<Full Name>" <password> --admin
     ```
 
-4. **Visit the Arkime Web Interface:** Access the Arkime viewer by navigating to `http://<arkime_host>:8005` in your browser. Log in with the default **admin/admin** credentials and **change the password immediately** by navigating to the **Settings -> Password**.
-
-5. **Future Updating:** By using a snapshot tag you can update the Arkime containers in the future by simply running:
+3.  **Future Updating:** Because the [`v6-ja4-latest` tag](/docker#choosing-the-right-arkime-image-tag) rolls forward with each release, updating is the same two commands every time &mdash; the database upgrade happens on its own:
     ```bash
     docker compose pull
     docker compose up -d
@@ -241,7 +257,20 @@ https://FQDN {
 }
 ```
 
-### C. Add the Caddy service to your `docker-compose.yml`
+### C. Tell the viewer it lives under `/arkime/`
+
+The `handle_path /arkime/*` above strips the prefix before proxying, so the viewer has to be told to generate its links and cookies under that same prefix.
+Add [**webBasePath**](/settings#webBasePath) to the viewer's environment in your `docker-compose.yml`:
+
+```yaml
+      - ARKIME__webBasePath=/arkime/
+```
+
+Set it to the same path as the Caddy `handle_path`, and **keep the leading and trailing slashes**.
+
+*Note: Once this is set, the viewer is only reachable at `http://<arkime_host>:8005/arkime/` and `https://FQDN/arkime/` &mdash; plain `http://<arkime_host>:8005` will return a **Bad Request**. If you aren't proxying, don't set `webBasePath` at all.*
+
+### D. Add the Caddy service to your `docker-compose.yml`
 
 ```yaml
   caddy:
@@ -256,9 +285,9 @@ https://FQDN {
       - /caddy/config:/config
 ```
 
-Then `docker compose up -d caddy` and browse to `https://FQDN/arkime/`.
+Then `docker compose up -d caddy viewer` and browse to `https://FQDN/arkime/`.
 
-### D. Forward ports on the UDR7
+### E. Forward ports on the UDR7
 
 For Caddy to receive traffic from the internet, the UDR7 needs to forward inbound `443` (and/or `8443`) to the machine running Caddy.
 
