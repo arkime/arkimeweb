@@ -302,8 +302,10 @@ settings:
       <br>
       Using bubblewrap (<code>apt install bubblewrap</code>):
       <pre class="text-wrap"><code>tsharkWrapper=bwrap;<wbr>--unshare-all;<wbr>--die-with-parent;<wbr>--new-session;<wbr>--cap-drop;<wbr>ALL;<wbr>--ro-bind;<wbr>/usr;<wbr>/usr;<wbr>--ro-bind-try;<wbr>/lib;<wbr>/lib;<wbr>--ro-bind-try;<wbr>/lib64;<wbr>/lib64;<wbr>--ro-bind-try;<wbr>/opt/arkime;<wbr>/opt/arkime;<wbr>--proc;<wbr>/proc;<wbr>--dev;<wbr>/dev;<wbr>--bind;<wbr>{tsharkDir};<wbr>{tsharkDir};<wbr>--</code></pre>
-      Using systemd-run instead:
-      <pre class="text-wrap"><code>tsharkWrapper=systemd-run;<wbr>--quiet;<wbr>--scope;<wbr>--collect;<wbr>-p;<wbr>PrivateNetwork=yes;<wbr>-p;<wbr>NoNewPrivileges=yes;<wbr>-p;<wbr>MemoryMax=1G;<wbr>--</code></pre>
+      Using systemd-run instead limits tshark rather than sandboxing it: it caps memory and blocks all IP traffic,
+      but there is no filesystem isolation. A <code>--scope</code> only accepts resource limits, so settings like
+      <code>PrivateNetwork=</code> are rejected. It also needs viewer to run as root, without <a href="#dropUser">dropUser</a>.
+      <pre class="text-wrap"><code>tsharkWrapper=systemd-run;<wbr>--quiet;<wbr>--scope;<wbr>--collect;<wbr>-p;<wbr>MemoryMax=1G;<wbr>-p;<wbr>IPAddressDeny=any;<wbr>--</code></pre>
       Note that each token is a separate argv entry, so no token may contain a space.
 
   - key: featherprintRulesFiles
