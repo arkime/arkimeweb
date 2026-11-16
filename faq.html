@@ -96,6 +96,11 @@ title: FAQ
         Self-Signed or Private CA SSL/TLS Certificates
       </a>
       <a class="nav-link nested"
+        href="#outbound-http-proxy"
+        title="How do I make viewer use an outbound HTTP proxy?">
+        How do I make viewer use an outbound HTTP proxy?
+      </a>
+      <a class="nav-link nested"
         href="#how_do_i_upgrade_to_moloch_1"
         title="How do I upgrade to Moloch 1.x">
         How do I upgrade to Moloch 1.x?
@@ -1013,6 +1018,43 @@ title: FAQ
       </p>
       <p>
         For node.js applications (viewer, wise, cont3xt), you can also set the <a href="https://nodejs.org/api/cli.html#node_extra_ca_certsfile">NODE_EXTRA_CA_CERTS</a> environment variable to the path of your CA certificate files.
+      </p>
+
+      <h3 class="subsection" id="outbound-http-proxy">
+        How do I make viewer use an outbound HTTP proxy?
+        <span class="fa fa-link small copy-link cursor-copy"
+          onclick="copyLink(this, 'faq')">
+        </span>
+      </h3>
+      <p>
+        This usually comes up with <a href="/settings#auth-oidc">OIDC</a>, when viewer can only reach the identity provider through a proxy.
+        Node.js applications (viewer, wise, cont3xt) ignore the standard <code>HTTP_PROXY</code>/<code>HTTPS_PROXY</code> environment variables unless you also set <code>NODE_USE_ENV_PROXY=1</code>.
+        This requires Node.js 22.21.0 or later, which Arkime ships starting with 6.0.0; older releases silently ignore it.
+        See the Node.js <a href="https://nodejs.org/learn/http/enterprise-network-configuration">enterprise network configuration</a> docs for details.
+      </p>
+      <p>
+        If viewer can't reach the OIDC provider, it logs an error like <code>RPError: outgoing request timed out</code> from <code>Issuer.discover</code> right after it starts.
+        Logins then fail with errors such as <code>Unknown authentication strategy "s2s"</code>.
+      </p>
+      <p>
+        Add the variables to <code>/opt/arkime/etc/viewer.env</code>, or to a systemd drop-in such as <code>/etc/systemd/system/arkimeviewer.service.d/override.conf</code>, so they aren't lost when you upgrade.
+        The drop-in version looks like this:
+        <pre><code>[Service]
+Environment=NODE_USE_ENV_PROXY=1
+Environment=HTTP_PROXY=http://PROXYHOST:PORT
+Environment=HTTPS_PROXY=http://PROXYHOST:PORT
+Environment=NO_PROXY=127.0.0.1,localhost,ESHOSTS,OTHERVIEWERHOSTS,WISEHOST
+# If the proxy intercepts TLS, add its CA
+#Environment=NODE_EXTRA_CA_CERTS=/path/to/proxy-ca.pem</code></pre>
+        Then run <code>systemctl daemon-reload</code> and restart viewer.
+      </p>
+      <p>
+        <code>NO_PROXY</code> matters. Once the proxy is enabled, all of viewer's outgoing HTTP traffic goes through it, including OpenSearch/Elasticsearch, viewer to viewer (S2S), and WISE, unless you list those hosts in <code>NO_PROXY</code>.
+      </p>
+      <p>
+        If the proxy logs show requests from viewer but viewer reports <code>ECONNRESET</code>, the proxy is probably intercepting TLS.
+        Set <code>NODE_EXTRA_CA_CERTS</code> to the proxy's CA or fix the problem on the proxy side.
+        Running viewer with <code>--debug</code> (more than once for extra detail) helps here, as does testing the discover URL with <code>curl</code> through the same proxy.
       </p>
 
       <h3 class="subsection" id="how_do_i_upgrade_to_moloch_1">
