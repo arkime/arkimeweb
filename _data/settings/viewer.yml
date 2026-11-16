@@ -97,7 +97,7 @@ settings:
       See the <code>host</code> section of
       <a class="no-decoration"
         href="https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback"
-        rel="nofollow">https://nodejs.org/docs/latest-v8.x/api/net.html#net_server_listen_port_host_backlog_callback</a>
+        rel="nofollow">the Node.js server.listen() docs</a>
 
   - key: viewPort
     value: 8005
@@ -301,9 +301,9 @@ settings:
       the fifo tshark reads from, and <strong>must</strong> be bind mounted into the sandbox.
       <br>
       Using bubblewrap (<code>apt install bubblewrap</code>):
-      <pre><code>tsharkWrapper=bwrap;--unshare-all;--die-with-parent;--new-session;--cap-drop;ALL;--ro-bind;/usr;/usr;--ro-bind-try;/lib;/lib;--ro-bind-try;/lib64;/lib64;--ro-bind-try;/opt/arkime;/opt/arkime;--proc;/proc;--dev;/dev;--bind;{tsharkDir};{tsharkDir};--</code></pre>
+      <pre class="text-wrap"><code>tsharkWrapper=bwrap;<wbr>--unshare-all;<wbr>--die-with-parent;<wbr>--new-session;<wbr>--cap-drop;<wbr>ALL;<wbr>--ro-bind;<wbr>/usr;<wbr>/usr;<wbr>--ro-bind-try;<wbr>/lib;<wbr>/lib;<wbr>--ro-bind-try;<wbr>/lib64;<wbr>/lib64;<wbr>--ro-bind-try;<wbr>/opt/arkime;<wbr>/opt/arkime;<wbr>--proc;<wbr>/proc;<wbr>--dev;<wbr>/dev;<wbr>--bind;<wbr>{tsharkDir};<wbr>{tsharkDir};<wbr>--</code></pre>
       Using systemd-run instead:
-      <pre><code>tsharkWrapper=systemd-run;--quiet;--scope;--collect;-p;PrivateNetwork=yes;-p;NoNewPrivileges=yes;-p;MemoryMax=1G;--</code></pre>
+      <pre class="text-wrap"><code>tsharkWrapper=systemd-run;<wbr>--quiet;<wbr>--scope;<wbr>--collect;<wbr>-p;<wbr>PrivateNetwork=yes;<wbr>-p;<wbr>NoNewPrivileges=yes;<wbr>-p;<wbr>MemoryMax=1G;<wbr>--</code></pre>
       Note that each token is a separate argv entry, so no token may contain a space.
 
   - key: featherprintRulesFiles
