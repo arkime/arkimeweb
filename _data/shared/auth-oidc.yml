@@ -26,7 +26,8 @@ after: |
   authClientSecret=[CLIENTSECRET]
   authUserIdField=preferred_username
   authRedirectURIs=http://ARKIMEHOST:PORT/auth/login/callback
-  # Optionally set a logout URL from provider
+  # Leave logoutUrl unset, Arkime builds it from the provider, see Logout below
+  # Only set it if the provider has no end_session_endpoint
   #logoutUrl=https://the.oidc.provider.com/logout
 
   # Optional to auto create users, see the <a href="#user-auto-create">[user-auto-create]</a> section
@@ -43,6 +44,21 @@ after: |
   packetSearch=true
   roles=['arkimeUser', 'cont3xtUser']
   </code></pre>
+
+  <h4 id="oidc-logout">Logout</h4>
+  <p>
+    Since 6.0.0, when <a href="#logoutUrl">logoutUrl</a> is not set and <a href="#authRedirectURIs">authRedirectURIs</a> is, Arkime builds the logout button's url from the provider's <code>end_session_endpoint</code>.
+    Clicking logout sends the browser to the provider, which ends the OIDC session and then redirects back to Arkime's <code>/auth/logout/callback</code>.
+    That callback is what removes the Arkime session and its <code>ARKIME-SID</code> cookie, so if the provider does not redirect back the user is still logged into Arkime.
+  </p>
+  <ol>
+    <li>Register <code>http://ARKIMEHOST:PORT/auth/logout/callback</code> with the provider as an allowed post logout redirect URI. In Keycloak this is the client's <strong>Valid post logout redirect URIs</strong> setting. Arkime builds it from the first <a href="#authRedirectURIs">authRedirectURIs</a> entry, so use the same scheme, host, port and base path as that entry.</li>
+    <li>Leave <a href="#logoutUrl">logoutUrl</a> unset. When it is set Arkime uses it as is, and the provider is not told to redirect back to Arkime.</li>
+    <li>Test by clicking logout, you should end up on the provider's login page. If the provider shows an "Invalid redirect uri" error, register the exact <code>post_logout_redirect_uri</code> value from the url in the browser's address bar.</li>
+  </ol>
+  <p>
+    Each Arkime application using OIDC (Viewer, Cont3xt, Parliament, WISE) needs its own logout callback registered.
+  </p>
 
 settings:
   - key: authDiscoverURL
@@ -68,7 +84,8 @@ settings:
   - key: authRedirectURIs
     value: EMPTY
     text: |
-      Comma separated list of redirect URLs. Each URL should usually end with <code>/auth/login/callback</code>
+      Comma separated list of redirect URLs. Each URL should usually end with <code>/auth/login/callback</code>.
+      The first URL is also used to build the <code>/auth/logout/callback</code> URL, see <a href="#oidc-logout">Logout</a>.
 
   - key: authOIDCScope
     value: openid

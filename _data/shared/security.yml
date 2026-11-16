@@ -190,7 +190,7 @@ settings:
     text: |
       (Since 5.0.0) When set Arkime will show a logout button in the UI that will redirect to this url.
       For "form" authMode, Arkime provides a web page to logout.
-      Since 6.0.0 "oidc" authMode will auto set IFF the oidc provider has an end session endpoint.
+      Since 6.0.0 "oidc" authMode will auto set IFF the oidc provider has an end session endpoint and <a href="#authRedirectURIs">authRedirectURIs</a> is set, see <a href="#oidc-logout">OIDC Logout</a>.
       All other authModes require this setting to be set, or no logout button will be shown.
       Note, "basic" and "digest" authMode do not support logout in most browsers and prior to 6.0.0 "oidc" authMode will require a url from the OIDC provider.
 
