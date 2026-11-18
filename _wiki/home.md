@@ -6,6 +6,14 @@ permalink: "/learn"
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
+## Getting Started
+{: .subsection-header.mt-1 }
+
+- [Installing Arkime](install)
+- [Arkime with Docker](docker)
+- [Moving from single host to multiple hosts](multihost)
+- [Estimators](estimators)
+
 ## General
 {: .subsection-header.mt-1 }
 
@@ -14,7 +22,6 @@ permalink: "/learn"
 - [Security](https://github.com/arkime/arkime/security/policy)
 - [Arkime Architecture Designs](architecture)
 - [Articles and Presentations About Arkime](articles)
-- [Moving from single host to multiple hosts](multihost)
 - [Other FPC Systems](otherfpc)
 - [Breaking TLS POC](break-tls-poc)
 - [Why Arkime name?](arkimeetus)
@@ -35,10 +42,12 @@ permalink: "/learn"
 - [S3 PCAP Storage](s3)
 - [Command Socket](command-socket)
 - [Python Support](python)
+- [Sanitize Builds](sanitize)
 
 ## Viewer
 {: .subsection-header.mt-1 }
 
+- [Viewer v7.x API](apiv7)
 - [Viewer v3.x - v6.x API](apiv3)
 - [Viewer v0.x - v2.x API](api)
 
@@ -56,7 +65,7 @@ permalink: "/learn"
 ## OpenSearch/Elasticsearch
 {: .subsection-header.mt-1 }
 
-- [Elasticsearch SSL](esssl)
+- [OpenSearch/Elasticsearch TLS](esssl)
 - [Security ES Proxy](esproxy)
 
 ## WISE
@@ -66,6 +75,7 @@ permalink: "/learn"
 - [Building new WISE sources](wisesources)
 - [WISE API](wiseapi)
 - [WISE Configuration Gallery](wise-configs)
+- [Enriching sessions with logs from Redis](rediswise)
 
 
 ## Want to contribute to our documentation?

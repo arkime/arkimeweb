@@ -166,6 +166,12 @@ settings:
     text: |
       The password for the esClientKey setting.
 
+  - key: caTrustFile
+    value: EMPTY
+    text: |
+      File with PEM encoded CA certificates to trust for https calls to OpenSearch/Elasticsearch, which replaces the system CAs.
+      Use this when the cluster's certificate is signed by a private CA, see <a href="/esssl">OpenSearch/Elasticsearch TLS</a>.
+
   - key: elasticsearchAPIKey
     value: EMPTY
     text: |

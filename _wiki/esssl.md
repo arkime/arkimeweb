@@ -1,94 +1,82 @@
 ---
-title: Elasticsearch SSL
+title: OpenSearch/Elasticsearch TLS
 layout: wiki
 permalink: /esssl
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
-# Elasticsearch SSL
+# OpenSearch/Elasticsearch TLS
 {: .section-header.mt-1 }
 
-Arkime supports connecting to Elasticsearch using TLS.  We've tested with both [search-guard](https://search-guard.com) and [elasticsearch](https://www.elastic.co/guide/en/elastic-stack-overview/current/ssl-tls.html), but these instructions should apply to other solutions.  You should still use iptables, there is someone on your network, you just don't know it :).
+Current versions of both OpenSearch and Elasticsearch turn on TLS and authentication when you install them, so usually there is nothing to enable.
+Instead you need to tell Arkime how to log in and how to trust the cluster's certificate.
+You should still use a firewall so only Arkime and the other cluster nodes can reach ports 9200 and 9300, there is someone on your network, you just don't know it :).
 
-**Try this on a test cluster first!**
+**Try any certificate change on a test cluster first!**
 
-
-### Elasticsearch implementation
+### Elasticsearch
 {: .subsection }
 
-* First make sure you are using ES 6.8/7.1 or later for the free version
-* We recommend you get the ES cluster and Arkime working before enabling TLS
-* Create the certs required, we recommend creating a single wildcard cert
-* Here is a sample config for your elasticsearch.yml
-  * It assumes the private key is the file es.key with no password and public key es.cert
-  * It turns off user authentication
-  * It disables monitoring
+* Since Elasticsearch 8.0 the deb/rpm packages generate certificates the first time Elasticsearch starts
+  * The CA that signed the HTTP certificate is `/etc/elasticsearch/certs/http_ca.crt`, copy it to each Arkime machine
+  * Set the `elastic` user's password with `/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic -i`
+* New nodes get certificates when they join with an enrollment token, see [Multiple Host](multihost)
+* You can replace the generated certificates with ones from your own or a public CA, see the Elastic [secure cluster communications](https://www.elastic.co/docs/deploy-manage/security/secure-cluster-communications) docs
+* You can use an [Elasticsearch API key](settings#elasticsearchAPIKey) instead of a user and password
 
-```
-xpack.monitoring.enabled: false
-xpack.security.enabled: true
-xpack.security.dls_fls.enabled: false
-
-xpack.security.transport:
-  ssl.enabled: true
-  ssl.verification_mode: certificate
-  ssl.key: es.key
-  ssl.certificate: es.cert
-
-xpack.security.http:
-  ssl.enabled: true
-  ssl.verification_mode: certificate
-  ssl.key: es.key
-  ssl.certificate: es.cert
-
-xpack.security.authc:
-  anonymous:
-    username: anonymous
-    roles: superuser
-    authz_exception: true
-```
-
-* Do a full cluster restart
-* Change your Arkime config.ini files for everything to use https
-* See https://www.elastic.co/guide/en/elastic-stack-overview/current/ssl-tls.html for more information
-
-
-### Searchguard implementation
+### OpenSearch
 {: .subsection }
 
-* We recommend you get the ES cluster and Arkime working before enabling TLS
-* Visit https://docs.search-guard.com/latest/search-guard-versions and select the proper ES version and search guard version
-* Here is a sample config for your elasticsearch.yml
-  * It assumes the private key is the file es.key with no password and public key es.cert
-  * It turns off all search guard features except for tls, for example user authentication
+* The deb/rpm packages install the security plugin with demo certificates when `OPENSEARCH_INITIAL_ADMIN_PASSWORD` is set, like the [install](install) examples
+  * The demo CA is `/etc/opensearch/root-ca.pem`
+  * Every install uses the same demo certificates, so replace them before going to production or adding nodes
+* See the OpenSearch [TLS configuration](https://docs.opensearch.org/latest/security/configuration/tls/) docs for using your own certificates
 
-```
-searchguard.ssl_only: true
-# NODE2NODE
-searchguard.ssl.transport.enabled: true
-searchguard.ssl.transport.pemkey_filepath: es.key
-searchguard.ssl.transport.pemcert_filepath: es.cert
-searchguard.ssl.transport.pemtrustedcas_filepath: es.cert
-
-# HTTP
-searchguard.ssl.http.enabled: true
-searchguard.ssl.http.pemkey_filepath: es.key
-searchguard.ssl.http.pemcert_filepath: es.cert
-searchguard.ssl.http.pemtrustedcas_filepath: es.cert
-```
-
-* Do a full cluster restart
-* Change your Arkime config.ini files for everything to use https
-
-
-### Notes:
+### Configuring Arkime
 {: .subsection }
 
-* Arkime supports using client auth with Elasticsearch SSL.  You will need to set the <a href="/settings#esclientkey">esClientKey</a> and <a href="/settings#esclientcert">esClientCert</a> settings.
-* Since 7.0 cont3xt and WISE use the same esClientKey/esClientCert/esClientKeyPass settings for their OpenSearch/Elasticsearch connections, and their integrations and sources that call a url take per section <a href="/settings#cont3xt-integration-common">clientKey/clientCert/caTrustFile</a> settings for other servers that require client certificates.
-* When using curl you may need to add the ```--tlsv1.1``` option on older machines
-* On any host where db.pl runs you'll need to install the ```perl-Crypt-SSLeay``` and/or ```perl-LWP-Protocol-https``` packages depending on OS
-* **You should still use iptables!**
+* Use `https` URLs in the [elasticsearch](settings#elasticsearch) setting, the hostnames must match the names in the certificate
+* Set [elasticsearchBasicAuth](settings#elasticsearchBasicAuth) or [elasticsearchAPIKey](settings#elasticsearchAPIKey)
+* If the certificate isn't signed by a CA the operating system already trusts, set [caTrustFile](settings#caTrustFile) to the CA file. It replaces the operating system's CA list for those connections, it doesn't add to it.
+* Since 7.0 Cont3xt and WISE use the same caTrustFile/esClientKey/esClientCert/esClientKeyPass settings for their OpenSearch/Elasticsearch connections
+
+```
+[default]
+elasticsearch=https://es1.example.com:9200,https://es2.example.com:9200
+elasticsearchBasicAuth=arkime:PASSWORD
+caTrustFile=/opt/arkime/etc/es-ca.pem
+```
+
+You can check the CA, hostname and password with curl before starting Arkime:
+
+```
+curl --cacert /opt/arkime/etc/es-ca.pem --user arkime https://es1.example.com:9200/_cat/health
+```
+
+### db.pl
+{: .subsection }
+
+* db.pl is written in perl and needs LWP::Protocol::https, which is the `liblwp-protocol-https-perl` package on Debian/Ubuntu and `perl-LWP-Protocol-https` on EL based systems
+* db.pl doesn't read config.ini, so use `--esuser user:password` or `--esapikey key`, or set the `ARKIME__elasticsearchBasicAuth` or `ARKIME__elasticsearchAPIKey` environment variables
+* db.pl doesn't use caTrustFile, either add the CA to the operating system's trust store or point perl at it with the `PERL_LWP_SSL_CA_FILE` environment variable
+* db.pl skips certificate verification when connecting to `localhost` or `127.0.0.1`
+
+```
+PERL_LWP_SSL_CA_FILE=/opt/arkime/etc/es-ca.pem /opt/arkime/db/db.pl --esuser arkime https://es1.example.com:9200 info
+```
+
+### Client certificates
+{: .subsection }
+
+* Arkime supports TLS client authentication with OpenSearch/Elasticsearch, set the [esClientKey](settings#esclientkey) and [esClientCert](settings#esclientcert) settings, plus [esClientKeyPass](settings#esclientkeypass) if the key has a password
+* db.pl uses the `--clientcert` and `--clientkey` options, the key must not have a passphrase
+* Cont3xt integrations and WISE sources that call a URL take per section <a href="/settings#cont3xt-integration-common">clientKey/clientCert/caTrustFile</a> settings for other servers that require client certificates
+
+### Self-signed certificates
+{: .subsection }
+
+We recommend real certificates, see the FAQ on [self-signed or private CA certificates](faq#self-signed-ssl-tls-certificates).
+For testing, capture, viewer and db.pl accept `--insecure` to turn off certificate checks, but don't leave it on.
 
 </div>

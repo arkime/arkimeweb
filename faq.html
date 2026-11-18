@@ -539,7 +539,7 @@ title: FAQ
               1.x, 2.x, 3.x (3.x recommended), <a href="#http-compression">2.19.0 broken</a>
             </td>
             <td>
-              8.x, 9.x (8.10+ or 9.x recommended)
+              <a href="#how-do-i-upgrade-to-es-8-x">8.x</a>, <a href="#how-do-i-upgrade-to-es-9-x">9.x</a> (8.10+ or 9.x recommended)
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_7"> Arkime 7.x instructions </a>
@@ -562,7 +562,7 @@ title: FAQ
               1.x, 2.x, 3.x (2.10+ or 3.x recommended), <a href="#http-compression">2.19.0 broken</a>, 3.x requires Arkime 5.7.0+
             </td>
             <td>
-              7.10+, 8.x, 9.x (8.10+ or 9.x recommended)
+              7.10+, <a href="#how-do-i-upgrade-to-es-8-x">8.x</a>, <a href="#how-do-i-upgrade-to-es-9-x">9.x</a> (8.10+ or 9.x recommended)
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_6"> Arkime 6.x instructions </a>
@@ -585,7 +585,7 @@ title: FAQ
               1.x, 2.x, 3.x (2.10+ or 3.x recommended), <a href="#http-compression">2.19.0 broken</a>, 3.x requires Arkime 5.7.0+
             </td>
             <td>
-              7.10+, 8+, 9.x (7.17+, 8.10+ recommended), 9.x requires Arkime 5.7.0+
+              7.10+, <a href="#how-do-i-upgrade-to-es-8-x">8+</a>, <a href="#how-do-i-upgrade-to-es-9-x">9.x</a> (7.17+, 8.10+ recommended), 9.x requires Arkime 5.7.0+
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_5"> Arkime 5.x instructions </a>
@@ -607,7 +607,7 @@ title: FAQ
               1.x, 2.x (2.3+ recommended), <a href="#http-compression">2.19.0 broken</a>
             </td>
             <td>
-              7.10+, 8+
+              7.10+, <a href="#how-do-i-upgrade-to-es-8-x">8+</a>
             </td>
             <td>
               <a href="#how_do_i_upgrade_to_arkime_4"> Arkime 4.x instructions </a>
@@ -3116,7 +3116,7 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
         <li>
           Finally Arkime goes to save the packet, if it has already saved the max
           number of packets for the session (set by rules or
-          <a href="/settings#dontsavebpf">dontSaveBPFs</a>)
+          <a href="/settings#dontsavebpfs">dontSaveBPFs</a>)
           OR if there was another method (plugin) that said stop saving packets
           for the session the packet won't be saved.
         </li>
@@ -3318,12 +3318,12 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           onclick="copyLink(this, 'faq')">
         </span>
       </h4>
-      <pre><code>Jan 01 01:01:01 http.c:369 moloch_http_curlm_check_multi_info(): 8000/30 ASYNC 200 http://eshost:9200/_bulk 250342/5439 14ms 12345ms</code></pre>
+      <pre><code>Jan 01 01:01:01 http.c:425 arkime_http_curlm_check_multi_info(): 8000/30 ASYNC 200 http://eshost:9200/_bulk 250342/5439 14ms 12345ms</code></pre>
       <table class="table table-sm table-bordered">
         <tbody>
           <tr><td>Jan 01 01:01:01</td><td>Date</td></tr>
-          <tr><td>http.c:369</td><td>File Name:Line Number</td></tr>
-          <tr><td>moloch_http_curlm_check_multi_info</td><td>Function Name</td></tr>
+          <tr><td>http.c:425</td><td>File Name:Line Number</td></tr>
+          <tr><td>arkime_http_curlm_check_multi_info</td><td>Function Name</td></tr>
           <tr><td>8000/30</td><td>8000 queued requests to server<br>30 connections to server</td></tr>
           <tr><td>ASYNC</td><td>Asynchronous request, SYNC for Synchronous request</td></tr>
           <tr><td>200</td><td>HTTP status code</td></tr>
@@ -4027,7 +4027,7 @@ multiESNodes = http://escluster1.example.com:9200,name:escluster1,prefix:PREFIX;
               Since viewer by default drops privileges before listening, even if you start as root, it isn't root anymore when trying to listen on the port.
               Possible solutions are:
               <ul>
-                <li>Use a reverse proxy like <a href="#how-do-i-proxy-moloch-using-apache">Apache</a>/Nginx. This is a great option for a central node that needs to be behind SSO, and all other nodes are blocked from users directly using</li>
+                <li>Use a reverse proxy like <a href="#how-do-i-proxy-arkime-using-apache">Apache</a>/Nginx. This is a great option for a central node that needs to be behind SSO, and all other nodes are blocked from users directly using</li>
                 <li>Use iptables to forward from new port to 8005. Something like <pre><code>iptables -t nat -I PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8005</code></pre></li>
                 <li>Fool around with the systemd CAP_NET_BIND_SERVICE setting</li>
                 <li>Comment out the <a href="/settings#dropuser">dropUser</a> setting and change the <a href="/settings#viewport">viewPort</a> setting in a [$nodename] section.</li>
