@@ -18,11 +18,11 @@ copyLink: True
 
 **Note:** Most of the commands in this guide require root privileges. Please ensure you are running as root or using `sudo`.
 
-This guide details the steps involved in installing Arkime 5.2 or later on a Linux machine.
+This guide details the steps involved in installing Arkime on a Linux machine.
 A basic Arkime cluster consists of a database (OpenSearch or Elasticsearch) and Arkime sensors.
-Arkime sensors run the capture and viewer tools and process the network traffic.
-The capture tool is responsible for processing and storing the packets along with extracting the metadata to be stored in OpenSearch or Elasticsearch.
-The viewer tool provides the end-user interface, packet retrieval, and some housekeeping functions.
+Arkime sensors run the capture and viewer applications and process the network traffic.
+The capture application is responsible for processing and storing the packets along with extracting the metadata to be stored in OpenSearch or Elasticsearch.
+The viewer application provides the end-user interface, packet retrieval, and some housekeeping functions.
 It is possible to run both the database and sensors on the same machine, however it is not recommended for production environments.
 
 If you are interested in how many and types of machines you need for your environment, please see our [hardware estimators](https://arkime.com/estimators).
@@ -38,6 +38,7 @@ If you just want to get a single-machine evaluation install up and running as qu
 We recommend using a stable version of Debian or Long-Term Support (LTS) version of Ubuntu.
 Both of these distributions are well supported, receive regular updates, and are easy to upgrade.
 Users of other distributions may need to modify the installation commands to avoid library compatibility issues.
+We also provide packages for several other distributions, including EL 8, 9, and 10 based (RHEL, Rocky Linux, AlmaLinux), Amazon Linux 2023, Fedora, and Arch Linux, as well as FreeBSD. Check the [releases page](https://github.com/arkime/arkime/releases/latest) for the full list.
 
 ## Installing OpenSearch or Elasticsearch
 {: .section-header }
@@ -46,12 +47,12 @@ Arkime requires a database to store the metadata associated with the network ses
 It is strongly recommended to NOT use the same machines for both the database and the sensors in a production environment.
 If you must use the same machines, please use different disk partitions for the database and the saved packets, otherwise, there will be contention for disk space and Arkime will eventually stop working.
 
-The official matrix of supported versions of OpenSearch and Elasticsearch is available at the top of the [CHANGELOG](https://raw.githubusercontent.com/arkime/arkime/master/CHANGELOG). We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
+The official matrix of supported versions of OpenSearch and Elasticsearch is available at the top of the [CHANGELOG](https://raw.githubusercontent.com/arkime/arkime/main/CHANGELOG). We answer many OpenSearch/Elasticsearch questions in the OpenSearch/Elasticsearch section of the [FAQ](https://arkime.com/faq#elasticsearch).
 
 ### Download and Install OpenSearch or Elasticsearch
 {: .subsection }
 
-**Note:** Avoid OpenSearch 2.19.0 — it has a [known bug](https://github.com/opensearch-project/OpenSearch/issues/17339) that causes HTTP responses to hang when the client supports zstd compression (curl 8.5.0+, the default on Debian 13 and Ubuntu 24.04). Use OpenSearch 2.18.0 or 3.x instead, or set `http.compression: false` in `opensearch.yml` as a workaround. See the [FAQ](https://arkime.com/faq#http-compression) for details.
+**Note:** Avoid OpenSearch 2.19.0 — it has a [known bug](https://github.com/opensearch-project/OpenSearch/issues/17339) that hangs Arkime when HTTP compression is enabled. Use OpenSearch 3.x instead; the [FAQ](https://arkime.com/faq#http-compression) has details and a workaround.
 
 There are many ways to download and install [OpenSearch](https://opensearch.org/downloads.html) or [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), we recommend using the official packages for your Linux distribution when possible.
 For a test environment, running OpenSearch or Elasticsearch on the same machine as the Arkime sensor will work, otherwise, please use separate machines.
@@ -70,17 +71,9 @@ Once you download OpenSearch, you can install it by running the following comman
 * Debian/Ubuntu: `apt install ./opensearch-*.deb`
 * EL: `yum install ./opensearch-*.rpm`
 
-You may need to update the JVM heap size in the `/etc/opensearch/jvm.options` file.
-
-`nano /etc/opensearch/jvm.options`
-
-Look for the following lines:
-```
--Xms1g
--Xmx1g
-```
-
-Change them based on how much memory you have available, the minimum recommended heap size is 4GB, and the maximum heap size is 31GB. This example uses 12GB. It is suggested you don't use more than 50% of your system memory for the JVM heap size and that both values are the same.
+OpenSearch defaults to a 1GB JVM heap, which is too small for Arkime.
+Set the heap size by creating a file such as `/etc/opensearch/jvm.options.d/heap.options` instead of editing `jvm.options`, so package upgrades don't conflict with your change.
+The minimum recommended heap size is 4GB, and the maximum heap size is 31GB. It is suggested you don't use more than 50% of your system memory for the JVM heap size and that both values are the same. This example uses 12GB.
 ```
 -Xms12g
 -Xmx12g
@@ -96,17 +89,9 @@ Once you download Elasticsearch, you can install it by running the following com
 * Debian/Ubuntu: `apt install ./elasticsearch-*.deb`
 * EL: `yum install ./elasticsearch-*.rpm`
 
-You may need to update the JVM heap size in the `/etc/elasticsearch/jvm.options` file.
-
-`nano /etc/elasticsearch/jvm.options`
-
-Look for the following lines:
-```
--Xms1g
--Xmx1g
-```
-
-Change them based on how much memory you have available, the minimum recommended heap size is 4GB, and the maximum heap size is 31GB. This example uses 12GB. It is suggested you don't use more than 50% of your system memory for the JVM heap size and that both values are the same.
+Elasticsearch automatically sizes the JVM heap based on the node's roles and total memory, so most installs don't need to change it.
+If you do need to set it, don't edit `jvm.options`; instead create a file such as `/etc/elasticsearch/jvm.options.d/heap.options` with both values the same.
+The maximum heap size is 31GB, and it is suggested you don't use more than 50% of your system memory for the JVM heap size. This example uses 12GB.
 ```
 -Xms12g
 -Xmx12g
@@ -122,19 +107,42 @@ You'll need to enable Elasticsearch to start now and on boot with the following 
 ```
 apt update
 apt install -y wget curl
-wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.18.0/opensearch-2.18.0-linux-x64.deb
+wget https://artifacts.opensearch.org/releases/bundle/opensearch/3.9.0/opensearch-3.9.0-linux-x64.deb
 
 # You should change this password, if it isn't strong enough install will fail. :(
 # Minimum 10 character password and must contain at least one uppercase letter, one lowercase letter, one digit, and one special character
 export OPENSEARCH_INITIAL_ADMIN_PASSWORD="PleaseChangeM3!"
 
-apt install -y ./opensearch-2.18.0-linux-x64.deb
+apt install -y ./opensearch-3.9.0-linux-x64.deb
 systemctl enable --now opensearch
 
 # Verify that OpenSearch is running
 sleep 5
 curl -k --user "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200/_cat/health
 
+```
+
+### Single Machine Elasticsearch Example on Ubuntu or Debian
+{: .subsection }
+
+**Note:** The version below is just an example — check the [Elasticsearch downloads page](https://www.elastic.co/downloads/elasticsearch) for the latest supported version and adjust the URL accordingly.
+```
+apt update
+apt install -y wget curl
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.5.5-amd64.deb
+
+# The install prints a generated password for the elastic user, save it!
+apt install -y ./elasticsearch-9.5.5-amd64.deb
+systemctl daemon-reload
+systemctl enable --now elasticsearch
+
+# Optionally set your own password for the elastic user
+/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic -i
+
+# Verify that Elasticsearch is running
+curl -k --user elastic https://localhost:9200/_cat/health
+
+# In the Arkime steps below use the elastic user and this password where they say admin
 ```
 
 ### Moving to multiple machines
@@ -186,8 +194,8 @@ We suggest using ILM/ISM.
 These examples assume you are doing daily rollovers and keeping 30 days of data.
 #### Elasticsearch ILM Example
 ```
-/opt/arkime/db/db.pl --esuser admin https://localhost:9200 init --ilm
-/opt/arkime/db/db.pl --esuser admin https://localhost:9200 ilm 1d 30d
+/opt/arkime/db/db.pl --esuser elastic https://localhost:9200 init --ilm
+/opt/arkime/db/db.pl --esuser elastic https://localhost:9200 ilm 1d 30d
 ```
 #### OpenSearch ISM Example
 ```
@@ -242,15 +250,15 @@ Use the authentication information from above, username `admin` and the password
 ### Single Machine Arkime Example on Ubuntu 24 LTS
 {: .subsection }
 
-**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly.
+**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly. On Ubuntu 26.04, use the `ubuntu2604` package instead.
 ```
 apt update
 apt install -y wget iproute2 ethtool
-wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
-apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v6.9.2/arkime_6.9.2-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.9.2-1.ubuntu2404_amd64.deb
 # OR latest commit version
-#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
-#apt install -y ./arkime-main_ubuntu2404_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime_main.ubuntu2404_amd64.deb
+#apt install -y ./arkime_main.ubuntu2404_amd64.deb
 
 # Configure Arkime
 /opt/arkime/bin/Configure
@@ -300,15 +308,15 @@ You can always edit the /opt/arkime/etc/cont3xt.ini file directly after running 
 ### Single Machine Cont3xt Example on Ubuntu 24 LTS
 {: .subsection }
 
-**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly.
+**Note:** The version below is just an example — check the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest stable version and adjust the URL and filename accordingly. On Ubuntu 26.04, use the `ubuntu2604` package instead.
 ```
 apt update
 apt install -y wget
-wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
-apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v6.9.2/arkime_6.9.2-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.9.2-1.ubuntu2404_amd64.deb
 # OR latest commit version
-#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime-main_ubuntu2404_amd64.deb
-#apt install -y ./arkime-main_ubuntu2404_amd64.deb
+#wget https://github.com/arkime/arkime/releases/download/last-commit6/arkime_main.ubuntu2404_amd64.deb
+#apt install -y ./arkime_main.ubuntu2404_amd64.deb
 
 # Configure Cont3xt
 /opt/arkime/bin/Configure --cont3xt
@@ -335,19 +343,19 @@ tail /opt/arkime/logs/cont3xt.log
 
 This is a copy-paste-friendly walkthrough that installs OpenSearch and Arkime on a single Ubuntu 24 LTS machine for **evaluation or testing**. It is not a production setup — for production, read the full guide above (separate database and sensor machines, ILM/ISM, hardened passwords, TLS certs, etc.).
 
-**Note:** The versions below are examples — check the [OpenSearch downloads page](https://opensearch.org/downloads.html) and the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest versions and adjust the URLs accordingly. Run everything as root (or with `sudo`).
+**Note:** The versions below are examples — check the [OpenSearch downloads page](https://opensearch.org/downloads.html) and the [Arkime releases page](https://github.com/arkime/arkime/releases/latest) for the latest versions and adjust the URLs accordingly. On Ubuntu 26.04, use the Arkime `ubuntu2604` package instead. Run everything as root (or with `sudo`).
 
 ```
 # --- Install OpenSearch ---
 apt update
 apt install -y wget curl iproute2 ethtool
 
-wget https://artifacts.opensearch.org/releases/bundle/opensearch/2.18.0/opensearch-2.18.0-linux-x64.deb
+wget https://artifacts.opensearch.org/releases/bundle/opensearch/3.9.0/opensearch-3.9.0-linux-x64.deb
 
 # Must be 10+ chars with upper, lower, digit, and special character. CHANGE THIS.
 export OPENSEARCH_INITIAL_ADMIN_PASSWORD="PleaseChangeM3!"
 
-apt install -y ./opensearch-2.18.0-linux-x64.deb
+apt install -y ./opensearch-3.9.0-linux-x64.deb
 systemctl enable --now opensearch
 
 # Verify OpenSearch is up
@@ -355,8 +363,8 @@ sleep 5
 curl -k --user "admin:$OPENSEARCH_INITIAL_ADMIN_PASSWORD" https://localhost:9200/_cat/health
 
 # --- Install Arkime ---
-wget https://github.com/arkime/arkime/releases/download/v6.3.1/arkime_6.3.1-1.ubuntu2404_amd64.deb
-apt install -y ./arkime_6.3.1-1.ubuntu2404_amd64.deb
+wget https://github.com/arkime/arkime/releases/download/v6.9.2/arkime_6.9.2-1.ubuntu2404_amd64.deb
+apt install -y ./arkime_6.9.2-1.ubuntu2404_amd64.deb
 
 # Configure Arkime (interactive). Answer:
 #   Interface:                         the interface to monitor
