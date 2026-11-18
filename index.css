@@ -809,34 +809,68 @@ td[id]:hover > span.copy-link {
   visibility: visible;
 }
 
-/* wiki tocs */
-.wiki-toc {
-  padding-left: 10px;
-}
-
+/* wiki tocs, styled like the settings page toc */
 .wiki-toc, .wiki-toc ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
-
-.wiki-toc > li > ul > li {
-  margin-left: -40px;
+.wiki-toc {
+  padding: 1rem 0.5rem 1rem 0;
+  line-height: 1.2;
 }
-.wiki-toc > li > ul > li > ul > li {
-  margin-left: -25px;
-}
-.wiki-toc > li > ul > li,
-.wiki-toc > li > ul > li > ul > li {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.wiki-toc > li > a {
-  font-weight: bold;
-}
-
-.wiki-toc a:hover {
+.wiki-toc a {
+  display: block;
+  padding: 4px 8px;
   text-decoration: none;
+}
+/* top level (usually the page title), the next level lines up with it */
+.wiki-toc > li > a {
+  font-size: larger;
+  font-weight: 900;
+}
+.wiki-toc > li > ul > li > a {
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+.wiki-toc > li > ul > li > ul a {
+  font-size: 0.85rem;
+  font-weight: 300;
+  padding: 4px 10px 4px 20px;
+}
+.wiki-toc > li > ul > li > ul > li > ul a {
+  padding-left: 30px;
+}
+
+/* opt-in wiki heading levels, add .doc-headings to the page container */
+.doc-headings h2.section-header {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary-theme-color);
+  margin-top: 2.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--primary-theme-color);
+}
+.doc-headings h3.subsection {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  padding: 0.1rem 0 0.1rem 0.6rem;
+  border-top: none;
+  border-left: 4px solid var(--primary-theme-light-color);
+}
+.doc-headings h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  color: #495057;
+}
+.dark-theme .doc-headings h2.section-header {
+  color: var(--primary-theme-light-color);
+  border-bottom-color: var(--primary-theme-light-color);
+}
+.dark-theme .doc-headings h4 {
+  color: #CCCCCC;
 }
 
 /* Add to calendar override styles */

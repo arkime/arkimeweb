@@ -10,7 +10,7 @@ copyLink: True
 {:toc}
 {: .left-nav .d-none .d-sm-block .pt-3 .with-footer .wiki-toc }
 
-<div class="full-height-container with-footer px-3 mb-4 mt-1" markdown="1">
+<div class="full-height-container with-footer px-3 mb-4 mt-1 doc-headings" markdown="1">
 
 
 # Installation Guide for Arkime
