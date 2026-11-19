@@ -3,8 +3,6 @@ title: Arkime Documentation
 description: "Arkime documentation: installation, Docker, architecture, rules, WISE, Cont3xt, Parliament and the full API reference."
 layout: wiki
 permalink: "/learn"
-redirect_from:
-  - /learn2
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
