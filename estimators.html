@@ -65,15 +65,18 @@ title: Estimators
         <div class="d-flex flex-wrap align-items-center">
           <div class="form-group">
             <label for="gbpsInput" class="visually-hidden">
-              Average gigabits per second
+              How much traffic do you want to monitor, in average gigabits per second
             </label>
             <div class="input-group">
               
                 <span class="input-group-text">
-                  Average gigabits per second
+                  How much traffic do you want to monitor?
                 </span>
               <input type="number" id="gbpsInput" value=1 min=0 step=0.01
                 class="form-control">
+                <span class="input-group-text">
+                  Gbps average
+                </span>
             </div>
           </div>
         </div>
@@ -513,7 +516,56 @@ title: Estimators
         $("#esMachines2-worst").text(sStr("host", Math.max(esReplication, esDaysWorst/(esDiskInput*(esDisks-2)))));
       }
 
-      $('#viewport input,select').change(recalculate);
+      // Put the whole scenario in the URL so it can be sent to someone else.
+      // Short names keep the link readable.
+      var PARAMS = {
+        gbps: '#gbpsInput',
+        days: '#captureDaysInput',
+        disk: '#captureDiskInput',
+        disks: '#captureNumDisksInput',
+        tls: '#captureTLSInput',
+        comp: '#captureCompressionInput',
+        max: '#maxGbps',
+        esdays: '#esDaysInput',
+        esdisk: '#esDiskInput',
+        esdisks: '#esNumDisksInput',
+        esnodes: '#esNumNodesInput',
+        esrep: '#esReplication'
+      };
+
+      // A select silently clears itself when handed a value it has no option
+      // for, so check before setting and ignore anything unrecognized. Numbers
+      // are only taken when they parse, so a mangled link still renders the
+      // page with its defaults rather than NaN.
+      function applyUrlParams() {
+        if (!window.URLSearchParams) { return; }
+        var q = new URLSearchParams(window.location.search);
+        Object.keys(PARAMS).forEach(function (key) {
+          if (!q.has(key)) { return; }
+          var el = $(PARAMS[key]);
+          if (!el.length) { return; }
+          var value = q.get(key);
+          if (el.is('select')) {
+            var known = el.find('option').toArray().some(function (o) { return o.value === value; });
+            if (known) { el.val(value); }
+          } else if (value !== '' && isFinite(+value) && +value >= 0) {
+            el.val(value);
+          }
+        });
+      }
+
+      function syncUrl() {
+        if (!window.URLSearchParams || !window.history.replaceState) { return; }
+        var q = new URLSearchParams();
+        Object.keys(PARAMS).forEach(function (key) {
+          var el = $(PARAMS[key]);
+          if (el.length) { q.set(key, el.val()); }
+        });
+        window.history.replaceState(null, '', window.location.pathname + '?' + q.toString());
+      }
+
+      $('#viewport input,select').change(function () { recalculate(); syncUrl(); });
+      applyUrlParams();
       recalculate();
     });
   </script>
