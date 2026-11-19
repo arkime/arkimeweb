@@ -28,14 +28,21 @@ info: |
      Re-check this list when the parsers change:
      grep -rnE 'arkime_session_add_protocol\(' . --include='*.c' | grep -vE 'add_protocol\([^,]+, *"'
 
-  For the Type and ~Fields columns, look at the .c files in capture/parsers/:
-  - Count arkime_field_define and arkime_field_by_exp_add_internal calls for ~Fields.
+  For the Type and Fields columns, look at the .c files in capture/parsers/:
+  - Count arkime_field_define and arkime_field_by_exp_add_internal calls for Fields.
+    This is deliberately approximate and the page says so, because the count of
+    definitions is not the count of searchable fields:
+      * ARKIME_FIELD_FLAG_CNT also creates a .cnt companion field.
+      * ARKIME_FIELD_FLAG_FAKE definitions are regex shorthands that are never stored.
+      * an "aliases" property registers extra searchable names.
+      * http.c defines its http.method.* fields inside a for loop over
+        HTTP_MAX_METHOD, so one call site produces several fields.
   - If the file defines any fields it is a "Parser", even if it extracts them straight
     out of its classify callback (oracle.c) or from a packet callback rather than a
     stream parser (arp.c, ospf.c, esis.c, isis.c, sctp.c, icmp.c).
   - A file with no arkime_field_define that only tags a protocol is a "Classifier".
   - pop3.c and tds.c define no fields of their own but fill the shared "user" field via
-    arkime_field_by_db("user"). They count as parsers with ~1 field.
+    arkime_field_by_db("user"). They count as parsers with 1 field.
   - Sub-parsers use arkime_parsers_register_sub - websocket.c hangs off http,
     tcap.c off m3ua.
   - certs.c is a helper used by TLS/DTLS - its fields are counted under TLS/SSL.
@@ -64,8 +71,12 @@ In addition to identifying the protocol, a parser deeply inspects the protocol's
 For example, the DNS parser extracts query hostnames, response IPs, query types, and more.
 Parsed fields are fully searchable and viewable in Arkime's UI.
 
-The **~Fields** column shows the approximate number of protocol-specific fields extracted by each parser.
-The actual number of searchable fields may vary as Arkime continues to evolve.
+The **Fields** column is approximate. It counts the field definitions in each parser's
+source, which is close to, but not exactly, the number of fields you can search on:
+a definition flagged to keep a count also creates a `.cnt` companion, some definitions
+are regex shorthands that are never stored, some register extra aliases, and HTTP
+defines one field per method inside a loop that counts here as a single definition.
+Read it as a sense of how much a parser pulls out, not an exact total.
 
 ### Protocol Table
 {: .subsection-header }
@@ -96,37 +107,37 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 <p class="proto-count text-muted" id="protoCount"></p>
 
 <div class="table-responsive" markdown="1">
-| Protocol | `protocols ==` | Type | ~Fields |
+| Protocol | `protocols ==` | Type | Fields |
 | -------- | -------------- | ---- | ------: |
-| ADB (Android Debug Bridge) | `adb` | <span class="proto-badge proto-parser">Parser</span> | ~14 |
+| ADB (Android Debug Bridge) | `adb` | <span class="proto-badge proto-parser">Parser</span> | 14 |
 | AD CS over HTTP | `adcs-web` `adcs-ndes` `adcs-cep` `adcs-ces` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Aerospike | `aerospike` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| ARP | `arp` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| ARP | `arp` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | Aruba PAPI | `aruba-papi` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| BACnet | `bacnet` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
-| BGP | `bgp` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| BACnet | `bacnet` | <span class="proto-badge proto-parser">Parser</span> | 4 |
+| BGP | `bgp` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | Bitcoin | `bitcoin` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | BitTorrent | `bittorrent` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | BJNP (Canon printing) | `bjnp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | BSDP (Apple NetBoot) | `bsdp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| C12.22 | `c1222` | <span class="proto-badge proto-parser">Parser</span> | ~6 |
-| CAMEL | `camel` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| C12.22 | `c1222` | <span class="proto-badge proto-parser">Parser</span> | 6 |
+| CAMEL | `camel` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | Cassandra | `cassandra` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| DCE/RPC | `dcerpc` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
-| DHCP | `dhcp` `dhcpv6` | <span class="proto-badge proto-parser">Parser</span> | ~10 |
-| Diameter | `diameter` | <span class="proto-badge proto-parser">Parser</span> | ~9 |
-| DNP3 | `dnp3` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
-| DNS | `dns` `mdns` `llmnr` | <span class="proto-badge proto-parser">Parser</span> | ~45 |
+| DCE/RPC | `dcerpc` | <span class="proto-badge proto-parser">Parser</span> | 5 |
+| DHCP | `dhcp` `dhcpv6` | <span class="proto-badge proto-parser">Parser</span> | 10 |
+| Diameter | `diameter` | <span class="proto-badge proto-parser">Parser</span> | 9 |
+| DNP3 | `dnp3` | <span class="proto-badge proto-parser">Parser</span> | 4 |
+| DNS | `dns` `mdns` `llmnr` | <span class="proto-badge proto-parser">Parser</span> | 45 |
 | Dropbox LAN Sync | `dropbox-lan-sync` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| DTLS | `dtls` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| DTLS | `dtls` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | Elasticsearch | `elasticsearch` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| ES-IS | `esis` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| ES-IS | `esis` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | ESIO (Saia-Burgess PCD) | `esio` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| EtherNet/IP and CIP | `enip` `cip` | <span class="proto-badge proto-parser">Parser</span> | ~7 |
+| EtherNet/IP and CIP | `enip` `cip` | <span class="proto-badge proto-parser">Parser</span> | 7 |
 | Finger | `finger` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | FLAP (AIM/ICQ) | `flap` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Flash policy | `flash-policy` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| FTP | `ftp` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| FTP | `ftp` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | Gearman | `gearman` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Gh0st RAT | `gh0st` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | GTP | `gtp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
@@ -135,86 +146,86 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 | HDFS | `hdfs` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Honeywell TCC | `honeywell-tcc` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | HSRP | `hsrp` `hsrpv2` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| HTTP | `http` | <span class="proto-badge proto-parser">Parser</span> | ~32 |
-| HTTP/2 | `http2` | <span class="proto-badge proto-parser">Parser</span> | ~7 |
-| ICMP | `icmp` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| HTTP | `http` | <span class="proto-badge proto-parser">Parser</span> | 32 |
+| HTTP/2 | `http2` | <span class="proto-badge proto-parser">Parser</span> | 7 |
+| ICMP | `icmp` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | Ident | `ident` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | IGMP | `igmp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| IMAP | `imap` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| IMAP | `imap` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | IPFIX | `ipfix` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| IRC | `irc` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
-| ISAKMP/IKE | `isakmp` | <span class="proto-badge proto-parser">Parser</span> | ~9 |
-| IS-IS | `isis` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| IRC | `irc` | <span class="proto-badge proto-parser">Parser</span> | 2 |
+| ISAKMP/IKE | `isakmp` | <span class="proto-badge proto-parser">Parser</span> | 9 |
+| IS-IS | `isis` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | Jabber/XMPP | `jabber` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Kafka | `kafka` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| Kerberos | `krb5` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
-| LDAP | `ldap` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| Kerberos | `krb5` | <span class="proto-badge proto-parser">Parser</span> | 5 |
+| LDAP | `ldap` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | LLDP | `lldp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | LMTP | `lmtp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| M3UA, M2UA, ISUP, TUP | `m3ua` `m2ua` `isup` `tup` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| M3UA, M2UA, ISUP, TUP | `m3ua` `m2ua` `isup` `tup` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | Memcached | `memcached` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| Modbus | `modbus` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
+| Modbus | `modbus` | <span class="proto-badge proto-parser">Parser</span> | 5 |
 | MongoDB | `mongo` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| MQTT | `mqtt` | <span class="proto-badge proto-parser">Parser</span> | ~8 |
-| MySQL | `mysql` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| MQTT | `mqtt` | <span class="proto-badge proto-parser">Parser</span> | 8 |
+| MySQL | `mysql` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | NBDS (NetBIOS Datagram) | `nbds` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| NBNS (NetBIOS Name Service) | `nbns` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
+| NBNS (NetBIOS Name Service) | `nbns` | <span class="proto-badge proto-parser">Parser</span> | 5 |
 | NetFlow | `netflow` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | NFS | `nfs` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | NSClient | `nsclient` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | NTLM | `ntlm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| NTP | `ntp` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| NTP | `ntp` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | NZSQL (Netezza) | `nzsql` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Omron FINS | `omron-fins` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| OPC UA | `opcua` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| OPC UA | `opcua` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | OpenVPN | `openvpn` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| Oracle TNS | `oracle` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
-| OSPF | `ospf` | <span class="proto-badge proto-parser">Parser</span> | ~3 |
-| PANA | `pana` | <span class="proto-badge proto-parser">Parser</span> | ~3 |
+| Oracle TNS | `oracle` | <span class="proto-badge proto-parser">Parser</span> | 4 |
+| OSPF | `ospf` | <span class="proto-badge proto-parser">Parser</span> | 3 |
+| PANA | `pana` | <span class="proto-badge proto-parser">Parser</span> | 3 |
 | PIM | `pim` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | PJL (Printer Job Language) | `pjl` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Plex GDM | `plex-gdm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| POP3 | `pop3` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
-| PostgreSQL | `postgresql` | <span class="proto-badge proto-parser">Parser</span> | ~3 |
-| PTP (Precision Time Protocol) | `ptp` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
-| QUIC | `quic` `fbzero` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
-| RADIUS | `radius` | <span class="proto-badge proto-parser">Parser</span> | ~7 |
-| RDP | `rdp` `rdpudp` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
+| POP3 | `pop3` | <span class="proto-badge proto-parser">Parser</span> | 1 |
+| PostgreSQL | `postgresql` | <span class="proto-badge proto-parser">Parser</span> | 3 |
+| PTP (Precision Time Protocol) | `ptp` | <span class="proto-badge proto-parser">Parser</span> | 2 |
+| QUIC | `quic` `fbzero` | <span class="proto-badge proto-parser">Parser</span> | 4 |
+| RADIUS | `radius` | <span class="proto-badge proto-parser">Parser</span> | 7 |
+| RDP | `rdp` `rdpudp` | <span class="proto-badge proto-parser">Parser</span> | 5 |
 | Redis | `redis` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RIP | `rip` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RMI (Java) | `rmi` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RPC over HTTP (Outlook Anywhere) | `rpc-over-http` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RTSP | `rtsp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| S7comm (Siemens) | `s7comm` `s7comm-plus` | <span class="proto-badge proto-parser">Parser</span> | ~7 |
+| S7comm (Siemens) | `s7comm` `s7comm-plus` | <span class="proto-badge proto-parser">Parser</span> | 7 |
 | Safet | `safet` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Samsung SmartView | `samsung-smartview` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| SCCP and TCAP | `sccp` | <span class="proto-badge proto-parser">Parser</span> | ~3 |
-| SCTP | `sctp` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| SCCP and TCAP | `sccp` | <span class="proto-badge proto-parser">Parser</span> | 3 |
+| SCTP | `sctp` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | SDDP (Simple Device Discovery) | `sddp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | sFlow | `sflow` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| SIP | `sip` | <span class="proto-badge proto-parser">Parser</span> | ~9 |
-| SMB | `smb` | <span class="proto-badge proto-parser">Parser</span> | ~9 |
-| SMTP | `smtp` | <span class="proto-badge proto-parser">Parser</span> | ~19 |
-| SNMP | `snmp` | <span class="proto-badge proto-parser">Parser</span> | ~8 |
-| SOCKS | `socks` | <span class="proto-badge proto-parser">Parser</span> | ~5 |
+| SIP | `sip` | <span class="proto-badge proto-parser">Parser</span> | 9 |
+| SMB | `smb` | <span class="proto-badge proto-parser">Parser</span> | 9 |
+| SMTP | `smtp` | <span class="proto-badge proto-parser">Parser</span> | 19 |
+| SNMP | `snmp` | <span class="proto-badge proto-parser">Parser</span> | 8 |
+| SOCKS | `socks` | <span class="proto-badge proto-parser">Parser</span> | 5 |
 | Splunk | `splunk` `splunk-replication` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| SSDP | `ssdp` | <span class="proto-badge proto-parser">Parser</span> | ~6 |
-| SSH | `ssh` | <span class="proto-badge proto-parser">Parser</span> | ~4 |
+| SSDP | `ssdp` | <span class="proto-badge proto-parser">Parser</span> | 6 |
+| SSH | `ssh` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | Steam Friends | `steam-friends` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Steam IHSCP (In-Home Streaming) | `steam-ihscp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| STUN/TURN | `stun` | <span class="proto-badge proto-parser">Parser</span> | ~14 |
-| Synchrophasor (IEEE C37.118) | `synchrophasor` | <span class="proto-badge proto-parser">Parser</span> | ~6 |
+| STUN/TURN | `stun` | <span class="proto-badge proto-parser">Parser</span> | 14 |
+| Synchrophasor (IEEE C37.118) | `synchrophasor` | <span class="proto-badge proto-parser">Parser</span> | 6 |
 | Syslog | `syslog` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | TACACS+ | `tacacs` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| TDS (MS SQL) | `tds` | <span class="proto-badge proto-parser">Parser</span> | ~1 |
+| TDS (MS SQL) | `tds` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | Telnet | `telnet` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| TFTP | `tftp` | <span class="proto-badge proto-parser">Parser</span> | ~2 |
+| TFTP | `tftp` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | Thrift | `thrift` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| TLS/SSL | `tls` | <span class="proto-badge proto-parser">Parser</span> | ~30 |
+| TLS/SSL | `tls` | <span class="proto-badge proto-parser">Parser</span> | 30 |
 | Ubiquiti UBNT | `ubiquiti-ubnt` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Valve A2S | `valve-a2s` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | VNC | `vnc` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| WebSocket | `websocket` | <span class="proto-badge proto-parser">Parser</span> | ~7 |
+| WebSocket | `websocket` | <span class="proto-badge proto-parser">Parser</span> | 7 |
 | WhatsApp | `whatsapp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Whois | `whois` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | WinRM / WS-Management | `winrm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
@@ -233,7 +244,7 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 
 </div>
 
-A few of the counts above need a footnote:
+A few rows need a footnote of their own:
 
 * **TLS/SSL** includes the certificate fields, which live in a shared helper used by both TLS and DTLS.
 * **POP3** and **TDS** define no fields of their own; they fill in Arkime's shared `user` field.
