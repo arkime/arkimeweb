@@ -1,0 +1,88 @@
+# Drives the /learn2 page. Order here is the order shown, so put the thing a
+# newcomer needs first, first. Titles and descriptions come from each page's
+# own front matter, so they can't drift; set title/desc here only for pages
+# that have no description front matter (the standalone .html pages).
+
+- group: Get it running
+  blurb: Everything between "I have traffic" and "I'm searching sessions".
+  items:
+    - url: /install
+    - url: /docker
+    - url: /estimators
+      title: Hardware Estimators
+      desc: Work out how many machines, how much disk and how much memory your traffic needs before you buy anything.
+    - url: /multihost
+    - url: /esssl
+
+- group: Use it day to day
+  blurb: The pages you'll come back to once Arkime is up.
+  items:
+    - url: /faq
+      title: FAQ
+      desc: The answers to the questions we get most, starting with "Arkime is not working".
+    - url: /settings
+      title: Settings
+      desc: Every configuration setting for capture, viewer, WISE, Cont3xt and Parliament, with defaults and versions.
+    - url: /roles
+    - url: /protocols
+    - url: /ja4
+      title: JA4+ Fingerprinting
+      desc: "What JA4, JA4S, JA4H, JA4L, JA4X and JA4T are, and how to search them in Arkime."
+    - url: /alkeme
+
+- group: Shape what you capture
+  blurb: Decide what gets saved, what gets tagged and what gets thrown away.
+  items:
+    - url: /rules
+    - url: /rulesformat
+    - url: /tagger
+    - url: /taggerformat
+    - url: /command-socket
+
+- group: Enrich your data
+  blurb: Add context from threat intel and from systems you already run.
+  items:
+    - url: /wise
+    - url: /wise-configs
+    - url: /wisesources
+    - url: /rediswise
+    - url: /cont3xt
+      title: Cont3xt
+      desc: Look up an indicator across all your intel sources at once, and share the results with your team.
+
+- group: Scale and operate
+  blurb: Running Arkime across many sensors, sites and years of data.
+  items:
+    - url: /architecture
+    - url: /esproxy
+    - url: /s3
+    - url: /parliament
+      title: Parliament
+      desc: Monitor the health of every Arkime cluster you run from one page.
+
+- group: API reference
+  blurb: For scripting Arkime and building on top of it.
+  items:
+    - url: /allapis
+    - url: /apiv7
+    - url: /apiv3
+    - url: /commonapi
+    - url: /wiseapi
+    - url: /cont3xtapi
+    - url: /api
+
+- group: Deep cuts
+  blurb: Worth knowing about, but not on day one.
+  items:
+    - url: /udr7
+    - url: /break-tls-poc
+    - url: /python
+    - url: /sanitize
+    - url: /otherfpc
+    - url: /articles
+    - url: /arkimeetus
+      title: Why the name Arkime?
+      desc: Where the name came from, and what happened to Moloch.
+    - url: https://github.com/arkime/arkime/security/policy
+      title: Security Policy
+      desc: How to report a security vulnerability in Arkime, and which versions receive fixes.

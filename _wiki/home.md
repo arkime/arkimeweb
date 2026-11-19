@@ -3,81 +3,88 @@ title: Arkime Documentation
 description: "Arkime documentation: installation, Docker, architecture, rules, WISE, Cont3xt, Parliament and the full API reference."
 layout: wiki
 permalink: "/learn"
+redirect_from:
+  - /learn2
 ---
 
 <div class="full-height-and-width-container with-footer p-3" markdown="1">
 
-## Getting Started
+## Start here
 {: .subsection-header.mt-1 }
 
-- [Installing Arkime](install)
-- [Arkime with Docker](docker)
-- [Moving from single host to multiple hosts](multihost)
-- [Estimators](estimators)
+<div class="row mb-4" markdown="0">
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">1. See it first</h5>
+        <p class="card-text">No install. A live Arkime full of real traffic you can search and pivot through right now.</p>
+        <a href="/demo" class="btn btn-success btn-interactive">Try the demo</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">2a. Install on Linux</h5>
+        <p class="card-text">The full guide: OpenSearch/Elasticsearch, capture, viewer and your first user.</p>
+        <a href="/install" class="btn btn-primary btn-interactive">Installation guide</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">2b. Or run containers</h5>
+        <p class="card-text">One image holds every Arkime application. Copy a Docker Compose file and go.</p>
+        <a href="/docker" class="btn btn-primary btn-interactive">Arkime with Docker</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-## General
-{: .subsection-header.mt-1 }
+Stuck, or just want to ask something? [Where to ask Arkime questions](/questions) &mdash; Slack, GitHub Discussions and [Office Hours](/officehours).
+{: .alert.alert-info }
 
-- [FAQ](faq)
-- [Settings](settings)
-- [Security](https://github.com/arkime/arkime/security/policy)
-- [Arkime Architecture Designs](architecture)
-- [Articles and Presentations About Arkime](articles)
-- [Other FPC Systems](otherfpc)
-- [Breaking TLS POC](break-tls-poc)
-- [Why Arkime name?](arkimeetus)
-- [Common API](commonapi)
-- [Roles](roles)
-- [Supported Protocols](protocols)
-- [JA4](ja4)
-- [Arkime with a UDR7](udr7)
-- [Alkeme — Terminal UI for Arkime](alkeme)
+{% for g in site.data.learn %}
+## {{ g.group }}
+{: .subsection-header }
 
-## Capture
-{: .subsection-header.mt-1 }
+{% if g.blurb %}{{ g.blurb }}
+{: .text-muted }
+{% endif %}
 
-- [Rules Format](rulesformat)
-- [Rules Gallery](rules)
-- [Tagger Format](taggerformat)
-- [Tagger Plugin](tagger)
-- [S3 PCAP Storage](s3)
-- [Command Socket](command-socket)
-- [Python Support](python)
-- [Sanitize Builds](sanitize)
+<div class="row" markdown="0">
+{% for item in g.items %}
+  {% assign p = site.pages | where: "permalink", item.url | first %}
+  {% assign t = item.title | default: p.title %}
+  {% assign d = item.desc | default: p.description %}
+  <div class="col-md-6 mb-3">
+    <a href="{{ item.url }}"><strong>{{ t }}</strong></a>
+    <div class="small text-muted">{{ d }}</div>
+  </div>
+{% endfor %}
+</div>
+{% endfor %}
 
-## Viewer
-{: .subsection-header.mt-1 }
+## Everything, by component
+{: .subsection-header.mt-4 }
 
-- [Viewer v7.x API](apiv7)
-- [Viewer v3.x - v6.x API](apiv3)
-- [Viewer v0.x - v2.x API](api)
+Already know what you're after? The full list, grouped by the part of Arkime it belongs to.
+{: .text-muted }
 
-## Parliament
-{: .subsection-header.mt-1 }
-
-- [What is Parliament?](parliament)
-
-## Cont3xt
-{: .subsection-header.mt-1 }
-
-- [Everything Cont3xt](cont3xt)
-- [Cont3xt API](cont3xtapi)
-
-## OpenSearch/Elasticsearch
-{: .subsection-header.mt-1 }
-
-- [OpenSearch/Elasticsearch TLS](esssl)
-- [Security ES Proxy](esproxy)
-
-## WISE
-{: .subsection-header.mt-1 }
-
-- [All about WISE](wise)
-- [Building new WISE sources](wisesources)
-- [WISE API](wiseapi)
-- [WISE Configuration Gallery](wise-configs)
-- [Enriching sessions with logs from Redis](rediswise)
-
+<div class="row" markdown="0">
+{% for g in site.data.learn_components %}
+  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+    <strong>{{ g.group }}</strong>
+    <ul class="list-unstyled small mt-1 mb-0">
+    {% for item in g.items %}
+      {% assign p = site.pages | where: "permalink", item.url | first %}
+      <li><a href="{{ item.url }}">{{ item.title | default: p.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+</div>
 
 ## Want to contribute to our documentation?
 {: .subsection-header.mt-1 }

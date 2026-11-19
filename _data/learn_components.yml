@@ -1,0 +1,84 @@
+# The second index at the bottom of /learn: everything, grouped the way the
+# docs used to be, by the part of Arkime it belongs to. This is for people who
+# already know what they want. Titles come from each page's front matter;
+# set one here only for pages that have none (redirects, external links).
+# Every page in _data/learn.yml should appear here too.
+
+- group: Getting Started
+  items:
+    - url: /install
+    - url: /docker
+    - url: /multihost
+    - url: /estimators
+      title: Estimators
+    - url: /udr7
+      title: Arkime with a UDR7
+
+- group: General
+  items:
+    - url: /faq
+      title: FAQ
+    - url: /settings
+      title: Settings
+    - url: https://github.com/arkime/arkime/security/policy
+      title: Security
+    - url: /architecture
+    - url: /articles
+    - url: /otherfpc
+    - url: /break-tls-poc
+    - url: /questions
+    - url: /arkimeetus
+      title: Why the name Arkime?
+    - url: /roles
+    - url: /protocols
+    - url: /ja4
+      title: JA4+
+    - url: /alkeme
+
+- group: Capture
+  items:
+    - url: /rulesformat
+    - url: /rules
+    - url: /taggerformat
+    - url: /tagger
+    - url: /s3
+    - url: /command-socket
+    - url: /python
+    - url: /sanitize
+
+- group: Viewer
+  items:
+    - url: /apiv7
+    - url: /apiv3
+    - url: /api
+
+- group: Parliament
+  items:
+    - url: /parliament
+      title: What is Parliament?
+
+- group: Cont3xt
+  items:
+    - url: /cont3xt
+      title: Everything Cont3xt
+    - url: /cont3xtapi
+
+- group: OpenSearch/Elasticsearch
+  items:
+    - url: /esssl
+      title: OpenSearch/ES TLS
+    - url: /esproxy
+
+- group: WISE
+  items:
+    - url: /wise
+    - url: /wisesources
+    - url: /wiseapi
+    - url: /wise-configs
+    - url: /rediswise
+      title: Enriching with Redis
+
+- group: APIs
+  items:
+    - url: /allapis
+    - url: /commonapi

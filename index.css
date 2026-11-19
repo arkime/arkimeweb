@@ -1158,6 +1158,9 @@ body.wiki-body.dark-theme footer.footer {
   border-color: #03434e;
   background-color: #0c5460;
 }
+.dark-theme .alert.alert-info a {
+  color: #9fd8e3;
+}
 .dark-theme .alert.alert-secondary {
   color: #e2e3e5;
   border-color: #000000;
