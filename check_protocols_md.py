@@ -225,6 +225,15 @@ def main():
         problems.append("on the page but not in the source (%d):\n    %s"
                         % (len(extra), " ".join(extra)))
 
+    # The intro sentence hardcodes the total, and nothing else would catch it
+    # going stale.
+    m = re.search(r"Arkime recognizes \*\*(\d+) protocols\*\*", page)
+    if not m:
+        problems.append('could not find the "Arkime recognizes N protocols" sentence')
+    elif int(m.group(1)) != len(src_tags):
+        problems.append("the intro says %s protocols, the source has %d"
+                        % (m.group(1), len(src_tags)))
+
     # DCE/RPC interface table
     page_dcerpc = set(re.findall(r"^\| `([a-z0-9]+)` \| [0-9a-f]{8}-", page, re.M))
     src_dcerpc = {n for n, _u, _c in dcerpc_interfaces(capture)}
