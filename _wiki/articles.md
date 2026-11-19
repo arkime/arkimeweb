@@ -1,5 +1,6 @@
 ---
 title: Arkime Articles
+description: "Talks, slides, recordings and articles about Arkime, including every Arkimeet conference presentation."
 layout: wiki
 permalink: /articles
 copyLink: True

@@ -1,5 +1,6 @@
 ---
 title: Rules Format
+description: "The Arkime rules file format: when clauses, expressions, fields, ops, and every setting a rule can change."
 layout: wiki
 permalink: "/rulesformat"
 copyLink: True

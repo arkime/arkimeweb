@@ -1,5 +1,6 @@
 ---
 title: Tagger Format
+description: "File format for Arkime tagger files, the lists of IPs, domains, hashes and URIs used to tag sessions."
 layout: wiki
 permalink: /taggerformat
 ---

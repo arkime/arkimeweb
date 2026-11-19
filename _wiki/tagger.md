@@ -1,5 +1,6 @@
 ---
 title: Tagger Plugin
+description: "The Arkime tagger plugin adds tags to sessions from your own lists of IPs, domains, hashes and URIs."
 layout: wiki
 permalink: "/tagger"
 ---

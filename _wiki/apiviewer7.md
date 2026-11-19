@@ -1,5 +1,6 @@
 ---
 title: Arkime v7 APIs
+description: "REST API reference for the Arkime 7 viewer. Search sessions, export PCAP, manage hunts, dashboards and shareables."
 layout: wiki
 permalink: "/apiv7"
 ---

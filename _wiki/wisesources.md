@@ -1,5 +1,6 @@
 ---
 title: Adding New WISE Sources
+description: "Write your own WISE source to enrich Arkime sessions from any data you have."
 layout: wiki
 permalink: "/wisesources"
 ---

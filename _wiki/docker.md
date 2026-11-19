@@ -1,5 +1,6 @@
 ---
-title: Docker
+title: Arkime with Docker
+description: "Run Arkime in containers: image tags, docker.sh options, environment variable configuration, and complete Docker Compose examples for capture, viewer and the database."
 layout: wiki
 permalink: "/docker"
 copyLink: True

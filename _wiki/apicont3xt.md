@@ -1,5 +1,6 @@
 ---
 title: Cont3xt APIs
+description: "REST API reference for Cont3xt, covering integrations, indicator searches, link groups and overviews."
 layout: wiki
 permalink: "/cont3xtapi"
 ---

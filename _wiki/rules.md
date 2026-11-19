@@ -1,5 +1,6 @@
 ---
 title: Arkime Rules
+description: "A gallery of ready to use Arkime rules for tagging, dropping and truncating traffic. Copy, paste and tune."
 layout: wiki
 permalink: "/rules"
 copyLink: True

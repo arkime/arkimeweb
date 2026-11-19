@@ -1,5 +1,6 @@
 ---
 title: OpenSearch/Elasticsearch TLS
+description: "Configure TLS between Arkime and OpenSearch/Elasticsearch, including self-signed certificates, CA bundles and client authentication."
 layout: wiki
 permalink: /esssl
 ---

@@ -1,5 +1,6 @@
 ---
 title: Common APIs
+description: "Reference for the Arkime common APIs shared by viewer, Cont3xt, WISE and Parliament, including users, roles and shortcuts."
 layout: wiki
 permalink: "/commonapi"
 ---

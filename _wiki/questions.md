@@ -1,5 +1,6 @@
 ---
-title: Questions
+title: Where to Ask Arkime Questions
+description: "Where to ask Arkime questions: Slack, GitHub Discussions and the FAQ, plus how to report a security issue."
 layout: wiki
 permalink: "/questions"
 ---

@@ -1,5 +1,6 @@
 ---
 title: Arkime Architecture
+description: "Reference architectures for deploying Arkime, from a single evaluation box to multi-site clusters with separate capture, viewer and database tiers."
 layout: wiki
 permalink: /architecture
 copyLink: True

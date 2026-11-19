@@ -1,5 +1,6 @@
 ---
-title: Docs Home
+title: Arkime Documentation
+description: "Arkime documentation: installation, Docker, architecture, rules, WISE, Cont3xt, Parliament and the full API reference."
 layout: wiki
 permalink: "/learn"
 ---

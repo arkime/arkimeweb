@@ -1,5 +1,6 @@
 ---
-title: Rediswise
+title: Enriching Sessions with Redis and WISE
+description: "Enrich Arkime sessions with data from your own logs by feeding Redis and querying it from WISE."
 layout: wiki
 permalink: "/rediswise"
 ---

@@ -1,5 +1,6 @@
 ---
 title: WISE
+description: "WISE (With Intelligence See Everything) enriches Arkime sessions with threat intel and your own data from dozens of sources."
 layout: wiki
 permalink: "/wise"
 ---

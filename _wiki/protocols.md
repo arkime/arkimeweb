@@ -1,5 +1,6 @@
 ---
 title: Supported Protocols
+description: "Every network protocol Arkime parses or classifies, and roughly how many fields each parser extracts."
 layout: wiki
 permalink: "/protocols"
 copyLink: True

@@ -1,5 +1,6 @@
 ---
-title: Multiple Host
+title: Single Host to Multiple Hosts
+description: "Move an Arkime evaluation install from one machine to a multi host cluster with separate sensors, viewers and database nodes."
 layout: wiki
 permalink: /multihost
 ---

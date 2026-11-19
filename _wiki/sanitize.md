@@ -1,5 +1,6 @@
 ---
 title: Sanitize Builds
+description: "Build Arkime with AddressSanitizer and other sanitizers to debug crashes and memory errors in capture."
 layout: wiki
 permalink: "/sanitize"
 ---

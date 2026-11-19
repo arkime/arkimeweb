@@ -1,5 +1,6 @@
 ---
 title: ES Proxy
+description: "esProxy sits between your Arkime sensors and OpenSearch/Elasticsearch so a compromised capture node cannot read or change data it shouldn't."
 layout: wiki
 permalink: "/esproxy"
 copyLink: True

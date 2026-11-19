@@ -1,5 +1,6 @@
 ---
 title: Arkime APIs
+description: "REST API reference for the Arkime viewer, versions 3.x through 6.x. Search sessions, export PCAP, manage hunts and more."
 layout: wiki
 permalink: "/apiv3"
 ---

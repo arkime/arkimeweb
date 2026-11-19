@@ -1,31 +1,61 @@
+{%- comment -%}
+  Shared <head> for every page using the wiki layout.
+
+  Title, description and canonical/og url come from the page's own front matter
+  so each doc page is distinct in search results and in link previews. A page
+  gets its own card by setting in its front matter:
+
+    title: Docker
+    description: One sentence, ~155 characters, shown in search results.
+    image: assets/some-page-image.png   # optional, defaults to the logo
+
+  Pages with no description fall back to the site description.
+{%- endcomment -%}
+{%- if page.title -%}
+  {%- if page.title contains "Arkime" -%}
+    {%- assign headTitle = page.title -%}
+  {%- else -%}
+    {%- assign headTitle = page.title | append: " - Arkime" -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign headTitle = "Arkime" -%}
+{%- endif -%}
+{%- assign headDesc = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign headUrl = page.url | absolute_url -%}
+{%- assign headImage = page.image | default: "assets/Arkime_Logo_FullGradientBlack@2x.png" | absolute_url -%}
 <head>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DW9QSJDQL0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag () { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'UA-137788272-1');
+    gtag('config', 'G-DW9QSJDQL0');
   </script>
 
-  <title>Arkime</title>
+  <title>{{ headTitle | escape }}</title>
 
   <!-- Required meta tags always come first -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="description" content="{{ headDesc | escape }}" />
+  <link rel="canonical" href="{{ headUrl }}" />
   <!-- facebook open graph tags -->
-  <meta property="og:url" content="https://arkime.com" />
-  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
-  <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Arkime" />
+  <meta property="og:title" content="{{ headTitle | escape }}" />
+  <meta property="og:url" content="{{ headUrl }}" />
+  <meta property="og:description" content="{{ headDesc | escape }}" />
+  <meta property="og:image" content="{{ headImage }}" />
   <!-- twitter card tags additive with the og: tags -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" value="arkime.com" />
-  <meta name="twitter:description" value="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
-  <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" value="https://arkime.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:domain" content="arkime.com" />
+  <meta name="twitter:title" content="{{ headTitle | escape }}" />
+  <meta name="twitter:description" content="{{ headDesc | escape }}" />
+  <meta name="twitter:image" content="{{ headImage }}" />
+  <meta name="twitter:url" content="{{ headUrl }}" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

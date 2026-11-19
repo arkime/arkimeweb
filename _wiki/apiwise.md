@@ -1,5 +1,6 @@
 ---
 title: WISE APIs
+description: "REST API reference for WISE, the Arkime enrichment service."
 layout: wiki
 permalink: "/wiseapi"
 ---

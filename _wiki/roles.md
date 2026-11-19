@@ -1,5 +1,6 @@
 ---
-title: Roles
+title: User Roles
+description: "Arkime's built in roles and how to use them to control who can search, view PCAP, run hunts and administer users."
 layout: wiki
 permalink: "/roles"
 ---

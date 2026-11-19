@@ -1,5 +1,6 @@
 ---
 title: Arkime on UDR7 - Maximizing Network Visibility
+description: "Forward traffic from a Ubiquiti Dream Router (UDR7) to Arkime over TZSP, with a complete Docker Compose setup and an HTTPS Caddy proxy."
 layout: wiki
 permalink: "/udr7"
 copyLink: True

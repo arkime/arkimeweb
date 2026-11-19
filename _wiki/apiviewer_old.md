@@ -1,5 +1,6 @@
 ---
 title: Old Arkime APIs
+description: "REST API reference for the Arkime and Moloch viewer, versions 0.x through 2.x, kept for older installs."
 layout: wiki
 permalink: "/api"
 ---

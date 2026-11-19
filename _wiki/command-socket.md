@@ -1,5 +1,6 @@
 ---
 title: Command Socket
+description: "Query and control a running Arkime capture process over its command socket, for live stats, debugging and runtime changes."
 layout: wiki
 permalink: "/command-socket"
 copyLink: True

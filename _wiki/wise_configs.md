@@ -1,5 +1,6 @@
 ---
 title: WISE Configs
+description: "A gallery of working WISE configurations you can copy for common threat intel and enrichment sources."
 layout: wiki
 permalink: "/wise-configs"
 copyLink: True

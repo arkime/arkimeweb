@@ -1,5 +1,6 @@
 ---
 title: Other FPC Systems
+description: "How Arkime compares to other full packet capture and network security monitoring systems."
 layout: wiki
 permalink: "/otherfpc"
 ---

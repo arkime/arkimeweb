@@ -8,31 +8,34 @@ title: V7!
 <head>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DW9QSJDQL0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag () { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'UA-137788272-1');
+    gtag('config', 'G-DW9QSJDQL0');
   </script>
 
-  <title>Arkime</title>
+  <title>Arkime 7 - What's New</title>
 
   <!-- Required meta tags always come first -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="description" content="Arkime 7 is our biggest release ever: dashboards, Featherprint, the Shark session tab, pcapng, expression rules, a multi viewer, and a choice of database." />
+  <link rel="canonical" href="https://arkime.com/release-v7" />
+  <meta property="og:title" content="Arkime 7 - What's New" />
+  <meta name="twitter:title" content="Arkime 7 - What's New" />
   <!-- facebook open graph tags -->
-  <meta property="og:url" content="https://arkime.com" />
-  <meta property="og:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta property="og:url" content="https://arkime.com/release-v7" />
+  <meta property="og:description" content="Arkime 7 is our biggest release ever: dashboards, Featherprint, the Shark session tab, pcapng, expression rules, a multi viewer, and a choice of database." />
   <meta property="og:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
   <!-- twitter card tags additive with the og: tags -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:domain" content="arkime.com" />
-  <meta name="twitter:description" content="An open source, large scale, full packet capturing, indexing, and database system. Stop using slow tools to dissect and search your packets, let Arkime do the grunt work for you!" />
+  <meta name="twitter:description" content="Arkime 7 is our biggest release ever: dashboards, Featherprint, the Shark session tab, pcapng, expression rules, a multi viewer, and a choice of database." />
   <meta name="twitter:image" content="https://arkime.com/assets/Arkime_Logo_FullGradientBlack@2x.png" />
-  <meta name="twitter:url" content="https://arkime.com" />
+  <meta name="twitter:url" content="https://arkime.com/release-v7" />
 
   <!-- fontawesome http://fontawesome.io/ -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -158,6 +161,8 @@ title: V7!
             <ul>
               <li class="mb-2"><strong>More, smaller sessions for lldp, xid, isis, esis, igmp and pim.</strong> They used to record all their traffic as one session per capture node, now there is a session per talker pair: by src/dst mac for the ethernet protocols and by src/dst ip for igmp and pim.</li>
               <li class="mb-2"><strong><code>_flipSrcDst</code> flips the whole session.</strong> It used to swap only the ips and ports; now packets, bytes, databytes, payload8, mac, oui, dscp, ttl, tcp seq/state and zero window counts swap too.</li>
+              <li class="mb-2"><strong>All parsers load by default.</strong> <a href="settings#disableParsers">disableParsers</a> used to default to <code>arp.so</code> and now defaults to empty, so arp sessions are recorded. Set <code>disableParsers=arp.so</code> for the old behavior.</li>
+              <li class="mb-2"><strong>Unknown and corrupt packets are saved by default.</strong> <a href="settings#saveUnknownPackets">saveUnknownPackets</a> used to default to empty and now defaults to <code>all;corrupt</code>, so unknown ether, unknown ip and corrupt packets become sessions with pcap. Set <code>saveUnknownPackets=</code> for the old behavior.</li>
               <li class="mb-2"><strong><code>offlineFilenameRegex</code> matches .pcapng.</strong> The default used to match only .pcap and .cap.</li>
               <li class="mb-2"><strong>Stricter settings.</strong> Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt and tshark limits, timeouts and ports must be numbers in range.</li>
             </ul>
@@ -379,6 +384,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li>Faster session hash lookups and <a href="settings#dedup">dedup</a>, and session and dedup hashing now use a random key so traffic can't be crafted to overload one packet thread</li>
             <li>A new <code>perf-stats</code> command socket command dumps queue depths, hash usage and outstanding requests for performance debugging</li>
             <li>The <a href="settings#writer-s3">s3 writer</a> and <a href="settings#reader-scheme-s3">s3/sqs readers</a> support EKS IRSA and Pod Identity credentials, so EKS pods no longer need instance metadata access</li>
+            <li>Nothing is skipped by default: every parser loads, including arp, and unknown ether, unknown ip and corrupt packets are saved as sessions, see <a href="settings#disableParsers">disableParsers</a> and <a href="settings#saveUnknownPackets">saveUnknownPackets</a></li>
             <li>Capture shuts down cleanly, the offline and scheme readers stop mid file on SIGINT and log what was skipped</li>
           </ul>
         </div>

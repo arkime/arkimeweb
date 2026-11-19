@@ -8,12 +8,12 @@ title: FAQ
 <head>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137788272-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DW9QSJDQL0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag () { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'UA-137788272-1');
+    gtag('config', 'G-DW9QSJDQL0');
   </script>
 
   <title>Arkime FAQ</title>
@@ -1417,6 +1417,8 @@ Environment=NO_PROXY=127.0.0.1,localhost,ESHOSTS,OTHERVIEWERHOSTS,WISEHOST
       <ul>
         <li class="mb-2"><strong>More, smaller sessions for lldp, xid, isis, esis, igmp and pim.</strong> They used to record all their traffic as one session per capture node, now there is a session per talker pair: by src/dst mac for the ethernet protocols and by src/dst ip for igmp and pim.</li>
         <li class="mb-2"><strong><code>_flipSrcDst</code> flips the whole session.</strong> It used to swap only the ips and ports; now packets, bytes, databytes, payload8, mac, oui, dscp, ttl, tcp seq/state and zero window counts swap too.</li>
+        <li class="mb-2"><strong>All parsers load by default.</strong> <a href="/settings#disableParsers">disableParsers</a> used to default to <code>arp.so</code> and now defaults to empty, so arp sessions are recorded. Set <code>disableParsers=arp.so</code> for the old behavior.</li>
+        <li class="mb-2"><strong>Unknown and corrupt packets are saved by default.</strong> <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> used to default to empty and now defaults to <code>all;corrupt</code>, so unknown ether, unknown ip and corrupt packets become sessions with pcap. Set <code>saveUnknownPackets=</code> for the old behavior.</li>
         <li class="mb-2"><strong><code>offlineFilenameRegex</code> matches .pcapng.</strong> The default used to match only .pcap and .cap.</li>
         <li class="mb-2"><strong>Stricter settings.</strong> Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt and tshark limits, timeouts and ports must be numbers in range.</li>
       </ul>

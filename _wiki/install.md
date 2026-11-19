@@ -1,5 +1,6 @@
 ---
 title: Arkime Install
+description: "Step by step guide to installing Arkime on Linux, covering OpenSearch/Elasticsearch, capture, viewer, users, and a single machine quick start."
 layout: wiki
 permalink: "/install"
 copyLink: True

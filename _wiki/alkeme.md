@@ -1,5 +1,6 @@
 ---
 title: Alkeme
+description: "Alkeme is a terminal user interface for Arkime. Search sessions, read session detail and run queries from your shell without opening a browser."
 layout: wiki
 permalink: /alkeme
 copyLink: True
