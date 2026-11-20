@@ -18,7 +18,7 @@ permalink: "/wise"
 <div class="full-height-container with-footer pt-3 pe-2 ps-2 pb-3" markdown="1">
 
 # WISE - With Intelligence See Everything
-{: .no_toc.section-header.mt-1 }
+{: .section-header.mt-1 }
 
 WISE is a framework for integrating data feeds into Arkime. The data feeds can be sourced from local files, remote URLs, or commercial services such as OpenDNS, Emerging Threats Pro, and others. The data feeds can set almost any Arkime field or even create new Arkime fields. Think of WISE as the next and better version of the tagger plugin.
 

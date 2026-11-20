@@ -17,8 +17,8 @@ permalink: "/rediswise"
 
 <div class="full-height-container with-footer pt-3 pe-2 ps-2 pb-3" markdown="1">
 
-# WISE - With Intelligence See Everything
-{: .no_toc.section-header.mt-1 }
+# Enriching Sessions with Redis and WISE
+{: .section-header.mt-1 }
 
 Capture can query basically any supported Arkime fields from Wise. WISE can query Redis source and enrich Arkime with results. Logstash/other log shippers can ship different logs to Redis. This means that, given a proper "key", we can enrich Arkime sessions with pretty much any kind of logs. It is likely that using Kafka for doing it would be better, but Arkime Kafka output is not very well supported. Also, this method seems to work reasonably well and is simple to configure.
 
