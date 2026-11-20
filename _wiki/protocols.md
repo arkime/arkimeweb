@@ -119,7 +119,7 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 | Protocol | `protocols ==` | Type | Fields |
 | -------- | -------------- | ---- | ------: |
 | ADB (Android Debug Bridge) | `adb` | <span class="proto-badge proto-parser">Parser</span> | 14 |
-| AD CS over HTTP | `adcs-web` `adcs-ndes` `adcs-cep` `adcs-ces` | <span class="proto-badge proto-classifier">Classifier</span> |  |
+| AD CS over HTTP<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `adcs-web` `adcs-ndes` `adcs-cep` `adcs-ces` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Aerospike | `aerospike` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | ARP | `arp` | <span class="proto-badge proto-parser">Parser</span> | 4 |
 | Aruba PAPI | `aruba-papi` | <span class="proto-badge proto-classifier">Classifier</span> |  |
@@ -194,7 +194,7 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 | PIM | `pim` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | PJL (Printer Job Language) | `pjl` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Plex GDM | `plex-gdm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| POP3 | `pop3` | <span class="proto-badge proto-parser">Parser</span> | 1 |
+| POP3<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `pop3` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | PostgreSQL | `postgresql` | <span class="proto-badge proto-parser">Parser</span> | 3 |
 | PTP (Precision Time Protocol) | `ptp` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | QUIC | `quic` `fbzero` | <span class="proto-badge proto-parser">Parser</span> | 4 |
@@ -203,12 +203,12 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 | Redis | `redis` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RIP | `rip` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RMI (Java) | `rmi` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| RPC over HTTP (Outlook Anywhere) | `rpc-over-http` | <span class="proto-badge proto-classifier">Classifier</span> |  |
+| RPC over HTTP (Outlook Anywhere)<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `rpc-over-http` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | RTSP | `rtsp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | S7comm (Siemens) | `s7comm` `s7comm-plus` | <span class="proto-badge proto-parser">Parser</span> | 7 |
 | Safet | `safet` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Samsung SmartView | `samsung-smartview` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| SCCP and TCAP | `sccp` | <span class="proto-badge proto-parser">Parser</span> | 3 |
+| SCCP and TCAP<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `sccp` | <span class="proto-badge proto-parser">Parser</span> | 3 |
 | SCTP | `sctp` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | SDDP (Simple Device Discovery) | `sddp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | sFlow | `sflow` | <span class="proto-badge proto-classifier">Classifier</span> |  |
@@ -226,18 +226,18 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 | Synchrophasor (IEEE C37.118) | `synchrophasor` | <span class="proto-badge proto-parser">Parser</span> | 6 |
 | Syslog | `syslog` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | TACACS+ | `tacacs` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| TDS (MS SQL) | `tds` | <span class="proto-badge proto-parser">Parser</span> | 1 |
+| TDS (MS SQL)<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `tds` | <span class="proto-badge proto-parser">Parser</span> | 1 |
 | Telnet | `telnet` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | TFTP | `tftp` | <span class="proto-badge proto-parser">Parser</span> | 2 |
 | Thrift | `thrift` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| TLS/SSL | `tls` | <span class="proto-badge proto-parser">Parser</span> | 30 |
+| TLS/SSL<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `tls` | <span class="proto-badge proto-parser">Parser</span> | 30 |
 | Ubiquiti UBNT | `ubiquiti-ubnt` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Valve A2S | `valve-a2s` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | VNC | `vnc` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| WebSocket | `websocket` | <span class="proto-badge proto-parser">Parser</span> | 7 |
+| WebSocket<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `websocket` | <span class="proto-badge proto-parser">Parser</span> | 7 |
 | WhatsApp | `whatsapp` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | Whois | `whois` | <span class="proto-badge proto-classifier">Classifier</span> |  |
-| WinRM / WS-Management | `winrm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
+| WinRM / WS-Management<sup class="proto-fn"><a href="#protocol-notes" title="See the notes below the table">*</a></sup> | `winrm` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | WireGuard | `wireguard` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | WUDO (Windows Update Delivery Optimization) | `wudo` | <span class="proto-badge proto-classifier">Classifier</span> |  |
 | X11 | `x11` | <span class="proto-badge proto-classifier">Classifier</span> |  |
@@ -253,7 +253,8 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 
 </div>
 
-A few rows need a footnote of their own:
+Rows marked <sup class="proto-fn">*</sup> in the table above have a note here.
+{: #protocol-notes }
 
 * **TLS/SSL** includes the certificate fields, which live in a shared helper used by both TLS and DTLS.
 * **POP3** and **TDS** define no fields of their own; they fill in Arkime's shared `user` field.

@@ -1455,3 +1455,18 @@ ul.list-group.angle-list > li.list-group-item {
   background-color: #2b3238;
   border-color: #454e56;
 }
+
+/* Footnote markers on the protocol rows that have a note below the table */
+.proto-fn {
+  font-weight: 600;
+}
+.proto-fn a {
+  text-decoration: none;
+  color: var(--primary-theme-light-color);
+}
+.proto-fn a:hover {
+  text-decoration: underline;
+}
+.dark-theme .proto-fn a {
+  color: #7fc4ff;
+}
