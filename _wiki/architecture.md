@@ -62,7 +62,9 @@ Here are some sample deployments of Arkime for different network architectures. 
 .chip-ic-cap  * { stroke:var(--orange); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 .chip-ic-view path { stroke:var(--blue); fill:none; stroke-width:1.8; }
 .chip-ic-view circle { fill:var(--blue); stroke:none; }
-.chip-ic-wise * { stroke:var(--green-d); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.chip-ic-wise * { fill:var(--green-d); stroke:none; }
+/* green-d is the one icon colour dark enough to go muddy on the dark chip */
+.dark-theme .arch-scope .chip-ic-wise * { fill:var(--green); }
 
 .cyl-body, .cyl-top { fill:var(--box); stroke:var(--box-stroke); stroke-width:1.4; }
 .cyl-pcap .cyl-top { fill:rgba(0,132,228,.18); }
@@ -125,7 +127,10 @@ Here are some sample deployments of Arkime for different network architectures. 
   </symbol>
   <symbol id="s-wise" viewBox="0 0 130 32">
     <rect class="chip chip-wise" x="1" y="1" width="128" height="30" rx="15"/>
-    <g class="chip-ic-wise"><path d="M13 20 l4 -9 l4 7 l4 -7 l4 9"/></g>
+    <g class="chip-ic-wise">
+      <path d="M19 8.5 Q20.3 15.1 26.4 16 Q20.3 16.9 19 23.5 Q17.7 16.9 11.6 16 Q17.7 15.1 19 8.5 Z"/>
+      <path d="M27.2 6.6 Q27.7 9.2 30 9.8 Q27.7 10.4 27.2 13 Q26.7 10.4 24.4 9.8 Q26.7 9.2 27.2 6.6 Z"/>
+    </g>
     <text class="chip-t" x="80" y="16">WISE</text>
   </symbol>
   <symbol id="s-pcap" viewBox="0 0 64 62">
@@ -279,8 +284,8 @@ A single host deployment should usually only be used for demos and extremely low
   <path class="flow" d="M530 268 C530 315 390 340 340 352"/>
 
   <!-- WISE -->
-  <rect class="chip chip-wise" x="512" y="340" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="358">WISE</text>
-  <line class="flow" x1="368" y1="359" x2="512" y2="358"/>
+  <use href="#s-wise" x="501" y="342" width="130" height="32"/>
+  <line class="flow" x1="368" y1="359" x2="501" y2="358"/>
 
   <!-- OS/ES clusters -->
   <rect class="box" x="30" y="470" width="220" height="104" rx="12"/>
@@ -356,8 +361,8 @@ A single host deployment should usually only be used for demos and extremely low
   <line class="flow" x1="320" y1="338" x2="320" y2="422"/>
   <path class="flow" d="M530 338 C530 385 390 410 340 422"/>
 
-  <rect class="chip chip-wise" x="512" y="410" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="428">WISE</text>
-  <line class="flow" x1="368" y1="429" x2="512" y2="428"/>
+  <use href="#s-wise" x="501" y="412" width="130" height="32"/>
+  <line class="flow" x1="368" y1="429" x2="501" y2="428"/>
 
   <!-- OS/ES + central viewer -->
   <rect class="box" x="30" y="540" width="220" height="104" rx="12"/>
@@ -441,7 +446,7 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-es" x="530" y="442" width="46" height="50"/>
 
   <!-- WISE above cloud -->
-  <rect class="chip chip-wise" x="268" y="150" width="104" height="40" rx="14"/><text class="chip-t" x="320" y="170">WISE</text>
+  <use href="#s-wise" x="255" y="155" width="130" height="30"/>
 
   <!-- central multi-viewer below cloud -->
   <rect class="machine" x="258" y="356" width="124" height="118" rx="12"/>
