@@ -26,7 +26,7 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [ExtraHop RevealX](https://www.extrahop.com/platform) | commercial | yes | yes | yes |
 [FMADIO](https://www.fmad.io/products) | commercial | yes | ? | yes | Appliances
 [Malcolm](https://github.com/cisagov/Malcolm) | opensource | yes | yes | yes | Bundles Arkime with Zeek, Suricata and OpenSearch Dashboards. netsniff-ng or tcpdump usually writes the PCAP and Arkime indexes it offline; Arkime captures live itself under the Hedgehog profile, a remote OpenSearch or Kubernetes
-[n2disk](https://www.ntop.org/products/traffic-recording/n2disk/) | commercial | yes | ? | yes | Search and extraction through ntopng
+[n2disk](https://www.ntop.org/products/traffic-recording/n2disk/) | commercial | yes | no | yes | Indexes on time, IP and port for extraction; search and extraction through ntopng
 [netsniff-ng](https://github.com/netsniff-ng/netsniff-ng) | opensource | no | no | no |
 [NetWitness Network](https://www.netwitness.com/) | commercial | yes | yes | yes |
 [NIKSUN NetDetector](https://www.niksun.com/products.html) | commercial | yes | yes | yes |
