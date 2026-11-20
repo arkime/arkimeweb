@@ -329,7 +329,54 @@ wiseService:
   <div class="full-height-container">
 
     <!-- settings content -->
-    <div class="ps-3 pe-3">
+    <div class="ps-3 pe-3" id="settingsContent">
+
+      <!-- filter. .set-chrome marks the controls so the filter code skips them
+           when it groups the sections below. -->
+      <div class="row set-toolbar set-chrome" id="settingsToolbar">
+        <div class="col-md-6">
+          <div class="filter-box" id="settingsFilterBox">
+            <input type="text"
+              id="settingsSearch"
+              class="form-control filter-input"
+              autocomplete="off"
+              aria-label="Filter the settings"
+              placeholder="Filter settings, e.g. pcapDir, timeout, s3, dropUser..."
+            />
+            <span class="fa fa-search filter-icon" aria-hidden="true"></span>
+            <kbd class="filter-kbd" aria-hidden="true">/</kbd>
+            <button type="button" class="filter-clear" id="settingsSearchClear" aria-label="Clear the filter" title="Clear">
+              <span class="fa fa-times" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <select id="settingsComponent" class="form-select" aria-label="Limit to one component">
+            <option value="all">All components</option>
+            <option value="ini-settings">Shared &amp; auth</option>
+            <option value="capture-viewer">Capture/Viewer</option>
+            <option value="cont3xt">Cont3xt</option>
+            <option value="parliament">Parliament</option>
+            <option value="wiseService">WISE</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select id="settingsSince" class="form-select" aria-label="Limit by the version a setting arrived in">
+            <option value="0">Any version</option>
+            <option value="7">New since 7.0</option>
+            <option value="6">New since 6.0</option>
+            <option value="5">New since 5.0</option>
+            <option value="4">New since 4.0</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="set-count text-muted set-chrome" id="settingsCount"></p>
+
+      <p class="set-noresults set-chrome" id="settingsNoResults" style="display:none;">
+        No settings match that filter.
+        <a class="cursor-pointer" id="settingsClear">Show all of them again</a>
+      </p>
 
       <!-- ini settings -->
       <h1 id="ini-settings" class="mt-1 section-header">
@@ -1902,6 +1949,244 @@ maxESConns=2
         window.location.hash = hash;
       }
     });
+  </script>
+
+  <script>
+    /* Filter for the settings page.
+     *
+     * Two levels. A setting is a <tr> inside a section's table, and a section
+     * is an <h3 class="subsection"> plus the prose and table that follow it
+     * until the next heading. Rows are matched individually; a section hides
+     * when none of its rows survive, and an <h1> component hides when all of
+     * its sections do. Some sections are prose only with no table at all, so
+     * those match on their own text and hide or show as a unit.
+     *
+     * Every setting name is an anchor here, and the rest of the site leans on
+     * them heavily - the FAQ alone links to 63. So a link arriving for a
+     * setting the current filter hides clears the filter and jumps there
+     * rather than leaving the reader on a blank page.
+     */
+    (function () {
+      var content = document.getElementById('settingsContent');
+      if (!content) { return; }
+
+      var $search = $('#settingsSearch');
+      var $component = $('#settingsComponent');
+      var $since = $('#settingsSince');
+      var $count = $('#settingsCount');
+      var $none = $('#settingsNoResults');
+      var $navLinks = $('.left-nav a.nav-link');
+
+      var components = [];
+      var sections = [];
+      var rows = [];
+      var idOwner = {};
+
+      function normalize (s) {
+        return s.toLowerCase().replace(/[-_/]/g, ' ').replace(/\s+/g, ' ');
+      }
+
+      // The version a setting arrived in, from a "(Since 6.0.0)" marker.
+      // Several settings carry more than one; the earliest is when it appeared.
+      function sinceOf (text) {
+        var best = 0;
+        var re = /\(since\s+v?([0-9]+)\./gi;
+        var m;
+        while ((m = re.exec(text)) !== null) {
+          var v = parseInt(m[1], 10);
+          if (!best || v < best) { best = v; }
+        }
+        return best;
+      }
+
+      function register (owner, nodes) {
+        nodes.forEach(function (n) {
+          if (n.id) { idOwner[n.id] = owner; }
+          if (n.querySelectorAll) {
+            Array.prototype.forEach.call(n.querySelectorAll('[id]'), function (c) {
+              if (c.id) { idOwner[c.id] = owner; }
+            });
+          }
+        });
+      }
+
+      // Some of the prose in _data/settings holds a <pre> or <ul> inside a <p>,
+      // which the parser cannot nest, so it closes the <p> early and whatever
+      // followed becomes a bare text node with no element to hide. Wrap those
+      // strays first so a whole section really does disappear when it is hidden.
+      Array.prototype.slice.call(content.childNodes).forEach(function (n) {
+        if (n.nodeType !== 3 || !n.nodeValue.trim()) { return; }
+        var wrap = document.createElement('span');
+        wrap.className = 'set-orphan';
+        n.parentNode.insertBefore(wrap, n);
+        wrap.appendChild(n);
+      });
+
+      // ---- group the siblings -----------------------------------------------
+      var component = null;
+      var section = null;
+
+      Array.prototype.forEach.call(content.children, function (el) {
+        if (el.classList.contains('set-chrome')) { return; }
+
+        if (el.tagName === 'H1' && el.classList.contains('section-header')) {
+          component = { heading: el, nodes: [el], sections: [], visible: true };
+          components.push(component);
+          section = null;
+          return;
+        }
+
+        if (el.tagName === 'H3' && el.classList.contains('subsection')) {
+          section = { heading: el, nodes: [el], rows: [], component: component, visible: true };
+          sections.push(section);
+          if (component) { component.sections.push(section); }
+          return;
+        }
+
+        if (section) { section.nodes.push(el); return; }
+        if (component) { component.nodes.push(el); return; }
+      });
+
+      if (!sections.length) { return; }
+
+      sections.forEach(function (s) {
+        register(s, s.nodes);
+        s.text = normalize(s.nodes.map(function (n) { return n.textContent || ''; }).join(' '));
+        s.nodes.forEach(function (n) {
+          if (!n.querySelectorAll) { return; }
+          Array.prototype.forEach.call(n.querySelectorAll('tbody tr'), function (tr) {
+            var row = { el: tr, section: s, visible: true };
+            var raw = tr.textContent || '';
+            var ids = [];
+            Array.prototype.forEach.call(tr.querySelectorAll('[id]'), function (c) { ids.push(c.id); });
+            row.text = normalize(raw + ' ' + ids.join(' '));
+            row.since = sinceOf(raw);
+            rows.push(row);
+            s.rows.push(row);
+            ids.forEach(function (id) { idOwner[id] = row; });
+          });
+        });
+      });
+
+      components.forEach(function (c) {
+        register(c, c.nodes);
+        c.intro = c.nodes.slice(1); // everything after the heading
+      });
+
+      var total = rows.length;
+
+      function show (nodes, on) {
+        nodes.forEach(function (n) { n.style.display = on ? '' : 'none'; });
+      }
+
+      function apply () {
+        var want = normalize($search.val() || '').split(' ').filter(Boolean);
+        var comp = $component.val() || 'all';
+        var minSince = parseInt($since.val() || '0', 10);
+        var shown = 0;
+
+        function matches (text, since) {
+          if (minSince && (!since || since < minSince)) { return false; }
+          return want.every(function (t) { return text.indexOf(t) !== -1; });
+        }
+
+        sections.forEach(function (s) {
+          var inComp = comp === 'all' || (s.component && s.component.heading.id === comp);
+          var any = false;
+
+          if (s.rows.length) {
+            s.rows.forEach(function (r) {
+              var ok = inComp && matches(r.text, r.since);
+              r.visible = ok;
+              r.el.style.display = ok ? '' : 'none';
+              if (ok) { any = true; shown++; }
+            });
+          } else {
+            // A prose only section: no rows to count, so it lives or dies whole.
+            // A version filter is about settings, and it has none, so it drops.
+            any = inComp && !minSince && want.every(function (t) { return s.text.indexOf(t) !== -1; });
+          }
+
+          s.visible = any;
+          show(s.nodes, any);
+        });
+
+        // A component keeps its heading for orientation, but its introduction is
+        // page preamble: several paragraphs of it above one matching row reads as
+        // noise, so it stands down while a search or version filter is running.
+        var narrowed = want.length > 0 || minSince > 0;
+        components.forEach(function (c) {
+          c.visible = c.sections.some(function (s) { return s.visible; });
+          show([c.heading], c.visible);
+          show(c.intro, c.visible && !narrowed);
+        });
+
+        $navLinks.each(function () {
+          var owner = idOwner[(this.getAttribute('href') || '').replace(/^#/, '')];
+          this.style.display = (!owner || owner.visible) ? '' : 'none';
+        });
+
+        if (!want.length && comp === 'all' && !minSince) {
+          $count.text('Showing all ' + total + ' settings.');
+        } else {
+          $count.text('Showing ' + shown + ' of ' + total + ' settings.');
+        }
+        $none.toggle(shown === 0 && !sections.some(function (s) { return s.visible; }));
+      }
+
+      function clearFilter (rescroll) {
+        $search.val('');
+        $component.val('all');
+        $since.val('0');
+        $('#settingsFilterBox').removeClass('has-value');
+        apply();
+        if (rescroll && window.location.hash) {
+          var hash = window.location.hash;
+          window.location.hash = '';
+          window.location.hash = hash;
+        }
+      }
+
+      // A link to a setting wins over the filter.
+      function revealHash () {
+        var id = (window.location.hash || '').replace(/^#/, '');
+        if (!id) { return; }
+        var owner = idOwner[id];
+        if (owner && !owner.visible) { clearFilter(true); }
+      }
+
+      // The box swaps its "/" hint for a clear button once there is something
+      // to clear, so has-value has to track the input however it changed.
+      var $box = $('#settingsFilterBox');
+      function syncBox () { $box.toggleClass('has-value', !!$search.val()); }
+
+      $search.on('input', function () { syncBox(); apply(); });
+      $component.on('change', apply);
+      $since.on('change', apply);
+      $('#settingsSearchClear').on('click', function () {
+        $search.val('');
+        syncBox();
+        apply();
+        $search.focus();
+      });
+      $('#settingsClear').on('click', function () { clearFilter(false); $search.focus(); });
+      $(window).on('hashchange', revealHash);
+
+      $search.on('keydown', function (e) {
+        if (e.key === 'Escape') { clearFilter(false); }
+      });
+
+      $(document).on('keydown', function (e) {
+        if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) { return; }
+        var tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) { return; }
+        e.preventDefault();
+        $search.focus();
+      });
+
+      apply();
+      revealHash();
+    })();
   </script>
 
 </body>

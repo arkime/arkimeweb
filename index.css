@@ -1513,3 +1513,119 @@ ul.list-group.angle-list > li.list-group-item {
 #faqContent [id] {
   scroll-margin-top: 4.5rem;
 }
+
+/* ---- /settings page ----------------------------------------------------- */
+/* Same sticky toolbar as /faq. .ps-3.pe-3 has no top padding, so top:0 sits
+   flush; the solid background is what stops rows showing through underneath. */
+.set-toolbar {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #fff;
+}
+.dark-theme .set-toolbar {
+  background-color: #111111;
+}
+.set-toolbar .col-md-3 {
+  margin-top: .5rem;
+}
+@media (min-width: 768px) {
+  .set-toolbar .col-md-3 { margin-top: 0; }
+}
+
+.set-count {
+  font-size: .875rem;
+  margin-bottom: .5rem;
+}
+.set-noresults {
+  text-align: center;
+  font-size: 1.25rem;
+  margin: 2rem 0;
+}
+.set-noresults a {
+  text-decoration: underline;
+}
+
+/* Every setting name is an anchor, and the rest of the site links to them
+   heavily, so a jump has to land below the toolbar rather than under it. */
+#settingsContent [id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* ---- shared filter box (/faq, /settings) -------------------------------- */
+/* A plain form-control gives no hint that it filters, no way to clear it with
+   the mouse, and no sign that "/" focuses it. This wraps one to add all three:
+   a search icon on the left, and a right hand slot that shows the "/" hint
+   while empty and a clear button once there is something to clear. */
+.filter-box {
+  position: relative;
+}
+.filter-box .filter-input {
+  padding-left: 2.2rem;
+  padding-right: 2.4rem;
+}
+.filter-box .filter-icon {
+  position: absolute;
+  left: .8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #868e96;
+  pointer-events: none;
+  z-index: 4;
+}
+.filter-box .filter-input:focus ~ .filter-icon {
+  color: var(--primary-theme-light-color);
+}
+
+.filter-box .filter-clear,
+.filter-box .filter-kbd {
+  position: absolute;
+  right: .5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+}
+
+/* The "/" hint, swapped out for the clear button as soon as you type */
+.filter-box .filter-kbd {
+  font-size: .75rem;
+  line-height: 1;
+  padding: .2rem .4rem;
+  border-radius: .25rem;
+  color: #868e96;
+  background-color: #f1f3f5;
+  border: 1px solid #dee2e6;
+  pointer-events: none;
+}
+.filter-box .filter-clear {
+  display: none;
+  border: 0;
+  padding: 0 .25rem;
+  line-height: 1;
+  background: transparent;
+  color: #868e96;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.filter-box .filter-clear:hover,
+.filter-box .filter-clear:focus {
+  color: var(--primary-theme-color);
+}
+.filter-box.has-value .filter-kbd { display: none; }
+.filter-box.has-value .filter-clear { display: block; }
+
+.dark-theme .filter-box .filter-icon,
+.dark-theme .filter-box .filter-kbd,
+.dark-theme .filter-box .filter-clear {
+  color: #adb5bd;
+}
+.dark-theme .filter-box .filter-kbd {
+  background-color: #2b3238;
+  border-color: #454e56;
+}
+.dark-theme .filter-box .filter-clear:hover,
+.dark-theme .filter-box .filter-clear:focus {
+  color: #7fc4ff;
+}

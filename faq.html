@@ -451,13 +451,20 @@ title: FAQ
            can skip them when it groups the questions below. -->
       <div class="row faq-toolbar faq-chrome" id="faqToolbar">
         <div class="col-md-8">
-          <input type="text"
-            id="faqSearch"
-            class="form-control"
-            autocomplete="off"
-            aria-label="Filter the questions"
-            placeholder="Filter the questions, e.g. dropping packets, ILM, self-signed, apache..."
-          />
+          <div class="filter-box" id="faqFilterBox">
+            <input type="text"
+              id="faqSearch"
+              class="form-control filter-input"
+              autocomplete="off"
+              aria-label="Filter the questions"
+              placeholder="Filter the questions, e.g. dropping packets, ILM, self-signed, apache..."
+            />
+            <span class="fa fa-search filter-icon" aria-hidden="true"></span>
+            <kbd class="filter-kbd" aria-hidden="true">/</kbd>
+            <button type="button" class="filter-clear" id="faqSearchClear" aria-label="Clear the filter" title="Clear">
+              <span class="fa fa-times" aria-hidden="true"></span>
+            </button>
+          </div>
         </div>
         <div class="col-md-4">
           <select id="faqSectionFilter"
@@ -4531,6 +4538,7 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
       function clearFilter (rescroll) {
         $search.val('');
         $sectionFilter.val('all');
+        $('#faqFilterBox').removeClass('has-value');
         apply();
         if (rescroll && window.location.hash) {
           var hash = window.location.hash;
@@ -4547,8 +4555,19 @@ ProxyPass        /parliament/ http://localhost:8008/parliament/ retry=0</code></
         if (owner && !owner.visible) { clearFilter(true); }
       }
 
-      $search.on('input', apply);
+      // The box swaps its "/" hint for a clear button once there is something
+      // to clear, so has-value has to track the input however it changed.
+      var $box = $('#faqFilterBox');
+      function syncBox () { $box.toggleClass('has-value', !!$search.val()); }
+
+      $search.on('input', function () { syncBox(); apply(); });
       $sectionFilter.on('change', apply);
+      $('#faqSearchClear').on('click', function () {
+        $search.val('');
+        syncBox();
+        apply();
+        $search.focus();
+      });
       $('#faqClear').on('click', function () { clearFilter(false); $search.focus(); });
       $(window).on('hashchange', revealHash);
 

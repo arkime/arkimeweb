@@ -97,12 +97,20 @@ Searching for any one of them works: `protocols == dhcpv6`, `protocols == mdns`,
 
 <div class="row proto-toolbar">
   <div class="col-md-7">
-    <input type="text"
-      id="protoSearch"
-      class="form-control"
-      autocomplete="off"
-      placeholder="Filter by name or protocols value, e.g. dns, s7comm, adcs..."
-    />
+    <div class="filter-box" id="protoFilterBox">
+      <input type="text"
+        id="protoSearch"
+        class="form-control filter-input"
+        autocomplete="off"
+        aria-label="Filter the protocols"
+        placeholder="Filter by name or protocols value, e.g. dns, s7comm, adcs..."
+      />
+      <span class="fa fa-search filter-icon" aria-hidden="true"></span>
+      <kbd class="filter-kbd" aria-hidden="true">/</kbd>
+      <button type="button" class="filter-clear" id="protoSearchClear" aria-label="Clear the filter" title="Clear">
+        <span class="fa fa-times" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
   <div class="col-md-5">
     <div class="btn-group w-100" role="group" aria-label="Filter by type">
@@ -414,7 +422,32 @@ These show up in the same `protocols` field as everything above.
       }
     }
 
-    $search.on('input', apply);
+    // The box swaps its "/" hint for a clear button once there is something
+    // to clear, so has-value has to track the input however it changed.
+    var $box = $('#protoFilterBox');
+    function syncBox () { $box.toggleClass('has-value', !!$search.val()); }
+
+    $search.on('input', function () { syncBox(); apply(); });
+
+    $('#protoSearchClear').on('click', function () {
+      $search.val('');
+      syncBox();
+      apply();
+      $search.focus();
+    });
+
+    $search.on('keydown', function (e) {
+      if (e.key === 'Escape') { $search.val(''); syncBox(); apply(); }
+    });
+
+    // "/" jumps to the filter, the way it does in most docs sites.
+    $(document).on('keydown', function (e) {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) { return; }
+      var tag = (e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) { return; }
+      e.preventDefault();
+      $search.focus();
+    });
 
     $('[data-proto-type]').on('click', function () {
       $('[data-proto-type]').removeClass('active');
