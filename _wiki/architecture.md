@@ -171,9 +171,34 @@ Here are some sample deployments of Arkime for different network architectures. 
 
 #### Security
 
+Access to Arkime is protected by using HTTPS with digest passwords, or by using an
+authentication&#8209;providing web server proxy. All PCAPs are stored on the sensors and are
+only accessed using the Arkime interface or API.
+
+**TLS and passwords come first**
+
+* Arkime `viewer` should be configured to use TLS. Edit [certFile](settings#certFile) and [keyFile](settings#keyFile) in `/opt/arkime/etc/config.ini` to enable it; if either is missing the viewer runs plain HTTP
+  * It is easiest to use a single certificate with multiple DNs, or a wildcard
+  * Make sure you protect the cert on the filesystem with proper file permissions
+* Arkime can be configured to use OpenSearch/Elasticsearch user auth or API keys - see [elasticsearchBasicAuth](settings#elasticsearchBasicAuth) and [elasticsearchAPIKey](settings#elasticsearchAPIKey), which keep the credentials out of the URL and so out of your logs. For TLS to the database itself see [OpenSearch/Elasticsearch TLS](esssl)
+* A shared password stored in the Arkime configuration file, [passwordSecret](settings#passwordSecret), is used to encrypt password hashes **and** for inter&#8209;Arkime communication, so every node that talks to another must share the same value
+  * Make sure you protect the config file on the filesystem with proper file permissions
+  * Encrypted password hashes are used so a new password hash cannot be inserted into OpenSearch/Elasticsearch directly, in case it has not been secured
+* For large deployments it is possible to set up an Arkime `viewer` on a central machine that does not capture any data, and instead gateways all UI requests
+  * Using a reverse proxy (Caddy, Apache, ...) can handle the authentication and pass the username on to Arkime; this is how we deploy it
+
+**Then lock down the network**
+
+Optional, but worth doing. Your OpenSearch/Elasticsearch holds every session Arkime has
+ever indexed, so this is defense in depth: it limits the damage if something above is
+misconfigured. Arkime machines need to reach each other on port 8005 and the
+OpenSearch/Elasticsearch machines on ports 9200&#8209;920x, and the web interface needs to be
+reachable on port 8005.
+
 * All ES instances should have iptables for port 9200-920N and 9300-930N, where N is the number of ES instances per machine, and only allow the other OpenSearch/Elasticsearch, capture and viewer machines to connect
 * All viewer hosts, except the central viewer box, should have iptables for port 8005 and only allow other viewer machines to connect. The viewer must listen on OS interface if using multiple machines
 * The shared viewer instances can listen on localhost since only reverse proxy talks to it
+* [esProxy](esproxy) can sit between capture and OpenSearch/Elasticsearch when a sensor should not be trusted with full database access
 
 ## Single Host
 {: .subsection-header }
