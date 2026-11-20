@@ -35,6 +35,7 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [Security Onion](https://securityonionsolutions.com/software/) | opensource | ? | yes | yes | Suricata writes the PCAP (Stenographer before 3.0), Zeek and Suricata logs are searchable
 [SolarCapture](https://github.com/Xilinx-CNS/solarcapture) | opensource | no | no | no | Needs AMD Solarflare NICs, hardware time-stamping
 [Stenographer](https://github.com/google/stenographer) | opensource | yes | no | no | No longer maintained, the repository is archived
+[Suricata](https://suricata.io) | opensource | no | no | no | Its pcap-log writes every packet, or only flows with an alert or a tagged rule; no index or search of its own
 [tcpdump](https://www.tcpdump.org) | opensource | no | no | no |
 {: .table .table-striped .table-sm .mb-4 }
 
