@@ -181,7 +181,10 @@ only accessed using the Arkime interface or API.
   * It is easiest to use a single certificate with multiple DNs, or a wildcard
   * Make sure you protect the cert on the filesystem with proper file permissions
 * Arkime can be configured to use OpenSearch/Elasticsearch user auth or API keys - see [elasticsearchBasicAuth](settings#elasticsearchBasicAuth) and [elasticsearchAPIKey](settings#elasticsearchAPIKey), which keep the credentials out of the URL and so out of your logs. For TLS to the database itself see [OpenSearch/Elasticsearch TLS](esssl)
-* A shared password stored in the Arkime configuration file, [passwordSecret](settings#passwordSecret), is used to encrypt password hashes **and** for inter&#8209;Arkime communication, so every node that talks to another must share the same value
+* Set **both** [passwordSecret](settings#passwordSecret) and [serverSecret](settings#serverSecret), and do not give them the same value. If `serverSecret` is unset it falls back to `passwordSecret`, which ties two keys together that have different jobs and different lifetimes
+  * `passwordSecret` encrypts the stored user password hashes. Every Arkime application sharing a users database needs the same value, and changing it makes all existing passwords stop working
+  * `serverSecret` is the server&#8209;to&#8209;server key. Every viewer in the cluster needs the same value, and it should be changed periodically
+  * That is the practical reason to split them: you can rotate `serverSecret` on its own schedule, but only if it is not doubling as the key your users' passwords are encrypted with
   * Make sure you protect the config file on the filesystem with proper file permissions
   * Encrypted password hashes are used so a new password hash cannot be inserted into OpenSearch/Elasticsearch directly, in case it has not been secured
 * For large deployments it is possible to set up an Arkime `viewer` on a central machine that does not capture any data, and instead gateways all UI requests
