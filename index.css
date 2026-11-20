@@ -1470,3 +1470,46 @@ ul.list-group.angle-list > li.list-group-item {
 .dark-theme .proto-fn a {
   color: #7fc4ff;
 }
+
+/* ---- /faq page ---------------------------------------------------------- */
+/* The filter controls ride along as you scroll the questions. .ps-3.pe-3 has
+   no top padding, so a plain top:0 sticky sits flush; the solid background is
+   what keeps the questions from showing through as they pass underneath. */
+.faq-toolbar {
+  padding-top: .5rem;
+  /* Padding, not margin: the background has to paint the gutter too, or
+     headings scroll up flush against the controls with no gap. */
+  padding-bottom: .5rem;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background-color: #fff;
+}
+.dark-theme .faq-toolbar {
+  background-color: #111111;
+}
+.faq-toolbar .col-md-4 {
+  margin-top: .5rem;
+}
+@media (min-width: 768px) {
+  .faq-toolbar .col-md-4 { margin-top: 0; }
+}
+
+.faq-count {
+  font-size: .875rem;
+  margin-bottom: .5rem;
+}
+.faq-noresults {
+  text-align: center;
+  font-size: 1.25rem;
+  margin: 2rem 0;
+}
+.faq-noresults a {
+  text-decoration: underline;
+}
+
+/* Every id here is a published URL, printed in capture and viewer logs, so an
+   anchor jump has to land somewhere readable instead of under the toolbar. */
+#faqContent [id] {
+  scroll-margin-top: 4.5rem;
+}

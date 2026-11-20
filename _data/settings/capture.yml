@@ -473,9 +473,10 @@ settings:
       Add ESP sessions to Arkime, no decoding
 
   - key: saveUnknownPackets
-    value: EMPTY
+    value: "all;corrupt"
     text: |
       (Since 6.0.0) Save unknown ether, ip, or corrupt packets as first-class Arkime sessions and the pcap data.
+      (Since 7.0.0) The default is <code>all;corrupt</code>, before 7.0.0 the default was empty and nothing was saved. Add <code>saveUnknownPackets=</code> in the config file to not save any of them.
 
       This variable takes a semicolon separated list of the following values (applied in order):
       <ul class="mb-0">
@@ -492,9 +493,10 @@ settings:
       Prior to Arkime 6.0.0, this setting saved unknown and corrupt packets into separate files in the first entry of <a href="#pcapDir">pcapDir</a>, named unknown.ether, unknown.ip, or corrupt. This behavior has been replaced &mdash; packets are now saved as full Arkime sessions.
 
   - key: disableParsers
-    value: "arp.so"
+    value: EMPTY
     text: |
-      Semicolon separated list of parsers to NOT load. Add <code>disableParsers=</code> in config file to load all parsers.
+      Semicolon separated list of parsers to NOT load, for example <code>disableParsers=arp.so</code>.
+      (Since 7.0.0) The default is empty so all parsers are loaded, before 7.0.0 the default was <code>arp.so</code>.
 
   - key: tcpClosingTimeout
     value: "5"
