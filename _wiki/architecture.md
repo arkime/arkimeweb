@@ -225,7 +225,7 @@ reachable on port 8005.
 
 <figure class="arch-fig" style="max-width:300px">
 <svg viewBox="0 0 300 400" role="img" aria-label="Single host Arkime deployment diagram">
-  <rect class="chip chip-tap" x="80" y="14" width="140" height="34" rx="10"/>
+  <rect class="chip chip-tap" x="80" y="15" width="140" height="32" rx="10"/>
   <text class="tap-t" x="150" y="31">Mirror or Tap</text>
   <line class="flow-traffic" x1="150" y1="48" x2="150" y2="84" marker-end="url(#mo)"/>
 
@@ -253,9 +253,9 @@ A single host deployment should usually only be used for demos and extremely low
 <svg viewBox="0 0 640 620" role="img" aria-label="Multiple hosts monitoring multiple network segments">
   <!-- capture machines -->
   <g>
-    <rect class="chip chip-tap" x="50"  y="18" width="120" height="30" rx="9"/><text class="tap-t" x="110" y="33">Mirror or Tap</text>
-    <rect class="chip chip-tap" x="260" y="18" width="120" height="30" rx="9"/><text class="tap-t" x="320" y="33">Mirror or Tap</text>
-    <rect class="chip chip-tap" x="470" y="18" width="120" height="30" rx="9"/><text class="tap-t" x="530" y="33">Mirror or Tap</text>
+    <rect class="chip chip-tap" x="50"  y="17" width="120" height="32" rx="9"/><text class="tap-t" x="110" y="33">Mirror or Tap</text>
+    <rect class="chip chip-tap" x="260" y="17" width="120" height="32" rx="9"/><text class="tap-t" x="320" y="33">Mirror or Tap</text>
+    <rect class="chip chip-tap" x="470" y="17" width="120" height="32" rx="9"/><text class="tap-t" x="530" y="33">Mirror or Tap</text>
     <line class="flow-traffic" x1="110" y1="48" x2="110" y2="74" marker-end="url(#mo)"/>
     <line class="flow-traffic" x1="320" y1="48" x2="320" y2="74" marker-end="url(#mo)"/>
     <line class="flow-traffic" x1="530" y1="48" x2="530" y2="74" marker-end="url(#mo)"/>
@@ -305,13 +305,13 @@ A single host deployment should usually only be used for demos and extremely low
   <!-- central viewer + reverse proxy -->
   <rect class="machine" x="450" y="452" width="170" height="122" rx="12"/>
   <text class="m-title" x="535" y="468">Central Viewer</text>
-  <use href="#s-viewer" x="475" y="480" width="120" height="30"/>
-  <rect class="chip chip-proxy" x="475" y="522" width="120" height="34" rx="12"/><text class="chip-t" x="535" y="539" style="font-size:11px">reverse proxy</text>
+  <use href="#s-viewer" x="475" y="479" width="120" height="32"/>
+  <rect class="chip chip-proxy" x="475" y="523" width="120" height="32" rx="12"/><text class="chip-t" x="535" y="539" style="font-size:11px">reverse proxy</text>
   <path class="flow" d="M352 366 C400 398 452 428 484 452"/>
 
   <!-- operators (below the box, so nothing crosses it) -->
-  <rect class="op" x="470" y="584" width="150" height="28" rx="14"/><text class="op-t" x="545" y="598">Operators</text>
-  <line class="flow-mgmt" x1="545" y1="584" x2="545" y2="558" marker-end="url(#mb)"/>
+  <rect class="op" x="450" y="584" width="170" height="28" rx="14"/><text class="op-t" x="535" y="598">Operators</text>
+  <line class="flow-mgmt" x1="535" y1="584" x2="535" y2="558" marker-end="url(#mb)"/>
 
   <!-- network cloud drawn last so all connector stubs tuck underneath it -->
   <use href="#s-cloud" x="245" y="322" width="150" height="74"/>
@@ -325,9 +325,9 @@ A single host deployment should usually only be used for demos and extremely low
 <figure class="arch-fig" style="max-width:640px">
 <svg viewBox="0 0 640 690" role="img" aria-label="High traffic Arkime deployment with a network packet broker">
   <!-- taps -->
-  <rect class="chip chip-tap" x="70"  y="14" width="90" height="30" rx="9"/><text class="tap-t" x="115" y="29">Tap</text>
-  <rect class="chip chip-tap" x="275" y="14" width="90" height="30" rx="9"/><text class="tap-t" x="320" y="29">Tap</text>
-  <rect class="chip chip-tap" x="480" y="14" width="90" height="30" rx="9"/><text class="tap-t" x="525" y="29">Tap</text>
+  <rect class="chip chip-tap" x="70"  y="13" width="90" height="32" rx="9"/><text class="tap-t" x="115" y="29">Tap</text>
+  <rect class="chip chip-tap" x="275" y="13" width="90" height="32" rx="9"/><text class="tap-t" x="320" y="29">Tap</text>
+  <rect class="chip chip-tap" x="480" y="13" width="90" height="32" rx="9"/><text class="tap-t" x="525" y="29">Tap</text>
   <line class="flow-traffic" x1="115" y1="44" x2="180" y2="70" marker-end="url(#mo)"/>
   <line class="flow-traffic" x1="320" y1="44" x2="320" y2="70" marker-end="url(#mo)"/>
   <line class="flow-traffic" x1="525" y1="44" x2="460" y2="70" marker-end="url(#mo)"/>
@@ -381,11 +381,11 @@ A single host deployment should usually only be used for demos and extremely low
 
   <rect class="machine" x="450" y="522" width="170" height="122" rx="12"/>
   <text class="m-title" x="535" y="538">Central Viewer</text>
-  <use href="#s-viewer" x="475" y="550" width="120" height="30"/>
-  <rect class="chip chip-proxy" x="475" y="592" width="120" height="34" rx="12"/><text class="chip-t" x="535" y="609" style="font-size:11px">reverse proxy</text>
+  <use href="#s-viewer" x="475" y="549" width="120" height="32"/>
+  <rect class="chip chip-proxy" x="475" y="593" width="120" height="32" rx="12"/><text class="chip-t" x="535" y="609" style="font-size:11px">reverse proxy</text>
   <path class="flow" d="M352 436 C400 468 452 498 484 522"/>
-  <rect class="op" x="470" y="654" width="150" height="28" rx="14"/><text class="op-t" x="545" y="668">Operators</text>
-  <line class="flow-mgmt" x1="545" y1="654" x2="545" y2="628" marker-end="url(#mb)"/>
+  <rect class="op" x="450" y="654" width="170" height="28" rx="14"/><text class="op-t" x="535" y="668">Operators</text>
+  <line class="flow-mgmt" x1="535" y1="654" x2="535" y2="628" marker-end="url(#mb)"/>
 
   <!-- network cloud drawn last so all connector stubs tuck underneath it -->
   <use href="#s-cloud" x="245" y="392" width="150" height="74"/>
@@ -454,7 +454,7 @@ A single host deployment should usually only be used for demos and extremely low
   <rect class="chip chip-view" x="264" y="378" width="112" height="24" rx="12"/><text class="chip-t" x="320" y="390" style="font-size:10.5px">viewer &#8594; cluster A</text>
   <rect class="chip chip-wise" x="264" y="406" width="112" height="24" rx="12"/><text class="chip-t" x="320" y="418" style="font-size:10.5px">viewer &#8594; cluster B</text>
   <rect class="chip chip-proxy" x="264" y="434" width="112" height="24" rx="12"/><text class="chip-t" x="320" y="446" style="font-size:10.5px">reverse proxy</text>
-  <rect class="op" x="255" y="484" width="130" height="28" rx="14"/><text class="op-t" x="320" y="498">Operators</text>
+  <rect class="op" x="258" y="484" width="124" height="28" rx="14"/><text class="op-t" x="320" y="498">Operators</text>
   <line class="flow-mgmt" x1="320" y1="484" x2="320" y2="460" marker-end="url(#mb)"/>
 </svg>
 <figcaption>Independent clusters, each with its own capture nodes and OpenSearch/Elasticsearch, all reachable through the network; a virtual&#8209;path reverse proxy routes operators to either one.</figcaption>
@@ -482,7 +482,7 @@ Normally the Central Viewer opens short-lived outbound connections *to* each Sen
   <text class="m-sub" x="131" y="143">behind NAT / firewall</text>
   <use href="#s-capture" x="66" y="158" width="130" height="28"/>
   <use href="#s-pcap" x="108" y="190" width="46" height="44"/>
-  <use href="#s-viewer" x="66" y="236" width="130" height="34"/>
+  <use href="#s-viewer" x="66" y="239" width="130" height="28"/>
   <text class="m-sub" x="131" y="292">cannot accept inbound connections</text>
 
   <!-- NAT/firewall barrier, at the sensor's edge and clear of the tunnel labels -->
@@ -495,9 +495,9 @@ Normally the Central Viewer opens short-lived outbound connections *to* each Sen
   <text class="m-title" x="629" y="128">Central Viewer</text>
   <text class="m-sub" x="629" y="150">accepts portals on :8006</text>
   <text class="m-sub" x="629" y="165">(packetPortalPort)</text>
-  <use href="#s-viewer" x="564" y="236" width="130" height="34"/>
+  <use href="#s-viewer" x="564" y="239" width="130" height="28"/>
 
-  <rect class="op" x="554" y="360" width="150" height="28" rx="14"/><text class="op-t" x="629" y="374">Operators</text>
+  <rect class="op" x="524" y="360" width="210" height="28" rx="14"/><text class="op-t" x="629" y="374">Operators</text>
   <line class="flow-mgmt" x1="629" y1="360" x2="629" y2="272" marker-end="url(#mb)"/>
 
   <!-- portal tunnel: viewer chip <-> viewer chip, straight through the NAT -->
@@ -547,14 +547,14 @@ Arkime stores and indexes whatever packets it captures, but TLS&#8209;encrypted 
   <rect class="machine" x="20" y="150" width="150" height="140" rx="12"/>
   <text class="m-title" x="95" y="170">User / Client</text>
   <text class="m-sub" x="95" y="185">HTTPS client</text>
-  <rect class="chip chip-proxy" x="38" y="200" width="114" height="30" rx="15"/><text class="chip-t" x="95" y="215" style="font-size:11px">browser / app</text>
+  <rect class="chip chip-proxy" x="38" y="201" width="114" height="28" rx="15"/><text class="chip-t" x="95" y="215" style="font-size:11px">browser / app</text>
   <text class="m-sub" x="95" y="255">trusts PolarProxy CA</text>
 
   <!-- PolarProxy -->
   <rect class="machine" x="255" y="120" width="160" height="170" rx="12"/>
   <text class="m-title" x="335" y="140">PolarProxy</text>
   <text class="m-sub" x="335" y="155">transparent TLS proxy</text>
-  <rect class="chip chip-proxy" x="275" y="172" width="120" height="32" rx="15"/><text class="chip-t" x="335" y="188" style="font-size:11px">decrypt TLS</text>
+  <rect class="chip chip-proxy" x="275" y="174" width="120" height="28" rx="15"/><text class="chip-t" x="335" y="188" style="font-size:11px">decrypt TLS</text>
   <text class="m-sub" x="335" y="228">listens :10443</text>
   <text class="m-sub" x="335" y="244">re-encrypts upstream</text>
 
@@ -604,7 +604,7 @@ The remote device captures on one of its interfaces and forwards each packet, en
 <figure class="arch-fig" style="max-width:640px">
 <svg viewBox="0 0 640 300" role="img" aria-label="Remote device capture forwarding TZSP packets to an Arkime capture server">
   <!-- remote device -->
-  <rect class="chip chip-tap" x="79" y="40" width="80" height="26" rx="8"/><text class="tap-t" x="119" y="53">br0</text>
+  <rect class="chip chip-tap" x="79" y="38" width="80" height="30" rx="8"/><text class="tap-t" x="119" y="53">br0</text>
   <rect class="machine" x="24" y="70" width="190" height="168" rx="12"/>
   <text class="m-title" x="119" y="92">Remote device</text>
   <text class="m-sub" x="119" y="107">router / small appliance</text>
@@ -643,7 +643,7 @@ If the device is reachable via ssh, we can log in to the remote device, start a 
 <figure class="arch-fig" style="max-width:640px">
 <svg viewBox="0 0 640 300" role="img" aria-label="Remote device capture over ssh into a named pipe">
   <!-- remote device -->
-  <rect class="chip chip-tap" x="72" y="40" width="76" height="28" rx="9"/><text class="tap-t" x="110" y="54">ens3</text>
+  <rect class="chip chip-tap" x="72" y="39" width="76" height="30" rx="9"/><text class="tap-t" x="110" y="54">ens3</text>
   <rect class="machine" x="30" y="72" width="180" height="166" rx="12"/>
   <text class="m-title" x="120" y="118">Remote device</text>
   <text class="m-sub" x="120" y="136">10.1.2.3</text>
@@ -655,7 +655,7 @@ If the device is reachable via ssh, we can log in to the remote device, start a 
   <!-- Arkime capture server: pipe -> capture / pcap / viewer stack -->
   <rect class="machine" x="426" y="44" width="190" height="216" rx="12"/>
   <text class="m-title" x="521" y="62">Arkime capture server</text>
-  <rect class="chip chip-proxy" x="452" y="78" width="138" height="26" rx="12"/><text class="chip-t" x="521" y="91" style="font-size:11px">named pipe (fifo)</text>
+  <rect class="chip chip-proxy" x="452" y="76" width="138" height="30" rx="12"/><text class="chip-t" x="521" y="91" style="font-size:11px">named pipe (fifo)</text>
   <line class="flow" x1="521" y1="104" x2="521" y2="116" marker-end="url(#mn)"/>
   <use href="#s-capture" x="446" y="118" width="150" height="30"/>
   <use href="#s-pcap" x="496" y="158" width="50" height="46"/>
