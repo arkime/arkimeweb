@@ -8,6 +8,7 @@
   items:
     - url: /install
     - url: /docker
+    - url: /architecture
     - url: /estimators
       title: Hardware Estimators
       desc: Work out how many machines, how much disk and how much memory your traffic needs before you buy anything.
@@ -53,7 +54,6 @@
 - group: Scale and operate
   blurb: Running Arkime across many sensors, sites and years of data.
   items:
-    - url: /architecture
     - url: /esproxy
     - url: /s3
     - url: /parliament

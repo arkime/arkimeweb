@@ -6,7 +6,17 @@ permalink: /architecture
 copyLink: True
 ---
 
-<div class="full-height-and-width-container with-footer p-3 arch-scope" markdown="1">
+- TOC
+{:toc}
+{: .left-nav .d-none .d-sm-block .pt-3 .with-footer .wiki-toc }
+
+<div class="collapse-btn d-none d-sm-block"
+  onclick="toggleToc()">
+  <span class="fa fa-angle-double-left">
+  </span>
+</div>
+
+<div class="full-height-container with-footer p-3 arch-scope" markdown="1">
 
 # Arkime Architecture
 {: .section-header.mt-1 }
@@ -30,7 +40,6 @@ Here are some sample deployments of Arkime for different network architectures. 
 .arch-fig { margin:2rem auto; text-align:center; }
 .arch-fig svg { width:100%; height:auto; display:block; margin:0 auto; }
 .arch-fig figcaption { color:var(--muted); font-size:.85rem; margin-top:.35rem; }
-.arch-scope hr.arch-rule { border:0; border-top:2px solid var(--ink); opacity:.7; margin:2.75rem 0 1.25rem; }
 .arch-scope svg text { font-family:inherit; text-anchor:middle; dominant-baseline:central; fill:var(--ink); }
 
 .arch-scope .machine { fill:var(--machine-bg); stroke:var(--machine-stroke); stroke-width:1.5; }
@@ -132,7 +141,7 @@ Here are some sample deployments of Arkime for different network architectures. 
       <path class="cyl-body" d="M8 12 v38 a24 8 0 0 0 48 0 v-38"/>
       <ellipse class="cyl-top" cx="32" cy="12" rx="24" ry="8"/>
     </g>
-    <text class="cyl-t" x="32" y="36">ES</text>
+    <text class="cyl-t" x="32" y="36">DB</text>
   </symbol>
   <symbol id="s-cloud" viewBox="0 0 150 74">
     <path class="cloud" d="M40 64 C21 64 13 46 27 37 C22 23 41 15 53 24 C60 9 87 9 95 24 C108 15 127 24 121 39 C138 43 135 64 116 64 Z"/>
@@ -140,7 +149,8 @@ Here are some sample deployments of Arkime for different network architectures. 
   </symbol>
 </svg>
 
-#### Legend / Info
+## Legend / Info
+{: .subsection-header }
 
 <figure class="arch-fig" style="max-width:640px">
 <svg viewBox="0 0 640 96" role="img" aria-label="Legend">
@@ -153,7 +163,8 @@ Here are some sample deployments of Arkime for different network architectures. 
   <use href="#s-pcap" x="430" y="8" width="46" height="44"/>
   <text class="m-sub" x="453" y="62">raw pcap on disk</text>
   <use href="#s-es" x="560" y="8" width="46" height="44"/>
-  <text class="m-sub" x="583" y="62">OpenSearch / ES</text>
+  <text class="m-sub" x="583" y="56">OpenSearch/</text>
+  <text class="m-sub" x="583" y="68">Elasticsearch</text>
   <line class="flow-traffic" x1="30" y1="82" x2="70" y2="82" marker-end="url(#mo)"/>
   <text class="m-sub" x="150" y="82" text-anchor="start" style="text-anchor:start">mirrored packets</text>
   <line class="flow" x1="300" y1="82" x2="340" y2="82"/>
@@ -166,10 +177,11 @@ Here are some sample deployments of Arkime for different network architectures. 
 * A box represents a physical machine.
 * It is possible to run multiple capture processes per machine, or have a single capture process listen to multiple interfaces - ([FAQ Answer](faq#what-kind-of-packet-capture-speeds-can-arkime-capture-handle))
 * Recommend "Big Data" style boxes for capture - ([FAQ Answer](faq#what-kind-of-capture-machines-should-we-buy))
-* Run multiple OpenSearch/Elasticsearch processes per machine since each ES node should be configured at most to 30G - ([FAQ Answer](faq#how-many-elasticsearch-nodes-or-machines-do-i-need))
+* Run multiple OpenSearch/Elasticsearch processes per machine since each OpenSearch/Elasticsearch node should be configured at most to 30G - ([FAQ Answer](faq#how-many-elasticsearch-nodes-or-machines-do-i-need))
 * Except for single host deployments, it is recommended/useful that all operator access flows through a central viewer with potentially a reverse proxy that can provide enterprise level authentication, logging, and a single choke point - ([FAQ Answer](faq#how-do-i-proxy-arkime-using-apache))
 
-#### Security
+## Security
+{: .subsection-header }
 
 Access to Arkime is protected by using HTTPS with digest passwords, or by using an
 authentication&#8209;providing web server proxy. All PCAPs are stored on the sensors and are
@@ -198,7 +210,7 @@ misconfigured. Arkime machines need to reach each other on port 8005 and the
 OpenSearch/Elasticsearch machines on ports 9200&#8209;920x, and the web interface needs to be
 reachable on port 8005.
 
-* All ES instances should have iptables for port 9200-920N and 9300-930N, where N is the number of ES instances per machine, and only allow the other OpenSearch/Elasticsearch, capture and viewer machines to connect
+* All OpenSearch/Elasticsearch instances should have iptables for port 9200-920N and 9300-930N, where N is the number of OpenSearch/Elasticsearch instances per machine, and only allow the other OpenSearch/Elasticsearch, capture and viewer machines to connect
 * All viewer hosts, except the central viewer box, should have iptables for port 8005 and only allow other viewer machines to connect. The viewer must listen on OS interface if using multiple machines
 * The shared viewer instances can listen on localhost since only reverse proxy talks to it
 * [esProxy](esproxy) can sit between capture and OpenSearch/Elasticsearch when a sensor should not be trusted with full database access
@@ -270,7 +282,7 @@ A single host deployment should usually only be used for demos and extremely low
   <rect class="chip chip-wise" x="512" y="340" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="358">WISE</text>
   <line class="flow" x1="368" y1="359" x2="512" y2="358"/>
 
-  <!-- ES clusters -->
+  <!-- OS/ES clusters -->
   <rect class="box" x="30" y="470" width="220" height="104" rx="12"/>
   <text class="box-t" x="140" y="486">OpenSearch / Elasticsearch</text>
   <use href="#s-es" x="70"  y="500" width="54" height="56"/>
@@ -302,9 +314,7 @@ A single host deployment should usually only be used for demos and extremely low
 <figcaption>Each segment gets its own capture node; operators reach every cluster through a single reverse&#8209;proxied central viewer.</figcaption>
 </figure>
 
-<hr class="arch-rule"/>
-
-### Multiple Hosts Monitoring High Traffic Networks
+## Multiple Hosts Monitoring High Traffic Networks
 {: .subsection-header }
 
 <figure class="arch-fig" style="max-width:640px">
@@ -349,7 +359,7 @@ A single host deployment should usually only be used for demos and extremely low
   <rect class="chip chip-wise" x="512" y="410" width="108" height="36" rx="12"/><text class="chip-t" x="566" y="428">WISE</text>
   <line class="flow" x1="368" y1="429" x2="512" y2="428"/>
 
-  <!-- ES + central viewer -->
+  <!-- OS/ES + central viewer -->
   <rect class="box" x="30" y="540" width="220" height="104" rx="12"/>
   <text class="box-t" x="140" y="556">OpenSearch / Elasticsearch</text>
   <use href="#s-es" x="70"  y="570" width="54" height="56"/>
@@ -378,15 +388,15 @@ A single host deployment should usually only be used for demos and extremely low
 <figcaption>A packet broker load&#8209;balances and recombines high&#8209;rate traffic across many capture nodes.</figcaption>
 </figure>
 
-#### Notes
-{: .subsection }
+### Notes
+{: .no_toc.subsection }
 
 * Using a Network Packet Broker (NPB) allows traffic to be load balanced and recombined. This is especially useful in HA or asymmetric routing cases
 * By using a NPB, other security devices can see the same traffic arkime sees
 * When running multiple arkime-captures on the same host make sure the IO doesn't overwhelm the disk and other subsystems.
 * Use a TAP with high traffic networks since many mirror ports drop traffic under heavy load
 * Operators use an apache fronted viewer (central viewer) and don't hit the other viewers directly. The apache provides authentication.
-* Lock down ES and arkime viewer with iptables
+* Lock down OpenSearch/Elasticsearch and Arkime viewer with iptables
 
 ## Multiple Clusters
 {: .subsection-header }
@@ -404,7 +414,7 @@ A single host deployment should usually only be used for demos and extremely low
   <!-- central network cloud, drawn last so the spoke stubs tuck underneath it -->
   <use href="#s-cloud" x="250" y="244" width="140" height="68"/>
 
-  <!-- Cluster A (blue): capture node top-left, ES top-right -->
+  <!-- Cluster A (blue): capture node top-left, OS/ES top-right -->
   <text class="cluster-t cluster-tA" x="60" y="36">Cluster A</text>
   <rect class="machine" x="36" y="44" width="158" height="150" rx="12"/>
   <text class="m-title" x="115" y="58">Capture Node</text>
@@ -413,11 +423,11 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-pcap" x="92" y="110" width="46" height="46"/>
   <use href="#s-viewer" x="50" y="160" width="130" height="30"/>
   <rect class="box" x="446" y="52" width="158" height="92" rx="12" style="stroke:var(--blue)"/>
-  <text class="cluster-t cluster-tA" x="525" y="68">ES cluster A</text>
+  <text class="cluster-t cluster-tA" x="525" y="68">OS/ES cluster A</text>
   <use href="#s-es" x="474" y="80" width="46" height="50"/>
   <use href="#s-es" x="530" y="80" width="46" height="50"/>
 
-  <!-- Cluster B (green): capture node bottom-left, ES bottom-right -->
+  <!-- Cluster B (green): capture node bottom-left, OS/ES bottom-right -->
   <text class="cluster-t cluster-tB" x="60" y="358">Cluster B</text>
   <rect class="machine" x="36" y="366" width="158" height="150" rx="12"/>
   <text class="m-title" x="115" y="382">Capture Node</text>
@@ -426,7 +436,7 @@ A single host deployment should usually only be used for demos and extremely low
   <use href="#s-pcap" x="92" y="436" width="46" height="46"/>
   <use href="#s-capture" x="50" y="484" width="130" height="30"/>
   <rect class="box" x="446" y="414" width="158" height="92" rx="12" style="stroke:var(--green-d)"/>
-  <text class="cluster-t cluster-tB" x="525" y="430">ES cluster B</text>
+  <text class="cluster-t cluster-tB" x="525" y="430">OS/ES cluster B</text>
   <use href="#s-es" x="474" y="442" width="46" height="50"/>
   <use href="#s-es" x="530" y="442" width="46" height="50"/>
 
@@ -442,13 +452,13 @@ A single host deployment should usually only be used for demos and extremely low
   <rect class="op" x="255" y="484" width="130" height="28" rx="14"/><text class="op-t" x="320" y="498">Operators</text>
   <line class="flow-mgmt" x1="320" y1="484" x2="320" y2="460" marker-end="url(#mb)"/>
 </svg>
-<figcaption>Independent clusters, each with its own capture nodes and ES, all reachable through the network; a virtual&#8209;path reverse proxy routes operators to either one.</figcaption>
+<figcaption>Independent clusters, each with its own capture nodes and OpenSearch/Elasticsearch, all reachable through the network; a virtual&#8209;path reverse proxy routes operators to either one.</figcaption>
 </figure>
 
-#### Notes
-{: .subsection }
+### Notes
+{: .no_toc.subsection }
 
-* It is possible to use a single ES cluster using the prefix= ini configuration
+* It is possible to use a single OpenSearch/Elasticsearch cluster using the prefix= ini configuration
 * Operator uses apache fronted viewers (central viewers) and doesn't hit the other viewers directly. The apache provides authentication. Can use virtual paths to route to different clusters.
 * NPBs are recommended for high traffic networks
 
@@ -508,8 +518,8 @@ Normally the Central Viewer opens short-lived outbound connections *to* each Sen
 <figcaption>The Sensor's <em>viewer</em> dials out once, directly to the Central <em>viewer</em>; every request the Central Viewer sends back over that portal is individually server&#8209;to&#8209;server authenticated.</figcaption>
 </figure>
 
-#### Notes
-{: .subsection }
+### Notes
+{: .no_toc.subsection }
 
 * Use a packet portal when a Sensor's viewer cannot be reached directly — a Sensor behind NAT or a firewall, or a Central Viewer that is fronted by a reverse proxy, uses header authentication, and is IP locked down.
 * On each **Sensor**, set [`packetPortalConnect`](settings#packetportalconnect) to the Central Viewer(s) to keep an outbound portal open to. Portals reconnect automatically with backoff, and multiple Central Viewers can each reach the same Sensor.
