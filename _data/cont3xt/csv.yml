@@ -1,9 +1,11 @@
 name: "CSV Integration"
 before: |
-  Since 5.0 Cont3xt can query CSV files or urls for results.
-
-  Create a <code>[csv:NAME]</code> section where NAME is a name that is unique across all integrations
-
+  <p>
+    Since 5.0 Cont3xt can query CSV files or urls for results.
+  </p>
+  <p>
+    Create a <code>[csv:NAME]</code> section where NAME is a name that is unique across all integrations
+  </p>
 settings:
   - key: name
     value: section name

@@ -27,6 +27,7 @@ before: |
   <h4>Examples</h4>
   <p>
   To replace this entire configuration file
+  </p>
   <pre><code>[default]
   elasticsearch=https://localhost:9200
   [url:foobar]
@@ -34,12 +35,15 @@ before: |
   [arkime-clusters]
   example=url:http://localhost:8124
   </code></pre>
+  <p>
 
-    with command line options 
-    <pre><code>-o elasticsearch=https://localhost:9200 -o url:foobar.url=http://localhost:9200 -o arkime-clusters.example=url:http://localhost:8124</code></pre>
-    or environment variables 
+    with command line options
+  </p>
+  <pre><code>-o elasticsearch=https://localhost:9200 -o url:foobar.url=http://localhost:9200 -o arkime-clusters.example=url:http://localhost:8124</code></pre>
+  <p>
+    or environment variables
+  </p>
   <pre><code>ARKIME__elasticsearch=https://localhost:9200 
   ARKIME_urlCOLONfoobar__url=http://localhost:9200
   ARKIME_arkimeDASHclusters__example=url:http://localhost:8124
   </code></pre>
-  </p>

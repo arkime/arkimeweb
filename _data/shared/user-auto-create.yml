@@ -33,7 +33,8 @@ before: |
   </p>
   <p>
     <strong>Important:</strong>
-    <ul>
+  </p>
+  <ul>
       <li>Node.js lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your JavaScript expressions. For example <code>vals['x-user']</code> NOT <code>vals['X-User']</code>.</li>
       <li>JavaScript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-user']</code> NOT <code>vals.x-user</code>.</li>
       <li>If <code>userId</code> is not set or differs from the authenticated user, it will be overwritten with the authenticated userId.</li>
@@ -42,7 +43,6 @@ before: |
       <li>Syntax errors in expressions are caught at startup and will prevent the application from starting.</li>
       <li>Runtime errors in expressions will prevent the user from being created.</li>
     </ul>
-  </p>
 
 
 

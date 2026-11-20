@@ -25,12 +25,12 @@ before: |
   </p>
   <p>
     <strong>Important:</strong>
-    <ul>
+  </p>
+  <ul>
       <li>Node.js lowercases all HTTP header names, since HTTP headers are case insensitive. You should use lowercase keys in your JavaScript expressions. For example <code>vals['x-roles']</code> NOT <code>vals['X-Roles']</code>.</li>
       <li>JavaScript keys can't contain dashes, so you must put them in quotes. For example <code>vals['x-roles']</code> NOT <code>vals.x-roles</code>.</li>
       <li>A role that isn't defined will be removed from the user.</li>
     </ul>
-  </p>
 
 
 

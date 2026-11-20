@@ -1,10 +1,12 @@
 name: "Common settings per integration"
 before: |
-  Every integration can have its own settings with keys, passwords and other things.
-  Usually keys and passwords should be set per user in the UI, which will override these.
-
-  These live in each <code>[INTEGRATION-NAME]</code> section
-
+  <p>
+    Every integration can have its own settings with keys, passwords and other things.
+    Usually keys and passwords should be set per user in the UI, which will override these.
+  </p>
+  <p>
+    These live in each <code>[INTEGRATION-NAME]</code> section
+  </p>
 settings:
   - key: disabled
     value: false

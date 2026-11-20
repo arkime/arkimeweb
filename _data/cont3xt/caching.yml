@@ -1,9 +1,11 @@
 name: "Caching"
 before: |
-  Cont3xt can cache integration queries to speed up results and to lower the load on the integration services.
-
-  These settings live in the <code>[cache]</code> section
-
+  <p>
+    Cont3xt can cache integration queries to speed up results and to lower the load on the integration services.
+  </p>
+  <p>
+    These settings live in the <code>[cache]</code> section
+  </p>
 settings:
   - key: type
     value: memory

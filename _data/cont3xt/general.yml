@@ -1,7 +1,8 @@
 name: "General"
 before: |
-  These settings live in the <code>[cont3xt]</code> section.
-
+  <p>
+    These settings live in the <code>[cont3xt]</code> section.
+  </p>
 settings:
   - key: cacheTimeout
     value: 1h

@@ -16,7 +16,8 @@ before: |
 after: |
   <p>
     Sample configuration:
-    <pre>
+  </p>
+  <pre>
   [parliament]
   # Only used to import issues from ../etc/parliament.issues.json
   file=../etc/parliament.json
@@ -31,7 +32,6 @@ after: |
   #authMode=digest
   #passwordSecret=password
   #httpRealm=Moloch</pre>
-  </p>
 
 
 settings:

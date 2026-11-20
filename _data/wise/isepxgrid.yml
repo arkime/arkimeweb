@@ -15,14 +15,14 @@ before: |
   </p>
   <p>
     Fields added per IP:
-    <ul>
+  </p>
+  <ul>
       <li><code>ise.user</code> - Active Directory user or username</li>
       <li><code>ise.mac</code> - Endpoint MAC address</li>
       <li><code>ise.os</code> - Endpoint OS or profile</li>
       <li><code>ise.posture</code> - Posture compliance status</li>
       <li><code>ise.nasip</code> - Network node IP (switch/AP) the endpoint authenticated through</li>
     </ul>
-  </p>
 
 settings:
   - key: host

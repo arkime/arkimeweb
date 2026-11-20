@@ -1,9 +1,10 @@
 name: "Arkime Integration"
 before: |
-  Since 5.0 Cont3xt can query Arkime for results.
-  This integration must be enabled in the configuration file and not the UI.
-  To enable, create a <code>[arkime:NAME]</code> section where NAME is unique.
-
+  <p>
+    Since 5.0 Cont3xt can query Arkime for results.
+    This integration must be enabled in the configuration file and not the UI.
+    To enable, create a <code>[arkime:NAME]</code> section where NAME is unique.
+  </p>
 settings:
   - key: name
     value: section name
@@ -66,11 +67,12 @@ settings:
     text: (Since 7.0) The passphrase for clientKey, if it has one.
 
 after: |
-  Here is the example configuration that the demo site uses:
+  <p>
+    Here is the example configuration that the demo site uses:
+  </p>
   <pre>
   [arkime:arkime]
   name=Arkime
   arkimeUrl=https://demo.arkime.com
   searchDays=-1
   </pre>
-

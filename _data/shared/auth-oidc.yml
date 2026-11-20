@@ -7,12 +7,12 @@ before: |
   <p>
     OIDC is <strong>very tricky</strong> to get set up correctly, you will <strong>not</strong> make it work on the first try.
     If you are new to Arkime we recommend following these steps:
-    <ol>
+  </p>
+  <ol>
       <li>Setup Arkime with <a href="#authMode">authMode</a> set to <code>basic</code> or <code>digest</code>. Get this working.</li>
       <li>Setup Arkime with <strong>one</strong> node configured with <a href="#authMode">authMode</a> set to <code>oidc</code>. Do NOT use a load balancer. Get this working. This is the recommended setup, with the single node being what we call a "central viewer". It will proxy all requests to the other nodes.</li>
       <li>If you must have multiple nodes, this is the next step. Make sure if using a load balancer you have stickiness enabled. We don't recommend more than a few nodes configured this way.</li>
     </ol>
-  </p>
   <p>
     If viewer must go through an HTTP proxy to reach the OIDC provider, see the <a href="/faq#outbound-http-proxy">outbound HTTP proxy FAQ</a>.
   </p>

@@ -8,19 +8,19 @@ before: |
   <p>
     Each capture node needs to have the WISE plugin enabled.
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
-    <ol>
+  </p>
+  <ol>
       <li> Add <code>wiseURL=http://WISEHOST:8081</code></li>
       <li> Enable the plugin by adding <code>wise.so</code> to the <code>plugins=</code> variable, it should be the <strong>last entry</strong>.</li>
     </ol>
-  </p>
   <p>
     Each viewer node that an operator uses needs to have the WISE plugin enabled.
     You will need to make a few changes to the <code>[default]</code> section of the configuration file.
-    <ol>
+  </p>
+  <ol>
       <li>Add <code>wiseURL=http://WISEHOST:8081</code></li>
       <li>Enable the plugin by adding <code>wise.js</code> to the <code>viewerPlugins=</code> variable.</li>
     </ol>
-  </p>
   <p>
     Usually just setting wiseURL is enough.
   </p>

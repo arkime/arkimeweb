@@ -1,9 +1,11 @@
 name: "Databricks Integration"
 before: |
-  (Since 5.5.1) Cont3xt can query Databricks for results.
-
-  Create a <code>[databricks:NAME]</code> section where NAME is a name that is unique across all integrations
-
+  <p>
+    (Since 5.5.1) Cont3xt can query Databricks for results.
+  </p>
+  <p>
+    Create a <code>[databricks:NAME]</code> section where NAME is a name that is unique across all integrations
+  </p>
 settings:
   - key: name
     value: section name
