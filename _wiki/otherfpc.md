@@ -34,9 +34,10 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [PcapDB](https://github.com/dirtbags/pcapdb) | opensource | yes | no | yes | Not updated since 2019, the README calls it archival only and warns of vulnerabilities in its dependencies
 [Security Onion](https://securityonionsolutions.com/software/) | opensource | ? | yes | yes | Suricata writes the PCAP (Stenographer before 3.0), Zeek and Suricata logs are searchable
 [SolarCapture](https://github.com/Xilinx-CNS/solarcapture) | opensource | no | no | no | Needs AMD Solarflare NICs, hardware time-stamping
-[Stenographer](https://github.com/google/stenographer) | opensource | yes | no | no | No longer maintained, the repository is archived
+[Stenographer](https://github.com/google/stenographer) | opensource | yes | no | no | Archived in November 2022, the last code change was in 2020
 [Suricata](https://suricata.io) | opensource | no | no | no | Its pcap-log writes every packet, or only flows with an alert or a tagged rule; no index or search of its own
 [tcpdump](https://www.tcpdump.org) | opensource | no | no | no |
+[Teleseer](https://cyberspatial.com/teleseer) | commercial | yes | ? | yes | Visual network and asset mapping, captures in the browser or from a continuous sensor, also ingests PCAP and Zeek logs, has a free tier
 [Zeek](https://zeek.org) | opensource | no | no | no | `-w` writes a trace file, but drops some traffic unless `record_all_packets` is redefined to true; no index or search of its own
 {: .table .table-striped .table-sm .mb-4 }
 
