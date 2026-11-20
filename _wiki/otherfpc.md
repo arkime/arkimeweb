@@ -31,7 +31,7 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [NetWitness Network](https://www.netwitness.com/) | commercial | yes | yes | yes |
 [NIKSUN NetDetector](https://www.niksun.com/products.html) | commercial | yes | yes | yes |
 [Observer GigaStor](https://www.viavisolutions.com/en-us/enterprise/products/observer-gigastor) | commercial | yes | ? | yes |
-[PcapDB](https://github.com/dirtbags/pcapdb) | opensource | yes | no | yes | No commits since 2023
+[PcapDB](https://github.com/dirtbags/pcapdb) | opensource | yes | no | yes | Not updated since 2019, the README calls it archival only and warns of vulnerabilities in its dependencies
 [Security Onion](https://securityonionsolutions.com/software/) | opensource | ? | yes | yes | Suricata writes the PCAP (Stenographer before 3.0), Zeek and Suricata logs are searchable
 [SolarCapture](https://github.com/Xilinx-CNS/solarcapture) | opensource | no | no | no | Needs AMD Solarflare NICs, hardware time-stamping
 [Stenographer](https://github.com/google/stenographer) | opensource | yes | no | no | No longer maintained, the repository is archived
