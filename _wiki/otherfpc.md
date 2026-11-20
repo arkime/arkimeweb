@@ -25,7 +25,7 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [EndaceProbe](https://www.endace.com/endaceprobe) | commercial | yes | ? | yes | Appliances, hardware time-stamping
 [ExtraHop RevealX](https://www.extrahop.com/platform) | commercial | yes | yes | yes |
 [FMADIO](https://www.fmad.io/products) | commercial | yes | ? | yes | Appliances
-[Malcolm](https://github.com/cisagov/Malcolm) | opensource | yes | yes | yes | Bundles Arkime with Zeek, Suricata and OpenSearch Dashboards
+[Malcolm](https://github.com/cisagov/Malcolm) | opensource | yes | yes | yes | Bundles Arkime with Zeek, Suricata and OpenSearch Dashboards. netsniff-ng or tcpdump usually writes the PCAP and Arkime indexes it offline; Arkime captures live itself under the Hedgehog profile, a remote OpenSearch or Kubernetes
 [n2disk](https://www.ntop.org/products/traffic-recording/n2disk/) | commercial | yes | ? | yes | Search and extraction through ntopng
 [netsniff-ng](https://github.com/netsniff-ng/netsniff-ng) | opensource | no | no | no |
 [NetWitness Network](https://www.netwitness.com/) | commercial | yes | yes | yes |
@@ -37,6 +37,7 @@ Name | Type | Basic Indexing | Protocol Indexing | UI | Notes
 [Stenographer](https://github.com/google/stenographer) | opensource | yes | no | no | No longer maintained, the repository is archived
 [Suricata](https://suricata.io) | opensource | no | no | no | Its pcap-log writes every packet, or only flows with an alert or a tagged rule; no index or search of its own
 [tcpdump](https://www.tcpdump.org) | opensource | no | no | no |
+[Zeek](https://zeek.org) | opensource | no | no | no | `-w` writes a trace file, but drops some traffic unless `record_all_packets` is redefined to true; no index or search of its own
 {: .table .table-striped .table-sm .mb-4 }
 
 </div>
