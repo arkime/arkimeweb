@@ -74,10 +74,13 @@ The image is Debian based and installs the normal Arkime Debian package, so ever
 * `/opt/arkime/viewer`, `/opt/arkime/cont3xt`, `/opt/arkime/wiseService`, `/opt/arkime/parliament` - the node applications
 * `/opt/arkime/etc` - **empty on purpose.** This is the directory you mount your own config into. The files the package normally ships here are in `/opt/arkime/samples` instead, so you can copy one out as a starting point:
   `docker run --rm ghcr.io/arkime/arkime/arkime:v6-latest cat /opt/arkime/samples/config.ini.sample > config.ini`
-* `/opt/arkime/share` - **Arkime 7 only.** The files Arkime ships and replaces on upgrade (default rules, Featherprint rules, system dashboards) moved here, so mounting over `/opt/arkime/etc` no longer hides them.
+* `/opt/arkime/share` - **Arkime 7 only.** The files Arkime ships and replaces on upgrade (default rules, Featherprint rules, system dashboards) are new in Arkime 7 and live here rather than in `/opt/arkime/etc`, so mounting your own config over `etc` doesn't hide them.
 
 The image is built on Debian 13 slim and also installs `curl`, `procps`, `iproute2` and `geoipupdate` (used by `--update-geo`).
-The Arkime 7 images additionally install Debian's `tshark` for the new Shark session detail tab &mdash; note that Debian 13 ships tshark 4.4, and the Shark tab needs **4.6.4 or later**, so to use it today you need to mount a newer tshark into the container and point [tsharkPath](/settings#tsharkPath) at it.
+The Arkime 7 images additionally install Debian's `tshark` for the new Shark session detail tab, and it works as shipped.
+The viewer wants tshark **4.4.19 or later**, which is what Debian 13 ships, so the tab is usable with no extra setup. The minimum is per release series, so a 4.6 tshark has to be **4.6.4 or later** &mdash; an early 4.6 came out before 4.4.19 despite the higher number.
+tshark parses untrusted packet data, so if you are mounting your own instead of using the image's, keep it patched.
+To do that, mount it over `/opt/arkime/bin/tshark` and there is nothing else to set: [tsharkPath](/settings#tsharkPath) is a list of candidates that starts with that path, and the viewer uses the first one it finds that is new enough.
 
 The container's default command is `/bin/bash`, so a container with no command just drops you at a shell &mdash; handy for poking around:
 
@@ -139,6 +142,26 @@ becomes:
 Note that the **value** needs no escaping, only the section and setting names.
 (`[featherprint-subnet]` is an Arkime 7 section, it is only used here to show a setting name with dots and a slash in it.)
 
+### Cont3xt, WISE and Parliament and the users database
+
+Cont3xt, WISE and Parliament don't store sessions, so the only database they need is the users one, and that is a separate setting: [usersElasticsearch](/settings#usersElasticsearch), not `elasticsearch`.
+Parliament reads **only** `usersElasticsearch` and falls back to `http://localhost:9200`, which inside a container is the container itself, so setting just `ARKIME__elasticsearch` would leave it looking for a database that isn't there.
+
+To save you setting both, `docker.sh` copies them across before it starts `cont3xt`, `wise`, `parliament` or `esproxy`.
+The whole copy is skipped if you set `ARKIME__usersElasticsearch` yourself:
+
+| If `ARKIME__usersElasticsearch` is unset and you set | docker.sh also sets |
+|---|---|
+| `ARKIME__elasticsearch` | `ARKIME__usersElasticsearch` |
+| `ARKIME__elasticsearchBasicAuth` | `ARKIME__usersElasticsearchBasicAuth` |
+| `ARKIME__prefix` | `ARKIME__usersPrefix` |
+{: .table .table-bordered .table-striped }
+
+This is why the Cont3xt example below sets only `ARKIME__elasticsearch` and still finds its users.
+It does not happen for capture or the viewer, which read `elasticsearch` for sessions and fall back to it for users on their own.
+
+*Note: the copy is decided by `ARKIME__usersElasticsearch` alone. If you set `ARKIME__prefix` and `ARKIME__usersPrefix` but not `ARKIME__usersElasticsearch`, your `ARKIME__usersPrefix` is overwritten with `ARKIME__prefix`. Set `ARKIME__usersElasticsearch` explicitly whenever the two databases differ in any way.*
+
 ## docker.sh Options
 {: .subsection }
 
@@ -164,9 +187,10 @@ Useful options:
 | `--wait-for-ch <url>` | Arkime 7 only. Block startup until ClickHouse answers. |
 | `--db '<args>'` | Run `db.pl <args>` before the command starts. Can be given multiple times and they run in order. |
 | `--ch '<args>'` | Arkime 7 only. Run `ch.pl <args>` before the command starts, after any `--db`. Can be given multiple times. |
-| `--add-admin` | Create an `admin`/`admin` user if no admin exists. **Change the password immediately.** Without this a brand new install has no users and you can't log in. |
-| `--update-geo` | Run `arkime_update_geo.sh` on start, which downloads the RIR and OUI files into `/opt/arkime/etc` and runs `geoipupdate` if `/etc/GeoIP.conf` is mounted. |
-| `--insecure` | Skip TLS certificate verification for database and ClickHouse connections. Only for self-signed certs on a trusted network. |
+| `--add-admin` | Create an `admin`/`admin` user if there is no user named `admin`. **Change the password immediately.** It matches on that name rather than on whether you have any admin at all, so if your admin account is called something else this re-creates `admin`/`admin` every start &mdash; drop the option once you have your own admin. Without it a brand new install has no users and you can't log in. |
+| `--update-geo` | Run `arkime_update_geo.sh` on start, which downloads the RIR and OUI files into `/opt/arkime/etc` and then runs `geoipupdate`. `geoipupdate` needs `/etc/GeoIP.conf` mounted; without it it still runs, fails, and logs an error on every start, which is harmless if you don't use MaxMind. |
+| `--insecure` | Skip TLS certificate verification for the setup steps only. Enough for a self-signed cluster on `localhost`, see below. |
+| `--insecure-all` | **Since 6.9.3.** The same, and pass `--insecure` to the command as well. Needed for a self-signed cluster that isn't on `localhost`. Only on a trusted network. |
 | `--basedir <dir>` | Use a different base directory, default `/opt/arkime`. |
 | `--forever` | Restart the tool in a loop if it exits instead of letting the container exit. Usually you want Docker's own `restart:` policy instead. |
 | `--` | Everything after this goes to the command, for example `-- --node sensor1 --host sensor1.example.com`. |
@@ -175,6 +199,35 @@ Useful options:
 The old `--init`, `--upgrade`, `--ilm` and `--ism` options still work but are deprecated, use `--db` instead.
 
 *Note: when the command itself is `db.pl` or `ch.pl` you still have to give it something to do after the `--`. Both exit non-zero when called with no arguments, which matters if another service is waiting on `service_completed_successfully`.*
+
+### `--insecure` and self-signed certificates
+
+Which option you need depends on **where** your cluster is, because Arkime already trusts a loopback certificate on its own.
+capture, the viewer and the other node tools skip verification for a loopback host without being asked. `curl`, which `docker.sh` uses for `--wait-for-db` and `--wait-for-ch`, does not.
+
+Which spellings count depends on the version. **Arkime 7** treats `localhost`, any `127.x.x.x` and `::1` as loopback everywhere, `db.pl` and `ch.pl` included. **Arkime 6** covers `localhost` and `127.0.0.1`, there is no `ch.pl`, and only the node tools also recognize `::1`.
+
+**A self-signed cluster on localhost** &mdash; `curl` is the only thing that objects, so the setup steps are all you need to cover:
+
+```yaml
+    command: /opt/arkime/bin/docker.sh viewer --insecure --wait-for-db https://localhost:9200
+```
+
+**A self-signed cluster anywhere else** &mdash; the command keeps its own connections open for the life of the container and will reject the certificate moments after the setup steps succeed, so it needs the option too:
+
+```yaml
+    command: /opt/arkime/bin/docker.sh viewer --insecure-all --wait-for-db https://es:9200
+```
+
+`--insecure-all` is new in **Arkime 6.9.3**. On 6.9.2 and earlier, pass it to the command yourself after the `--`, which still works on any version:
+
+```yaml
+    command: /opt/arkime/bin/docker.sh viewer --insecure --wait-for-db https://es:9200 -- --insecure
+```
+
+On 6.9.2 and earlier either option also had to appear **before** `--wait-for-db`, because that check ran while the options were still being read, so a `--insecure` after it never reached the health check and the container waited for a cluster it would not accept. Putting it first works on every version.
+
+*Note: `ARKIME__insecure` was never an Arkime setting, only something the old `docker.sh` read for its own `curl` call, and since 6.4.0 a container exits at startup if it is set. Use the options above. Better still, mount your CA and set [caTrustFile](/settings#caTrustFile) so certificates are verified properly.*
 
 ### Keeping the database schema in sync
 
@@ -481,6 +534,7 @@ There is a full Caddy example in the [UDR7 guide](/udr7).
 ### Can't log in to a brand new install
 
 A fresh database has no users. Add `--add-admin` to the viewer command to create an `admin`/`admin` user (and change the password right away), or run `arkime_add_user.sh` in the container.
+`--add-admin` only looks for a user named `admin`, so once you have your own admin account under a different name, take the option back out rather than leaving it to re-create `admin`/`admin` on every start.
 
 ### Permission denied writing pcap
 
