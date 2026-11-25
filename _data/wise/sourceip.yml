@@ -1,0 +1,87 @@
+name: SourceIP.io
+
+before: |
+  <p>
+    Since 7.0 WISE can fill <code>sourceip.provider</code> with the operators that publish a public IP, from <a href="https://sourceip.io/">SourceIP.io</a>.
+    It tells you who operates an address and how they use it, which is a different question than GeoIP or ASN data answers.
+    <br>
+    <strong>Every public IP WISE is asked about is sent to sourceip.io</strong>, private, loopback, link local, CGNAT, multicast and documentation ranges never are.
+    Use <a href="#wise-source-common">onlyIPs or excludeIPs</a> to limit it further.
+    <br>
+    It works without a key at 100 lookups a day per client IP, a free key from <a href="https://sourceip.io/api-key">sourceip.io</a> raises that to 1,000 a day and lets WISE look up 100 IPs per request.
+    The key's quota is shared with the <a href="cont3xt">Cont3xt</a> SourceIP.io integration, so WISE stops early to leave some for it.
+    Results are cached for a day, so on a busy network most sessions won't get the field.
+    <br>
+    Create a <code>[sourceip]</code> section to configure, it loads with no settings.
+  </p>
+  <p>
+    Fields added: <code>sourceip.provider</code>, shown in the SourceIP.io section of the session detail.
+    A SourceIP.io right click action is added to IPs, it opens the IP on sourceip.io and uses no quota.
+  </p>
+
+settings:
+  - key: key
+    value: EMPTY
+    text: The SourceIP.io API key, without one each IP is an anonymous lookup
+
+  - key: endpoint
+    value: https://api.sourceip.io
+    text: The endpoint that came with the key
+
+  - key: field
+    value: sourceip.provider
+    text: The field to fill with provider names
+
+  - key: dailyBudget
+    value: 800 with a key, 60 without
+    text: Addresses to look up per UTC day. The count is kept in memory and starts over when WISE restarts
+
+  - key: reserve
+    value: 100 with a key, 0 without
+    text: Pause until the quota resets once the server says this many lookups or fewer are left, leaving them for Cont3xt
+
+  - key: batchWaitMs
+    value: 500
+    text: How long to collect IPs into one batch request when using a key
+
+  - key: timeoutMs
+    value: 4000
+    text: Deadline for each API call, keep batchWaitMs + timeoutMs under 5000 since WISE gives up on a request after 5 seconds. A call that fails gives no result, which isn't cached, so the IPs are tried again later
+
+  - key: cacheAgeMin
+    value: 1440
+    text: Minutes to cache results
+
+  - key: trace
+    value: false
+    text: Log every lookup and its outcome
+
+  - key: insecure
+    value: false
+    text: If true certificate verification will be disabled for https calls to the endpoint. The <code>--insecure</code> command line option also disables it
+
+  - key: caTrustFile
+    value: EMPTY
+    text: File with PEM encoded CA certificates to trust for https calls to the endpoint, which replaces the system CAs. It does not fall back to the <code>[wiseService]</code> caTrustFile.
+
+  - key: clientKey
+    value: EMPTY
+    text: PEM encoded private key file presented to the endpoint for client certificate (mTLS) authentication. Must also set clientCert.
+
+  - key: clientCert
+    value: EMPTY
+    text: PEM encoded certificate file presented to the endpoint for client certificate (mTLS) authentication. Must also set clientKey.
+
+  - key: clientKeyPass
+    value: EMPTY
+    text: The passphrase for clientKey, if it has one.
+
+after: |
+  <p>
+    Example config with a key, which only looks up IPs outside your own networks.
+  </p>
+  <pre>
+  [sourceip]
+  key=YOUR_SOURCEIP_KEY
+  excludeIPs=198.51.100.0/24
+  </pre>

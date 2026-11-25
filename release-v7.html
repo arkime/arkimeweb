@@ -162,6 +162,8 @@ title: V7!
               <li class="mb-2"><strong>All parsers load by default.</strong> <a href="settings#disableParsers">disableParsers</a> used to default to <code>arp.so</code> and now defaults to empty, so arp sessions are recorded. Set <code>disableParsers=arp.so</code> for the old behavior.</li>
               <li class="mb-2"><strong>Unknown and corrupt packets are saved by default.</strong> <a href="settings#saveUnknownPackets">saveUnknownPackets</a> used to default to empty and now defaults to <code>all;corrupt</code>, so unknown ether, unknown ip and corrupt packets become sessions with pcap. Set <code>saveUnknownPackets=</code> for the old behavior.</li>
               <li class="mb-2"><strong><code>offlineFilenameRegex</code> matches .pcapng.</strong> The default used to match only .pcap and .cap.</li>
+              <li class="mb-2"><strong>IP fragments are saved as they were on the wire.</strong> Capture still reassembles them to parse the datagram, but the pcap now has the fragments instead of one reassembled packet that was never sent. Session packet and byte counts include every fragment, and an Arkime 6 viewer shows the fragments without putting them back together.</li>
+              <li class="mb-2"><strong><code>disableIp4Defrag</code> is removed.</strong> Fragments are always reassembled and the setting is ignored.</li>
               <li class="mb-2"><strong>Stricter settings.</strong> Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt and tshark limits, timeouts and ports must be numbers in range.</li>
             </ul>
 
@@ -380,6 +382,8 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li><a href="settings#rulesFiles">rulesFiles</a> can be directories that are watched for new and removed files, and a <code>default.rules.yml</code> is now installed and kept up to date for you</li>
             <li>Writes sessions directly to ClickHouse and the cluster data to Postgres, see <a href="#databases">Choose Your Database</a></li>
             <li>Faster session hash lookups and <a href="settings#dedup">dedup</a>, and session and dedup hashing now use a random key so traffic can't be crafted to overload one packet thread</li>
+            <li>IP fragments are saved to pcap exactly as captured, so an exported session matches what was on the wire, and IPv6 fragments are now reassembled too. Like hosts, the ip header comes from the first fragment and datagrams whose fragments conflict are dropped</li>
+            <li>Reading pcap files with <a href="settings#dedup">dedup</a> on goes by packet time, so packets sent again later in a file are no longer dropped as duplicates</li>
             <li>A new <code>perf-stats</code> command socket command dumps queue depths, hash usage and outstanding requests for performance debugging</li>
             <li>The <a href="settings#writer-s3">s3 writer</a> and <a href="settings#reader-scheme-s3">s3/sqs readers</a> support EKS IRSA and Pod Identity credentials, so EKS pods no longer need instance metadata access</li>
             <li>Nothing is skipped by default: every parser loads, including arp, and unknown ether, unknown ip and corrupt packets are saved as sessions, see <a href="settings#disableParsers">disableParsers</a> and <a href="settings#saveUnknownPackets">saveUnknownPackets</a></li>
@@ -407,6 +411,7 @@ dbUrl=postgres://arkime:password@pg.example.com/arkime</code></pre>
             <li>Faster charts: the timeline uses uPlot and the world map uses D3</li>
             <li>The time controls now live in the search row, and help notes and per page tips replace the welcome message</li>
             <li>New <a href="settings#startPage">Start Page</a> and <a href="settings#sessionDetailTab">Session Detail Tab</a> settings pick where the viewer opens and which session detail tab shows first</li>
+            <li>Session detail and reassembled hunts put saved IP fragments back together, while PCAP downloads and raw hunts keep the fragments as captured</li>
             <li>Two-factor setup has its own settings tab, so it works when the password page is disabled</li>
           </ul>
         </div>
@@ -465,6 +470,7 @@ sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123</code></pre>
           </h1>
           <ul>
             <li>New <a href="settings#wise-misp">MISP source</a> that either bulk loads attributes on a schedule or looks up each item, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
+            <li>New <a href="settings#wise-sourceip">SourceIP.io source</a> that fills <code>sourceip.provider</code> with the operators of public IPs</li>
             <li>The <a href="settings#wise-urlapi">urlapi</a>, <a href="settings#wise-url">url</a>, <a href="settings#wise-elasticsearch">elasticsearch</a>, <a href="settings#wise-elasticsearchfile">elasticsearchfile</a> and <a href="settings#wise-misp">misp</a> sources can verify servers with a private CA and present a client certificate (mTLS)</li>
             <li>The users OpenSearch/Elasticsearch connection supports client certificates with <a href="settings#esClientKey">esClientKey</a>/<a href="settings#esClientCert">esClientCert</a></li>
             <li>The config page no longer uses a random pin code, use <code>--webcode</code> or your own TOTP code</li>
@@ -502,6 +508,7 @@ sessionsDbUrl=clickhouse://arkime:password@ch.example.com:8123</code></pre>
           </h1>
           <ul>
             <li>New <a href="settings#cont3xt-misp">MISP integration</a>, with multiple <code>[misp:&lt;name&gt;]</code> instances</li>
+            <li>New SourceIP.io integration that shows who operates an IP and how they use it, its ASN origins with RPKI status and registry allocation</li>
             <li>A redesigned integrations settings tab, and integration secrets are always masked</li>
             <li>The urlapi, elasticsearch, arkime, misp, csv and json integrations can verify servers with a private CA and present a client certificate (mTLS), see <a href="settings#cont3xt-integration-common">the common integration settings</a></li>
             <li>The cont3xt data can live in Postgres or SQLite, see <a href="settings#cont3xt-db-dbUrl">dbUrl</a></li>

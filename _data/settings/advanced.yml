@@ -66,6 +66,8 @@ settings:
   - key: disableIp4Defrag
     value: "false"
     text: |
+      <strong>Removed in 7.0.0:</strong> the setting is ignored. Capture always reassembles IP fragments to parse them,
+      and saves the fragments as they were on the wire instead of the reassembled packet.<br>
       (Since 6.0.0) When true disables IPv4 defragmentation in the capture process.
 
   - key: stateDir

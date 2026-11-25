@@ -1190,6 +1190,8 @@ Environment=NO_PROXY=127.0.0.1,localhost,ESHOSTS,OTHERVIEWERHOSTS,WISEHOST
         <li class="mb-2"><strong>All parsers load by default.</strong> <a href="/settings#disableParsers">disableParsers</a> used to default to <code>arp.so</code> and now defaults to empty, so arp sessions are recorded. Set <code>disableParsers=arp.so</code> for the old behavior.</li>
         <li class="mb-2"><strong>Unknown and corrupt packets are saved by default.</strong> <a href="/settings#saveUnknownPackets">saveUnknownPackets</a> used to default to empty and now defaults to <code>all;corrupt</code>, so unknown ether, unknown ip and corrupt packets become sessions with pcap. Set <code>saveUnknownPackets=</code> for the old behavior.</li>
         <li class="mb-2"><strong><code>offlineFilenameRegex</code> matches .pcapng.</strong> The default used to match only .pcap and .cap.</li>
+        <li class="mb-2"><strong>IP fragments are saved as they were on the wire.</strong> Capture still reassembles them to parse the datagram, but the pcap now has the fragments instead of one reassembled packet that was never sent. Session packet and byte counts include every fragment, and an Arkime 6 viewer shows the fragments without putting them back together.</li>
+        <li class="mb-2"><strong><code>disableIp4Defrag</code> is removed.</strong> Fragments are always reassembled and the setting is ignored.</li>
         <li class="mb-2"><strong>Stricter settings.</strong> Booleans must be true or false (not 0, 1 or False), <code>rotateIndex</code> must be one capture accepts, <code>freeSpaceG</code> must be a number or a percentage, and the hunt and tshark limits, timeouts and ports must be numbers in range.</li>
       </ul>
 
@@ -2880,6 +2882,23 @@ ethtool -K eth0 rx off tx off sg off tso off gso off</code></pre>
           unknown link or GRE types)
         </li>
       </ul>
+      <p>
+        If the sessions have fewer packets than the file:
+      </p>
+      <ul>
+        <li>
+          <a href="/settings#enablepacketdedup"><code>enablePacketDedup</code></a> is on by default and drops
+          packets whose ip and tcp/udp headers match one seen in the last few seconds, which
+          includes some retransmits. Set <code>enablePacketDedup=false</code> to keep every packet.
+          Arkime 6 and earlier timed those seconds by the clock, so packets sent again many
+          seconds apart in a file that is read quickly were dropped too. Arkime 7 goes by the
+          packet times.
+        </li>
+        <li>
+          Arkime 6 and earlier save one reassembled packet in place of a datagram's IP fragments.
+          Arkime 7 saves the fragments as they were captured.
+        </li>
+      </ul>
       <p class="alert alert-secondary">
         <span class="fa fa-exclamation-triangle"></span> By default importing offline pcap does NOT make a copy of the pcap file, Arkime saves a reference to the original file, which shows up as locked on the files tab. If you want to make a copy of the pcap file, use the <code>--copy</code> option with capture.
         </p>
@@ -3179,9 +3198,24 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           much more efficient than a huge bpf.
         </li>
         <li>
+          IP fragments are held until the rest of their datagram arrives, for up to
+          <a href="/settings#fragstimeout"><code>fragsTimeout</code></a> seconds and
+          <a href="/settings#maxfrags"><code>maxFrags</code></a> datagrams at once. The reassembled
+          datagram is what continues through the steps below and is parsed. Since Arkime 7
+          the fragments are what get counted and saved, as they were on the wire, and the
+          viewer puts them back together; before Arkime 7 the reassembled packet was saved
+          instead. Fragments that never complete a datagram are discarded.
+        </li>
+        <li>
           For TCP packets, Arkime checks against previously matched rules
           that set a <code>_dropByDst</code> or <code>_dropBySrc</code> timeout,
           if it matches they will be discarded.
+        </li>
+        <li>
+          If <a href="/settings#enablepacketdedup"><code>enablePacketDedup</code></a> is on, which is
+          the default, TCP and UDP packets whose ip and tcp/udp headers are the same as a packet
+          from the last <a href="/settings#dedupseconds"><code>dedupSeconds</code></a> seconds are
+          discarded. Since Arkime 7 those seconds are packet time when reading files.
         </li>
         <li>
           Arkime picks a packet queue to send the packet to, if the packet queue
@@ -3215,7 +3249,8 @@ cp /etc/systemd/system/arkimecapture1.service /etc/systemd/system/arkimecapture2
           number of packets for the session (set by rules or
           <a href="/settings#dontsavebpfs">dontSaveBPFs</a>)
           OR if there was another method (plugin) that said stop saving packets
-          for the session the packet won't be saved.
+          for the session the packet won't be saved. Since Arkime 7 the fragments of a
+          datagram are all saved or none are.
         </li>
         <li>
           If the number of packets for the session is greater than
