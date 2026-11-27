@@ -35,6 +35,11 @@ settings:
       With any other value the first interface uses <code>tpacketv3ClusterId</code>, the second <code>tpacketv3ClusterId</code> + 1 and so on, so each capture process on a host needs its own range. Set <code>tpacketv3ClusterId=8005</code> for the old behavior.
       An <code>Error setting packet fanout</code> error that ends with <code>Invalid argument</code> usually means the interface is DOWN and needs to be brought UP.
 
+  - key: tpacketv3ClusterIdUnique
+    value: "false"
+    text: |
+      (Since 6.9.3) Set to true to let the kernel assign a <code>PACKET_FANOUT</code> group id per interface instead of using <a href="#tpacketv3ClusterId">tpacketv3ClusterId</a>. This keeps the process from joining a fanout group already used by another process. Requires Linux 4.12 or later.
+
   - key: tpacketv3OldVlan
     value: "false"
     text: |
