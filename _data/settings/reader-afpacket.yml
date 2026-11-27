@@ -28,9 +28,12 @@ settings:
       The number of threads used to read packets from each interface. These threads take the packets from the AF packet interface and place them into the packet queues.
 
   - key: tpacketv3ClusterId
-    value: "8005"
+    value: "0"
     text: |
-      The cluster id for use with <code>PACKET_FANOUT</code>. The error <code>Error setting packet fanout parameters: tpacketv3ClusterId: 8005 (Invalid argument)</code> usually means the interface is DOWN and needs to be brought UP.
+      The cluster id for use with <code>PACKET_FANOUT</code>, from 0 to 65535.
+      (Since 7.0.0) The default is <code>0</code>, which has the kernel pick an unused fanout group id for each interface, so several capture processes on one host no longer need different ids. This requires Linux 4.12 or later, and capture logs the id the kernel picked. Before 7.0.0 the default was <code>8005</code> and 0 wasn't allowed.
+      With any other value the first interface uses <code>tpacketv3ClusterId</code>, the second <code>tpacketv3ClusterId</code> + 1 and so on, so each capture process on a host needs its own range. Set <code>tpacketv3ClusterId=8005</code> for the old behavior.
+      An <code>Error setting packet fanout</code> error that ends with <code>Invalid argument</code> usually means the interface is DOWN and needs to be brought UP.
 
   - key: tpacketv3OldVlan
     value: "false"
